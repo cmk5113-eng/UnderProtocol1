@@ -1,0 +1,9 @@
+using UnityEngine;
+
+public class SettingManager : ManagerBase
+{
+    protected override void OnConnected(GameManager newManager)
+    { }
+    protected override void OnDisConnected()
+    { }
+}
