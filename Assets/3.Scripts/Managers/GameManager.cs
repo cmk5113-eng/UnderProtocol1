@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
 
     UIManager _ui;
     public UIManager UI => _ui;
-
+    
+    CharacterManager _character;
+    public CharacterManager Character => _character;
+    
     DataManager _data;
     public DataManager Data => _data;
 
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
         totalLoadCount += CreateManager(ref _camera).LoadCount;
         totalLoadCount += CreateManager(ref _input).LoadCount;
         totalLoadCount += CreateManager(ref _placement).LoadCount;
+        totalLoadCount += CreateManager(ref _character).LoadCount;
 
 
 
@@ -132,6 +136,8 @@ public class GameManager : MonoBehaviour
         loadingProgress?.AddCurrent(1);
         yield return Placement.Connect(this);
         loadingProgress?.AddCurrent(1);
+        yield return Character.Connect(this);
+        loadingProgress?.AddCurrent(1);
         yield return null;
         UIManager.ClaimOpenScreen(UIType.Title);
         isLoading = false;
@@ -148,6 +154,7 @@ public class GameManager : MonoBehaviour
         Camera?.Disconnect();
         UI?.Disconnect();
         Data?.Disconnect();
+        Character?.Disconnect();
         Placement?.Disconnect();
     }
     ManagerType CreateManager<ManagerType>(ref ManagerType targetVariable) where ManagerType : ManagerBase

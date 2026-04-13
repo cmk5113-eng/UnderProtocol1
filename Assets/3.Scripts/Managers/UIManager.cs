@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public enum UIType
 {
-    None, Loading, Title, Movable,Menu, Info, Option, Action,Stage, Save, Card, CharacterSelect,
-
+    None, Loading, Title, Movable,Menu, Info, Option, Action,Stage, Scenario, Save, Card, CharacterSelect,
+    Map,
     _Length
 }
 
@@ -89,8 +89,10 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Menu, "W_Menu",switcherTransform);
         CreateUI(UIType.Save, "W_Save", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
-        CreateUI(UIType.CharacterSelect, "W_CharacterSelect",switcherTransform);
         CreateUI(UIType.Stage, "S_Stage",switcherTransform);
+        CreateUI(UIType.CharacterSelect, "W_CharacterSelect",switcherTransform);
+        CreateUI(UIType.Scenario, "S_Scenario",switcherTransform);
+        CreateUI(UIType.Map, "W_Map",switcherTransform);
         
 
         foreach (Transform currentTransform in switcherTransform)

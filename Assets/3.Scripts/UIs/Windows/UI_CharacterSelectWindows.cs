@@ -37,7 +37,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
             currentCharacterCount++;
             Set(currentCharacterCount, maxCharacterCount);
         }
-        if (currentCharacterCount == maxCharacterCount)
+        else if (currentCharacterCount == maxCharacterCount)
         {
             UIManager.ClaimPopUp("띠딩", "인원 초과", "롸져");
         }
@@ -63,5 +63,49 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     }
 
     public void Toggle() => gameObject.SetActive(!IsOpen);
-}
 
+
+
+
+    public static UI_CharcterSelectWindows Instance { get; private set; }
+
+    // 유저님이 말씀하신 '현재 캐릭터' 변수 (이름으로 관리)
+    [SerializeField] public string currentcharacter;
+
+    [Header("소환 위치 설정")]
+    [SerializeField] private Transform spawnParent;
+
+    void Awake()
+    {
+        
+            Instance = this;
+            // 기본값이 null이면 Error가 날 수 있으니 빈 값이라도 넣어줍니다.
+            if (string.IsNullOrEmpty(currentcharacter)) currentcharacter = "";
+    }
+
+    // 버튼에서 이 함수를 호출해서 값을 바꿉니다.
+    public void ChangeCurrentCharacter(string name)
+    {
+        currentcharacter = name;
+        Debug.Log($"선택된 캐릭터가 {currentcharacter}로 변경되었습니다.");
+        UI_InfoWindows infoWin = FindObjectOfType<UI_InfoWindows>();
+        if (infoWin != null)
+        {
+            infoWin.UpdateUI();
+        }
+    }
+
+
+    // '생성' 버튼을 눌렀을 때 실행될 함수
+    public void OnClickSpawn()
+    {
+        if (string.IsNullOrEmpty(currentcharacter))
+        {
+            Debug.LogWarning("먼저 캐릭터 버튼을 클릭해서 선택해주세요!");
+            return;
+        }
+
+        // ObjectManager에게 현재 변수에 담긴 이름으로 생성을 요청합니다.
+        ObjectManager.CreateObject(currentcharacter, spawnParent);
+    }
+}

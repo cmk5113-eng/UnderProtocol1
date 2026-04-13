@@ -44,7 +44,7 @@ public class ObjectManager : ManagerBase
 	protected override IEnumerator OnConnected(GameManager newManager)
 	{
 		RegistrationPool(globalPoolSettings);
-		InitializePool();
+		
 
 		yield return null;
 	}
@@ -383,11 +383,11 @@ public class ObjectManager : ManagerBase
 		}
 	}
 
-	public void InitializePool()
-	{
-		foreach(ObjectPoolModule currentPool in poolDictionary.Values)
-		{
-			currentPool?.Initialize();
-		}
-	}
+	//public void InitializePool()
+	//{
+	//	foreach(ObjectPoolModule currentPool in poolDictionary.Values)
+	//	{
+	//		currentPool?.Initialize();
+	//	}
+	//}
 }

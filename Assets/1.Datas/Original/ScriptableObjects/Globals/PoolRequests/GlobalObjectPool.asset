@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39501757ce9754044bbf97bb51106422, type: 3}
   m_Name: GlobalObjectPool
   m_EditorClassIdentifier: Assembly-CSharp::PoolRequest
+  settings:
+  - poolName: Map
+    target: {fileID: 3869218819271716549, guid: bd515b15f50b3e34aa699927260793b2, type: 3}
+    countInitial: 1
+    countAdditional: 1
