@@ -88,11 +88,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     {
         currentcharacter = name;
         Debug.Log($"선택된 캐릭터가 {currentcharacter}로 변경되었습니다.");
-        UI_InfoWindows infoWin = FindObjectOfType<UI_InfoWindows>();
-        if (infoWin != null)
-        {
-            infoWin.UpdateUI();
-        }
+
     }
 
 
