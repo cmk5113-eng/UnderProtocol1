@@ -1,9 +1,5 @@
-using JetBrains.Annotations;
-using Mono.Cecil;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Windows;
-using static Unity.VisualScripting.Icons;
 
 public delegate void InitializeEvent();
 public delegate void UpdateEvent(float deltaTime);
@@ -167,6 +163,16 @@ public class GameManager : MonoBehaviour
         return targetVariable;
     }
 
+    public static void QuitGame()
+    { 
+#if UNITY_EDITOR
+
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     public static void Pause()
     { Instance.isPlaying = false; }
     public static void UnPause()
@@ -238,6 +244,7 @@ public class GameManager : MonoBehaviour
         InvokeDestroyEvent(ref OnDestroyCharacter);
         //매니저를 제거한다
         InvokeDestroyEvent(ref OnDestroyManager);
+
     }
 
 }

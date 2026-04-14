@@ -169,10 +169,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4049776007391133089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1256, y: 721}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9097037798509724993
 CanvasRenderer:
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 27486d8e35ee2534c9bc7a922e3255af, type: 3}
+  m_Sprite: {fileID: 2851813444663456529, guid: b97fdbf98e6ecbb4c97b89494c6c94ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -404,7 +404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef547f2c76cdd349906c79ea6838140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_TitleScreen
-  requiredUI: []
+  requiredUI:
+  - prefabName: W_GameQuit
+    uiType: 13
+    isOpen: 0
 --- !u!1 &4614787040741876708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1374,7 @@ GameObject:
   - component: {fileID: 1170493847619392864}
   - component: {fileID: 6473447822868567026}
   - component: {fileID: 2425751037317822391}
+  - component: {fileID: 4805255925659595366}
   m_Layer: 5
   m_Name: exit
   m_TagString: Untagged
@@ -1479,7 +1483,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6473447822868567026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4805255925659595366}
+        m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4805255925659595366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570024904725475661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
+  wantType: 13
 --- !u!1 &8625042248386470593
 GameObject:
   m_ObjectHideFlags: 0

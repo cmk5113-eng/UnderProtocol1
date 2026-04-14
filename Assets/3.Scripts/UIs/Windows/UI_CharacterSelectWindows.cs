@@ -6,6 +6,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     // 변수는 크기나 중요도 순으로 배치 (보통 컴포넌트 -> 기본 자료형)
     public TextMeshProUGUI Current;
     public TextMeshProUGUI Max;
+    public TextMeshProUGUI Currentcharacter;
 
     public int currentCharacterCount = 0;
     public int maxCharacterCount = 12; // 기본값 설정
@@ -15,6 +16,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     {
         if (Current != null) Current.text = currentCharacterCount.ToString();
         if (Max != null) Max.text = maxCharacterCount.ToString();
+        if (Currentcharacter is not null) Currentcharacter.text = currentcharacter.ToString();
     }
     private void OnEnable()
     {
@@ -88,7 +90,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     {
         currentcharacter = name;
         Debug.Log($"선택된 캐릭터가 {currentcharacter}로 변경되었습니다.");
-
+        RefreshUI();
     }
 
 
