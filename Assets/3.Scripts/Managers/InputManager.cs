@@ -68,6 +68,7 @@ public class InputManager : ManagerBase
 
         yield return null;
     }
+
     protected override void OnDisconnected()
     {
         GameManager.OnUpdateManager -= UpdateEvent;
@@ -121,8 +122,7 @@ public class InputManager : ManagerBase
         InitializeAction("MouseRightButtonUp", (context) => OnMouseRightButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
 
         InitializeAction("Cancel", (context) => OnCancel?.Invoke(true));
-        InitializeAction("ShowStatusButtonUp", (context) => OnShowStatus?.Invoke(true));
-        InitializeAction("ShowStatusButtonDown", (context) => OnShowStatus?.Invoke(true));
+        InitializeAction("Space", (context) => OnNextTurn?.Invoke(true));
 
     }
     void InitializeAction(string actionName, Action<InputAction.CallbackContext> actionMethod)

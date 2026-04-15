@@ -7,6 +7,8 @@ public class TileClickDetector : MonoBehaviour
     public Tilemap tilemap;
     private Camera mainCamera;
 
+
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -27,10 +29,14 @@ public class TileClickDetector : MonoBehaviour
 
             // 타일맵 셀 좌표로 변환
             Vector3Int clickCellPos = tilemap.WorldToCell(mouseWorldPos);
+            Vector3Int origin = tilemap.cellBounds.min;
+            Vector3Int adjustedPos = clickCellPos - origin;
+
 
             if (tilemap.HasTile(clickCellPos))
             {
-                Debug.Log($"[New Input] 타일 클릭: {clickCellPos}");
+                ObjectManager.CreateObject("Choi",tilemap.CellToWorld(clickCellPos));
+                Debug.Log($"[Create] 타일 위치 {clickCellPos}에 오브젝트 생성 완료");
             }
         }
     }

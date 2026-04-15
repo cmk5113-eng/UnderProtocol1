@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000030518, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 636.77, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &9140016581870769850
@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.40600002, y: 0.6275175}
   m_AnchorMax: {x: 0.45125192, y: 0.6604826}
-  m_AnchoredPosition: {x: 18.647583, y: 7.9974008}
-  m_SizeDelta: {x: 47.8112, y: 23.0852}
+  m_AnchoredPosition: {x: 31.004, y: 19.5}
+  m_SizeDelta: {x: 85.2973, y: 47.4183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4088305766888598281
 CanvasRenderer:
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6ffd18426674448b5167b1fa015b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_LoadingScreen
+  requiredUI: []
   progressBar: {fileID: 8507142488851406654}
   progressText: {fileID: 1280586215507993653}
   explainText: {fileID: 6890607412643707657}
@@ -776,7 +777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.5000458, y: -0.29638672}
+  m_AnchoredPosition: {x: -3.500061, y: -0.2963848}
   m_SizeDelta: {x: 40.196594, y: 27.651802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3244878550584077555
@@ -926,7 +927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.231, y: 0.5975175}
   m_AnchorMax: {x: 0.286, y: 0.6604826}
-  m_AnchoredPosition: {x: 0.9754944, y: 0.5}
+  m_AnchoredPosition: {x: 0.97546387, y: 0.5}
   m_SizeDelta: {x: 1.515213, y: 3.8114014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5606462709541759848
@@ -1151,7 +1152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1757008, y: 0.5975175}
   m_AnchorMax: {x: 0.231, y: 0.6604826}
-  m_AnchoredPosition: {x: -0.5397339, y: 0.5}
+  m_AnchoredPosition: {x: -0.5397949, y: 0.5}
   m_SizeDelta: {x: 1.5161133, y: 3.8114014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6958338230966436716
@@ -1303,7 +1304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.40300003, y: 0.60300004}
   m_AnchorMax: {x: 0.418, y: 0.64051753}
-  m_AnchoredPosition: {x: -0.88998413, y: -1.0999985}
+  m_AnchoredPosition: {x: -0.88998413, y: -1.1000061}
   m_SizeDelta: {x: -0.074783325, y: 2.7369995}
   m_Pivot: {x: 0.49999997, y: 0.5}
 --- !u!222 &2411303469578054775
@@ -1414,14 +1415,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5660750982647606320, guid: 6aa715b3852a71b4aa5b52c5033a5c58, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1465,8 +1466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.289, y: 0.65300006}
   m_AnchorMax: {x: 0.34285042, y: 0.66800004}
-  m_AnchoredPosition: {x: 11.198, y: 14.5}
-  m_SizeDelta: {x: 50.74639, y: 11.328249}
+  m_AnchoredPosition: {x: 22.152, y: 30.273}
+  m_SizeDelta: {x: 95.051, y: 15.2741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2100536310879288069
 CanvasRenderer:
