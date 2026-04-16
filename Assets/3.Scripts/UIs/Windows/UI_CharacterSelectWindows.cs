@@ -6,8 +6,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     // 변수는 크기나 중요도 순으로 배치 (보통 컴포넌트 -> 기본 자료형)
     public TextMeshProUGUI Current;
     public TextMeshProUGUI Max;
-    public TextMeshProUGUI Currentcharacter;
-
+    
     public int currentCharacterCount = 0;
     public int maxCharacterCount = 12; // 기본값 설정
 
@@ -16,7 +15,6 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     {
         if (Current != null) Current.text = currentCharacterCount.ToString();
         if (Max != null) Max.text = maxCharacterCount.ToString();
-        if (Currentcharacter is not null) Currentcharacter.text = currentcharacter.ToString();
     }
     private void OnEnable()
     {
@@ -57,11 +55,11 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     }
 
     // 3. 초기화 시 사용
-    public int ResetCount()
+    public void ResetCount()
     {
         currentCharacterCount = 0;
         RefreshUI();
-        return 0;
+    
     }
 
     public void Toggle() => gameObject.SetActive(!IsOpen);
@@ -72,38 +70,47 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     public static UI_CharcterSelectWindows Instance { get; private set; }
 
     // 유저님이 말씀하신 '현재 캐릭터' 변수 (이름으로 관리)
-    [SerializeField] public string currentcharacter;
-
-    [Header("소환 위치 설정")]
-    [SerializeField] private Transform spawnParent;
-
-    void Awake()
+    [SerializeField] public static GameObject currentCharacter;
+    public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
-        
-            Instance = this;
-            // 기본값이 null이면 Error가 날 수 있으니 빈 값이라도 넣어줍니다.
-            if (string.IsNullOrEmpty(currentcharacter)) currentcharacter = "";
-    }
+        // 1. 전달받은 프리팹을 현재 캐릭터로 등록
+        currentCharacter = selectedPrefab;
 
-    // 버튼에서 이 함수를 호출해서 값을 바꿉니다.
-    public void ChangeCurrentCharacter(string name)
-    {
-        currentcharacter = name;
-        Debug.Log($"선택된 캐릭터가 {currentcharacter}로 변경되었습니다.");
+        // 2. 제대로 등록되었는지 확인 로그
+        if (currentCharacter != null)
+        {
+            Debug.Log($"선택된 캐릭터가 '{currentCharacter.name}'(으)로 등록되었습니다.");
+        }
+
+        // 3. UI 업데이트 등 후속 작업
         RefreshUI();
     }
 
+    //[Header("소환 위치 설정")]
+    //[SerializeField] private Transform spawnParent;
 
-    // '생성' 버튼을 눌렀을 때 실행될 함수
-    public void OnClickSpawn()
-    {
-        if (string.IsNullOrEmpty(currentcharacter))
-        {
-            Debug.LogWarning("먼저 캐릭터 버튼을 클릭해서 선택해주세요!");
-            return;
-        }
+    //void Awake()
+    //{
+        
+    //        Instance = this;
+    //        // 기본값이 null이면 Error가 날 수 있으니 빈 값이라도 넣어줍니다.
+    //        if (string.IsNullOrEmpty(currentcharacter)) currentcharacter = "";
+    //}
 
-        // ObjectManager에게 현재 변수에 담긴 이름으로 생성을 요청합니다.
-        ObjectManager.CreateObject(currentcharacter, spawnParent);
-    }
+    // 버튼에서 이 함수를 호출해서 값을 바꿉니다.
+    
+
+
+    //// '생성' 버튼을 눌렀을 때 실행될 함수
+    //public void OnClickSpawn()
+    //{
+    //    if (string.IsNullOrEmpty(currentcharacter))
+    //    {
+    //        Debug.LogWarning("먼저 캐릭터 버튼을 클릭해서 선택해주세요!");
+    //        return;
+    //    }
+
+    //    // ObjectManager에게 현재 변수에 담긴 이름으로 생성을 요청합니다.
+    //    ObjectManager.CreateObject(currentcharacter, spawnParent);
+    //}
 }

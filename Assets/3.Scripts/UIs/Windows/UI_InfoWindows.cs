@@ -11,7 +11,6 @@ public class UI_InfoWindows : UIBase, IOpenable
     [SerializeField] private TextMeshProUGUI characterNameText;
     public void UpdateUI()
     {
-    string name = UI_CharcterSelectWindows.Instance.currentcharacter;
-    characterNameText.text = string.IsNullOrEmpty(name) ? "캐릭터를 선택하세요" : name;
+    GameObject name = UI_CharcterSelectWindows.currentCharacter;
     }
 }

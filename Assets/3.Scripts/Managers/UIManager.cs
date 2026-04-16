@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public enum UIType
 {
-    None, Loading, Title, Movable,Menu, Info, Option, Action,Stage, Scenario, Save, Card, CharacterSelect, GameQuit,
-    Map,
+    None, Loading, Title, Movable,Menu, Info, Option, Action,Stage, Scenario, Save, Card, CharacterSelect, GameQuit,Hero, Mission, MiniMap,Item,HQ,
+    Map,World,Dialog,
     _Length
 }
 public enum ScreenChangeType
@@ -104,13 +104,22 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
-        CreateUI(UIType.Scenario, "S_Scenario", switcherTransform);
+        CreateUI(UIType.World, "S_World", switcherTransform);
+
+        CreateUI(UIType.Scenario, "W_Scenario", switcherTransform);
         CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
         CreateUI(UIType.Menu, "W_Menu", switcherTransform);
         CreateUI(UIType.Save, "W_Save", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
         CreateUI(UIType.Map, "W_Map", switcherTransform);
         CreateUI(UIType.GameQuit, "W_GameQuit", switcherTransform);
+        CreateUI(UIType.Hero, "W_Hero", switcherTransform);
+        CreateUI(UIType.MiniMap, "W_MiniMap", switcherTransform);
+        CreateUI(UIType.Item, "W_Item", switcherTransform);
+        CreateUI(UIType.Mission, "W_Mission", switcherTransform);
+        CreateUI(UIType.HQ, "W_HQ", switcherTransform);
+        CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
+
 
         foreach (Transform currentTransform in switcherTransform)
         {
@@ -135,7 +144,7 @@ public class UIManager : ManagerBase
             instance?.SetActive(false);
         }
 
-        
+
 
         yield return null;
 
@@ -226,21 +235,23 @@ public class UIManager : ManagerBase
     {
         //Result가 누군지 전혀 모름!  리스코프 치환 원칙
         //IOpenable이면 열게 해준다! 세부 요소는 모르겠는데, 상위 요소만으로 실행하기
-        UIBase result = GetUI(wantType);
         //이게 "열 수 있는"인 건 어떻게 확인할까요?
         //IOpenable인지 체크해보면 열 수 있는지 알 수 있습니다.
         //IOpenable로서 활동 할 수 있으면 IOpenable
         //result는 IOpenable인 opener인가?
-        if (result is IOpenable asOpenable) asOpenable.Open();
-
-        if (result) EventSystem.current.SetSelectedGameObject(result.gameObject);
-
 
         //아랫줄이랑 같은 의미예요!
         //IOpenable opener = result as IOpenable;
         //if(opener != null) opener.Open();
+        UIBase result = GetUI(wantType);
+        if (result is IOpenable asOpenable) asOpenable.Open();
+
+        if (result) EventSystem.current.SetSelectedGameObject(result.gameObject);
+
         return result;
     }
+
+    
     public static UIBase ClaimOpenUI(UIType wantType) => GameManager.Instance?.UI?.OpenUI(wantType);
     public UIBase CloseUI(UIType wantType)
     {
@@ -257,26 +268,31 @@ public class UIManager : ManagerBase
     }
     public static UIBase ClaimToggleUI(UIType wantType) => GameManager.Instance?.UI?.ToggleUI(wantType);
     protected UIBase OpenScreen(UIType wantType)
-        {
+    {
         CloseUI(CurrentScreen);
         _currentScreenType = wantType;
         return OpenUI(wantType);
-        }
+    }
     public static UIBase ClaimOpenScreen(UIType wantType) => GameManager.Instance?.UI?.OpenScreen(wantType);
-    
-    protected void ScreenChangeEffectStart(ScreenChangeType wantType)
+
+    protected void OpenScreen(UIType wantScreen, ScreenChangeType changeType)
+    {
+        ClaimScreenChangeEffect(changeType, () => OpenScreen(wantScreen));
+    }
+    public static void ClaimOpenScreen(UIType wantType, ScreenChangeType changeType) => GameManager.Instance?.UI?.OpenScreen(wantType,changeType);
+    protected void ScreenChangeEffectStart(ScreenChangeType wantType,System.Action endFunction = null)
     {
         if (screenChnagerDictionary.TryGetValue(wantType, out UI_ScreenChanger result))
         {
 
             if (!result) return;
             result.gameObject.SetActive(true);
-            result?.ChangeStart();
+            result?.ChangeStart(endFunction);
             currentScreenChanger = result;
         }
     }
-    public static void ClaimScreenChangeEffectStart(ScreenChangeType wantType) => GameManager.Instance?.UI?.ScreenChangeEffectStart(wantType);
-    
+    public static void ClaimScreenChangeEffectStart(ScreenChangeType wantType, System.Action endFunction = null) => GameManager.Instance?.UI?.ScreenChangeEffectStart(wantType, endFunction);
+    public static void ClaimScreenChangeEffect(ScreenChangeType wantType, System.Action endFunction = null) => GameManager.Instance?.UI?.ScreenChangeEffectStart(wantType, endFunction + ClaimScreenChangeEffectEnd);
 
     protected void ScreenChangeEffectEnd()
     {
