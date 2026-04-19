@@ -384,10 +384,10 @@ RectTransform:
   - {fileID: 6965496439748515742}
   m_Father: {fileID: 4049776007391133089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 647, y: 397.41}
-  m_SizeDelta: {x: -1760, y: -1001.18896}
+  m_AnchorMin: {x: 0.5966492, y: 0.648}
+  m_AnchorMax: {x: 0.8052429, y: 0.9797608}
+  m_AnchoredPosition: {x: 4.7899933, y: 2.0800018}
+  m_SizeDelta: {x: -4.9890137, y: -2.0090942}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4167904578528256744
 CanvasRenderer:
@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 7958280552407779597}
   - component: {fileID: 3665589516188054834}
   - component: {fileID: 1288883411460229355}
+  - component: {fileID: 6243004369837342371}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -720,10 +721,10 @@ RectTransform:
   - {fileID: 8803713822417684481}
   m_Father: {fileID: 4049776007391133089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.8052429, y: 0.648}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 841, y: 397.41003}
-  m_SizeDelta: {x: -1760, y: -1001.18896}
+  m_AnchoredPosition: {x: -1.3344727, y: -2.4174042}
+  m_SizeDelta: {x: -6.7368164, y: -25.594513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6937510153218507046
 CanvasRenderer:
@@ -831,6 +832,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6243004369837342371}
+        m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1288883411460229355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +857,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenScreen
   wantType: 8
+--- !u!114 &6243004369837342371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258726566072103446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
+  wantType: 21
 --- !u!1 &6803773447783256989
 GameObject:
   m_ObjectHideFlags: 0

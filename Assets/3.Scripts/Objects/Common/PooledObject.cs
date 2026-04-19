@@ -4,7 +4,7 @@ using UnityEngine;
 public delegate void PoolEnqueueEvent(GameObject target);
 public delegate void PoolDequeueEvent(GameObject target);
 
-public class PooledObject : MonoBehaviour
+public class PooledObject : MonoBehaviour       
 {
     public event PoolEnqueueEvent OnEnqueueEvent;    
     public event PoolDequeueEvent OnDequeueEvent;

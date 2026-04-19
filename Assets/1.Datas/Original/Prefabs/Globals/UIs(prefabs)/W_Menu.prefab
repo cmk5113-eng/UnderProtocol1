@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 1021848483261673584}
   - component: {fileID: 8483486712633058016}
   - component: {fileID: 124192666963115823}
+  - component: {fileID: -8507002686270128868}
   m_Layer: 5
   m_Name: W_Menu
   m_TagString: Untagged
@@ -270,6 +271,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4eb4d241096bb43b5e6ebc51a44772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_MenuWindows
+--- !u!114 &-8507002686270128868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329398639185522651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8023e4faa61eafb448e66cfd28408c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_DraggableWindows
+  rootTransform: {fileID: 6595293051189717942}
 --- !u!1 &3383451109198699039
 GameObject:
   m_ObjectHideFlags: 0

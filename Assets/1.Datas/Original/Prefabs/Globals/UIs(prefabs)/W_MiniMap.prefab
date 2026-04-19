@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 6237823666939163068}
   - component: {fileID: 2224253077619589909}
   - component: {fileID: 1685199833421102550}
+  - component: {fileID: 7374253274146252174}
   m_Layer: 5
   m_Name: W_MiniMap
   m_TagString: Untagged
@@ -343,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 794, y: 362}
+  m_AnchoredPosition: {x: 355.24, y: 80.992}
   m_SizeDelta: {x: 308.2, y: 284.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &125609604008757001
@@ -421,6 +422,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_MiniMap
   requiredUI: []
+--- !u!114 &7374253274146252174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222032476103939041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8023e4faa61eafb448e66cfd28408c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_DraggableWindows
+  rootTransform: {fileID: 2300582858272479116}
 --- !u!1 &8471540317648666391
 GameObject:
   m_ObjectHideFlags: 0

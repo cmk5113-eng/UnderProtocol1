@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public enum UIType
 {
-    None, Loading, Title, Movable,Menu, Info, Option, Action,Stage, Scenario, Save, Card, CharacterSelect, GameQuit,Hero, Mission, MiniMap,Item,HQ,
-    Map,World,Dialog,
+    None, Loading, Title, Movable,Menu, Info, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
+    World,Dialog, CharacterSelect,
     _Length
 }
 public enum ScreenChangeType
@@ -99,33 +99,39 @@ public class UIManager : ManagerBase
         createdTransform = CreateFullScreen("CreateUI");
         _movableScreen = CreateUI(UIType.Movable, "S_Movable", MainCanvas?.transform);
         switcherTransform = CreateFullScreen("ScreenSwitcher");
-
+        _movableScreen.SetChild(ObjectManager.CreateObject("W_menu"));
 
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
         CreateUI(UIType.World, "S_World", switcherTransform);
-
         CreateUI(UIType.Scenario, "W_Scenario", switcherTransform);
-        CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
-        CreateUI(UIType.Menu, "W_Menu", switcherTransform);
+
+        CreateUI(UIType.Menu, "W_Menu");    
         CreateUI(UIType.Save, "W_Save", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
         CreateUI(UIType.Map, "W_Map", switcherTransform);
-        CreateUI(UIType.GameQuit, "W_GameQuit", switcherTransform);
-        CreateUI(UIType.Hero, "W_Hero", switcherTransform);
-        CreateUI(UIType.MiniMap, "W_MiniMap", switcherTransform);
-        CreateUI(UIType.Item, "W_Item", switcherTransform);
-        CreateUI(UIType.Mission, "W_Mission", switcherTransform);
+        CreateUI(UIType.GameQuit, "W_GameQuit");
+        CreateUI(UIType.Hero, "W_Hero");
+        CreateUI(UIType.MiniMap, "W_MiniMap");
+        CreateUI(UIType.Item, "W_Item");
+        CreateUI(UIType.Mission, "W_Mission");
         CreateUI(UIType.HQ, "W_HQ", switcherTransform);
+        CreateUI(UIType.Action, "W_Action", switcherTransform);
         CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
+        CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
 
 
         foreach (Transform currentTransform in switcherTransform)
         {
             currentTransform.gameObject.SetActive(false);
         }
-
+        foreach (Transform child in _movableScreen.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform _createdTransform in createdTransform)
+            { _createdTransform.gameObject.SetActive(false);}
         changerTransform = CreateFullScreen("ScreenChanger");
         changerTransform.SetAsLastSibling();
 
