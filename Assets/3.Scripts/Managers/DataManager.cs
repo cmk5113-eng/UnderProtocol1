@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 //using UnityEditor; <<이게 자동완성 되는 경우가 있음
 //이게 들어오면 빌드가 안됨!
@@ -36,6 +37,10 @@ public class DataManager : ManagerBase
 	//전체 데이터를 저장하는 딕셔너리!
 	static Dictionary<System.Type, Dictionary<string, Object>> dataDictionary = new();
 
+
+
+    event System.Action DisconnectEvent;
+        
 	//프로퍼티는 변수모양이지만 함수
 	//				int GetLoadCount();
 	public override int LoadCount
@@ -314,7 +319,7 @@ public class DataManager : ManagerBase
 		});
 		Task result = finder.Task;
 		await result;
-		finder.Release();
+		DisconnectEvent +=() => finder.Release();
 	}
 
 	public async void LoadFileFromAssetBundle<T>(string address) where T : Object
@@ -324,36 +329,38 @@ public class DataManager : ManagerBase
 		await finder.Task; //Start / Run에 해당하는 부분!
 		SaveDataFile(finder.Result);
 		finder.Release();
-		//A-는 뜻이 뭘까?
-		//An-
-		//"~이 아닌"
-		//"반대되는" 접두사
-		//Tan => ATan
-		//동기화하지 않는다! => 비동기
-		//프로세스가 동기화되지 않는다
-		//=> 하나의 프로세스로 돌리는 것이 아니다
-		//                    유니티
-		//=> 멀티 스레드 <-> 싱글 스레드
-		//       Thread
-		//       줄, 실
-		//한 번에 실행하는 기능의 개수
-		//밥 먹으면서 게임하면서 유튜브보면서 음악틀면서
-		//시간이 빠르게 완료될 수 있다
-		//게임을 하는 동안에 밥을 먹고 있단 말이죠.
-		//지금 한타하느라 스킬을 조준해야 하는데, 숟가락을 들고 있어서
-		//근데.. 저희는 그 상황에서 "결정"을 하잖아요?
-		//손을 어따 써야 할지? => 우선순위가 있어야 함!
-		//컴퓨터 입장에서는.. 지금 할 일 스레드마다 하나씩
-		//어차피 이거 안하고 다음으로 넘어갈 수가 없습니다.
-		//데미지 주는 기능이다!
-		//생명력 감소하려고 했는데.. 생명력을 누가 쓰고 있어서 못바꾼다!
-		//생명력 감소 안하고 죽었는지 체크할 것인가?
-		// => 데드락
-		//원래 밥만 먹었을 때보다 밥 먹는 시간은 느려진다
-		//다 같이 하는데 왜요?
-		//밥먹는 애, 유튜브보는 애, 게임하는 애, 음악 듣는 애
-		//   O           O            X            O
-		//다른 애들이 전부 게임하는 애 기다렸다가 다음 작업을 해야해요!
-		//게임하는 애가 뭔가 중요한 변화를 주고 끝낼 수도 있잖아요?
-	}
+
+        DisconnectEvent += () => finder.Release();
+        //A-는 뜻이 뭘까?
+        //An-
+        //"~이 아닌"
+        //"반대되는" 접두사
+        //Tan => ATan
+        //동기화하지 않는다! => 비동기
+        //프로세스가 동기화되지 않는다
+        //=> 하나의 프로세스로 돌리는 것이 아니다
+        //                    유니티
+        //=> 멀티 스레드 <-> 싱글 스레드
+        //       Thread
+        //       줄, 실
+        //한 번에 실행하는 기능의 개수
+        //밥 먹으면서 게임하면서 유튜브보면서 음악틀면서
+        //시간이 빠르게 완료될 수 있다
+        //게임을 하는 동안에 밥을 먹고 있단 말이죠.
+        //지금 한타하느라 스킬을 조준해야 하는데, 숟가락을 들고 있어서
+        //근데.. 저희는 그 상황에서 "결정"을 하잖아요?
+        //손을 어따 써야 할지? => 우선순위가 있어야 함!
+        //컴퓨터 입장에서는.. 지금 할 일 스레드마다 하나씩
+        //어차피 이거 안하고 다음으로 넘어갈 수가 없습니다.
+        //데미지 주는 기능이다!
+        //생명력 감소하려고 했는데.. 생명력을 누가 쓰고 있어서 못바꾼다!
+        //생명력 감소 안하고 죽었는지 체크할 것인가?
+        // => 데드락
+        //원래 밥만 먹었을 때보다 밥 먹는 시간은 느려진다
+        //다 같이 하는데 왜요?
+        //밥먹는 애, 유튜브보는 애, 게임하는 애, 음악 듣는 애
+        //   O           O            X            O
+        //다른 애들이 전부 게임하는 애 기다렸다가 다음 작업을 해야해요!
+        //게임하는 애가 뭔가 중요한 변화를 주고 끝낼 수도 있잖아요?
+    }
 }

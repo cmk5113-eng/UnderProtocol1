@@ -8,7 +8,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     public TextMeshProUGUI Max;
     
     public int currentCharacterCount = 0;
-    public int maxCharacterCount = 12; // 기본값 설정
+    public int maxCharacterCount = 4; // 기본값 설정
 
     // UI 텍스트를 업데이트하는 내부 함수
     private void RefreshUI()
@@ -26,7 +26,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     public void InitializeWindow()
     {
         // 위에서 만든 Set 함수를 여기서 호출
-        Set(0, 12);
+        Set(0, 4);
     }
 
     // 1. 단순히 카운트만 1 올리고 싶을 때 호출
@@ -40,6 +40,7 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
         else if (currentCharacterCount == maxCharacterCount)
         {
             UIManager.ClaimPopUp("띠딩", "인원 초과", "롸져");
+            UIManager.ClaimOpenUI(UIType.ScreenFilter);
         }
     }
 
