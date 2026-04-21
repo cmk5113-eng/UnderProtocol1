@@ -7,8 +7,63 @@ using UnityEngine.UI;
 public enum JobType { Warrior, Archer, Mage, Builder }
 public enum ElementType { None, Fire, Water, Electric, Earth }
 
-public class CharacterDataCenter : MonoBehaviour
+public class CharacterBase : MonoBehaviour
 {
+    ControllerBase _controller;
+
+    public ControllerBase Controller => _controller;
+
+    public virtual void OnPossessed(ControllerBase newcontroller)
+    {
+
+    }
+    public ControllerBase Possessed(ControllerBase from)
+    {
+
+        if(_controller) Unpossessed();
+        _controller = from;
+       OnPossessed(Controller);
+        return Controller;
+    }
+
+
+    public virtual void OnUnpossessed(ControllerBase oldcontroller)
+    { 
+    }
+    public void Unpossessed()
+    {
+
+        if(Controller)OnUnpossessed(_controller);
+        _controller = null;
+    }
+    public bool Unpossessed(ControllerBase oldController)
+    {
+        if (Controller != oldController) return false;
+        Unpossessed();
+        return true;
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // --- 1. 데이터 구조 설계 ---
     [System.Serializable]
     public struct CharacterInfo

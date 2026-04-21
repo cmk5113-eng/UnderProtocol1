@@ -44,6 +44,16 @@ public class PlacementManager : ManagerBase
 
         return true;
 
+
+
+    }
+    public void RemoveCharacter(GameObject characterPrefab)
+    {
+       
+    }
+    public void RemoveAllCharacter()
+    { 
+    
     }
 
     

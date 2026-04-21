@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
     public static event UpdateEvent OnUpdateCharacter;
     public static event UpdateEvent OnUpdateObject;
 
+    public static event UpdateEvent OnPhysicsCharacter;
+    public static event UpdateEvent OnPhysicsObject;
+
     public static event DestroyEvent OnDestroyManager;
     public static event DestroyEvent OnDestroyController;
     public static event DestroyEvent OnDestroyCharacter;
@@ -186,10 +189,6 @@ public class GameManager : MonoBehaviour
             OriginEvent = null;
             currentInitializeCharacter?.Invoke();
         }
-        OnInitializeController?.Invoke();
-        OnInitializeController = null;
-        OnInitializeObject?.Invoke();
-        OnInitializeObject = null;
 
     }
     void InvokeDestroyEvent(ref DestroyEvent OriginEvent)
@@ -200,20 +199,11 @@ public class GameManager : MonoBehaviour
             OriginEvent = null;
             currentInitializeCharacter?.Invoke();
         }
-        OnInitializeController?.Invoke();
-        OnInitializeController = null;
-        OnInitializeObject?.Invoke();
-        OnInitializeObject = null;
-
     }
     void Update()
     {
         if (isLoading) return;
         
-        OnInitializeManager?.Invoke();
-        OnInitializeManager = null;
-
-
         //초기화
         //매니저를 초기화한다
         InvokeInitializeEvent(ref OnInitializeManager);
@@ -246,7 +236,13 @@ public class GameManager : MonoBehaviour
         InvokeDestroyEvent(ref OnDestroyManager);
 
     }
-
+    private void FixedUpdate()
+    {
+        if (isLoading || !isPlaying) return;
+        float deltaTime = Time.fixedDeltaTime;
+        OnPhysicsObject?.Invoke(deltaTime);
+        OnPhysicsCharacter?.Invoke(deltaTime);
+    }
 }
 
 
