@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 public class ObjectManager : ManagerBase
@@ -43,8 +44,9 @@ public class ObjectManager : ManagerBase
 	//만약 같은 이름으로 똑같은 오브젝트를 만들려고 했는데..
 	protected override IEnumerator OnConnected(GameManager newManager)
 	{
+        RegistrationInHierachy();
 		RegistrationPool(globalPoolSettings);
-		
+        InitializePool();
 
 		yield return null;
 	}
@@ -341,6 +343,17 @@ public class ObjectManager : ManagerBase
 			current.UnregistrationFunctions();
 		}
 	}
+  
+    public void RegistrationInHierachy()
+    {        
+        foreach(MonoBehaviour current in FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            if (current is IFunctionable currentFunctionable)
+            { 
+                currentFunctionable.RegistrationFunctions();
+            }
+        }    
+    }
 
 	public void RegistrationPool(string poolName)
 	{
@@ -383,11 +396,11 @@ public class ObjectManager : ManagerBase
 		}
 	}
 
-	//public void InitializePool()
-	//{
-	//	foreach(ObjectPoolModule currentPool in poolDictionary.Values)
-	//	{
-	//		currentPool?.Initialize();
-	//	}
-	//}
+	public void InitializePool()
+	{
+		foreach(ObjectPoolModule currentPool in poolDictionary.Values)
+		{
+			currentPool?.Initialize();
+		}
+	}
 }

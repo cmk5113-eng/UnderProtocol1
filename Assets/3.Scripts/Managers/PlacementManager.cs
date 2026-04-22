@@ -6,7 +6,7 @@ public class PlacementManager : ManagerBase
 {
     public static PlacementManager Instance;
     public Tilemap tilemap;
-
+    public static GameObject currentCharacter;
 
     protected override IEnumerator OnConnected(GameManager newManager)
     {

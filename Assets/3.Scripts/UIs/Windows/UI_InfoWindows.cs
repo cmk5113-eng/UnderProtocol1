@@ -11,6 +11,6 @@ public class UI_InfoWindows : UIBase, IOpenable
     [SerializeField] private TextMeshProUGUI characterNameText;
     public void UpdateUI()
     {
-    GameObject name = UI_CharcterSelectWindows.currentCharacter;
+    GameObject name = PlacementManager.currentCharacter;
     }
 }

@@ -110,29 +110,30 @@ public class InputManager : ManagerBase
     void InitializeAllActions()
     {
         if (actionDictionary == null || actionDictionary.Count == 0) return;
-        InitializeAction("Move", (context) => OnMove?.Invoke(GetVector2Value(context)));
-
-
-
-
         InitializeAction("CursorPositionChanged", (context) => CursorPositionChanged(GetVector2Value(context)));
-        InitializeAction("MouseLeftButtonDown", (context) => OnMouseLeftButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition));
-        InitializeAction("MouseRightButtonDown", (context) => OnMouseRightButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition));
-        InitializeAction("MouseLeftButtonUp", (context) => OnMouseLeftButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
-        InitializeAction("MouseRightButtonUp", (context) => OnMouseRightButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
+        InitializeAction("Move"
+                                                    , (context) => OnMove?.Invoke(GetVector2Value(context))
+                                                    , (context) => OnMove?.Invoke(Vector2.zero));
+
+
+        InitializeAction("MouseLeftButton"          , (context) => OnMouseLeftButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition) 
+                                                    , (context) => OnMouseLeftButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
+
+
+        InitializeAction("MouseRightButton"         , (context) => OnMouseRightButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition)
+                                                    , (context) => OnMouseRightButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
 
         InitializeAction("Cancel", (context) => OnCancel?.Invoke(true));
         InitializeAction("Space", (context) => OnNextTurn?.Invoke(true));
 
     }
-    void InitializeAction(string actionName, Action<InputAction.CallbackContext> actionMethod)
+    void InitializeAction(string actionName, Action<InputAction.CallbackContext> actionMethod,Action<InputAction.CallbackContext>cancelMethod = null)
     {
         if (actionDictionary == null) return;
-        if (actionDictionary.TryGetValue(actionName, out InputAction cursorPositionChange))
+        if (actionDictionary.TryGetValue(actionName, out InputAction currentInput))
         {
-            cursorPositionChange.performed += actionMethod;
-
-
+            if(actionMethod is not null) currentInput.performed += actionMethod;
+            if(cancelMethod is not null) currentInput.canceled += cancelMethod;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         }
     }
 

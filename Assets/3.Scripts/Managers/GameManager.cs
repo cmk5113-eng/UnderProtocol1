@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     public PlacementManager Placement => _placement;
 
 
+    ModeManager _mode;
+    public ModeManager Mode => _mode;
+
     IEnumerator initializing;
     public static event InitializeEvent OnInitializeManager;
     public static event InitializeEvent OnInitializeController;
@@ -62,6 +65,8 @@ public class GameManager : MonoBehaviour
     public static event DestroyEvent OnDestroyController;
     public static event DestroyEvent OnDestroyCharacter;
     public static event DestroyEvent OnDestroyObject;
+
+    [SerializeField] UIType startScreen;
 
     bool isLoading = true;
     bool isPlaying = true;
@@ -108,6 +113,7 @@ public class GameManager : MonoBehaviour
         totalLoadCount += CreateManager(ref _input).LoadCount;
         totalLoadCount += CreateManager(ref _placement).LoadCount;
         totalLoadCount += CreateManager(ref _character).LoadCount;
+        totalLoadCount += CreateManager(ref _mode).LoadCount;
 
 
 
@@ -137,8 +143,12 @@ public class GameManager : MonoBehaviour
         loadingProgress?.AddCurrent(1);
         yield return Character.Connect(this);
         loadingProgress?.AddCurrent(1);
+        yield return Mode.Connect(this);
+        loadingProgress?.AddCurrent(1);
         yield return null;
-        UIManager.ClaimOpenScreen(UIType.Title, ScreenChangeType.ScreenChanger);
+
+        
+        UIManager.ClaimOpenScreen(startScreen, ScreenChangeType.ScreenChanger);
         isLoading = false;
     }
 
@@ -155,6 +165,7 @@ public class GameManager : MonoBehaviour
         Data?.Disconnect();
         Character?.Disconnect();
         Placement?.Disconnect();
+        Mode?.Disconnect();
     }
     ManagerType CreateManager<ManagerType>(ref ManagerType targetVariable) where ManagerType : ManagerBase
     {

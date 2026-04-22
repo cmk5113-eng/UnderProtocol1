@@ -71,16 +71,16 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
     public static UI_CharcterSelectWindows Instance { get; private set; }
 
     // 유저님이 말씀하신 '현재 캐릭터' 변수 (이름으로 관리)
-    [SerializeField] public static GameObject currentCharacter;
+ 
     public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
         // 1. 전달받은 프리팹을 현재 캐릭터로 등록
-        currentCharacter = selectedPrefab;
+       PlacementManager.currentCharacter = selectedPrefab;
 
         // 2. 제대로 등록되었는지 확인 로그
-        if (currentCharacter != null)
+        if (PlacementManager.currentCharacter != null)
         {
-            Debug.Log($"선택된 캐릭터가 '{currentCharacter.name}'(으)로 등록되었습니다.");
+            Debug.Log($"선택된 캐릭터가 '{PlacementManager.currentCharacter.name}'(으)로 등록되었습니다.");
         }
 
         // 3. UI 업데이트 등 후속 작업

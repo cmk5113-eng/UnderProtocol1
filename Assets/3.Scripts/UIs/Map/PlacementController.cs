@@ -25,7 +25,7 @@ public class PlacementController : UI_CharcterSelectWindows
             // 월드 좌표로 변환
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0));
             mouseWorldPos.z = 1;
-
+             
             // 타일맵 셀 좌표로 변환
             Vector3Int clickCellPos = tilemap.WorldToCell(mouseWorldPos);
             Vector3Int origin = tilemap.cellBounds.min;
@@ -34,11 +34,11 @@ public class PlacementController : UI_CharcterSelectWindows
           
         if (tilemap.HasTile(clickCellPos))
         {
-                if (currentCharacter != null)
+                if (PlacementManager.currentCharacter != null)
                 {
                     // 1. 현재 선택된 캐릭터(currentCharacter)의 이름과 일치하는 오브젝트를 씬에서 검색
                     // 프리펩 생성 시 (Clone)이 붙는 규칙이라면 currentCharacter.name + "(Clone)"으로 수정
-                    GameObject target = GameObject.Find(currentCharacter.name);
+                    GameObject target = GameObject.Find(PlacementManager.currentCharacter.name);
 
                     // 2. 일치하는 이름의 오브젝트가 이미 있으면 삭제
                     if (target != null)
@@ -47,10 +47,10 @@ public class PlacementController : UI_CharcterSelectWindows
                         ObjectManager.DestroyObject(target);
                     }
                     Vector3 spawnPos = tilemap.GetCellCenterWorld(clickCellPos);
-                    ObjectManager.CreateObject(currentCharacter, spawnPos);
-                    Debug.Log($"[Create] 타일 위치 {clickCellPos}에 {currentCharacter}오브젝트 생성 완료");
-                    currentCharacter = null;                   
-                    currentCharacter = null;                   
+                    ObjectManager.CreateObject(PlacementManager.currentCharacter, spawnPos);
+                    Debug.Log($"[Create] 타일 위치 {clickCellPos}에 {PlacementManager.currentCharacter}오브젝트 생성 완료");
+                    PlacementManager.currentCharacter = null;
+                    PlacementManager.currentCharacter = null;                   
                 }
                 else
                 {
