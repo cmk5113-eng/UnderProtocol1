@@ -13,11 +13,14 @@ public class ModeManager : ManagerBase
         return null;
     }
 
-     protected UIBase ChangeMode(GameMode wantMode)
+    public GameMode CurrentMode { get; private set; }
+
+    public void ChangeMode(GameMode wantMode)
     {
-        UIBase result = ChangeMode(wantMode);
-        return result;
-        
+
+        if (CurrentMode == wantMode) return;
+
+        CurrentMode = wantMode;
     }
     protected override void OnDisconnected()
     {

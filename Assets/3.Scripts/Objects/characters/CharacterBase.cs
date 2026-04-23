@@ -10,9 +10,12 @@ public enum ElementType { None, Fire, Water, Electric, Earth }
 public class CharacterBase : MonoBehaviour
 {
     ControllerBase _controller;
-
     public ControllerBase Controller => _controller;
 
+    protected Vector3 _lookRotation;
+    protected Vector3 LookRotation =>_lookRotation;
+
+    public virtual string DisplayName => "character";
     public virtual void OnPossessed(ControllerBase newcontroller)
     {
 

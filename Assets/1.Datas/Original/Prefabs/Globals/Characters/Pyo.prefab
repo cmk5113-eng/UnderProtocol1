@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3348016555489141967}
   - component: {fileID: 137799782585606297}
   - component: {fileID: 1675480981086712373}
+  - component: {fileID: -4147996946266004981}
   m_Layer: 0
   m_Name: Pyo
   m_TagString: Untagged
@@ -210,3 +211,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
   wantType: 7
+--- !u!114 &-4147996946266004981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457500170838235371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e8339ae55f9134890b2dfb72a6475e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject

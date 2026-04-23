@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MovableCharacter : CharacterBase, IRunnable, IFunctionable
 {
+    [SerializeField] Animator anim;
+
     protected    Vector3? targetDestination =   null;
     protected Vector3? targetDirection= null;
     protected float targetTolerance;
@@ -15,24 +17,48 @@ public class MovableCharacter : CharacterBase, IRunnable, IFunctionable
     {
 
 
-        GameManager.OnPhysicsCharacter -= PhysicsUpdate;
-        GameManager.OnPhysicsCharacter += PhysicsUpdate;
+        GameManager.OnPhysicsCharacter -= MovementUpdate;
+        GameManager.OnPhysicsCharacter += MovementUpdate;
     }
     public void UnregistrationFunctions()
     {
-        GameManager.OnPhysicsCharacter -= PhysicsUpdate;
+        GameManager.OnPhysicsCharacter -= MovementUpdate;
 
     }
-    public void PhysicsUpdate(float deltaTime)
+
+    public void MovementUpdate(float deltaTime)
+    { 
+        Vector3 originPosition = transform.position;
+    PhysicsUpdate(deltaTime);
+        Vector3 positionDelta = transform.position - originPosition;
+    AnimationUpdate(positionDelta);
+    }
+    public void AnimationUpdate(Vector3 moveDelta)
+    {
+        if (!anim) return;
+        anim.SetFloat("MoveX",LookRotation.x);
+        anim.SetFloat("MoveY",LookRotation.y);
+        anim.SetFloat("MoveSpeed",moveDelta.magnitude/Time.fixedDeltaTime);
+    }
+    public virtual void PhysicsUpdate(float deltaTime)
     {
         UpdateToDirection(deltaTime);
         UpdateToDestination(deltaTime);
     }
+
+    public virtual float GetMoveSpeed() => 5.0f;
+    public virtual float GetMoveSpeed(float deltaTime) => GetMoveSpeed()*deltaTime;
+
+    public void Translate(Vector3 delta)    
+    {
+        transform.position += delta;
+        _lookRotation = delta.normalized;
+    }
     public void UpdateToDirection(float deltaTime)
     {
         if (targetDirection is null) return;
-        float speed = deltaTime * 5.0f;
-        transform.position += speed * targetDirection.Value;
+        float speed = GetMoveSpeed(deltaTime);
+        Translate(speed * targetDirection.Value);
 
     }
 
@@ -46,11 +72,12 @@ public class MovableCharacter : CharacterBase, IRunnable, IFunctionable
         if (distance > targetTolerance)
         { 
             currentMoveDirection.Normalize();
-            float speed = deltaTime * 5.0f;
+            float speed = GetMoveSpeed(deltaTime);
             float resultMoveSpeed = Mathf.Min(speed, distance);
-            transform.position += resultMoveSpeed * currentMoveDirection;
+            Translate(resultMoveSpeed * currentMoveDirection);
         } 
     }
+
 
     public void MoveToDestination(Vector3 destination, float tolerance)
     {
