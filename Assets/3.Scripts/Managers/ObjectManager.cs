@@ -55,7 +55,7 @@ public class ObjectManager : ManagerBase
 	{
 
 	}
-
+    
 	public static GameObject CreateObject(string wantName, Transform parent = null)
 	{
         if(string.IsNullOrEmpty(wantName)) return null;
