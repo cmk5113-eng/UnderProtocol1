@@ -28,9 +28,13 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UI_Button_ToggleUI, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 137799782585606297, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
       propertyPath: m_Name
-      value: Ryu Variant
+      value: Ryu
       objectReference: {fileID: 0}
     - target: {fileID: 2524975195348995630, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
       propertyPath: wantType

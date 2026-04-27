@@ -2,13 +2,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView;
 
+
+public delegate void MovementEvent(Vector3 move);
+public delegate void LookAtEvent(Vector3 direction);
+public delegate void DamageEvent(GameObject damageCauser,ControllerBase instigator, float damage );
 // --- 전역 열거형 (어떤 스크립트에서도 접근 가능하도록 클래스 밖에 배치) ---
 public enum JobType { Warrior, Archer, Mage, Builder }
 public enum ElementType { None, Fire, Water, Electric, Earth }
 
 public class CharacterBase : MonoBehaviour
 {
+
+    public event MovementEvent OnMovement;
+    public void MovementNotify(Vector3 move) => OnMovement?.Invoke(move);
+    
+    
+    
+    public event LookAtEvent OnLookAt;
+    public void LookAtNotify(Vector3 direction) => OnLookAt?.Invoke(direction);
+
+    public event DamageEvent OnDamage;
+    public void DamageNotify(GameObject damageCauser, ControllerBase instigator, float damage)
+    => OnDamage?.Invoke(damageCauser, instigator, damage);
+
     ControllerBase _controller;
     public ControllerBase Controller => _controller;
 
@@ -16,6 +34,56 @@ public class CharacterBase : MonoBehaviour
     protected Vector3 LookRotation =>_lookRotation;
 
     public virtual string DisplayName => "character";
+
+
+
+    Dictionary<System.Type, CharacterModule> moduleDictionary = new();
+    //추가 /제거 /검색
+
+    public void AddModule(System.Type wantType, CharacterModule wantModule)
+    {
+        if (moduleDictionary.TryAdd(wantType, wantModule))
+        {
+            wantModule.OnRegistration(this);
+        }
+
+    }
+
+    public void AddAllModuleFromObject(GameObject target)
+    {
+
+        if (!target) return;
+        foreach (CharacterModule currentModule in target.GetComponentsInChildren<CharacterModule>())
+        {
+            AddModule(currentModule.RegistrationType, currentModule);
+        }
+
+    }
+
+    public void RemoveModule(System.Type wantType)
+    {
+        if (moduleDictionary.ContainsKey(wantType))
+        {
+            moduleDictionary[wantType]?.OnUnregistration(this);
+            moduleDictionary.Remove(wantType);
+
+        }
+
+    }
+    public void RemoveAllModule()
+    {
+        foreach (CharacterModule currentModule in moduleDictionary.Values)
+        {
+            currentModule.OnUnregistration(this);
+        }
+    }
+
+
+    public T GetModule<T>() where T : CharacterModule
+    {
+        moduleDictionary.TryGetValue(typeof(T), out CharacterModule result);
+        return result as T;
+    }
     public virtual void OnPossessed(ControllerBase newcontroller)
     {
 
@@ -25,7 +93,8 @@ public class CharacterBase : MonoBehaviour
 
         if(_controller) Unpossessed();
         _controller = from;
-       OnPossessed(Controller);
+        AddAllModuleFromObject(gameObject);
+        OnPossessed(Controller);
         return Controller;
     }
 
@@ -37,6 +106,7 @@ public class CharacterBase : MonoBehaviour
     {
 
         if(Controller)OnUnpossessed(_controller);
+        RemoveAllModule();
         _controller = null;
     }
     public bool Unpossessed(ControllerBase oldController)
@@ -143,7 +213,7 @@ public class CharacterBase : MonoBehaviour
         if (jobText) jobText.text = $"직업: {(JobType)info.jobIndex}";
         if (elementText) elementText.text = $"속성: {(ElementType)info.elementIndex}";
 
-        Debug.Log($"[UI 업데이트] {info.name} 표시 중");
+     
     }
 
     // 소환 시스템에서 "지금 UI에 떠 있는 캐릭터 누구야?"라고 물어볼 때 사용
