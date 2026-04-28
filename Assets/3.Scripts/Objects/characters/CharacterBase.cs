@@ -12,8 +12,17 @@ public delegate void DamageEvent(GameObject damageCauser,ControllerBase instigat
 public enum JobType { Warrior, Archer, Mage, Builder }
 public enum ElementType { None, Fire, Water, Electric, Earth }
 
+
+
+
+
+
 public class CharacterBase : MonoBehaviour
 {
+
+    public int actionPoint = 0;
+    public int mobility = 0;
+
 
     public event MovementEvent OnMovement;
     public void MovementNotify(Vector3 move) => OnMovement?.Invoke(move);
@@ -117,7 +126,18 @@ public class CharacterBase : MonoBehaviour
     
     }
 
-
+    public bool CanAct()
+    {
+        return false;
+    }
+    public bool CanMove() 
+    {
+        return false;
+    }
+    public bool CanUseSkill()
+    {
+        return false;
+    }
 
 
 

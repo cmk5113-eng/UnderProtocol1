@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6366208274785719284}
   - component: {fileID: 8040706186121489056}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: mtxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 4207198839827176873}
   - component: {fileID: 2715725517823455917}
   m_Layer: 5
-  m_Name: Kang
+  m_Name: _Kang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,10 +891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &1979556853441111309
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +907,7 @@ GameObject:
   - component: {fileID: 2480694059480796517}
   - component: {fileID: 6406606388603001331}
   m_Layer: 5
-  m_Name: Lee
+  m_Name: _Lee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,7 +1262,7 @@ GameObject:
   - component: {fileID: 7485121523407994481}
   - component: {fileID: 7127479560005444266}
   m_Layer: 5
-  m_Name: Pyo
+  m_Name: _Pyo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,7 +1480,7 @@ GameObject:
   - component: {fileID: 414143990106711795}
   - component: {fileID: 2692653739929065528}
   m_Layer: 5
-  m_Name: Namgung
+  m_Name: _Namgung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1698,7 +1694,7 @@ GameObject:
   - component: {fileID: 2164064639855919902}
   - component: {fileID: 2508379109509347973}
   - component: {fileID: 4930911666040468969}
-  - component: {fileID: 2661151750542850454}
+  - component: {fileID: 89785594622228335}
   m_Layer: 5
   m_Name: Init
   m_TagString: Untagged
@@ -1723,7 +1719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.423, y: 0.26247847}
   m_AnchorMax: {x: 0.5, y: 0.32700002}
-  m_AnchoredPosition: {x: -0.60001373, y: 6.5999985}
+  m_AnchoredPosition: {x: -0.60001373, y: 6.600006}
   m_SizeDelta: {x: 14.8364, y: 3.5342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2164064639855919902
@@ -1820,9 +1816,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2661151750542850454}
-        m_TargetAssemblyTypeName: ModeChanger, Assembly-CSharp
-        m_MethodName: GoToBattle
+      - m_Target: {fileID: 89785594622228335}
+        m_TargetAssemblyTypeName: PlacementController, Assembly-CSharp
+        m_MethodName: RemoveAllObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1832,7 +1828,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2661151750542850454
+--- !u!114 &89785594622228335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1841,9 +1837,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3933052683553419982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3fa5aa5c7639047b38031186827def, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fc8f923f677f0f438706cc807fe5626, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ModeChanger
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementController
+  requiredUI: []
+  tilemap: {fileID: 0}
+  currentObject: {fileID: 0}
+  Current: {fileID: 0}
+  Max: {fileID: 0}
 --- !u!1 &4118306428786985112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,10 +2479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &5045634994392632360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,10 +2711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &5118145345364252654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,7 +2727,7 @@ GameObject:
   - component: {fileID: 5809251633872909874}
   - component: {fileID: 7213859440881475527}
   m_Layer: 5
-  m_Name: Seo
+  m_Name: _Seo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3305,10 +3298,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &5779108422346794182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,7 +3447,7 @@ GameObject:
   - component: {fileID: 4513978675993306480}
   - component: {fileID: 7707720299593052569}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: maintxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3815,10 +3804,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &7152159135230886202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3909,6 +3894,7 @@ GameObject:
   - component: {fileID: 5349439535305484970}
   - component: {fileID: 3008352557715526653}
   - component: {fileID: 8814553718254639095}
+  - component: {fileID: 1460419470725787884}
   m_Layer: 5
   m_Name: W_CharacterSelect
   m_TagString: Untagged
@@ -4060,10 +4046,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+--- !u!114 &1460419470725787884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222032476103939041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc8f923f677f0f438706cc807fe5626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementController
+  requiredUI: []
+  tilemap: {fileID: 0}
+  currentObject: {fileID: 0}
   Current: {fileID: 5823137273460450295}
   Max: {fileID: 8040706186121489056}
-  currentCharacterCount: 0
-  maxCharacterCount: 4
 --- !u!1 &7382512287251352379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4374,7 +4373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.423, y: 0.34723926}
   m_AnchorMax: {x: 0.5, y: 0.40123925}
-  m_AnchoredPosition: {x: -0.51251984, y: 4.6267}
+  m_AnchoredPosition: {x: -0.51251984, y: 4.6266937}
   m_SizeDelta: {x: 14.661, y: 7.1191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8733542049832062337
@@ -4619,7 +4618,7 @@ GameObject:
   - component: {fileID: 1738503733386684851}
   - component: {fileID: 1779496033125867463}
   m_Layer: 5
-  m_Name: Ryu
+  m_Name: _Ryu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4833,7 +4832,7 @@ GameObject:
   - component: {fileID: 4649135421938323800}
   - component: {fileID: 5823137273460450295}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ctxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5191,10 +5190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!114 &269177449169069387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5208,10 +5203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
-  Current: {fileID: 0}
-  Max: {fileID: 0}
-  currentCharacterCount: 0
-  maxCharacterCount: 12
 --- !u!1 &8677831055279563553
 GameObject:
   m_ObjectHideFlags: 0
