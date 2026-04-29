@@ -6,6 +6,7 @@ public class MovementModule : CharacterModule, IRunnable
     protected Vector3? targetDestination = null;
     protected Vector3? targetDirection = null;
     protected float targetTolerance;
+    public bool IsMoving => targetDestination != null || targetDirection != null;
 
     public sealed override System.Type RegistrationType => typeof(MovementModule);
 
@@ -26,7 +27,9 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void MovementUpdate(float deltaTime)
     {
-        Vector3 originPosition = transform.position;
+
+   
+        Vector3 originPosition = transform.position;    
         PhysicsUpdate(deltaTime);
         Vector3 positionDelta = transform.position - originPosition;
         Owner.MovementNotify(positionDelta);
@@ -56,13 +59,17 @@ public class MovementModule : CharacterModule, IRunnable
         Vector3 currentMoveDirection = (targetDestination.Value - transform.position);
         float distance = currentMoveDirection.magnitude;
 
-        if (distance > targetTolerance)
+        if (distance <= targetTolerance)
         {
-            currentMoveDirection.Normalize();
-            float speed = GetMoveSpeed(deltaTime);
-            float resultMoveSpeed = Mathf.Min(speed, distance);
-            Translate(resultMoveSpeed * currentMoveDirection);
+            transform.position = targetDestination.Value;
+            targetDestination = null;
+            return;
         }
+
+        currentMoveDirection.Normalize();
+        float speed = GetMoveSpeed(deltaTime);
+        float resultMoveSpeed = Mathf.Min(speed, distance);
+        Translate(resultMoveSpeed * currentMoveDirection);
     }
 
 
@@ -73,7 +80,6 @@ public class MovementModule : CharacterModule, IRunnable
         targetTolerance = tolerance;
 
     }
-
     public void MoveToDirection(Vector3 direction)
     {
         targetDirection = direction.normalized;
@@ -85,6 +91,8 @@ public class MovementModule : CharacterModule, IRunnable
         targetDirection = null;
         targetDestination = null;
     }
-
-
+    void OnDestroy()
+    {
+        GameManager.OnPhysicsCharacter -= MovementUpdate;
+    }
 }

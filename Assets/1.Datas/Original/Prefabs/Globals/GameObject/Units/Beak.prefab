@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1399748597663479114}
   - component: {fileID: 6550821087046485046}
   - component: {fileID: 3806035948509235057}
+  - component: {fileID: 1004853433231212897}
   m_Layer: 0
   m_Name: Beak
   m_TagString: Untagged
@@ -104,3 +105,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e8339ae55f9134890b2dfb72a6475e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+--- !u!114 &1004853433231212897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956372330043459207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMoveModule
+  tilemap: {fileID: 0}
+  mobility: 3
+  MoveType: 0

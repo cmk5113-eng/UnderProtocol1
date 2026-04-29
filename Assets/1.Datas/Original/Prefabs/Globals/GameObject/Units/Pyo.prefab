@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: -307796931960151823}
   - component: {fileID: 1675480981086712373}
   - component: {fileID: -4147996946266004981}
+  - component: {fileID: -4462647894528478538}
+  - component: {fileID: -5008356541977039277}
+  - component: {fileID: 7752193632113390132}
   m_Layer: 0
   m_Name: Pyo
   m_TagString: Untagged
@@ -86,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4463613727533796702, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: 1040597944060251076, guid: 918a630e8ffdc18448029d3c798e50e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,7 +137,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.07, y: 1.52}
+    oldSize: {x: 0.99, y: 1.71}
     newSize: {x: 1.07, y: 1.52}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -210,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 7
+  wantType: 9
 --- !u!114 &-4147996946266004981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,3 +226,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e8339ae55f9134890b2dfb72a6475e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+--- !u!114 &-4462647894528478538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457500170838235371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMoveModule
+  tilemap: {fileID: 0}
+  mobility: 3
+  MoveType: 0
+--- !u!114 &-5008356541977039277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457500170838235371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
+  actionPoint: 0
+  mobility: 0
+  characterList: []
+  nameText: {fileID: 0}
+  jobText: {fileID: 0}
+  elementText: {fileID: 0}
+  nextButton: {fileID: 0}
+--- !u!114 &7752193632113390132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457500170838235371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e16de51f7cc37145a371e42c6909d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController

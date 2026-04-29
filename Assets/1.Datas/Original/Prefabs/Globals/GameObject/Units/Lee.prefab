@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
       propertyPath: m_Name
-      value: Lee Variant
+      value: Lee
       objectReference: {fileID: 0}
     - target: {fileID: 2524975195348995630, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
       propertyPath: wantType
@@ -92,6 +92,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5598867201773931950}
+    - targetCorrespondingSourceObject: {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6424958108194587556}
   m_SourcePrefab: {fileID: 100100000, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
 --- !u!1 &7848448228004364818 stripped
 GameObject:
@@ -99,6 +102,19 @@ GameObject:
   m_PrefabInstance: {fileID: 8705843709702101753}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5598867201773931950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848448228004364818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
+  wantType: 7
+--- !u!114 &6424958108194587556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

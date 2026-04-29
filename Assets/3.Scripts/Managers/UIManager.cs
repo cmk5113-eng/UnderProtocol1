@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public enum UIType
 {
-    None, Loading, Title, Movable,Menu, Info, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
+    None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
     World,Dialog, CharacterSelect,ScreenFilter,
     _Length
 }
@@ -121,6 +121,8 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
         CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
         CreateUI(UIType.ScreenFilter, "W_ScreenFilter", switcherTransform);
+        CreateUI(UIType.Skill, "W_Skill", switcherTransform);
+        CreateUI(UIType.Inven, "W_Inven", switcherTransform);
 
 
         foreach (Transform currentTransform in switcherTransform)

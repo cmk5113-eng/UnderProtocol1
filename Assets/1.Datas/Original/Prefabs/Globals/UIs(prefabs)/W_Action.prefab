@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3210057236923942104}
   - component: {fileID: 4576627226337663183}
   - component: {fileID: 1202202912904471335}
-  - component: {fileID: 2858294413806398778}
-  - component: {fileID: 8540951057308732688}
+  - component: {fileID: 5518356594345872792}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -36,10 +35,10 @@ RectTransform:
   - {fileID: 9211685482303857412}
   m_Father: {fileID: 5415158212528788463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 18.3143}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 129.5597, y: -58.3757}
+  m_SizeDelta: {x: 239.1194, y: 52.1979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3210057236923942104
 CanvasRenderer:
@@ -122,37 +121,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4576627226337663183}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2858294413806398778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2676551648271185579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8540951057308732688}
-          m_TargetAssemblyTypeName: UI_Button_ToggleUI, Assembly-CSharp
-          m_MethodName: Toggle
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &8540951057308732688
+      m_Calls:
+      - m_Target: {fileID: 5518356594345872792}
+        m_TargetAssemblyTypeName: UI_Button_ToggleUI, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5518356594345872792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 5
+  wantType: 6
 --- !u!1 &2873985659223192794
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +432,6 @@ GameObject:
   - component: {fileID: 5415158212528788463}
   - component: {fileID: 6157985412778263402}
   - component: {fileID: 5944068440330890449}
-  - component: {fileID: 1026519821430186656}
   - component: {fileID: 5703937704378105379}
   - component: {fileID: 169726992496768479}
   - component: {fileID: 5338432675791996790}
@@ -485,8 +466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108, y: -141}
-  m_SizeDelta: {x: 93.4, y: 0}
+  m_AnchoredPosition: {x: 190.85974, y: -173.30502}
+  m_SizeDelta: {x: 259.1194, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6157985412778263402
 CanvasRenderer:
@@ -526,32 +507,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1026519821430186656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3526914556569638786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
-  m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
-  m_ChildAlignment: 4
-  m_Spacing: 3
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &5703937704378105379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,10 +731,10 @@ RectTransform:
   - {fileID: 9078396919440286140}
   m_Father: {fileID: 5415158212528788463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 18.3143}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 129.5597, y: -119.12395}
+  m_SizeDelta: {x: 239.1194, y: 52.1979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4975329857405289679
 CanvasRenderer:
@@ -904,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 5
+  wantType: 19
 --- !u!1 &5873263473039065716
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB50\uD560\uACA8"
+  m_text: "\uC561\uC158\uCC3D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
   m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
@@ -1078,10 +1033,10 @@ RectTransform:
   - {fileID: 7606093622531486556}
   m_Father: {fileID: 5415158212528788463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 18.3143}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 129.5597, y: 63.12079}
+  m_SizeDelta: {x: 239.1194, y: 52.1979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6524208074593925944
 CanvasRenderer:
@@ -1380,10 +1335,10 @@ RectTransform:
   - {fileID: 5059897578599739114}
   m_Father: {fileID: 5415158212528788463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 18.3143}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 129.5597, y: 2.3725}
+  m_SizeDelta: {x: 239.1194, y: 52.1979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5980302412268867894
 CanvasRenderer:
@@ -1545,10 +1500,10 @@ RectTransform:
   - {fileID: 6092267209652713738}
   m_Father: {fileID: 5415158212528788463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 18.3143}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 129.5597, y: -179.87216}
+  m_SizeDelta: {x: 239.1194, y: 52.1979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7271256608882296997
 CanvasRenderer:
@@ -1709,8 +1664,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8.1883}
-  m_SizeDelta: {x: 0, y: 16.377}
+  m_AnchoredPosition: {x: 0, y: -22.6165}
+  m_SizeDelta: {x: 0, y: 390.8258}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8574298365841787681
 CanvasRenderer:
@@ -1944,8 +1899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 59.55032}
-  m_SizeDelta: {x: 0, y: -86.3481}
+  m_AnchoredPosition: {x: 1.9037018, y: 124.5158}
+  m_SizeDelta: {x: 3.8075, y: 43.5828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7323623774407378084
 CanvasRenderer:

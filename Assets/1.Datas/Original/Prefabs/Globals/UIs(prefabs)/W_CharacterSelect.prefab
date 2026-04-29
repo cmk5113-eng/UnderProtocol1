@@ -1719,8 +1719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.423, y: 0.26247847}
   m_AnchorMax: {x: 0.5, y: 0.32700002}
-  m_AnchoredPosition: {x: -0.60001373, y: 6.600006}
-  m_SizeDelta: {x: 14.8364, y: 3.5342}
+  m_AnchoredPosition: {x: -0.60019684, y: 16.806}
+  m_SizeDelta: {x: 14.8364, y: -1.676}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2164064639855919902
 CanvasRenderer:
@@ -1841,7 +1841,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
-  tilemap: {fileID: 0}
   currentObject: {fileID: 0}
   Current: {fileID: 0}
   Max: {fileID: 0}
@@ -1881,8 +1880,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.51167595, y: 0.35652158}
   m_AnchorMax: {x: 0.58400005, y: 0.40123925}
-  m_AnchoredPosition: {x: 5.3591, y: 2.7191}
-  m_SizeDelta: {x: 17.968, y: 10}
+  m_AnchoredPosition: {x: 5.3591, y: -0.22066021}
+  m_SizeDelta: {x: 17.968, y: 15.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7375330500123475672
 CanvasRenderer:
@@ -3940,8 +3939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.74300003, y: 1}
-  m_AnchoredPosition: {x: -323, y: -58}
-  m_SizeDelta: {x: -28, y: -85.9}
+  m_AnchoredPosition: {x: -381.94995, y: -58}
+  m_SizeDelta: {x: -145.90005, y: -85.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &125609604008757001
 CanvasRenderer:
@@ -4059,7 +4058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
-  tilemap: {fileID: 0}
   currentObject: {fileID: 0}
   Current: {fileID: 5823137273460450295}
   Max: {fileID: 8040706186121489056}

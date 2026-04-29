@@ -869,7 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ae0a97a37d49348aaae61a8e238a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenScreen
-  wantType: 8
+  wantType: 23
 --- !u!114 &6243004369837342371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 21
+  wantType: 10
 --- !u!114 &1608889845029551184
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,23 @@ using UnityEngine;
 
 public class PlayerController : ControllerBase
 {
+    MoveTileModule move;
+
+    void Awake()
+    {
+        move = GetComponent<MoveTileModule>();
+    }
+
+    void Update()
+    {
+        Vector2 input = new Vector2(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        );
+
+        move.TryStepByInput(input);
+    }
+
     protected override void OnPossess(CharacterBase newCharacter)
     {
         base.OnPossess(newCharacter);   
@@ -22,7 +39,13 @@ public class PlayerController : ControllerBase
 
     public void MoveToMousePosition(bool value, Vector2 screenPosition, Vector3 worldPosition)
     {
-        CommandMoveToDestination(worldPosition, 0.0f);
+        if (move == null) move = GetComponent<MoveTileModule>(); // 안전 체크
+        var tm = PlacementManager.Instance?.tilemap;
+        if (tm == null) return;
+
+        Vector3Int targetCell = tm.WorldToCell(worldPosition);
+        // 목표 셀로 경로 생성(맨해튼 FindPath 사용)
+        move.MoveToTile(targetCell);
     }
     private void MoveToDirection(Vector2 value)
     {

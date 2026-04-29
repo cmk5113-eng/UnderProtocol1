@@ -516,7 +516,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -569,9 +569,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1020
-        width: 60
-        height: 68
+        y: 1024
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -590,10 +590,10 @@ TextureImporter:
       name: tileset_sf_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 1020
-        width: 60
-        height: 68
+        x: 64
+        y: 1024
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -613,9 +613,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 952
-        width: 60
-        height: 68
+        y: 960
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -631,35 +631,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_sf_3
-      rect:
-        serializedVersion: 2
-        x: 1620
-        y: 816
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 840978687bfbb5f42a04844d8e172577
-      internalID: 3138786733301103872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tileset_sf_4
       rect:
         serializedVersion: 2
         x: 960
-        y: 748
-        width: 60
-        height: 68
+        y: 704
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -679,9 +657,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 680
-        width: 60
-        height: 68
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -700,10 +678,10 @@ TextureImporter:
       name: tileset_sf_6
       rect:
         serializedVersion: 2
-        x: 60
-        y: 680
-        width: 60
-        height: 68
+        x: 64
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -722,10 +700,10 @@ TextureImporter:
       name: tileset_sf_7
       rect:
         serializedVersion: 2
-        x: 120
-        y: 680
-        width: 60
-        height: 68
+        x: 128
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -744,10 +722,10 @@ TextureImporter:
       name: tileset_sf_8
       rect:
         serializedVersion: 2
-        x: 180
-        y: 680
-        width: 60
-        height: 68
+        x: 192
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -766,10 +744,10 @@ TextureImporter:
       name: tileset_sf_9
       rect:
         serializedVersion: 2
-        x: 240
-        y: 680
-        width: 60
-        height: 68
+        x: 448
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -788,10 +766,10 @@ TextureImporter:
       name: tileset_sf_10
       rect:
         serializedVersion: 2
-        x: 480
-        y: 680
-        width: 60
-        height: 68
+        x: 512
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -810,10 +788,10 @@ TextureImporter:
       name: tileset_sf_11
       rect:
         serializedVersion: 2
-        x: 540
-        y: 680
-        width: 60
-        height: 68
+        x: 576
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -832,10 +810,10 @@ TextureImporter:
       name: tileset_sf_12
       rect:
         serializedVersion: 2
-        x: 600
-        y: 680
-        width: 60
-        height: 68
+        x: 640
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -854,10 +832,10 @@ TextureImporter:
       name: tileset_sf_13
       rect:
         serializedVersion: 2
-        x: 660
-        y: 680
-        width: 60
-        height: 68
+        x: 704
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -876,10 +854,10 @@ TextureImporter:
       name: tileset_sf_14
       rect:
         serializedVersion: 2
-        x: 720
-        y: 680
-        width: 60
-        height: 68
+        x: 768
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -898,10 +876,10 @@ TextureImporter:
       name: tileset_sf_15
       rect:
         serializedVersion: 2
-        x: 780
-        y: 680
-        width: 60
-        height: 68
+        x: 832
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -920,10 +898,10 @@ TextureImporter:
       name: tileset_sf_16
       rect:
         serializedVersion: 2
-        x: 840
-        y: 680
-        width: 60
-        height: 68
+        x: 896
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -942,10 +920,10 @@ TextureImporter:
       name: tileset_sf_17
       rect:
         serializedVersion: 2
-        x: 900
-        y: 680
-        width: 60
-        height: 68
+        x: 960
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -964,10 +942,10 @@ TextureImporter:
       name: tileset_sf_18
       rect:
         serializedVersion: 2
-        x: 960
-        y: 680
-        width: 60
-        height: 68
+        x: 1024
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -986,10 +964,10 @@ TextureImporter:
       name: tileset_sf_19
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 680
-        width: 60
-        height: 68
+        x: 1216
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1008,10 +986,10 @@ TextureImporter:
       name: tileset_sf_20
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 680
-        width: 60
-        height: 68
+        x: 1280
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1030,10 +1008,10 @@ TextureImporter:
       name: tileset_sf_21
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 680
-        width: 60
-        height: 68
+        x: 1344
+        y: 640
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1052,10 +1030,10 @@ TextureImporter:
       name: tileset_sf_22
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 680
-        width: 60
-        height: 68
+        x: 0
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1074,10 +1052,10 @@ TextureImporter:
       name: tileset_sf_23
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 680
-        width: 60
-        height: 68
+        x: 64
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1096,10 +1074,10 @@ TextureImporter:
       name: tileset_sf_24
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 680
-        width: 60
-        height: 68
+        x: 128
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1118,10 +1096,10 @@ TextureImporter:
       name: tileset_sf_25
       rect:
         serializedVersion: 2
-        x: 0
-        y: 612
-        width: 60
-        height: 68
+        x: 192
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1140,10 +1118,10 @@ TextureImporter:
       name: tileset_sf_26
       rect:
         serializedVersion: 2
-        x: 60
-        y: 612
-        width: 60
-        height: 68
+        x: 448
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1162,10 +1140,10 @@ TextureImporter:
       name: tileset_sf_27
       rect:
         serializedVersion: 2
-        x: 120
-        y: 612
-        width: 60
-        height: 68
+        x: 512
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1184,10 +1162,10 @@ TextureImporter:
       name: tileset_sf_28
       rect:
         serializedVersion: 2
-        x: 180
-        y: 612
-        width: 60
-        height: 68
+        x: 576
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1206,10 +1184,10 @@ TextureImporter:
       name: tileset_sf_29
       rect:
         serializedVersion: 2
-        x: 240
-        y: 612
-        width: 60
-        height: 68
+        x: 640
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1228,10 +1206,10 @@ TextureImporter:
       name: tileset_sf_30
       rect:
         serializedVersion: 2
-        x: 420
-        y: 612
-        width: 60
-        height: 68
+        x: 704
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1250,10 +1228,10 @@ TextureImporter:
       name: tileset_sf_31
       rect:
         serializedVersion: 2
-        x: 480
-        y: 612
-        width: 60
-        height: 68
+        x: 768
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1272,10 +1250,10 @@ TextureImporter:
       name: tileset_sf_32
       rect:
         serializedVersion: 2
-        x: 540
-        y: 612
-        width: 60
-        height: 68
+        x: 832
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1294,10 +1272,10 @@ TextureImporter:
       name: tileset_sf_33
       rect:
         serializedVersion: 2
-        x: 600
-        y: 612
-        width: 60
-        height: 68
+        x: 896
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1316,10 +1294,10 @@ TextureImporter:
       name: tileset_sf_34
       rect:
         serializedVersion: 2
-        x: 660
-        y: 612
-        width: 60
-        height: 68
+        x: 960
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1338,10 +1316,10 @@ TextureImporter:
       name: tileset_sf_35
       rect:
         serializedVersion: 2
-        x: 720
-        y: 612
-        width: 60
-        height: 68
+        x: 1024
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1360,10 +1338,10 @@ TextureImporter:
       name: tileset_sf_36
       rect:
         serializedVersion: 2
-        x: 780
-        y: 612
-        width: 60
-        height: 68
+        x: 1216
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1382,10 +1360,10 @@ TextureImporter:
       name: tileset_sf_37
       rect:
         serializedVersion: 2
-        x: 840
-        y: 612
-        width: 60
-        height: 68
+        x: 1344
+        y: 576
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1404,10 +1382,10 @@ TextureImporter:
       name: tileset_sf_38
       rect:
         serializedVersion: 2
-        x: 900
-        y: 612
-        width: 60
-        height: 68
+        x: 0
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1426,10 +1404,10 @@ TextureImporter:
       name: tileset_sf_39
       rect:
         serializedVersion: 2
-        x: 960
-        y: 612
-        width: 60
-        height: 68
+        x: 64
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1448,10 +1426,10 @@ TextureImporter:
       name: tileset_sf_40
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 612
-        width: 60
-        height: 68
+        x: 128
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1470,10 +1448,10 @@ TextureImporter:
       name: tileset_sf_41
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 612
-        width: 60
-        height: 68
+        x: 192
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1492,10 +1470,10 @@ TextureImporter:
       name: tileset_sf_42
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 612
-        width: 60
-        height: 68
+        x: 384
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1514,10 +1492,10 @@ TextureImporter:
       name: tileset_sf_43
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 612
-        width: 60
-        height: 68
+        x: 448
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1536,10 +1514,10 @@ TextureImporter:
       name: tileset_sf_44
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 612
-        width: 60
-        height: 68
+        x: 512
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1558,10 +1536,10 @@ TextureImporter:
       name: tileset_sf_45
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 612
-        width: 60
-        height: 68
+        x: 640
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1580,10 +1558,10 @@ TextureImporter:
       name: tileset_sf_46
       rect:
         serializedVersion: 2
-        x: 0
-        y: 544
-        width: 60
-        height: 68
+        x: 704
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1602,10 +1580,10 @@ TextureImporter:
       name: tileset_sf_47
       rect:
         serializedVersion: 2
-        x: 60
-        y: 544
-        width: 60
-        height: 68
+        x: 768
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1624,10 +1602,10 @@ TextureImporter:
       name: tileset_sf_48
       rect:
         serializedVersion: 2
-        x: 120
-        y: 544
-        width: 60
-        height: 68
+        x: 832
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1646,10 +1624,10 @@ TextureImporter:
       name: tileset_sf_49
       rect:
         serializedVersion: 2
-        x: 180
-        y: 544
-        width: 60
-        height: 68
+        x: 896
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1668,10 +1646,10 @@ TextureImporter:
       name: tileset_sf_50
       rect:
         serializedVersion: 2
-        x: 240
-        y: 544
-        width: 60
-        height: 68
+        x: 960
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1690,10 +1668,10 @@ TextureImporter:
       name: tileset_sf_51
       rect:
         serializedVersion: 2
-        x: 420
-        y: 544
-        width: 60
-        height: 68
+        x: 1024
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1712,10 +1690,10 @@ TextureImporter:
       name: tileset_sf_52
       rect:
         serializedVersion: 2
-        x: 480
-        y: 544
-        width: 60
-        height: 68
+        x: 1088
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1734,10 +1712,10 @@ TextureImporter:
       name: tileset_sf_53
       rect:
         serializedVersion: 2
-        x: 540
-        y: 544
-        width: 60
-        height: 68
+        x: 1152
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1756,10 +1734,10 @@ TextureImporter:
       name: tileset_sf_54
       rect:
         serializedVersion: 2
-        x: 600
-        y: 544
-        width: 60
-        height: 68
+        x: 1216
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1778,10 +1756,10 @@ TextureImporter:
       name: tileset_sf_55
       rect:
         serializedVersion: 2
-        x: 660
-        y: 544
-        width: 60
-        height: 68
+        x: 1280
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1800,10 +1778,10 @@ TextureImporter:
       name: tileset_sf_56
       rect:
         serializedVersion: 2
-        x: 720
-        y: 544
-        width: 60
-        height: 68
+        x: 1344
+        y: 512
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1822,10 +1800,10 @@ TextureImporter:
       name: tileset_sf_57
       rect:
         serializedVersion: 2
-        x: 780
-        y: 544
-        width: 60
-        height: 68
+        x: 0
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1844,10 +1822,10 @@ TextureImporter:
       name: tileset_sf_58
       rect:
         serializedVersion: 2
-        x: 840
-        y: 544
-        width: 60
-        height: 68
+        x: 64
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1866,10 +1844,10 @@ TextureImporter:
       name: tileset_sf_59
       rect:
         serializedVersion: 2
-        x: 900
-        y: 544
-        width: 60
-        height: 68
+        x: 128
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1888,10 +1866,10 @@ TextureImporter:
       name: tileset_sf_60
       rect:
         serializedVersion: 2
-        x: 960
-        y: 544
-        width: 60
-        height: 68
+        x: 192
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1910,10 +1888,10 @@ TextureImporter:
       name: tileset_sf_61
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 544
-        width: 60
-        height: 68
+        x: 640
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1932,10 +1910,10 @@ TextureImporter:
       name: tileset_sf_62
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 544
-        width: 60
-        height: 68
+        x: 704
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1954,10 +1932,10 @@ TextureImporter:
       name: tileset_sf_63
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 544
-        width: 60
-        height: 68
+        x: 768
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1976,10 +1954,10 @@ TextureImporter:
       name: tileset_sf_64
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 544
-        width: 60
-        height: 68
+        x: 832
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1998,10 +1976,10 @@ TextureImporter:
       name: tileset_sf_65
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 544
-        width: 60
-        height: 68
+        x: 896
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2020,10 +1998,10 @@ TextureImporter:
       name: tileset_sf_66
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 544
-        width: 60
-        height: 68
+        x: 960
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2042,10 +2020,10 @@ TextureImporter:
       name: tileset_sf_67
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 544
-        width: 60
-        height: 68
+        x: 1024
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2064,10 +2042,10 @@ TextureImporter:
       name: tileset_sf_68
       rect:
         serializedVersion: 2
-        x: 0
-        y: 476
-        width: 60
-        height: 68
+        x: 1088
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2086,10 +2064,10 @@ TextureImporter:
       name: tileset_sf_69
       rect:
         serializedVersion: 2
-        x: 60
-        y: 476
-        width: 60
-        height: 68
+        x: 1152
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2108,10 +2086,10 @@ TextureImporter:
       name: tileset_sf_70
       rect:
         serializedVersion: 2
-        x: 120
-        y: 476
-        width: 60
-        height: 68
+        x: 1216
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2130,10 +2108,10 @@ TextureImporter:
       name: tileset_sf_71
       rect:
         serializedVersion: 2
-        x: 180
-        y: 476
-        width: 60
-        height: 68
+        x: 1280
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2152,10 +2130,10 @@ TextureImporter:
       name: tileset_sf_72
       rect:
         serializedVersion: 2
-        x: 240
-        y: 476
-        width: 60
-        height: 68
+        x: 1344
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2174,10 +2152,10 @@ TextureImporter:
       name: tileset_sf_73
       rect:
         serializedVersion: 2
-        x: 420
-        y: 476
-        width: 60
-        height: 68
+        x: 1408
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2196,10 +2174,10 @@ TextureImporter:
       name: tileset_sf_74
       rect:
         serializedVersion: 2
-        x: 480
-        y: 476
-        width: 60
-        height: 68
+        x: 1472
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2218,10 +2196,10 @@ TextureImporter:
       name: tileset_sf_75
       rect:
         serializedVersion: 2
-        x: 540
-        y: 476
-        width: 60
-        height: 68
+        x: 0
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2240,10 +2218,10 @@ TextureImporter:
       name: tileset_sf_76
       rect:
         serializedVersion: 2
-        x: 600
-        y: 476
-        width: 60
-        height: 68
+        x: 64
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2262,10 +2240,10 @@ TextureImporter:
       name: tileset_sf_77
       rect:
         serializedVersion: 2
-        x: 660
-        y: 476
-        width: 60
-        height: 68
+        x: 128
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2284,10 +2262,10 @@ TextureImporter:
       name: tileset_sf_78
       rect:
         serializedVersion: 2
-        x: 720
-        y: 476
-        width: 60
-        height: 68
+        x: 192
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2306,10 +2284,10 @@ TextureImporter:
       name: tileset_sf_79
       rect:
         serializedVersion: 2
-        x: 780
-        y: 476
-        width: 60
-        height: 68
+        x: 256
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2328,10 +2306,10 @@ TextureImporter:
       name: tileset_sf_80
       rect:
         serializedVersion: 2
-        x: 840
-        y: 476
-        width: 60
-        height: 68
+        x: 320
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2350,10 +2328,10 @@ TextureImporter:
       name: tileset_sf_81
       rect:
         serializedVersion: 2
-        x: 900
-        y: 476
-        width: 60
-        height: 68
+        x: 384
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2372,10 +2350,10 @@ TextureImporter:
       name: tileset_sf_82
       rect:
         serializedVersion: 2
-        x: 960
-        y: 476
-        width: 60
-        height: 68
+        x: 448
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2394,10 +2372,10 @@ TextureImporter:
       name: tileset_sf_83
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 476
-        width: 60
-        height: 68
+        x: 640
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2416,10 +2394,10 @@ TextureImporter:
       name: tileset_sf_84
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 476
-        width: 60
-        height: 68
+        x: 704
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2438,10 +2416,10 @@ TextureImporter:
       name: tileset_sf_85
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 476
-        width: 60
-        height: 68
+        x: 768
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2460,10 +2438,10 @@ TextureImporter:
       name: tileset_sf_86
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 476
-        width: 60
-        height: 68
+        x: 832
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2482,10 +2460,10 @@ TextureImporter:
       name: tileset_sf_87
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 476
-        width: 60
-        height: 68
+        x: 896
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2504,10 +2482,10 @@ TextureImporter:
       name: tileset_sf_88
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 476
-        width: 60
-        height: 68
+        x: 960
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2526,10 +2504,10 @@ TextureImporter:
       name: tileset_sf_89
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 476
-        width: 60
-        height: 68
+        x: 1024
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2548,10 +2526,10 @@ TextureImporter:
       name: tileset_sf_90
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 476
-        width: 60
-        height: 68
+        x: 1088
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2570,10 +2548,10 @@ TextureImporter:
       name: tileset_sf_91
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 476
-        width: 60
-        height: 68
+        x: 1152
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2592,10 +2570,10 @@ TextureImporter:
       name: tileset_sf_92
       rect:
         serializedVersion: 2
-        x: 0
-        y: 408
-        width: 60
-        height: 68
+        x: 1216
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2614,10 +2592,10 @@ TextureImporter:
       name: tileset_sf_93
       rect:
         serializedVersion: 2
-        x: 60
-        y: 408
-        width: 60
-        height: 68
+        x: 1280
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2636,10 +2614,10 @@ TextureImporter:
       name: tileset_sf_94
       rect:
         serializedVersion: 2
-        x: 120
-        y: 408
-        width: 60
-        height: 68
+        x: 1344
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2658,10 +2636,10 @@ TextureImporter:
       name: tileset_sf_95
       rect:
         serializedVersion: 2
-        x: 180
-        y: 408
-        width: 60
-        height: 68
+        x: 1408
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2680,10 +2658,10 @@ TextureImporter:
       name: tileset_sf_96
       rect:
         serializedVersion: 2
-        x: 240
-        y: 408
-        width: 60
-        height: 68
+        x: 0
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2702,10 +2680,10 @@ TextureImporter:
       name: tileset_sf_97
       rect:
         serializedVersion: 2
-        x: 300
-        y: 408
-        width: 60
-        height: 68
+        x: 64
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2724,10 +2702,10 @@ TextureImporter:
       name: tileset_sf_98
       rect:
         serializedVersion: 2
-        x: 360
-        y: 408
-        width: 60
-        height: 68
+        x: 128
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2746,10 +2724,10 @@ TextureImporter:
       name: tileset_sf_99
       rect:
         serializedVersion: 2
-        x: 420
-        y: 408
-        width: 60
-        height: 68
+        x: 192
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2768,10 +2746,10 @@ TextureImporter:
       name: tileset_sf_100
       rect:
         serializedVersion: 2
-        x: 480
-        y: 408
-        width: 60
-        height: 68
+        x: 256
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2790,10 +2768,10 @@ TextureImporter:
       name: tileset_sf_101
       rect:
         serializedVersion: 2
-        x: 600
-        y: 408
-        width: 60
-        height: 68
+        x: 320
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2812,10 +2790,10 @@ TextureImporter:
       name: tileset_sf_102
       rect:
         serializedVersion: 2
-        x: 660
-        y: 408
-        width: 60
-        height: 68
+        x: 384
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2834,10 +2812,10 @@ TextureImporter:
       name: tileset_sf_103
       rect:
         serializedVersion: 2
-        x: 720
-        y: 408
-        width: 60
-        height: 68
+        x: 448
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2856,10 +2834,10 @@ TextureImporter:
       name: tileset_sf_104
       rect:
         serializedVersion: 2
-        x: 780
-        y: 408
-        width: 60
-        height: 68
+        x: 640
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2878,10 +2856,10 @@ TextureImporter:
       name: tileset_sf_105
       rect:
         serializedVersion: 2
-        x: 840
-        y: 408
-        width: 60
-        height: 68
+        x: 704
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2900,10 +2878,10 @@ TextureImporter:
       name: tileset_sf_106
       rect:
         serializedVersion: 2
-        x: 900
-        y: 408
-        width: 60
-        height: 68
+        x: 768
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2922,10 +2900,10 @@ TextureImporter:
       name: tileset_sf_107
       rect:
         serializedVersion: 2
-        x: 960
-        y: 408
-        width: 60
-        height: 68
+        x: 832
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2944,10 +2922,10 @@ TextureImporter:
       name: tileset_sf_108
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 408
-        width: 60
-        height: 68
+        x: 0
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2966,10 +2944,10 @@ TextureImporter:
       name: tileset_sf_109
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 408
-        width: 60
-        height: 68
+        x: 64
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2988,10 +2966,10 @@ TextureImporter:
       name: tileset_sf_110
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 408
-        width: 60
-        height: 68
+        x: 192
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3010,10 +2988,10 @@ TextureImporter:
       name: tileset_sf_111
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 408
-        width: 60
-        height: 68
+        x: 256
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3032,10 +3010,10 @@ TextureImporter:
       name: tileset_sf_112
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 408
-        width: 60
-        height: 68
+        x: 320
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3054,10 +3032,10 @@ TextureImporter:
       name: tileset_sf_113
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 408
-        width: 60
-        height: 68
+        x: 384
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3076,10 +3054,10 @@ TextureImporter:
       name: tileset_sf_114
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 408
-        width: 60
-        height: 68
+        x: 448
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3098,10 +3076,10 @@ TextureImporter:
       name: tileset_sf_115
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 408
-        width: 60
-        height: 68
+        x: 640
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3120,10 +3098,10 @@ TextureImporter:
       name: tileset_sf_116
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 408
-        width: 60
-        height: 68
+        x: 704
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3142,10 +3120,10 @@ TextureImporter:
       name: tileset_sf_117
       rect:
         serializedVersion: 2
-        x: 0
-        y: 340
-        width: 60
-        height: 68
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3164,10 +3142,10 @@ TextureImporter:
       name: tileset_sf_118
       rect:
         serializedVersion: 2
-        x: 60
-        y: 340
-        width: 60
-        height: 68
+        x: 256
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3186,10 +3164,10 @@ TextureImporter:
       name: tileset_sf_119
       rect:
         serializedVersion: 2
-        x: 120
-        y: 340
-        width: 60
-        height: 68
+        x: 320
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3208,10 +3186,10 @@ TextureImporter:
       name: tileset_sf_120
       rect:
         serializedVersion: 2
-        x: 180
-        y: 340
-        width: 60
-        height: 68
+        x: 384
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3230,10 +3208,10 @@ TextureImporter:
       name: tileset_sf_121
       rect:
         serializedVersion: 2
-        x: 240
-        y: 340
-        width: 60
-        height: 68
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3252,10 +3230,10 @@ TextureImporter:
       name: tileset_sf_122
       rect:
         serializedVersion: 2
-        x: 300
-        y: 340
-        width: 60
-        height: 68
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3274,10 +3252,10 @@ TextureImporter:
       name: tileset_sf_123
       rect:
         serializedVersion: 2
-        x: 360
-        y: 340
-        width: 60
-        height: 68
+        x: 256
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3296,10 +3274,10 @@ TextureImporter:
       name: tileset_sf_124
       rect:
         serializedVersion: 2
-        x: 420
-        y: 340
-        width: 60
-        height: 68
+        x: 320
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3318,10 +3296,10 @@ TextureImporter:
       name: tileset_sf_125
       rect:
         serializedVersion: 2
-        x: 480
-        y: 340
-        width: 60
-        height: 68
+        x: 384
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3340,10 +3318,10 @@ TextureImporter:
       name: tileset_sf_126
       rect:
         serializedVersion: 2
-        x: 600
-        y: 340
-        width: 60
-        height: 68
+        x: 448
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3362,10 +3340,10 @@ TextureImporter:
       name: tileset_sf_127
       rect:
         serializedVersion: 2
-        x: 660
-        y: 340
-        width: 60
-        height: 68
+        x: 512
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3384,10 +3362,10 @@ TextureImporter:
       name: tileset_sf_128
       rect:
         serializedVersion: 2
-        x: 720
-        y: 340
-        width: 60
-        height: 68
+        x: 576
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3406,10 +3384,10 @@ TextureImporter:
       name: tileset_sf_129
       rect:
         serializedVersion: 2
-        x: 780
-        y: 340
-        width: 60
-        height: 68
+        x: 640
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3428,10 +3406,10 @@ TextureImporter:
       name: tileset_sf_130
       rect:
         serializedVersion: 2
-        x: 840
-        y: 340
-        width: 60
-        height: 68
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3450,10 +3428,10 @@ TextureImporter:
       name: tileset_sf_131
       rect:
         serializedVersion: 2
-        x: 900
-        y: 340
-        width: 60
-        height: 68
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3472,10 +3450,10 @@ TextureImporter:
       name: tileset_sf_132
       rect:
         serializedVersion: 2
-        x: 960
-        y: 340
-        width: 60
-        height: 68
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3494,10 +3472,10 @@ TextureImporter:
       name: tileset_sf_133
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 384
-        width: 60
-        height: 24
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3516,10 +3494,10 @@ TextureImporter:
       name: tileset_sf_134
       rect:
         serializedVersion: 2
-        x: 1080
-        y: 340
-        width: 60
-        height: 68
+        x: 256
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3538,10 +3516,10 @@ TextureImporter:
       name: tileset_sf_135
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 340
-        width: 60
-        height: 68
+        x: 320
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3560,10 +3538,10 @@ TextureImporter:
       name: tileset_sf_136
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 340
-        width: 60
-        height: 68
+        x: 384
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3582,10 +3560,10 @@ TextureImporter:
       name: tileset_sf_137
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 340
-        width: 60
-        height: 68
+        x: 448
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3604,10 +3582,10 @@ TextureImporter:
       name: tileset_sf_138
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 340
-        width: 60
-        height: 68
+        x: 512
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3626,10 +3604,10 @@ TextureImporter:
       name: tileset_sf_139
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 340
-        width: 60
-        height: 68
+        x: 768
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3648,10 +3626,10 @@ TextureImporter:
       name: tileset_sf_140
       rect:
         serializedVersion: 2
-        x: 1440
-        y: 340
-        width: 60
-        height: 68
+        x: 832
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3670,10 +3648,10 @@ TextureImporter:
       name: tileset_sf_141
       rect:
         serializedVersion: 2
-        x: 0
-        y: 272
-        width: 60
-        height: 68
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3692,10 +3670,10 @@ TextureImporter:
       name: tileset_sf_142
       rect:
         serializedVersion: 2
-        x: 60
-        y: 272
-        width: 60
-        height: 68
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3706,886 +3684,6 @@ TextureImporter:
       bones: []
       spriteID: 62035dcde67065e418e70964dbfbc284
       internalID: -259983016631023960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_143
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d2c8fb13fc884e4b9abcae2d13a2e2c
-      internalID: 4130049332584643383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_144
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 258
-        width: 60
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6576fcea4b57e9e44b1acdcc3118aecd
-      internalID: -1469192693158502944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_145
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 257
-        width: 60
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 54bec81ec5ed18e40b0fa095657938b5
-      internalID: 6969380365500667644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_146
-      rect:
-        serializedVersion: 2
-        x: 321
-        y: 257
-        width: 60
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1edd4aeec28b4704387518b6b1cb0927
-      internalID: 6429981693709690576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_147
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 256
-        width: 60
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 1}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7a8b8c0a2829cc42ab242ee213a36d0
-      internalID: -2226505326005441432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_149
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a30853c46a99934db64688859b62ac8
-      internalID: -8260115982253735880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_150
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 482acdaa12c76fc48a5c49f39f0740ad
-      internalID: 6927717783839492459
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_151
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08c8d00bff8a20642ac37c733aace584
-      internalID: -4109548455038535093
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_152
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7963acb5600e09044b6b691cf4586e0a
-      internalID: 4909954887197368613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_153
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 241ac91afa9889e4794bae0a0a1eaffb
-      internalID: -7953844704445300521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_154
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 272
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f3d9a7e89b08fd4e869d176e656614c
-      internalID: 6782907128278261025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_155
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e7c612fa826fd742b48ea901d93994b
-      internalID: -7297540530310342972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_156
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6124cee57f30472419805e5615544d2d
-      internalID: -775670107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_157
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbe22a71e96a2dd4abbcf88a4b59a9f9
-      internalID: 1472262367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_158
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 191
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8868c8b17fbc494baef794d705a2379
-      internalID: 538656944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_159
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 191
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9d02c5ca34522743927b7fe25cad5dd
-      internalID: -1652993087
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_160
-      rect:
-        serializedVersion: 2
-        x: 321
-        y: 191
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00eeb43ecfdcd9741a70ba58ca750d16
-      internalID: 726021285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_161
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 192
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52d0106f804db4f49adc8fa2a6feb7fa
-      internalID: 1812031014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_163
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 984f38103c1b30f4388747b445b728a8
-      internalID: -1082373299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_164
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc82eb5a47dcac24b9cb002573e8aa77
-      internalID: 608807104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_165
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 204
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd17d3897ea3bd7439f60e0e179ba7a0
-      internalID: 1605725917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_166
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 136
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5d16028497cbbd4a8849ed49b1ff44e
-      internalID: -1691805468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_167
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 136
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 543c3e0ccad26804f9514e0b939a6b4f
-      internalID: 771097831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_174
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 136
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad34fe5e970fd054888426a99d377ed1
-      internalID: 1508964962
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_175
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 136
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9479dff09b5a59f4cb29063ccefbb0bd
-      internalID: -1392702516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_176
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 136
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f510d17db7eddd141b1259e2f16db031
-      internalID: 10095098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_177
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53f9feb97ecc8b74b90ce5019585ef62
-      internalID: -1246276776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_178
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42d9a5284a39c394c861433f8a21c094
-      internalID: -1907505756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_179
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ef264d376285044a93d91db81f5aff0
-      internalID: -1340991631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_186
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd1b62e443aa31f4aa4b73b32800f6d4
-      internalID: 396580840
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_187
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec810c552df14694da50624c24f3f800
-      internalID: 154424935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_188
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ace9aebd5de3bfd46827e2ed680f0b1d
-      internalID: -1284293169
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_189
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 68
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd1b1c5f188130b4b96d2d7f3d4da900
-      internalID: 1574169140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_190
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14c9e0afce0b4d64b899dc45a44ae95d
-      internalID: -1091819740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_191
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37927566d8a94064f8f4fd4a9cbaa723
-      internalID: -1870345040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_192
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8aac0f452ee9e64ab09b6725a620bed
-      internalID: -1000296372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_193
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c75aa6dff7b3334c97e5c1f41178d1c
-      internalID: 182151711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_194
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16e7dd31c4394e64d9a772c7b9c7f901
-      internalID: -525127573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_195
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 0
-        width: 60
-        height: 68
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05ee14da0ed09d34ab32f5074ff16ede
-      internalID: -212683274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_sf_196
-      rect:
-        serializedVersion: 2
-        x: 1038
-        y: 177
-        width: 25
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5498e465cfa3434eb794ae1776fd0a8
-      internalID: 583735192
       vertices: []
       indices: 
       edges: []
@@ -4604,7 +3702,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":32.0,"y":16.0},"gridSpriteSize":{"x":60.0,"y":68.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       tileset_sf_0: 4851324103519244574
       tileset_sf_1: 4775148793791770303
@@ -4656,65 +3754,11 @@ TextureImporter:
       tileset_sf_140: -6702182800583239885
       tileset_sf_141: 6416964882064247031
       tileset_sf_142: -259983016631023960
-      tileset_sf_143: 4130049332584643383
-      tileset_sf_144: -1469192693158502944
-      tileset_sf_145: 6969380365500667644
-      tileset_sf_146: 6429981693709690576
-      tileset_sf_147: -2226505326005441432
-      tileset_sf_148: -1942054724565055478
-      tileset_sf_149: -8260115982253735880
       tileset_sf_15: -1948143618563592341
-      tileset_sf_150: 6927717783839492459
-      tileset_sf_151: -4109548455038535093
-      tileset_sf_152: 4909954887197368613
-      tileset_sf_153: -7953844704445300521
-      tileset_sf_154: 6782907128278261025
-      tileset_sf_155: -7297540530310342972
-      tileset_sf_156: -775670107
-      tileset_sf_157: 1472262367
-      tileset_sf_158: 538656944
-      tileset_sf_159: -1652993087
       tileset_sf_16: -5458542267262529280
-      tileset_sf_160: 726021285
-      tileset_sf_161: 1812031014
-      tileset_sf_162: 492100636
-      tileset_sf_163: -1082373299
-      tileset_sf_164: 608807104
-      tileset_sf_165: 1605725917
-      tileset_sf_166: -1691805468
-      tileset_sf_167: 771097831
-      tileset_sf_168: -687717359
-      tileset_sf_169: -1218833738
       tileset_sf_17: -3329545960627927029
-      tileset_sf_170: -1808980471
-      tileset_sf_171: 1208709727
-      tileset_sf_172: -576526116
-      tileset_sf_173: 819482015
-      tileset_sf_174: 1508964962
-      tileset_sf_175: -1392702516
-      tileset_sf_176: 10095098
-      tileset_sf_177: -1246276776
-      tileset_sf_178: -1907505756
-      tileset_sf_179: -1340991631
       tileset_sf_18: -3135594896035711097
-      tileset_sf_180: 296250957
-      tileset_sf_181: -1692124164
-      tileset_sf_182: -395916344
-      tileset_sf_183: 1876276054
-      tileset_sf_184: -836944240
-      tileset_sf_185: -685332860
-      tileset_sf_186: 396580840
-      tileset_sf_187: 154424935
-      tileset_sf_188: -1284293169
-      tileset_sf_189: 1574169140
       tileset_sf_19: 6483716116854378354
-      tileset_sf_190: -1091819740
-      tileset_sf_191: -1870345040
-      tileset_sf_192: -1000296372
-      tileset_sf_193: 182151711
-      tileset_sf_194: -525127573
-      tileset_sf_195: -212683274
-      tileset_sf_196: 583735192
       tileset_sf_2: 4003357717795437098
       tileset_sf_20: -4039546447432493766
       tileset_sf_21: 2584647976008342191

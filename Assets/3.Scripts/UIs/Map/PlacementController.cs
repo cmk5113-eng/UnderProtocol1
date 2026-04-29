@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class PlacementController : UI_CharcterSelectWindows
 {
-    public Tilemap tilemap;
     private Camera mainCamera;
     public GameObject currentObject;
     static List<GameObject> _objects = new List<GameObject>();
@@ -25,7 +24,7 @@ public class PlacementController : UI_CharcterSelectWindows
     void Start()
     {
         mainCamera = Camera.main;
-        if (tilemap == null) tilemap = GameObject.FindObjectOfType<Tilemap>();
+        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.   tilemap = GameObject.FindObjectOfType<Tilemap>();
        
     }
 
@@ -43,13 +42,13 @@ public class PlacementController : UI_CharcterSelectWindows
             mouseWorldPos.z = 1;
              
             // Å¸ÀÏ¸Ê ¼¿ ÁÂÇ¥·Î º¯È¯
-            Vector3Int clickCellPos = tilemap.WorldToCell(mouseWorldPos);
-            Vector3Int origin = tilemap.cellBounds.min;
+            Vector3Int clickCellPos = PlacementManager.Instance.tilemap.WorldToCell(mouseWorldPos);
+            Vector3Int origin = PlacementManager.Instance.tilemap.cellBounds.min;
             Vector3Int adjustedPos = clickCellPos - origin;
 
             if (ModeManager.Instance.CurrentMode == GameMode.CharacterSelect)
             {
-                if (tilemap.HasTile(clickCellPos))
+                if (PlacementManager.Instance.tilemap.HasTile(clickCellPos))
                 {
                     if (PlacementManager.currentCharacter != null)
                     {
@@ -75,7 +74,7 @@ public class PlacementController : UI_CharcterSelectWindows
 
                         
 
-                        Vector3 spawnPos = tilemap.GetCellCenterWorld(clickCellPos);
+                        Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
                         GameObject obj = ObjectManager.CreateObject(PlacementManager.currentCharacter, spawnPos);
                         _objects.Add(obj);
                     
