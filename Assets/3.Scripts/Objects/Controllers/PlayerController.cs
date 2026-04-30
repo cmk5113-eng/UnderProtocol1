@@ -4,10 +4,9 @@ using UnityEngine;
 public class PlayerController : ControllerBase
 {
     MoveTileModule move;
-
+    CharacterBase selectedCharacter;
     void Awake()
     {
-        move = GetComponent<MoveTileModule>();
     }
 
     void Update()
@@ -27,7 +26,8 @@ public class PlayerController : ControllerBase
         InputManager.OnMouseRightButton += MoveToMousePosition;
         InputManager.OnMove -= MoveToDirection;
         InputManager.OnMove += MoveToDirection;
-
+        InputManager.OnMouseLeftButton -= SelectByMouse;
+        InputManager.OnMouseLeftButton += SelectByMouse;
     }
 
     protected override void OnUnpossess(CharacterBase oldCharacter)
@@ -47,9 +47,45 @@ public class PlayerController : ControllerBase
         // 목표 셀로 경로 생성(맨해튼 FindPath 사용)
         move.MoveToTile(targetCell);
     }
+    public void SelectCharacter(CharacterBase target)
+    {
+        if (target == null) return;
+        if (!target.selectable) return;
+
+        selectedCharacter = target;
+
+        // 기존 캐릭터 해제 + 새 캐릭터 빙의
+        Possess(target);
+    }
+    private void SelectByMouse(bool value, Vector2 screenPos, Vector3 worldPos)
+    {
+        if (!value) return; // 클릭 눌렸을 때만
+
+        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            var character = hit.collider.GetComponent<CharacterBase>();
+
+            if (character != null)
+            {
+                SelectCharacter(character);
+            }
+        }
+    }
     private void MoveToDirection(Vector2 value)
     {
         CommandMoveToDirection(value);
     }
+    public void SummonAndSelect(SkillData skill, Vector3 pos)
+    {
+        if (skill == null || skill.summonPrefab == null) return;
 
+        GameObject obj = Instantiate(skill.summonPrefab, pos, Quaternion.identity);
+
+        var character = obj.GetComponent<CharacterBase>();
+        if (character == null) return;
+
+        SelectCharacter(character);
+    }
 }

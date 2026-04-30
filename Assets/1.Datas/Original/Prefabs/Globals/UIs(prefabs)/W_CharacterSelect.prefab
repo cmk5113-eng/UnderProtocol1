@@ -411,7 +411,7 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8545768571469279742, guid: e195fe37711fc6e4a93b7cbba01fe646, type: 3}
+          m_ObjectArgument: {fileID: 2850853500390287765, guid: e6655c62724fcb34cbc292af0675c172, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 7971459824579167813}
   - component: {fileID: 202564418190198818}
   m_Layer: 5
-  m_Name: Button (14)
+  m_Name: _Beak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,13 +795,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateBeak, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 3830434557279754263, guid: 5acf1075a65cd224ba5b977ccd697f09, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1031,7 +1031,7 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7848448228004364818, guid: 87fb1c8dccb5fa74f8ade6baca17492e, type: 3}
+          m_ObjectArgument: {fileID: 1052792212671057414, guid: 122fdf2cf31d1bf478ece68b9c210fe8, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1604,7 +1604,7 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4300355316670349127, guid: 6299f7692130b2c45a157890c18694d1, type: 3}
+          m_ObjectArgument: {fileID: 96752906353372427, guid: 838949798f5eca0439231513b4cbf7ca, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1880,7 +1880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.51167595, y: 0.35652158}
   m_AnchorMax: {x: 0.58400005, y: 0.40123925}
-  m_AnchoredPosition: {x: 5.3591, y: -0.22066021}
+  m_AnchoredPosition: {x: 5.3591003, y: -0.22065735}
   m_SizeDelta: {x: 17.968, y: 15.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7375330500123475672
@@ -2263,7 +2263,7 @@ GameObject:
   - component: {fileID: 5032280781585828403}
   - component: {fileID: 2273828254311276887}
   m_Layer: 5
-  m_Name: Button (9)
+  m_Name: _Jo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2382,13 +2382,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateJo, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2564380601473605754, guid: f34883b779569fd44bb895330cab9981, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2495,7 +2495,7 @@ GameObject:
   - component: {fileID: 794409160929013651}
   - component: {fileID: 4887850758125056640}
   m_Layer: 5
-  m_Name: Button (13)
+  m_Name: _Do
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2614,13 +2614,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateDo, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8269961709583128395, guid: 1710dc14d9e492f4baa8fe700e4d194e, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2850,7 +2850,7 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8156582920900130478, guid: 0c6302e41569ca147bb5c83e9889f30a, type: 3}
+          m_ObjectArgument: {fileID: 5166024030514932402, guid: f97352ce423f31d4b9897810dcd3f47c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3082,7 +3082,7 @@ GameObject:
   - component: {fileID: 4775376656086374185}
   - component: {fileID: 6606163759742498711}
   m_Layer: 5
-  m_Name: Button (11)
+  m_Name: _Min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3201,13 +3201,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateMin, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1190234828217557376, guid: 3c38ca38e849271418e7425c1aa12f67, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3588,7 +3588,7 @@ GameObject:
   - component: {fileID: 259203199022617037}
   - component: {fileID: 7785809898536478771}
   m_Layer: 5
-  m_Name: Button (12)
+  m_Name: _Choi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3707,13 +3707,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateChoi, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6643760502668351896, guid: d4f7c45db1dca104fa560df0510dd7cd, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4740,7 +4740,7 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2810689886953150068, guid: 25ab8ddecd4089c4e8df7e4714571754, type: 3}
+          m_ObjectArgument: {fileID: 4781729928273018580, guid: 1eaaaa6cd8cd92a489edfe31499e093f, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4973,7 +4973,7 @@ GameObject:
   - component: {fileID: 5368229791805466014}
   - component: {fileID: 269177449169069387}
   m_Layer: 5
-  m_Name: Button (10)
+  m_Name: _Ha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5092,13 +5092,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CreateHa, Assembly-CSharp
-        m_MethodName: Create
-        m_Mode: 1
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeCurrentCharacter
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4615776458053066472, guid: d71f297bce4c50d499698fba98a34770, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
