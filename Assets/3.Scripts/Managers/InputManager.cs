@@ -154,7 +154,8 @@ public class InputManager : ManagerBase
 
         if (is2D)
         {
-            worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, Camera.main.nearClipPlane)
+);
             worldPosition.z = 0;
         }
         else

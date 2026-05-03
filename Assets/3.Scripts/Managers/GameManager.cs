@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     ModeManager _mode;
     public ModeManager Mode => _mode;
 
+    SelectionManager _selection;
+    public SelectionManager Selection => _selection;
+
     IEnumerator initializing;
     public static event InitializeEvent OnInitializeManager;
     public static event InitializeEvent OnInitializeController;
@@ -114,6 +117,7 @@ public class GameManager : MonoBehaviour
         totalLoadCount += CreateManager(ref _placement).LoadCount;
         totalLoadCount += CreateManager(ref _character).LoadCount;
         totalLoadCount += CreateManager(ref _mode).LoadCount;
+        totalLoadCount += CreateManager(ref _selection).LoadCount;
 
 
 
@@ -143,6 +147,8 @@ public class GameManager : MonoBehaviour
         loadingProgress?.AddCurrent(1);
         yield return Character.Connect(this);
         loadingProgress?.AddCurrent(1);
+        yield return Selection.Connect(this);
+        loadingProgress?.AddCurrent(1);
         yield return Mode.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return null;
@@ -166,6 +172,7 @@ public class GameManager : MonoBehaviour
         Character?.Disconnect();
         Placement?.Disconnect();
         Mode?.Disconnect();
+        Selection?.Disconnect();
     }
     ManagerType CreateManager<ManagerType>(ref ManagerType targetVariable) where ManagerType : ManagerBase
     {

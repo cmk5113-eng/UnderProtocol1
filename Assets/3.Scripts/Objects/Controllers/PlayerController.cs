@@ -16,7 +16,7 @@ public class PlayerController : ControllerBase
             Input.GetAxisRaw("Vertical")
         );
 
-        move.TryStepByInput(input);
+
     }
 
     protected override void OnPossess(CharacterBase newCharacter)

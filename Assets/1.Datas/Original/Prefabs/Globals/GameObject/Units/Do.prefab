@@ -428,7 +428,6 @@ GameObject:
   - component: {fileID: 3653964145069438169}
   - component: {fileID: 4724212099649384476}
   - component: {fileID: 8246149433423237587}
-  - component: {fileID: 2712951330756034820}
   m_Layer: 0
   m_Name: Do
   m_TagString: Untagged
@@ -654,25 +653,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e16de51f7cc37145a371e42c6909d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
---- !u!95 &2712951330756034820
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8269961709583128395}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15ca94f766ebd2740abe4c0d14a9449a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
