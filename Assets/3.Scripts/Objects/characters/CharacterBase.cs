@@ -15,13 +15,21 @@ public enum ElementType { None, Fire, Water, Electric, Earth }
 
 
 
+
+
+
 public class CharacterBase : MonoBehaviour
 {
+
 public bool selectable = true;
 
     public int actionPoint = 0;
+    public int steminaPoint = 0;
     public int mobility = 0;
-
+    public SkillData skill1;
+    public SkillData skill2;
+    public SkillData skill3;
+    public SkillData skill4;
 
     public event MovementEvent OnMovement;
     public void MovementNotify(Vector3 move) => OnMovement?.Invoke(move);

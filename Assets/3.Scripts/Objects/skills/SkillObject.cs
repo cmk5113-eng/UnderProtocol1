@@ -17,7 +17,7 @@ public class SkillObject : MonoBehaviour
         this.data = data;
 
         // SelectionManager에 등록 -> 플레이어 입력(타일/대상 선택)을 받게 함
-        SelectionManager.Instance.SetSelectedSkill(this);
+        SelectionManager.SetSelectedSkill(this);
 
         EnterTargeting();
     }
@@ -90,8 +90,8 @@ public class SkillObject : MonoBehaviour
     {
         isTargeting = false;
         // SelectionManager 선택 해제
-        if (SelectionManager.Instance != null)
-            SelectionManager.Instance.ClearSelectedSkill();
+        if (SelectionManager.selectedSkill != null)
+            SelectionManager.ClearSelectedSkill();
 
         // 종료 처리: 오브젝트 파괴 또는 풀링으로 반환
         Destroy(gameObject);

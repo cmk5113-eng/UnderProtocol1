@@ -2,6 +2,7 @@ using System.Collections.Generic; // 새로운 입력 시스템 네임스페이스 추가
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.Tilemaps;
 
 public class PlacementController : UI_CharcterSelectWindows
@@ -77,7 +78,22 @@ public class PlacementController : UI_CharcterSelectWindows
                         Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
                         GameObject obj = ObjectManager.CreateObject(PlacementManager.currentCharacter, spawnPos);
                         _objects.Add(obj);
-                    
+
+                        SelectionManager.ClearSelectedCharacter();// 생성된 오브젝트에서 CharacterBase 컴포넌트를 가져와 선택 설정
+                        Debug.Log(SelectionManager.selectedCharacter);
+
+                        if (obj.TryGetComponent<CharacterBase>(out var character))
+                        {
+                            SelectionManager.SetSelectedCharacter(character);
+                        Debug.Log(SelectionManager.selectedCharacter);
+
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"{obj.name}에 CharacterBase 컴포넌트가 없습니다!");
+                        }
+
+
                         Debug.Log($"[Create] 타일 위치 {clickCellPos}에 {PlacementManager.currentCharacter}오브젝트 생성 완료");
                         PlacementManager.currentCharacter = null;
                     }

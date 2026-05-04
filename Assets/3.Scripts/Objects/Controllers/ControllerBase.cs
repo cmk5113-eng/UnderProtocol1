@@ -56,7 +56,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
     public void CommandMoveToDirection(Vector3 diraction)
     {
         if (Character == null) return;
-
+        if (Character != SelectionManager.selectedCharacter) return;
         var movement = Character.GetModule<MovementModule>();
         var tileModule = movement as MoveTileModule;
 
@@ -117,14 +117,21 @@ public class ControllerBase : MonoBehaviour, IFunctionable
     {
         if (Character == null) return false;
 
-        var tileModule = Character.GetModule<MoveTileModule>();
-        if (tileModule != null)
+        // 현재 선택된 캐릭터일 때만 입력 처리 (SelectionManager 연동)
+        if (Character == SelectionManager.selectedCharacter)
         {
-            return tileModule.TryStepByInput(input);
+            var tileModule = Character.GetModule<MoveTileModule>();
+            if (tileModule != null)
+            {
+                return tileModule.TryStepByInput(input);
+            }
         }
 
+        // 선택되지 않았거나 모듈이 없으면 false 반환 (이 부분이 누락되어 있었습니다)
         return false;
     }
 }
+
+
 
 

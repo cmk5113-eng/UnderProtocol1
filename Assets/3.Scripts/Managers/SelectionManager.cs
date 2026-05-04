@@ -5,12 +5,12 @@ public class SelectionManager : ManagerBase
 {
     public static SelectionManager Instance { get; private set; }
 
-    SkillObject selectedSkill;
-
+    public static SkillObject selectedSkill;
+    public static CharacterBase selectedCharacter;
     protected override IEnumerator OnConnected(GameManager newManager)
     {
         // 싱글턴 설정
-        Instance = this;
+        Instance = this;    
 
         // 입력/업데이트 이벤트 구독 (중복 구독 방지 위해 먼저 해제)
         InputManager.OnMouseLeftButton -= HandleMouseLeft;
@@ -40,19 +40,34 @@ public class SelectionManager : ManagerBase
     }
 
     // 외부에서 SkillObject 등록/해제
-    public void SetSelectedSkill(SkillObject skill)
+    public static void SetSelectedSkill(SkillObject skill)
     {
         selectedSkill = skill;
         Debug.Log($"SelectionManager: SetSelectedSkill -> {skill?.data?.skillName}");
         // TODO: 시각화 / 커서 변경 등
     }
 
-    public void ClearSelectedSkill()
+    public static void ClearSelectedSkill()
     {
         selectedSkill = null;
         Debug.Log("SelectionManager: ClearSelectedSkill");
         // TODO: 시각화 제거
     }
+
+    public static void SetSelectedCharacter(CharacterBase character)
+    {
+        selectedCharacter = character;
+        Debug.Log($"SelectionManager: SetSelectedCharacter -> {character?.name}");
+        // TODO: 시각화 / 커서 변경 등
+    }
+
+    public static void ClearSelectedCharacter()
+    {
+        selectedCharacter = null;
+        Debug.Log("SelectionManager: ClearSelectedSkill");
+        // TODO: 시각화 제거
+    }
+
 
     // 기존: worldPosition(Vector3)으로 바로 전달
     public void ProvideTarget(Vector3 worldPosition, GameObject target = null)
