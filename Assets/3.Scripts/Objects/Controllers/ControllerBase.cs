@@ -52,7 +52,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
         _character = null;
     }
 
-    // ¼öÁ¤: Tile ±â¹Ý ÀÌµ¿ÀÌ ÀÖÀ¸¸é "ÀÔ·Â ¹æÇâÀÇ ´ÙÀ½ Ä­"À» Áï½Ã ¸ñÀûÁö·Î ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½: Tile ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä­"ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void CommandMoveToDirection(Vector3 diraction)
     {
         if (Character == null) return;
@@ -60,7 +60,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
         var movement = Character.GetModule<MovementModule>();
         var tileModule = movement as MoveTileModule;
 
-        // 1. ÀÔ·Â ¿øº» ·Î±× (YÃà °ªÀÌ µé¾î¿À´ÂÁö È®ÀÎ)
+        // 1. ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ (Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½)
         Debug.Log($"[Input Raw] X: {diraction.x}, Y: {diraction.y}");
 
         Vector2 input2 = new Vector2(diraction.x, diraction.y);
@@ -75,25 +75,25 @@ public class ControllerBase : MonoBehaviour, IFunctionable
             float absX = Mathf.Abs(input2.x);
             float absY = Mathf.Abs(input2.y);
 
-            // 2. Ãà ÆÇÁ¤ ·Î±×
+            // 2. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½
             Debug.Log($"[Axis Check] absX: {absX}, absY: {absY}");
 
-            if (absX >= absY) // ÀÌ Á¶°Ç ¶§¹®¿¡ X°¡ Á¶±ÝÀÌ¶óµµ Å©¸é Y´Â ¹«½ÃµÊ
+            if (absX >= absY) // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ Å©ï¿½ï¿½ Yï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½
             {
                 step = input2.x > 0 ? Vector3Int.right : Vector3Int.left;
-                Debug.Log("[Final Step] XÃà °áÁ¤: " + step);
+                Debug.Log("[Final Step] Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + step);
             }
             else
             {
                 step = input2.y > 0 ? Vector3Int.up : Vector3Int.down;
-                Debug.Log("[Final Step] YÃà °áÁ¤: " + step);
+                Debug.Log("[Final Step] Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + step);
             }
 
             Vector3Int nextTile = tileModule.CurrentTile + step;
 
             if (!tileModule.CanEnterTile(nextTile))
             {
-                Debug.LogWarning($"[CanEnter Fail] Å¸ÀÏ ÁøÀÔ ºÒ°¡: {nextTile}");
+                Debug.LogWarning($"[CanEnter Fail] Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½: {nextTile}");
                 return;
             }
 
@@ -112,12 +112,12 @@ public class ControllerBase : MonoBehaviour, IFunctionable
     public void CommandStop() 
     {
         if (Character&&Character.GetModule<MovementModule>() is IRunnable target) target.StopMovement();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
-    // ±âÁ¸ Å° ¹ÙÀÎµù¿ë º¸Á¶: TileMoveModule¿¡ Á÷Á¢ À§ÀÓÇÏ´Â ´ÜÀ§ ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: TileMoveModuleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     public bool CommandStepByInput(Vector2 input)
     {
         if (Character == null) return false;
 
-        // ÇöÀç ¼±ÅÃµÈ Ä³¸¯ÅÍÀÏ ¶§¸¸ ÀÔ·Â Ã³¸® (SelectionManager ¿¬µ¿)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ Ã³ï¿½ï¿½ (SelectionManager ï¿½ï¿½ï¿½ï¿½)
         if (Character == SelectionManager.selectedCharacter)
         {
             var tileModule = Character.GetModule<MoveTileModule>();
@@ -127,7 +127,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
             }
         }
 
-        // ¼±ÅÃµÇÁö ¾Ê¾Ò°Å³ª ¸ðµâÀÌ ¾øÀ¸¸é false ¹ÝÈ¯ (ÀÌ ºÎºÐÀÌ ´©¶ôµÇ¾î ÀÖ¾ú½À´Ï´Ù)
+        // ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ false ï¿½ï¿½È¯ (ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½)
         return false;
     }
 }

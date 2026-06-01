@@ -308,7 +308,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6355333677580203546}
@@ -419,7 +419,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &2137886755028183611
 Rigidbody2D:
@@ -460,7 +460,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates: []
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 636724656299461856}
+          m_TargetAssemblyTypeName: UI_Button_ToggleUI, Assembly-CSharp
+          m_MethodName: Toggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &636724656299461856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,9 +517,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
+  portrait: {fileID: -1539759394, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   selectable: 1
+  Name: Kang
   actionPoint: 0
+  steminaPoint: 0
   mobility: 0
+  skill1: {fileID: 11400000, guid: caf57c0910c3d24429cdde211e50ca49, type: 2}
+  skill2: {fileID: 11400000, guid: 76b92ad278b820142be835e0466a8daa, type: 2}
+  skill3: {fileID: 11400000, guid: 71fe6b2cb4575eb4c96bdceb8c63c94f, type: 2}
+  skill4: {fileID: 11400000, guid: b408327330dfcb54d98293c2a0134d7a, type: 2}
 --- !u!114 &2318392073833377500
 MonoBehaviour:
   m_ObjectHideFlags: 0

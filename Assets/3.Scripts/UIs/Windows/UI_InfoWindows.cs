@@ -10,8 +10,13 @@ public class UI_InfoWindows : UIBase, IOpenable
     public void Open() => gameObject.SetActive(true);
     public void Toggle() => gameObject.SetActive(!IsOpen);
     [SerializeField] private TextMeshProUGUI characterNameText;
+   
     public void UpdateUI()
     {
     GameObject name = PlacementManager.currentCharacter;
+        if (name != null)
+        {
+            characterNameText.SetText(name.name);        
+        }
     }
 }

@@ -1,21 +1,21 @@
-using System.Collections.Generic; // »õ·Î¿î ÀÔ·Â ½Ã½ºÅÛ ³×ÀÓ½ºÆäÀÌ½º Ãß°¡
+using System.Collections.Generic; // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ô·ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ß°ï¿½
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using UnityEngine.Tilemaps;
 
-public class PlacementController : UI_CharcterSelectWindows
+public class PlacementController : UI_CharacterSelectWindows
 {
     private Camera mainCamera;
-    public GameObject currentObject;
     static List<GameObject> _objects = new List<GameObject>();
     int count => _objects.Count;
-    int max = 4;
+    int max = 12 ;
     public TextMeshProUGUI Current;
     public TextMeshProUGUI Max;
+    public static GameObject CurrentSkill;
 
-
+        
     private void RefreshUI()
     {
         if (Current != null) Current.text = count.ToString();
@@ -25,24 +25,24 @@ public class PlacementController : UI_CharcterSelectWindows
     void Start()
     {
         mainCamera = Camera.main;
-        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.   tilemap = GameObject.FindObjectOfType<Tilemap>();
+        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.   tilemap = GameObject.FindGameObjectWithTag("MainTile")?.GetComponent<Tilemap>();
        
     }
 
     void Update()
     {
         RefreshUI();
-        // Mouse.current.leftButton.wasPressedThisFrameÀ¸·Î Å¬¸¯ °¨Áö
+        // Mouse.current.leftButton.wasPressedThisFrameï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // ¸¶¿ì½º ÇöÀç ½ºÅ©¸° ÁÂÇ¥ °¡Á®¿À±â
+            // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
 
-            // ¿ùµå ÁÂÇ¥·Î º¯È¯
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0));
             mouseWorldPos.z = 1;
              
-            // Å¸ÀÏ¸Ê ¼¿ ÁÂÇ¥·Î º¯È¯
+            // Å¸ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
             Vector3Int clickCellPos = PlacementManager.Instance.tilemap.WorldToCell(mouseWorldPos);
             Vector3Int origin = PlacementManager.Instance.tilemap.cellBounds.min;
             Vector3Int adjustedPos = clickCellPos - origin;
@@ -53,20 +53,20 @@ public class PlacementController : UI_CharcterSelectWindows
                 {
                     if (PlacementManager.currentCharacter != null)
                     {
-                        // 1. ÇöÀç ¼±ÅÃµÈ Ä³¸¯ÅÍ(currentCharacter)ÀÇ ÀÌ¸§°ú ÀÏÄ¡ÇÏ´Â ¿ÀºêÁ§Æ®¸¦ ¾À¿¡¼­ °Ë»ö
-                        // ÇÁ¸®Æé »ý¼º ½Ã (Clone)ÀÌ ºÙ´Â ±ÔÄ¢ÀÌ¶ó¸é currentCharacter.name + "(Clone)"À¸·Î ¼öÁ¤
+                        // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½(currentCharacter)ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ (Clone)ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½Ä¢ï¿½Ì¶ï¿½ï¿½ currentCharacter.name + "(Clone)"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         
                         GameObject target = GameObject.Find(PlacementManager.currentCharacter.name + "(Clone)");
                         if (count >= max)
                         {
-                            UIManager.ClaimPopUp("¶ìµù", "ÀÎ¿ø ÃÊ°ú", "·ÖÁ®");
+                            UIManager.ClaimPopUp("ï¿½ï¿½ï¿½", "ï¿½Î¿ï¿½ ï¿½Ê°ï¿½", "ï¿½ï¿½ï¿½ï¿½");
                             PlacementManager.currentCharacter = null;
                             return;
                         }
-                        // 2. ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÇ ¿ÀºêÁ§Æ®°¡ ÀÌ¹Ì ÀÖÀ¸¸é »èÁ¦
+                        // 2. ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         if (target != null)
                         {
-                            Debug.Log($"[Destroy] ±âÁ¸¿¡ Á¸ÀçÇÏ´Â {target.name} ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇÕ´Ï´Ù.");
+                            Debug.Log($"[Destroy] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ {target.name} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
                             ObjectManager.DestroyObject(target);
                             _objects.Remove(target);
                            
@@ -76,12 +76,12 @@ public class PlacementController : UI_CharcterSelectWindows
                         
 
                         Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
+                        StageUIController.Instance.Refresh();
                         GameObject obj = ObjectManager.CreateObject(PlacementManager.currentCharacter, spawnPos);
                         _objects.Add(obj);
 
-                        SelectionManager.ClearSelectedCharacter();// »ý¼ºµÈ ¿ÀºêÁ§Æ®¿¡¼­ CharacterBase ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿Í ¼±ÅÃ ¼³Á¤
-                        Debug.Log(SelectionManager.selectedCharacter);
-
+                        SelectionManager.ClearSelectedCharacter();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ CharacterBase ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                        
                         if (obj.TryGetComponent<CharacterBase>(out var character))
                         {
                             SelectionManager.SetSelectedCharacter(character);
@@ -90,23 +90,23 @@ public class PlacementController : UI_CharcterSelectWindows
                         }
                         else
                         {
-                            Debug.LogWarning($"{obj.name}¿¡ CharacterBase ÄÄÆ÷³ÍÆ®°¡ ¾ø½À´Ï´Ù!");
+                            Debug.LogWarning($"{obj.name}ï¿½ï¿½ CharacterBase ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
                         }
 
 
-                        Debug.Log($"[Create] Å¸ÀÏ À§Ä¡ {clickCellPos}¿¡ {PlacementManager.currentCharacter}¿ÀºêÁ§Æ® »ý¼º ¿Ï·á");
+                        Debug.Log($"[Create] Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ {clickCellPos}ï¿½ï¿½ {PlacementManager.currentCharacter}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
                         PlacementManager.currentCharacter = null;
                     }
                     else
                     {
-                        Debug.Log("Ä³¸¯ÅÍ¸¦¼±ÅÃÇÏ¼¼¿ä");
+                        Debug.Log("Ä³ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
                     }
                 }
             }
 
             else if (ModeManager.Instance.CurrentMode == GameMode.Battle)
             {
-                Debug.Log("ÀüÅõ½ÃÀÛ");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
         }
         

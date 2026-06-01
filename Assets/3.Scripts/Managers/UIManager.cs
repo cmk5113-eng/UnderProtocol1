@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum UIType
 {
     None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
-    World,Dialog, CharacterSelect,ScreenFilter,
+    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillContainer,
     _Length
 }
 public enum ScreenChangeType
@@ -31,8 +31,8 @@ public class UIManager : ManagerBase
     GraphicRaycaster _raycaster;
     public GraphicRaycaster raycaster => _raycaster;
 
-    //¾î¶² Ã¢À» ¿­¾îÁÖ¼¼¿ä!
-    //         ÀÌ Å¸ÀÔ  ¾î¶² ¿ÀºêÁ§Æ®!
+    //ï¿½î¶² Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½!
+    //         ï¿½ï¿½ Å¸ï¿½ï¿½  ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®!
     Dictionary<UIType, UIBase> uiDictionary = new();
     Dictionary<ScreenChangeType, UI_ScreenChanger> screenChnagerDictionary = new();
     Rect _uiBoundary;
@@ -96,16 +96,17 @@ public class UIManager : ManagerBase
     }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
+        
         createdTransform = CreateFullScreen("CreateUI");
-        _movableScreen = CreateUI(UIType.Movable, "S_Movable", MainCanvas?.transform);
         switcherTransform = CreateFullScreen("ScreenSwitcher");
+        _movableScreen = CreateUI(UIType.Movable, "S_Movable", MainCanvas?.transform);
         _movableScreen.SetChild(ObjectManager.CreateObject("W_menu"));
-
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
         CreateUI(UIType.World, "S_World", switcherTransform);
         CreateUI(UIType.Scenario, "W_Scenario", switcherTransform);
+        CreateUI(UIType.SkillContainer, "W_SkillContainer");
 
         CreateUI(UIType.Menu, "W_Menu");    
         CreateUI(UIType.Save, "W_Save", switcherTransform);
@@ -183,7 +184,7 @@ public class UIManager : ManagerBase
     }
 
     public static UIBase ClaimCreateUI(UIType wantType, string wantName) => GameManager.Instance?.UI?.CreateUI(wantType, wantName);
-    protected void UnsetUI(UIType wantType)//´ã´ç °ø¹«¿øÀÇ ºÎ¼­ ¾Ë°í ÀÖ´Â °æ¿ì
+    protected void UnsetUI(UIType wantType)//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ ï¿½Ë°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
     {
         if (uiDictionary.TryGetValue(wantType, out UIBase found))
         {
@@ -191,7 +192,7 @@ public class UIManager : ManagerBase
             uiDictionary.Remove(wantType);
         }
     }
-    protected void UnsetUI(UIBase wantUI)//´ã´ç °ø¹«¿øÀÇ ÀÌ¸§À» ¾Ë°í ÀÖ´Â °æ¿ì
+    protected void UnsetUI(UIBase wantUI)//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ë°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
     {
         if (!wantUI) return;
         wantUI.Unregistration(this);
@@ -218,17 +219,17 @@ public class UIManager : ManagerBase
     public static UIBase ClaimSetUI(GameObject wantObject) => ClaimSetUI(wantObject?.GetComponent<UIBase>());
     public UIBase SetUI(UIType wantType, UIBase wantUI)
     {
-        //Set UI¸¦ ÇÏ·Á°í ÇÏ´Âµ¥ ¹®Á¦°¡ ¹«¾ùÀÏ±î!
+        //Set UIï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Ï´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½!
         //InventoryType, InventoryInstance
-        if (wantUI == null) return null; // ½Â»ó²²¼­ ³ª¸¦ ´õ ÇÊ¿ä·Î ÇÏ½ÃÁö ¾Ê´Â±¸³ª
+        if (wantUI == null) return null; // ï¿½Â»ó²²¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ê´Â±ï¿½ï¿½ï¿½
 
-        //¾î? ¹¹¾ß? ÀÌ¹Ì Inventory´Â ÀÖ´Âµ¥? ³Ê´Â ´©±¸³Ä! => ¼­»ý¿ø
-        //ÀÏ´Ü ¹®Àü¹Ú´ë => ÇÁ·Î±×·¡¹Ö¿¡¼­´Â¿ä? ¶È°°Àº ±â´ÉÀ» ÇÏ´Â Ä£±¸¸é
-        //À½.. ³Ê°¡ ¿øº»ÀÎ °Ç ¹«½¼ »ó°üÀÎµ¥?
-        //µÚÀÌ¾î¼­ µé¾î¿Â Ä£±¸´Â Ä¡¿ö¹ö¸®°Ú´Ù!
+        //ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½? ï¿½Ì¹ï¿½ Inventoryï¿½ï¿½ ï¿½Ö´Âµï¿½? ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ => ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½Â¿ï¿½? ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½.. ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½?
+        //ï¿½ï¿½ï¿½Ì¾î¼­ ï¿½ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½ Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½!
         if (uiDictionary.TryGetValue(wantType, out UIBase origin)) return origin;
 
-        //µÎ °¡ÁöÀÇ ½Ã·ÃÀ» ¸ðµÎ Åë°úÇÏ´Ù´Ï. ³Ê´Â µî·ÏµÉ ¼ö ÀÖ´Â ÀÚ°ÝÀ» °®Ãß¾ú´Ù.
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´Ù´ï¿½. ï¿½Ê´ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ú°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½.
         uiDictionary.Add(wantType, wantUI);
 
         return SetUI(wantUI);
@@ -236,20 +237,20 @@ public class UIManager : ManagerBase
     public static UIBase ClaimSetUI(UIType wantType, UIBase wantUI) => GameManager.Instance?.UI?.SetUI(wantType, wantUI);
     public UIBase GetUI(UIType wantType)
     {
-        if (uiDictionary.TryGetValue(wantType, out UIBase result)) return result; //ÀÖÀ¸¸é result¹ÝÈ¯
-        else return null; //¾øÀ¸¸é null
+        if (uiDictionary.TryGetValue(wantType, out UIBase result)) return result; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resultï¿½ï¿½È¯
+        else return null; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ null
     }
     public static UIBase ClaimGetUI(UIType wantType) => GameManager.Instance?.UI?.GetUI(wantType);
     public UIBase OpenUI(UIType wantType)
     {
-        //Result°¡ ´©±ºÁö ÀüÇô ¸ð¸§!  ¸®½ºÄÚÇÁ Ä¡È¯ ¿øÄ¢
-        //IOpenableÀÌ¸é ¿­°Ô ÇØÁØ´Ù! ¼¼ºÎ ¿ä¼Ò´Â ¸ð¸£°Ú´Âµ¥, »óÀ§ ¿ä¼Ò¸¸À¸·Î ½ÇÇàÇÏ±â
-        //ÀÌ°Ô "¿­ ¼ö ÀÖ´Â"ÀÎ °Ç ¾î¶»°Ô È®ÀÎÇÒ±î¿ä?
-        //IOpenableÀÎÁö Ã¼Å©ÇØº¸¸é ¿­ ¼ö ÀÖ´ÂÁö ¾Ë ¼ö ÀÖ½À´Ï´Ù.
-        //IOpenable·Î¼­ È°µ¿ ÇÒ ¼ö ÀÖÀ¸¸é IOpenable
-        //result´Â IOpenableÀÎ openerÀÎ°¡?
+        //Resultï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½!  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¡È¯ ï¿½ï¿½Ä¢
+        //IOpenableï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò´ï¿½ ï¿½ð¸£°Ú´Âµï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+        //ï¿½Ì°ï¿½ "ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½"ï¿½ï¿½ ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ò±ï¿½ï¿½?
+        //IOpenableï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
+        //IOpenableï¿½Î¼ï¿½ È°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IOpenable
+        //resultï¿½ï¿½ IOpenableï¿½ï¿½ openerï¿½Î°ï¿½?
 
-        //¾Æ·§ÁÙÀÌ¶û °°Àº ÀÇ¹Ì¿¹¿ä!
+        //ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹Ì¿ï¿½ï¿½ï¿½!
         //IOpenable opener = result as IOpenable;
         //if(opener != null) opener.Open();
         UIBase result = GetUI(wantType);

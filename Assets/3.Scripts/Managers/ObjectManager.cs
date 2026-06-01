@@ -6,10 +6,10 @@ using UnityEngine.Rendering;
 
 public class ObjectManager : ManagerBase
 {
-	//ÀÌÁ¦ »õ·Î¿î Global ÆÄÀÏÀ» Ãß°¡ÇÒ ¶§ ±ÛÀÚ ÇÏ³ª¸¸ Ãß°¡ÇÏ¸é µÊ!
-	//¹Ù²Ü ÇÊ¿ä°¡ ¾ø´Ù => º¯¼ö°¡ ¾Æ´Ï¶ó, »ó¼öÀÎ ¼À! => ³ªÁß¿¡ ¹Ù²î¸é ¾ÈµÊ!
-	//ÀÏ¹ÝÀûÀÎ »ó¼ö´Â constant variableÀÌ ¸Â½À´Ï´Ù!
-	//"ÀÐ±â Àü¿ë"À¸·Î ¹Ù²ã¾ß ÇÕ´Ï´Ù!
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Global ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½!
+	//ï¿½Ù²ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½! => ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Èµï¿½!
+	//ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ constant variableï¿½ï¿½ ï¿½Â½ï¿½ï¿½Ï´ï¿½!
+	//"ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Õ´Ï´ï¿½!
 	readonly string[] globalPoolSettings =
 	{
 		"GlobalCharacterPool",
@@ -19,29 +19,29 @@ public class ObjectManager : ManagerBase
 		"GlobalUIPool",
 	};
 
-	//Á÷·ÄÈ­°¡´ÉÇÑ => À¯´ÏÆ¼¿¡¼­ º¸±â À§ÇØ¼­ ¾´ °Í!
-	//publicÀÌ¶ó°í ÇÏ´Â °Ç »ç½Ç ÇÊ¿ä ¾ø°í Á÷·ÄÈ­¸¸ µÇ¸é À¯´ÏÆ¼¿¡¼­ º¼ ¼ö ÀÖ´Ù!
-	//Á÷·ÄÈ­ º¯¼ö
+	//ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ ï¿½ï¿½!
+	//publicï¿½Ì¶ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½!
+	//ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
 	//[SerializeField] PoolSetting[] testSettings;
 
-	//PoolRequest°¡ ÀÖ°í, ±×°ÍÀ» À§ÇÑ Ç®¸µÀ» ÁØºñÇÏ±â
-	//PoolRequest¸¦ °¡Á®¿Í¼­ ÀúÀåÇÏ·Á¸é ¾î¶² ÀÚ·á±¸Á¶°¡ ÇÊ¿äÇÒ±î?
-	//¸®½ºÆ® : ¹è¿­°ú ºñ½ÁÇÑµ¥ Ãß°¡ Á¦°Å°¡ ½¬¿ò	, ¿ë·®¡â, Ã£´Â ¼Óµµ°¡ ´À¸®´Ù
-	//Ãß°¡ Á¦°Å°¡ ¸¹°í, ÀüÃ¼¸¦ µµ´Â ÀÏÀÌ ÀûÀº
+	//PoolRequestï¿½ï¿½ ï¿½Ö°ï¿½, ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½Ï±ï¿½
+	//PoolRequestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½Ú·á±¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ò±ï¿½?
+	//ï¿½ï¿½ï¿½ï¿½Æ® : ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñµï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½	, ï¿½ë·®ï¿½ï¿½, Ã£ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ß°ï¿½ ï¿½ï¿½ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	//¹è¿­ : ¸®½ºÆ®¿Í ºñ½ÁÇÑµ¥ Ãß°¡ Á¦°Å°¡ ¾î·Á¿ò, ¿ë·®¡ä, Ã£´Â ¼Óµµ°¡ ºü¸£´Ù
-	//Ãß°¡ Á¦°Å°¡ Àû°í, ÀüÃ¼¸¦ µµ´Â ÀÏÀÌ ¸¹Àº
+	//ï¿½è¿­ : ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñµï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ë·®ï¿½ï¿½, Ã£ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ß°ï¿½ ï¿½ï¿½ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	//PoolRequest´Â.. ¾ó¸¶³ª ÀÚÁÖ Ãß°¡µÉ±î? => ·ÎµùÇÒ ¶§ ÁîÀ½?
-	//·ÎµùµÇ´Â È½¼öº¸´Ù ´ë»óÀÌ °³¼ö°¡ ºÎÁ·ÇÏ¸é »õ·Î Ãß°¡ÇÏ°Å³ª ÇÏ´Â ÀÏ!
+	//PoolRequestï¿½ï¿½.. ï¿½ó¸¶³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½É±ï¿½? => ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?
+	//ï¿½Îµï¿½ï¿½Ç´ï¿½ È½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°Å³ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½!
 	List<PoolRequest> loadedPoolRequests = new();
 
-	//ÇØ´çÇÏ´Â ÀÌ¸§ÀÇ ´ë»óÀ¸·Î ºÒ·¯ÁÖ±â À§ÇØ¼­
-	//[ÀÌ¸§ - °ÔÀÓ¿ÀºêÁ§Æ®] ÀÚ·á±¸Á¶
+	//ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½
+	//[ï¿½Ì¸ï¿½ - ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®] ï¿½Ú·á±¸ï¿½ï¿½
 	static Dictionary<string, ObjectPoolModule> poolDictionary = new();
 
-	//PollRequst¿¡¼­ ±× ¾È¿¡¼­ stringÀ¸·Î Ã£¾Æ¼­ ±× ÀÌ¸§¿¡ ¸Â´Â GameObject¸¦ Ã£À¸¸é µÇ´Ï±î!
-	//¸¸¾à °°Àº ÀÌ¸§À¸·Î ¶È°°Àº ¿ÀºêÁ§Æ®¸¦ ¸¸µé·Á°í Çß´Âµ¥..
+	//PollRequstï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ stringï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ GameObjectï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´Ï±ï¿½!
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´Âµï¿½..
 	protected override IEnumerator OnConnected(GameManager newManager)
 	{
         RegistrationInHierachy();
@@ -60,18 +60,18 @@ public class ObjectManager : ManagerBase
 	{
         if(string.IsNullOrEmpty(wantName)) return null;
 
-		GameObject result = null;//½ÃÀÛÇÒ ¶§¿¡´Â ¾Ï°Íµµ ¾øÀ½!
+		GameObject result = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°Íµï¿½ ï¿½ï¿½ï¿½ï¿½!
         wantName = wantName.ToLower();
-        //ÀÌ ÀÌ¸§À¸·Î Ç®¸µÀÌ µî·Ï µÇ¾î ÀÖ´ë¿ä!
+        //ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½!
         if (poolDictionary.TryGetValue(wantName, out ObjectPoolModule pool))
         {
-            result = pool.CreateObject(parent); //°®°í ¿Í¾ß°Ú´Ù ¤¾¤¾
+            result = pool.CreateObject(parent); //ï¿½ï¿½ï¿½ï¿½ ï¿½Í¾ß°Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else
 
         {
-            //Ç®¿¡ µî·ÏµÇÁö ¾ÊÀº ¾ß»ýÀÇ ¿ÀºêÁ§Æ®¸¦ ¸¸µå´Â ¹æ¹ý!
-            //µ¥ÀÌÅÍ¿¡´Â ÀÖ´ÂÁö È®ÀÎÇØº¸±â!
+            //Ç®ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½!
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½!
             if (DataManager.TryLoadDataFile(wantName, out GameObject prefab))
             {
 
@@ -81,8 +81,8 @@ public class ObjectManager : ManagerBase
         }
         if(!result) UIManager.ClaimErrorMessage(SystemMessage.ObjectNameNotFound(wantName));
 
-        //µî·ÏÇØÁÖ´Â °Í ±îÁö!
-        RegistrationObject(result); //µÑ Áß¿¡ ÇÏ³ª¶óµµ Çß°ÚÁö? ¾Æ´Ô ¸»°í!
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
+        RegistrationObject(result); //ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½? ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½!
 
 		return result;
 	}
@@ -90,9 +90,9 @@ public class ObjectManager : ManagerBase
 	{
 		if (prefab == null) return null;
 
-		//                                      ´©°¡ ÁÖÀÎÀÎ°¡
-		GameObject result = Instantiate(prefab, parent); //¸¸µé°í
-		RegistrationObject(result); //µî·ÏÇÔ
+		//                                      ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
+		GameObject result = Instantiate(prefab, parent); //ï¿½ï¿½ï¿½ï¿½ï¿½
+		RegistrationObject(result); //ï¿½ï¿½ï¿½ï¿½ï¿½
 		return result;
 	}
 
@@ -161,10 +161,10 @@ public class ObjectManager : ManagerBase
 			switch(space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 				case Space.Self:
-					result.transform.localPosition = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 			}
 		}
@@ -178,10 +178,10 @@ public class ObjectManager : ManagerBase
 			switch(space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 				case Space.Self:
-					result.transform.localPosition = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 			}
 		}
@@ -196,12 +196,12 @@ public class ObjectManager : ManagerBase
 			switch (space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.rotation = rotation;
 					break;
 				case Space.Self:
-					result.transform.localPosition = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
-					result.transform.localRotation = rotation; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					result.transform.localRotation = rotation; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 			}
 		}
@@ -215,12 +215,12 @@ public class ObjectManager : ManagerBase
 			switch (space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.rotation = rotation;
 					break;
 				case Space.Self:
-					result.transform.localPosition = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
-					result.transform.localRotation = rotation; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					result.transform.localRotation = rotation; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 			}
 		}
@@ -235,12 +235,12 @@ public class ObjectManager : ManagerBase
 			switch (space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.rotation = rotation;
-					result.transform.localScale	= scale; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localScale	= scale; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					break;
 				case Space.Self:
-					result.transform.localPosition  = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition  = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.localRotation  = rotation; 
 					result.transform.localScale		= scale; 
 					break;
@@ -256,29 +256,29 @@ public class ObjectManager : ManagerBase
 			switch (space)
 			{
 				case Space.World:
-					result.transform.position = position; //Àý´ë°ªÀ» ±âÁØÀ¸·Î
+					result.transform.position = position; //ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.rotation = rotation;
-					result.transform.localScale	= scale; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
-					//"ÁøÂ¥ ¿ùµå ½ºÄÉÀÏ" À» º» Àû ÀÖ½À´Ï´Ù.
+					result.transform.localScale	= scale; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					//"ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
 					// lossyScale
-					// Àú´Â "ÁøÂ¥"Å©±â´Â (1,1,1)
-					// ±Ùµ¥ "ºÎ¸ð"Å©±â´Â (2,2,2)
-					// ÀÌ¶§ "·ÎÄÃ"Å©±â´Â (0.5, 0.5, 0.5)
-					// ÀúÀÇ "ÁøÂ¥" Å©±â¸¦ => (3,3,3)À¸·Î ÇÏ°í ½Í´Ù°í ÇØº¸ÁÒ
-					// ¼³Á¤ÇÒ "·ÎÄÃ"Å©±â´Â ¸îÀÏ±î¿ä? (1.5, 1.5, 1.5)
-					// ¹°·Ð È¸ÀüÇÏ´Â ¼ø°£ ²û»ì
-					// ¾î¶»°Ô Á¦°¡ ¿øÇÏ´Â "ÁøÂ¥" Å©±â°¡ µÇ±â À§ÇÑ "·ÎÄÃ"Å©±â¸¦ ±¸ÇÒ ¼ö ÀÖÀ»±î?
-					// "ÁøÂ¥ Å©±â"¸¦ ¿øÇÑ´Ù "ºÎ¸ð Å©±â"¶û ºñ±³¸¦ ÇØ¼­ °ªÀ» °¡Á®ÁÖ¸é ÁÁ°Ú´Ù!
-					// ¿©±â¼­ ¹®Á¦! ºÎ¸ðÀÇ ºÎ¸ð´Â ¾î¶»°Ô ÇØ¿ä?
-					// Á¶ºÎ¸ð ºÎ¸ð  ·ÎÄÃ    ¿ùµåÅ©±â       ¿ùµåÅ©±â
+					// ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½Â¥"Å©ï¿½ï¿½ï¿½ (1,1,1)
+					// ï¿½Ùµï¿½ "ï¿½Î¸ï¿½"Å©ï¿½ï¿½ï¿½ (2,2,2)
+					// ï¿½Ì¶ï¿½ "ï¿½ï¿½ï¿½ï¿½"Å©ï¿½ï¿½ï¿½ (0.5, 0.5, 0.5)
+					// ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½Â¥" Å©ï¿½â¸¦ => (3,3,3)ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Í´Ù°ï¿½ ï¿½Øºï¿½ï¿½ï¿½
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½"Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ï¿½? (1.5, 1.5, 1.5)
+					// ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// ï¿½î¶»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ "ï¿½ï¿½Â¥" Å©ï¿½â°¡ ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½"Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+					// "ï¿½ï¿½Â¥ Å©ï¿½ï¿½"ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½ "ï¿½Î¸ï¿½ Å©ï¿½ï¿½"ï¿½ï¿½ ï¿½ñ±³¸ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½Ú´ï¿½!
+					// ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½! ï¿½Î¸ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ ï¿½Ø¿ï¿½?
+					// ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Î¸ï¿½  ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½       ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½
 					// 0.5    1.5  1.2  => 0.9        =>  3
 					// 0.5    1.5  4    => 3
-					// ·ÎÄÃ => ¿ùµå  ·ÎÄÃ * (¿ùµå / ·ÎÄÃ) = ¿ùµå
+					// ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ * (ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½) = ï¿½ï¿½ï¿½ï¿½
 					//               1.2 *  (0.9 / 1.2) = 0.9
-					// ¿ùµå => ·ÎÄÃ  ¿ùµå * (·ÎÄÃ / ¿ùµå) = ·ÎÄÃ
+					// ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ * (ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½) = ï¿½ï¿½ï¿½ï¿½
 					//               0.9 *  (1.2 / 0.9) = 1.2
 					//               3   *  (4/3)       = 4
-					//º¤ÅÍ´Â Çà·ÄÀÌ±â ¶§¹®¿¡, Çà·Ä °öÀ» ÇÒ ¼ö ÀÖ´Â Á¶°ÇÀº => xyÇà·ÄÀÌ¶ó¸é yxÇà·ÄÀÌ¾î¾ß ÇÑ´Ù
+					//ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ => xyï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ yxï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½
 					//           (0)
 					// (1,2,3) x (1)
  					//           (2)
@@ -290,7 +290,7 @@ public class ObjectManager : ManagerBase
 					//result.transform.localScale = new Vector3(scaledScaleX, scaledScaleY, scaledScaleZ);
 					break;
 				case Space.Self:
-					result.transform.localPosition  = position; //ºÎ¸ð¸¦ ±âÁØÀ¸·Î
+					result.transform.localPosition  = position; //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					result.transform.localRotation  = rotation; 
 					result.transform.localScale		= scale; 
 					break;
@@ -299,19 +299,19 @@ public class ObjectManager : ManagerBase
 		return result;
 	}
 
-	public static void RegistrationObject(GameObject target) //½ÇÁ¦·Î µî·ÏÇÏ´Â ±â´É
+	public static void RegistrationObject(GameObject target) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
 	{
 		if (target)
 		{
-			//ÀÌ Ä£±¸°¡ µî·Ï °¡´ÉÇÑÁö¸¦ ¾î¶»°Ô Ã¼Å©ÇÒ±î?
-			//ÀúÈñ°¡ ¸¸µå´Â °Ç "ÄÄÆ÷³ÍÆ®"¸¦ ¸¸µå´Â °ÍÀÌÁö
-			//"°ÔÀÓ ¿ÀºêÁ§Æ®"¸¦ ¸¸µå´Â °ÍÀÌ ¾Æ´Ï±â ¶§¹®¿¡
-			//IFunctionableÀÌ µé¾î°£ °÷Àº "ÄÄÆ÷³ÍÆ®"´Ù!
-			//GetComponent : ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È (Á¦ÀÏ Ã¹¹øÂ° ÄÄÆ÷³ÍÆ®)
-			//GetComponent<IFunctionable>() => IFunctionable ÇÏ³ª
-			//GetComponents<IFunctionable>() => IFunctionableÀ» »ó¼Ó¹Þ´Â ¸ðµç ÄÄÆ÷³ÍÆ®
-			//GetComponentsInChild<IFunctionable>() => (³ªÆ÷ÇÔ) ÀÚ½ÄÇÑÅ× ÀÖ´Â IFunctionableÀ» »ó¼Ó¹Þ´Â ¸ðµç ÄÄÆ÷³ÍÆ®
-			//GetComponentsInChildren<IFunctionable>() => (³ªÆ÷ÇÔ)ÀÚ½ÄµéÇÑÅ× ÀÖ´Â IFunctionableÀ» »ó¼Ó¹Þ´Â ¸ðµç ÄÄÆ÷³ÍÆ®
+			//ï¿½ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ Ã¼Å©ï¿½Ò±ï¿½?
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//IFunctionableï¿½ï¿½ ï¿½ï¿½î°£ ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®"ï¿½ï¿½!
+			//GetComponent : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®)
+			//GetComponent<IFunctionable>() => IFunctionable ï¿½Ï³ï¿½
+			//GetComponents<IFunctionable>() => IFunctionableï¿½ï¿½ ï¿½ï¿½Ó¹Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+			//GetComponentsInChild<IFunctionable>() => (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ IFunctionableï¿½ï¿½ ï¿½ï¿½Ó¹Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+			//GetComponentsInChildren<IFunctionable>() => (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½Ú½Äµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ IFunctionableï¿½ï¿½ ï¿½ï¿½Ó¹Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 			foreach (var current in target.GetComponentsInChildren<IFunctionable>())
 			{
 				current.RegistrationFunctions();
@@ -357,41 +357,41 @@ public class ObjectManager : ManagerBase
 
 	public void RegistrationPool(string poolName)
 	{
-		//¸í·É!
+		//ï¿½ï¿½ï¿½!
         poolName = poolName.ToLower();
 		PoolRequest currentRequest = DataManager.LoadDataFile<PoolRequest>(poolName);
 		if (currentRequest == null) return;
         if (currentRequest.settings == null) return;
 		loadedPoolRequests.Add(currentRequest);
-		//¾Öµé¸¶´Ù ÇÏ³ª¾¿!
-		//        ÇÐ»ý          ´ÙÀ½ÇÐ»ý    in   3ÇÐ³â 4¹Ý
+		//ï¿½Öµé¸¶ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½!
+		//        ï¿½Ð»ï¿½          ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½    in   3ï¿½Ð³ï¿½ 4ï¿½ï¿½
 		foreach (PoolSetting currentSetting in currentRequest.settings)
 		{
 			string currentName = currentSetting.poolName.ToLower();
 			GameObject currentPrefab = currentSetting.target;
-			//´ÙÀ½ÇÐ»ýÀÌ.. ¿À´Ã ÇÐ±³ ¾È¿Ô´ë¿ä!
-			//=> ÇåÇ÷Â÷¸¦ Á¢¾î¹ö¸®¸é ¾ÈµÇ°í
-			//=> ´ÙÀ½ ÇÐ»ýÀ» ºÒ·¯¾ß ÇÑ´Ù!
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½ ï¿½È¿Ô´ï¿½ï¿½!
+			//=> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ°ï¿½
+			//=> ï¿½ï¿½ï¿½ï¿½ ï¿½Ð»ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½!
 			if (currentPrefab == null) continue;
-			//¹®Á¦°¡ »ý±æ ¿©Áö°¡ ÇÏ³ª ´õ ÀÖ´Ù!
-			//ÇÁ¸®ÆÕÀ» Ã£¾ÆºÃÀ¸´Ï±î, ÀÌ¸§¿¡¼­ ¹®Á¦°¡ »ý±æ ¼ö ÀÖ´Â ¿©Áö!
-			//µñ¼Å³Ê¸®¿¡´Â °°Àº Å°°ªÀ» µÎ °³ ³ÖÀ» ¼ö ¾ø´Ù!
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½!
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½ï¿½Ï±ï¿½, ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½!
+			//ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
 			if (poolDictionary.ContainsKey(currentName)) continue;
-			//³ªÀÇ ½Ã·ÃÀ» ¸ðµÎ Åë°úÇÏ´Ù´Ï. ³Ê¸¦ Á¤½Ä ±â»ç·Î ÀÓ¸íÇØÁÖ¸¶
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´Ù´ï¿½. ï¿½Ê¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½
 			poolDictionary.Add(currentName, new(currentSetting));
 		}
 	}
 
-	//"°¡º¯ ÀÎÀÚ" => ÀÎÀÚÀÇ °³¼ö°¡ ¹«ÇÑÁ¤ ´Ã¾î³¯ ¼ö ÀÖ´Â ÇÔ¼ö
-	//"º¯ÀÎ" => ¿µ¾î·Î ¹¹ÁÒ? Parameter : "º¯ÀÎµé"ÀÌ µÈ´Ù¸é? Parameters
+	//"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³¯ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
+	//"ï¿½ï¿½ï¿½ï¿½" => ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½? Parameter : "ï¿½ï¿½ï¿½Îµï¿½"ï¿½ï¿½ ï¿½È´Ù¸ï¿½? Parameters
 	//Parameters => params
 	public void RegistrationPool(params string[] poolNames)
 	{
 		foreach (string poolName in poolNames)
 		{
-			//°¡º¯ÀÎÀÚ´Â "¿ì¼±¼øÀ§"°¡ ³·½À´Ï´Ù!
-			//°¡º¯ÀÎÀÚ´Ù º¸´Ï±î °³¼ö°¡ "°íÁ¤ÀÎÀÚ"¸¦ °¡Áø ÇÔ¼ö¶û ¶È°°¾ÆÁú ¼ö ÀÖÀÝ¾Æ¿ä?
-			//"°íÁ¤µÈ ÀÎÀÚ"¸¦ °¡Áö°í ÀÖ´Â ÇÔ¼ö¸¦ ¸ÕÀú ÀÎ½ÄÇØ¼­ ½ÇÇàÇÑ´Ù!
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ "ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾Æ¿ï¿½?
+			//"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½!
 			RegistrationPool(poolName);
 		}
 	}

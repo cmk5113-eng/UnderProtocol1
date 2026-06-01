@@ -1,8 +1,56 @@
-using UnityEngine;
+//using UnityEngine;
 
 
-//pawn: Á¶Á¾ÇÒ ¼ö ÀÖÁö¸¸ ÀÌµ¿ÇÒ¼ö ¾ø ´Â Ä³¸¯ÅÍ
+////pawn: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
 
-public class MovableCharacter : CharacterBase
-{ 
-}
+   
+
+//public class MovableCharacter : CharacterBase,IFunctionable
+//{
+//    [SerializeField] float moveSpeed = 5f;
+
+//    Vector2 moveInput;   
+    
+//    public void RegistrationFunctions()
+//    {
+
+//        InputManager.OnMove -= MoveInput;
+//        InputManager.OnMove += MoveInput;
+//    }
+
+//    public void UnregistrationFunctions()
+//    {
+
+//        InputManager.OnMove -= MoveInput;
+//    }
+
+//    protected virtual void OnEnable()
+//    {
+        
+//    }
+
+//    protected virtual void OnDisable()
+//    {
+        
+//    }
+
+//    void MoveInput(Vector2 value)
+//    {
+//        moveInput = value;
+//    }
+
+//    protected virtual void Update()
+//    {
+//        Move();
+//    }
+
+//    void Move()
+//    {
+//        Vector3 direction = new Vector3(moveInput.x, 0, moveInput.y);
+
+//        transform.position += direction * moveSpeed * Time.deltaTime;
+//    }
+
+
+//}
+    

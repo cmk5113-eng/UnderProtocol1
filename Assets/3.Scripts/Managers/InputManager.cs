@@ -10,7 +10,7 @@ public delegate void MouseMoveEvent(Vector2 screenPosition, Vector3 worldPositio
 public delegate void ButtonEvent(bool value);
 public delegate void VectorEvent(Vector2 value);
 public delegate void AxisEvent(float value);
-
+public delegate void MouseHoverEvent(GameObject newTarget, GameObject oldTarget);   
 
 [RequireComponent(typeof(PlayerInput))]
 
@@ -23,6 +23,7 @@ public class InputManager : ManagerBase
     public static event MouseButtonEvent OnMouseWheelButton;
     public static event MouseButtonEvent OnMouseWheelMove;
     public static event MouseMoveEvent OnMouseMove;
+    public static event MouseHoverEvent OnMouseHover;
     public static event ButtonEvent OnCancel;
     //ESC키 UI관련 취소조작
     public static event ButtonEvent OnRevirt;
@@ -49,11 +50,12 @@ public class InputManager : ManagerBase
     PlayerInput targetInput;
     Dictionary<string, InputAction> actionDictionary = new();
     List<RaycastResult> cursorHitList = new();
-
+    
+    GameObject cursorHoverObject;
     Vector2 cursorScreenPosition;
     Vector3 cursorWorldPosition;
 
-    public bool is2D = true;
+ 
 
 
 
@@ -76,24 +78,60 @@ public class InputManager : ManagerBase
 
     public void UpdateEvent(float deltaTime)
     {
-        RefreshGameobjectUndercursor();
+        RefreshGameobjectUndercursor(cursorScreenPosition);
     }
 
-    void RefreshGameobjectUndercursor()
+
+
+    void RefreshGameobjectUndercursor(Vector2 screenPosition)
     {
         cursorHitList.Clear();
-        if (is2D)
+        GameManager.Instance.Camera.GetRaycastResult(screenPosition, cursorHitList);
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+        GameObject firstObject = null;
+        if (cursorHitList.Count > 0 && cursorHitList[0].element !=null)
         {
-            GameManager.Instance.Camera.GetRaycastResult2D(cursorScreenPosition, cursorHitList);
+            firstObject = cursorHitList[0].gameObject;
+        }
+        if (GameManager.is2D)
+        {
+            worldPosition.z = 0;
+            float GetValue(RaycastResult target)
+            {
+                return target.sortingOrder + target.sortingLayer * 100000;
+
+            }
+            RaycastResult nearest = cursorHitList.GetMaximum<RaycastResult>(GetValue);
+            firstObject = nearest.gameObject;
 
         }
+
         else
         {
-            GameManager.Instance.Camera.GetRaycastResult2D(cursorScreenPosition, cursorHitList);
+            float GetDistance(RaycastResult target)
+            {
+                return target.distance;
+            }
+
+            RaycastResult nearest = cursorHitList.GetMinimum<RaycastResult>(GetDistance);
+            firstObject = nearest.gameObject;
+            worldPosition = nearest.worldPosition;
+        }
+        GameObject LastHoverObject = cursorHoverObject;
+        cursorScreenPosition = screenPosition;
+        cursorWorldPosition = worldPosition;
+        cursorHoverObject = firstObject;
+        
+        if (LastHoverObject != firstObject)
+        {
+            OnMouseHover?.Invoke(firstObject, LastHoverObject);
 
         }
-    }
 
+
+
+    }
+   
     public GameObject GetGameObjectUnderCursor()
     {
         if (cursorHitList.Count == 0) return null;
@@ -150,27 +188,13 @@ public class InputManager : ManagerBase
     {
 
 
-        Vector3 worldPosition;
-
-        if (is2D)
-        {
-            worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, Camera.main.nearClipPlane)
-);
-            worldPosition.z = 0;
-        }
-        else
-        {
-            worldPosition = Vector3.zero;
-
-        }
+        RefreshGameobjectUndercursor(screenPosition);
 
 
-        cursorScreenPosition = screenPosition;
-        cursorWorldPosition = worldPosition;
-        OnMouseMove?.Invoke(screenPosition, worldPosition);
-
+        OnMouseMove?.Invoke(cursorScreenPosition, cursorWorldPosition);
     }
 
 
-    
+
+
 }

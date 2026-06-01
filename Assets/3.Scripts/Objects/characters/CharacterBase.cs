@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 
 public delegate void MovementEvent(Vector3 move);
 public delegate void LookAtEvent(Vector3 direction);
 public delegate void DamageEvent(GameObject damageCauser,ControllerBase instigator, float damage);
-// --- Àü¿ª ¿­°ÅÇü (¾î¶² ½ºÅ©¸³Æ®¿¡¼­µµ Á¢±Ù °¡´ÉÇÏµµ·Ï Å¬·¡½º ¹Û¿¡ ¹èÄ¡) ---
+// --- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½î¶² ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Û¿ï¿½ ï¿½ï¿½Ä¡) ---
 public enum JobType { Warrior, Archer, Mage, Builder }
 public enum ElementType { None, Fire, Water, Electric, Earth }
 
@@ -20,9 +20,10 @@ public enum ElementType { None, Fire, Water, Electric, Earth }
 
 public class CharacterBase : MonoBehaviour
 {
-
-public bool selectable = true;
-
+    public Sprite portrait;
+    public bool selectable = true;
+    public string Name;
+    
     public int actionPoint = 0;
     public int steminaPoint = 0;
     public int mobility = 0;
@@ -54,7 +55,7 @@ public bool selectable = true;
 
 
     Dictionary<System.Type, CharacterModule> moduleDictionary = new();
-    //Ãß°¡ /Á¦°Å /°Ë»ö
+    //ï¿½ß°ï¿½ /ï¿½ï¿½ï¿½ï¿½ /ï¿½Ë»ï¿½
 
     public void AddModule(System.Type wantType, CharacterModule wantModule)
     {

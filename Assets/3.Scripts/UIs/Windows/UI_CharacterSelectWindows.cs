@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UI_CharcterSelectWindows : UI_ScreenBase
+public class UI_CharacterSelectWindows : UI_ScreenBase
 {
     // 변수는 크기나 중요도 순으로 배치 (보통 컴포넌트 -> 기본 자료형)
  
@@ -27,14 +27,15 @@ public class UI_CharcterSelectWindows : UI_ScreenBase
 
 
 
-    public static UI_CharcterSelectWindows Instance { get; private set; }
+    public static UI_CharacterSelectWindows Instance { get; private set; }
 
     // 유저님이 말씀하신 '현재 캐릭터' 변수 (이름으로 관리)
  
     public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
         // 1. 전달받은 프리팹을 현재 캐릭터로 등록
-       PlacementManager.currentCharacter = selectedPrefab;
+        PlacementManager.currentCharacter = selectedPrefab;
+        
 
         // 2. 제대로 등록되었는지 확인 로그
         if (PlacementManager.currentCharacter != null)

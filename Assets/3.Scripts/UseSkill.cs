@@ -2,7 +2,7 @@ using UnityEngine;
 public class UseSkill : MonoBehaviour
 {
     public PlayerController player;
-    public SkillData skill; 
+    public SkillData skill;
     public void SummonAndSelect(SkillData skill, Vector3 pos)
     {
         if (skill == null || skill.summonPrefab == null) return;
@@ -27,11 +27,21 @@ public class UseSkill : MonoBehaviour
     }
     public void SummonAndSelect()
     {
-        Debug.Log("¹öÆ° Å¬¸¯µÊ");
+        Debug.Log("ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½");
 
         Vector3 pos = GetSpawnPosition();
         Debug.Log("Spawn Pos: " + pos);
 
         player.SummonAndSelect(skill, pos);
+
+
+    }
+
+    public void ChangeCurrentSkill(GameObject selectedPrefab)
+    {
+        //PlacementController.CurrentSkill = selectedPrefab;
+
+        //Debug.Log($"dd{PlacementController.CurrentSkill}");
+        
     }
 }

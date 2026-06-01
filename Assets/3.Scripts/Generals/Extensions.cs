@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //확장 메소드들을 가지고 있을 친구들!
 //영토 확장
@@ -56,7 +57,30 @@ public static class Extensions
 		//						   TryAddComponent<T>(target.gameObject);
 	}
 
-	public static IEnumerator WaitForTask(this Task targetTask)
+    public static T GetExtreme<T>(this IEnumerable targetList, float defaultScore, System.Func<T, float> Evalueator,System.Func<float,float,bool>Comparison)
+    {
+        T result = default;
+        float firstScore = defaultScore;
+
+        foreach (T currentTarget in targetList)
+        {
+            float currentScore = Evalueator(currentTarget);
+            if (Comparison(currentScore, firstScore))
+                {
+                result = currentTarget;
+                firstScore = currentScore;
+            }
+        }
+        return result;
+    }   
+
+    public static T GetMaximum<T>(this IEnumerable targetList, System.Func<T,float> Evaulator)
+   => GetExtreme(targetList, float.MinValue, Evaulator, (a,b) => a>b);
+
+    public static T GetMinimum<T>(this IEnumerable targetList, System.Func<T, float> Evaulator)
+   => GetExtreme(targetList, float.MaxValue, Evaulator, (a, b) => a < b);
+
+    public static IEnumerator WaitForTask(this Task targetTask)
 	{
 		//WaitWhile : true인 동안 작동함!
 		//WaitUntil : false인 동안 작동함! => true가 될 때까지 기다림!

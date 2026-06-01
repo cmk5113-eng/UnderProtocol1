@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,7 +143,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.07, y: 1.52}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &137799782585606297
 Rigidbody2D:
@@ -253,9 +253,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
+  portrait: {fileID: -705779253, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   selectable: 1
+  Name: Pyo
   actionPoint: 0
+  steminaPoint: 0
   mobility: 0
+  skill1: {fileID: 11400000, guid: caf57c0910c3d24429cdde211e50ca49, type: 2}
+  skill2: {fileID: 11400000, guid: caf57c0910c3d24429cdde211e50ca49, type: 2}
+  skill3: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
+  skill4: {fileID: 11400000, guid: 30c8410f9cd91a2469b08ae2196e8799, type: 2}
 --- !u!114 &7752193632113390132
 MonoBehaviour:
   m_ObjectHideFlags: 0

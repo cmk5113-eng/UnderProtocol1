@@ -2,9 +2,9 @@ using UnityEngine;
 
 public interface IOpenable
 {
-	//ISP => Interface Segragation Principle => ÀÎÅÍÆäÀÌ½º ºÐ¸® ¿øÄ¢
+	//ISP => Interface Segragation Principle => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ð¸ï¿½ ï¿½ï¿½Ä¢
 	public bool IsOpen { get; }
-	public void Open(); //isOpenable¸¸ ÀÖ´Â °æ¿ì : ¼ôÄÆ
-	public void Close(); //isClosable : ºÀÀÎ
-	public void Toggle(); //isTogglable : ·¹¹ö
+	public void Open(); //isOpenableï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½
+	public void Close(); //isClosable : ï¿½ï¿½ï¿½ï¿½
+	public void Toggle(); //isTogglable : ï¿½ï¿½ï¿½ï¿½
 }

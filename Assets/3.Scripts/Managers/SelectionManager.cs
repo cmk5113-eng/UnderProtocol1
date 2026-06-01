@@ -85,7 +85,7 @@ public class SelectionManager : ManagerBase
         {
             // ScreenToWorldPoint는 z를 카메라 대비 거리로 사용하므로 2D일 때 z를 0으로 고정
             world = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, cam.nearClipPlane));
-            if (GameManager.Instance?.Input?.is2D ?? true)
+            if (GameManager.is2D)
                 world.z = 0f;
         }
 

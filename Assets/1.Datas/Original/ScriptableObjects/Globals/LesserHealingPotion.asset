@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee0aa325baa6cb4db07c10ae3172d6f, type: 3}
+  m_Name: LesserHealingPotion
+  m_EditorClassIdentifier: Assembly-CSharp::ItemContainer
+  icon: {fileID: 5177666693930723060, guid: 7e38ebbe6ba5b7645988b3ff8c62ecdb, type: 3}
+  displayName: ' lesserhealingpotion'
+  explain: "\uAE30\uBCF8\uC801\uC778 \uD3EC\uC158"
+  type: 0
+  maxStack: 99
+  weight: 100

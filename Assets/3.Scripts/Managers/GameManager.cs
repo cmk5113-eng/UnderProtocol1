@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     bool isLoading = true;
     bool isPlaying = true;
+    public static bool is2D = true;
 
     void Awake()
     {
