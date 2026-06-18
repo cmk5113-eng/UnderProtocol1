@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,7 +17,7 @@ public delegate void MouseHoverEvent(GameObject newTarget, GameObject oldTarget)
 
 public class InputManager : ManagerBase
 {
-    //delegate : ´ë¸®ÀÚ => ±â¼úÀ» Àü¼öÇØ³õ°í ½ÃÀüÇÏ´Â ³ð
+    //delegate : ï¿½ë¸®ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½
 
     public static event MouseButtonEvent OnMouseLeftButton;
     public static event MouseButtonEvent OnMouseRightButton;
@@ -25,37 +26,60 @@ public class InputManager : ManagerBase
     public static event MouseMoveEvent OnMouseMove;
     public static event MouseHoverEvent OnMouseHover;
     public static event ButtonEvent OnCancel;
-    //ESCÅ° UI°ü·Ã Ãë¼ÒÁ¶ÀÛ
-    public static event ButtonEvent OnRevirt;
-    //TÅ° °ÔÀÓ¾È¿¡¼­ÀÇ Çàµ¿Ãë¼Ò
+    //ESCÅ° UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //TÅ° ï¿½ï¿½ï¿½Ó¾È¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ï¿½
     public static event ButtonEvent OnNextTurn;
-    //½ºÆäÀÌ½º¹Ù
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½
     public static event ButtonEvent OnConfirm;
-    //¿£ÅÍ
-    public static event ButtonEvent OnReset;
-    // Æí¼º ÃÊ±âÈ­ : ¹é½ºÆäÀÌ½º
+    //ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ : ï¿½é½ºï¿½ï¿½ï¿½Ì½ï¿½
     public static event ButtonEvent OnSweep;
-    // ¼ÒÅÁ
-    public static event ButtonEvent Ontip;
-    //Q : ÃßÃµÇàµ¿
-    public static event ButtonEvent OnShowStatus;
+    
+    public static event ButtonEvent OnShift;
+    public static bool IsShift { get; private set; } = false;
+    void ShiftInput(bool value)
+    {
+        IsShift = value;
+        OnShift?.Invoke(value);
+    }
 
+    public static event ButtonEvent OnControl;
 
+    public static bool IsControl { get; private set; } = false;
+    void CtrlInput(bool value)
+    {
+        IsControl = value;
+        OnControl?.Invoke(value);
+    }
 
 
     public static event VectorEvent OnMove;
-
-    public static event VectorEvent OnLook;
 
     PlayerInput targetInput;
     Dictionary<string, InputAction> actionDictionary = new();
     List<RaycastResult> cursorHitList = new();
     
-    GameObject cursorHoverObject;
-    Vector2 cursorScreenPosition;
-    Vector3 cursorWorldPosition;
 
- 
+
+
+
+
+    
+    static Vector2 _cursorScreenPosition;
+    public static Vector2 CursorScreenPosition => _cursorScreenPosition;
+
+    static Vector3 _cursorWorldPosition;
+    public static Vector3 CursorWorldPosition => _cursorWorldPosition;
+
+    static ISelectable _cursorHoverSelectable;
+    public static ISelectable CursorHoverSelectable => _cursorHoverSelectable;
+
+    static GameObject _cursorHoverObject;
+    public static GameObject CursorHoverObject => _cursorHoverObject;
+
+
+    static bool _isCursorHoverOnUI;
+    public static bool IsCursorHoverOnUI => _isCursorHoverOnUI;
 
 
 
@@ -78,7 +102,7 @@ public class InputManager : ManagerBase
 
     public void UpdateEvent(float deltaTime)
     {
-        RefreshGameobjectUndercursor(cursorScreenPosition);
+        RefreshGameobjectUndercursor(_cursorScreenPosition);
     }
 
 
@@ -117,10 +141,10 @@ public class InputManager : ManagerBase
             firstObject = nearest.gameObject;
             worldPosition = nearest.worldPosition;
         }
-        GameObject LastHoverObject = cursorHoverObject;
-        cursorScreenPosition = screenPosition;
-        cursorWorldPosition = worldPosition;
-        cursorHoverObject = firstObject;
+        GameObject LastHoverObject = _cursorHoverObject;
+        _cursorScreenPosition = screenPosition;
+        _cursorWorldPosition = worldPosition;
+        _cursorHoverObject = firstObject;
         
         if (LastHoverObject != firstObject)
         {
@@ -154,16 +178,19 @@ public class InputManager : ManagerBase
                                                     , (context) => OnMove?.Invoke(Vector2.zero));
 
 
-        InitializeAction("MouseLeftButton"          , (context) => OnMouseLeftButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition) 
-                                                    , (context) => OnMouseLeftButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
+        InitializeAction("MouseLeftButton"          , (context) => OnMouseLeftButton?.Invoke(true, _cursorScreenPosition, _cursorWorldPosition) 
+                                                    , (context) => OnMouseLeftButton?.Invoke(false, _cursorScreenPosition, _cursorWorldPosition));
 
 
-        InitializeAction("MouseRightButton"         , (context) => OnMouseRightButton?.Invoke(true, cursorScreenPosition, cursorWorldPosition)
-                                                    , (context) => OnMouseRightButton?.Invoke(false, cursorScreenPosition, cursorWorldPosition));
+        InitializeAction("MouseRightButton"         , (context) => OnMouseRightButton?.Invoke(true, _cursorScreenPosition, _cursorWorldPosition)
+                                                    , (context) => OnMouseRightButton?.Invoke(false, _cursorScreenPosition, _cursorWorldPosition));
 
-        InitializeAction("Cancel", (context) => OnCancel?.Invoke(true));
-        InitializeAction("Space", (context) => OnNextTurn?.Invoke(true));
-
+        InitializeAction("Cancel"                   , (context) => OnCancel?.Invoke(true));
+        InitializeAction("Space"                    , (context) => OnNextTurn?.Invoke(true));
+        InitializeAction("LShift"                   , (context) => ShiftInput(true)
+                                                    , (context) => ShiftInput(false));
+        InitializeAction("Ctrl"                     , (context) => CtrlInput(true)
+                                                    , (context) => CtrlInput(false));
     }
     void InitializeAction(string actionName, Action<InputAction.CallbackContext> actionMethod,Action<InputAction.CallbackContext>cancelMethod = null)
     {
@@ -191,7 +218,7 @@ public class InputManager : ManagerBase
         RefreshGameobjectUndercursor(screenPosition);
 
 
-        OnMouseMove?.Invoke(cursorScreenPosition, cursorWorldPosition);
+        OnMouseMove?.Invoke(_cursorScreenPosition, _cursorWorldPosition);
     }
 
 

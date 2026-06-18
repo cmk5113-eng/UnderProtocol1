@@ -3,143 +3,143 @@ using UnityEngine;
 
 public class SelectionManager : ManagerBase
 {
-    public static SelectionManager Instance { get; private set; }
+   // public static SelectionManager Instance { get; private set; }
 
-    public static SkillObject selectedSkill;
+   //// public static SkillObject selectedSkill;
     public static CharacterBase selectedCharacter;
     protected override IEnumerator OnConnected(GameManager newManager)
     {
-        // ½Ì±ÛÅÏ ¼³Á¤
-        Instance = this;    
+   //     // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   //     Instance = this;    
 
-        // ÀÔ·Â/¾÷µ¥ÀÌÆ® ÀÌº¥Æ® ±¸µ¶ (Áßº¹ ±¸µ¶ ¹æÁö À§ÇØ ¸ÕÀú ÇØÁ¦)
-        InputManager.OnMouseLeftButton -= HandleMouseLeft;
-        InputManager.OnMouseLeftButton += HandleMouseLeft;
+   //     // ï¿½Ô·ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+   //     InputManager.OnMouseLeftButton -= HandleMouseLeft;
+   //     InputManager.OnMouseLeftButton += HandleMouseLeft;
 
-        InputManager.OnMouseMove -= HandleMouseMove;
-        InputManager.OnMouseMove += HandleMouseMove;
+   //     InputManager.OnMouseMove -= HandleMouseMove;
+   //     InputManager.OnMouseMove += HandleMouseMove;
 
-        InputManager.OnConfirm -= HandleConfirm;
-        InputManager.OnConfirm += HandleConfirm;
+   //     InputManager.OnConfirm -= HandleConfirm;
+   //     InputManager.OnConfirm += HandleConfirm;
 
-        GameManager.OnUpdateManager -= UpdateEvent;
-        GameManager.OnUpdateManager += UpdateEvent;
+   //     GameManager.OnUpdateManager -= UpdateEvent;
+   //     GameManager.OnUpdateManager += UpdateEvent;
 
-        yield return null;
+      yield return null;
     }
 
     protected override void OnDisconnected()
     {
-        // ÀÌº¥Æ® Á¤¸®
-        InputManager.OnMouseLeftButton -= HandleMouseLeft;
-        InputManager.OnMouseMove -= HandleMouseMove;
-        InputManager.OnConfirm -= HandleConfirm;
-        GameManager.OnUpdateManager -= UpdateEvent;
+   //     // ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+   //     InputManager.OnMouseLeftButton -= HandleMouseLeft;
+   //     InputManager.OnMouseMove -= HandleMouseMove;
+   //     InputManager.OnConfirm -= HandleConfirm;
+   //     GameManager.OnUpdateManager -= UpdateEvent;
 
-        if (Instance == this) Instance = null;
+   //     if (Instance == this) Instance = null;
     }
 
-    // ¿ÜºÎ¿¡¼­ SkillObject µî·Ï/ÇØÁ¦
-    public static void SetSelectedSkill(SkillObject skill)
-    {
-        selectedSkill = skill;
-        Debug.Log($"SelectionManager: SetSelectedSkill -> {skill?.data?.skillName}");
-        // TODO: ½Ã°¢È­ / Ä¿¼­ º¯°æ µî
-    }
+   // // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ SkillObject ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
+   //public static void SetSelectedSkill(SkillObject skill)
+   // //{
+   // //    selectedSkill = skill;
+   // //    Debug.Log($"SelectionManager: SetSelectedSkill -> {skill?.data?.name}");
+   // //    // TODO: ï¿½Ã°ï¿½È­ / Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+   // //}
 
-    public static void ClearSelectedSkill()
-    {
-        selectedSkill = null;
-        Debug.Log("SelectionManager: ClearSelectedSkill");
-        // TODO: ½Ã°¢È­ Á¦°Å
-    }
+   // //public static void ClearSelectedSkill()
+   // //{
+   // //    selectedSkill = null;
+   // //    Debug.Log("SelectionManager: ClearSelectedSkill");
+   // //    // TODO: ï¿½Ã°ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+   // //}
 
     public static void SetSelectedCharacter(CharacterBase character)
     {
         selectedCharacter = character;
         Debug.Log($"SelectionManager: SetSelectedCharacter -> {character?.name}");
-        // TODO: ½Ã°¢È­ / Ä¿¼­ º¯°æ µî
+        // TODO: ï¿½Ã°ï¿½È­ / Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 
     public static void ClearSelectedCharacter()
     {
-        selectedCharacter = null;
+       selectedCharacter = null;
         Debug.Log("SelectionManager: ClearSelectedSkill");
-        // TODO: ½Ã°¢È­ Á¦°Å
+        // TODO: ï¿½Ã°ï¿½È­ ï¿½ï¿½ï¿½ï¿½
     }
 
 
-    // ±âÁ¸: worldPosition(Vector3)À¸·Î ¹Ù·Î Àü´Þ
-    public void ProvideTarget(Vector3 worldPosition, GameObject target = null)
-    {
-        if (selectedSkill == null) return;
-        selectedSkill.ReceiveTarget(worldPosition, target);
-    }
+   // // ï¿½ï¿½ï¿½ï¿½: worldPosition(Vector3)ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½
+   // public void ProvideTarget(Vector3 worldPosition, GameObject target = null)
+   // {
+   //     if (selectedSkill == null) return;
+   //     selectedSkill.ReceiveTarget(worldPosition, target);
+   // }
 
-    // Ãß°¡: screenPosition(Vector2)À» ¹Þ¾Æ Ä«¸Þ¶ó·Î º¯È¯ ÈÄ Àü´Þ (È£ÃâÀÚ°¡ Vector2¸¸ °¡Áö°í ÀÖÀ» ¶§ ¾ÈÀüÇÏ°Ô »ç¿ë)
-    public void ProvideTarget(Vector2 screenPosition, GameObject target = null)
-    {
-        Camera cam = GameManager.Instance?.Camera?.MainCamera ?? Camera.main;
-        Vector3 world = Vector3.zero;
-        if (cam != null)
-        {
-            // ScreenToWorldPoint´Â z¸¦ Ä«¸Þ¶ó ´ëºñ °Å¸®·Î »ç¿ëÇÏ¹Ç·Î 2DÀÏ ¶§ z¸¦ 0À¸·Î °íÁ¤
-            world = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, cam.nearClipPlane));
-            if (GameManager.is2D)
-                world.z = 0f;
-        }
+   // // ï¿½ß°ï¿½: screenPosition(Vector2)ï¿½ï¿½ ï¿½Þ¾ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (È£ï¿½ï¿½ï¿½Ú°ï¿½ Vector2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½)
+   // public void ProvideTarget(Vector2 screenPosition, GameObject target = null)
+   // {
+   //     Camera cam = GameManager.Instance?.Camera?.MainCamera ?? Camera.main;
+   //     Vector3 world = Vector3.zero;
+   //     if (cam != null)
+   //     {
+   //         // ScreenToWorldPointï¿½ï¿½ zï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ 2Dï¿½ï¿½ ï¿½ï¿½ zï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   //         world = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, cam.nearClipPlane));
+   //         if (GameManager.is2D)
+   //             world.z = 0f;
+   //     }
 
-        ProvideTarget(world, target);
-    }
+   //     ProvideTarget(world, target);
+   // }
 
-    // È®ÀÎ ½Ã ½ºÅ³ ½ÇÇà
-    public void ConfirmSelection()
-    {
-        if (selectedSkill == null) return;
-        selectedSkill.Execute();
-    }
+   // // È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
+   // public void ConfirmSelection()
+   // {
+   //     if (selectedSkill == null) return;
+   //     selectedSkill.Execute();
+   // }
 
-    // ----- ÀÔ·Â ÀÌº¥Æ® ÇÚµé·¯ -----
-    // MouseButtonEvent(bool value, Vector2 screenPosition, Vector3 worldPosition)
-    void HandleMouseLeft(bool pressed, Vector2 screenPosition, Vector3 worldPosition)
-    {
-        if (!pressed) return; // ´­·¶À» ¶§¸¸ Ã³¸®
-        if (selectedSkill == null) return;
+   // // ----- ï¿½Ô·ï¿½ ï¿½Ìºï¿½Æ® ï¿½Úµé·¯ -----
+   // // MouseButtonEvent(bool value, Vector2 screenPosition, Vector3 worldPosition)
+   // void HandleMouseLeft(bool pressed, Vector2 screenPosition, Vector3 worldPosition)
+   // {
+   //     if (!pressed) return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+   //     if (selectedSkill == null) return;
 
-        // Ä¿¼­ ¾Æ·¡ ¿ÀºêÁ§Æ®¸¦ È®ÀÎÇØ Àü´Þ
-        GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
+   //     // Ä¿ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   //     GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
 
-        // ¾ÈÀüÇÏ°Ô µÑ Áß ÇÏ³ª·Î Àü´Þ: worldPositionÀÌ À¯È¿ÇÏ¸é ±×°É, ¾Æ´Ï¶ó¸é screenPosition ¿À¹ö·Îµå »ç¿ë
-        if (worldPosition != Vector3.zero)
-            ProvideTarget(worldPosition, under);
-        else
-            ProvideTarget(screenPosition, under);
-    }
+   //     // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: worldPositionï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ï¸ï¿½ ï¿½×°ï¿½, ï¿½Æ´Ï¶ï¿½ï¿½ screenPosition ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½
+   //     if (worldPosition != Vector3.zero)
+   //         ProvideTarget(worldPosition, under);
+   //     else
+   //         ProvideTarget(screenPosition, under);
+   // }
 
-    // MouseMoveEvent(Vector2 screenPosition, Vector3 worldPosition)
-    void HandleMouseMove(Vector2 screenPosition, Vector3 worldPosition)
-    {
-        if (selectedSkill == null) return;
+   // // MouseMoveEvent(Vector2 screenPosition, Vector3 worldPosition)
+   // void HandleMouseMove(Vector2 screenPosition, Vector3 worldPosition)
+   // {
+   //     if (selectedSkill == null) return;
 
-        GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
+   //     GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
 
-        if (worldPosition != Vector3.zero)
-            selectedSkill.ReceiveTarget(worldPosition, under);
-        else
-            // Áï½Ã ¹Ì¸®º¸±â¿ëÀ¸·Î È­¸éÁÂÇ¥ ±â¹Ý º¯È¯ »ç¿ë
-            ProvideTarget(screenPosition, under);
-    }
+   //     if (worldPosition != Vector3.zero)
+   //         selectedSkill.ReceiveTarget(worldPosition, under);
+   //     else
+   //         // ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ï¿½
+   //         ProvideTarget(screenPosition, under);
+   // }
 
-    // ButtonEvent(bool value)
-    void HandleConfirm(bool pressed)
-    {
-        if (!pressed) return;
-        ConfirmSelection();
-    }
+   // // ButtonEvent(bool value)
+   // void HandleConfirm(bool pressed)
+   // {
+   //     if (!pressed) return;
+   //     ConfirmSelection();
+   // }
 
-    // ÇÁ·¹ÀÓ ±â¹Ý ¾÷µ¥ÀÌÆ® ÇÊ¿ä ½Ã »ç¿ë
-    void UpdateEvent(float deltaTime)
-    {
-        // ÇöÀç´Â ºó ±¸Çö. ¼±ÅÃ ½Ã ¹üÀ§ Ç¥½Ã/Å¸ÀÌ¸Ó µî ÇÊ¿äÇÏ¸é Ãß°¡.
-    }
+   // // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+   // void UpdateEvent(float deltaTime)
+   // {
+   //     // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½/Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï¸ï¿½ ï¿½ß°ï¿½.
+   // }
 }

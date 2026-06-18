@@ -46,11 +46,11 @@ public class StageUIController : MonoBehaviour
         }
 
 
-        portrait.sprite = asCharacter.portrait;
-        skill1.sprite = asCharacter.skill1?.Image;
-        skill2.sprite = asCharacter.skill2?.Image;
-        skill3.sprite = asCharacter.skill3?.Image;
-        Summon();
+        //portrait.sprite = asCharacter.portrait;
+        //skill1.sprite = asCharacter.skill1?.Image;
+        //skill2.sprite = asCharacter.skill2?.Image;
+        //skill3.sprite = asCharacter.skill3?.Image;
+        //Summon();
     }
     public void Summon()
     {

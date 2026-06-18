@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum UIType
 {
     None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
-    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillContainer,
+    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillContainer, ItemCursorSlot,
     _Length
 }
 public enum ScreenChangeType
@@ -25,6 +25,7 @@ public class UIManager : ManagerBase
     Canvas _mainCanvas;
     public Canvas MainCanvas => _mainCanvas;
     UIBase _movableScreen;
+    RectTransform overlayTransform;
     RectTransform switcherTransform;
     RectTransform changerTransform;
     RectTransform createdTransform;
@@ -96,19 +97,18 @@ public class UIManager : ManagerBase
     }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
-        
+
         createdTransform = CreateFullScreen("CreateUI");
         switcherTransform = CreateFullScreen("ScreenSwitcher");
-        _movableScreen = CreateUI(UIType.Movable, "S_Movable", MainCanvas?.transform);
+        _movableScreen = CreateUI(UIType.Movable, "Movable", MainCanvas?.transform);
         _movableScreen.SetChild(ObjectManager.CreateObject("W_menu"));
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
         CreateUI(UIType.World, "S_World", switcherTransform);
         CreateUI(UIType.Scenario, "W_Scenario", switcherTransform);
-        CreateUI(UIType.SkillContainer, "W_SkillContainer");
 
-        CreateUI(UIType.Menu, "W_Menu");    
+        CreateUI(UIType.Menu, "W_Menu");
         CreateUI(UIType.Save, "W_Save", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
         CreateUI(UIType.Map, "W_Map", switcherTransform);
@@ -116,7 +116,7 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Hero, "W_Hero");
         CreateUI(UIType.MiniMap, "W_MiniMap");
         CreateUI(UIType.Item, "W_Item");
-        CreateUI(UIType.Mission, "W_Mission");
+        CreateUI(UIType.Mission, "W_Mission", switcherTransform);
         CreateUI(UIType.HQ, "W_HQ", switcherTransform);
         CreateUI(UIType.Action, "W_Action", switcherTransform);
         CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
@@ -124,7 +124,7 @@ public class UIManager : ManagerBase
         CreateUI(UIType.ScreenFilter, "W_ScreenFilter", switcherTransform);
         CreateUI(UIType.Skill, "W_Skill", switcherTransform);
         CreateUI(UIType.Inven, "W_Inven", switcherTransform);
-
+        CreateUI(UIType.SkillContainer, "W_SkillList", switcherTransform);
 
         foreach (Transform currentTransform in switcherTransform)
         {
@@ -135,29 +135,36 @@ public class UIManager : ManagerBase
             child.gameObject.SetActive(false);
         }
         foreach (Transform _createdTransform in createdTransform)
-            { _createdTransform.gameObject.SetActive(false);}
-        changerTransform = CreateFullScreen("ScreenChanger");
-        changerTransform.SetAsLastSibling();
-
-
-        for (ScreenChangeType currentChanger = (ScreenChangeType)1;
-            currentChanger < ScreenChangeType._Length;
-            currentChanger++)
         {
+            _createdTransform.gameObject.SetActive(false);
 
-            GameObject instance = ObjectManager.CreateObject(currentChanger.ToString(), changerTransform);
-            if (instance?.TryGetComponent(out UI_ScreenChanger asChanger) ?? false)
+
+
+
+            overlayTransform = CreateFullScreen("OverlayTransform");
+            overlayTransform.SetAsLastSibling();
+
+            CreateUI(UIType.ItemCursorSlot, "ItemCursorSlot", overlayTransform);
+
+            for (ScreenChangeType currentChanger = (ScreenChangeType)1;
+                currentChanger < ScreenChangeType._Length;
+                currentChanger++)
             {
-                screenChnagerDictionary.Add(currentChanger, asChanger);
+
+                GameObject instance = ObjectManager.CreateObject(currentChanger.ToString(), changerTransform);
+                if (instance?.TryGetComponent(out UI_ScreenChanger asChanger) ?? false)
+                {
+                    screenChnagerDictionary.Add(currentChanger, asChanger);
+                }
+
+                instance?.SetActive(false);
             }
 
-            instance?.SetActive(false);
+
+
+            yield return null;
+
         }
-
-
-
-        yield return null;
-
     }
 
     protected override void OnDisconnected()
@@ -165,6 +172,11 @@ public class UIManager : ManagerBase
         UnSetAllUI();
     }
 
+    protected UIBase CreateOverlay(UIType wantType, string wantName)
+    {
+        return CreateUI(wantType, wantName, overlayTransform ?? MainCanvas?.transform);
+    }
+    public static UIBase ClaimCreateOverlay(UIType wantType, string wantName) => GameManager.Instance?.UI?.CreateOverlay(wantType, wantName);
     protected UIBase CreateUI(UIType wantType, string wantName, Transform parent)
     {
         GameObject instance = ObjectManager.CreateObject(wantName, parent);
@@ -275,6 +287,7 @@ public class UIManager : ManagerBase
         UIBase result = GetUI(wantType);
         if (result is IOpenable asOpenable) asOpenable.Toggle();
         return result;
+        
     }
     public static UIBase ClaimToggleUI(UIType wantType) => GameManager.Instance?.UI?.ToggleUI(wantType);
     protected UIBase OpenScreen(UIType wantType)
@@ -282,8 +295,10 @@ public class UIManager : ManagerBase
         CloseUI(CurrentScreen);
         _currentScreenType = wantType;
         return OpenUI(wantType);
+        
     }
     public static UIBase ClaimOpenScreen(UIType wantType) => GameManager.Instance?.UI?.OpenScreen(wantType);
+
 
     protected void OpenScreen(UIType wantScreen, ScreenChangeType changeType)
     {

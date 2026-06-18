@@ -1,33 +1,33 @@
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class Hero : CharacterBase
-{
-    public List<SkillData> skills = new List<SkillData>();
+//public class Hero : CharacterBase
+//{
+//    public List<SkillData> skills = new List<SkillData>();
 
-    // UI ¹öÆ°¿¡¼­ È£Ãâ: hero.UseSkill(skillData)
-    public void UseSkill(SkillData data)
-    {
-        if (data == null)
-        {
-            Debug.LogWarning("UseSkill called with null data");
-            return;
-        }
+//    // UI ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½: hero.UseSkill(skillData)
+//    public void UseSkill(SkillData data)
+//    {
+//        if (data == null)
+//        {
+//            Debug.LogWarning("UseSkill called with null data");
+//            return;
+//        }
 
-        if (data.summonPrefab == null)
-        {
-            Debug.LogWarning($"Skill '{data.skillName}' has no summonPrefab");
-            return;
-        }
+//        if (data.summonPrefab == null)
+//        {
+//            //Debug.LogWarning($"Skill '{data.skillName}' has no summonPrefab");
+//            return;
+//        }
 
-        // ½ºÅ³ prefab ÀÎ½ºÅÏ½ºÈ­ (¾À¿¡ À§Ä¡/È¸ÀüÀº prefab¿¡ ÀÇÇØ °áÁ¤)
-        GameObject obj = Instantiate(data.summonPrefab, transform.position, Quaternion.identity);
+//        // ï¿½ï¿½Å³ prefab ï¿½Î½ï¿½ï¿½Ï½ï¿½È­ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡/È¸ï¿½ï¿½ï¿½ï¿½ prefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+//        GameObject obj = Instantiate(data.summonPrefab, transform.position, Quaternion.identity);
 
-        // SkillObject ÄÄÆ÷³ÍÆ®°¡ ÀÖÀ¸¸é »ç¿ëÇÏ°í, ¾øÀ¸¸é ·±Å¸ÀÓ¿¡ Ãß°¡
-        SkillObject skillObj = obj.GetComponent<SkillObject>();
-        if (skillObj == null)
-            skillObj = obj.AddComponent<SkillObject>();
+//        // SkillObject ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½Ó¿ï¿½ ï¿½ß°ï¿½
+//        SkillObject skillObj = obj.GetComponent<SkillObject>();
+//        if (skillObj == null)
+//            skillObj = obj.AddComponent<SkillObject>();
 
-        skillObj.Init(this, data);
-    }
-}
+//        skillObj.Init(this, data);
+//    }
+//}

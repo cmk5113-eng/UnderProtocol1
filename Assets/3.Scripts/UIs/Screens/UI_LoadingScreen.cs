@@ -3,10 +3,10 @@ using UnityEngine;
 public class UI_LoadingScreen : UI_ScreenBase
     , IOpenable, IProgress<int>, IStatus<string>
 {
-    //ÇÁ·ÎÆÛÆ¼¸¦ ¸¸µé ¶§¿¡ Ç×»ó ¿øº»ÀÌ µÇ´Â º¯¼ö¸¦ ¸¸µé¾îÁá´Âµ¥
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½
     
-    //get;set;¸¸ ÀÖ´Â °æ¿ì¿¡´Â ±×³É º¯¼öÃ³·³ ¾µ ¼ö ÀÖ¾î¿ä!
-    //set¸¸ protectedÀÎ º¯¼öÃ³·³ È°¿ë!
+    //get;set;ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½!
+    //setï¿½ï¿½ protectedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ È°ï¿½ï¿½!
     public bool IsOpen => gameObject.activeSelf;
 
     public int Current { get; protected set; }
@@ -21,10 +21,10 @@ public class UI_LoadingScreen : UI_ScreenBase
     public void Open() => gameObject.SetActive(true);
 
 
-    //ÇÔ¼ö´Â ÇÔ¼ö³¢¸®
-    //ÇÁ·ÎÆÛÆ¼´Â ÇÁ·ÎÆÛÆ¼³¢¸®
-    //º¯¼ö´Â º¯¼ö³¢¸®
-    //º¯¼ö´Â Å©±â°¡ Å« ¼ø¼­¿¡¼­ ÀÛÀº ¼ø¼­·Î ¹èÄ¡
+    //ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     public UnityEngine.UI.Slider progressBar;
     public TMPro.TextMeshProUGUI progressText;
     public TMPro.TextMeshProUGUI explainText;
@@ -43,10 +43,10 @@ public class UI_LoadingScreen : UI_ScreenBase
         //					(0, 999)	0
         Current = Mathf.Min(newCurrent, Max);
         progressBar.value = Progress;
-        //±ÛÀÚ·Î º¸¿©ÁÙ ¶§¿¡, Æ¯Á¤ÇÑ ÇüÅÂ·Î ±ÛÀÚ¸¦ º¸¿©ÁÖ´Â ±ÔÄ¢
-        //Format String => ¼­½Ä
-        //                                        : 0 => 1±ÛÀÚ
-        //                                        : 0000000000 => 10±ÛÀÚ
+        //ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½Ä¢
+        //Format String => ï¿½ï¿½ï¿½ï¿½
+        //                                        : 0 => 1ï¿½ï¿½ï¿½ï¿½
+        //                                        : 0000000000 => 10ï¿½ï¿½ï¿½ï¿½
         progressText.SetText($"{Progress * 100.0f: 0.00}%");
         return Current;
     }

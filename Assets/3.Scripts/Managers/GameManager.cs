@@ -223,35 +223,35 @@ public class GameManager : MonoBehaviour
     {
         if (isLoading) return;
         
-        //ÃÊ±âÈ­
-        //¸Å´ÏÀú¸¦ ÃÊ±âÈ­ÇÑ´Ù
+        //ï¿½Ê±ï¿½È­
+        //ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½
         InvokeInitializeEvent(ref OnInitializeManager);
-        //Ä³¸¯ÅÍ¸¦ ÃÊ±âÈ­ÇÑ´Ù
+        //Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½
         InvokeInitializeEvent(ref OnInitializeCharacter);
-        //ÄÁÆ®·Ñ·¯¸¦ ÃÊ±âÈ­ÇÑ´Ù => Ä³¸¯ÅÍ°¡ ÀÖ´Â »óÅÂ¿¡¼­ µ¹¾Æ°¡¾ß ÇÏ´Ï±î!
+        //ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½ => Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ï´Ï±ï¿½!
         InvokeInitializeEvent(ref OnInitializeController);
-        //¿ÀºêÁ§Æ®¸¦ ÃÊ±âÈ­ÇÑ´Ù
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½
         InvokeInitializeEvent(ref OnInitializeObject);
 
         if (isPlaying)
         { 
             float deltaTime = Time.deltaTime;
             OnUpdateManager?.Invoke(deltaTime);
-            //ÄÁÆ®·Ñ·¯¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù => ¸ÕÀú ÆÇ´ÜÇÏ°í
+            //ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ñ´ï¿½ => ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï°ï¿½
             OnUpdateController?.Invoke(deltaTime);
-            //Ä³¸¯ÅÍ¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù => Ä³¸¯ÅÍ°¡ ¼öÇàÇÏ°í
+            //Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ñ´ï¿½ => Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
             OnUpdateCharacter?.Invoke(deltaTime);
-            //¿ÀºêÁ§Æ®¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù => ¿ÀºêÁ§Æ® ÁøÇà
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ñ´ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             OnUpdateObject?.Invoke(deltaTime);
         }
 
-        //¿ÀºêÁ§Æ®¸¦ Á¦°ÅÇÑ´Ù
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
         InvokeDestroyEvent(ref OnDestroyObject);
-        //ÄÁÆ®·Ñ·¯¸¦ Á¦°ÅÇÑ´Ù
+        //ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
         InvokeDestroyEvent(ref OnDestroyController);
-        //Ä³¸¯ÅÍ¸¦ Á¦°ÅÇÑ´Ù
+        //Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
         InvokeDestroyEvent(ref OnDestroyCharacter);
-        //¸Å´ÏÀú¸¦ Á¦°ÅÇÑ´Ù
+        //ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
         InvokeDestroyEvent(ref OnDestroyManager);
 
     }

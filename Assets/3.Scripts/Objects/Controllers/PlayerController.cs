@@ -39,12 +39,12 @@ public class PlayerController : ControllerBase
 
     public void MoveToMousePosition(bool value, Vector2 screenPosition, Vector3 worldPosition)
     {
-        if (move == null) move = GetComponent<MoveTileModule>(); // ¾ÈÀü Ã¼Å©
+        if (move == null) move = GetComponent<MoveTileModule>(); // ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
         var tm = PlacementManager.Instance?.tilemap;
         if (tm == null) return;
 
         Vector3Int targetCell = tm.WorldToCell(worldPosition);
-        // ¸ñÇ¥ ¼¿·Î °æ·Î »ý¼º(¸ÇÇØÆ° FindPath »ç¿ë)
+        // ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Æ° FindPath ï¿½ï¿½ï¿½)
         move.MoveToTile(targetCell);
     }
     public void SelectCharacter(CharacterBase target)
@@ -54,12 +54,12 @@ public class PlayerController : ControllerBase
 
         selectedCharacter = target;
 
-        // ±âÁ¸ Ä³¸¯ÅÍ ÇØÁ¦ + »õ Ä³¸¯ÅÍ ºùÀÇ
+        // ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Possess(target);
     }
     private void SelectByMouse(bool value, Vector2 screenPos, Vector3 worldPos)
     {
-        if (!value) return; // Å¬¸¯ ´­·ÈÀ» ¶§¸¸
+        if (!value) return; // Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
@@ -77,15 +77,15 @@ public class PlayerController : ControllerBase
     {
         CommandMoveToDirection(value);
     }
-    public void SummonAndSelect(SkillData skill, Vector3 pos)
+    public void SummonAndSelect(ActiveSkill skill, Vector3 pos)
     {
-        if (skill == null || skill.summonPrefab == null) return;
+        //if (skill == null || skill.summonPrefab == null) return;
 
-        GameObject obj = Instantiate(skill.summonPrefab, pos, Quaternion.identity);
+        //GameObject obj = Instantiate(skill.summonPrefab, pos, Quaternion.identity);
 
-        var character = obj.GetComponent<CharacterBase>();
-        if (character == null) return;
+        //var character = obj.GetComponent<CharacterBase>();
+        //if (character == null) return;
 
-        SelectCharacter(character);
+        //SelectCharacter(character);
     }
 }

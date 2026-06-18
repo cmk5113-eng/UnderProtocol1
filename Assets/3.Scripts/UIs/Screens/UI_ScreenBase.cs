@@ -7,12 +7,19 @@ public struct UIClaim
    public    string prefabName;
    public    UIType uiType;
    public bool isOpen;
-
+   public bool isOverlay;
     public UIBase Execute()
     {
 
         UIBase result = UIManager.ClaimGetUI(uiType);
-        if (!result) result = UIManager.ClaimCreateUI(uiType,prefabName);
+
+
+
+        if (!result)
+        {
+            if (isOverlay) result = UIManager.ClaimCreateUI(uiType, prefabName);
+            else result = UIManager.ClaimCreateUI(uiType, prefabName);
+        }
         if (!result) return result;
         if (result is IOpenable openTarget)
         {

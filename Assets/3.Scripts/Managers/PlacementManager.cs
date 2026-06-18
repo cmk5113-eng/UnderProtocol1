@@ -10,7 +10,7 @@ public class PlacementManager : ManagerBase
 
     void Awake()
     {
-        // ¾À¿¡ ÇÏ³ª»ÓÀÎ ¸Å´ÏÀú·Î »ç¿ëÇÏ±â À§ÇÑ °£´ÜÇÑ ½Ì±ÛÅæ ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Instance = this;
     }
 
@@ -23,7 +23,7 @@ public class PlacementManager : ManagerBase
     {
         if (characterPrefab == null) return false;
 
-        // 1. ¼¿ ÁÂÇ¥·Î ÀÌ¸§ »ý¼º
+        // 1. ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         string tileName = $"Unit_{cellPos.x}_{cellPos.y}";
         if (tilemap == null)
         {
@@ -33,24 +33,24 @@ public class PlacementManager : ManagerBase
 
         Vector3 spawnPos = tilemap.GetCellCenterWorld(cellPos);
 
-        // 2. °°Àº À§Ä¡¿¡ ¿ÀºêÁ§Æ® ÀÖ´ÂÁö °Ë»ç
+        // 2. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
         GameObject objectOnTile = GameObject.Find(tileName);
         if (objectOnTile != null)
         {
-            UIManager.ClaimPopUp("°æ°í", "ÀÌ¹Ì ÇØ´ç À§Ä¡¿¡ À¯´ÖÀÌ ÀÖ½À´Ï´Ù.", "È®ÀÎ");
+            UIManager.ClaimPopUp("ï¿½ï¿½ï¿½", "ï¿½Ì¹ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.", "È®ï¿½ï¿½");
             return false;
         }
 
-        // 3. ±âÁ¸ Å¬·Ð Á¤¸® ÈÄ »ý¼º
+        // 3. ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         GameObject existingClone = GameObject.Find(characterPrefab.name);
 
         if (existingClone != null)
         {
-            Debug.Log($"[ÀÌµ¿] {characterPrefab.name} À§Ä¡ Àç½ºÆù");
+            Debug.Log($"[ï¿½Ìµï¿½] {characterPrefab.name} ï¿½ï¿½Ä¡ ï¿½ç½ºï¿½ï¿½");
             ObjectManager.DestroyObject(existingClone);
         }
         GameObject newUnit = ObjectManager.CreateObject(characterPrefab, spawnPos);
-        newUnit.name = tileName; // Å¸ÀÏ ÁÂÇ¥·Î ÀÌ¸§ ¼³Á¤
+        newUnit.name = tileName; // Å¸ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         return true;
     }

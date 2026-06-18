@@ -6,13 +6,21 @@ using UnityEngine.UI;
 public class UI_Hero : UI_ScreenBase
 {
     [Header("Character Data List")]
-    public List<CharacterData> characterList; // º¯°æ
+    public List<CharacterData> characterList; // ï¿½ï¿½ï¿½ï¿½
 
     [Header("UI References")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI jobText;
     public TextMeshProUGUI elementText;
+    public TextMeshProUGUI DialogText;
+    public TextMeshProUGUI DiscriptText;
+    public Image portrait;
     public Button nextButton;
+    public Button[] ActiveButton = new Button[3];
+    public Button[] PassiveButton = new Button[3];
+    public Sprite[] UniqueSkill = new Sprite[4];
+
+
 
     private int currentIndex = 0;
 
@@ -38,9 +46,12 @@ public class UI_Hero : UI_ScreenBase
 
         var data = characterList[currentIndex];
 
-        if (nameText) nameText.text = $"ÀÌ¸§: {data.characterName}";
-        if (jobText) jobText.text = $"Á÷¾÷: {data.job}";
-        if (elementText) elementText.text = $"¼Ó¼º: {data.element}";
+        if (nameText) nameText.text = $"ï¿½Ì¸ï¿½: {data.characterName}";
+        if (jobText) jobText.text = $"ï¿½ï¿½ï¿½ï¿½: {data.job}";
+        if (elementText) elementText.text = $"ï¿½Ó¼ï¿½: {data.element}";
+        if (portrait) portrait.sprite = data.Portrait;
+        
+
     }
 
     public CharacterData GetCurrentCharacter()

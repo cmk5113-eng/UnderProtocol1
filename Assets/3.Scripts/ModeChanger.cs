@@ -1,11 +1,11 @@
 
 using UnityEngine;
 
-public class ModeChanger : MonoBehaviour // »ó¼ÓÀ» MonoBehaviour·Î º¯°æ
+public class ModeChanger : MonoBehaviour // ï¿½ï¿½ï¿½ï¿½ï¿½ MonoBehaviourï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
     public void GoToTitle()
     {
-        // ÁøÂ¥ ¸Å´ÏÀú(Instance)¿¡°Ô ¸ðµå¸¦ ¹Ù²Ù¶ó°í ½ÃÅµ´Ï´Ù.
+        // ï¿½ï¿½Â¥ ï¿½Å´ï¿½ï¿½ï¿½(Instance)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Ù²Ù¶ï¿½ï¿½ ï¿½ï¿½Åµï¿½Ï´ï¿½.
         ModeManager.Instance.ChangeMode(GameMode.Title);
     }
 

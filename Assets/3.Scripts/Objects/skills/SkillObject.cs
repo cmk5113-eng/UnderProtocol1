@@ -1,101 +1,101 @@
-using System;
-using UnityEngine;
+//using System;
+//using UnityEngine;
 
 
-public class SkillObject : MonoBehaviour
-{
-    CharacterBase owner;
-    public SkillData data { get; private set; }
+//public class SkillObject : MonoBehaviour
+//{
+//    CharacterBase owner;
+//    public SkillData data { get; private set; }
 
-    bool isTargeting = false;
-    Vector3 selectedPosition;
-    GameObject selectedTarget;
+//    bool isTargeting = false;
+//    Vector3 selectedPosition;
+//    GameObject selectedTarget;
 
-    public void Init(CharacterBase owner, SkillData data)
-    {
-        this.owner = owner;
-        this.data = data;
+//    public void Init(CharacterBase owner, SkillData data)
+//    {
+//        this.owner = owner;
+//        this.data = data;
 
-        // SelectionManager¿¡ µî·Ï -> ÇÃ·¹ÀÌ¾î ÀÔ·Â(Å¸ÀÏ/´ë»ó ¼±ÅÃ)À» ¹Þ°Ô ÇÔ
-        SelectionManager.SetSelectedSkill(this);
+//        // SelectionManagerï¿½ï¿½ ï¿½ï¿½ï¿½ -> ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ô·ï¿½(Å¸ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½ï¿½
+//        SelectionManager.SetSelectedSkill(this);
 
-        EnterTargeting();
-    }
+//        EnterTargeting();
+//    }
 
-    void EnterTargeting()
-    {
-        isTargeting = true;
-        // TODO: ¹üÀ§ Ç¥½Ã, Å¸°Ù Ç¥½Ã UI µî ½Ã°¢Àû ÇÇµå¹é Ã³¸®
-        Debug.Log($"Skill '{data.skillName}' entered targeting mode.");
-    }
+//    void EnterTargeting()
+//    {
+//        isTargeting = true;
+//        // TODO: ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½, Å¸ï¿½ï¿½ Ç¥ï¿½ï¿½ UI ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ Ã³ï¿½ï¿½
+//        Debug.Log($"Skill '{data.skillName}' entered targeting mode.");
+//    }
 
-    // ¿ÜºÎ¿¡¼­ ¼±ÅÃ Á¤º¸¸¦ Àü´Þ (Å¸ÀÏ/´ë»ó ¼±ÅÃ ½Ã È£Ãâ)
-    public void ReceiveTarget(Vector3 worldPos, GameObject target = null)
-    {
-        selectedPosition = worldPos;
-        selectedTarget = target;
-        Debug.Log($"Target received for skill '{data.skillName}' at {worldPos}" + (target != null ? $", target:{target.name}" : ""));
-    }
+//    // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Å¸ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½)
+//    public void ReceiveTarget(Vector3 worldPos, GameObject target = null)
+//    {
+//        selectedPosition = worldPos;
+//        selectedTarget = target;
+//        Debug.Log($"Target received for skill '{data.skillName}' at {worldPos}" + (target != null ? $", target:{target.name}" : ""));
+//    }
 
-    // È®ÀÎ(Enter ¶Ç´Â È®ÀÎ ¹öÆ°) ½Ã È£Ãâ
-    public void Execute()
-    {
-        if (!isTargeting)
-        {
-            Debug.LogWarning("Execute called while not targeting");
-            return;
-        }
+//    // È®ï¿½ï¿½(Enter ï¿½Ç´ï¿½ È®ï¿½ï¿½ ï¿½ï¿½Æ°) ï¿½ï¿½ È£ï¿½ï¿½
+//    public void Execute()
+//    {
+//        if (!isTargeting)
+//        {
+//            Debug.LogWarning("Execute called while not targeting");
+//            return;
+//        }
 
-        // °£´ÜÇÑ µ¥¹ÌÁö Àû¿ë ¿¹Á¦: selectedTarget¿¡ ´ëÇØ ApplyDamage ¶Ç´Â TakeDamage ¸Þ¼­µå°¡ ÀÖÀ¸¸é È£Ãâ
-        if (selectedTarget != null)
-        {
-            var targetCharacter = selectedTarget.GetComponent<CharacterBase>();
-            if (targetCharacter != null)
-            {
-                // °¡´ÉÇÑ ApplyDamage/TakeDamage È£Ãâ ½Ãµµ (±¸ÇöÃ¼¿¡ µû¶ó ¸ÂÃç¼­ º¯°æ)
-                var method = targetCharacter.GetType().GetMethod("ApplyDamage");
-                if (method != null)
-                {
-                    method.Invoke(targetCharacter, new object[] { data.damage });
-                }
-                else
-                {
-                    method = targetCharacter.GetType().GetMethod("TakeDamage");
-                    if (method != null)
-                        method.Invoke(targetCharacter, new object[] { data.damage });
-                    else
-                        Debug.LogWarning("Target has no ApplyDamage/TakeDamage method. Implement damage application.");
-                }
-            }
-            else
-            {
-                Debug.Log($"No CharacterBase on selected target '{selectedTarget.name}', applying generic effect.");
-                // ¹üÀ§/ÀÌÆåÆ®¸¸ Àû¿ëÇÏ·Á¸é ¿©±â¿¡ ±¸Çö
-            }
-        }
-        else
-        {
-            // ´ë»óÀÌ ¾ø´Â ½ºÅ³(¹üÀ§/Àå¼Ò ±â¹Ý)ÀÇ Ã³¸®
-            Debug.Log($"Execute skill '{data.skillName}' at position {selectedPosition}");
-            // ÀÌÆåÆ® »ý¼º, ¹üÀ§ ³» ´ë»ó °Ë»ö ¹× µ¥¹ÌÁö Àû¿ë µî ±¸Çö
-        }
+//        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: selectedTargetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ApplyDamage ï¿½Ç´ï¿½ TakeDamage ï¿½Þ¼ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+//        if (selectedTarget != null)
+//        {
+//            var targetCharacter = selectedTarget.GetComponent<CharacterBase>();
+//            if (targetCharacter != null)
+//            {
+//                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ApplyDamage/TakeDamage È£ï¿½ï¿½ ï¿½Ãµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç¼­ ï¿½ï¿½ï¿½ï¿½)
+//                var method = targetCharacter.GetType().GetMethod("ApplyDamage");
+//                if (method != null)
+//                {
+//                    method.Invoke(targetCharacter, new object[] { data.damage });
+//                }
+//                else
+//                {
+//                    method = targetCharacter.GetType().GetMethod("TakeDamage");
+//                    if (method != null)
+//                        method.Invoke(targetCharacter, new object[] { data.damage });
+//                    else
+//                        Debug.LogWarning("Target has no ApplyDamage/TakeDamage method. Implement damage application.");
+//                }
+//            }
+//            else
+//            {
+//                Debug.Log($"No CharacterBase on selected target '{selectedTarget.name}', applying generic effect.");
+//                // ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½
+//            }
+//        }
+//        else
+//        {
+//            // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³(ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)ï¿½ï¿½ Ã³ï¿½ï¿½
+//            Debug.Log($"Execute skill '{data.skillName}' at position {selectedPosition}");
+//            // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//        }
 
-        // ÀÌÆåÆ®/¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà (prefab¿¡ ¾Ö´Ï¸ÞÀÌ¼Ç/ÆÄÆ¼Å¬ÀÌ ÀÖÀ» °Í)
-        // TODO: ÇÊ¿ä ½Ã Ãß°¡ ¿¬Ãâ
+//        // ï¿½ï¿½ï¿½ï¿½Æ®/ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ (prefabï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½/ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+//        // TODO: ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        EndSkill();
-    }
+//        EndSkill();
+//    }
 
-    void EndSkill()
-    {
-        isTargeting = false;
-        // SelectionManager ¼±ÅÃ ÇØÁ¦
-        if (SelectionManager.selectedSkill != null)
-            SelectionManager.ClearSelectedSkill();
+//    void EndSkill()
+//    {
+//        isTargeting = false;
+//        // SelectionManager ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//        if (SelectionManager.selectedSkill != null)
+//            SelectionManager.ClearSelectedSkill();
 
-        // Á¾·á Ã³¸®: ¿ÀºêÁ§Æ® ÆÄ±« ¶Ç´Â Ç®¸µÀ¸·Î ¹ÝÈ¯
-        Destroy(gameObject);
-    }
+//        // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½ ï¿½Ç´ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+//        Destroy(gameObject);
+//    }
 
 
-}
+//}

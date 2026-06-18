@@ -37,7 +37,7 @@ public class UI_TargetHoverInfo : OpenableUIBase
             nameText.SetText(newTarget.name);
             infoText.SetText(asCharacter.actionPoint.ToString());
             portrait.sprite = asCharacter.portrait;
-            skillText?.SetText(asCharacter?.skill1?.name);
+            skillText?.SetText(asCharacter?.name);
             Open();
 
 
