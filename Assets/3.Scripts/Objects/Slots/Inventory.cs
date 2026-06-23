@@ -8,43 +8,43 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    public static ItemSlot cursorSlot = new ItemSlot();
+    public static SkillSlot cursorSlot = new SkillSlot();
     public int columns;
     public int rows;
    [SerializeField] TMP_InputField amountInput;
 
 
-    ItemSlot[,] slots;
+    SkillSlot[,] slots;
     public void Initialize()
     {
-        slots = new ItemSlot[rows, columns];
+        slots = new SkillSlot[rows, columns];
 
         for (int row = 0; row < columns; row++)
         {
             for (int column = 0; column < rows; column++)
             {
-                slots[row, column] = new ItemSlot();
+                slots[row, column] = new SkillSlot();
             }
 
         }
     }
-    readonly string[] itemList = { "LesserHealingPotion" };
+    readonly string[] skillList = { "LesserHealingPotion" };
     public void HealPotionPlus() // 나중에 안지우면 죽여버리겠다. 
     {
-        int index = Random.Range(0, itemList.Length);
+        int index = Random.Range(0, skillList.Length);
         Debug.Log(amountInput.text);
         int amount = int.Parse(amountInput.text);
-        ItemContainer potion = DataManager.LoadDataFile<ItemContainer>(itemList[index]);
-        AddItem(potion,amount);
+        SkillList potion = DataManager.LoadDataFile<SkillList>(skillList[index]);
+        AddSkill(potion,amount);
     }
     public void HealPotionMinus() // 나중에 안지우면 죽여버리겠다. 
     {
 
         int amount = int.Parse(amountInput.text);
-        ItemContainer potion = DataManager.LoadDataFile<ItemContainer>("LesserHealingPotion");
-        RemoveItem(potion, amount);
+        SkillList potion = DataManager.LoadDataFile<SkillList>("LesserHealingPotion");
+        RemoveSkill(potion, amount);
     }
-    public void Sort(System.Comparison<ItemSlot>Method)
+    public void Sort(System.Comparison<SkillSlot> Method)
     { 
         int totalLength = slots.Length;
         if (slots is null || totalLength <= 1) return;
@@ -57,14 +57,14 @@ public class Inventory : MonoBehaviour
         {
             int currentFinder = -1;
             for(int i = 0; i < lastFinder; i++)
-            { 
-             ItemSlot left = GetSlot(i,width);
-             ItemSlot right = GetSlot(i+1,width);
+            {
+             SkillSlot left = GetSlot(i,width);
+             SkillSlot right = GetSlot(i+1,width);
              int comparisonResult = Method(left, right);
                  if (comparisonResult > 0)
                 {
                 currentFinder = i;
-                left.ExchangeItem(right);
+                left.ExchangeSkill(right);
                  }
 
                  
@@ -76,16 +76,14 @@ public class Inventory : MonoBehaviour
     public void SortByType()
     { 
     }
-    int ItemTypeComparison(ItemSlot left, ItemSlot right)
+    int SkillTypeComparison(SkillSlot left, SkillSlot right)
     {
         int result;
-        if (ItemExistComparison(left, right, out result)) return result;
+        if (SkillExistComparison(left, right, out result)) return result;
 
-        ItemContainer leftItem = left.GetItem();
-        ItemContainer rightItem = right.GetItem();
+        SkillList leftSkill = left.GetSkill();
+        SkillList rightSkill = right.GetSkill();
 
-
-        result = leftItem.CompareByType(rightItem);
         if(result!= 0) return result;
         result = left.GetStack()-right.GetStack();
         
@@ -94,7 +92,7 @@ public class Inventory : MonoBehaviour
 
 
     }
-    int? ItemExistComparison(ItemSlot left, ItemSlot right)
+    int? SkillExistComparison(SkillSlot left, SkillSlot right)
     {
         if (left is null)
         {
@@ -103,43 +101,37 @@ public class Inventory : MonoBehaviour
         }
         if (right is null) return 1;
 
-        ItemContainer leftItem = left.GetItem();
-        ItemContainer rightItem = right.GetItem();
+        SkillList leftSkill = left.GetSkill();
+        SkillList rightSkill = right.GetSkill();
 
-        return leftItem.type - rightItem.type;
-        if (!leftItem)
-        {
-            if (rightItem is null) return 0;
-            else return -1;
-        }
-        if (right is null) return 1;
-        return null;
+        return leftSkill.type - rightSkill.type;
+ 
     }
-    bool ItemExistComparison(ItemSlot left, ItemSlot right, out int result)
-    { int? calculated = ItemExistComparison(left, right);
+    bool SkillExistComparison(SkillSlot left, SkillSlot right, out int result)
+    { int? calculated = SkillExistComparison(left, right);
         result = calculated ?? 0;
         return calculated.HasValue;
     }
-    public void SortbyType() => Sort(ItemTypeComparison);
+    public void SortbyType() => Sort(SkillTypeComparison);
     public void AutoQuickInsert(Inventory other)
     { 
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-    public void AutoQuickInsert(Inventory other,ItemContainer target)
+    public void AutoQuickInsert(Inventory other,SkillList target)
     { }
     public bool InsertAll()
     { return default; }
 
-    public bool InsertAll(ItemContainer target) { return default; }
+    public bool InsertAll(SkillList target) { return default; }
     public void LockSlot(int wantRow, int wantColumn)
     { }
     public void UnlockSlot(int wantRow, int wantColumn)
     { }
 
-    public int CountItem(ItemContainer wantItem)
+    public int CountSkill(SkillList wantSkill)
     {
-        if (!wantItem) return 0;
+        if (!wantSkill) return 0;
         int result = 0;
-        foreach (ItemSlot currentSlot in FindFirstItem(wantItem))
+        foreach (SkillSlot currentSlot in FindFirstSkill(wantSkill))
         {
             result += currentSlot.GetStack();
 
@@ -147,37 +139,37 @@ public class Inventory : MonoBehaviour
         return result;
     }
 
-    public void MergeItem(ItemContainer wantItem)
+    public void MergeSkill(SkillList wantSkill)
     {
 
-        if (!wantItem) return;
-        if (wantItem.maxStack <= 1) return;
-        int totalCount = CountItem(wantItem, out List < ItemSlot > containSlots);
+        if (!wantSkill) return;
+        if (wantSkill.maxStack <= 1) return;
+        int totalCount = CountSkill(wantSkill, out List <SkillSlot> containSlots);
         if(containSlots is null||containSlots.Count<=1)return;
         for(int i =0; i< containSlots.Count;i++)
             {
-            ItemSlot currentSlot = containSlots[i];
+            SkillSlot currentSlot = containSlots[i];
             if (currentSlot.GetIsMax()) continue;
         }
                 
     }
-    public int CountItem(ItemContainer wantItem, out List<ItemSlot>returnSlots)
+    public int CountSkill(SkillList wantSkill, out List<SkillSlot>returnSlots)
     {
         returnSlots = new();
-        if(!wantItem) return 0;
+        if(!wantSkill) return 0;
         int result = 0;
         
 
-        foreach (ItemSlot currentSlot in FindFirstItem(wantItem))
+        foreach (SkillSlot currentSlot in FindFirstSkill(wantSkill))
         {
             returnSlots.Add(currentSlot);
             result += currentSlot.GetStack();
         }
         return result;
     }
-    public ItemSlot GetSlot(int index, int width) => slots[index / width, index % width];
+    public SkillSlot GetSlot(int index, int width) => slots[index / width, index % width];
 
-    public ItemSlot GetSlot(int index)
+    public SkillSlot GetSlot(int index)
     {
         if (slots is null || index < 0 || slots.Length == 0|| slots.Length <= index) return null;
         int width = slots.GetLength(1);
@@ -185,24 +177,24 @@ public class Inventory : MonoBehaviour
     }
 
    
-    public IEnumerable<ItemSlot> FindFirstItem(ItemContainer target)
+    public IEnumerable<SkillSlot> FindFirstSkill(SkillList target)
     {
-        foreach (ItemSlot currentSlot in GetAllSlot())
+        foreach (SkillSlot currentSlot in GetAllSlot())
         { 
-        if(currentSlot.GetItem()==target)yield return currentSlot;
+        if(currentSlot.GetSkill()==target)yield return currentSlot;
         }
     }
-    public IEnumerable<ItemSlot> FindLastItem(ItemContainer target)
+    public IEnumerable<SkillSlot> FindLastSkill(SkillList target)
     {
-        foreach (ItemSlot currentSlot in GetAllSlotReverse())
+        foreach (SkillSlot currentSlot in GetAllSlotReverse())
         {
-            if (currentSlot.GetItem() == target) yield return currentSlot;
+            if (currentSlot.GetSkill() == target) yield return currentSlot;
         }
     }
 
-    public IEnumerable<ItemSlot> GetAllSlot()
+    public IEnumerable<SkillSlot> GetAllSlot()
     {
-        ItemSlot[] result = new ItemSlot[slots.Length];
+        SkillSlot[] result = new SkillSlot[slots.Length];
 
         int height = slots.GetLength(0);
         int width = slots.GetLength(1);
@@ -215,7 +207,7 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    public IEnumerable<ItemSlot> GetAllSlotReverse()
+    public IEnumerable<SkillSlot> GetAllSlotReverse()
     {
 
         int height = slots.GetLength(0);
@@ -228,23 +220,23 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    public ItemSlot FindItem(ItemContainer target)
+    public SkillSlot FindSkill(SkillList target)
     { return default; }
 
-    public ItemSlot FindItem(ItemType wantType)
+    public SkillSlot FindSkill(SkillType wantType)
     { return default; }
-    public ItemSlot FindItem(int wantRow, int wantColumn)
+    public SkillSlot FindSkill(int wantRow, int wantColumn)
     {
         if (wantRow <0 || wantColumn <0) return null;
         if (wantRow >= slots.GetLength(0)) return null;
         if (wantColumn >=slots.GetLength(1)) return null;
         return slots[wantRow, wantColumn]; }
 
-    public ItemSlot FindItem(string containWord)
+    public SkillSlot FindSkill(string containWord)
     { return default; }
-    public IEnumerable<ItemSlot> FindFirstEmptySlot()
+    public IEnumerable<SkillSlot> FindFirstEmptySlot()
     {
-        foreach (ItemSlot currentSlot in GetAllSlot())
+        foreach (SkillSlot currentSlot in GetAllSlot())
         {
             if (currentSlot.GetIsEmpty()) yield return currentSlot;
         }
@@ -254,76 +246,76 @@ public class Inventory : MonoBehaviour
         
         
         
-    public IEnumerable<ItemSlot> FindLastEmptySlot()
+    public IEnumerable<SkillSlot> FindLastEmptySlot()
     {
-        foreach (ItemSlot currentSlot in GetAllSlot())
+        foreach (SkillSlot currentSlot in GetAllSlot())
         {
             if (currentSlot.GetIsEmpty()) yield return currentSlot;
         }
     }
-    public int AddItem(ItemContainer wantItem, int amount = 1)
+    public int AddSkill(SkillList wantSkill, int amount = 1)
     {
     
 
-        amount = AddItemOnExistSlots(wantItem, amount);
+        amount = AddSkillOnExistSlots(wantSkill, amount);
         if (amount <= 0) return 0;
-        return AddItemOnEmptySlots(wantItem, amount);
+        return AddSkillOnEmptySlots(wantSkill, amount);
     }
-    public int AddItems(ItemContainer wantItem, int amount)
+    public int AddSkills(SkillList wantSkill, int amount)
     {
 
-        amount = AddItemOnExistSlots(wantItem, amount);
+        amount = AddSkillOnExistSlots(wantSkill, amount);
         if (amount <= 0) return 0;
-        amount = AddItemOnEmptySlots(wantItem, amount);
+        amount = AddSkillOnEmptySlots(wantSkill, amount);
         return amount;
     }
 
-    public int AddItemOnExistSlots(ItemContainer wantItem, int amount)
+    public int AddSkillOnExistSlots(SkillList wantSkill, int amount)
     {
-        foreach (ItemSlot currentSlot in FindFirstItem(wantItem))
+        foreach (SkillSlot currentSlot in FindFirstSkill(wantSkill))
         {
             if (amount <= 0) return 0;
-            amount = currentSlot.AddItem(wantItem, amount);
+            amount = currentSlot.AddSkill(wantSkill, amount);
             currentSlot.NoticeChanged();
         }
         return amount;
     }
-    public int AddItemOnEmptySlots(ItemContainer wantItem, int amount)
+    public int AddSkillOnEmptySlots(SkillList wantSkill, int amount)
     {
-        foreach (ItemSlot currentSlot in FindFirstEmptySlot())
+        foreach (SkillSlot currentSlot in FindFirstEmptySlot())
         {
             if (amount <= 0) return 0;
-            amount = currentSlot.AddItem(wantItem, amount);
+            amount = currentSlot.AddSkill(wantSkill, amount);
             currentSlot.NoticeChanged();
         }
         return amount;
     }
-    public int AddItemToLocation(ItemContainer wantItem, int amount)
+    public int AddSkillToLocation(SkillList wantSkill, int amount)
     { return default; }
 
-    public int RemoveItem(System.Predicate<ItemContainer>condition)
+    public int RemoveSkill(System.Predicate<SkillList> condition)
     {
         return default;
     }
-    public int RemoveItem(ItemContainer wantItem)
+    public int RemoveSkill(SkillList wantSkill)
     {
         int result = 0;
-        foreach (ItemSlot currentSlot in FindLastItem(wantItem))
+        foreach (SkillSlot currentSlot in FindLastSkill(wantSkill))
         {
-            result += currentSlot.RemoveItem(wantItem);
+            result += currentSlot.RemoveSkill(wantSkill);
             currentSlot.NoticeChanged();
         }
 
         return result;
 
     }
-    public int RemoveItem(ItemContainer wantItem, int amount)
+    public int RemoveSkill(SkillList wantSkill, int amount)
     {
 
-        foreach (ItemSlot currentSlot in FindLastItem(wantItem))
+        foreach (SkillSlot currentSlot in FindLastSkill(wantSkill))
         {
             if (amount <= 0) return 0;
-            amount = currentSlot.RemoveItem(wantItem, amount);
+            amount = currentSlot.RemoveSkill(wantSkill, amount);
             currentSlot.NoticeChanged();
         }
     
@@ -331,48 +323,48 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void RemoveItemOnExitSlot(ItemContainer wantItem, int amout)
+    public void RemoveSkillOnExitSlot(SkillList wantSkill, int amout)
     { }
-    public int RemoveItemFromLocation(int row, int column,  int amount)
+    public int RemoveSkillFromLocation(int row, int column,  int amount)
     { return default; }
-    public void MoveItem(int startRow, int startColumn, Inventory targetInventory, int targetRow, int targetColumn, int amount = -1)
+    public void MoveSkill(int startRow, int startColumn, Inventory targetInventory, int targetRow, int targetColumn, int amount = -1)
     { 
     
     }
 
-    public void ExchangeItem(int startRow, int startColumn, int targetRow, int targetColumn)
+    public void ExchangeSkill(int startRow, int startColumn, int targetRow, int targetColumn)
     {
-        ExchangeItem(startRow, startColumn, this, targetRow, targetColumn);
+        ExchangeSkill(startRow, startColumn, this, targetRow, targetColumn);
     }
 
-    public void ExchangeItem(int startRow, int startColumn, ItemSlot targetslot)
+    public void ExchangeSkill(int startRow, int startColumn, SkillSlot targetslot)
     {
         if (targetslot == null) return;
-        ItemSlot first = FindItem(startRow, startColumn);
+        SkillSlot first = FindSkill(startRow, startColumn);
         if (first == null) return;
-        first.ExchangeItem(targetslot);
+        first.ExchangeSkill(targetslot);
         first.NoticeChanged();
         targetslot.NoticeChanged();
     }
 
 
-    public void ExchangeItem(int startRow, int startColumn, Inventory targetInventory, int targetRow, int targetColumn, int amount = -1)
+    public void ExchangeSkill(int startRow, int startColumn, Inventory targetInventory, int targetRow, int targetColumn, int amount = -1)
     {
 
-        ItemSlot first = FindItem(startRow, startColumn);
+        SkillSlot first = FindSkill(startRow, startColumn);
         if(first == null) return;
         if (!targetInventory) return;
-        ItemSlot second =targetInventory.FindItem(targetRow, targetColumn);
+        SkillSlot second =targetInventory.FindSkill(targetRow, targetColumn);
         if(second == null) return;
 
-        first.ExchangeItem(second);
+        first.ExchangeSkill(second);
         first.NoticeChanged();
         second.NoticeChanged();
     }
-    public bool UseItem(ItemContainer target) 
+    public bool UseSkill(SkillList target) 
     { return default; }
 
-    public bool UseItem() 
+    public bool UseSkill() 
     { return default; }
 
 }

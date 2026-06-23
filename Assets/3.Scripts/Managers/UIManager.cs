@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum UIType
 {
     None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
-    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillContainer, ItemCursorSlot,
+    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillList, SkillContainer, ItemCursorSlot,
     _Length
 }
 public enum ScreenChangeType
@@ -124,7 +124,7 @@ public class UIManager : ManagerBase
         CreateUI(UIType.ScreenFilter, "W_ScreenFilter", switcherTransform);
         CreateUI(UIType.Skill, "W_Skill", switcherTransform);
         CreateUI(UIType.Inven, "W_Inven", switcherTransform);
-        CreateUI(UIType.SkillContainer, "W_SkillList", switcherTransform);
+        CreateUI(UIType.SkillList, "W_SkillList", switcherTransform);
 
         foreach (Transform currentTransform in switcherTransform)
         {

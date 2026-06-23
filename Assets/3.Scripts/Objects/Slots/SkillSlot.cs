@@ -1,79 +1,80 @@
 using System.Collections.Specialized;
+using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public delegate void ItemSlotChangeEvent(ItemSlot changedSlot);
-public class ItemSlot : MonoBehaviour
+public delegate void SkillSlotChangeEvent(SkillSlot changedSlot);
+public class SkillSlot : MonoBehaviour
 {
-    [SerializeField] ItemContainer item;
+    [SerializeField] SkillList skill;
     [SerializeField] int currentStack;
-    public event ItemSlotChangeEvent OnItemSlotChanged;
+    public event SkillSlotChangeEvent OnSkillSlotChanged;
 
 
 
-    public void NoticeChanged() => OnItemSlotChanged?.Invoke(this);
-    public virtual bool Containable(ItemContainer wantItem)
+    public void NoticeChanged() => OnSkillSlotChanged?.Invoke(this);
+    public virtual bool Containable(SkillList wantSkill)
     {
-        if (wantItem is null) return false;
+        if (wantSkill is null) return false;
 
-        if (item && item != wantItem) return false;
+        if (skill && skill != wantSkill) return false;
         if (GetIsMax()) return false;
         return true;
     }
-    public ItemContainer GetItem() => item;
+    public SkillList GetSkill() => skill;
 
-    public int GetStackable(ItemContainer wantItem) => Containable(wantItem) ? wantItem.maxStack - currentStack : 0;
-    public int Getstackable() => GetStackable(item);
+    public int GetStackable(SkillList wantSkill) => Containable(wantSkill) ? wantSkill.maxStack - currentStack : 0;
+    public int Getstackable() => GetStackable(skill);
     public int GetStack() => currentStack;
-    public bool GetIsMax() => item ? currentStack >= item.maxStack : false;
-    public bool GetIsEmpty() => item is null || currentStack <= 0;
+    public bool GetIsMax() => skill ? currentStack >= skill.maxStack : false;
+    public bool GetIsEmpty() => skill is null || currentStack <= 0;
 
 
 
-    public int AddItem(ItemContainer wantItem, int amount = 1)
+    public int AddSkill(SkillList wantSkill, int amount = 1)
     {
 
         if (amount <= 0) return 0;
-        if (!Containable(wantItem)) return amount;
-        item = wantItem;
+        if (!Containable(wantSkill)) return amount;
+        skill = wantSkill;
 
-        int stackable = Mathf.Min(item.maxStack - currentStack, amount);
+        int stackable = Mathf.Min(skill.maxStack - currentStack, amount);
         currentStack += stackable;
         return amount - stackable;
     }
     public int Clear()
     {
-        item = null; //일단 아이템을 비움!
+        skill = null; //일단 아이템을 비움!
         int removed = currentStack; //비우기 전에 몇개 있었는지 저장하고
         currentStack = 0; //스택을 비움!
         return removed; //얼마나 비웠는지 리턴할 수 있다!
     }
 
-    public int RemoveItem(ItemContainer wantItem)
+    public int RemoveSkill(SkillList wantSkill)
     {        //제거하지 않아도 되는 순간?
         //아이템 없잖아!
-        if (!wantItem) return 0;
+        if (!wantSkill) return 0;
         //나.. 빈털터리야..
         if (GetIsEmpty()) return 0;
         //그건 내가 가지고 있지 않아!
-        if (item != wantItem) return 0;
+        if (skill != wantSkill) return 0;
         //슬롯 싹 비우고 개수만 보내줌!
         return Clear();
 
 
     }
-    public int RemoveItem(ItemContainer wantItem, int amount)
+    public int RemoveSkill(SkillList wantSkill, int amount)
     {
         //제거하지 않아도 되는 순간?
         //지울게 없는데 여기는 왜 온거니?
         if (amount <= 0) return 0;
         //아이템 없잖아!
-        if (!wantItem) return 0;
+        if (!wantSkill) return 0;
         //나.. 빈털터리야..
         if (GetIsEmpty()) return amount;
         //그건 내가 가지고 있지 않아!
-        if (item != wantItem) return amount;
+        if (skill != wantSkill) return amount;
         //가진것보다 많이 요구하는 경우     요구량 - 지운개수
         if (amount >= currentStack) return amount - Clear();
         //현재 개수에서 원하는 만큼만 빼준다!
@@ -81,34 +82,34 @@ public class ItemSlot : MonoBehaviour
         //이제 더 지우지 않아도 돼. 내가 다 처리했어.
         return 0;
     }
-    public void ExchangeItem(ItemSlot wantSlot)
+    public void ExchangeSkill(SkillSlot wantSlot)
     {
         if (wantSlot == null) return;
-        ItemContainer wasItem = item;
+        SkillList wasSkill = skill;
         int wasStack = currentStack;
 
-        item = wantSlot.item;
+        skill = wantSlot.skill;
         currentStack = wantSlot.currentStack;
 
-        wantSlot.item = wasItem;
+        wantSlot.skill = wasSkill;
         wantSlot.currentStack = wasStack;
 
 
     }
-    public int GiveItem(ItemSlot wantSlot) => GiveItem(wantSlot,currentStack);
-    public int GiveItem(ItemSlot wantSlot, int amount)
+    public int GiveSkill(SkillSlot wantSlot) => GiveSkill(wantSlot,currentStack);
+    public int GiveSkill(SkillSlot wantSlot, int amount)
     {
         if (wantSlot == null) return amount;
-        if (!item) return amount;
+        if (!skill) return amount;
         if (currentStack <= 0 || amount <= 0) return amount;
-        ItemContainer targetItem = item;
-        amount = Mathf.Min(amount,wantSlot.GetStackable(targetItem));
+        SkillList targetSkill = skill;
+        amount = Mathf.Min(amount,wantSlot.GetStackable(targetSkill));
 
-        amount -= RemoveItem(targetItem, amount);
-        wantSlot.AddItem(targetItem, amount);
+        amount -= RemoveSkill(targetSkill, amount);
+        wantSlot.AddSkill(targetSkill, amount);
         return amount;
     }
-    public void LeftClick(ItemSlot wantSlot)
+    public void LeftClick(SkillSlot wantSlot)
     {
         if (wantSlot is null) return;
         if (InputManager.IsShift)
@@ -116,15 +117,15 @@ public class ItemSlot : MonoBehaviour
             if (wantSlot.GetIsEmpty())
             {
                 if (GetIsEmpty()) return;
-                else if (wantSlot.Containable(item))
+                else if (wantSlot.Containable(skill))
                 {
-                   GiveItem(wantSlot, Mathf.CeilToInt(currentStack * 0.5f));
+                    GiveSkill(wantSlot, Mathf.CeilToInt(currentStack * 0.5f));
                 }
             }
 
-            else if (Containable(wantSlot.item))
+            else if (Containable(wantSlot.skill))
             {
-               wantSlot.GiveItem(this, Mathf.CeilToInt(wantSlot.currentStack * 0.5f));
+               wantSlot.GiveSkill(this, Mathf.CeilToInt(wantSlot.currentStack * 0.5f));
 
 
 
@@ -138,21 +139,21 @@ public class ItemSlot : MonoBehaviour
             if (wantSlot.GetIsEmpty())
             {
                 if (GetIsEmpty()) return;
-                else if (wantSlot.Containable(item))
+                else if (wantSlot.Containable(skill))
                 {
 
                 }
             }
 
-            if (Containable(wantSlot.item))
+            if (Containable(wantSlot.skill))
             {
 
 
-                ItemContainer targetItem = wantSlot.item;
+                SkillList targetSkill = wantSlot.skill;
 
-                wantSlot.RemoveItem(targetItem, 1);
+                wantSlot.RemoveSkill(targetSkill, 1);
 
-                AddItem(targetItem, 1);
+                AddSkill(targetSkill, 1);
 
 
 
@@ -165,14 +166,14 @@ public class ItemSlot : MonoBehaviour
         //
         else
         {
-            if (wantSlot.Containable(item))
+            if (wantSlot.Containable(skill))
             {
-                GiveItem(wantSlot);
+                GiveSkill(wantSlot);
             }
 
             else
             {
-                ExchangeItem(wantSlot);
+                ExchangeSkill(wantSlot);
             }
             NoticeChanged();
             wantSlot.NoticeChanged();

@@ -6,7 +6,7 @@ public class ActiveSkill : SkillContainer
 
     public string ActiveName;
     public string ActiveDescription;
-    public Sprite ActiveIcon;
+    public Sprite Icon;
     
     public virtual bool IsUsable(CharacterBase from, CharacterBase to) => true;
     public virtual void Onuse(CharacterBase from, CharacterBase to)

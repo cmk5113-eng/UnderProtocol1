@@ -20,17 +20,17 @@ MonoBehaviour:
   Dialogue: 
   explainText: 
   active:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9660ce2e5e18028468f316995fc8981f, type: 2}
+  - {fileID: 11400000, guid: b62231a336a70e74d83f8572e3a7f6b2, type: 2}
   pasive:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  staticpassive: {fileID: 0}
-  normalSkill: {fileID: 0}
-  linkSkill: {fileID: 0}
-  ultimateSkill: {fileID: 0}
-  ActionPoint: 0
-  MovePoint: 0
-  SkillPoint: 0
+  - {fileID: 11400000, guid: 96b1a799132f8f3439165d9bc4a8ae0d, type: 2}
+  - {fileID: 11400000, guid: 700a26d324bc2884a893a45efb0f08b9, type: 2}
+  - {fileID: 11400000, guid: cf3315f386030df43bb49c90e1dbb5c7, type: 2}
+  - {fileID: 11400000, guid: a9dede655bfe85046b00e529749feaf2, type: 2}
+  staticpassive: {fileID: 11400000, guid: c6d7e3e49822f9145970915d1dfd290b, type: 2}
+  normalSkill: {fileID: 11400000, guid: c683764d1ba301f4f9e60bac5a760c90, type: 2}
+  linkSkill: {fileID: 11400000, guid: d6c49186d3543ce4ab7334ab4b3aa0ad, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 78a2b08341666254ba182aa9722e15a4, type: 2}
+  ActionPoint: 1
+  MovePoint: 1
+  SkillPoint: 1
