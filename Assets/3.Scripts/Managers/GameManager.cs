@@ -10,9 +10,15 @@ public class GameManager : MonoBehaviour
     static GameManager _instance;
     public static GameManager Instance => _instance;
 
+    BattleManager _battle;
+    public BattleManager Battle => _battle;
+
     UIManager _ui;
     public UIManager UI => _ui;
     
+    DBManager _db;
+    public DBManager DB => _db;
+
     CharacterManager _character;
     public CharacterManager Character => _character;
     
@@ -107,7 +113,9 @@ public class GameManager : MonoBehaviour
     {
         int totalLoadCount = 0;
         totalLoadCount += CreateManager(ref _ui).LoadCount;
+        totalLoadCount += CreateManager(ref _battle).LoadCount;
         totalLoadCount += CreateManager(ref _data).LoadCount;
+        totalLoadCount += CreateManager(ref _db).LoadCount;
         totalLoadCount += CreateManager(ref _objectM).LoadCount;
         totalLoadCount += CreateManager(ref _save).LoadCount;
         totalLoadCount += CreateManager(ref _setting).LoadCount;
@@ -115,7 +123,7 @@ public class GameManager : MonoBehaviour
         totalLoadCount += CreateManager(ref _audio).LoadCount;
         totalLoadCount += CreateManager(ref _camera).LoadCount;
         totalLoadCount += CreateManager(ref _input).LoadCount;
-        totalLoadCount += CreateManager(ref _placement).LoadCount;
+        //totalLoadCount += CreateManager(ref _placement).LoadCount;
         totalLoadCount += CreateManager(ref _character).LoadCount;
         totalLoadCount += CreateManager(ref _mode).LoadCount;
         totalLoadCount += CreateManager(ref _selection).LoadCount;
@@ -127,6 +135,10 @@ public class GameManager : MonoBehaviour
         IProgress<int> loadingProgress = loadingUI as IProgress<int>;
         loadingProgress?.Set(0, totalLoadCount);
         yield return  Data.Connect(this);
+        loadingProgress?.AddCurrent(1);
+        yield return Battle.Connect(this);
+        loadingProgress?.AddCurrent(1);
+        yield return DB.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return ObjectM.Connect(this);
         loadingProgress?.AddCurrent(1);
@@ -144,7 +156,7 @@ public class GameManager : MonoBehaviour
         loadingProgress?.AddCurrent(1);
         yield return Input.Connect(this);
         loadingProgress?.AddCurrent(1);
-        yield return Placement.Connect(this);
+        //yield return Placement.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return Character.Connect(this);
         loadingProgress?.AddCurrent(1);
@@ -162,6 +174,7 @@ public class GameManager : MonoBehaviour
     void DeleteManagers()
     {
         Input?.Disconnect();
+        Battle?.Disconnect();
         ObjectM?.Disconnect();
         Audio?.Disconnect();
         Language?.Disconnect();
@@ -174,12 +187,13 @@ public class GameManager : MonoBehaviour
         Placement?.Disconnect();
         Mode?.Disconnect();
         Selection?.Disconnect();
+        DB?.Disconnect();
     }
     ManagerType CreateManager<ManagerType>(ref ManagerType targetVariable) where ManagerType : ManagerBase
     {
         if (targetVariable == null)
         {
-            targetVariable = gameObject.AddComponent<ManagerType>();
+            targetVariable = gameObject.TryAddComponent<ManagerType>();
             targetVariable.Connect(this);
         }
         return targetVariable;
@@ -222,7 +236,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (isLoading) return;
-        
+
+
+
         //�ʱ�ȭ
         //�Ŵ����� �ʱ�ȭ�Ѵ�
         InvokeInitializeEvent(ref OnInitializeManager);

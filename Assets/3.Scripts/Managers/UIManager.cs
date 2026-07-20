@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum UIType
 {
     None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Scenario, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
-    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillList, SkillContainer, ItemCursorSlot,
+    World,Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillList, SkillContainer,
     _Length
 }
 public enum ScreenChangeType
@@ -141,11 +141,7 @@ public class UIManager : ManagerBase
 
 
 
-            overlayTransform = CreateFullScreen("OverlayTransform");
-            overlayTransform.SetAsLastSibling();
-
-            CreateUI(UIType.ItemCursorSlot, "ItemCursorSlot", overlayTransform);
-
+            
             for (ScreenChangeType currentChanger = (ScreenChangeType)1;
                 currentChanger < ScreenChangeType._Length;
                 currentChanger++)

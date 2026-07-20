@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -21,8 +20,6 @@ public class InputManager : ManagerBase
 
     public static event MouseButtonEvent OnMouseLeftButton;
     public static event MouseButtonEvent OnMouseRightButton;
-    public static event MouseButtonEvent OnMouseWheelButton;
-    public static event MouseButtonEvent OnMouseWheelMove;
     public static event MouseMoveEvent OnMouseMove;
     public static event MouseHoverEvent OnMouseHover;
     public static event ButtonEvent OnCancel;
@@ -30,10 +27,8 @@ public class InputManager : ManagerBase
     //TŰ ���Ӿȿ����� �ൿ���
     public static event ButtonEvent OnNextTurn;
     //�����̽���
-    public static event ButtonEvent OnConfirm;
     //����
     // ��� �ʱ�ȭ : �齺���̽�
-    public static event ButtonEvent OnSweep;
     
     public static event ButtonEvent OnShift;
     public static bool IsShift { get; private set; } = false;
@@ -71,8 +66,8 @@ public class InputManager : ManagerBase
     static Vector3 _cursorWorldPosition;
     public static Vector3 CursorWorldPosition => _cursorWorldPosition;
 
-    static ISelectable _cursorHoverSelectable;
-    public static ISelectable CursorHoverSelectable => _cursorHoverSelectable;
+    //static ISelectable _cursorHoverSelectable;
+    //public static ISelectable CursorHoverSelectable => _cursorHoverSelectable;
 
     static GameObject _cursorHoverObject;
     public static GameObject CursorHoverObject => _cursorHoverObject;

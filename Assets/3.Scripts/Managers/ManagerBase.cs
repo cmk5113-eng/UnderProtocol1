@@ -1,32 +1,32 @@
 using System.Collections;
 using UnityEngine;
 
-//class		: º¯¼ö o ÇÔ¼ö ³»¿ë o °´Ã¼»ý¼º o
-//Ãß»óÀûÀÎ
-//                    ÀÖÀ»¼öµµ ¾øÀ»¼öµµ
-//abstract	: º¯¼ö o ÇÔ¼ö ³»¿ë ¥Ä °´Ã¼»ý¼º x 
-//interface	: º¯¼ö x ÇÔ¼ö ³»¿ë x °´Ã¼»ý¼º x
+//class		: ï¿½ï¿½ï¿½ï¿½ o ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ o ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ o
+//ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½
+//                    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//abstract	: ï¿½ï¿½ï¿½ï¿½ o ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ x 
+//interface	: ï¿½ï¿½ï¿½ï¿½ x ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ x ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ x
 
-//interface	: (Å¾½ÂÇÒ ¼ö ÀÖ´Â - Å¾½Â / ÇÏÂ÷±â´É) -> ºñÇà±â, ¸» ..
-//abstract	: ÀÚµ¿Â÷ => Ãß»óÀûÀÎ °³³ä
-//abstract	: ½Â¿ëÂ÷
-//abstract	: º¥Ã÷        : ³»³õ¾Æ X
-//class		: SÅ¬·¡½º => ºÐ·ù : ³»³õ¾Æ O => instance
-//instance	: 354³Ê 2384 => ½ÇÁ¦ °´Ã¼
+//interface	: (Å¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ - Å¾ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) -> ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ..
+//abstract	: ï¿½Úµï¿½ï¿½ï¿½ => ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//abstract	: ï¿½Â¿ï¿½ï¿½ï¿½
+//abstract	: ï¿½ï¿½ï¿½ï¿½        : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ X
+//class		: SÅ¬ï¿½ï¿½ï¿½ï¿½ => ï¿½Ð·ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ O => instance
+//instance	: 354ï¿½ï¿½ 2384 => ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 
 public abstract class ManagerBase : MonoBehaviour
 {
     GameManager _connectedManager;
 
-    //ÇÁ·ÎÆÛÆ¼¿¡µµ virtualÀ» ¾µ ¼ö ÀÖ´Ù!
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ virtualï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½!
     public virtual int LoadCount => 1;
 
-    //Connect¸¦ ÀÚÀ¯·Ó°Ô ÇÏ±â À§ÇØ¼­ VirtualÀ» ½áÁÙ °Çµ¥!
-    //virtualÀ» ¾²·Á°í ÇÏ´Â ¼ø°£ »ý°¢ÇØ¾ß ÇÏ´Â °Í!
-    //OCP => Open Closed Principle : °³¹æÆó¼â¿øÄ¢ (È®Àå¿¡´Â ¿­·ÁÀÖÀ¸³ª ¼öÁ¤¿¡´Â ´ÝÇôÀÖÀ½)
+    //Connectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Virtualï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½!
+    //virtualï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½!
+    //OCP => Open Closed Principle : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¢ (È®ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     public IEnumerator Connect(GameManager newManager)
     {
-        if (_connectedManager != null) Disconnect(); //ÀÌ¹Ì ¿¬°áµÈ ¾Ö°¡ ÀÖÀ¸¸é ²÷°í °£´Ù!
+        if (_connectedManager != null) Disconnect(); //ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
 
         _connectedManager = newManager;
         yield return OnConnected(newManager);
@@ -38,8 +38,8 @@ public abstract class ManagerBase : MonoBehaviour
         OnDisconnected();
     }
 
-    //virtual ´ë½Å¿¡ abstract : ºÎ¸ð¿¡¼­ Á¤ÀÇÇÏÁö ¾Ê°Ú´Ù!
-    //                          ÀÚ½ÄÀÌ ¾Ë¾Æ¼­ ¸¸µé¾î¶ó!
+    //virtual ï¿½ï¿½Å¿ï¿½ abstract : ï¿½Î¸ð¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Ú´ï¿½!
+    //                          ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
     protected abstract IEnumerator OnConnected(GameManager newManager);
     protected abstract void OnDisconnected();
 

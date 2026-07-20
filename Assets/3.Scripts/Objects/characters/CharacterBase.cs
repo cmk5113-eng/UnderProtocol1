@@ -18,6 +18,8 @@ public delegate void DamageEvent(GameObject damageCauser,ControllerBase instigat
 
 public class CharacterBase : MonoBehaviour
 {
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
     public Sprite portrait;
     public bool selectable = true;
     public string Name;
@@ -25,7 +27,7 @@ public class CharacterBase : MonoBehaviour
     public int actionPoint = 0;
     public int steminaPoint = 0;
     public int mobility = 0;
- 
+    public bool isEnemy = false;
 
     public event MovementEvent OnMovement;
     public void MovementNotify(Vector3 move) => OnMovement?.Invoke(move);
@@ -52,6 +54,26 @@ public class CharacterBase : MonoBehaviour
     Dictionary<System.Type, CharacterModule> moduleDictionary = new();
     //�߰� /���� /�˻�
 
+    [SerializeField] private CharacterData characterData;
+    public CharacterData Data => characterData;
+
+    private MovementModule movementModule;
+
+    private void Awake()
+    {
+        if (CompareTag("Enemy") || gameObject.name.Contains("Enemy"))
+        {
+            isEnemy = true;
+        }
+        movementModule = GetComponent<MovementModule>();
+        // 만약 OnRegistration을 수동으로 호출하는 구조라면 기획에 맞게 연결하세요.
+        if (movementModule != null) movementModule.OnRegistration(this);
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+    }
+
     public void AddModule(System.Type wantType, CharacterModule wantModule)
     {
         if (moduleDictionary.TryAdd(wantType, wantModule))
@@ -71,7 +93,21 @@ public class CharacterBase : MonoBehaviour
         }
 
     }
+    public void UpdateActionStateVisual()
+    {
+        if (spriteRenderer == null) return;
 
+        if (actionPoint == 0)
+        {
+            // 💡 행동 완료: 어두운 회색조로 변경
+            spriteRenderer.color = new Color(0.3f, 0.3f, 0.3f, 1.0f);
+        }
+        else
+        {
+            // 💡 행동 가능: 원래 밝은 색상(정상)으로 복구
+            spriteRenderer.color = Color.white;
+        }
+    }
     public void RemoveModule(System.Type wantType)
     {
         if (moduleDictionary.ContainsKey(wantType))

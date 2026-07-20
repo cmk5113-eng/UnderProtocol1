@@ -1,91 +1,86 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static SkillLoadButton;
 
-public class UI_SkillSlotInfo : UIBase
+public class UI_SkillSlotInfo : MonoBehaviour
 {
-    [SerializeField] Image iconImage;
-    [SerializeField] TextMeshProUGUI amountText;
+    [SerializeField] private Image iconImage;
+    [SerializeField] private TextMeshProUGUI amountText;
 
-    [SerializeField] Sprite noneIcon;
+    private UI_Hero heroUI;
+    private SkillSlot connectedDataSlot;
 
-    protected SkillSlot connectedSlot;
-
-    public SkillSlot ConnectedSlot => connectedSlot;
-
-    public void ConnectSlot(SkillSlot targetSlot)
+    public void ConnectSlot(SkillSlot dataSlot)
     {
-        DisconnectSlot(); //기존 연결은 끊고!
-        if (targetSlot is null) return;
-        connectedSlot = targetSlot;
-        //아이템 슬롯이 바뀌면              비주얼 업데이트를 할래!
-        connectedSlot.OnSkillSlotChanged -= VisualUpdate;
-        connectedSlot.OnSkillSlotChanged += VisualUpdate;
-        VisualUpdate(connectedSlot);
+        connectedDataSlot = dataSlot;
+
+        if (heroUI == null)
+            heroUI = FindFirstObjectByType<UI_Hero>();
+
+        UpdateUI();
     }
-    public void SetupSlot(SkillContainer skillData, int stackCount)
-    {
-        if (skillData != null)
-        {
-            // 예시: skillData 내부에 sprite나 skillName이 있다고 가정
-            // iconImage.sprite = skillData.skillIcon; 
-            if (amountText != null)
-                amountText.text = stackCount > 0 ? stackCount.ToString() : "";
-        }
-        else
-        {
-            // 스킬 데이터가 없는 빈 슬롯 처리
-            if (iconImage != null) iconImage.sprite = noneIcon;
-            if (amountText != null) amountText.text = "";
-        }
-    }
+
     public void DisconnectSlot()
     {
-        if (connectedSlot is null) return; //연결된게 없는데? 안함!
-        connectedSlot.OnSkillSlotChanged -= VisualUpdate; //이제 너랑 안놀아!
-        connectedSlot = null; //연결된 것이 없다고 표시!
+        connectedDataSlot = null;
     }
 
-    public void SetSkill(SkillList skill)
+    public void UpdateUI()
     {
+        if (connectedDataSlot == null || connectedDataSlot.GetIsEmpty())
+        {
+            if (iconImage) iconImage.sprite = null;
+            if (amountText) amountText.text = "";
+            return;
+        }
 
-    }
-
-
-
-    protected virtual void VisualUpdate(SkillSlot targetSlot)
-    {
-        if (targetSlot is null) return;
-        SkillList targetSkill = targetSlot.GetSkill();
+        // 데이터가 살아있는 인벤토리가 연결되었으므로 정상적으로 아이콘과 개수가 박힙니다.
         if (iconImage)
-        {
-            if (targetSkill)
-            {
-                //            targetItem의 아이콘 없으면 noneIcon
-                iconImage.sprite = targetSkill.icon ?? noneIcon;
-                iconImage.enabled = true; //아이템이 있어야 이미지가 켜짐!
-            }
-            else
-            {
-                iconImage.enabled = false; //아이템이 없으면 이미지를 끄기!
-            }
-        }
+            iconImage.sprite = connectedDataSlot.GetSkill().icon;
+
         if (amountText)
+            amountText.text = connectedDataSlot.GetStack().ToString();
+    }
+
+    public void SelectSkill()
+    {
+        if (connectedDataSlot == null) return;
+
+        if (heroUI == null)
+            heroUI = FindFirstObjectByType<UI_Hero>();
+
+        CharacterData current = heroUI != null ? heroUI.GetCurrentCharacter() : null;
+        if (current == null) return;
+
+        SkillList skill = connectedDataSlot.GetSkill();
+        if (skill == null) return;
+
+        ActiveSkill activeSkill = skill as ActiveSkill;
+        PassiveSkill passiveSkill = skill as PassiveSkill;
+
+        switch (CanvasManager.Instance.CurrentSkillGroup)
         {
-            int targetStack = targetSlot.GetStack();
-            if (!targetSkill || targetSkill.maxStack <= 1 || targetStack <= 0)
-            {
-                amountText.SetText("");
-            }
-            else
-            {
-                //bool isMax = targetSlot.GetMax(); //너, 다 찬거니?
-                //if(isMax) amountText.color = Color.yellow;
-                //else	    amountText.color = Color.white;
-                amountText.SetText($"{targetStack}");
-            }
+            case SkillLoadButton.SkillGroupType.Active1:
+                if (activeSkill != null) current.active[0] = activeSkill;
+                break;
+            case SkillLoadButton.SkillGroupType.Active2:
+                if (activeSkill != null) current.active[1] = activeSkill;
+                break;
+            case SkillLoadButton.SkillGroupType.Passive1:
+                if (passiveSkill != null) current.passive[0] = passiveSkill;
+                break;
+            case SkillLoadButton.SkillGroupType.Passive2:
+                if (passiveSkill != null) current.passive[1] = passiveSkill;
+                break;
+            case SkillLoadButton.SkillGroupType.Passive3:
+                if (passiveSkill != null) current.passive[2] = passiveSkill;
+                break;
+            case SkillLoadButton.SkillGroupType.Passive4:
+                if (passiveSkill != null) current.passive[3] = passiveSkill;
+                break;
         }
+
+        heroUI.RefreshUI();
     }
 }

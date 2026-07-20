@@ -1,12 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "UltimateSkill")]
-public class UltimateSkill : SkillContainer
+public class UltimateSkill : SkillList
 {
 
-    public string UltimateName;
-    public string UltimateDescription;
-    public Sprite UltimateIcon;
+    
     public virtual bool IsUsable(CharacterBase from, CharacterBase to) => true;
     public virtual void Onuse(CharacterBase from, CharacterBase to)
     { }

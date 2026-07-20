@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa1caa2b26e77349857fe4caac02e50, type: 3}
   m_Name: Link_Beak
   m_EditorClassIdentifier: Assembly-CSharp::LinkSkill
-  icon: {fileID: 21300000, guid: 8a30f7041ca6df44f9f6a6cafc1f798f, type: 3}
-  displayName: 
-  explain: 
-  LinkName: 
-  LinkDescription: 
-  LinkIcon: {fileID: 21300000, guid: 811a8c6693b5a544b9f948eeac24a278, type: 3}
+  id: 0
+  skillsList: []
+  type: 0
+  icon: {fileID: -2054428158, guid: c9e7632dc48a5cd448c740a995324a73, type: 3}
+  MaxStack: 0
+  currentStack: 0

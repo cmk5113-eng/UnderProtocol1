@@ -1,64 +1,53 @@
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
 public class UI_CharacterSelectWindows : UI_ScreenBase
 {
-    // ������ ũ�⳪ �߿䵵 ������ ��ġ (���� ������Ʈ -> �⺻ �ڷ���)
- 
-    // UI �ؽ�Ʈ�� ������Ʈ�ϴ� ���� �Լ�
 
     private void OnEnable()
     {
-        // â�� ���� �� �����ϰ� ���� �ʱ�ȭ ����
-        // ��: �Ŵ������� ���� ī��Ʈ ���� �����ͼ� ����
-        // ������ �ϴ� �ӽ÷� 0, 12�� �־ ������ ���Կ�.
-
     }
-  
-
-    // 1. �ܼ��� ī��Ʈ�� 1 �ø��� ���� �� ȣ��
-   
-
-    // 3. �ʱ�ȭ �� ���
-   
 
     public void Toggle() => gameObject.SetActive(!IsOpen);
-
-
-
-
     public static UI_CharacterSelectWindows Instance { get; private set; }
-
-    // �������� �����Ͻ� '���� ĳ����' ���� (�̸����� ����)
- 
+    public int currentCount = 0;
+    public int maxCount = 12;
+    [SerializeField] private TextMeshProUGUI currentText;
+    [SerializeField] private TextMeshProUGUI maxText;
+    public void ChangeModeToCharacterSelect()
+    {
+        ModeManager.Instance.CurrentMode = ModeManager.GameMode.CharacterSelect;
+    }
     public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
+       if(ModeManager.Instance.CurrentMode != ModeManager.GameMode.CharacterSelect)
+        {
+            return;
+        }
         // 1. ���޹��� �������� ���� ĳ���ͷ� ���
-        PlacementManager.currentCharacter = selectedPrefab;
-        
+        PlacementManager.selectedCharacter = selectedPrefab;
+
 
         // 2. ����� ��ϵǾ����� Ȯ�� �α�
-        if (PlacementManager.currentCharacter != null)
+        if (PlacementManager.selectedCharacter != null)
         {
-            Debug.Log($"���õ� ĳ���Ͱ� '{PlacementManager.currentCharacter.name}'(��)�� ��ϵǾ����ϴ�.");
+            Debug.Log($"���õ� ĳ���Ͱ� '{PlacementManager.selectedCharacter.name}'(��)�� ��ϵǾ����ϴ�.");
         }
 
         // 3. UI ������Ʈ �� �ļ� �۾�
     }
 
-    //[Header("��ȯ ��ġ ����")]
-    //[SerializeField] private Transform spawnParent;
-
     void Awake()
     {
-        
-            Instance = this;
-            // �⺻���� null�̸� Error�� �� �� ������ �� ���̶� �־��ݴϴ�.
-            //if (string.IsNullOrEmpty(currentcharacter)) currentcharacter = "";
+
+        Instance = this;
+        // �⺻���� null�̸� Error�� �� �� ������ �� ���̶� �־��ݴϴ�.
+        //if (string.IsNullOrEmpty(currentcharacter)) currentcharacter = "";
     }
 
     // ��ư���� �� �Լ��� ȣ���ؼ� ���� �ٲߴϴ�.
-    
+
 
 
     //// '����' ��ư�� ������ �� ����� �Լ�
@@ -72,5 +61,34 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
 
         // ObjectManager���� ���� ������ ��� �̸����� ������ ��û�մϴ�.
         //ObjectManager.CreateObject(currentcharacter, spawnParent);
-   }
+    }
+    public void UpdateCountUI()
+    {
+        if (currentText != null) currentText.text = currentCount.ToString();
+        if (maxText != null) maxText.text = maxCount.ToString();
+    }
+
+    public void AddCount()
+    {
+        if (currentCount < maxCount)
+        {
+            currentCount++;
+            UpdateCountUI();
+          
+        }
+    }
+
+    /// <summary>
+    /// 캐릭터가 해제(회수)되었을 때 호출하여 카운트를 1 내리는 함수
+    /// </summary>
+    public void RemoveCount()
+    {
+        if (currentCount > 0)
+        {
+            currentCount = 0;
+            UpdateCountUI();
+            Debug.Log($"[UI_Count] 캐릭터가 해제되어 카운트가 감소했습니다. ({currentCount} / {maxCount})");
+        }
+    }
+
 }

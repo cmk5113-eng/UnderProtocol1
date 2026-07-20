@@ -1,12 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "PassiveSkill")]
-public class PassiveSkill : SkillContainer
+public class PassiveSkill : SkillList
 {
 
-    public string PassiveName;
-    public string PassiveDescription;
-    public Sprite PassiveIcon;
+ 
     public virtual bool IsUsable(CharacterBase from, CharacterBase to) => true;
     public virtual void Onuse(CharacterBase from, CharacterBase to)
     { }

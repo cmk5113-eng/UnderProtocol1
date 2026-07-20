@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0503511f2b215f343b708145d110406b, type: 3}
   m_Name: Normal_FlameThrower
   m_EditorClassIdentifier: Assembly-CSharp::NormalSkill
+  id: 0
   skillsList: []
   type: 0
+  icon: {fileID: 4476182205578675844, guid: d1ccfab58e9e8f14f9cb74173f681fb0, type: 3}
+  MaxStack: 0
+  currentStack: 0

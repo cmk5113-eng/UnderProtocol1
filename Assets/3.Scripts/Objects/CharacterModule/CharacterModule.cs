@@ -10,7 +10,8 @@ public class CharacterModule : MonoBehaviour
 
     CharacterBase _owner;
     public CharacterBase Owner => _owner;
-    
+
+
     public virtual void OnRegistration(CharacterBase newOwner)
     { _owner = newOwner; }
     

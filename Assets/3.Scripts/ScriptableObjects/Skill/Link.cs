@@ -1,11 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "LinkSkill")]
-public class LinkSkill : SkillContainer
+public class LinkSkill : SkillList
 {
-    public string LinkName;
-    public string LinkDescription;
-    public Sprite LinkIcon;
+    
 
     public virtual bool IsUsable(CharacterBase from, CharacterBase to) => true;
     public virtual void Onuse(CharacterBase from, CharacterBase to)

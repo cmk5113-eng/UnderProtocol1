@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 public class PlacementManager : ManagerBase
 {
     public static PlacementManager Instance;
-    public Tilemap tilemap;         
-    public static GameObject currentCharacter;
+    public Tilemap tilemap;
+    public static GameObject selectedCharacter;
 
     void Awake()
     {
@@ -56,15 +56,15 @@ public class PlacementManager : ManagerBase
     }
     public void RemoveCharacter(GameObject characterPrefab)
     {
-       
+
     }
     public void RemoveAllCharacter()
-    { 
-    
+    {
+
     }
 
-    
-      protected override void OnDisconnected()
+
+    protected override void OnDisconnected()
     {
 
     }

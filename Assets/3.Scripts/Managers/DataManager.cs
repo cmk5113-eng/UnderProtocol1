@@ -39,7 +39,6 @@ public class DataManager : ManagerBase
 
 
 
-    event System.Action DisconnectEvent;
         
 	//������Ƽ�� ������������� �Լ�
 	//				int GetLoadCount();
@@ -320,7 +319,6 @@ public class DataManager : ManagerBase
 		});
 		Task result = finder.Task;
 		await result;
-		DisconnectEvent +=() => finder.Release();
 	}
 
 	public async void LoadFileFromAssetBundle<T>(string address) where T : Object
@@ -330,8 +328,6 @@ public class DataManager : ManagerBase
 		await finder.Task; //Start / Run�� �ش��ϴ� �κ�!
 		SaveDataFile(finder.Result);
 		finder.Release();
-
-        DisconnectEvent += () => finder.Release();
         //A-�� ���� ����?
         //An-
         //"~�� �ƴ�"

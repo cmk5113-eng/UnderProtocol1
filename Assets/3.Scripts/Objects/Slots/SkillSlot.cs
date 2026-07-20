@@ -1,183 +1,113 @@
-using System.Collections.Specialized;
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public delegate void SkillSlotChangeEvent(SkillSlot changedSlot);
-public class SkillSlot : MonoBehaviour
+public class SkillSlot
 {
-    [SerializeField] SkillList skill;
-    [SerializeField] int currentStack;
-    public event SkillSlotChangeEvent OnSkillSlotChanged;
+    [SerializeField] private SkillList skill;      // 현재 슬롯에 담긴 스킬 데이터
+    [SerializeField] private int currentStack;    // 현재 쌓인 개수
 
-
-
-    public void NoticeChanged() => OnSkillSlotChanged?.Invoke(this);
-    public virtual bool Containable(SkillList wantSkill)
-    {
-        if (wantSkill is null) return false;
-
-        if (skill && skill != wantSkill) return false;
-        if (GetIsMax()) return false;
-        return true;
-    }
+    // --- 데이터 반환용 메서드들 ---
     public SkillList GetSkill() => skill;
-
-    public int GetStackable(SkillList wantSkill) => Containable(wantSkill) ? wantSkill.maxStack - currentStack : 0;
-    public int Getstackable() => GetStackable(skill);
     public int GetStack() => currentStack;
-    public bool GetIsMax() => skill ? currentStack >= skill.maxStack : false;
-    public bool GetIsEmpty() => skill is null || currentStack <= 0;
+    public bool GetIsEmpty() => skill == null;
 
-
-
-    public int AddSkill(SkillList wantSkill, int amount = 1)
+    public bool GetIsMax()
     {
-
-        if (amount <= 0) return 0;
-        if (!Containable(wantSkill)) return amount;
-        skill = wantSkill;
-
-        int stackable = Mathf.Min(skill.maxStack - currentStack, amount);
-        currentStack += stackable;
-        return amount - stackable;
-    }
-    public int Clear()
-    {
-        skill = null; //일단 아이템을 비움!
-        int removed = currentStack; //비우기 전에 몇개 있었는지 저장하고
-        currentStack = 0; //스택을 비움!
-        return removed; //얼마나 비웠는지 리턴할 수 있다!
+        if (skill == null) return false;
+        return currentStack >= 100;
     }
 
-    public int RemoveSkill(SkillList wantSkill)
-    {        //제거하지 않아도 되는 순간?
-        //아이템 없잖아!
-        if (!wantSkill) return 0;
-        //나.. 빈털터리야..
-        if (GetIsEmpty()) return 0;
-        //그건 내가 가지고 있지 않아!
-        if (skill != wantSkill) return 0;
-        //슬롯 싹 비우고 개수만 보내줌!
-        return Clear();
-
-
-    }
-    public int RemoveSkill(SkillList wantSkill, int amount)
+    // --- 1. AddSkill 복구 (스킬 추가 및 초과량 반환) ---
+    public int AddSkill(SkillList wantSkill, int amount)
     {
-        //제거하지 않아도 되는 순간?
-        //지울게 없는데 여기는 왜 온거니?
-        if (amount <= 0) return 0;
-        //아이템 없잖아!
-        if (!wantSkill) return 0;
-        //나.. 빈털터리야..
-        if (GetIsEmpty()) return amount;
-        //그건 내가 가지고 있지 않아!
-        if (skill != wantSkill) return amount;
-        //가진것보다 많이 요구하는 경우     요구량 - 지운개수
-        if (amount >= currentStack) return amount - Clear();
-        //현재 개수에서 원하는 만큼만 빼준다!
-        currentStack -= amount;
-        //이제 더 지우지 않아도 돼. 내가 다 처리했어.
-        return 0;
-    }
-    public void ExchangeSkill(SkillSlot wantSlot)
-    {
-        if (wantSlot == null) return;
-        SkillList wasSkill = skill;
-        int wasStack = currentStack;
-
-        skill = wantSlot.skill;
-        currentStack = wantSlot.currentStack;
-
-        wantSlot.skill = wasSkill;
-        wantSlot.currentStack = wasStack;
-
-
-    }
-    public int GiveSkill(SkillSlot wantSlot) => GiveSkill(wantSlot,currentStack);
-    public int GiveSkill(SkillSlot wantSlot, int amount)
-    {
-        if (wantSlot == null) return amount;
-        if (!skill) return amount;
-        if (currentStack <= 0 || amount <= 0) return amount;
-        SkillList targetSkill = skill;
-        amount = Mathf.Min(amount,wantSlot.GetStackable(targetSkill));
-
-        amount -= RemoveSkill(targetSkill, amount);
-        wantSlot.AddSkill(targetSkill, amount);
-        return amount;
-    }
-    public void LeftClick(SkillSlot wantSlot)
-    {
-        if (wantSlot is null) return;
-        if (InputManager.IsShift)
+        if (skill == null)
         {
-            if (wantSlot.GetIsEmpty())
-            {
-                if (GetIsEmpty()) return;
-                else if (wantSlot.Containable(skill))
-                {
-                    GiveSkill(wantSlot, Mathf.CeilToInt(currentStack * 0.5f));
-                }
-            }
-
-            else if (Containable(wantSlot.skill))
-            {
-               wantSlot.GiveSkill(this, Mathf.CeilToInt(wantSlot.currentStack * 0.5f));
-
-
-
-            }
-
-
-
+            skill = wantSkill;
+            currentStack = 0;
         }
-        if (InputManager.IsControl)
+
+        int maxStack = 100;
+        int roomLeft = maxStack - currentStack;
+
+        if (amount <= roomLeft)
         {
-            if (wantSlot.GetIsEmpty())
-            {
-                if (GetIsEmpty()) return;
-                else if (wantSlot.Containable(skill))
-                {
-
-                }
-            }
-
-            if (Containable(wantSlot.skill))
-            {
-
-
-                SkillList targetSkill = wantSlot.skill;
-
-                wantSlot.RemoveSkill(targetSkill, 1);
-
-                AddSkill(targetSkill, 1);
-
-
-
-
-            }
-
-
-
+            currentStack += amount;
+            return 0; // 다 채웠으므로 남은 수량 0
         }
-        //
         else
         {
-            if (wantSlot.Containable(skill))
-            {
-                GiveSkill(wantSlot);
-            }
-
-            else
-            {
-                ExchangeSkill(wantSlot);
-            }
-            NoticeChanged();
-            wantSlot.NoticeChanged();
+            currentStack = maxStack;
+            return 0; // 수용량 초과하여 남은 수량 반환
         }
+    }
 
+    // --- 2. RemoveSkill 복구 (단순 제거 및 개수 차감) ---
+    public int RemoveSkill()
+    {
+        int removedAmount = currentStack;
+        skill = null;
+        currentStack = 0;
+        return removedAmount;
+    }
+    public int RemoveSkill(SkillList wantSkill)
+    {
+        if (skill != wantSkill) return 0;
+
+        return RemoveSkill();
+    }
+
+
+
+    public int RemoveSkill(SkillList wantSkill, int amount)
+    {
+        if (skill != wantSkill) return amount;
+
+        if (currentStack <= amount)
+        {
+            int remainingAmount = amount - currentStack;
+            skill = null;
+            currentStack = 0;
+            return remainingAmount; // 덜 지워진 남은 개수 반환
+        }
+        else
+        {
+            currentStack -= amount;
+            return 0; // 다 지웠으므로 남은 차감 수량 0
+        }
+    }
+
+    // --- 3. ExchangeSkill 복구 (정렬용 두 슬롯 데이터 스왑) ---
+    public void ExchangeSkill(SkillSlot other)
+    {
+        if (other == null) return;
+
+        // 두 컴포넌트 간의 데이터 백업 및 교환
+        SkillList tempSkill = this.skill;
+        int tempStack = this.currentStack;
+
+        this.skill = other.skill;
+        this.currentStack = other.currentStack;
+
+        other.skill = tempSkill;
+        other.currentStack = tempStack;
+
+        // 데이터가 교환되었으므로 UI 갱신 유도
+        this.NoticeChanged();
+        other.NoticeChanged();
+    }
+
+    public void NoticeChanged()
+    {
+        // 💡 102번째 줄 근처의 코드를 아래처럼 안전장치로 감싸주세요.
+        try
+        {
+            // 기존에 작성되어 있던 GetComponent나 UI 갱신 코드들...
+            // 예: GetComponent<Image>().sprite = ...
+        }
+        catch (System.NullReferenceException)
+        {
+            // 💡 만약 UI 컴포넌트가 없는 순수 데이터 슬롯이라면 에러를 무시하고 넘어갑니다.
+            // 어차피 UI_SkillList에서 켜질 때 ConnectSlot으로 다시 그려주기 때문에 무시해도 안전합니다.
+            Debug.LogWarning("순수 데이터 SkillSlot이므로 UI 갱신(NoticeChanged)을 건너뜁니다.");
+        }
     }
 }

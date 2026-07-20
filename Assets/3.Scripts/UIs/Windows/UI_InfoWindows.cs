@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UI_InfoWindows : UIBase, IOpenable
@@ -13,7 +14,7 @@ public class UI_InfoWindows : UIBase, IOpenable
    
     public void UpdateUI()
     {
-    GameObject name = PlacementManager.currentCharacter;
+    GameObject name = PlacementManager.selectedCharacter.gameObject;
         if (name != null)
         {
             characterNameText.SetText(name.name);        

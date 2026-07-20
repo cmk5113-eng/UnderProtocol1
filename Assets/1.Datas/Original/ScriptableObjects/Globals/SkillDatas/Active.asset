@@ -12,8 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076655cb7da46241a7a2a8b09418a7b, type: 3}
   m_Name: Active
   m_EditorClassIdentifier: Assembly-CSharp::SkillContainer
+  id: 0
   skillsList:
-  - {fileID: 11400000, guid: 9660ce2e5e18028468f316995fc8981f, type: 2}
+  - {fileID: 11400000, guid: f06df474fb39e9d47a6e9417745b3cd8, type: 2}
   - {fileID: 11400000, guid: b62231a336a70e74d83f8572e3a7f6b2, type: 2}
+  - {fileID: 11400000, guid: f98c99f234fabca4ab1b4b96c97ee03f, type: 2}
   - {fileID: 11400000, guid: 8b20c03f4d9f4cd49abd035f9bd1a28b, type: 2}
+  - {fileID: 11400000, guid: 83a46f444660dc74593bc257f1cf8c07, type: 2}
+  - {fileID: 11400000, guid: 4bdd9da81f4c121478aba2bf8ae17a44, type: 2}
+  - {fileID: 11400000, guid: b5dc7b4457868214b9505da6e958d1fd, type: 2}
+  - {fileID: 11400000, guid: f4f20e8265e125549ba5fb74f07c34c2, type: 2}
+  - {fileID: 11400000, guid: c743b43a1b711714fa5e988ff70b8da8, type: 2}
+  - {fileID: 11400000, guid: a91dc3ea505fd664ea1ccaa4b6eb3a15, type: 2}
+  - {fileID: 11400000, guid: ddc03ba811aa57e48a10fb1db5dfe626, type: 2}
+  - {fileID: 11400000, guid: a0ea0df228455c1469afb7c25837acc4, type: 2}
+  - {fileID: 11400000, guid: 85cf61c431b85ff4ab45e3bcdfcd802e, type: 2}
+  - {fileID: 11400000, guid: dba2fb7b673bc51469cd0ac29d96ab90, type: 2}
+  - {fileID: 11400000, guid: 2a23f05b5845612498c18af6e3f7bafe, type: 2}
+  - {fileID: 11400000, guid: ce438ea1ee87ba14486ec216fa9db4a4, type: 2}
+  - {fileID: 11400000, guid: d20a8992abf79664faaa9889bbd80143, type: 2}
+  - {fileID: 11400000, guid: 39a419ca51711a84684a60bce5e0da10, type: 2}
+  - {fileID: 11400000, guid: 1f3f1daa34818c64bbac3bf04eeafbcf, type: 2}
+  - {fileID: 11400000, guid: 9a406795e37a8164f9dd4a31c787d5ee, type: 2}
+  - {fileID: 11400000, guid: ea90a6239dfdce440a3d71b1d2aed4c8, type: 2}
+  - {fileID: 11400000, guid: d3c4fbeee68335c44a345e9c089859c7, type: 2}
+  - {fileID: 11400000, guid: 8b658c968a15c9f4daa4a4cfa09da10b, type: 2}
+  - {fileID: 11400000, guid: cb9fb01a2df8260408566ed50483476b, type: 2}
+  - {fileID: 11400000, guid: 1f7518cd39ccdf34bbafb271c3e2bb9c, type: 2}
+  - {fileID: 11400000, guid: 2be11b8fa07228348be1c4365381cd17, type: 2}
+  - {fileID: 11400000, guid: a381ce4a26cb7a546a417f9fd72e5de6, type: 2}
+  - {fileID: 11400000, guid: 9660ce2e5e18028468f316995fc8981f, type: 2}
   type: 0
+  icon: {fileID: 0}
+  MaxStack: 0
+  currentStack: 0

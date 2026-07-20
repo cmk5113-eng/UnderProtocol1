@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0503511f2b215f343b708145d110406b, type: 3}
   m_Name: Normal_SMG
   m_EditorClassIdentifier: Assembly-CSharp::NormalSkill
+  id: 0
   skillsList: []
   type: 0
+  icon: {fileID: 21300000, guid: 8d1f3c90a28141f4faabca38cd55445f, type: 3}
+  MaxStack: 0
+  currentStack: 0

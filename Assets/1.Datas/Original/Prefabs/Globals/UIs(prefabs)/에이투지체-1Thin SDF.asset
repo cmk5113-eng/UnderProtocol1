@@ -17,40 +17,40 @@ MonoBehaviour:
     m_FaceIndex: 0
     m_FamilyName: A2Z
     m_StyleName: 1 Thin
-    m_PointSize: 90
+    m_PointSize: 48
     m_Scale: 1
     m_UnitsPerEM: 900
-    m_LineHeight: 108
-    m_AscentLine: 88
-    m_CapLine: 66
-    m_MeanLine: 44
+    m_LineHeight: 57.6
+    m_AscentLine: 46.933334
+    m_CapLine: 35
+    m_MeanLine: 24
     m_Baseline: 0
-    m_DescentLine: -20
-    m_SuperscriptOffset: 88
+    m_DescentLine: -10.666667
+    m_SuperscriptOffset: 46.933334
     m_SuperscriptSize: 0.5
-    m_SubscriptOffset: -20
+    m_SubscriptOffset: -10.666667
     m_SubscriptSize: 0.5
-    m_UnderlineOffset: -13.5
-    m_UnderlineThickness: 3
-    m_StrikethroughOffset: 17.6
-    m_StrikethroughThickness: 3
-    m_TabWidth: 27
+    m_UnderlineOffset: -7.2
+    m_UnderlineThickness: 1.6
+    m_StrikethroughOffset: 9.6
+    m_StrikethroughThickness: 1.6
+    m_TabWidth: 14
   m_Material: {fileID: 1581489257714542265}
   m_SourceFontFileGUID: 514ccfa87564e404794924e09ef80ddf
   m_CreationSettings:
     sourceFontFileName: 
     sourceFontFileGUID: 514ccfa87564e404794924e09ef80ddf
     faceIndex: 0
-    pointSizeSamplingMode: 0
-    pointSize: 90
+    pointSizeSamplingMode: 1
+    pointSize: 48
     padding: 9
     paddingMode: 2
     packingMode: 0
-    atlasWidth: 1024
-    atlasHeight: 1024
-    characterSetSelectionMode: 7
-    characterSequence: 
-    referencedFontAssetGUID: 
+    atlasWidth: 4096
+    atlasHeight: 4096
+    characterSetSelectionMode: 6
+    characterSequence: 0-FF,1100-11FF,3131-318F,AC00-D7AF
+    referencedFontAssetGUID: 23576d4f59ed84b48be35466b919d8c4
     referencedTextAssetGUID: 
     fontStyle: 0
     fontStyleModifier: 0
@@ -68,16 +68,16 @@ MonoBehaviour:
   m_IsMultiAtlasTexturesEnabled: 0
   m_GetFontFeatures: 1
   m_ClearDynamicDataOnBuild: 1
-  m_AtlasWidth: 1024
-  m_AtlasHeight: 1024
+  m_AtlasWidth: 4096
+  m_AtlasHeight: 4096
   m_AtlasPadding: 9
   m_AtlasRenderMode: 4165
   m_UsedGlyphRects: []
   m_FreeGlyphRects:
   - m_X: 0
     m_Y: 0
-    m_Width: 1023
-    m_Height: 1023
+    m_Width: 4095
+    m_Height: 4095
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
     m_LigatureSubstitutionRecords: []
@@ -13692,7 +13692,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC5D0\uC774\uD22C\uC9C0\uCCB4-1Thin Atlas"
+  m_Name: "\uC5D0\uC774\uD22C\uC9C0\uCCB4-1Thin SDF Atlas"
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -13818,8 +13818,8 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _TextureHeight: 1024
-    - _TextureWidth: 1024
+    - _TextureHeight: 4096
+    - _TextureWidth: 4096
     - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0

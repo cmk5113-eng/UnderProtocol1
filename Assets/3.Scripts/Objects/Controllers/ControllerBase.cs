@@ -56,7 +56,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
     public void CommandMoveToDirection(Vector3 diraction)
     {
         if (Character == null) return;
-        if (Character != SelectionManager.selectedCharacter) return;
+        if (Character != PlacementManager.selectedCharacter) return;
         var movement = Character.GetModule<MovementModule>();
         var tileModule = movement as MoveTileModule;
 
@@ -118,7 +118,7 @@ public class ControllerBase : MonoBehaviour, IFunctionable
         if (Character == null) return false;
 
         // ���� ���õ� ĳ������ ���� �Է� ó�� (SelectionManager ����)
-        if (Character == SelectionManager.selectedCharacter)
+        if (Character == PlacementManager.selectedCharacter)
         {
             var tileModule = Character.GetModule<MoveTileModule>();
             if (tileModule != null)

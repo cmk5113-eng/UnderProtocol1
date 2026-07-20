@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using UnityEngine.Tilemaps;
+using static ModeManager;
 
 public class PlacementController : UI_CharacterSelectWindows
 {
     private Camera mainCamera;
     static List<GameObject> _objects = new List<GameObject>();
     int count => _objects.Count;
-    int max = 12 ;
+    int max = 12;
     public TextMeshProUGUI Current;
     public TextMeshProUGUI Max;
     public static GameObject CurrentSkill;
 
-        
+
     private void RefreshUI()
     {
         if (Current != null) Current.text = count.ToString();
@@ -25,8 +26,8 @@ public class PlacementController : UI_CharacterSelectWindows
     void Start()
     {
         mainCamera = Camera.main;
-        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.   tilemap = GameObject.FindGameObjectWithTag("MainTile")?.GetComponent<Tilemap>();
-       
+        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.tilemap = GameObject.FindGameObjectWithTag("MainTile")?.GetComponent<Tilemap>();
+
     }
 
     void Update()
@@ -41,7 +42,7 @@ public class PlacementController : UI_CharacterSelectWindows
             // ���� ��ǥ�� ��ȯ
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0));
             mouseWorldPos.z = 1;
-             
+
             // Ÿ�ϸ� �� ��ǥ�� ��ȯ
             Vector3Int clickCellPos = PlacementManager.Instance.tilemap.WorldToCell(mouseWorldPos);
             Vector3Int origin = PlacementManager.Instance.tilemap.cellBounds.min;
@@ -51,16 +52,16 @@ public class PlacementController : UI_CharacterSelectWindows
             {
                 if (PlacementManager.Instance.tilemap.HasTile(clickCellPos))
                 {
-                    if (PlacementManager.currentCharacter != null)
+                    if (PlacementManager.selectedCharacter != null)
                     {
                         // 1. ���� ���õ� ĳ����(currentCharacter)�� �̸��� ��ġ�ϴ� ������Ʈ�� ������ �˻�
                         // ������ ���� �� (Clone)�� �ٴ� ��Ģ�̶�� currentCharacter.name + "(Clone)"���� ����
-                        
-                        GameObject target = GameObject.Find(PlacementManager.currentCharacter.name + "(Clone)");
+
+                        GameObject target = GameObject.Find(PlacementManager.selectedCharacter.name + "(Clone)");
                         if (count >= max)
                         {
                             UIManager.ClaimPopUp("���", "�ο� �ʰ�", "����");
-                            PlacementManager.currentCharacter = null;
+                            PlacementManager.selectedCharacter = null;
                             return;
                         }
                         // 2. ��ġ�ϴ� �̸��� ������Ʈ�� �̹� ������ ����
@@ -69,23 +70,24 @@ public class PlacementController : UI_CharacterSelectWindows
                             Debug.Log($"[Destroy] ������ �����ϴ� {target.name} ������Ʈ�� �����մϴ�.");
                             ObjectManager.DestroyObject(target);
                             _objects.Remove(target);
-                           
-                  
+
+
                         }
 
-                        
+
 
                         Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
                         StageUIController.Instance.Refresh();
-                        GameObject obj = ObjectManager.CreateObject(PlacementManager.currentCharacter, spawnPos);
+                        GameObject obj = ObjectManager.CreateObject(PlacementManager.selectedCharacter, spawnPos);
                         _objects.Add(obj);
 
                         SelectionManager.ClearSelectedCharacter();// ������ ������Ʈ���� CharacterBase ������Ʈ�� ������ ���� ����
-                        
+
                         if (obj.TryGetComponent<CharacterBase>(out var character))
                         {
                             SelectionManager.SetSelectedCharacter(character);
-                        Debug.Log(SelectionManager.selectedCharacter);
+                            StageUIController.Instance.Refresh();
+                            Debug.Log(SelectionManager.selectCharacter);
 
                         }
                         else
@@ -93,13 +95,10 @@ public class PlacementController : UI_CharacterSelectWindows
                             Debug.LogWarning($"{obj.name}�� CharacterBase ������Ʈ�� �����ϴ�!");
                         }
 
-
-                        Debug.Log($"[Create] Ÿ�� ��ġ {clickCellPos}�� {PlacementManager.currentCharacter}������Ʈ ���� �Ϸ�");
-                        PlacementManager.currentCharacter = null;
+                        PlacementManager.selectedCharacter = null;
                     }
                     else
                     {
-                        Debug.Log("ĳ���͸������ϼ���");
                     }
                 }
             }
@@ -109,15 +108,15 @@ public class PlacementController : UI_CharacterSelectWindows
                 Debug.Log("��������");
             }
         }
-        
+
     }
 
     public static void RemoveAllObject()
-    { 
-  
-            for(int i = _objects.Count - 1; i >= 0; i--)
+    {
+
+        for (int i = _objects.Count - 1; i >= 0; i--)
         {
-           ObjectManager.DestroyObject(_objects[i]);
+            ObjectManager.DestroyObject(_objects[i]);
         }
         _objects.Clear();
     }

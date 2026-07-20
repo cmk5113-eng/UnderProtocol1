@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9238d8e34f2843489b24df6ad07d631, type: 3}
   m_Name: Cryo Lockdown
   m_EditorClassIdentifier: Assembly-CSharp::UltimateSkill
-  icon: {fileID: 21300000, guid: 8a30f7041ca6df44f9f6a6cafc1f798f, type: 3}
-  displayName: 
-  explain: 
-  UltimateName: 
-  UltimateDescription: 
-  UltimateIcon: {fileID: 0}
+  id: 0
+  skillsList: []
+  type: 0
+  icon: {fileID: 137915955, guid: 2b4432f756853774ba732dbe06296c04, type: 3}
+  MaxStack: 0
+  currentStack: 0

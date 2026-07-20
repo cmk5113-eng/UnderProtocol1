@@ -3,23 +3,25 @@ using UnityEngine;
 
 
 
-public enum GameMode
-{ None, Title, Battle, CharacterSelect, _Length
-}
 
 
-    // ... ±âÁ¸ ÄÚµå
+    // ... ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 
 public class ModeManager : ManagerBase
 {
-public static ModeManager Instance { get; private set; }
+    public enum GameMode
+    {
+        None, Title, Battle, CharacterSelect, Movement, UseSkill, EnemyTurn, _Length
+    }
+
+    public static ModeManager Instance { get;  set; }
 private void Awake()
 {
-    // ½Ì±ÛÅæ ÃÊ±âÈ­
+    // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     if (Instance == null) Instance = this;
     else Destroy(gameObject);
 }
-public GameMode CurrentMode { get; private set; }
+public GameMode CurrentMode { get;  set; }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
         return null;

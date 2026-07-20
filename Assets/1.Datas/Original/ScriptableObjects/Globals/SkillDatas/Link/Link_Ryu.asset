@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa1caa2b26e77349857fe4caac02e50, type: 3}
   m_Name: Link_Ryu
   m_EditorClassIdentifier: Assembly-CSharp::LinkSkill
+  id: 0
   skillsList: []
   type: 99
+  icon: {fileID: 1561514028, guid: c9e7632dc48a5cd448c740a995324a73, type: 3}
+  MaxStack: 0
+  currentStack: 0

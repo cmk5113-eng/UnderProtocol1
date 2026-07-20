@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9238d8e34f2843489b24df6ad07d631, type: 3}
   m_Name: Magnumbreak
   m_EditorClassIdentifier: Assembly-CSharp::UltimateSkill
+  id: 0
   skillsList: []
   type: 0
+  icon: {fileID: 2119328821, guid: 287f0478aa007504a86682613078aa21, type: 3}
+  MaxStack: 0
+  currentStack: 0

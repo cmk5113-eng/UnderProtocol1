@@ -1,145 +1,56 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectionManager : ManagerBase
 {
-   // public static SelectionManager Instance { get; private set; }
+    // 싱글톤 인스턴스 (StageUIController가 참조할 수 있도록 유지)
+    public static SelectionManager Instance { get; set; }
 
-   //// public static SkillObject selectedSkill;
-    public static CharacterBase selectedCharacter;
+    // 현재 선택된 캐릭터 (static 변수)
+    public static CharacterBase selectCharacter;
+
+    // 스테이지 상에 배치된 아군 리스트
+    public List<CharacterBase> unitOnStage = new List<CharacterBase>();
+
     protected override IEnumerator OnConnected(GameManager newManager)
     {
-   //     // �̱��� ����
-   //     Instance = this;    
-
-   //     // �Է�/������Ʈ �̺�Ʈ ���� (�ߺ� ���� ���� ���� ���� ����)
-   //     InputManager.OnMouseLeftButton -= HandleMouseLeft;
-   //     InputManager.OnMouseLeftButton += HandleMouseLeft;
-
-   //     InputManager.OnMouseMove -= HandleMouseMove;
-   //     InputManager.OnMouseMove += HandleMouseMove;
-
-   //     InputManager.OnConfirm -= HandleConfirm;
-   //     InputManager.OnConfirm += HandleConfirm;
-
-   //     GameManager.OnUpdateManager -= UpdateEvent;
-   //     GameManager.OnUpdateManager += UpdateEvent;
-
-      yield return null;
+        // 매니저 연결 시 싱글톤 등록
+        Instance = this;
+        yield return null;
     }
 
     protected override void OnDisconnected()
     {
-   //     // �̺�Ʈ ����
-   //     InputManager.OnMouseLeftButton -= HandleMouseLeft;
-   //     InputManager.OnMouseMove -= HandleMouseMove;
-   //     InputManager.OnConfirm -= HandleConfirm;
-   //     GameManager.OnUpdateManager -= UpdateEvent;
-
-   //     if (Instance == this) Instance = null;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
-   // // �ܺο��� SkillObject ���/����
-   //public static void SetSelectedSkill(SkillObject skill)
-   // //{
-   // //    selectedSkill = skill;
-   // //    Debug.Log($"SelectionManager: SetSelectedSkill -> {skill?.data?.name}");
-   // //    // TODO: �ð�ȭ / Ŀ�� ���� ��
-   // //}
-
-   // //public static void ClearSelectedSkill()
-   // //{
-   // //    selectedSkill = null;
-   // //    Debug.Log("SelectionManager: ClearSelectedSkill");
-   // //    // TODO: �ð�ȭ ����
-   // //}
-
+    /// <summary>
+    /// 외부에서 캐릭터를 선택할 때 호출하는 static 함수
+    /// </summary>
     public static void SetSelectedCharacter(CharacterBase character)
     {
-        selectedCharacter = character;
-        Debug.Log($"SelectionManager: SetSelectedCharacter -> {character?.name}");
-        // TODO: �ð�ȭ / Ŀ�� ���� ��
+        if (character == null) return;
+
+        selectCharacter = character;
+        Debug.Log($"[Selection] 현재 선택된 캐릭터가 {character.Name}(으)로 변경되었습니다.");
     }
 
+    /// <summary>
+    /// 선택을 해제할 때 호출하는 static 함수
+    /// </summary>
     public static void ClearSelectedCharacter()
     {
-       selectedCharacter = null;
-        Debug.Log("SelectionManager: ClearSelectedSkill");
-        // TODO: �ð�ȭ ����
+        selectCharacter = null;
+        Debug.Log("[Selection] 캐릭터 선택이 해제되었습니다.");
     }
-
-
-   // // ����: worldPosition(Vector3)���� �ٷ� ����
-   // public void ProvideTarget(Vector3 worldPosition, GameObject target = null)
-   // {
-   //     if (selectedSkill == null) return;
-   //     selectedSkill.ReceiveTarget(worldPosition, target);
-   // }
-
-   // // �߰�: screenPosition(Vector2)�� �޾� ī�޶�� ��ȯ �� ���� (ȣ���ڰ� Vector2�� ������ ���� �� �����ϰ� ���)
-   // public void ProvideTarget(Vector2 screenPosition, GameObject target = null)
-   // {
-   //     Camera cam = GameManager.Instance?.Camera?.MainCamera ?? Camera.main;
-   //     Vector3 world = Vector3.zero;
-   //     if (cam != null)
-   //     {
-   //         // ScreenToWorldPoint�� z�� ī�޶� ��� �Ÿ��� ����ϹǷ� 2D�� �� z�� 0���� ����
-   //         world = cam.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, cam.nearClipPlane));
-   //         if (GameManager.is2D)
-   //             world.z = 0f;
-   //     }
-
-   //     ProvideTarget(world, target);
-   // }
-
-   // // Ȯ�� �� ��ų ����
-   // public void ConfirmSelection()
-   // {
-   //     if (selectedSkill == null) return;
-   //     selectedSkill.Execute();
-   // }
-
-   // // ----- �Է� �̺�Ʈ �ڵ鷯 -----
-   // // MouseButtonEvent(bool value, Vector2 screenPosition, Vector3 worldPosition)
-   // void HandleMouseLeft(bool pressed, Vector2 screenPosition, Vector3 worldPosition)
-   // {
-   //     if (!pressed) return; // ������ ���� ó��
-   //     if (selectedSkill == null) return;
-
-   //     // Ŀ�� �Ʒ� ������Ʈ�� Ȯ���� ����
-   //     GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
-
-   //     // �����ϰ� �� �� �ϳ��� ����: worldPosition�� ��ȿ�ϸ� �װ�, �ƴ϶�� screenPosition �����ε� ���
-   //     if (worldPosition != Vector3.zero)
-   //         ProvideTarget(worldPosition, under);
-   //     else
-   //         ProvideTarget(screenPosition, under);
-   // }
-
-   // // MouseMoveEvent(Vector2 screenPosition, Vector3 worldPosition)
-   // void HandleMouseMove(Vector2 screenPosition, Vector3 worldPosition)
-   // {
-   //     if (selectedSkill == null) return;
-
-   //     GameObject under = GameManager.Instance?.Input?.GetGameObjectUnderCursor();
-
-   //     if (worldPosition != Vector3.zero)
-   //         selectedSkill.ReceiveTarget(worldPosition, under);
-   //     else
-   //         // ��� �̸���������� ȭ����ǥ ��� ��ȯ ���
-   //         ProvideTarget(screenPosition, under);
-   // }
-
-   // // ButtonEvent(bool value)
-   // void HandleConfirm(bool pressed)
-   // {
-   //     if (!pressed) return;
-   //     ConfirmSelection();
-   // }
-
-   // // ������ ��� ������Ʈ �ʿ� �� ���
-   // void UpdateEvent(float deltaTime)
-   // {
-   //     // ����� �� ����. ���� �� ���� ǥ��/Ÿ�̸� �� �ʿ��ϸ� �߰�.
-   // }
+    
+    // 기존의 명칭과 호환성을 위한 역호환성 함수
+    public void DeselectCharacter()
+    {
+        ClearSelectedCharacter();
+    }
 }

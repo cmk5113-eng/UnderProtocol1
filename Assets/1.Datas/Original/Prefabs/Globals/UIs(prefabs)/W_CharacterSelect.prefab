@@ -284,6 +284,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7745994895835905056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +916,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2132147508986679328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,6 +1283,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4709326233980874223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,6 +1508,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 96752906353372427, guid: 838949798f5eca0439231513b4cbf7ca, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1707,7 +1755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
-  currentObject: {fileID: 0}
   Current: {fileID: 0}
   Max: {fileID: 0}
 --- !u!1 &4118306428786985112
@@ -2718,6 +2765,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 5166024030514932402, guid: f97352ce423f31d4b9897810dcd3f47c, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3785,7 +3844,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
-  currentObject: {fileID: 0}
   Current: {fileID: 5823137273460450295}
   Max: {fileID: 8040706186121489056}
 --- !u!1 &7965426696372697050
@@ -4332,6 +4390,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 4781729928273018580, guid: 1eaaaa6cd8cd92a489edfe31499e093f, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8814553718254639095}
+        m_TargetAssemblyTypeName: UI_CharacterSelectWindows, Assembly-CSharp
+        m_MethodName: ChangeModeToCharacterSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

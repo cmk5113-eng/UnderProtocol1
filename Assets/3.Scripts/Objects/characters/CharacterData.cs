@@ -18,13 +18,14 @@ public class CharacterData : ScriptableObject
 
     // ���������� ������ ���
     public ActiveSkill[] active = new ActiveSkill[2];
-    public PassiveSkill[] pasive = new PassiveSkill[4];
+    public PassiveSkill[] passive = new PassiveSkill[4];
     public PassiveSkill staticpassive;
     public NormalSkill normalSkill;
     public LinkSkill linkSkill;
     public UltimateSkill ultimateSkill;
 
-    public int ActionPoint;
-    public int MovePoint;
-    public int SkillPoint;
+    public int actionPoint;
+    public int steminaPoint;
+    public int moveRange;
+    public int skillPoint;
 }

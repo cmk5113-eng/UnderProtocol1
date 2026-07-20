@@ -7,7 +7,6 @@ public class UI_LoadingScreen : UI_ScreenBase
     
     //get;set;�� �ִ� ��쿡�� �׳� ����ó�� �� �� �־��!
     //set�� protected�� ����ó�� Ȱ��!
-    public bool IsOpen => gameObject.activeSelf;
 
     public int Current { get; protected set; }
     public int Max { get; protected set; }
@@ -17,8 +16,6 @@ public class UI_LoadingScreen : UI_ScreenBase
     public int AddCurrent(int value) => Set(Current + value, Max);
     public int AddMax(int value) => Set(Current, Max + value);
 
-    public void Close() => gameObject.SetActive(false);
-    public void Open() => gameObject.SetActive(true);
 
 
     //�Լ��� �Լ�����
@@ -57,5 +54,4 @@ public class UI_LoadingScreen : UI_ScreenBase
         return Set(newCurrent);
     }
 
-    public void Toggle() => gameObject.SetActive(!IsOpen);
 }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7206490910615380776}
   - component: {fileID: 2717451052092060193}
   - component: {fileID: 9101029735442604113}
+  - component: {fileID: -8662276324943987874}
   m_Layer: 0
   m_Name: Beak
   m_TagString: Untagged
@@ -201,6 +202,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: -8662276324943987874}
+          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
+          m_MethodName: OnMovementModeChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: -8662276324943987874}
+          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
+          m_MethodName: HandleMouseClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &5700376708746585375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
+  selectedCharacter: {fileID: 0}
   tilemap: {fileID: 0}
   mobility: 3
   MoveType: 0
@@ -247,10 +273,7 @@ MonoBehaviour:
   actionPoint: 0
   steminaPoint: 0
   mobility: 0
-  skill1: {fileID: 11400000, guid: 76b92ad278b820142be835e0466a8daa, type: 2}
-  skill2: {fileID: 11400000, guid: 76b92ad278b820142be835e0466a8daa, type: 2}
-  skill3: {fileID: 11400000, guid: 76b92ad278b820142be835e0466a8daa, type: 2}
-  skill4: {fileID: 11400000, guid: b408327330dfcb54d98293c2a0134d7a, type: 2}
+  characterData: {fileID: 0}
 --- !u!114 &9101029735442604113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +286,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e16de51f7cc37145a371e42c6909d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &-8662276324943987874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830434557279754263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d1e062b7f359a4baa259bf96872da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementModule
+  selectedCharacter: {fileID: 0}
 --- !u!1 &4460392893690539194
 GameObject:
   m_ObjectHideFlags: 0

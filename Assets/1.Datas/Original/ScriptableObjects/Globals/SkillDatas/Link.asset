@@ -12,7 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2076655cb7da46241a7a2a8b09418a7b, type: 3}
   m_Name: Link
   m_EditorClassIdentifier: Assembly-CSharp::SkillContainer
+  id: 0
   skillsList:
-  - {fileID: 11400000, guid: a34edffee3ee404419659bf76d8b42f5, type: 2}
-  - {fileID: 11400000, guid: 76b92ad278b820142be835e0466a8daa, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: b586247cea548224d8532ec734f8b1ad, type: 2}
+  - {fileID: 11400000, guid: c1b884ffc6d101b4c9d71c41abfa5306, type: 2}
+  - {fileID: 11400000, guid: 8c515db3cfb06b54aad9ce8c65ac7a7f, type: 2}
+  - {fileID: 11400000, guid: d6c49186d3543ce4ab7334ab4b3aa0ad, type: 2}
+  - {fileID: 11400000, guid: b61a6309d775ab446b2f21480417c4d5, type: 2}
+  - {fileID: 11400000, guid: 39412f9089d789e42942ae2c3fc1b1e6, type: 2}
+  - {fileID: 11400000, guid: 0aea5ef13bf971240ae2193f728bd810, type: 2}
+  - {fileID: 11400000, guid: 9b822d1c81dfa4a4aa4af2dbdc613fd2, type: 2}
+  - {fileID: 11400000, guid: 76d385cab2ca13443b481894e7f717ba, type: 2}
+  - {fileID: 11400000, guid: c6702b1f6a96f544cbca04bc9fe40bbe, type: 2}
+  - {fileID: 11400000, guid: 0bec7520eeefdc349a19a91eba46039b, type: 2}
+  - {fileID: 11400000, guid: 9216de3a68f92704a93c1d5426e56e4c, type: 2}
   type: 0
+  icon: {fileID: 0}
+  MaxStack: 0
+  currentStack: 0

@@ -7,19 +7,19 @@ public enum MoveType { PlayerMove, EnemyMove, HealSkillMove, AttackSkillMove, Ou
 
 public class MoveTileModule : MovementModule
 {
-    // ±âÁ¸ public tilemap À¯Áö (Inspector¿¡ ¿¬°áµÇ¾î ÀÖÀ¸¸é ¿ì¼± »ç¿ë)
+    // ï¿½ï¿½ï¿½ï¿½ public tilemap ï¿½ï¿½ï¿½ï¿½ (Inspectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼± ï¿½ï¿½ï¿½)
     public Tilemap tilemap;
     public int mobility = 3;    
     public MoveType MoveType;
 
-    // ÇöÀç À§Ä¡
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     private Queue<Vector3Int> pathQueue = new Queue<Vector3Int>();
     private Vector3Int currentTargetTile;
 
-    // ¾ÈÀüÇÑ Tilemap ÂüÁ¶ ÇïÆÛ (Inspector¿¡ ¾øÀ¸¸é PlacementManager¿¡¼­ °¡Á®¿È)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Tilemap ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Inspectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PlacementManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     Tilemap TM => tilemap != null ? tilemap : (PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null);
 
-    // CurrentTile transform.positionÀÇ x,y¸¦ »ç¿ëÇÏµÇ Å¸ÀÏ¸ÊÀÇ Z(Æò¸é)¸¦ ¸ÂÃç¼­ WorldToCell È£Ãâ
+    // CurrentTile transform.positionï¿½ï¿½ x,yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ïµï¿½ Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ Z(ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ç¼­ WorldToCell È£ï¿½ï¿½
     public Vector3Int CurrentTile
     {
         get
@@ -27,24 +27,24 @@ public class MoveTileModule : MovementModule
             var tm = TM;
             if (tm == null) return Vector3Int.zero;
 
-            // [ÇÙ½É º¸Á¤] 
-            // 1. Ä³¸¯ÅÍÀÇ ÇöÀç À§Ä¡¸¦ °¡Á®¿É´Ï´Ù.
+            // [ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½] 
+            // 1. Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
             Vector3 pos = transform.position;
 
-            // 2. Å¸ÀÏ¸ÊÀÇ ZÆò¸é°ú °­Á¦·Î ¸ÂÃä´Ï´Ù. (°è»ê ¿ÀÂ÷ ¹æÁö)
+            // 2. Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ Zï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
             pos.z = tm.transform.position.z;
 
-            // 3. WorldToCell·Î º¯È¯ÇÕ´Ï´Ù.
+            // 3. WorldToCellï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½.
             Vector3Int cell = tm.WorldToCell(pos);
 
-            // [µð¹ö±×] ÇöÀç º¯È¯µÈ ÁÂÇ¥°¡ ½ÇÁ¦¿Í ¸Â´ÂÁö È®ÀÎ
+            // [ï¿½ï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             // Debug.Log($"[Pos Check] World: {transform.position} -> Cell: {cell}");
 
             return cell;
         }
     }
 
-    // ¿ÜºÎ¿¡¼­ È£Ãâ ÀÌµ¿ °¡´ÉÇÑ Å¸ÀÏµé
+    // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ïµï¿½
     public List<Vector3Int> GetMovableTiles()
     {
         List<Vector3Int> result = new List<Vector3Int>();
@@ -91,36 +91,36 @@ public class MoveTileModule : MovementModule
             pathQueue.Enqueue(tile);
     }
 
-    // »õ ¸Þ¼­µå ÀÔ·Â(Vector2)À¸·Î ÇÑ Ä­ ÀÌµ¿ ½Ãµµ
-    // ÀÔ·ÂÀÇ ÁÖÃà(x ¶Ç´Â y)À¸·Î »ó/ÇÏ/ÁÂ/¿ì °áÁ¤. ÀÌµ¿ ÁßÀÌ¸é ¹«½Ã(ÇÑ ÀÔ·Â´ç ÇÑ Å¸ÀÏ)
+    // ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½(Vector2)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä­ ï¿½Ìµï¿½ ï¿½Ãµï¿½
+    // ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(x ï¿½Ç´ï¿½ y)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½Ô·Â´ï¿½ ï¿½ï¿½ Å¸ï¿½ï¿½)
     public bool TryStepByInput(Vector2 input)
     {
        
-        // 1. ÀÌµ¿ ÁßÀÌ¸é ÀÔ·ÂÀ» ¾Æ¿¹ ¹ÞÁö ¾ÊÀ½ (¿¬¼Ó ÀÌµ¿ ¹æÁö)
+        // 1. ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (targetDestination != null || pathQueue.Count > 0) return false;
 
         const float deadZone = 0.1f;
         if (input.sqrMagnitude < deadZone * deadZone) return false;
 
-        // 2. ¹æÇâ¸¸ ÃßÃâ (ÀÔ·ÂÀÇ ¼¼±â´Â ¹«½Ã)
+        // 2. ï¿½ï¿½ï¿½â¸¸ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         Vector3Int step = Vector3Int.zero;
         if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             step = input.x > 0 ? Vector3Int.right : Vector3Int.left;
         else
             step = input.y > 0 ? Vector3Int.up : Vector3Int.down;
 
-        // 3. ¸ñÀûÁö Å¸ÀÏ °è»ê
+        // 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½
         Vector3Int nextTile = CurrentTile + step;
 
-        // 4. °¥ ¼ö ÀÖ´Â Å¸ÀÏÀÎÁö °Ë»ç
+        // 4. ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
         if (!CanEnterTile(nextTile)) return false;
 
-        // 5. Å¸ÀÏ¸Ê¿¡¼­ ¼¿ Áß½É ÁÂÇ¥ °¡Á®¿Í ¸ñÀûÁö ¼³Á¤
+        // 5. Å¸ï¿½Ï¸Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         var tm = TM;
         if (tm == null) return false;
 
         Vector3 worldTargetPos = tm.GetCellCenterWorld(nextTile);
-        // Áß¿ä Ä³¸¯ÅÍ¿Í °°Àº Z Æò¸éÀ¸·Î ¸ÂÃçÁà¾ß ¼öÁ÷(¿¹ Y¹æÇâ) ÀÌµ¿ÀÌ Á¤È®ÇØÁü
+        // ï¿½ß¿ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Z ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ Yï¿½ï¿½ï¿½ï¿½) ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ï¿½ï¿½
         worldTargetPos.z = transform.position.z;
 
         MoveToDestination(worldTargetPos, 0.01f);
@@ -129,20 +129,19 @@ public class MoveTileModule : MovementModule
     }
 
     // ------------------------
-    // ÇÙ½É Movement override
+    // ï¿½Ù½ï¿½ Movement override
     // ------------------------
-    private bool isSnapping = false; // Àç±Í ¹æÁö ÇÃ·¡±×
+    //private bool isSnapping = false; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 
     public override void PhysicsUpdate(float deltaTime)
     {
-
         var tm = TM;
         if (tm == null) return;
 
-        // ÇöÀç ÀÌµ¿ Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ Ã³ï¿½ï¿½
         base.PhysicsUpdate(deltaTime);
 
-        // µµÂø Ã¼Å©
+        // ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
         if (targetDestination != null)
         {
             float dist = Vector3.Distance(transform.position, targetDestination.Value);
@@ -153,7 +152,7 @@ public class MoveTileModule : MovementModule
             }
         }
 
-        // ´ÙÀ½ Å¸ÀÏ ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ìµï¿½
         if (targetDestination == null && pathQueue.Count > 0)
         {
             currentTargetTile = pathQueue.Dequeue();
@@ -163,9 +162,10 @@ public class MoveTileModule : MovementModule
 
             MoveToDestination(worldPos, 0.01f);
         }
+        
     }
 
-    // ¼¿ Áß½É ÁÂÇ¥ Á¦°ø (¿ÜºÎ¿¡¼­ »ç¿ë °¡´É)
+    // ï¿½ï¿½ ï¿½ß½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ (ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public Vector3 GetCellCenterWorld(Vector3Int cell)
     {
         var tm = TM;
@@ -176,16 +176,15 @@ public class MoveTileModule : MovementModule
     }
 
     // ------------------------
-    // ¸ÇÇØÆ° °æ·Î (°£´Ü ¹öÀü)
+    // ï¿½ï¿½ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     // ------------------------
 
     private List<Vector3Int> FindPath(Vector3Int start, Vector3Int end)
     {
-        Debug.Log($"[FindPath] ½ÃÀÛ: {start} -> ¸ñÀûÁö: {end}");
         List<Vector3Int> path = new List<Vector3Int>();
         Vector3Int current = start;
 
-        // ¹«ÇÑ ·çÇÁ ¹æÁö¸¦ À§ÇÑ ¾ÈÀü ÀåÄ¡ (ÃÖ´ë 100Ä­)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ (ï¿½Ö´ï¿½ 100Ä­)
         int safetyBreak = 0;
 
         while (current != end && safetyBreak < 100)
@@ -206,7 +205,7 @@ public class MoveTileModule : MovementModule
             Vector3Int next = current + step;
             bool canEnter = CanEnterTile(next);
 
-            // »ó¼¼ ·Î±×: ÇöÀç ¾î´À Ä­¿¡¼­ ¾î´À ¹æÇâÀ¸·Î °¡·Á´ÂÁö, ±×¸®°í ±×°Ô °¡´ÉÇÑÁö Ãâ·Â
+            // ï¿½ï¿½ ï¿½Î±ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
            
             if (!canEnter)
             {
@@ -230,20 +229,20 @@ public class MoveTileModule : MovementModule
         };
     }
 
-    // publicÀ¸·Î ³ëÃâ: PlacementManagerÀÇ tilemapÀ» »ç¿ëÇÏ¿© ÆÇ´Ü
+    // publicï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: PlacementManagerï¿½ï¿½ tilemapï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ç´ï¿½
     public bool CanEnterTile(Vector3Int tile)
     {
         var tm = TM;
         if (tm == null) return false;
 
-        // Å¸ÀÏ µ¥ÀÌÅÍ Á¸Àç È®ÀÎ
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         if (!tm.HasTile(tile))
         {
-            Debug.LogWarning($"[CanEnter Fail] {tile} ÁÂÇ¥¿¡ Å¸ÀÏ ¿¡¼ÂÀÌ ¾ø½À´Ï´Ù! (HasTile == false)");
+            Debug.LogWarning($"[CanEnter Fail] {tile} ï¿½ï¿½Ç¥ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½! (HasTile == false)");
             return false;
         }
 
-        // MoveTypeº° ±ÔÄ¢ È®ÀÎ
+        // MoveTypeï¿½ï¿½ ï¿½ï¿½Ä¢ È®ï¿½ï¿½
         switch (MoveType)
         {
             case MoveType.PlayerMove:
@@ -251,34 +250,34 @@ public class MoveTileModule : MovementModule
                 bool hasChar = HasCharacter(tile);
                 if (!isOutline || hasChar)
                 {
-                    Debug.LogWarning($"[CanEnter Fail] {tile} ÆÇÁ¤°á°ú -> OutlineÀÎ°¡?: {isOutline}, Ä³¸¯ÅÍÀÖ´Â°¡?: {hasChar}");
+                    Debug.LogWarning($"[CanEnter Fail] {tile} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> Outlineï¿½Î°ï¿½?: {isOutline}, Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Â°ï¿½?: {hasChar}");
                     return false;
                 }
                 break;
-                // ´Ù¸¥ ÄÉÀÌ½ºµéµµ µ¿ÀÏÇÏ°Ô ·Î±× Ãß°¡...
+                // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½éµµ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Î±ï¿½ ï¿½ß°ï¿½...
         }
 
         return true;
     }
     // ------------------------
-    // Å¸ÀÏ / Á¡À¯ Ã¼Å© (ÀÓ½Ã)
+    // Å¸ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ Ã¼Å© (ï¿½Ó½ï¿½)
     // ------------------------
 
     bool IsField(Vector3Int tile)
     {
-        // TODO: Tilemap Á¾·ù·Î ±¸ºÐÇÏ°Å³ª ÀÌ¸§À¸·Î ÆÇº°
+        // TODO: Tilemap ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½
         return true;
     }
 
     bool IsOutline(Vector3Int tile)
     {
-        // TODO: ¿Ü°û Å¸ÀÏ ÆÇº° ·ÎÁ÷
+        // TODO: ï¿½Ü°ï¿½ Å¸ï¿½ï¿½ ï¿½Çºï¿½ ï¿½ï¿½ï¿½ï¿½
         return true;
     }
 
     bool HasCharacter(Vector3Int tile)
     {
-        // TODO: Dictionary<Vector3Int, CharacterBase>·Î °ü¸® ÃßÃµ
+        // TODO: Dictionary<Vector3Int, CharacterBase>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµ
         return false;
     }
 }

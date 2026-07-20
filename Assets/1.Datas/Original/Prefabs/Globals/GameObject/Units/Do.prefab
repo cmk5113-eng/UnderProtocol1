@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 3653964145069438169}
   - component: {fileID: 4724212099649384476}
   - component: {fileID: 8246149433423237587}
+  - component: {fileID: 904525135065699024}
   m_Layer: 0
   m_Name: Do
   m_TagString: Untagged
@@ -639,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
+  selectedCharacter: {fileID: 0}
   tilemap: {fileID: 0}
   mobility: 3
   MoveType: 0
@@ -660,10 +662,7 @@ MonoBehaviour:
   actionPoint: 0
   steminaPoint: 0
   mobility: 0
-  skill1: {fileID: 11400000, guid: caf57c0910c3d24429cdde211e50ca49, type: 2}
-  skill2: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
-  skill3: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
-  skill4: {fileID: 11400000, guid: b408327330dfcb54d98293c2a0134d7a, type: 2}
+  characterData: {fileID: 0}
 --- !u!114 &8246149433423237587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,3 +675,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e16de51f7cc37145a371e42c6909d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &904525135065699024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269961709583128395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d1e062b7f359a4baa259bf96872da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementModule
+  selectedCharacter: {fileID: 0}

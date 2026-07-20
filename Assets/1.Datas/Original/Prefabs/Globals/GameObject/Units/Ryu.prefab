@@ -287,10 +287,10 @@ GameObject:
   - component: {fileID: 7748573393926761256}
   - component: {fileID: 4532672034991413742}
   - component: {fileID: 5301097788263657259}
-  - component: {fileID: 1817786753847796811}
   - component: {fileID: 3391898921900259815}
   - component: {fileID: 8650805735498712781}
   - component: {fileID: 4174325326683050527}
+  - component: {fileID: -7918911724103740999}
   m_Layer: 0
   m_Name: Ryu
   m_TagString: Untagged
@@ -405,7 +405,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -465,9 +465,21 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1817786753847796811}
-          m_TargetAssemblyTypeName: UI_Button_ToggleUI, Assembly-CSharp
-          m_MethodName: Toggle
+        - m_Target: {fileID: -7918911724103740999}
+          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
+          m_MethodName: OnMovementModeChange
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8650805735498712781}
+            m_ObjectArgumentAssemblyTypeName: CharacterBase, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: -7918911724103740999}
+          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
+          m_MethodName: HandleMouseClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -477,19 +489,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1817786753847796811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4781729928273018580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 9
 --- !u!114 &3391898921900259815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
+  selectedCharacter: {fileID: 0}
   tilemap: {fileID: 0}
   mobility: 3
   MoveType: 0
@@ -517,16 +517,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
+  spriteRenderer: {fileID: 0}
   portrait: {fileID: -668775213, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   selectable: 1
   Name: Ryu
-  actionPoint: 0
-  steminaPoint: 0
-  mobility: 0
-  skill1: {fileID: 11400000, guid: caf57c0910c3d24429cdde211e50ca49, type: 2}
-  skill2: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
-  skill3: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
-  skill4: {fileID: 11400000, guid: 9fc87e5aa8697264a9010ad2c065e126, type: 2}
+  actionPoint: 1
+  steminaPoint: 3
+  mobility: 3
+  isEnemy: 0
+  characterData: {fileID: 0}
 --- !u!114 &4174325326683050527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +538,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e16de51f7cc37145a371e42c6909d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &-7918911724103740999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4781729928273018580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d1e062b7f359a4baa259bf96872da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementModule
+  selectedCharacter: {fileID: 0}
 --- !u!1 &5488223069285330119
 GameObject:
   m_ObjectHideFlags: 0
