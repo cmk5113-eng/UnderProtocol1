@@ -73,7 +73,7 @@ public class UseSkill : MonoBehaviour
         lastMouseCell = new Vector3Int(-999, -999, -999);
 
         // 1. 시전자의 위치를 기준으로 고정 '사정거리' 하이라이트 생성
-        Vector3Int casterCell = tilemap.WorldToCell(PlacementManager.selectedCharacter.transform.position);
+        Vector3Int casterCell = tilemap.WorldToCell(SelectionManager.selectedPrefab.transform.position);
         HighlightRange(casterCell, currentSkill.range, castRangeColor, castRangeTiles);
       
     }
@@ -86,7 +86,7 @@ public class UseSkill : MonoBehaviour
         // 마우스 위치의 월드 좌표를 셀 좌표로 변환
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int currentMouseCell = tilemap.WorldToCell(mouseWorldPos);
-        currentMouseCell.z = tilemap.WorldToCell(PlacementManager.selectedCharacter.transform.position).z;
+        currentMouseCell.z = 0;
 
         // 마우스가 이전 프레임과 '다른 타일'로 이동했을 때만 갱신 (매 프레임 연산 방지 최적화)
         if (currentMouseCell != lastMouseCell)
@@ -115,7 +115,7 @@ public class UseSkill : MonoBehaviour
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int clickedCell = tilemap.WorldToCell(mouseWorldPos);
-        clickedCell.z = tilemap.WorldToCell(PlacementManager.selectedCharacter.transform.position).z;
+        clickedCell.z = tilemap.WorldToCell(SelectionManager.selectedPrefab.transform.position).z;
 
         // 사정거리 외곽 클릭 시 차단 (선택사항 유지)
         if (!castRangeTiles.Contains(clickedCell))
@@ -242,7 +242,7 @@ public class UseSkill : MonoBehaviour
         Debug.Log("UI_StartSkill1() 호출됨.");
 
         // 💡 [수정] SelectionManager에 저장된 진짜 캐릭터를 시전자로 가져옵니다!
-        CharacterBase currentCaster = SelectionManager.selectCharacter;
+        CharacterBase currentCaster = SelectionManager.characterBase;
 
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
@@ -263,7 +263,7 @@ public class UseSkill : MonoBehaviour
     public void UI_StartSkill2()
     {
         // 💡 동일하게 적용
-        CharacterBase currentCaster = SelectionManager.selectCharacter;
+        CharacterBase currentCaster = SelectionManager.characterBase;
 
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;

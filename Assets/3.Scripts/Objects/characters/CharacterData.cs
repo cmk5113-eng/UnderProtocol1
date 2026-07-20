@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum JobType { Warrior, Archer, Mage, Builder }
+public enum JobType { Buster, Supporter, Sniper, Breaker}
 public enum ElementType { None, Fire, Water, Electric, Earth }
 
 

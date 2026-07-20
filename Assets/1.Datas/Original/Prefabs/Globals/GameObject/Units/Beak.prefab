@@ -190,9 +190,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5700376708746585375}
-          m_TargetAssemblyTypeName: UI_Button_ToggleUI, Assembly-CSharp
-          m_MethodName: Toggle
+        - m_Target: {fileID: -8662276324943987874}
+          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
+          m_MethodName: HandleMouseClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -205,22 +205,10 @@ MonoBehaviour:
         - m_Target: {fileID: -8662276324943987874}
           m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
           m_MethodName: OnMovementModeChange
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: -8662276324943987874}
-          m_TargetAssemblyTypeName: MovementModule, Assembly-CSharp
-          m_MethodName: HandleMouseClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2717451052092060193}
+            m_ObjectArgumentAssemblyTypeName: CharacterBase, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -251,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
-  selectedCharacter: {fileID: 0}
+  id: 0
   tilemap: {fileID: 0}
   mobility: 3
   MoveType: 0
@@ -267,12 +255,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
+  spriteRenderer: {fileID: 0}
   portrait: {fileID: 1972893638, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   selectable: 1
   Name: Beak
-  actionPoint: 0
-  steminaPoint: 0
-  mobility: 0
+  actionPoint: 1
+  steminaPoint: 3
+  mobility: 3
+  isEnemy: 0
   characterData: {fileID: 0}
 --- !u!114 &9101029735442604113
 MonoBehaviour:
@@ -298,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d1e062b7f359a4baa259bf96872da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementModule
-  selectedCharacter: {fileID: 0}
+  id: 0
 --- !u!1 &4460392893690539194
 GameObject:
   m_ObjectHideFlags: 0

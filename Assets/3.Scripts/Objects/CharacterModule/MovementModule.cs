@@ -4,12 +4,21 @@ using UnityEngine.Tilemaps;
 
 public class MovementModule : CharacterModule, IRunnable
 {
+    public enum ID { Beak, Choi, Do, Ha, Jo, Kang, Lee, Min, Namgung, Pyo, Ryu, Seo };
+    [SerializeField] private ID id; // 인스펙터에서 각 캐릭터에 맞게 지정
+
     protected Vector3? targetDestination = null;
     protected Vector3? targetDirection = null;
     protected float targetTolerance;
     public bool IsMoving => targetDestination != null || targetDirection != null;
 
     public sealed override System.Type RegistrationType => typeof(MovementModule);
+
+    [Header("현재 선택된 캐릭터 정보")]
+    [SerializeField] private static CharacterBase selectedCharacter;
+    private static MovementModule selectedMovement;
+    private static int currentMoveRange;
+    private static bool isMoveInputActive = false;
 
     public override void OnRegistration(CharacterBase newOwner)
     {
@@ -80,14 +89,11 @@ public class MovementModule : CharacterModule, IRunnable
         Vector3 currentMoveDirection = (targetDestination.Value - transform.position);
         float distance = currentMoveDirection.magnitude;
 
-        // 💡 [수정] 타일 이동 모듈인 경우 허용 오차를 대폭 늘려줍니다 (0.05f -> 0.5f)
-        // 보통 2D 타일 크기가 1x1이므로, 0.5f 이내로 들어오면 도착한 것으로 판정하는 것이 안전합니다.
         float defaultTolerance = (this is MoveTileModule) ? 0.5f : 0.05f;
         float effectiveTolerance = Mathf.Max(targetTolerance, defaultTolerance);
 
         if (distance <= effectiveTolerance)
         {
-            // 💡 오차가 나더라도 최종 위치는 정확히 목적지 타일 좌표로 강제 보정합니다.
             transform.position = targetDestination.Value;
             targetDestination = null;
 
@@ -106,7 +112,6 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void MoveToDestination(Vector3 destination, float tolerance)
     {
-        // 💡 [추가] 움직임 실행 전 steminaPoint 검사
         if (Owner != null && Owner.steminaPoint <= 0)
         {
             Debug.LogWarning($"[Movement] {Owner.Name}의 스태미나가 부족하여 이동할 수 없습니다. (Stamina: {Owner.steminaPoint})");
@@ -120,7 +125,6 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void MoveToDirection(Vector3 direction)
     {
-        // 💡 [추가] 움직임 실행 전 steminaPoint 검사
         if (Owner != null && Owner.steminaPoint <= 0)
         {
             Debug.LogWarning($"[Movement] {Owner.Name}의 스태미나가 부족하여 이동할 수 없습니다. (Stamina: {Owner.steminaPoint})");
@@ -143,19 +147,9 @@ public class MovementModule : CharacterModule, IRunnable
         InputManager.OnMouseLeftButton -= OnLeftClickInput;
     }
 
-
-    [Header("현재 선택된 캐릭터 정보")]
-    [SerializeField] private CharacterBase selectedCharacter;
-    private MovementModule selectedMovement;
-    private int currentMoveRange;
-
-    private bool isMoveInputActive = false;
-
-
+    // 💡 [수정] 매개변수 없는 깔끔한 마우스 클릭 처리 핸들러
     public void HandleMouseClick()
     {
-        Debug.Log($"현재케릭터 : {SelectionManager.selectCharacter}");
-
         if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.Movement)
         {
             return;
@@ -168,22 +162,46 @@ public class MovementModule : CharacterModule, IRunnable
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
         if (hit.collider != null)
         {
-            CharacterBase clickedCharacter = hit.collider.GetComponentInParent<CharacterBase>();
-            if (clickedCharacter != null)
+            // 💡 [핵심] 씬의 모든 오브젝트가 동시 반응하지 않고, "마우스에 부딪힌 나 자신(gameObject)"일 때만 실행하도록 검사합니다!
+            if (hit.collider.gameObject == this.gameObject)
             {
-                SelectCharacter(clickedCharacter);
+                // Enum id를 int로 바로 형변환 (switch문 불필요)
+                int index = (int)id;
+
+                if (SelectionManager.Instance != null)
+                {
+                    if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
+                        SelectionManager.characterBase = SelectionManager.Instance.characterBases[index];
+
+                    if (index >= 0 && index < SelectionManager.Instance.characterPrefabs.Length)
+                        SelectionManager.selectedPrefab = SelectionManager.Instance.characterPrefabs[index];
+
+                    if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
+                        SelectionManager.characterData = SelectionManager.Instance.characterDatas[index];
+                }
+
+                if (StageUIController.Instance != null)
+                {
+                    StageUIController.Instance.Refresh();
+                }
+
+                CharacterBase clickedCharacter = GetComponent<CharacterBase>();
+                if (clickedCharacter != null)
+                {
+                    SelectCharacter(clickedCharacter);
+                }
                 return;
             }
         }
-
+        StageUIController.Instance.Refresh();
         // 2. 캐릭터가 선택된 상태에서 빈 땅 클릭 시 타일 이동 처리
         if (isMoveInputActive && selectedCharacter != null && selectedMovement != null)
         {
-            if (SelectionManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
+            if (SelectionManager.Instance == null || PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
             Tilemap tilemap = PlacementManager.Instance.tilemap;
 
             Vector3Int targetCell = tilemap.WorldToCell(mouseWorldPos);
-            targetCell.z = 0; // 비교용 Z축 통일
+            targetCell.z = 0;
 
             if (selectedMovement is MoveTileModule tileMoveModule)
             {
@@ -192,7 +210,6 @@ public class MovementModule : CharacterModule, IRunnable
 
                 if (isMovable)
                 {
-                    // 자식 클래스의 MoveToTile 내부에서도 스태미나를 검사하는지 꼭 확인해보세요!
                     tileMoveModule.MoveToTile(targetCell);
 
                     ClearTileHighlight();
@@ -238,20 +255,19 @@ public class MovementModule : CharacterModule, IRunnable
         selectedCharacter = character;
         selectedMovement = targetMovement;
 
-        // 1. 전역 선택 매니저에 캐릭터 등록
+        // 전역 선택 매니저에 캐릭터 등록
         SelectionManager.SetSelectedCharacter(character);
 
-        // 💡 [핵심 추가] UI 매니저를 깨워서 하단 스킬 아이콘과 초상화를 방금 선택한 캐릭터 정보로 그리도록 강제합니다.
         if (StageUIController.Instance != null)
         {
-            // PlacementManager에도 방금 선택한 녀석의 프리팹/오브젝트 매칭을 위해 등록해 줍니다.
-            PlacementManager.selectedCharacter = character.gameObject;
+            SelectionManager.selectedPrefab = character.gameObject;
             StageUIController.Instance.Refresh();
         }
 
         Debug.Log($"{selectedCharacter.Name} 캐릭터를 선택하고 UI를 동기화했습니다.");
         OnPressMoveButton();
     }
+
     public void OnPressMoveButton()
     {
         if (selectedCharacter == null) return;
@@ -263,13 +279,16 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void OnMovementModeChange(CharacterBase character)
     {
-        ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
+        if (ModeManager.Instance != null)
+        {
+            ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
+        }
         SelectionManager.SetSelectedCharacter(character);
     }
 
     public void TileHighlight(Vector3 centerPosition, int range)
     {
-        if (ModeManager.Instance.CurrentMode is not ModeManager.GameMode.Movement) return;
+        if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode is not ModeManager.GameMode.Movement) return;
 
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
         Tilemap tilemap = PlacementManager.Instance.tilemap;

@@ -14,7 +14,7 @@ public class UI_InfoWindows : UIBase, IOpenable
    
     public void UpdateUI()
     {
-    GameObject name = PlacementManager.selectedCharacter.gameObject;
+    GameObject name = SelectionManager.selectedPrefab.gameObject;
         if (name != null)
         {
             characterNameText.SetText(name.name);        

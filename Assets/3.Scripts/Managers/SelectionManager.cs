@@ -8,10 +8,16 @@ public class SelectionManager : ManagerBase
     public static SelectionManager Instance { get; set; }
 
     // 현재 선택된 캐릭터 (static 변수)
-    public static CharacterBase selectCharacter;
-
+    public static CharacterBase characterBase;
+    public static CharacterData characterData;
+    public static GameObject selectedPrefab;
     // 스테이지 상에 배치된 아군 리스트
     public List<CharacterBase> unitOnStage = new List<CharacterBase>();
+
+
+    [SerializeField]public CharacterBase[] characterBases = new CharacterBase[12];
+    [SerializeField]public CharacterData[] characterDatas = new CharacterData[12];
+    [SerializeField]public GameObject[] characterPrefabs = new GameObject[12];
 
     protected override IEnumerator OnConnected(GameManager newManager)
     {
@@ -28,6 +34,11 @@ public class SelectionManager : ManagerBase
         }
     }
 
+    private void Start()
+    {
+        Instance = this;
+    }
+
     /// <summary>
     /// 외부에서 캐릭터를 선택할 때 호출하는 static 함수
     /// </summary>
@@ -35,7 +46,7 @@ public class SelectionManager : ManagerBase
     {
         if (character == null) return;
 
-        selectCharacter = character;
+        characterBase = character;
         Debug.Log($"[Selection] 현재 선택된 캐릭터가 {character.Name}(으)로 변경되었습니다.");
     }
 
@@ -44,7 +55,7 @@ public class SelectionManager : ManagerBase
     /// </summary>
     public static void ClearSelectedCharacter()
     {
-        selectCharacter = null;
+       characterBase = null;
         Debug.Log("[Selection] 캐릭터 선택이 해제되었습니다.");
     }
     

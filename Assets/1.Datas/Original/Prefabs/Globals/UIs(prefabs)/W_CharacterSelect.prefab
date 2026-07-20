@@ -150,8 +150,6 @@ GameObject:
   - component: {fileID: 9181323858799420302}
   - component: {fileID: 2469090326353901380}
   - component: {fileID: 7745994895835905056}
-  - component: {fileID: 4207198839827176873}
-  - component: {fileID: 2715725517823455917}
   m_Layer: 5
   m_Name: _Kang
   m_TagString: Untagged
@@ -308,77 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4207198839827176873}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8814553718254639095}
-          m_TargetAssemblyTypeName: UI_CharcterSelectWindows, Assembly-CSharp
-          m_MethodName: ChangeCurrentCharacter
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: "\uAC15"
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2715725517823455917}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &4207198839827176873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625370139526268910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
---- !u!114 &2715725517823455917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625370139526268910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &1692815225020573868
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4854658949712544081, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: 1972893638, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -692,7 +620,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863956709901489808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -769,6 +697,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!1 &1979556853441111309
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,8 +714,6 @@ GameObject:
   - component: {fileID: 1120709300888819735}
   - component: {fileID: 7118593246314063050}
   - component: {fileID: 2132147508986679328}
-  - component: {fileID: 2480694059480796517}
-  - component: {fileID: 6406606388603001331}
   m_Layer: 5
   m_Name: _Lee
   m_TagString: Untagged
@@ -940,65 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6406606388603001331}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2480694059480796517}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &2480694059480796517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979556853441111309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
---- !u!114 &6406606388603001331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979556853441111309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &2345669178821853529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,8 +1021,6 @@ GameObject:
   - component: {fileID: 5914359518294678473}
   - component: {fileID: 6844661844778147526}
   - component: {fileID: 4709326233980874223}
-  - component: {fileID: 7485121523407994481}
-  - component: {fileID: 7127479560005444266}
   m_Layer: 5
   m_Name: _Pyo
   m_TagString: Untagged
@@ -1307,65 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7127479560005444266}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7485121523407994481}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &7485121523407994481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823878076073866895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
---- !u!114 &7127479560005444266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2823878076073866895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &3777236508804741611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,8 +1191,6 @@ GameObject:
   - component: {fileID: 3221775194640951525}
   - component: {fileID: 4787672236510217397}
   - component: {fileID: 3737167677901166810}
-  - component: {fileID: 414143990106711795}
-  - component: {fileID: 2692653739929065528}
   m_Layer: 5
   m_Name: _Namgung
   m_TagString: Untagged
@@ -1537,65 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 414143990106711795}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2692653739929065528}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &414143990106711795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777236508804741611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
---- !u!114 &2692653739929065528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777236508804741611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &3933052683553419982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1507,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
   Current: {fileID: 0}
   Max: {fileID: 0}
 --- !u!1 &4118306428786985112
@@ -2229,7 +1985,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8473739116243267277, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: -1627302595, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2314,7 +2070,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4674278578185354518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -2391,6 +2147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!1 &5045634994392632360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,7 +2221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6290962404664372903, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: -1033430163, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2546,7 +2306,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5045634994392632360}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -2623,6 +2383,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!1 &5118145345364252654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,8 +2400,6 @@ GameObject:
   - component: {fileID: 4476009905437607324}
   - component: {fileID: 1628117800510228598}
   - component: {fileID: 3156475865221857972}
-  - component: {fileID: 5809251633872909874}
-  - component: {fileID: 7213859440881475527}
   m_Layer: 5
   m_Name: _Seo
   m_TagString: Untagged
@@ -2692,7 +2454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 612622295, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
+  m_Sprite: {fileID: 637900328, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2794,65 +2556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5809251633872909874}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7213859440881475527}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &5809251633872909874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5118145345364252654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
---- !u!114 &7213859440881475527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5118145345364252654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &5594973796964689772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,7 +2627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5252315219693229505, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: -1517242053, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3034,7 +2738,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5594973796964689772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -3085,6 +2789,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!1 &5779108422346794182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3429,7 +3137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4342446467778451362, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: 612622295, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3514,7 +3222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6289965965101306802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -3591,6 +3299,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!1 &7152159135230886202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,6 +3543,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!114 &1460419470725787884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3844,6 +3560,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
   Current: {fileID: 5823137273460450295}
   Max: {fileID: 8040706186121489056}
 --- !u!1 &7965426696372697050
@@ -4261,8 +3981,6 @@ GameObject:
   - component: {fileID: 4518567236271530022}
   - component: {fileID: 2420815386512620811}
   - component: {fileID: 1818326901642586470}
-  - component: {fileID: 1738503733386684851}
-  - component: {fileID: 1779496033125867463}
   m_Layer: 5
   m_Name: _Ryu
   m_TagString: Untagged
@@ -4419,65 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1738503733386684851}
-          m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-          m_MethodName: Open
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1779496033125867463}
-          m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-          m_MethodName: Close
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1738503733386684851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8268661421250042749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 5
---- !u!114 &1779496033125867463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8268661421250042749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 5
+  m_Delegates: []
 --- !u!1 &8320876585203542056
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,7 +4346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7804050660562283106, guid: 54e28ba3a316c1040b508ecf9b76a688, type: 3}
+  m_Sprite: {fileID: -981969242, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4771,7 +4431,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8375428827229221923}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -4848,6 +4508,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}
 --- !u!114 &269177449169069387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,3 +4525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_CharcterSelectWindows
   requiredUI: []
+  currentCount: 0
+  maxCount: 12
+  currentText: {fileID: 0}
+  maxText: {fileID: 0}

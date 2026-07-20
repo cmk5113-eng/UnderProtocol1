@@ -35,12 +35,12 @@ public class StageUIController : MonoBehaviour
 
     public void Refresh()
     {
-        if (PlacementManager.selectedCharacter == null)
+        if (SelectionManager.selectedPrefab == null)
         {
             return;
         }
 
-        asCharacter = SelectionManager.selectCharacter;
+        asCharacter = SelectionManager.characterBase;
 
         if (asCharacter == null)
         {
@@ -49,7 +49,7 @@ public class StageUIController : MonoBehaviour
 
         // 💡 해결책: 프리팹 원본과 클론 인스턴스의 이름을 비교하여 매칭률을 높입니다.
         // 일반적으로 복제된 오브젝트는 이름 뒤에 "(Clone)"이 붙기 때문에, 앞부분만 비교합니다.
-        string targetName = PlacementManager.selectedCharacter.name.Replace("(Clone)", "").Trim();
+        string targetName = SelectionManager.selectedPrefab.name.Replace("(Clone)", "").Trim();
 
         int index = -1;
         for (int i = 0; i < UIcharacterList.Count; i++)
@@ -62,7 +62,7 @@ public class StageUIController : MonoBehaviour
         }
 
         // 💡 하드코딩 대신 인덱스 범위 안전 검사 후 리스트에서 다이렉트로 가져옵니다.
-        CharacterData data = null;
+        CharacterData data = SelectionManager.characterData;
 
         if (index >= 0 && index < newCharacters.Count)
         {
@@ -148,7 +148,7 @@ public class StageUIController : MonoBehaviour
     public void Summon()
     {
         // 1. 싱글톤 매니저의 선택 정보와 리스트에 먼저 등록합니다.
-        SelectionManager.selectCharacter = asCharacter;
+        SelectionManager.characterBase = asCharacter;
 
         if (!SelectionManager.Instance.unitOnStage.Contains(asCharacter))
         {

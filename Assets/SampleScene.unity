@@ -601,6 +601,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementManager
   tilemap: {fileID: 1418667598}
+--- !u!114 &289458093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289458084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7f40a2b81ec7944b0ee4f38fd6c0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
+  unitOnStage: []
+  characterBases:
+  - {fileID: 2717451052092060193, guid: 5acf1075a65cd224ba5b977ccd697f09, type: 3}
+  - {fileID: 5677516233774846478, guid: d4f7c45db1dca104fa560df0510dd7cd, type: 3}
+  - {fileID: 4724212099649384476, guid: 1710dc14d9e492f4baa8fe700e4d194e, type: 3}
+  - {fileID: 1306679598464039642, guid: d71f297bce4c50d499698fba98a34770, type: 3}
+  - {fileID: 1394008289398735500, guid: f34883b779569fd44bb895330cab9981, type: 3}
+  - {fileID: 961631049416522335, guid: e6655c62724fcb34cbc292af0675c172, type: 3}
+  - {fileID: 2693166220799059547, guid: 122fdf2cf31d1bf478ece68b9c210fe8, type: 3}
+  - {fileID: 434384413469201792, guid: 3c38ca38e849271418e7425c1aa12f67, type: 3}
+  - {fileID: 4024306878942728393, guid: 838949798f5eca0439231513b4cbf7ca, type: 3}
+  - {fileID: -5008356541977039277, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
+  - {fileID: 8650805735498712781, guid: 1eaaaa6cd8cd92a489edfe31499e093f, type: 3}
+  - {fileID: 8367699146777914151, guid: f97352ce423f31d4b9897810dcd3f47c, type: 3}
+  characterDatas:
+  - {fileID: 11400000, guid: 953c9d56a58e70b4bb08ed9d275c04a4, type: 2}
+  - {fileID: 11400000, guid: 6b5d7a888ec4bf4448631afc45ecf1bf, type: 2}
+  - {fileID: 11400000, guid: c02f3da5fd6dfdb4ea811710f506ee6e, type: 2}
+  - {fileID: 11400000, guid: 3a8da795944dd604f9fe556377c4bae3, type: 2}
+  - {fileID: 11400000, guid: 2b13d240f7978474eb7382129506b13a, type: 2}
+  - {fileID: 11400000, guid: 077c7cceb560b994c885a95867177c30, type: 2}
+  - {fileID: 11400000, guid: 68a7709f1e5ca2445bae80977cfd1b30, type: 2}
+  - {fileID: 11400000, guid: 14e9f8d2338f2ba428c37f8f2acb745e, type: 2}
+  - {fileID: 11400000, guid: 4ed0675d87d937d45854174ece57ca1e, type: 2}
+  - {fileID: 11400000, guid: ba67f9954e204944ea364d5a04676397, type: 2}
+  - {fileID: 11400000, guid: 281c98331dcc139448b3c63bc3b5cc06, type: 2}
+  - {fileID: 11400000, guid: 8dbc5e3e1d99c1946b67702134acac19, type: 2}
+  characterPrefabs:
+  - {fileID: 3830434557279754263, guid: 5acf1075a65cd224ba5b977ccd697f09, type: 3}
+  - {fileID: 6643760502668351896, guid: d4f7c45db1dca104fa560df0510dd7cd, type: 3}
+  - {fileID: 8269961709583128395, guid: 1710dc14d9e492f4baa8fe700e4d194e, type: 3}
+  - {fileID: 4615776458053066472, guid: d71f297bce4c50d499698fba98a34770, type: 3}
+  - {fileID: 2564380601473605754, guid: f34883b779569fd44bb895330cab9981, type: 3}
+  - {fileID: 2850853500390287765, guid: e6655c62724fcb34cbc292af0675c172, type: 3}
+  - {fileID: 1052792212671057414, guid: 122fdf2cf31d1bf478ece68b9c210fe8, type: 3}
+  - {fileID: 1190234828217557376, guid: 3c38ca38e849271418e7425c1aa12f67, type: 3}
+  - {fileID: 96752906353372427, guid: 838949798f5eca0439231513b4cbf7ca, type: 3}
+  - {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
+  - {fileID: 4781729928273018580, guid: 1eaaaa6cd8cd92a489edfe31499e093f, type: 3}
+  - {fileID: 5166024030514932402, guid: f97352ce423f31d4b9897810dcd3f47c, type: 3}
 --- !u!1 &352724204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7763839537674062215, guid: 8d628d526e7f5fe4fbcb4d0ce8671d86, type: 3}
@@ -1375,6 +1427,14 @@ PrefabInstance:
     - target: {fileID: 4250949528887377587, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284267821650480338, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5284267821650480338, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
+      propertyPath: m_TagString
+      value: MainTile
       objectReference: {fileID: 0}
     - target: {fileID: 6402693940984366130, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       propertyPath: m_LocalScale.y
@@ -4554,6 +4614,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1007817709963617782, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 289458092}
+    - targetCorrespondingSourceObject: {fileID: 1007817709963617782, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 289458093}
     - targetCorrespondingSourceObject: {fileID: 5484552113480196204, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 647034860}

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public delegate void InitializeEvent();
 public delegate void UpdateEvent(float deltaTime);
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     UIManager _ui;
     public UIManager UI => _ui;
+
+    StageManager _Stage;
+    
+    public StageManager Stage =>_Stage;
     
     DBManager _db;
     public DBManager DB => _db;
@@ -106,8 +111,7 @@ public class GameManager : MonoBehaviour
         if (initializing != null) StopCoroutine(initializing);
         DeleteManagers();
     }
-
-
+    
 
     IEnumerator InitializeManagers()
     {
@@ -126,7 +130,7 @@ public class GameManager : MonoBehaviour
         //totalLoadCount += CreateManager(ref _placement).LoadCount;
         totalLoadCount += CreateManager(ref _character).LoadCount;
         totalLoadCount += CreateManager(ref _mode).LoadCount;
-        totalLoadCount += CreateManager(ref _selection).LoadCount;
+        totalLoadCount += CreateManager(ref _Stage).LoadCount;
 
 
 
@@ -141,6 +145,8 @@ public class GameManager : MonoBehaviour
         yield return DB.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return ObjectM.Connect(this);
+        loadingProgress?.AddCurrent(1);
+        yield return Stage.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return UI.Connect(this);
         loadingProgress?.AddCurrent(1);
@@ -159,8 +165,6 @@ public class GameManager : MonoBehaviour
         //yield return Placement.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return Character.Connect(this);
-        loadingProgress?.AddCurrent(1);
-        yield return Selection.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return Mode.Connect(this);
         loadingProgress?.AddCurrent(1);
@@ -185,6 +189,7 @@ public class GameManager : MonoBehaviour
         Data?.Disconnect();
         Character?.Disconnect();
         Placement?.Disconnect();
+        Stage?.Disconnect();
         Mode?.Disconnect();
         Selection?.Disconnect();
         DB?.Disconnect();
@@ -236,8 +241,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (isLoading) return;
-
-
 
         //�ʱ�ȭ
         //�Ŵ����� �ʱ�ȭ�Ѵ�
