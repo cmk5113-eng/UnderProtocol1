@@ -74,6 +74,16 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
+    public void OnSelected()
+    {
+        movementModule ??= GetComponent<MovementModule>();
+        movementModule.OnPressMoveButton();
+    }
+    public void OnDeSelected()
+    {
+        movementModule = GetComponent<MovementModule>();
+        movementModule.ClearTileHighlight();
+    }
     public void AddModule(System.Type wantType, CharacterModule wantModule)
     {
         if (moduleDictionary.TryAdd(wantType, wantModule))

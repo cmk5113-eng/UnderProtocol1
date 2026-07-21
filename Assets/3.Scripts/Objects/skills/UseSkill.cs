@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -73,7 +75,7 @@ public class UseSkill : MonoBehaviour
         lastMouseCell = new Vector3Int(-999, -999, -999);
 
         // 1. 시전자의 위치를 기준으로 고정 '사정거리' 하이라이트 생성
-        Vector3Int casterCell = tilemap.WorldToCell(SelectionManager.selectedPrefab.transform.position);
+        Vector3Int casterCell = tilemap.WorldToCell(SelectionManager.SelectedPrefab.transform.position);
         HighlightRange(casterCell, currentSkill.range, castRangeColor, castRangeTiles);
       
     }
@@ -115,7 +117,7 @@ public class UseSkill : MonoBehaviour
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int clickedCell = tilemap.WorldToCell(mouseWorldPos);
-        clickedCell.z = tilemap.WorldToCell(SelectionManager.selectedPrefab.transform.position).z;
+        clickedCell.z = tilemap.WorldToCell(SelectionManager.SelectedPrefab.transform.position).z;
 
         // 사정거리 외곽 클릭 시 차단 (선택사항 유지)
         if (!castRangeTiles.Contains(clickedCell))
@@ -241,8 +243,21 @@ public class UseSkill : MonoBehaviour
     {
         Debug.Log("UI_StartSkill1() 호출됨.");
 
+        Debug.Log($"현재 데이터{SelectionManager._characterData} 현재 프리펩{SelectionManager.SelectedPrefab} 현제 베이스{SelectionManager.CharacterBase}");
+
+        //int index = Array.IndexOf(SelectionManager.Instance.characterDatas, SelectionManager._characterData);
+
+        //if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
+        //{
+        //    SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
+        //}
+        //else
+        //{
+        //    SelectionManager.CharacterBase = null;
+        //}
+
         // 💡 [수정] SelectionManager에 저장된 진짜 캐릭터를 시전자로 가져옵니다!
-        CharacterBase currentCaster = SelectionManager.characterBase;
+        CharacterBase currentCaster = SelectionManager.CharacterBase;
 
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
@@ -262,8 +277,19 @@ public class UseSkill : MonoBehaviour
     /// </summary>
     public void UI_StartSkill2()
     {
+        int index = Array.IndexOf(SelectionManager.Instance.characterDatas, SelectionManager._characterData);
+
+        if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
+        {
+            SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
+        }
+        else
+        {
+            SelectionManager.CharacterBase = null;
+        }
+
         // 💡 동일하게 적용
-        CharacterBase currentCaster = SelectionManager.characterBase;
+        CharacterBase currentCaster = SelectionManager.CharacterBase;
 
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;

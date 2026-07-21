@@ -1,16 +1,76 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
+
+public delegate  void EventCharacterChanged(CharacterBase newCharacter);
 
 public class SelectionManager : ManagerBase
 {
     // 싱글톤 인스턴스 (StageUIController가 참조할 수 있도록 유지)
     public static SelectionManager Instance { get; set; }
+    public static EventCharacterChanged OnCharacterChanged;
 
     // 현재 선택된 캐릭터 (static 변수)
-    public static CharacterBase characterBase;
-    public static CharacterData characterData;
-    public static GameObject selectedPrefab;
+    public static CharacterBase _characterBase;
+    public static CharacterBase CharacterBase
+    {
+        get => _characterBase;
+        set
+        {
+            if (_characterBase != value)
+            {
+                _characterBase?.OnDeSelected();
+                _characterBase = value;
+                _selectedPrefab = value?.gameObject;
+                _characterBase?.OnSelected();
+                OnCharacterChanged?.Invoke(_characterBase);
+            }
+        }
+    }
+    public static CharacterData _characterData;
+    public static CharacterData CharacterData
+    {
+        get => _characterData;
+        set
+        {
+            if (_characterData != value)
+            {
+                _characterData = value;
+
+                if (Instance == null)
+                    return;
+
+                int index = Array.IndexOf(Instance.characterDatas, _characterData);
+
+                if (index >= 0 && index < Instance.characterBases.Length)
+                {
+                    CharacterBase = Instance.characterBases[index];
+                }
+                else
+                {
+                    CharacterBase = null;
+                }
+            }
+        }
+    }
+    static GameObject _selectedPrefab;
+    public static GameObject SelectedPrefab
+    {
+        get => _selectedPrefab;
+        set
+        {
+            if (_selectedPrefab != value)
+            {
+                _selectedPrefab = value;
+                _characterBase?.OnDeSelected();
+                _characterBase = value?.GetComponent<CharacterBase>();
+                _characterBase?.OnSelected();
+                OnCharacterChanged?.Invoke(_characterBase);
+            }
+        }
+    }
     // 스테이지 상에 배치된 아군 리스트
     public List<CharacterBase> unitOnStage = new List<CharacterBase>();
 
@@ -46,7 +106,7 @@ public class SelectionManager : ManagerBase
     {
         if (character == null) return;
 
-        characterBase = character;
+        CharacterBase = character;
         Debug.Log($"[Selection] 현재 선택된 캐릭터가 {character.Name}(으)로 변경되었습니다.");
     }
 
@@ -55,7 +115,7 @@ public class SelectionManager : ManagerBase
     /// </summary>
     public static void ClearSelectedCharacter()
     {
-       characterBase = null;
+       CharacterBase = null;
         Debug.Log("[Selection] 캐릭터 선택이 해제되었습니다.");
     }
     

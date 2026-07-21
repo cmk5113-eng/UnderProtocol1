@@ -14,9 +14,6 @@ public class MovementModule : CharacterModule, IRunnable
 
     public sealed override System.Type RegistrationType => typeof(MovementModule);
 
-    [Header("현재 선택된 캐릭터 정보")]
-    [SerializeField] private static CharacterBase selectedCharacter;
-    private static MovementModule selectedMovement;
     private static int currentMoveRange;
     private static bool isMoveInputActive = false;
 
@@ -28,7 +25,7 @@ public class MovementModule : CharacterModule, IRunnable
         GameManager.OnPhysicsCharacter -= MovementUpdate;
         GameManager.OnPhysicsCharacter += MovementUpdate;
 
-        // 마우스 이벤트 등록
+        //// 마우스 이벤트 등록
         InputManager.OnMouseLeftButton -= OnLeftClickInput;
         InputManager.OnMouseLeftButton += OnLeftClickInput;
     }
@@ -44,11 +41,7 @@ public class MovementModule : CharacterModule, IRunnable
     private void OnLeftClickInput(bool isPressed, Vector2 screenPosition, Vector3 worldPosition)
     {
         if (!isPressed) return;
-
-        if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode == ModeManager.GameMode.Movement)
-        {
-            HandleMouseClick();
-        }
+        HandleMouseClick(worldPosition);
     }
 
     public void MovementUpdate(float deltaTime)
@@ -147,55 +140,55 @@ public class MovementModule : CharacterModule, IRunnable
         InputManager.OnMouseLeftButton -= OnLeftClickInput;
     }
 
-    // 💡 [수정] 매개변수 없는 깔끔한 마우스 클릭 처리 핸들러
-    public void HandleMouseClick()
+
+    public void HandleMouseClick(Vector2 mouseWorldPos)
     {
-        if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.Movement)
+        if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.Movement || SelectionManager.SelectedPrefab != gameObject)
         {
             return;
         }
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
+        //Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
 
-        // 1. 캐릭터 선택용 레이캐스트
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-        if (hit.collider != null)
-        {
-            // 💡 [핵심] 씬의 모든 오브젝트가 동시 반응하지 않고, "마우스에 부딪힌 나 자신(gameObject)"일 때만 실행하도록 검사합니다!
-            if (hit.collider.gameObject == this.gameObject)
-            {
-                // Enum id를 int로 바로 형변환 (switch문 불필요)
-                int index = (int)id;
+        //// 1. 캐릭터 선택용 레이캐스트
+        //RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+        //if (hit.collider != null)
+        //{
+        //    // 💡 [핵심] 씬의 모든 오브젝트가 동시 반응하지 않고, "마우스에 부딪힌 나 자신(gameObject)"일 때만 실행하도록 검사합니다!
+        //    if (hit.collider.gameObject == this.gameObject)
+        //    {
+        //        // Enum id를 int로 바로 형변환 (switch문 불필요)
+        //        int index = (int)id;
 
-                if (SelectionManager.Instance != null)
-                {
-                    if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
-                        SelectionManager.characterBase = SelectionManager.Instance.characterBases[index];
+        //        if (SelectionManager.Instance != null)
+        //        {
+        //            if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
+        //                SelectionManager.characterBase = SelectionManager.Instance.characterBases[index];
 
-                    if (index >= 0 && index < SelectionManager.Instance.characterPrefabs.Length)
-                        SelectionManager.selectedPrefab = SelectionManager.Instance.characterPrefabs[index];
+        //            if (index >= 0 && index < SelectionManager.Instance.characterPrefabs.Length)
+        //                SelectionManager.selectedPrefab = SelectionManager.Instance.characterPrefabs[index];
 
-                    if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
-                        SelectionManager.characterData = SelectionManager.Instance.characterDatas[index];
-                }
+        //            if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
+        //                SelectionManager.characterData = SelectionManager.Instance.characterDatas[index];
+        //        }
 
-                if (StageUIController.Instance != null)
-                {
-                    StageUIController.Instance.Refresh();
-                }
+        //        if (StageUIController.Instance != null)
+        //        {
+        //            StageUIController.Instance.Refresh();
+        //        }
 
-                CharacterBase clickedCharacter = GetComponent<CharacterBase>();
-                if (clickedCharacter != null)
-                {
-                    SelectCharacter(clickedCharacter);
-                }
-                return;
-            }
-        }
-        StageUIController.Instance.Refresh();
+        //        CharacterBase clickedCharacter = GetComponent<CharacterBase>();
+        //        if (clickedCharacter != null)
+        //        {
+        //            SelectCharacter(clickedCharacter);
+        //        }
+        //        return;
+        //    }
+        //}
+        //StageUIController.Instance.Refresh();
         // 2. 캐릭터가 선택된 상태에서 빈 땅 클릭 시 타일 이동 처리
-        if (isMoveInputActive && selectedCharacter != null && selectedMovement != null)
+        if (isMoveInputActive)
         {
             if (SelectionManager.Instance == null || PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
             Tilemap tilemap = PlacementManager.Instance.tilemap;
@@ -203,7 +196,7 @@ public class MovementModule : CharacterModule, IRunnable
             Vector3Int targetCell = tilemap.WorldToCell(mouseWorldPos);
             targetCell.z = 0;
 
-            if (selectedMovement is MoveTileModule tileMoveModule)
+            if (this is MoveTileModule tileMoveModule)
             {
                 List<Vector3Int> movableTiles = tileMoveModule.GetMovableTiles();
                 bool isMovable = movableTiles.Exists(tile => tile.x == targetCell.x && tile.y == targetCell.y);
@@ -214,7 +207,7 @@ public class MovementModule : CharacterModule, IRunnable
 
                     ClearTileHighlight();
                     isMoveInputActive = false;
-                    Debug.Log($"[Movement] {selectedCharacter.Name} 캐릭터가 {targetCell} 타일로 이동합니다.");
+                    Debug.Log($"[Movement] {Owner.Name} 캐릭터가 {targetCell} 타일로 이동합니다.");
                 }
                 else
                 {
@@ -224,57 +217,57 @@ public class MovementModule : CharacterModule, IRunnable
             else
             {
                 // 일반 그리드 미사용 시 이동
-                Vector3 targetWorldPos = new Vector3(mouseWorldPos.x, mouseWorldPos.y, selectedCharacter.transform.position.z);
-                float distance = Vector2.Distance(selectedCharacter.transform.position, targetWorldPos);
+                Vector3 targetWorldPos = new Vector3(mouseWorldPos.x, mouseWorldPos.y, Owner.transform.position.z);
+                float distance = Vector2.Distance(Owner.transform.position, targetWorldPos);
                 if (distance <= currentMoveRange)
                 {
-                    selectedMovement.MoveToDestination(targetWorldPos, 0.05f);
+                    MoveToDestination(targetWorldPos, 0.05f);
                     ClearTileHighlight();
                     isMoveInputActive = false;
                 }
+
             }
+            ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
         }
     }
 
-    private void SelectCharacter(CharacterBase character)
-    {
-        MovementModule targetMovement = character.GetComponent<MovementModule>();
+    //private void SelectCharacter(CharacterBase character)
+    //{
+    //    MovementModule targetMovement = character.GetComponent<MovementModule>();
 
-        if (targetMovement != null && targetMovement.IsMoving)
-        {
-            Debug.LogWarning($"[Click Fail] {character.Name} 캐릭터가 아직 이동 중이라 선택할 수 없습니다.");
-            return;
-        }
+    //    if (targetMovement != null && targetMovement.IsMoving)
+    //    {
+    //        Debug.LogWarning($"[Click Fail] {character.Name} 캐릭터가 아직 이동 중이라 선택할 수 없습니다.");
+    //        return;
+    //    }
 
-        if (character.steminaPoint <= 0)
-        {
-            Debug.LogWarning($"{character.Name}은 스태미나가 없어 움직일 수 없습니다.");
-            return;
-        }
+    //    if (character.steminaPoint <= 0)
+    //    {
+    //        Debug.LogWarning($"{character.Name}은 스태미나가 없어 움직일 수 없습니다.");
+    //        return;
+    //    }
 
-        selectedCharacter = character;
-        selectedMovement = targetMovement;
+    //    selectedCharacter = character;
+    //    selectedMovement = targetMovement;
 
-        // 전역 선택 매니저에 캐릭터 등록
-        SelectionManager.SetSelectedCharacter(character);
+    //    // 전역 선택 매니저에 캐릭터 등록
+    //    SelectionManager.SetSelectedCharacter(character);
 
-        if (StageUIController.Instance != null)
-        {
-            SelectionManager.selectedPrefab = character.gameObject;
-            StageUIController.Instance.Refresh();
-        }
+    //    if (StageUIController.Instance != null)
+    //    {
+    //        SelectionManager.selectedPrefab = character.gameObject;
+    //        StageUIController.Instance.Refresh();
+    //    }
 
-        Debug.Log($"{selectedCharacter.Name} 캐릭터를 선택하고 UI를 동기화했습니다.");
-        OnPressMoveButton();
-    }
+    //    Debug.Log($"{selectedCharacter.Name} 캐릭터를 선택하고 UI를 동기화했습니다.");
+    //    OnPressMoveButton();
+    //}
 
     public void OnPressMoveButton()
     {
-        if (selectedCharacter == null) return;
-
         isMoveInputActive = true;
-        currentMoveRange = selectedCharacter.mobility;
-        TileHighlight(selectedCharacter.transform.position, currentMoveRange);
+        currentMoveRange = Owner?.mobility ?? 0;
+        TileHighlight(transform.position, currentMoveRange);
     }
 
     public void OnMovementModeChange(CharacterBase character)
@@ -288,6 +281,7 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void TileHighlight(Vector3 centerPosition, int range)
     {
+
         if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode is not ModeManager.GameMode.Movement) return;
 
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
@@ -316,7 +310,7 @@ public class MovementModule : CharacterModule, IRunnable
         }
     }
 
-    private void ClearTileHighlight()
+    public void ClearTileHighlight()    
     {
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
         Tilemap tilemap = PlacementManager.Instance.tilemap;

@@ -52,16 +52,18 @@ public class PlacementController : UI_CharacterSelectWindows
             {
                 if (PlacementManager.Instance.tilemap.HasTile(clickCellPos))
                 {
-                    if (SelectionManager.selectedPrefab != null)
+                    if (SelectionManager.SelectedPrefab != null)
                     {
                         // 1. ���� ���õ� ĳ����(currentCharacter)�� �̸��� ��ġ�ϴ� ������Ʈ�� ������ �˻�
                         // ������ ���� �� (Clone)�� �ٴ� ��Ģ�̶�� currentCharacter.name + "(Clone)"���� ����
 
-                        GameObject target = GameObject.Find(SelectionManager.selectedPrefab.name + "(Clone)");
+                        ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
+
+                        GameObject target = GameObject.Find(SelectionManager.SelectedPrefab.name + "(Clone)");
                         if (count >= max)
                         {
                             UIManager.ClaimPopUp("���", "�ο� �ʰ�", "����");
-                            SelectionManager.selectedPrefab = null;
+                            SelectionManager.SelectedPrefab = null;
                             return;
                         }
                         // 2. ��ġ�ϴ� �̸��� ������Ʈ�� �̹� ������ ����
@@ -78,16 +80,14 @@ public class PlacementController : UI_CharacterSelectWindows
 
                         Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
                         StageUIController.Instance.Refresh();
-                        GameObject obj = ObjectManager.CreateObject(SelectionManager.selectedPrefab, spawnPos);
+                        GameObject obj = ObjectManager.CreateObject(SelectionManager.SelectedPrefab, spawnPos);
                         _objects.Add(obj);
-
-                        SelectionManager.ClearSelectedCharacter();// ������ ������Ʈ���� CharacterBase ������Ʈ�� ������ ���� ����
-
+                        
                         if (obj.TryGetComponent<CharacterBase>(out var character))
                         {
                             SelectionManager.SetSelectedCharacter(character);
                             StageUIController.Instance.Refresh();
-                            Debug.Log(SelectionManager.characterBase);
+                            Debug.Log(SelectionManager.CharacterBase);
 
                         }
                         else
@@ -95,17 +95,18 @@ public class PlacementController : UI_CharacterSelectWindows
                             Debug.LogWarning($"{obj.name}�� CharacterBase ������Ʈ�� �����ϴ�!");
                         }
 
-                        SelectionManager.selectedPrefab = null;
+                        SelectionManager.SelectedPrefab = null;
                     }
                     else
                     {
+
                     }
                 }
             }
 
             else if (ModeManager.Instance.CurrentMode == GameMode.Battle)
             {
-                Debug.Log("��������");
+                Debug.Log("");
             }
         }
 

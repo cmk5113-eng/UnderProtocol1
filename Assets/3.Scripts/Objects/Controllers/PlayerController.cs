@@ -49,7 +49,7 @@ public class PlayerController : ControllerBase
     // 💡 이벤트 구독 전담 메서드
     private void SubscribeInputEvents()
     {
-        InputManager.OnMouseRightButton += MoveToMousePosition;
+        //InputManager.OnMouseRightButton += MoveToMousePosition;
         InputManager.OnMove += MoveToDirection;
         InputManager.OnMouseLeftButton += SelectByMouse;
     }
@@ -57,27 +57,27 @@ public class PlayerController : ControllerBase
     // 💡 이벤트 구독 해제 전담 메서드
     private void UnsubscribeInputEvents()
     {
-        InputManager.OnMouseRightButton -= MoveToMousePosition;
+        //InputManager.OnMouseRightButton -= MoveToMousePosition;
         InputManager.OnMove -= MoveToDirection;
         InputManager.OnMouseLeftButton -= SelectByMouse;
     }
 
-    public void MoveToMousePosition(bool value, Vector2 screenPosition, Vector3 worldPosition)
-    {
-        // 💡 [안전장치] 만약 파괴 과정에서 호출되더라도 예외가 터지지 않게 this(null) 검사
-        if (this == null) return;
+    //public void MoveToMousePosition(bool value, Vector2 screenPosition, Vector3 worldPosition)
+    //{
+    //    // 💡 [안전장치] 만약 파괴 과정에서 호출되더라도 예외가 터지지 않게 this(null) 검사
+    //    if (this == null) return;
 
-        if (move == null) move = GetComponent<MoveTileModule>();
-        var tm = PlacementManager.Instance?.tilemap;
-        if (tm == null) return;
+    //    if (move == null) move = GetComponent<MoveTileModule>();
+    //    var tm = PlacementManager.Instance?.tilemap;
+    //    if (tm == null) return;
 
-        Vector3Int targetCell = tm.WorldToCell(worldPosition);
+    //    Vector3Int targetCell = tm.WorldToCell(worldPosition);
 
-        if (move != null)
-        {
-            move.MoveToTile(targetCell);
-        }
-    }
+    //    if (move != null)
+    //    {
+    //        move.MoveToTile(targetCell);
+    //    }
+    //}
 
     public void SelectCharacter(CharacterBase target)
     {

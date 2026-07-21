@@ -26,9 +26,9 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
             return;
         }
         // 1. ���޹��� �������� ���� ĳ���ͷ� ���
-        SelectionManager.selectedPrefab = selectedPrefab;
+        SelectionManager.SelectedPrefab = selectedPrefab;
 
-        int index = SelectionManager.selectedPrefab?.name switch
+        int index = SelectionManager.SelectedPrefab?.name switch
         {
             "Beak" => 0,
             "Choi" => 1,
@@ -47,11 +47,11 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
 
         if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
         {
-            SelectionManager.characterBase = SelectionManager.Instance.characterBases[index];
+            SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
         }
         if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
         {
-            SelectionManager.characterData = SelectionManager.Instance.characterDatas[index];
+            SelectionManager._characterData = SelectionManager.Instance.characterDatas[index];
         }
         StageUIController.Instance.Refresh();
 
