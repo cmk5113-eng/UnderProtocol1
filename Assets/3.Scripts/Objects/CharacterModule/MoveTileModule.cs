@@ -43,7 +43,7 @@ public class MoveTileModule : MovementModule
             return cell;
         }
     }
-
+    
     // �ܺο��� ȣ�� �̵� ������ Ÿ�ϵ�
     public List<Vector3Int> GetMovableTiles()
     {
@@ -148,7 +148,24 @@ public class MoveTileModule : MovementModule
 
             if (dist <= targetTolerance)
             {
+                // 이동 전 타일
+                Vector3Int oldTile = CurrentTile;
+
                 targetDestination = null;
+
+                // 정확히 타일 중앙으로
+                Vector3 center = tm.GetCellCenterWorld(currentTargetTile);
+                center.z = transform.position.z;
+                transform.position = center;
+
+                // 이동 후 타일
+                Vector3Int newTile = CurrentTile;
+
+                if (TryGetComponent<CharacterBase>(out var character))
+                {
+                    PlacementManager.Instance.GetTileData(oldTile).Character = null;
+                    PlacementManager.Instance.GetTileData(newTile).Character = character;
+                }
             }
         }
 
@@ -235,26 +252,37 @@ public class MoveTileModule : MovementModule
         var tm = TM;
         if (tm == null) return false;
 
-        // Ÿ�� ������ ���� Ȯ��
+        // 타일 존재 여부
         if (!tm.HasTile(tile))
         {
-            Debug.LogWarning($"[CanEnter Fail] {tile} ��ǥ�� Ÿ�� ������ �����ϴ�! (HasTile == false)");
+            Debug.LogWarning($"[CanEnter Fail] {tile}에 타일이 없습니다.");
             return false;
         }
 
-        // MoveType�� ��Ģ Ȯ��
+        // TileData 가져오기
+        TileData data = PlacementManager.Instance.GetTileData(tile);
+
+        // 빈 타일인지 확인
+        if (!data.isempty)
+        {
+            Debug.LogWarning($"[CanEnter Fail] {tile}에는 이미 캐릭터가 있습니다.");
+            return false;
+        }
+
+        // 기존 MoveType 검사
         switch (MoveType)
         {
             case MoveType.PlayerMove:
+
                 bool isOutline = IsOutline(tile);
-                bool hasChar = HasCharacter(tile);
-                if (!isOutline || hasChar)
+
+                if (!isOutline)
                 {
-                    Debug.LogWarning($"[CanEnter Fail] {tile} ������� -> Outline�ΰ�?: {isOutline}, ĳ�����ִ°�?: {hasChar}");
+                    Debug.LogWarning($"[CanEnter Fail] {tile}는 외곽 타일입니다.");
                     return false;
                 }
+
                 break;
-                // �ٸ� ���̽��鵵 �����ϰ� �α� �߰�...
         }
 
         return true;

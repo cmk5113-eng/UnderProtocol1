@@ -82,13 +82,15 @@ public class PlacementController : UI_CharacterSelectWindows
                         StageUIController.Instance.Refresh();
                         GameObject obj = ObjectManager.CreateObject(SelectionManager.SelectedPrefab, spawnPos);
                         _objects.Add(obj);
-                        
+
                         if (obj.TryGetComponent<CharacterBase>(out var character))
                         {
-                            SelectionManager.SetSelectedCharacter(character);
-                            StageUIController.Instance.Refresh();
-                            Debug.Log(SelectionManager.CharacterBase);
+                            // 타일 점유
+                            PlacementManager.Instance
+                                .GetTileData(clickCellPos)
+                                .Character = character;
 
+                            SelectionManager.SetSelectedCharacter(character);
                         }
                         else
                         {

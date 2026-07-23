@@ -1,19 +1,30 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 public class PlacementManager : ManagerBase
 {
     public static PlacementManager Instance;
     public Tilemap tilemap;
-    
+    public Dictionary<Vector3Int, TileData> tileDatas = new();
 
     void Awake()
     {
         // ���� �ϳ����� �Ŵ����� ����ϱ� ���� ������ �̱��� ����
         Instance = this;
     }
+    public TileData GetTileData(Vector3Int cell)
+    {
+        if (!tileDatas.TryGetValue(cell, out TileData data))
+        {
+            data = new TileData();
+            tileDatas[cell] = data;
+        }
 
+        return data;
+    }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
         yield return null;
