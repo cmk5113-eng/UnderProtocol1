@@ -2,49 +2,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
 public enum MoveType { PlayerMove, EnemyMove, HealSkillMove, AttackSkillMove, OutlineSkillMove, FieldSkillMove }
 
 public class MoveTileModule : MovementModule
 {
-    // ���� public tilemap ���� (Inspector�� ����Ǿ� ������ �켱 ���)
     public Tilemap tilemap;
-    public int mobility = 3;    
+    public int mobility = 3;
     public MoveType MoveType;
 
-    // ���� ��ġ
     private Queue<Vector3Int> pathQueue = new Queue<Vector3Int>();
     private Vector3Int currentTargetTile;
 
-    // ������ Tilemap ���� ���� (Inspector�� ������ PlacementManager���� ������)
     Tilemap TM => tilemap != null ? tilemap : (PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null);
 
-    // CurrentTile transform.position�� x,y�� ����ϵ� Ÿ�ϸ��� Z(���)�� ���缭 WorldToCell ȣ��
+    // [수정] 백킹 필드를 추가하여 런타임 이동 타일 갱신 지원
+    private Vector3Int? cachedCurrentTile = null;
+
     public Vector3Int CurrentTile
     {
         get
         {
+            if (cachedCurrentTile.HasValue)
+                return cachedCurrentTile.Value;
+
             var tm = TM;
             if (tm == null) return Vector3Int.zero;
 
-            // [�ٽ� ����] 
-            // 1. ĳ������ ���� ��ġ�� �����ɴϴ�.
             Vector3 pos = transform.position;
-
-            // 2. Ÿ�ϸ��� Z���� ������ ����ϴ�. (��� ���� ����)
             pos.z = tm.transform.position.z;
-
-            // 3. WorldToCell�� ��ȯ�մϴ�.
-            Vector3Int cell = tm.WorldToCell(pos);
-
-            // [�����] ���� ��ȯ�� ��ǥ�� ������ �´��� Ȯ��
-            // Debug.Log($"[Pos Check] World: {transform.position} -> Cell: {cell}");
-
-            return cell;
+            return tm.WorldToCell(pos);
+        }
+        set
+        {
+            cachedCurrentTile = value;
         }
     }
-    
-    // �ܺο��� ȣ�� �̵� ������ Ÿ�ϵ�
+
     public List<Vector3Int> GetMovableTiles()
     {
         List<Vector3Int> result = new List<Vector3Int>();
@@ -68,7 +61,6 @@ public class MoveTileModule : MovementModule
             foreach (var next in GetNeighbors(pos))
             {
                 if (visited.Contains(next)) continue;
-
                 if (!CanEnterTile(next)) continue;
 
                 visited.Add(next);
@@ -81,95 +73,89 @@ public class MoveTileModule : MovementModule
 
     public void MoveToTile(Vector3Int targetTile)
     {
-
-
+        Debug.Log($"Start = {CurrentTile}");
+        Debug.Log($"End = {targetTile}");
         var path = FindPath(CurrentTile, targetTile);
 
-        pathQueue.Clear();
+        Debug.Log(path == null ? "null" : $"count = {path.Count}");
+        if (path == null || path.Count == 0) return;
 
+        // 1. 기존 타일 점유 해제
+        PlacementManager.Instance.SetTileEmpty(CurrentTile, true);
+
+        // 2. 이동할 목표 타일 점유 설정
+        PlacementManager.Instance.SetTileEmpty(targetTile, false);
+
+        pathQueue.Clear();
         foreach (var tile in path)
             pathQueue.Enqueue(tile);
+
+        // 3. 현재 위치 타일 좌표 갱신
+        CurrentTile = targetTile;
     }
 
-    // �� �޼��� �Է�(Vector2)���� �� ĭ �̵� �õ�
-    // �Է��� ����(x �Ǵ� y)���� ��/��/��/�� ����. �̵� ���̸� ����(�� �Է´� �� Ÿ��)
     public bool TryStepByInput(Vector2 input)
     {
-       
-        // 1. �̵� ���̸� �Է��� �ƿ� ���� ���� (���� �̵� ����)
         if (targetDestination != null || pathQueue.Count > 0) return false;
 
         const float deadZone = 0.1f;
         if (input.sqrMagnitude < deadZone * deadZone) return false;
 
-        // 2. ���⸸ ���� (�Է��� ����� ����)
         Vector3Int step = Vector3Int.zero;
         if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             step = input.x > 0 ? Vector3Int.right : Vector3Int.left;
         else
             step = input.y > 0 ? Vector3Int.up : Vector3Int.down;
 
-        // 3. ������ Ÿ�� ���
         Vector3Int nextTile = CurrentTile + step;
 
-        // 4. �� �� �ִ� Ÿ������ �˻�
         if (!CanEnterTile(nextTile)) return false;
 
-        // 5. Ÿ�ϸʿ��� �� �߽� ��ǥ ������ ������ ����
         var tm = TM;
         if (tm == null) return false;
 
         Vector3 worldTargetPos = tm.GetCellCenterWorld(nextTile);
-        // �߿� ĳ���Ϳ� ���� Z ������� ������� ����(�� Y����) �̵��� ��Ȯ����
         worldTargetPos.z = transform.position.z;
 
         MoveToDestination(worldTargetPos, 0.01f);
-   
         return true;
     }
-
-    // ------------------------
-    // �ٽ� Movement override
-    // ------------------------
-    //private bool isSnapping = false; // ��� ���� �÷���
 
     public override void PhysicsUpdate(float deltaTime)
     {
         var tm = TM;
         if (tm == null) return;
 
-        // ���� �̵� ó��
         base.PhysicsUpdate(deltaTime);
 
-        // ���� üũ
         if (targetDestination != null)
         {
             float dist = Vector3.Distance(transform.position, targetDestination.Value);
 
             if (dist <= targetTolerance)
             {
-                // 이동 전 타일
                 Vector3Int oldTile = CurrentTile;
-
                 targetDestination = null;
 
-                // 정확히 타일 중앙으로
                 Vector3 center = tm.GetCellCenterWorld(currentTargetTile);
                 center.z = transform.position.z;
                 transform.position = center;
 
-                // 이동 후 타일
+                // 캐시 초기화하여 실제 위치 재계산
+                cachedCurrentTile = null;
                 Vector3Int newTile = CurrentTile;
 
                 if (TryGetComponent<CharacterBase>(out var character))
                 {
-                    PlacementManager.Instance.GetTileData(oldTile).Character = null;
-                    PlacementManager.Instance.GetTileData(newTile).Character = character;
+                    var oldData = PlacementManager.Instance.GetTileData(oldTile);
+                    if (oldData != null) oldData.Character = null;
+
+                    var newData = PlacementManager.Instance.GetTileData(newTile);
+                    if (newData != null) newData.Character = character;
                 }
             }
         }
 
-        // ���� Ÿ�� �̵�
         if (targetDestination == null && pathQueue.Count > 0)
         {
             currentTargetTile = pathQueue.Dequeue();
@@ -179,10 +165,8 @@ public class MoveTileModule : MovementModule
 
             MoveToDestination(worldPos, 0.01f);
         }
-        
     }
 
-    // �� �߽� ��ǥ ���� (�ܺο��� ��� ����)
     public Vector3 GetCellCenterWorld(Vector3Int cell)
     {
         var tm = TM;
@@ -192,46 +176,51 @@ public class MoveTileModule : MovementModule
         return p;
     }
 
-    // ------------------------
-    // ����ư ��� (���� ����)
-    // ------------------------
-
     private List<Vector3Int> FindPath(Vector3Int start, Vector3Int end)
     {
-        List<Vector3Int> path = new List<Vector3Int>();
-        Vector3Int current = start;
+        Queue<Vector3Int> queue = new Queue<Vector3Int>();
+        Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();
+        HashSet<Vector3Int> visited = new HashSet<Vector3Int>();
 
-        // ���� ���� ������ ���� ���� ��ġ (�ִ� 100ĭ)
-        int safetyBreak = 0;
+        queue.Enqueue(start);
+        visited.Add(start);
 
-        while (current != end && safetyBreak < 100)
+        while (queue.Count > 0)
         {
-            safetyBreak++;
-            Vector3Int delta = end - current;
-            Vector3Int step;
+            Vector3Int current = queue.Dequeue();
 
-            if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-            {
-                step = new Vector3Int(delta.x > 0 ? 1 : -1, 0, 0);
-            }
-            else
-            {
-                step = new Vector3Int(0, delta.y > 0 ? 1 : -1, 0);
-            }
-
-            Vector3Int next = current + step;
-            bool canEnter = CanEnterTile(next);
-
-            // �� �α�: ���� ��� ĭ���� ��� �������� ��������, �׸��� �װ� �������� ���
-           
-            if (!canEnter)
-            {
+            if (current == end)
                 break;
-            }
 
-            current = next;
-            path.Add(current);
+            foreach (var next in GetNeighbors(current))
+            {
+                
+                if (visited.Contains(next))
+                    continue;
+
+                if (!CanEnterTile(next) && next != end)
+                    continue;
+
+                visited.Add(next);
+                parent[next] = current;
+                queue.Enqueue(next);
+            }
         }
+
+        if (!visited.Contains(end))
+            return null;
+
+        List<Vector3Int> path = new List<Vector3Int>();
+
+        Vector3Int p = end;
+
+        while (p != start)
+        {
+            path.Add(p);
+            p = parent[p];
+        }
+
+        path.Reverse();
 
         return path;
     }
@@ -246,67 +235,23 @@ public class MoveTileModule : MovementModule
         };
     }
 
-    // public���� ����: PlacementManager�� tilemap�� ����Ͽ� �Ǵ�
     public bool CanEnterTile(Vector3Int tile)
     {
-        var tm = TM;
-        if (tm == null) return false;
-
-        // 타일 존재 여부
-        if (!tm.HasTile(tile))
-        {
-            Debug.LogWarning($"[CanEnter Fail] {tile}에 타일이 없습니다.");
-            return false;
-        }
-
-        // TileData 가져오기
         TileData data = PlacementManager.Instance.GetTileData(tile);
+        if (data == null) return false;
+        return data.isempty;
+    }
 
-        // 빈 타일인지 확인
-        if (!data.isempty)
+    // [수정] 캐릭터 클릭 시 이동 모드 전환 및 하이라이트 연동
+    public void OnCharacterClicked()
+    {
+        Debug.Log($"[MoveTileModule] {gameObject.name} 캐릭터 선택 완료");
+
+        if (TryGetComponent<CharacterBase>(out var character))
         {
-            Debug.LogWarning($"[CanEnter Fail] {tile}에는 이미 캐릭터가 있습니다.");
-            return false;
+            SelectionManager.SetSelectedCharacter(character);
+            OnMovementModeChange(character);
+            OnPressMoveButton(); // 하이라이트 호출
         }
-
-        // 기존 MoveType 검사
-        switch (MoveType)
-        {
-            case MoveType.PlayerMove:
-
-                bool isOutline = IsOutline(tile);
-
-                if (!isOutline)
-                {
-                    Debug.LogWarning($"[CanEnter Fail] {tile}는 외곽 타일입니다.");
-                    return false;
-                }
-
-                break;
-        }
-
-        return true;
-    }
-    // ------------------------
-    // Ÿ�� / ���� üũ (�ӽ�)
-    // ------------------------
-
-    bool IsField(Vector3Int tile)
-    {
-        // TODO: Tilemap ������ �����ϰų� �̸����� �Ǻ�
-        return true;
-    }
-
-    bool IsOutline(Vector3Int tile)
-    {
-        // TODO: �ܰ� Ÿ�� �Ǻ� ����
-        return true;
-    }
-
-    bool HasCharacter(Vector3Int tile)
-    {
-        // TODO: Dictionary<Vector3Int, CharacterBase>�� ���� ��õ
-        return false;
     }
 }
-

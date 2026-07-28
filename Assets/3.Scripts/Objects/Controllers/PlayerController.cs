@@ -50,7 +50,7 @@ public class PlayerController : ControllerBase
     private void SubscribeInputEvents()
     {
         //InputManager.OnMouseRightButton += MoveToMousePosition;
-        InputManager.OnMove += MoveToDirection;
+        //InputManager.OnMove += MoveToDirection;
         InputManager.OnMouseLeftButton += SelectByMouse;
     }
 

@@ -25,6 +25,14 @@ public class PlacementManager : ManagerBase
 
         return data;
     }
+    public void SetTileEmpty(Vector3Int tile, bool isEmpty)
+    {
+        TileData data = GetTileData(tile);
+        data.isempty = isEmpty;
+
+        // [변수명 필요: PlacementManager 내부에서 TileData를 저장/관리하는 Dictionary나 배열 변수명]
+        // 예시: [데이터저장변수명][tile] = data;
+    }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
         yield return null;

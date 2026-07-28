@@ -1,10 +1,8 @@
-using System.Collections.Generic; // ���ο� �Է� �ý��� ���ӽ����̽� �߰�
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 using UnityEngine.Tilemaps;
-using static ModeManager;
 
 public class PlacementController : UI_CharacterSelectWindows
 {
@@ -16,7 +14,6 @@ public class PlacementController : UI_CharacterSelectWindows
     public TextMeshProUGUI Max;
     public static GameObject CurrentSkill;
 
-
     private void RefreshUI()
     {
         if (Current != null) Current.text = count.ToString();
@@ -26,100 +23,96 @@ public class PlacementController : UI_CharacterSelectWindows
     void Start()
     {
         mainCamera = Camera.main;
-        if (PlacementManager.Instance.tilemap == null) PlacementManager.Instance.tilemap = GameObject.FindGameObjectWithTag("MainTile")?.GetComponent<Tilemap>();
+        InitTilemap();
+    }
 
+    private bool InitTilemap()
+    {
+        if (PlacementManager.Instance == null) return false;
+
+        if (PlacementManager.Instance.tilemap == null)
+        {
+            GameObject mainTileObj = GameObject.FindGameObjectWithTag("MainTile");
+            if (mainTileObj != null)
+            {
+                PlacementManager.Instance.tilemap = mainTileObj.GetComponent<Tilemap>();
+            }
+        }
+
+        return PlacementManager.Instance.tilemap != null;
     }
 
     void Update()
     {
         RefreshUI();
-        // Mouse.current.leftButton.wasPressedThisFrame���� Ŭ�� ����
+
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // ���콺 ���� ��ũ�� ��ǥ ��������
-            Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+            if (mainCamera == null) mainCamera = Camera.main;
+            if (!InitTilemap()) return;
 
-            // ���� ��ǥ�� ��ȯ
+            Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0));
             mouseWorldPos.z = 1;
 
-            // Ÿ�ϸ� �� ��ǥ�� ��ȯ
-            Vector3Int clickCellPos = PlacementManager.Instance.tilemap.WorldToCell(mouseWorldPos);
-            Vector3Int origin = PlacementManager.Instance.tilemap.cellBounds.min;
-            Vector3Int adjustedPos = clickCellPos - origin;
+            Tilemap targetTilemap = PlacementManager.Instance.tilemap;
+            Vector3Int clickCellPos = targetTilemap.WorldToCell(mouseWorldPos);
 
-            if (ModeManager.Instance.CurrentMode == GameMode.CharacterSelect)
+            if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode == ModeManager.GameMode.CharacterSelect)
             {
-                if (PlacementManager.Instance.tilemap.HasTile(clickCellPos))
+                if (targetTilemap.HasTile(clickCellPos))
                 {
                     if (SelectionManager.SelectedPrefab != null)
                     {
-                        // 1. ���� ���õ� ĳ����(currentCharacter)�� �̸��� ��ġ�ϴ� ������Ʈ�� ������ �˻�
-                        // ������ ���� �� (Clone)�� �ٴ� ��Ģ�̶�� currentCharacter.name + "(Clone)"���� ����
-
                         ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
 
                         GameObject target = GameObject.Find(SelectionManager.SelectedPrefab.name + "(Clone)");
                         if (count >= max)
                         {
-                            UIManager.ClaimPopUp("���", "�ο� �ʰ�", "����");
+                            UIManager.ClaimPopUp("경고", "인원 초과", "확인");
                             SelectionManager.SelectedPrefab = null;
                             return;
                         }
-                        // 2. ��ġ�ϴ� �̸��� ������Ʈ�� �̹� ������ ����
+
                         if (target != null)
                         {
-                            Debug.Log($"[Destroy] ������ �����ϴ� {target.name} ������Ʈ�� �����մϴ�.");
+                            Debug.Log($"[Destroy] 이미 존재하는 {target.name} 오브젝트를 삭제합니다.");
                             ObjectManager.DestroyObject(target);
                             _objects.Remove(target);
-
-
                         }
 
+                        Vector3 spawnPos = targetTilemap.GetCellCenterWorld(clickCellPos);
+                        if (StageUIController.Instance != null) StageUIController.Instance.Refresh();
 
-
-                        Vector3 spawnPos = PlacementManager.Instance.tilemap.GetCellCenterWorld(clickCellPos);
-                        StageUIController.Instance.Refresh();
                         GameObject obj = ObjectManager.CreateObject(SelectionManager.SelectedPrefab, spawnPos);
                         _objects.Add(obj);
 
                         if (obj.TryGetComponent<CharacterBase>(out var character))
                         {
-                            // 타일 점유
-                            PlacementManager.Instance
-                                .GetTileData(clickCellPos)
-                                .Character = character;
+                            var tileData = PlacementManager.Instance.GetTileData(clickCellPos);
+                            if (tileData != null)
+                            {
+                                tileData.Character = character;
+                            }
 
                             SelectionManager.SetSelectedCharacter(character);
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"{obj.name}�� CharacterBase ������Ʈ�� �����ϴ�!");
                         }
 
                         SelectionManager.SelectedPrefab = null;
                     }
-                    else
-                    {
-
-                    }
                 }
             }
-
-            else if (ModeManager.Instance.CurrentMode == GameMode.Battle)
-            {
-                Debug.Log("");
-            }
         }
-
     }
 
     public static void RemoveAllObject()
     {
-
         for (int i = _objects.Count - 1; i >= 0; i--)
         {
-            ObjectManager.DestroyObject(_objects[i]);
+            if (_objects[i] != null)
+            {
+                ObjectManager.DestroyObject(_objects[i]);
+            }
         }
         _objects.Clear();
     }
