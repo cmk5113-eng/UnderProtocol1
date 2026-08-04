@@ -23,9 +23,12 @@ public class MovementModule : CharacterModule, IRunnable
         GameManager.OnPhysicsCharacter -= MovementUpdate;
         GameManager.OnPhysicsCharacter += MovementUpdate;
 
-        // [수정] 마우스 클릭 이벤트 바인딩 복원
         InputManager.OnMouseLeftButton -= OnLeftClickInput;
         InputManager.OnMouseLeftButton += OnLeftClickInput;
+
+        // 1. 우클릭 이벤트 구독 추가
+        InputManager.OnMouseRightButton -= OnRightClickInput;
+        InputManager.OnMouseRightButton += OnRightClickInput;
     }
 
     public override void OnUnregistration(CharacterBase oldOwner)
@@ -34,6 +37,34 @@ public class MovementModule : CharacterModule, IRunnable
 
         GameManager.OnPhysicsCharacter -= MovementUpdate;
         InputManager.OnMouseLeftButton -= OnLeftClickInput;
+
+        // 2. 우클릭 이벤트 구독 해제 추가
+        InputManager.OnMouseRightButton -= OnRightClickInput;
+    }
+
+    // 3. 우클릭 입력 처리 함수 구현
+    private void OnRightClickInput(bool isPressed, Vector2 screenPosition, Vector3 worldPosition)
+    {
+        if (!isPressed) return;
+
+        // 게임 모드가 Movement(이동) 모드이고, 현재 하이라이트가 표시되어 있는 상태일 때만 실행
+        if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode == ModeManager.GameMode.Movement)
+        {
+            if (onHighLight)
+            {
+                ClearTileHighlight();
+                Debug.Log("[MovementModule] 우클릭으로 타일 하이라이트를 해제했습니다.");
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        GameManager.OnPhysicsCharacter -= MovementUpdate;
+        InputManager.OnMouseLeftButton -= OnLeftClickInput;
+
+        // OnDestroy 시에도 우클릭 이벤트 해제
+        InputManager.OnMouseRightButton -= OnRightClickInput;
     }
 
     private void OnLeftClickInput(bool isPressed, Vector2 screenPosition, Vector3 worldPosition)
@@ -58,7 +89,7 @@ public class MovementModule : CharacterModule, IRunnable
         UpdateToDestination(deltaTime);
     }
 
-    public virtual float GetMoveSpeed() => 5.0f;
+    public virtual float GetMoveSpeed() => 15.0f; // 즉시 이동 느낌을 위해 이동 속도를 높임
     public virtual float GetMoveSpeed(float deltaTime) => GetMoveSpeed() * deltaTime;
 
     public void Translate(Vector3 delta)
@@ -80,7 +111,7 @@ public class MovementModule : CharacterModule, IRunnable
         Vector3 currentMoveDirection = (targetDestination.Value - transform.position);
         float distance = currentMoveDirection.magnitude;
 
-        float defaultTolerance = (this is MoveTileModule) ? 0.5f : 0.05f;
+        float defaultTolerance = (this is MoveTileModule) ? 0.05f : 0.05f;
         float effectiveTolerance = Mathf.Max(targetTolerance, defaultTolerance);
 
         if (distance <= effectiveTolerance)
@@ -88,10 +119,18 @@ public class MovementModule : CharacterModule, IRunnable
             transform.position = targetDestination.Value;
             targetDestination = null;
 
+            // 이동 완료 후 스태미나 차감
             if (Owner != null)
             {
                 Owner.steminaPoint = Mathf.Max(0, Owner.steminaPoint - 1);
             }
+
+            // 이동 완료 후 자식 클래스의 좌표 갱신 호출
+            if (this is MoveTileModule moveTile)
+            {
+                moveTile.OnMoveComplete();
+            }
+
             return;
         }
 
@@ -132,50 +171,42 @@ public class MovementModule : CharacterModule, IRunnable
         targetDestination = null;
     }
 
-    void OnDestroy()
+    public virtual bool IsOuterTile(Vector3Int tilePos)
     {
-        GameManager.OnPhysicsCharacter -= MovementUpdate;
-        InputManager.OnMouseLeftButton -= OnLeftClickInput;
+        if (this is MoveTileModule moveTile)
+        {
+            return moveTile.IsOuterTile(tilePos);
+        }
+        return false;
     }
-   public void HandleMouseClick(Vector2 mouseWorldPos)
+
+    public void HandleMouseClick(Vector2 mouseWorldPos)
     {
-        // 1. 이동 모드가 아니면 리턴
         if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.Movement) return;
-
-        // 2. 선택된 캐릭터가 없거나, '선택된 캐릭터'가 '나(this.Owner)'가 아니면 리턴
-        if (SelectionManager.CharacterBase == null || SelectionManager.CharacterBase != Owner)
-        {
-            return;
-        }
-
-        if (onHighLight != true)
-        {
-            return;            
-        }
-
+        if (SelectionManager.CharacterBase == null || SelectionManager.CharacterBase != Owner) return;
+        if (onHighLight != true) return;
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
-        Tilemap tilemap = PlacementManager.Instance.tilemap;
 
+        Tilemap tilemap = PlacementManager.Instance.tilemap;
         Vector3Int targetCell = tilemap.WorldToCell(mouseWorldPos);
         targetCell.z = 0;
 
         if (this is MoveTileModule tileMoveModule)
         {
-            List<Vector3Int> movableTiles = tileMoveModule.GetMovableTiles();
-            bool isMovable = movableTiles.Exists(tile => tile.x == targetCell.x && tile.y == targetCell.y);
+            // 이동 가능한 타일 목록 가져오기 (외곽 + 빈 타일만 필터링되어 전달됨)
+            List<Vector3Int> validTiles = tileMoveModule.GetMovableTiles();
+
+            bool isMovable = validTiles.Contains(targetCell);
 
             if (isMovable)
             {
-                // [이동 성공 시에만 이동 및 하이라이트 정리 실행]
-                tileMoveModule.MoveToTile(targetCell);
-                FinishMoveInput(); // ✅ 성공 시에만 호출해서 하이라이트/입력 종료
+                // 클릭한 타일 위치로 곧바로 이동
+                tileMoveModule.MoveToTileDirect(targetCell);
+                FinishMoveInput();
             }
             else
             {
-                // [이동 실패 시] 
-                // 다른 캐릭터 점유 타일이나 이동 불가능한 곳을 눌렀을 때는 
-                // onHighLight를 끄지 않고 경고만 띄웁니다 (다음 클릭이 가능하도록).
-                Debug.LogWarning($"[Movement Fail] {targetCell}은 이동 범위를 벗어났거나 이동 불가능합니다.");
+                Debug.LogWarning($"[Movement Fail] Raw:{targetCell} 은 이동 불가능하거나 외곽/빈 타일이 아닙니다.");
             }
         }
         else
@@ -185,7 +216,7 @@ public class MovementModule : CharacterModule, IRunnable
             if (distance <= currentMoveRange)
             {
                 MoveToDestination(targetWorldPos, 0.05f);
-                FinishMoveInput(); // ✅ 성공 시에만 호출
+                FinishMoveInput();
             }
             else
             {
@@ -193,6 +224,18 @@ public class MovementModule : CharacterModule, IRunnable
             }
         }
     }
+
+    public void OnCharacterClicked()
+    {
+        Debug.Log($"[MoveTileModule] {gameObject.name} 캐릭터 선택 완료");
+        if (TryGetComponent<CharacterBase>(out var character))
+        {
+            SelectionManager.SetSelectedCharacter(character);
+            OnMovementModeChange(character);
+            OnPressMoveButton();
+        }
+    }
+
     public void OnPressMoveButton()
     {
         currentMoveRange = Owner?.mobility ?? (this is MoveTileModule m ? m.mobility : 0);
@@ -201,7 +244,6 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void OnMovementModeChange(CharacterBase character)
     {
-        
         if (ModeManager.Instance != null)
         {
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
@@ -209,7 +251,6 @@ public class MovementModule : CharacterModule, IRunnable
         SelectionManager.SetSelectedCharacter(character);
         SelectionManager.CharacterData = character.Data;
         StageUIController.Instance.Refresh();
-
     }
 
     private void FinishMoveInput()
@@ -219,7 +260,6 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void TileHighlight(Vector3 centerPosition, int range)
     {
-        
         if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.Movement) return;
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null) return;
 
@@ -227,35 +267,18 @@ public class MovementModule : CharacterModule, IRunnable
         ClearTileHighlight();
         onHighLight = true;
 
-        // [수정] MoveTileModule인 경우 실제 Pathfinding 기반 타일 범위만 정확히 하이라이트
         if (this is MoveTileModule moveTile)
         {
-            List<Vector3Int> movableTiles = moveTile.GetMovableTiles();
-            foreach (Vector3Int targetCell in movableTiles)
+            // 이동력 기반 외곽+빈 타일 목록 가져오기
+            List<Vector3Int> highlightTiles = moveTile.GetMovableTiles();
+            Color highlightColor = new Color(0f, 0.5f, 1f, 0.5f);
+
+            foreach (Vector3Int targetCell in highlightTiles)
             {
                 if (tilemap.HasTile(targetCell))
                 {
                     tilemap.SetTileFlags(targetCell, TileFlags.None);
-                    tilemap.SetColor(targetCell, new Color(0f, 0.5f, 1f, 0.5f));
-                }
-            }
-        }
-        else
-        {
-            Vector3Int centerCell = tilemap.WorldToCell(centerPosition);
-            for (int x = -range; x <= range; x++)
-            {
-                for (int y = -range; y <= range; y++)
-                {
-                    if (Mathf.Abs(x) + Mathf.Abs(y) <= range)
-                    {
-                        Vector3Int targetCell = new Vector3Int(centerCell.x + x, centerCell.y + y, 0);
-                        if (tilemap.HasTile(targetCell))
-                        {
-                            tilemap.SetTileFlags(targetCell, TileFlags.None);
-                            tilemap.SetColor(targetCell, new Color(0f, 0.5f, 1f, 0.5f));
-                        }
-                    }
+                    tilemap.SetColor(targetCell, highlightColor);
                 }
             }
         }

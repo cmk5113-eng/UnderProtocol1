@@ -127,9 +127,12 @@ public class ControllerBase : MonoBehaviour, IFunctionable
             }
         }
 
+
+
         // ���õ��� �ʾҰų� ����� ������ false ��ȯ (�� �κ��� ����Ǿ� �־����ϴ�)
         return false;
     }
+
 }
 
 

@@ -130,7 +130,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -252,9 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMoveModule
   id: 0
-  tilemap: {fileID: 0}
+  moveType: 0
   mobility: 3
-  MoveType: 0
 --- !u!114 &-5008356541977039277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +271,7 @@ MonoBehaviour:
   selectable: 1
   Name: Pyo
   actionPoint: 1
-  steminaPoint: 3
+  steminaPoint: 1
   mobility: 3
   isEnemy: 0
   characterData: {fileID: 11400000, guid: ba67f9954e204944ea364d5a04676397, type: 2}

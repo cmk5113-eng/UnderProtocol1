@@ -516,9 +516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
   id: 0
-  tilemap: {fileID: 0}
+  moveType: 0
   mobility: 3
-  MoveType: 0
 --- !u!114 &5677516233774846478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +535,7 @@ MonoBehaviour:
   selectable: 1
   Name: Choi
   actionPoint: 1
-  steminaPoint: 3
+  steminaPoint: 1
   mobility: 3
   isEnemy: 0
   characterData: {fileID: 11400000, guid: 6b5d7a888ec4bf4448631afc45ecf1bf, type: 2}

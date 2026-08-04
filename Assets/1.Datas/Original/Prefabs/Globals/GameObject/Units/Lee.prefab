@@ -367,9 +367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
   id: 0
-  tilemap: {fileID: 0}
+  moveType: 0
   mobility: 3
-  MoveType: 0
 --- !u!114 &2693166220799059547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +386,7 @@ MonoBehaviour:
   selectable: 1
   Name: Lee
   actionPoint: 1
-  steminaPoint: 3
+  steminaPoint: 1
   mobility: 3
   isEnemy: 0
   characterData: {fileID: 11400000, guid: 68a7709f1e5ca2445bae80977cfd1b30, type: 2}

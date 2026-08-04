@@ -543,7 +543,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -653,9 +653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
   id: 0
-  tilemap: {fileID: 0}
+  moveType: 0
   mobility: 3
-  MoveType: 0
 --- !u!114 &4724212099649384476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +672,7 @@ MonoBehaviour:
   selectable: 1
   Name: Do
   actionPoint: 1
-  steminaPoint: 3
+  steminaPoint: 1
   mobility: 3
   isEnemy: 0
   characterData: {fileID: 11400000, guid: c02f3da5fd6dfdb4ea811710f506ee6e, type: 2}

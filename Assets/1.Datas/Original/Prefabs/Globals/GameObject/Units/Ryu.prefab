@@ -502,9 +502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
   id: 0
-  tilemap: {fileID: 0}
+  moveType: 0
   mobility: 3
-  MoveType: 0
 --- !u!114 &8650805735498712781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +521,7 @@ MonoBehaviour:
   selectable: 1
   Name: Ryu
   actionPoint: 1
-  steminaPoint: 3
+  steminaPoint: 1
   mobility: 3
   isEnemy: 0
   characterData: {fileID: 11400000, guid: 281c98331dcc139448b3c63bc3b5cc06, type: 2}
