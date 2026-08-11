@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: "\uD45C\uD0DC\uC0B0"
   job: 1
   element: 3
-  Portrait: {fileID: -705779253, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
+  Portrait: {fileID: -763987571, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   CharacterObject: {fileID: 1457500170838235371, guid: 7ffa61865acd92844999d1c14a454ba1, type: 3}
   Dialogue: 
   explainText: 
@@ -31,7 +31,7 @@ MonoBehaviour:
   normalSkill: {fileID: 11400000, guid: 54a3d6b09dbc68540a545f7b475db1f6, type: 2}
   linkSkill: {fileID: 11400000, guid: c6702b1f6a96f544cbca04bc9fe40bbe, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 7196d8eeaa2a0744798c85cdc05c13a9, type: 2}
-  actionPoint: 0
+  actionPoint: 1
   steminaPoint: 0
   moveRange: 3
   skillPoint: 0

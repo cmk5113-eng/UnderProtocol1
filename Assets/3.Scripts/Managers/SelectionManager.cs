@@ -108,6 +108,7 @@ public class SelectionManager : ManagerBase
 
         CharacterBase = character;
         Debug.Log($"[Selection] 현재 선택된 캐릭터가 {character.Name}(으)로 변경되었습니다.");
+        Debug.Log($"현재캐릭터의 액션포인트 {character.actionPoint}");
     }
 
     /// <summary>

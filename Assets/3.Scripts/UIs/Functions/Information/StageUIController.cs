@@ -110,7 +110,7 @@ public class StageUIController : MonoBehaviour
             {
                 // 진짜 오브젝트의 데이터를 직접 수정합니다.
                 character.actionPoint = 1;
-                character.steminaPoint = 3;
+                character.steminaPoint = character.maxStemina;
                 character.UpdateActionStateVisual();
                 // 이동 잠금(IsMoving) 상태도 함께 안전하게 풀어줍니다.
                 MovementModule moveModule = character.GetComponent<MovementModule>();
@@ -120,8 +120,7 @@ public class StageUIController : MonoBehaviour
                     moveModule.StopMovement();
                 }
 
-                Debug.Log($"[Turn Reset] 실제 씬의 캐릭터 '{character.gameObject.name}'의 스태미나가 {character.steminaPoint}로 회복되었습니다!");
-            }
+                }
         }
 
         // 3. UI 글자 갱신

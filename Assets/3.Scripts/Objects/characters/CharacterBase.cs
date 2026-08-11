@@ -23,8 +23,11 @@ public class CharacterBase : MonoBehaviour
     public Sprite portrait;
     public bool selectable = true;
     public string Name;
-    
+    public int MaxHP;
+    public int currentHP;
+
     public int actionPoint = 0;
+    public int maxStemina = 0;
     public int steminaPoint = 0;
     public int mobility = 0;
     public bool isEnemy = false;
@@ -105,6 +108,9 @@ public class CharacterBase : MonoBehaviour
     }
     public void UpdateActionStateVisual()
     {
+        if (isEnemy)
+            return;
+
         if (spriteRenderer == null) return;
 
         if (actionPoint == 0)

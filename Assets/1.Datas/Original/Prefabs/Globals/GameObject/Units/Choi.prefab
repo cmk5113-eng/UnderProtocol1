@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24502c5671d6294fa45a5fa72764ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveTileModule
-  id: 0
+  id: 1
   moveType: 0
   mobility: 3
 --- !u!114 &5677516233774846478
@@ -531,10 +531,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
   spriteRenderer: {fileID: 0}
-  portrait: {fileID: 612622295, guid: e8bf92b90e9513c4b81084f4a53bf246, type: 3}
+  portrait: {fileID: 771527927, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   selectable: 1
   Name: Choi
   actionPoint: 1
+  maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0

@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class BattleManager : ManagerBase
         PlayerTurn,
         MonsterTurn
     }
+
+    public static float HP = 100;
 
     [Header("턴 및 웨이브 상태")]
     [SerializeField] private TurnMode currentTurnMode = TurnMode.PlayerTurn;
@@ -50,6 +53,7 @@ public class BattleManager : ManagerBase
 
     private void Start()
     {
+        FindMonsters();
         // 첫 번째 플레이어 턴 시작
         StartPlayerTurn();
     }
@@ -57,6 +61,24 @@ public class BattleManager : ManagerBase
     /// <summary>
     /// 플레이어 캐릭터들이 행동(AP 소비)할 때마다 호출하여 모두 0이 되었는지 체크하는 함수
     /// </summary>
+    /// 
+    public void FindMonsters()
+    {
+        monsterCharacters.Clear();
+
+        CharacterBase[] characters = FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (CharacterBase character in characters)
+        {
+            if (character.isEnemy)
+            {
+                monsterCharacters.Add(character);
+            }
+        }
+    }
     public void CheckPlayerApAndTryEndTurn()
     {
         if (currentTurnMode != TurnMode.PlayerTurn) return;
@@ -105,30 +127,32 @@ public class BattleManager : ManagerBase
         // if (ModeManager.Instance != null) ModeManager.Instance.CurrentMode = ModeManager.GameMode.MonsterTurn;
 
         // 💡 몬스터턴이 시작되면 몬스터턴 함수를 실행
-        StartCoroutine(MonsterTurnRoutine());
+        MonsterTurn();
     }
+
 
     /// <summary>
     /// 💡 몬스터턴 함수 (AI 행동을 순차적으로 처리하기 위해 코루틴 사용)
     /// </summary>
-    public IEnumerator MonsterTurnRoutine()
+    public void MonsterTurn()
     {
-        Debug.Log("[Battle] 몬스터 턴 시작 - AI 행동 연산 중...");
+        Debug.Log("[Battle] 몬스터 턴 시작");
 
-        //살아있는 모든 몬스터 순회하며 AI 행동 처리
         foreach (var monster in monsterCharacters)
         {
+            if (monsterCharacters == null) return;
             if (monster == null) continue;
+            if (monster.currentHP <= 0) continue;
 
-            // 여기서 몬스터 이동 및 공격 코드를 실행시킵니다.
-            // ex) yield return monster.GetComponent<MonsterAI>().ExecuteTurn();
-            yield return new WaitForSeconds(1.0f); // 비주얼적 대기 시간 가정
+            // 몬스터의 현재 HP만큼 피해
+            HP -= monster.currentHP;
+            Debug.Log($"{HP}");
+            Test.Instance.SubValue(monster.currentHP * 0.01f);
+
         }
 
-        // 몬스터들의 행동이 전부 끝나면
         EndMonsterTurn();
     }
-
     /// <summary>
     /// 몬스터 턴 종료 및 플레이어 턴 복귀
     /// </summary>
