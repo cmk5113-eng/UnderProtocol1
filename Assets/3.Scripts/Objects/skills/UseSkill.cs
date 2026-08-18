@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,25 @@ public class UseSkill : MonoBehaviour
 {
     public static UseSkill Instance { get; private set; }
 
-    // 사정거리와 효과 범위를 시각적으로 구분할 색상 설정
     [Header("하이라이트 색상 설정")]
     [SerializeField] private Color castRangeColor = new Color(0f, 0.5f, 1f, 0.4f); // 반투명 푸른색
     [SerializeField] private Color aoeColor = new Color(1f, 0.2f, 0.2f, 0.5f);       // 반투명 붉은색
 
     private Tilemap tilemap;
-    private ActiveSkill currentSkill;
+    private SkillList currentSkill;
+
     private CharacterBase caster;
 
-    // 최적화를 위해 불이 켜진 타일들의 좌표만 기억하는 리스트
     private List<Vector3Int> castRangeTiles = new List<Vector3Int>();
     private List<Vector3Int> aoeTiles = new List<Vector3Int>();
 
     private Vector3Int lastMouseCell = new Vector3Int(-999, -999, -999);
     private bool isSkillTargetingActive = false;
+    private int CurrentSkillRange =>
+    currentSkill != null ? currentSkill.range : 0;
+
+    private int CurrentSkillAoe =>
+        currentSkill != null ? currentSkill.aoe : 0;
 
     private void Awake()
     {
@@ -30,7 +35,6 @@ public class UseSkill : MonoBehaviour
 
     private void Start()
     {
-        // 기존 매니저에서 사용하던 타일맵 참조 가져오기
         if (PlacementManager.Instance != null)
         {
             tilemap = PlacementManager.Instance.tilemap;
@@ -39,160 +43,227 @@ public class UseSkill : MonoBehaviour
 
     private void Update()
     {
-        if (!isSkillTargetingActive || tilemap == null || currentSkill == null || caster == null) return;
+        if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill) return;
+
+        if (!isSkillTargetingActive || tilemap == null || (currentSkill == null ) || caster == null) return;
 
         HandleRealtimeAoE();
 
-        // 💡 마우스 좌클릭 시 독립된 신규 함수 실행
         if (Input.GetMouseButtonDown(0))
         {
             ExecuteSkillOnTarget();
         }
 
-        // 마우스 우클릭 시 스킬 조준 취소
         if (Input.GetMouseButtonDown(1))
         {
             CancelTargeting();
         }
     }
+
     /// <summary>
-    /// [외부 호출용] UI 스킬 버튼을 눌렀을 때 최초 1회 실행하는 함수
+    /// [궁극기 전용] 스킬 조준 시작
     /// </summary>
-    public void StartSkillTargeting(ActiveSkill skill, CharacterBase skillCaster)
-    {
+    public void StartSkillTargeting(SkillList skill, CharacterBase skillCaster)
+    { 
+        if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
+        {
+            ModeManager.Instance.CurrentMode = ModeManager.GameMode.UseSkill;
+        }
+
         if (tilemap == null)
         {
             if (PlacementManager.Instance != null) tilemap = PlacementManager.Instance.tilemap;
             if (tilemap == null) return;
         }
 
-        // 상태 초기화 및 데이터 할당
+        // 💡 기존 타일 및 스킬 데이터 완전 초기화
         ClearAllHighlights();
+
+        // 💡 궁극기 할당 및 일반 스킬 참조 명시적 제거
+ 
         currentSkill = skill;
         caster = skillCaster;
         isSkillTargetingActive = true;
         lastMouseCell = new Vector3Int(-999, -999, -999);
 
-        // 1. 시전자의 위치를 기준으로 고정 '사정거리' 하이라이트 생성
-        Vector3Int casterCell = tilemap.WorldToCell(SelectionManager.SelectedPrefab.transform.position);
-        HighlightRange(casterCell, currentSkill.range, castRangeColor, castRangeTiles);
-      
-    }
+        Vector3Int casterCell =
+      tilemap.WorldToCell(skillCaster.transform.position);
 
-    /// <summary>
-    /// 마우스 움직임을 감지하여 실시간으로 AoE(효과범위)를 업데이트하는 로직
-    /// </summary>
+        casterCell.z = 0;
+
+        HighlightRange(
+            casterCell,
+            CurrentSkillRange,
+            castRangeColor,
+            castRangeTiles
+        );
+    }
+     
+    
+
     private void HandleRealtimeAoE()
     {
-        // 마우스 위치의 월드 좌표를 셀 좌표로 변환
+
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int currentMouseCell = tilemap.WorldToCell(mouseWorldPos);
         currentMouseCell.z = 0;
 
-        // 마우스가 이전 프레임과 '다른 타일'로 이동했을 때만 갱신 (매 프레임 연산 방지 최적화)
         if (currentMouseCell != lastMouseCell)
         {
             lastMouseCell = currentMouseCell;
 
-            // 기존 AoE 하이라이트만 지우기 (사정거리는 유지해야 하므로)
             ClearTileList(aoeTiles);
 
-            // 마우스가 사정거리 하이라이트 '안에' 있을 때만 AoE 범위를 그려줌
             if (castRangeTiles.Contains(currentMouseCell))
             {
-                // 2. 마우스 좌표를 중심점으로 스킬 자체의 효과범위(AoE) 하이라이트 생성
-                HighlightRange(currentMouseCell, currentSkill.aoe, aoeColor, aoeTiles);
+                // 💡 삼항연산자 대신 안전한 CurrentSkillAoe 프로퍼티 사용
+                int targetAoe = CurrentSkillAoe;
+
+                if (targetAoe > 0)
+                {
+                    HighlightRange(currentMouseCell, targetAoe, aoeColor, aoeTiles);
+                }
             }
         }
     }
 
+    public void ClearRealtimeAoE()
+    {
+        if (tilemap == null) return;
+
+        ClearTileList(aoeTiles);
+
+        foreach (Vector3Int castPos in castRangeTiles)
+        {
+            if (tilemap.HasTile(castPos))
+            {
+                tilemap.SetTileFlags(castPos, TileFlags.None);
+                tilemap.SetColor(castPos, castRangeColor);
+            }
+        }
+
+        lastMouseCell = new Vector3Int(-999, -999, -999);
+    }
+
     public void ExecuteSkillOnTarget()
     {
-        // 1. 게임 모드가 UseSkill 일 때만 실행하는 조건문
-        if (ModeManager.Instance == null || ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
+        if (ModeManager.Instance == null ||
+            ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
         {
+            Debug.Log("[Skill] 현재 스킬 사용 모드가 아닙니다.");
             return;
         }
 
+        if (tilemap == null)
+        {
+            Debug.LogWarning("[Skill] Tilemap이 없습니다.");
+            return;
+        }
+
+        if (caster == null)
+        {
+            Debug.LogWarning("[Skill] 캐스터가 없습니다.");
+            CancelTargeting();
+            return;
+        }
+
+        // 마우스 위치 → 타일 좌표
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int clickedCell = tilemap.WorldToCell(mouseWorldPos);
-        clickedCell.z = tilemap.WorldToCell(SelectionManager.SelectedPrefab.transform.position).z;
 
-        // 사정거리 외곽 클릭 시 차단 (선택사항 유지)
+        // 하이라이트와 동일하게 Z = 0
+        clickedCell.z = 0;
+
+        Debug.Log($"[Skill] 클릭 셀: {clickedCell}");
+        Debug.Log($"[Skill] 사정거리 타일 수: {castRangeTiles.Count}");
+        Debug.Log($"[Skill] 캐스터 AP: {caster.actionPoint}");
+
+        // 사정거리 확인
         if (!castRangeTiles.Contains(clickedCell))
         {
             Debug.Log("[Skill] 사정거리 밖을 클릭했습니다.");
             return;
         }
 
-        // 시전자의 actionPoint가 0이면 실행 안 함
-        if (caster.actionPoint == 0)
+        // AP 확인
+        if (caster.actionPoint <= 0)
         {
-            Debug.LogWarning($"[Skill] {caster.Name}의 ActionPoint가 0이라 스킬을 사용할 수 없습니다.");
+            Debug.LogWarning(
+                $"[Skill] ActionPoint가 부족합니다. 현재 AP = {caster.actionPoint}"
+            );
+
             CancelTargeting();
             return;
         }
 
-        // 2. 하이라이트를 먼저 종료 및 클리어 (ClearAllHighlights)
-    
-
-        // 3. AoE 범위에 저장되어 있던 타일들을 순회하며 오브젝트가 있는지 체크
-        // (ClearAllHighlights를 실행했더라도 aoeTiles 리스트 변수 내부의 데이터는 아직 살아있으므로 이를 활용합니다)
         List<GameObject> enemiesToDestroy = new List<GameObject>();
 
         foreach (Vector3Int cellPos in aoeTiles)
         {
             Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
+
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
-            if (hit != null)
-            {
-                // 부모나 자신에게서 CharacterBase가 있는지 가져옵니다.
-                CharacterBase targetCharacter = hit.GetComponentInParent<CharacterBase>();
+            if (hit == null)
+                continue;
 
-                // 4. Enemy 레이어나 태그 조건 체크
-                if (targetCharacter != null && hit.CompareTag("Enemy"))
+            CharacterBase targetCharacter =
+                hit.GetComponentInParent<CharacterBase>();
+
+            if (targetCharacter != null && hit.CompareTag("Enemy"))
+            {
+                if (!enemiesToDestroy.Contains(targetCharacter.gameObject))
                 {
                     enemiesToDestroy.Add(targetCharacter.gameObject);
                 }
             }
         }
-        DebugDetectedEnemiesCount(enemiesToDestroy);
-        // 5. 검출된 Enemy들을 ObjectManager를 이용해 파괴 처리
+
+        int inGrave = enemiesToDestroy.Count;
+
+        Debug.Log($"[Skill] 감지된 적: {inGrave}");
+
+        if (ScrollUI.Instance != null)
+        {
+            ScrollUI.Instance.PlusGaugevalue(0.02f * inGrave);
+        }
+
         foreach (GameObject enemyObj in enemiesToDestroy)
         {
             if (enemyObj != null)
             {
-                Debug.Log($"[Skill Action] 범위 안의 적 {enemyObj.name}을(를) 파괴합니다.");
+                Debug.Log(
+                    $"[Skill Action] 범위 안의 적 {enemyObj.name}을(를) 파괴합니다."
+                );
 
-                
-                    ObjectManager.DestroyObject(enemyObj);
-                
-               }
+                ObjectManager.DestroyObject(enemyObj);
+            }
         }
 
-        // 6. 시전자의 actionPoint 소모 및 시각적 피드백 처리
+        // 스킬 사용
         caster.actionPoint = 0;
         caster.UpdateActionStateVisual();
 
-        // 7. 스킬 사용이 끝났으므로 게임 모드를 원래대로 복구
+        Debug.Log(
+            $"[Skill Action] 스킬 실행 완료. " +
+            $"{caster.Name}의 AP = {caster.actionPoint}"
+        );
+
+        // 이동 모드로 전환
         if (ModeManager.Instance != null)
         {
-            ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
+            ModeManager.Instance.CurrentMode =
+                ModeManager.GameMode.Movement;
         }
 
-            ClearAllHighlights();
-        Debug.Log($"[Skill Action] 스킬 실행 완료. {caster.Name}의 AP가 {caster.actionPoint}이 되었습니다.");
+        ClearAllHighlights();
     }
+
     private void DebugDetectedEnemiesCount(List<GameObject> enemies)
     {
         foreach (Vector3Int cellPos in aoeTiles)
         {
             Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
-
-            Debug.Log($"Cell : {cellPos}");
-            Debug.Log($"World : {worldPos}");
-
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
             if (hit == null)
@@ -201,23 +272,18 @@ public class UseSkill : MonoBehaviour
                 continue;
             }
 
-            Debug.Log($"Hit : {hit.name}");
-
             CharacterBase targetCharacter = hit.GetComponentInParent<CharacterBase>();
-
-            Debug.Log($"Character : {targetCharacter}");
-
-            Debug.Log($"Tag : {hit.tag}");
         }
     }
+
     public void OnSkillModeChange()
     {
-        ModeManager.Instance.CurrentMode = ModeManager.GameMode.UseSkill;
+        if (ModeManager.Instance != null)
+        {
+            ModeManager.Instance.CurrentMode = ModeManager.GameMode.UseSkill;
+        }
     }
-    
-    /// <summary>
-    /// 특정 중심점을 기준으로 맨해튼 거리만큼 타일 색상을 바꾸고 리스트에 저장하는 공용 함수
-    /// </summary>
+
     private void HighlightRange(Vector3Int centerCell, int radius, Color color, List<Vector3Int> saveList)
     {
         for (int x = -radius; x <= radius; x++)
@@ -238,32 +304,22 @@ public class UseSkill : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// [UI 버튼 OnClick 전용] 1번 스킬 실행
+    /// </summary>
     public void UI_StartSkill1()
     {
-        Debug.Log("UI_StartSkill1() 호출됨.");
+        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
+        ClearAllHighlights();
 
-        Debug.Log($"현재 데이터{SelectionManager._characterData} 현재 프리펩{SelectionManager.SelectedPrefab} 현제 베이스{SelectionManager.CharacterBase}");
-
-        //int index = Array.IndexOf(SelectionManager.Instance.characterDatas, SelectionManager._characterData);
-
-        //if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
-        //{
-        //    SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
-        //}
-        //else
-        //{
-        //    SelectionManager.CharacterBase = null;
-        //}
-
-        // 💡 [수정] SelectionManager에 저장된 진짜 캐릭터를 시전자로 가져옵니다!
         CharacterBase currentCaster = SelectionManager.CharacterBase;
-
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
 
         if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 0)
         {
-            ActiveSkill targetSkill = currentData.active[0]; // 1번 스킬
+            ActiveSkill targetSkill = currentData.active[0];
             if (targetSkill != null)
             {
                 StartSkillTargeting(targetSkill, currentCaster);
@@ -272,10 +328,13 @@ public class UseSkill : MonoBehaviour
     }
 
     /// <summary>
-    /// [UI 버튼 OnClick 전용] 현재 선택된 캐릭터의 2번 스킬 하이라이트를 켭니다.
+    /// [UI 버튼 OnClick 전용] 2번 스킬 실행
     /// </summary>
     public void UI_StartSkill2()
     {
+        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
+        ClearAllHighlights();
+
         int index = Array.IndexOf(SelectionManager.Instance.characterDatas, SelectionManager._characterData);
 
         if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
@@ -287,15 +346,13 @@ public class UseSkill : MonoBehaviour
             SelectionManager.CharacterBase = null;
         }
 
-        // 💡 동일하게 적용
         CharacterBase currentCaster = SelectionManager.CharacterBase;
-
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
 
         if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 1)
         {
-            ActiveSkill targetSkill = currentData.active[1]; // 2번 스킬
+            ActiveSkill targetSkill = currentData.active[1];
             if (targetSkill != null)
             {
                 StartSkillTargeting(targetSkill, currentCaster);
@@ -304,11 +361,37 @@ public class UseSkill : MonoBehaviour
     }
 
     /// <summary>
-    /// [UI 버튼 OnClick 전용] 현재 선택된 캐릭터의 궁극기 하이라이트를 켭니다.
+    /// [UI 버튼 OnClick 전용] 궁극기 실행
     /// </summary>
-    /// <summary>
-    /// 특정 타일 리스트의 색상을 원래대로(White) 돌려놓는 함수
-    /// </summary>
+    public void UI_Ultimate()
+    {
+        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
+        ClearAllHighlights();
+
+        // 💡 2. 게이지 부족 시 차단
+        if (ScrollUI.Instance == null || ScrollUI.Instance.GGscrollbar.value < 1.0f)
+        {
+            Debug.Log("궁극기 게이지가 부족합니다.");
+            return;
+        }
+
+
+        // 💡 3. UI_StartSkill1과 동일하게 캐스터 및 데이터 참조
+        CharacterBase currentCaster = SelectionManager.CharacterBase;
+        if (StageUIController.Instance == null) return;
+        CharacterData currentData = StageUIController.Instance.CurrentData;
+
+        if (currentCaster != null && currentData != null && currentData.ultimateSkill != null)
+        {
+            UltimateSkill targetSkill = currentData.ultimateSkill;
+            if (targetSkill != null)
+            {
+                StartSkillTargeting(targetSkill, currentCaster);
+            }
+        }
+        ScrollUI.Instance.SubGaugeValue(1f);
+    }
+
     private void ClearTileList(List<Vector3Int> tileList)
     {
         foreach (Vector3Int pos in tileList)
@@ -317,7 +400,6 @@ public class UseSkill : MonoBehaviour
             {
                 tilemap.SetTileFlags(pos, TileFlags.None);
 
-                // 만약 지우려는 타일이 사정거리 타일 리스트에도 포함되어 있다면 사정거리 색상으로 복구
                 if (castRangeTiles.Contains(pos) && tileList == aoeTiles)
                 {
                     tilemap.SetColor(pos, castRangeColor);
@@ -331,16 +413,30 @@ public class UseSkill : MonoBehaviour
         tileList.Clear();
     }
 
-    /// <summary>
-    /// 모든 하이라이트를 종료하고 초기화
-    /// </summary>
     public void ClearAllHighlights()
     {
         isSkillTargetingActive = false;
-        if (tilemap == null) return;
 
-        ClearTileList(aoeTiles);
-        ClearTileList(castRangeTiles);
+        // 💡 참조 비우기
+        currentSkill = null;
+        caster = null;
+
+        lastMouseCell = new Vector3Int(-999, -999, -999);
+
+        if (tilemap == null && PlacementManager.Instance != null)
+        {
+            tilemap = PlacementManager.Instance.tilemap;
+        }
+
+        if (tilemap != null)
+        {
+            ClearTileList(aoeTiles);
+            ClearTileList(castRangeTiles);
+            tilemap.RefreshAllTiles();
+        }
+
+        aoeTiles.Clear();
+        castRangeTiles.Clear();
     }
 
     private void CancelTargeting()

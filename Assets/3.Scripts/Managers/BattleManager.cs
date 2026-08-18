@@ -147,7 +147,7 @@ public class BattleManager : ManagerBase
             // 몬스터의 현재 HP만큼 피해
             HP -= monster.currentHP;
             Debug.Log($"{HP}");
-            Test.Instance.SubValue(monster.currentHP * 0.01f);
+            ScrollUI.Instance.SubValue(monster.currentHP * 0.01f);
 
         }
 

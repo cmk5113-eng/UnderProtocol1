@@ -520,6 +520,8 @@ MonoBehaviour:
   portrait: {fileID: -1227564231286400416, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   selectable: 1
   Name: Ryu
+  MaxHP: 0
+  currentHP: 0
   actionPoint: 1
   maxStemina: 1
   steminaPoint: 1

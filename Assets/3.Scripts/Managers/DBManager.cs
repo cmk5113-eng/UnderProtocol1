@@ -175,7 +175,6 @@ public class DBManager : ManagerBase
     {
         if (task.IsCanceled || task.IsFaulted)
         {
-            Debug.LogError(task.Exception);
         }    
     }
 }

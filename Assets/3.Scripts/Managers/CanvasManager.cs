@@ -3,7 +3,7 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
 
-    public static Inventory SkillList = new Inventory();
+    public static Inventory SkillList = new Inventory();    
 
     // 싱글톤
     public static CanvasManager Instance { get; private set; }

@@ -80,7 +80,6 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                Debug.Log($"🟢 [스킬 에셋 검증 완료] 스킬명: '{skillName}' -> 아이콘 정상 등록됨 ({skill.icon.name})");
             }
 
             AddSkill(skill, 1);

@@ -12,9 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9238d8e34f2843489b24df6ad07d631, type: 3}
   m_Name: Dimension folding
   m_EditorClassIdentifier: Assembly-CSharp::UltimateSkill
+  skillName: 
+  description: 
   id: 0
   skillsList: []
   type: 0
+  classType: 0
+  elementType: 0
+  rangeType: 0
+  aoeType: 0
+  effectType: 0
+  targetType: 0
+  fieldEffectType: 0
+  statusEffectType: 0
   icon: {fileID: 642299042, guid: 2b4432f756853774ba732dbe06296c04, type: 3}
-  MaxStack: 0
-  currentStack: 0
+  range: 1
+  aoe: 1
+  cost: 1
+  cooldown: 1
+  delay: 0
+  damage: 0
+  level: 0
+  MaxLevel: 0

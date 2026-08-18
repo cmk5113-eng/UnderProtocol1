@@ -8,7 +8,7 @@ public class StageUIController : MonoBehaviour
     public static StageUIController Instance { get; private set; }
     
     [SerializeField] private Image portrait;
-    [SerializeField] private Image[] skill = new Image[3];
+    [SerializeField] private Image[] skill = new Image[4];
     [SerializeField] private Image[] unit = new Image[4];
     [SerializeField] private TMPro.TextMeshProUGUI[] unitname = new TMPro.TextMeshProUGUI[4];
 
@@ -84,6 +84,7 @@ public class StageUIController : MonoBehaviour
             skill[0].sprite = data.active != null && data.active.Length > 0 ? data.active[0]?.icon : null;
             skill[1].sprite = data.active != null && data.active.Length > 1 ? data.active[1]?.icon : null;
             skill[2].sprite = data.ultimateSkill?.icon;
+            skill[3].sprite = data.normalSkill?.icon;
 
             currentData = data;
 
