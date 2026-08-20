@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 16
+  wantType: 15
 --- !u!1 &103290546537000155
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +741,8 @@ MonoBehaviour:
   m_text: "\uB4DC\uB798\uADF8\uD574\uC11C \uC88C\uC6B0 \uC774\uB3D9\n\uB3D9\uADF8\uB77C\uBBF8
     \uB20C\uB7EC\uC11C \uC2A4\uD14C\uC774\uC9C0\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1238,8 +1238,8 @@ MonoBehaviour:
   m_text: "\uB4DC\uB798\uADF8\uD574\uC11C \uC88C\uC6B0 \uC774\uB3D9\n\uB3D9\uADF8\uB77C\uBBF8
     \uB20C\uB7EC\uC11C \uC2A4\uD14C\uC774\uC9C0\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 20
+  wantType: 19
 --- !u!114 &297489103356087424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,8 +1577,8 @@ MonoBehaviour:
   m_text: "\uB4DC\uB798\uADF8\uD574\uC11C \uC88C\uC6B0 \uC774\uB3D9\n\uB3D9\uADF8\uB77C\uBBF8
     \uB20C\uB7EC\uC11C \uC2A4\uD14C\uC774\uC9C0\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 19
+  wantType: 18
 --- !u!1 &3701658255165582701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 18
+  wantType: 17
 --- !u!1 &3918430527516160429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,8 +2425,8 @@ MonoBehaviour:
   m_text: "\uB4DC\uB798\uADF8\uD574\uC11C \uC88C\uC6B0 \uC774\uB3D9\n\uB3D9\uADF8\uB77C\uBBF8
     \uB20C\uB7EC\uC11C \uC2A4\uD14C\uC774\uC9C0\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3049,8 +3049,8 @@ MonoBehaviour:
   m_text: "\uB4DC\uB798\uADF8\uD574\uC11C \uC88C\uC6B0 \uC774\uB3D9\n\uB3D9\uADF8\uB77C\uBBF8
     \uB20C\uB7EC\uC11C \uC2A4\uD14C\uC774\uC9C0\uB85C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3774,6 +3774,7 @@ GameObject:
   - component: {fileID: 6604797995722703616}
   - component: {fileID: 4332929835047508472}
   - component: {fileID: 8800156071653779605}
+  - component: {fileID: 3238754302073987182}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3882,7 +3883,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4332929835047508472}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3238754302073987182}
+        m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3238754302073987182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690770465454798957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
+  wantType: 8
 --- !u!1 &7833143679484277703
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 17
+  wantType: 16
 --- !u!1 &7974187329145855385
 GameObject:
   m_ObjectHideFlags: 0
