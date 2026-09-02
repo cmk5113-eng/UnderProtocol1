@@ -33,6 +33,20 @@ public class StageUIController : MonoBehaviour
         Instance = this;
     }
 
+
+    public void Allreset()
+    {
+        portrait.sprite = null;
+        skill[0].sprite = null;
+        skill[1].sprite = null;
+        skill[2].sprite = null;
+        skill[3].sprite = null;
+        unit[0].sprite = null;
+        unit[1].sprite = null;
+        unit[2].sprite = null;
+        unit[3].sprite = null;
+
+    }
     public void Refresh()
     {
         if (SelectionManager.CharacterBase == null)

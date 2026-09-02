@@ -8,11 +8,7 @@ public class TileMapManager : MonoBehaviour
     {
         PlacementManager.Instance.tilemap = null;
         PlacementManager.Instance.tilemap = currenttilemap;
-        Debug.Log(
-       $"[Tilemap 변경] " +
-       $"{PlacementManager.Instance.tilemap} → {currenttilemap}\n" +
-       $"호출 위치:\n{System.Environment.StackTrace}"
-   );
+
     }
 
     

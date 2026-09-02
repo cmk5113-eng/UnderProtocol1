@@ -153,6 +153,11 @@ public class PlacementController : UI_CharacterSelectWindows
                     SelectionManager.Instance.InitCharacter(character);
                 }
 
+                // 3. 캐릭터베이스 비우기
+
+                SelectionManager._characterBase = null;
+                StageUIController.Instance.Allreset();
+
                 // 3. UI 카운트 감소
                 UI_CharacterSelectWindows.Instance.RemoveCount();
 
@@ -161,6 +166,7 @@ public class PlacementController : UI_CharacterSelectWindows
             }
         }
 
+        
         _objects.Clear();
     }
     public void SpawnObject()

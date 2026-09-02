@@ -9,7 +9,11 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
     {
     }
 
-    public void Toggle() => gameObject.SetActive(!IsOpen);
+    private void OnDisable()
+    {
+        
+    }
+
     public static UI_CharacterSelectWindows Instance { get; private set; }
     public int currentCount = 0;
     public int maxCount = 12;
