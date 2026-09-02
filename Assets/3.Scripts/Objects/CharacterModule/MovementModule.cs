@@ -227,10 +227,9 @@ public class MovementModule : CharacterModule, IRunnable
 
     public void OnCharacterClicked()
     {
-        Debug.Log($"[MoveTileModule] {gameObject.name} 캐릭터 선택 완료");
         if (TryGetComponent<CharacterBase>(out var character))
         {
-            SelectionManager.SetSelectedCharacter(character);
+            SelectionManager.SelectCharacter(character);
             OnMovementModeChange(character);
             OnPressMoveButton();
         }
@@ -248,8 +247,7 @@ public class MovementModule : CharacterModule, IRunnable
         {
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
         }
-        SelectionManager.SetSelectedCharacter(character);
-        SelectionManager.CharacterData = character.Data;
+        SelectionManager.SelectCharacter(character);
         StageUIController.Instance.Refresh();
     }
 

@@ -387,11 +387,13 @@ MonoBehaviour:
   Name: Lee
   MaxHP: 0
   currentHP: 0
-  actionPoint: 1
+  maxAP: 1
+  actionPoint: 0
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 1
   characterData: {fileID: 11400000, guid: 68a7709f1e5ca2445bae80977cfd1b30, type: 2}
 --- !u!114 &5487397112044368127
 MonoBehaviour:

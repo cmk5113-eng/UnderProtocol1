@@ -26,12 +26,13 @@ public class CharacterBase : MonoBehaviour
     public int MaxHP;
     public int currentHP;
 
+    public int maxAP = 0;
     public int actionPoint = 0;
     public int maxStemina = 0;
     public int steminaPoint = 0;
     public int mobility = 0;
     public bool isEnemy = false;
-
+    public bool isSpawned = false;
     public event MovementEvent OnMovement;
     public void MovementNotify(Vector3 move) => OnMovement?.Invoke(move);
     
@@ -96,6 +97,7 @@ public class CharacterBase : MonoBehaviour
 
     }
 
+   
     public void AddAllModuleFromObject(GameObject target)
     {
 

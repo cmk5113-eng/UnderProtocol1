@@ -144,10 +144,12 @@ public class UIManager : ManagerBase
                 currentChanger < ScreenChangeType._Length;
                 currentChanger++)
             {
+                if (screenChnagerDictionary.ContainsKey(currentChanger)) continue;
 
                 GameObject instance = ObjectManager.CreateObject(currentChanger.ToString(), changerTransform);
                 if (instance?.TryGetComponent(out UI_ScreenChanger asChanger) ?? false)
                 {
+                    
                     screenChnagerDictionary.Add(currentChanger, asChanger);
                 }
 

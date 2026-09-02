@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlacementController : UI_CharacterSelectWindows
 {
     private Camera mainCamera;
-    static List<GameObject> _objects = new List<GameObject>();
-    int count => _objects.Count;
+    public static List<GameObject> _objects = new List<GameObject>();
+    public int count => _objects.Count;
     int max = 12;
     public TextMeshProUGUI Current;
     public TextMeshProUGUI Max;
@@ -66,7 +68,7 @@ public class PlacementController : UI_CharacterSelectWindows
                     {
                         ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
 
-                        GameObject target = GameObject.Find(SelectionManager.SelectedPrefab.name + "(Clone)");
+                        GameObject target = GameObject.Find(SelectionManager.SelectedPrefab.gameObject.name);
                         if (count >= max)
                         {
                             UIManager.ClaimPopUp("경고", "인원 초과", "확인");
@@ -77,7 +79,23 @@ public class PlacementController : UI_CharacterSelectWindows
                         if (target != null)
                         {
                             Debug.Log($"[Destroy] 이미 존재하는 {target.name} 오브젝트를 삭제합니다.");
+
+                            // 기존 오브젝트가 있던 위치의 타일 찾기
+                            Vector3Int oldCellPos = targetTilemap.WorldToCell(target.transform.position);
+
+                            // 해당 타일 데이터 가져오기
+                            var oldTileData = PlacementManager.Instance.GetTileData(oldCellPos);
+
+                            if (oldTileData != null)
+                            {
+                                oldTileData.Character = null;
+                                oldTileData.isempty = true;
+
+                            }
+
+                            // 오브젝트 삭제
                             ObjectManager.DestroyObject(target);
+
                             _objects.Remove(target);
                         }
 
@@ -85,9 +103,13 @@ public class PlacementController : UI_CharacterSelectWindows
                         if (StageUIController.Instance != null) StageUIController.Instance.Refresh();
 
                         GameObject obj = ObjectManager.CreateObject(SelectionManager.SelectedPrefab, spawnPos);
+                        obj.name = SelectionManager.SelectedPrefab.name;
+                        Debug.Log($"{PlacementManager.Instance.tilemap}");
                         _objects.Add(obj);
 
-                        if (obj.TryGetComponent<CharacterBase>(out var character))
+                        
+
+                        if (obj.TryGetComponent(out CharacterBase character))
                         {
                             var tileData = PlacementManager.Instance.GetTileData(clickCellPos);
                             if (tileData != null)
@@ -95,7 +117,8 @@ public class PlacementController : UI_CharacterSelectWindows
                                 tileData.Character = character;
                             }
 
-                            SelectionManager.SetSelectedCharacter(character);
+                            SelectionManager.SelectCharacter(character);
+                            SpawnObject();
                         }
 
                         SelectionManager.SelectedPrefab = null;
@@ -107,13 +130,44 @@ public class PlacementController : UI_CharacterSelectWindows
 
     public static void RemoveAllObject()
     {
+        SelectionManager.DeselectCharacter();
+
         for (int i = _objects.Count - 1; i >= 0; i--)
         {
             if (_objects[i] != null)
             {
-                ObjectManager.DestroyObject(_objects[i]);
+                GameObject obj = _objects[i];
+
+                CharacterBase character = obj.GetComponent<CharacterBase>();
+                MoveTileModule moveModule = obj.GetComponent<MoveTileModule>();
+
+                // 1. 현재 점유하고 있는 타일 비우기
+                if (moveModule != null)
+                {
+                    moveModule.ClearCharacterPosition();
+                }
+
+                // 2. 캐릭터 데이터 초기화
+                if (character != null)
+                {
+                    SelectionManager.Instance.InitCharacter(character);
+                }
+
+                // 3. UI 카운트 감소
+                UI_CharacterSelectWindows.Instance.RemoveCount();
+
+                // 4. 마지막으로 삭제
+                ObjectManager.DestroyObject(obj);
             }
         }
+
         _objects.Clear();
+    }
+    public void SpawnObject()
+    {
+        SelectionManager.CharacterBase.actionPoint = SelectionManager.CharacterBase.maxAP;
+        SelectionManager.CharacterBase.steminaPoint = SelectionManager.CharacterBase.maxStemina;
+        SelectionManager.CharacterBase.isSpawned = true;
+    
     }
 }

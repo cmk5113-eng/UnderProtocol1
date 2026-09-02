@@ -35,10 +35,6 @@ public class UseSkill : MonoBehaviour
 
     private void Start()
     {
-        if (PlacementManager.Instance != null)
-        {
-            tilemap = PlacementManager.Instance.tilemap;
-        }
     }
 
     private void Update()
@@ -60,34 +56,41 @@ public class UseSkill : MonoBehaviour
         }
     }
 
+
+
+
     /// <summary>
     /// [궁극기 전용] 스킬 조준 시작
     /// </summary>
     public void StartSkillTargeting(SkillList skill, CharacterBase skillCaster)
-    { 
-        if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
+    {
+        if (ModeManager.Instance != null &&
+            ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
         {
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.UseSkill;
         }
 
+        // 스킬 사용을 시작할 때마다 현재 Tilemap을 다시 가져온다.
+        if (PlacementManager.Instance == null)
+            return;
+
+        tilemap = PlacementManager.Instance.tilemap;
+
         if (tilemap == null)
         {
-            if (PlacementManager.Instance != null) tilemap = PlacementManager.Instance.tilemap;
-            if (tilemap == null) return;
+            Debug.LogWarning("[Skill] 현재 Tilemap이 없습니다.");
+            return;
         }
 
-        // 💡 기존 타일 및 스킬 데이터 완전 초기화
         ClearAllHighlights();
 
-        // 💡 궁극기 할당 및 일반 스킬 참조 명시적 제거
- 
         currentSkill = skill;
         caster = skillCaster;
         isSkillTargetingActive = true;
         lastMouseCell = new Vector3Int(-999, -999, -999);
 
         Vector3Int casterCell =
-      tilemap.WorldToCell(skillCaster.transform.position);
+            tilemap.WorldToCell(skillCaster.transform.position);
 
         casterCell.z = 0;
 
@@ -174,10 +177,6 @@ public class UseSkill : MonoBehaviour
         // 하이라이트와 동일하게 Z = 0
         clickedCell.z = 0;
 
-        Debug.Log($"[Skill] 클릭 셀: {clickedCell}");
-        Debug.Log($"[Skill] 사정거리 타일 수: {castRangeTiles.Count}");
-        Debug.Log($"[Skill] 캐스터 AP: {caster.actionPoint}");
-
         // 사정거리 확인
         if (!castRangeTiles.Contains(clickedCell))
         {
@@ -219,9 +218,7 @@ public class UseSkill : MonoBehaviour
             }
         }
 
-        int inGrave = enemiesToDestroy.Count;
-
-        Debug.Log($"[Skill] 감지된 적: {inGrave}");
+        int inGrave = enemiesToDestroy.Count; 
 
         if (ScrollUI.Instance != null)
         {
@@ -232,9 +229,7 @@ public class UseSkill : MonoBehaviour
         {
             if (enemyObj != null)
             {
-                Debug.Log(
-                    $"[Skill Action] 범위 안의 적 {enemyObj.name}을(를) 파괴합니다."
-                );
+               
 
                 ObjectManager.DestroyObject(enemyObj);
             }
@@ -244,10 +239,6 @@ public class UseSkill : MonoBehaviour
         caster.actionPoint = 0;
         caster.UpdateActionStateVisual();
 
-        Debug.Log(
-            $"[Skill Action] 스킬 실행 완료. " +
-            $"{caster.Name}의 AP = {caster.actionPoint}"
-        );
 
         // 이동 모드로 전환
         if (ModeManager.Instance != null)
@@ -296,6 +287,7 @@ public class UseSkill : MonoBehaviour
 
                     if (tilemap.HasTile(targetCell))
                     {
+
                         tilemap.SetTileFlags(targetCell, TileFlags.None);
                         tilemap.SetColor(targetCell, color);
                         saveList.Add(targetCell);
@@ -310,10 +302,18 @@ public class UseSkill : MonoBehaviour
     /// </summary>
     public void UI_StartSkill1()
     {
+
+        Debug.Log($"현재타일맵{tilemap}");
         // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
         ClearAllHighlights();
-
+        
         CharacterBase currentCaster = SelectionManager.CharacterBase;
+
+        if (currentCaster.isSpawned == false)
+        {
+            Debug.Log("캐릭터를소환해주세요");
+            return;
+        }
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
 
@@ -335,24 +335,19 @@ public class UseSkill : MonoBehaviour
         // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
         ClearAllHighlights();
 
-        int index = Array.IndexOf(SelectionManager.Instance.characterDatas, SelectionManager._characterData);
-
-        if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
-        {
-            SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
-        }
-        else
-        {
-            SelectionManager.CharacterBase = null;
-        }
-
         CharacterBase currentCaster = SelectionManager.CharacterBase;
+
+        if (currentCaster.isSpawned == false)
+        {
+            Debug.Log("캐릭터를소환해주세요");
+            return;
+        }
         if (StageUIController.Instance == null) return;
         CharacterData currentData = StageUIController.Instance.CurrentData;
 
-        if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 1)
+        if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 0)
         {
-            ActiveSkill targetSkill = currentData.active[1];
+            ActiveSkill targetSkill = currentData.active[0];
             if (targetSkill != null)
             {
                 StartSkillTargeting(targetSkill, currentCaster);

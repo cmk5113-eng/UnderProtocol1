@@ -174,7 +174,6 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void StartPlayerTurn()
     {
-        Debug.Log($"[Battle] 플레이어 턴 {currentTurn} 시작!");
 
         if (ModeManager.Instance != null)
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;

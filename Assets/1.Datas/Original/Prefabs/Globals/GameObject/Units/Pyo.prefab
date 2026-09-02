@@ -270,11 +270,15 @@ MonoBehaviour:
   portrait: {fileID: -763987571, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   selectable: 1
   Name: Pyo
-  actionPoint: 1
+  MaxHP: 0
+  currentHP: 0
+  maxAP: 1
+  actionPoint: 0
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 1
   characterData: {fileID: 11400000, guid: ba67f9954e204944ea364d5a04676397, type: 2}
 --- !u!114 &7752193632113390132
 MonoBehaviour:

@@ -397,11 +397,15 @@ MonoBehaviour:
   portrait: {fileID: 1285380167, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   selectable: 1
   Name: Jo
+  MaxHP: 0
+  currentHP: 0
+  maxAP: 1
   actionPoint: 1
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 0
   characterData: {fileID: 11400000, guid: 2b13d240f7978474eb7382129506b13a, type: 2}
 --- !u!114 &2014478616092890191
 MonoBehaviour:

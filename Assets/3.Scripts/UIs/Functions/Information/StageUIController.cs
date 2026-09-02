@@ -35,7 +35,7 @@ public class StageUIController : MonoBehaviour
 
     public void Refresh()
     {
-        if (SelectionManager.SelectedPrefab == null)
+        if (SelectionManager.CharacterBase == null)
         {
             return;
         }
@@ -47,14 +47,10 @@ public class StageUIController : MonoBehaviour
             return;
         }
 
-        // 💡 해결책: 프리팹 원본과 클론 인스턴스의 이름을 비교하여 매칭률을 높입니다.
-        // 일반적으로 복제된 오브젝트는 이름 뒤에 "(Clone)"이 붙기 때문에, 앞부분만 비교합니다.
-        string targetName = SelectionManager.SelectedPrefab.name.Replace("(Clone)", "").Trim();
-
         int index = -1;
         for (int i = 0; i < UIcharacterList.Count; i++)
         {
-            if (UIcharacterList[i] != null && UIcharacterList[i].name == targetName)
+            if (UIcharacterList[i] != null && UIcharacterList[i].name == SelectionManager.CharacterBase.gameObject.name)
             {
                 index = i;
                 break;
@@ -71,7 +67,7 @@ public class StageUIController : MonoBehaviour
         else
         {
             // 여전히 못 찾은 경우를 대비한 예외 처리 (수동 디버깅 용이)
-            Debug.LogError($"[UI Error] '{targetName}'에 매칭되는 캐릭터 데이터를 newCharacters에서 찾을 수 없습니다. (인덱스: {index})");
+            Debug.LogError($"[UI Error] '{SelectionManager.CharacterBase.name}'에 매칭되는 캐릭터 데이터를 newCharacters에서 찾을 수 없습니다. (인덱스: {index})");
             return;
         }
 
@@ -148,7 +144,7 @@ public class StageUIController : MonoBehaviour
     public void Summon()
     {
         // 1. 싱글톤 매니저의 선택 정보와 리스트에 먼저 등록합니다.
-        SelectionManager.CharacterBase = asCharacter;
+        SelectionManager.SelectCharacter(asCharacter);
 
         if (!SelectionManager.Instance.unitOnStage.Contains(asCharacter))
         {

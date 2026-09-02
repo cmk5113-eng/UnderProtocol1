@@ -27,32 +27,32 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
         }
         // 1. ���޹��� �������� ���� ĳ���ͷ� ���
         SelectionManager.SelectedPrefab = selectedPrefab;
+        SelectionManager.DeselectCharacter();
+        //int index = SelectionManager.SelectedPrefab?.name switch
+        //{
+        //    "Beak" => 0,
+        //    "Choi" => 1,
+        //    "Do" => 2,
+        //    "Ha" => 3,
+        //    "Jo" => 4,
+        //    "Kang" => 5,
+        //    "Lee" => 6,
+        //    "Min" => 7,
+        //    "Namgung" => 8,
+        //    "Pyo" => 9,
+        //    "Ryu" => 10,
+        //    "Seo" => 11,
+        //    _ => -1
+        //};
 
-        int index = SelectionManager.SelectedPrefab?.name switch
-        {
-            "Beak" => 0,
-            "Choi" => 1,
-            "Do" => 2,
-            "Ha" => 3,
-            "Jo" => 4,
-            "Kang" => 5,
-            "Lee" => 6,
-            "Min" => 7,
-            "Namgung" => 8,
-            "Pyo" => 9,
-            "Ryu" => 10,
-            "Seo" => 11,
-            _ => -1
-        };
-
-        if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
-        {
-            SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
-        }
-        if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
-        {
-            SelectionManager._characterData = SelectionManager.Instance.characterDatas[index];
-        }
+        //if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
+        //{
+        //    SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
+        //}
+        //if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
+        //{
+        //    SelectionManager._characterData = SelectionManager.Instance.characterDatas[index];
+        //}
         StageUIController.Instance.Refresh();
 
         // 3. UI ������Ʈ �� �ļ� �۾�

@@ -8,12 +8,31 @@ public class PlacementManager : ManagerBase
 {
     public static PlacementManager Instance;
     public Tilemap tilemap;
+    [SerializeField]public List<Tilemap> AllTileMap = new List<Tilemap>();
     public Dictionary<Vector3Int, TileData> tileDatas = new();
-
+            
     void Awake()
     {
         // ���� �ϳ����� �Ŵ����� ����ϱ� ���� ������ �̱��� ����
         Instance = this;
+    }
+    public void SetTileMap()
+    {
+        for (int i = 0; i < AllTileMap.Count; i++)
+        {
+            Tilemap map = AllTileMap[i];
+
+            if (map != null && map.gameObject.activeInHierarchy)
+            {
+                tilemap = AllTileMap[i];
+
+                Debug.Log($"[PlacementManager] 현재 Tilemap Index : {i}, Name : {map.name}");
+
+                return;
+            }
+        }
+
+        Debug.LogWarning("[PlacementManager] 활성화된 Tilemap을 찾을 수 없습니다.");
     }
     public TileData GetTileData(Vector3Int cell)
     {
@@ -69,6 +88,11 @@ public class PlacementManager : ManagerBase
             ObjectManager.DestroyObject(existingClone);
         }
         GameObject newUnit = ObjectManager.CreateObject(characterPrefab, spawnPos);
+
+        SelectionManager.CharacterBase.actionPoint = SelectionManager.CharacterBase.maxAP;
+        SelectionManager.CharacterBase.steminaPoint = SelectionManager.CharacterBase.maxStemina;
+        SelectionManager.CharacterBase.isSpawned = true;
+
         newUnit.name = tileName; // Ÿ�� ��ǥ�� �̸� ����
 
         return true;

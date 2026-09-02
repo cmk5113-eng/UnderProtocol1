@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
         Instance = this;
 
         // 씬이 바뀌어도 파괴되지 않도록 설정 (선택 사항, 필요 없다면 주석 처리 가능)
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // 안전하게 실행 시점에 공장 빌드 및 초기화 수행
         BuildFactory();

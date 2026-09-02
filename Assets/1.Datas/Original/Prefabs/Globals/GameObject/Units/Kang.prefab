@@ -536,11 +536,13 @@ MonoBehaviour:
   Name: Kang
   MaxHP: 0
   currentHP: 0
+  maxAP: 1
   actionPoint: 1
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 1
   characterData: {fileID: 11400000, guid: 077c7cceb560b994c885a95867177c30, type: 2}
 --- !u!114 &2318392073833377500
 MonoBehaviour:

@@ -98,7 +98,7 @@ SpriteRenderer:
   m_Size: {x: 1.18, y: 1.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8462990768351432443
 BoxCollider2D:
@@ -246,11 +246,15 @@ MonoBehaviour:
   portrait: {fileID: 954729893, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
   selectable: 1
   Name: Beak
+  MaxHP: 0
+  currentHP: 0
+  maxAP: 1
   actionPoint: 1
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 0
   characterData: {fileID: 11400000, guid: 953c9d56a58e70b4bb08ed9d275c04a4, type: 2}
 --- !u!114 &9101029735442604113
 MonoBehaviour:

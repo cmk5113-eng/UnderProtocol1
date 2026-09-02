@@ -24,6 +24,7 @@ public class CharacterData : ScriptableObject
     public LinkSkill linkSkill;
     public UltimateSkill ultimateSkill;
 
+
     public int actionPoint;
     public int steminaPoint;
     public int moveRange;

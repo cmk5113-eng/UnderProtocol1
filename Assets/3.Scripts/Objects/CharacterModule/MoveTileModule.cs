@@ -4,6 +4,8 @@ using UnityEngine.Tilemaps;
 
 public class MoveTileModule : MovementModule
 {
+
+    public static MoveTileModule Instance;
     public enum MoveType { PlayerMove, MonsterMove }
     public MoveType moveType = MoveType.PlayerMove;
 
@@ -171,6 +173,23 @@ public class MoveTileModule : MovementModule
 
         return TryStepByInput(step);
     }
+
+    public void ClearCharacterPosition()
+    {
+        if (PlacementManager.Instance == null)
+            return;
+
+        UpdateCurrentTile();
+
+        TileData data = PlacementManager.Instance.GetTileData(CurrentTile);
+
+        if (data != null)
+        {
+            data.isempty = true;
+            Debug.Log($"[Tile Occupancy] 캐릭터 삭제: {CurrentTile} → 빈 타일");
+        }
+    }
+
 
     public bool TryStepByInput(Vector3Int direction)
     {

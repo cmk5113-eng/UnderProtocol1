@@ -673,11 +673,13 @@ MonoBehaviour:
   Name: Seo
   MaxHP: 0
   currentHP: 0
+  maxAP: 1
   actionPoint: 1
   maxStemina: 1
   steminaPoint: 1
   mobility: 3
   isEnemy: 0
+  isSpawned: 1
   characterData: {fileID: 11400000, guid: 8dbc5e3e1d99c1946b67702134acac19, type: 2}
 --- !u!114 &1335705678591131231
 MonoBehaviour:

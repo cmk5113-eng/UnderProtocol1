@@ -32,7 +32,6 @@ public class DBManager : ManagerBase
             user = authentication.CurrentUser;
             rootDB = FirebaseDatabase.DefaultInstance.RootReference;
             GuestLogin();
-            Debug.Log("Firebase Initialized");
         }
         else
         {
@@ -54,8 +53,7 @@ public class DBManager : ManagerBase
     {
         if (authentication is null) return;
         if (user is not null)
-        {
-            Debug.Log($"로그인데이터 : {user.UserId})");
+        { 
             UserData resultData = await ReadDataAsync<UserData>("Users", "userData", user.UserId);
             if (resultData is not null)
             { 

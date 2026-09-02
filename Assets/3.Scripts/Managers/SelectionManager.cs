@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public delegate  void EventCharacterChanged(CharacterBase newCharacter);
 
@@ -14,47 +15,9 @@ public class SelectionManager : ManagerBase
 
     // 현재 선택된 캐릭터 (static 변수)
     public static CharacterBase _characterBase;
-    public static CharacterBase CharacterBase
-    {
-        get => _characterBase;
-        set
-        {
-            if (_characterBase != value)
-            {
-                _characterBase?.OnDeSelected();
-                _characterBase = value;
-                _selectedPrefab = value?.gameObject;
-                _characterBase?.OnSelected();
-                OnCharacterChanged?.Invoke(_characterBase);
-            }
-        }
-    }
+    public static CharacterBase CharacterBase=> _characterBase;
     public static CharacterData _characterData;
-    public static CharacterData CharacterData
-    {
-        get => _characterData;
-        set
-        {
-            if (_characterData != value)
-            {
-                _characterData = value;
 
-                if (Instance == null)
-                    return;
-
-                int index = Array.IndexOf(Instance.characterDatas, _characterData);
-
-                if (index >= 0 && index < Instance.characterBases.Length)
-                {
-                    CharacterBase = Instance.characterBases[index];
-                }
-                else
-                {
-                    CharacterBase = null;
-                }
-            }
-        }
-    }
     static GameObject _selectedPrefab;
     public static GameObject SelectedPrefab
     {
@@ -64,13 +27,12 @@ public class SelectionManager : ManagerBase
             if (_selectedPrefab != value)
             {
                 _selectedPrefab = value;
-                _characterBase?.OnDeSelected();
-                _characterBase = value?.GetComponent<CharacterBase>();
-                _characterBase?.OnSelected();
-                OnCharacterChanged?.Invoke(_characterBase);
             }
         }
     }
+
+
+
     // 스테이지 상에 배치된 아군 리스트
     public List<CharacterBase> unitOnStage = new List<CharacterBase>();
 
@@ -98,31 +60,41 @@ public class SelectionManager : ManagerBase
     {
         Instance = this;
     }
-
-    /// <summary>
-    /// 외부에서 캐릭터를 선택할 때 호출하는 static 함수
-    /// </summary>
-    public static void SetSelectedCharacter(CharacterBase character)
+    public static void SelectCharacter(CharacterBase newCharacter)
     {
-        if (character == null) return;
-
-        CharacterBase = character;
-        Debug.Log($"[Selection] 현재 선택된 캐릭터가 {character.Name}(으)로 변경되었습니다.");
-        Debug.Log($"현재캐릭터의 액션포인트 {character.actionPoint}");
+        _characterBase?.OnDeSelected();
+        if (newCharacter)
+        {
+            _characterBase = newCharacter;
+            _characterBase?.OnSelected();
+   
+        }
+        else
+        {
+            _characterBase = null;
+        }
+        OnCharacterChanged?.Invoke(_characterBase);
     }
 
-    /// <summary>
-    /// 선택을 해제할 때 호출하는 static 함수
-    /// </summary>
-    public static void ClearSelectedCharacter()
+    public static void DeselectCharacter()
     {
-       CharacterBase = null;
+        if (_characterBase == null) { return; }
+        _characterBase.OnDeSelected();
+        _characterBase = null;
+        OnCharacterChanged?.Invoke(_characterBase);
         Debug.Log("[Selection] 캐릭터 선택이 해제되었습니다.");
     }
-    
-    // 기존의 명칭과 호환성을 위한 역호환성 함수
-    public void DeselectCharacter()
+
+    public void InitCharacter(CharacterBase character)
     {
-        ClearSelectedCharacter();
+        if (character == null)
+            return;
+
+        character.actionPoint = character.maxAP;
+        character.steminaPoint = character.maxStemina;
+        character.isSpawned = false;
+        Debug.Log($"{character.Name}초기화완료");
+        Debug.Log($"{character.isSpawned}");
+
     }
 }

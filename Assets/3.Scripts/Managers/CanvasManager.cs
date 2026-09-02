@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
 
-    public static Inventory SkillList = new Inventory();    
+    public static Inventory SkillList;    
 
     // 싱글톤
     public static CanvasManager Instance { get; private set; }
@@ -19,6 +20,7 @@ public class CanvasManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            SkillList = gameObject.GetOrAddComponent< Inventory>();
         }
         else
         {
