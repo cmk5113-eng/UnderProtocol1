@@ -50,11 +50,6 @@ public class MoveTileModule : MovementModule
         return new Vector2Int(customX, customY);
     }
 
-    public override bool IsOuterTile(Vector3Int rawCell)
-    {
-        Vector2Int custom = ConvertToCustomPosition(rawCell);
-        return (custom.x == 1 || custom.x == 10 || custom.y == 1 || custom.y == 10);
-    }
 
     public void UpdateCurrentTile()
     {
@@ -99,7 +94,7 @@ public class MoveTileModule : MovementModule
 
                 if (TM == null || !TM.HasTile(targetCell)) continue;
 
-                if (moveType == MoveType.PlayerMove && !IsOuterTile(targetCell)) continue;
+                if (moveType == MoveType.PlayerMove && !PlacementManager.Instance.IsOuterTile(targetCell)) continue;
 
                 if (!CanEnterTile(targetCell)) continue;
 
@@ -196,7 +191,7 @@ public class MoveTileModule : MovementModule
         UpdateCurrentTile();
         Vector3Int targetCell = CurrentTile + direction;
 
-        if (IsOuterTile(targetCell) && CanEnterTile(targetCell))
+        if (PlacementManager.Instance.IsOuterTile(targetCell) && CanEnterTile(targetCell))
         {
             MoveToTileDirect(targetCell);
             return true;

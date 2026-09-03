@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class StageUIController : MonoBehaviour
 {
     public static StageUIController Instance { get; private set; }
-    
+  
+
     [SerializeField] private Image portrait;
     [SerializeField] private Image[] skill = new Image[4];
+
     [SerializeField] private Image[] unit = new Image[4];
     [SerializeField] private TMPro.TextMeshProUGUI[] unitname = new TMPro.TextMeshProUGUI[4];
-
     [SerializeField] private TMPro.TextMeshProUGUI[] AP = new TMPro.TextMeshProUGUI[4];
     [SerializeField] private TMPro.TextMeshProUGUI[] SP = new TMPro.TextMeshProUGUI[4];
     [SerializeField] public TMPro.TextMeshProUGUI currentwave;
@@ -37,15 +38,27 @@ public class StageUIController : MonoBehaviour
     public void Allreset()
     {
         portrait.sprite = null;
-        skill[0].sprite = null;
-        skill[1].sprite = null;
-        skill[2].sprite = null;
-        skill[3].sprite = null;
-        unit[0].sprite = null;
-        unit[1].sprite = null;
-        unit[2].sprite = null;
-        unit[3].sprite = null;
 
+        for (int i = 0; i < 4; i++)
+        { 
+            skill[i] = null;
+        }
+
+        if (SelectionManager.Instance != null && SelectionManager.Instance.unitOnStage != null)
+        {
+
+            // 12로 고정하지 않고, 현재 리스트에 존재하는 요소 개수만큼만 null로 지정
+            for (int i = 0; i < SelectionManager.Instance.unitOnStage.Count; i++)
+            {
+
+                SelectionManager.Instance.unitOnStage[i] = null;
+            }
+
+            // 만약 unitOnStage를 아예 비워주는 것이 목적이라면 Clear()를 사용해도 됩니다.
+            // stageList.Clear();
+        }
+
+        Refresh();
     }
     public void Refresh()
     {

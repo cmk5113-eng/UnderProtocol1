@@ -21,7 +21,9 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
     [SerializeField] private TextMeshProUGUI maxText;
     public void ChangeModeToCharacterSelect()
     {
+        Debug.Log($"ModeManager.Instance = {ModeManager.Instance}");
         ModeManager.Instance.CurrentMode = ModeManager.GameMode.CharacterSelect;
+        Debug.Log($"모드변경완료 현재모드 : {ModeManager.Instance.CurrentMode}");
     }
     public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
@@ -32,31 +34,7 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
         // 1. ���޹��� �������� ���� ĳ���ͷ� ���
         SelectionManager.SelectedPrefab = selectedPrefab;
         SelectionManager.DeselectCharacter();
-        //int index = SelectionManager.SelectedPrefab?.name switch
-        //{
-        //    "Beak" => 0,
-        //    "Choi" => 1,
-        //    "Do" => 2,
-        //    "Ha" => 3,
-        //    "Jo" => 4,
-        //    "Kang" => 5,
-        //    "Lee" => 6,
-        //    "Min" => 7,
-        //    "Namgung" => 8,
-        //    "Pyo" => 9,
-        //    "Ryu" => 10,
-        //    "Seo" => 11,
-        //    _ => -1
-        //};
-
-        //if (index >= 0 && index < SelectionManager.Instance.characterBases.Length)
-        //{
-        //    SelectionManager.CharacterBase = SelectionManager.Instance.characterBases[index];
-        //}
-        //if (index >= 0 && index < SelectionManager.Instance.characterDatas.Length)
-        //{
-        //    SelectionManager._characterData = SelectionManager.Instance.characterDatas[index];
-        //}
+        Debug.Log($"현재캐릭터{selectedPrefab}");
         StageUIController.Instance.Refresh();
 
         // 3. UI ������Ʈ �� �ļ� �۾�

@@ -171,14 +171,7 @@ public class MovementModule : CharacterModule, IRunnable
         targetDestination = null;
     }
 
-    public virtual bool IsOuterTile(Vector3Int tilePos)
-    {
-        if (this is MoveTileModule moveTile)
-        {
-            return moveTile.IsOuterTile(tilePos);
-        }
-        return false;
-    }
+ 
 
     public void HandleMouseClick(Vector2 mouseWorldPos)
     {

@@ -20,8 +20,16 @@ private void Awake()
     // �̱��� �ʱ�ȭ
     if (Instance == null) Instance = this;
     else Destroy(gameObject);
-}
-public GameMode CurrentMode { get;  set; }
+
+
+        Debug.Log($"[ModeManager] Awake : {gameObject.name}");
+    }
+
+    private void OnDestroy()
+    {
+        Debug.LogWarning($"[ModeManager] OnDestroy : {gameObject.name}");
+    }
+    public GameMode CurrentMode { get;  set; }
     protected override IEnumerator OnConnected(GameManager newManager)
     {
         return null;

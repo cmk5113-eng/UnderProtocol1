@@ -62,9 +62,10 @@ public class PlacementController : UI_CharacterSelectWindows
 
             if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode == ModeManager.GameMode.CharacterSelect)
             {
+                Debug.Log($"MoveTileModule.Instance : {MoveTileModule.Instance}");
                 if (targetTilemap.HasTile(clickCellPos))
                 {
-                    if (SelectionManager.SelectedPrefab != null)
+                    if (SelectionManager.SelectedPrefab!= null)
                     {
                         ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
 
@@ -100,74 +101,89 @@ public class PlacementController : UI_CharacterSelectWindows
                         }
 
                         Vector3 spawnPos = targetTilemap.GetCellCenterWorld(clickCellPos);
-                        if (StageUIController.Instance != null) StageUIController.Instance.Refresh();
 
+                        if (StageUIController.Instance != null)
+                            StageUIController.Instance.Refresh();
+
+                        // 클릭한 타일의 TileData 가져오기
+
+                        TileData tileData = PlacementManager.Instance.GetTileData(clickCellPos);
+
+                    // 타일이 비어 있고, 배치 가능한 외부 타일인지 확인
+                    if (tileData != null && tileData.isempty && tileData.Type == TileData.tiletype.outside)
+                    {
                         GameObject obj = ObjectManager.CreateObject(SelectionManager.SelectedPrefab, spawnPos);
+
+                        if (obj == null)
+                            return;
+
                         obj.name = SelectionManager.SelectedPrefab.name;
-                        Debug.Log($"{PlacementManager.Instance.tilemap}");
+
                         _objects.Add(obj);
 
-                        
-
                         if (obj.TryGetComponent(out CharacterBase character))
-                        {
-                            var tileData = PlacementManager.Instance.GetTileData(clickCellPos);
-                            if (tileData != null)
                             {
+                                // 해당 타일에 캐릭터 등록
                                 tileData.Character = character;
+
+                                SelectionManager.SelectCharacter(character);
+
+                                SpawnObject();
                             }
 
-                            SelectionManager.SelectCharacter(character);
-                            SpawnObject();
-                        }
 
-                        SelectionManager.SelectedPrefab = null;
+
+                            SelectionManager.SelectedPrefab = null;
+                        }
                     }
                 }
             }
         }
     }
-
+    public void test()
+    {
+        Debug.Log("dfpfpfppfp");
+    }
     public static void RemoveAllObject()
     {
+        if (_objects == null || _objects.Count == 0) return;
+
         SelectionManager.DeselectCharacter();
 
-        for (int i = _objects.Count - 1; i >= 0; i--)
+        // 1. 리스트 복사본 생성 (반복문 도중 원본 modification 방지)
+        List<GameObject> tempObjects = new List<GameObject>(_objects);
+        _objects.Clear();
+
+        // 2. 복사본으로 안전하게 순회
+        for (int i = tempObjects.Count - 1; i >= 0; i--)
         {
-            if (_objects[i] != null)
+            GameObject obj = tempObjects[i];
+            if (obj == null) continue;
+
+            MoveTileModule moveModule = obj.GetComponent<MoveTileModule>();
+            if (moveModule != null)
             {
-                GameObject obj = _objects[i];
+                moveModule.ClearCharacterPosition();
+            }
 
-                CharacterBase character = obj.GetComponent<CharacterBase>();
-                MoveTileModule moveModule = obj.GetComponent<MoveTileModule>();
+            CharacterBase character = obj.GetComponent<CharacterBase>();
+            if (character != null && SelectionManager.Instance != null)
+            {
+                SelectionManager.Instance.InitCharacter(character);
+            }
 
-                // 1. 현재 점유하고 있는 타일 비우기
-                if (moveModule != null)
-                {
-                    moveModule.ClearCharacterPosition();
-                }
+            // 반복문 내부에서 매번 호출할 필요가 없는 정적/UI 초기화는
+            // 필요에 따라 루프 외부로 빼는 것을 권장합니다.
+            SelectionManager._characterBase = null;
 
-                // 2. 캐릭터 데이터 초기화
-                if (character != null)
-                {
-                    SelectionManager.Instance.InitCharacter(character);
-                }
-
-                // 3. 캐릭터베이스 비우기
-
-                SelectionManager._characterBase = null;
+            if (StageUIController.Instance != null)
                 StageUIController.Instance.Allreset();
 
-                // 3. UI 카운트 감소
+            if (UI_CharacterSelectWindows.Instance != null)
                 UI_CharacterSelectWindows.Instance.RemoveCount();
 
-                // 4. 마지막으로 삭제
-                ObjectManager.DestroyObject(obj);
-            }
+            ObjectManager.DestroyObject(obj);
         }
-
-        
-        _objects.Clear();
     }
     public void SpawnObject()
     {

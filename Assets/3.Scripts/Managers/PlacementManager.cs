@@ -10,11 +10,13 @@ public class PlacementManager : ManagerBase
     public Tilemap tilemap;
     [SerializeField]public List<Tilemap> AllTileMap = new List<Tilemap>();
     public Dictionary<Vector3Int, TileData> tileDatas = new();
-            
-    void Awake()
+
+    private void Awake()
     {
-        // ���� �ϳ����� �Ŵ����� ����ϱ� ���� ������ �̱��� ����
         Instance = this;
+
+        if (tilemap != null)
+            InitializeMapOrigin();
     }
     public void SetTileMap()
     {
@@ -34,11 +36,17 @@ public class PlacementManager : ManagerBase
 
         Debug.LogWarning("[PlacementManager] 활성화된 Tilemap을 찾을 수 없습니다.");
     }
+
     public TileData GetTileData(Vector3Int cell)
     {
-        if (!tileDatas.TryGetValue(cell, out TileData data))
+        if (!tileDatas.TryGetValue(cell, out TileData data) || data == null)
         {
             data = new TileData();
+
+            data.Type = IsOuterTile(cell)
+                ? TileData.tiletype.outside
+                : TileData.tiletype.inside;
+
             tileDatas[cell] = data;
         }
 
@@ -61,39 +69,74 @@ public class PlacementManager : ManagerBase
     {
         if (characterPrefab == null) return false;
 
-        // 1. �� ��ǥ�� �̸� ����
+        // 1. 타일 좌표 이름 생성
         string tileName = $"Unit_{cellPos.x}_{cellPos.y}";
+
         if (tilemap == null)
-        {
-            Debug.LogWarning("[PlacementManager] tilemap is null. PlaceCharacter aborted.");
+        { 
             return false;
         }
 
         Vector3 spawnPos = tilemap.GetCellCenterWorld(cellPos);
 
-        // 2. ���� ��ġ�� ������Ʈ �ִ��� �˻�
+        // 2. 해당 위치에 오브젝트가 있는지 검사
         GameObject objectOnTile = GameObject.Find(tileName);
+
         if (objectOnTile != null)
-        {
-            UIManager.ClaimPopUp("���", "�̹� �ش� ��ġ�� ������ �ֽ��ϴ�.", "Ȯ��");
+        { 
             return false;
         }
 
-        // 3. ���� Ŭ�� ���� �� ����
+        // 3. 기존에 배치된 같은 캐릭터가 있다면 제거
         GameObject existingClone = GameObject.Find(characterPrefab.name);
 
         if (existingClone != null)
-        {
-            Debug.Log($"[�̵�] {characterPrefab.name} ��ġ �罺��");
+        { 
+
             ObjectManager.DestroyObject(existingClone);
         }
+
+        // 4. 해당 타일의 TileData 가져오기
+        TileData tileData = PlacementManager.Instance.GetTileData(cellPos);
+
+        // 5. 타일 조건 검사
+        if (!tileData.isempty)
+        { 
+            return false;
+        }
+
+        if (tileData.Type != TileData.tiletype.outside)
+        { 
+            return false;
+        }
+
+        // 6. 유닛 생성
         GameObject newUnit = ObjectManager.CreateObject(characterPrefab, spawnPos);
 
-        SelectionManager.CharacterBase.actionPoint = SelectionManager.CharacterBase.maxAP;
-        SelectionManager.CharacterBase.steminaPoint = SelectionManager.CharacterBase.maxStemina;
-        SelectionManager.CharacterBase.isSpawned = true;
+        if (newUnit == null)
+        { 
+            return false;
+        }
 
-        newUnit.name = tileName; // Ÿ�� ��ǥ�� �̸� ����
+        // 7. CharacterBase 연결
+        CharacterBase character = newUnit.GetComponent<CharacterBase>();
+
+        if (character == null)
+        { 
+            ObjectManager.DestroyObject(newUnit);
+            return false;
+        }
+
+        // 8. TileData에 캐릭터 등록
+        tileData.Character = character;
+
+        // 9. 캐릭터 상태 초기화
+        character.actionPoint = character.maxAP;
+        character.steminaPoint = character.maxStemina;
+        character.isSpawned = true;
+
+        // 10. 타일 좌표를 이용해서 이름 지정
+        newUnit.name = tileName;
 
         return true;
     }
@@ -111,5 +154,39 @@ public class PlacementManager : ManagerBase
     {
 
     }
+    public bool IsOuterTile(Vector3Int rawCell)
+    {
+        // 여기서는 맵의 원점 기준으로 판단해야 함
+        Vector2Int custom = ConvertToCustomPosition(rawCell);
 
+        return custom.x == 1 ||
+               custom.x == 10 ||
+               custom.y == 1 ||
+               custom.y == 10;
+    }
+    private Vector3Int mapOrigin;
+
+    public void InitializeMapOrigin()
+    {
+        if (tilemap == null)
+            return;
+
+        tilemap.CompressBounds();
+
+        BoundsInt bounds = tilemap.cellBounds;
+
+        mapOrigin = new Vector3Int(
+            bounds.xMin,
+            bounds.yMax - 1,
+            0
+        );
+    }
+
+    public Vector2Int ConvertToCustomPosition(Vector3Int rawCell)
+    {
+        int customX = rawCell.x - mapOrigin.x + 1;
+        int customY = mapOrigin.y - rawCell.y + 1;
+
+        return new Vector2Int(customX, customY);
+    }
 }

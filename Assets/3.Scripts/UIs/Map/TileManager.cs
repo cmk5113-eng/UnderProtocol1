@@ -16,7 +16,7 @@ public class TileData
     public bool ismovable = false;
     public bool isempty = true;
     public bool isvariable = false;
-
+    public tiletype Type;
     public enum tiletype
     {
         inside,
