@@ -2401,7 +2401,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6382876835375445607, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4515586667923036704, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
@@ -2449,8 +2450,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4515586667923036704, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1654046990}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7763839537674062215, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 556375842}
   m_SourcePrefab: {fileID: 100100000, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
+--- !u!1 &556375841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7763839537674062215, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
+  m_PrefabInstance: {fileID: 556375840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &556375842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556375841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb7c1e81267d9f4792ab848d33804fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterBase
+  spriteRenderer: {fileID: 0}
+  portrait: {fileID: 0}
+  selectable: 1
+  Name: 
+  MaxHP: 0
+  currentHP: 0
+  maxAP: 0
+  actionPoint: 0
+  maxStemina: 0
+  steminaPoint: 0
+  mobility: 0
+  isEnemy: 0
+  isSpawned: 0
+  characterData: {fileID: 0}
 --- !u!1 &571273957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3050883473019576462, guid: 0c869475546139c42af28601926fe517, type: 3}
@@ -7542,7 +7577,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1553384291980035373, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7833143679484277703, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+    - {fileID: 3305759729028698059, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+    - {fileID: 3869426648103294337, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+    - {fileID: 2842996959255251190, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4049776007391133089, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
@@ -8793,7 +8832,6 @@ GameObject:
   - component: {fileID: 1783959026}
   - component: {fileID: 1783959025}
   - component: {fileID: 1783959024}
-  - component: {fileID: 1783959023}
   m_Layer: 0
   m_Name: Enemy_A01 (1)
   m_TagString: Enemy
@@ -8816,32 +8854,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1418667600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1783959023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783959021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a00fc2c74b97348bf32a37abd8385a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
-  spriteRenderer: {fileID: 0}
-  portrait: {fileID: 0}
-  selectable: 1
-  Name: 
-  MaxHP: 0
-  currentHP: 0
-  maxAP: 0
-  actionPoint: 0
-  maxStemina: 0
-  steminaPoint: 0
-  mobility: 0
-  isEnemy: 1
-  isSpawned: 0
-  characterData: {fileID: 0}
 --- !u!61 &1783959024
 BoxCollider2D:
   m_ObjectHideFlags: 0
