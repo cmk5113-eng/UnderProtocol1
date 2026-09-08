@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     
     public StageManager Stage =>_Stage;
     
+    WaveManager _Wave;
+
+    public WaveManager Wave => _Wave;
+
     DBManager _db;
     public DBManager DB => _db;
 
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
         totalLoadCount += CreateManager(ref _character).LoadCount;
         totalLoadCount += CreateManager(ref _mode).LoadCount;
         totalLoadCount += CreateManager(ref _Stage).LoadCount;
-
+        totalLoadCount += CreateManager(ref _Wave).LoadCount;
 
 
         yield return UI.Initialize(this);
@@ -139,6 +143,8 @@ public class GameManager : MonoBehaviour
         IProgress<int> loadingProgress = loadingUI as IProgress<int>;
         loadingProgress?.Set(0, totalLoadCount);
         yield return  Data.Connect(this);
+        loadingProgress?.AddCurrent(1);
+        yield return Wave.Connect(this);
         loadingProgress?.AddCurrent(1);
         yield return Battle.Connect(this);
         loadingProgress?.AddCurrent(1);
@@ -193,6 +199,7 @@ public class GameManager : MonoBehaviour
         Mode?.Disconnect();
         Selection?.Disconnect();
         DB?.Disconnect();
+        Wave?.Disconnect();
     }
     ManagerType CreateManager<ManagerType>(ref ManagerType targetVariable) where ManagerType : ManagerBase
     {

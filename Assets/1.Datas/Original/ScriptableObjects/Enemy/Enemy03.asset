@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d4208e886b5d264a89257bda4c2341d, type: 3}
-  m_Name: Enemy01
+  m_Name: Enemy03
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  id: 0
+  id: 2
   monsterName: 
-  prefab: {fileID: 7731222998606032136, guid: 194171b706c775341a005fe2006ccb73, type: 3}
-  hp: 1
+  prefab: {fileID: 7731222998606032136, guid: 792bd52f898d22049887ae06be3c4090, type: 3}
+  hp: 3
   atk: 1
   isDead: 0
   isActive: 0

@@ -8,6 +8,7 @@ public class UI_TargetHoverInfo : OpenableUIBase
     [SerializeField] TMPro.TextMeshProUGUI infoText;
     [SerializeField] UnityEngine.UI.Image portrait;
     [SerializeField] TMPro.TextMeshProUGUI skillText;
+    [SerializeField] TMPro.TextMeshProUGUI positionText;
     CharacterBase target;
 
     public override void Registration(UIManager manager)
@@ -29,7 +30,7 @@ public class UI_TargetHoverInfo : OpenableUIBase
     }
     void HoverInfoChange(GameObject newTarget, GameObject oldTarget)
     {
-
+        
         CharacterBase asCharacter = newTarget?.GetComponent<CharacterBase>();
         if (asCharacter)
         {
@@ -39,7 +40,7 @@ public class UI_TargetHoverInfo : OpenableUIBase
             portrait.sprite = asCharacter.portrait;
             skillText?.SetText(asCharacter?.name);
             Open();
-
+            
 
         }
         else Close();

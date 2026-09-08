@@ -203,11 +203,15 @@ public class UseSkill : MonoBehaviour
 
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
+            Debug.Log($"AOE 셀 : {cellPos}, 월드 위치 : {worldPos}, Collider : {hit}");
+
             if (hit == null)
                 continue;
 
             CharacterBase targetCharacter =
                 hit.GetComponentInParent<CharacterBase>();
+
+            Debug.Log($"감지된 오브젝트 : {hit.gameObject}, Character : {targetCharacter}");
 
             if (targetCharacter != null && hit.CompareTag("Enemy"))
             {
@@ -217,7 +221,6 @@ public class UseSkill : MonoBehaviour
                 }
             }
         }
-
         int inGrave = enemiesToDestroy.Count; 
 
         if (ScrollUI.Instance != null)

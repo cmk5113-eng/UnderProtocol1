@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -572.94543, y: 452.53}
+  m_AnchoredPosition: {x: -572, y: 452.53}
   m_SizeDelta: {x: 579.8913, y: 105.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2554967953862482972
@@ -8586,6 +8586,7 @@ GameObject:
   - component: {fileID: 4504936360340223074}
   - component: {fileID: 609497192905702419}
   - component: {fileID: 2593028438016730964}
+  - component: {fileID: 13385956818213932}
   m_Layer: 5
   m_Name: NextWave(temp)
   m_TagString: Untagged
@@ -8610,7 +8611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -592, y: 377}
+  m_AnchoredPosition: {x: -592, y: 381.33}
   m_SizeDelta: {x: 289.5197, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3401509481704313504
@@ -8695,21 +8696,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4249043924637981938}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 609497192905702419}
-        m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
-        m_MethodName: Open
+      - m_Target: {fileID: 13385956818213932}
+        m_TargetAssemblyTypeName: WaveLoader, Assembly-CSharp
+        m_MethodName: notice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8719,9 +8708,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2593028438016730964}
-        m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
-        m_MethodName: Close
+      - m_Target: {fileID: 13385956818213932}
+        m_TargetAssemblyTypeName: WaveLoader, Assembly-CSharp
+        m_MethodName: LoadWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8757,6 +8746,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
   wantType: 21
+--- !u!114 &13385956818213932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245895141129422040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30286ce7c93186e42a3616fc49391462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveLoader
+  monsterDatas:
+  - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+  - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+  - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+  - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+  - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
 --- !u!1 &8278570486045873632
 GameObject:
   m_ObjectHideFlags: 0
