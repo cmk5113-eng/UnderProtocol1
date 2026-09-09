@@ -5,15 +5,9 @@ public class WaveLoader : MonoBehaviour
 {
 
     [SerializeField] private List<MonsterData> monsterDatas;
-    public void notice()
-    {
-        Debug.Log($"GameManager : {GameManager.Instance}");
-        Debug.Log($"Wave : {GameManager.Instance.Wave}");
-        Debug.Log($"CurrentWave : {GameManager.Instance.Wave.currentwave}");
-    }
+
     public void LoadWave()
     {
-        Debug.Log($"monsterDatas : {monsterDatas}");
         foreach (MonsterSpawnData spawnData in GameManager.Instance.Wave.currentwave.monsters)
         {
             MonsterData data = monsterDatas.Find(x => x.id == spawnData.monsterID);
@@ -24,15 +18,30 @@ public class WaveLoader : MonoBehaviour
                 continue;
             }
 
-            Vector3 worldPosition = 
+            Vector3 worldPosition =
                 PlacementManager.Instance.tilemap
                 .GetCellCenterWorld(spawnData.position);
 
-            Instantiate(
+            // 몬스터 생성
+            GameObject monsterObject = Instantiate(
                 data.prefab,
                 worldPosition,
                 Quaternion.identity
             );
+
+            // 몬스터 리스트에 추가
+            MonsterBase monster = monsterObject.GetComponent<MonsterBase>();
+
+            if (monster != null)
+            {
+                MonsterBase._monsters.Add(monsterObject);
+            }
+            else
+            {
+                Debug.LogError(
+                    $"생성된 몬스터 {monsterObject.name}에 MonsterBase가 없습니다."
+                );
+            }
         }
     }
 }

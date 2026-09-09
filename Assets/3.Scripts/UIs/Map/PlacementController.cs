@@ -140,40 +140,41 @@ public class PlacementController : UI_CharacterSelectWindows
             }
         }
     }
-    public void test()
-    {
-        Debug.Log("dfpfpfppfp");
-    }
+ 
     public static void RemoveAllObject()
     {
         if (_objects == null || _objects.Count == 0) return;
 
         SelectionManager.DeselectCharacter();
 
-        // 1. 리스트 복사본 생성 (반복문 도중 원본 modification 방지)
+        // =========================
+        // 플레이어 캐릭터 제거
+        // =========================
+
         List<GameObject> tempObjects = new List<GameObject>(_objects);
         _objects.Clear();
 
-        // 2. 복사본으로 안전하게 순회
         for (int i = tempObjects.Count - 1; i >= 0; i--)
         {
             GameObject obj = tempObjects[i];
-            if (obj == null) continue;
+
+            if (obj == null)
+                continue;
 
             MoveTileModule moveModule = obj.GetComponent<MoveTileModule>();
+
             if (moveModule != null)
             {
                 moveModule.ClearCharacterPosition();
             }
 
             CharacterBase character = obj.GetComponent<CharacterBase>();
+
             if (character != null && SelectionManager.Instance != null)
             {
                 SelectionManager.Instance.InitCharacter(character);
             }
 
-            // 반복문 내부에서 매번 호출할 필요가 없는 정적/UI 초기화는
-            // 필요에 따라 루프 외부로 빼는 것을 권장합니다.
             SelectionManager._characterBase = null;
 
             if (StageUIController.Instance != null)
@@ -183,6 +184,32 @@ public class PlacementController : UI_CharacterSelectWindows
                 UI_CharacterSelectWindows.Instance.RemoveCount();
 
             ObjectManager.DestroyObject(obj);
+        }
+
+
+        // =========================
+        // 몬스터 제거
+        // =========================
+
+        MonsterBase[] monsters =
+            UnityEngine.Object.FindObjectsByType<MonsterBase>(
+                FindObjectsSortMode.None
+            );
+
+        foreach (MonsterBase monster in monsters)
+        {
+            if (monster == null)
+                continue;
+
+            MoveTileModule moveModule =
+                monster.GetComponent<MoveTileModule>();
+
+            if (moveModule != null)
+            {
+                moveModule.ClearCharacterPosition();
+            }
+
+            ObjectManager.DestroyObject(monster.gameObject);
         }
     }
     public void SpawnObject()
