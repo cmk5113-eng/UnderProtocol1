@@ -22,7 +22,7 @@ public class UI_TargetHoverInfo : OpenableUIBase
 
     }
 
-
+     
     public override void Unregistration(UIManager manager)
     {
         base.Unregistration(manager);

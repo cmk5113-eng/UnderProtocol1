@@ -117,6 +117,8 @@ public class StageUIController : MonoBehaviour
         }
     }
 
+
+
     public void OnNextTurn()
     {
         // 1. 턴 종료 처리
@@ -164,7 +166,7 @@ public class StageUIController : MonoBehaviour
     }
     public void UpdateWave()
     {
-        currentwave.SetText(BattleManager.currentWave.ToString());
+        currentwave.SetText(GameManager.Instance.Wave.currentWave.ToString());
     }
 
 

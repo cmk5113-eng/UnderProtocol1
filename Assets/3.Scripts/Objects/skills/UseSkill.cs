@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -180,16 +181,16 @@ public class UseSkill : MonoBehaviour
         // 사정거리 확인
         if (!castRangeTiles.Contains(clickedCell))
         {
-            Debug.Log("[Skill] 사정거리 밖을 클릭했습니다.");
+            //Debug.Log("[Skill] 사정거리 밖을 클릭했습니다.");
             return;
         }
 
         // AP 확인
         if (caster.actionPoint <= 0)
         {
-            Debug.LogWarning(
-                $"[Skill] ActionPoint가 부족합니다. 현재 AP = {caster.actionPoint}"
-            );
+            //Debug.LogWarning(
+            //    $"[Skill] ActionPoint가 부족합니다. 현재 AP = {caster.actionPoint}"
+            //);
 
             CancelTargeting();
             return;
@@ -203,7 +204,7 @@ public class UseSkill : MonoBehaviour
 
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
-            Debug.Log($"AOE 셀 : {cellPos}, 월드 위치 : {worldPos}, Collider : {hit}");
+            //Debug.Log($"AOE 셀 : {cellPos}, 월드 위치 : {worldPos}, Collider : {hit}");
 
             if (hit == null)
                 continue;
@@ -211,7 +212,7 @@ public class UseSkill : MonoBehaviour
             CharacterBase targetCharacter =
                 hit.GetComponentInParent<CharacterBase>();
 
-            Debug.Log($"감지된 오브젝트 : {hit.gameObject}, Character : {targetCharacter}");
+            //Debug.Log($"감지된 오브젝트 : {hit.gameObject}, Character : {targetCharacter}");
 
             if (targetCharacter != null && hit.CompareTag("Enemy"))
             {
@@ -241,6 +242,10 @@ public class UseSkill : MonoBehaviour
         // 스킬 사용
         caster.actionPoint = 0;
         caster.UpdateActionStateVisual();
+
+        StartCoroutine(CheckMonsterExterminate());
+
+
 
 
         // 이동 모드로 전환
@@ -299,6 +304,28 @@ public class UseSkill : MonoBehaviour
             }
         }
     }
+
+
+    private IEnumerator CheckMonsterExterminate()
+    {
+
+        yield return null;
+
+        MonsterBase[] monsters =
+            UnityEngine.Object.FindObjectsByType<MonsterBase>(
+                FindObjectsSortMode.None
+            );
+
+        Debug.Log($"남은 몬스터: {monsters.Length}");
+        if (monsters.Length == 0)
+        {
+
+            Debug.Log(WaveLoader.Instance);
+            WaveLoader.Instance.NextWave();
+        }
+
+    }
+
 
     /// <summary>
     /// [UI 버튼 OnClick 전용] 1번 스킬 실행

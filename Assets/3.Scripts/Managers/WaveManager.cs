@@ -1,40 +1,59 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : ManagerBase
 {
-    public WaveData currentwave;
+    [SerializeField] private WaveData[] stage1Waves = new WaveData[5];
+    [SerializeField] private WaveData[] stage2Waves = new WaveData[5];
+    [SerializeField] private WaveData[] stage3Waves = new WaveData[5];
+    [SerializeField] private WaveData[] stage4Waves = new WaveData[5];
+    [SerializeField] private WaveData[] stage5Waves = new WaveData[5];
+
+    public  List<WaveData[]> StageWaveIndex = new List<WaveData[]>();
+    public WaveData[] selectedWaves;
+    public int currentWaveIndex = 0;
+    public WaveData currentWave;
+
 
     protected override IEnumerator OnConnected(GameManager newManager)
     {
+        StageWaveIndex.Clear();
+        StageWaveIndex.Add(stage1Waves);
+        StageWaveIndex.Add(stage2Waves);
+        StageWaveIndex.Add(stage3Waves);
+        StageWaveIndex.Add(stage4Waves);
+        StageWaveIndex.Add(stage5Waves);
         yield break;
     }
-
+   
     protected override void OnDisconnected()
     {
     }
 
     public void SetWave(WaveData waveData)
     {
-        currentwave = waveData;
+        currentWave = waveData;
     }
 
+ 
     public void ExecuteWave()
     {
-        if (currentwave == null)
+        if (currentWave == null)
         {
-            Debug.LogError("ÇöÀç ¿þÀÌºê°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
-        foreach (MonsterSpawnData monster in currentwave.monsters)
+        foreach (MonsterSpawnData monster in currentWave.monsters)
         {
             Debug.Log(
-                $"¸ó½ºÅÍ ID : {monster.monsterID}, " +
-                $"ÁÂÇ¥ : {monster.position}"
+                $"ï¿½ï¿½ï¿½ï¿½ ID : {monster.monsterID}, " +
+                $"ï¿½ï¿½Ç¥ : {monster.position}"
             );
 
-            // ¿©±â¼­ ¸ó½ºÅÍ »ý¼º
+            // ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 }

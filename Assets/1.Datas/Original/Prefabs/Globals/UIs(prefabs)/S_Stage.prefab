@@ -452,8 +452,6 @@ GameObject:
   - component: {fileID: 6773342015902190711}
   - component: {fileID: 7324965379131929068}
   - component: {fileID: 6276807804515543633}
-  - component: {fileID: 7997226951531653544}
-  - component: {fileID: 1779978096069963520}
   m_Layer: 5
   m_Name: NextWave(temp) (1)
   m_TagString: Untagged
@@ -575,7 +573,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7997226951531653544}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI_Button_OpenUI, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
@@ -587,7 +585,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1779978096069963520}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI_Button_CloseUI, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -611,32 +609,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7997226951531653544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481136743908315066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1076b4a3a3435a64ab5a3aca8ddb354f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_OpenUI
-  wantType: 14
---- !u!114 &1779978096069963520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481136743908315066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1630fec11ec9ac449889bb3894092ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
-  wantType: 21
 --- !u!1 &965563356919116356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8586,7 +8558,6 @@ GameObject:
   - component: {fileID: 4504936360340223074}
   - component: {fileID: 609497192905702419}
   - component: {fileID: 2593028438016730964}
-  - component: {fileID: 13385956818213932}
   m_Layer: 5
   m_Name: NextWave(temp)
   m_TagString: Untagged
@@ -8696,7 +8667,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 13385956818213932}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveLoader, Assembly-CSharp
         m_MethodName: notice
         m_Mode: 1
@@ -8708,7 +8679,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 13385956818213932}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveLoader, Assembly-CSharp
         m_MethodName: LoadWave
         m_Mode: 1
@@ -8746,24 +8717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_CloseUI
   wantType: 21
---- !u!114 &13385956818213932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8245895141129422040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30286ce7c93186e42a3616fc49391462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveLoader
-  monsterDatas:
-  - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-  - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-  - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-  - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-  - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
 --- !u!1 &8278570486045873632
 GameObject:
   m_ObjectHideFlags: 0

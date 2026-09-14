@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +7,51 @@ public class WaveLoader : MonoBehaviour
 
     [SerializeField] private List<MonsterData> monsterDatas;
 
-    public void LoadWave()
+    int index;
+
+    public static WaveLoader Instance;
+    private void Awake()
     {
-        foreach (MonsterSpawnData spawnData in GameManager.Instance.Wave.currentwave.monsters)
+        Instance = this;
+    }
+    public void NextWave()
+    {
+        if (GameManager.Instance.Wave.selectedWaves == null ||
+            GameManager.Instance.Wave.selectedWaves.Length == 0)
+        {
+            Debug.LogWarning("ì„ íƒëœ ì›¨ì´ë¸Œê°€ ì—†ìŠµë‹ˆë‹¤.");
+            return;
+        }
+
+        if (GameManager.Instance.Wave.currentWaveIndex >=
+            GameManager.Instance.Wave.selectedWaves.Length)
+        {
+            Debug.Log("ëª¨ë“  ì›¨ì´ë¸Œë¥¼ í´ë¦¬ì–´í–ˆìŠµë‹ˆë‹¤.");
+            return;
+        }
+
+        // 1. selectedWavesì—ì„œ í˜„ìž¬ ì›¨ì´ë¸Œ ê°€ì ¸ì˜¤ê¸°
+        GameManager.Instance.Wave.currentWave =
+            GameManager.Instance.Wave.selectedWaves[
+                GameManager.Instance.Wave.currentWaveIndex
+            ];
+
+        // 2. currentWave ì†Œí™˜
+        LoadWave();
+
+        // 3. ì¸ë±ìŠ¤ ì¦ê°€
+        GameManager.Instance.Wave.currentWaveIndex++;
+    }
+    public void LoadWave()
+
+    {
+        foreach (MonsterSpawnData spawnData in GameManager.Instance.Wave.currentWave.monsters)
         {
             MonsterData data = monsterDatas.Find(x => x.id == spawnData.monsterID);
 
             if (data == null)
             {
-                Debug.LogError($"Monster ID {spawnData.monsterID}¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError($"Monster ID {spawnData.monsterID}ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
                 continue;
             }
 
@@ -22,14 +59,14 @@ public class WaveLoader : MonoBehaviour
                 PlacementManager.Instance.tilemap
                 .GetCellCenterWorld(spawnData.position);
 
-            // ¸ó½ºÅÍ »ý¼º
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GameObject monsterObject = Instantiate(
                 data.prefab,
                 worldPosition,
                 Quaternion.identity
             );
 
-            // ¸ó½ºÅÍ ¸®½ºÆ®¿¡ Ãß°¡
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
             MonsterBase monster = monsterObject.GetComponent<MonsterBase>();
 
             if (monster != null)
@@ -39,7 +76,7 @@ public class WaveLoader : MonoBehaviour
             else
             {
                 Debug.LogError(
-                    $"»ý¼ºµÈ ¸ó½ºÅÍ {monsterObject.name}¿¡ MonsterBase°¡ ¾ø½À´Ï´Ù."
+                    $"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ {monsterObject.name}ï¿½ï¿½ MonsterBaseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½."
                 );
             }
         }

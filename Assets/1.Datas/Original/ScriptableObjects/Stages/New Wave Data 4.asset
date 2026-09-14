@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e251b1270e08a48809fb13402c0b3f, type: 3}
-  m_Name: New Wave Data
+  m_Name: New Wave Data 4
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   monsters:
-  - monsterID: 0
+  - monsterID: 4
+    position: {x: 0, y: -13, z: 0}
+  - monsterID: 4
+    position: {x: 1, y: -13, z: 0}
+  - monsterID: 4
+    position: {x: 1, y: -14, z: 0}
+  - monsterID: 4
     position: {x: 1, y: -15, z: 0}
-  - monsterID: 0
-    position: {x: 2, y: -16, z: 0}
-  - monsterID: 0
+  - monsterID: 4
     position: {x: 1, y: -16, z: 0}
-  - monsterID: 0
-    position: {x: 0, y: -16, z: 0}
-  - monsterID: 0
+  - monsterID: 4
     position: {x: 1, y: -17, z: 0}
-  - monsterID: 0
-    position: {x: -2, y: -18, z: 0}
+  - monsterID: 4
+    position: {x: 0, y: -17, z: 0}
+  - monsterID: 4
+    position: {x: 2, y: -17, z: 0}

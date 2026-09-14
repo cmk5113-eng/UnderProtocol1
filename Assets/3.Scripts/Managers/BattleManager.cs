@@ -21,7 +21,7 @@ public class BattleManager : ManagerBase
     [Header("턴 및 웨이브 상태")]
     [SerializeField] private TurnMode currentTurnMode = TurnMode.PlayerTurn;
     [SerializeField] public static int currentTurn = 1;       // 현재 턴 변수
-    [SerializeField] public static int currentWave = 1;       // 현재 웨이브 변수
+    // 현재 웨이브 변수
 
     [Header("캐릭터 리스트 관리")]
     // 씬에 배치된 플레이어와 몬스터들을 관리할 리스트
@@ -191,39 +191,16 @@ public class BattleManager : ManagerBase
     /// <summary>
     /// 💡 몬스터가 죽을 때마다 호출해 주어야 하는 함수
     /// </summary>
-    public void OnMonsterDead(CharacterBase deadMonster)
+    public void OnMonsterDead()
     {
-        if (monsterCharacters.Contains(deadMonster))
-        {
-            monsterCharacters.Remove(deadMonster);
-        }
-
         // 💡 몬스터가 다 죽었는지 검사
         if (monsterCharacters.Count == 0)
         {
-            NextWave();
+            WaveLoader.Instance.NextWave();
         }
     }
 
-    /// <summary>
-    /// 💡 다음 웨이브 진행 함수
-    /// </summary>
-    private void NextWave()
-    {
-        StopAllCoroutines(); // 진행 중이던 몬스터 턴 루틴 강제 종료
-
-        // 💡 현재 웨이브 변수에 +1
-        currentWave++;
-        Debug.Log($"[Battle] ★ 축하합니다! 모든 몬스터 처치. 다음 웨이브 {currentWave} 진행 ★");
-
-        // ObjectManager를 통해 새로운 몬스터 리스트를 생성/가져오기
-        SpawnNextWaveMonsters();
-
-        // 새 웨이브 시작 시 플레이어 턴으로 초기화
-        currentTurn = 1;
-        currentTurnMode = TurnMode.PlayerTurn;
-        StartPlayerTurn();
-    }
+    
 
     private void SpawnNextWaveMonsters()
     {
