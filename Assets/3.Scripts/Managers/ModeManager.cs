@@ -22,7 +22,6 @@ private void Awake()
     else Destroy(gameObject);
 
 
-        Debug.Log($"[ModeManager] Awake : {gameObject.name}");
     }
 
     private void OnDestroy()

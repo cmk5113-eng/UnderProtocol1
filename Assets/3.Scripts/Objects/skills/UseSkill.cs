@@ -316,7 +316,6 @@ public class UseSkill : MonoBehaviour
                 FindObjectsSortMode.None
             );
 
-        Debug.Log($"남은 몬스터: {monsters.Length}");
         if (monsters.Length == 0)
         {
 

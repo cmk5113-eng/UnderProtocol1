@@ -138,17 +138,31 @@ public class BattleManager : ManagerBase
     {
         Debug.Log("[Battle] 몬스터 턴 시작");
 
-        foreach (var monster in monsterCharacters)
+
+        if (monsterCharacters == null)
+            return;
+
+        MonsterBase[] monsters =
+            UnityEngine.Object.FindObjectsByType<MonsterBase>(
+                FindObjectsSortMode.None
+            );
+
+        foreach (MonsterBase monster in monsters)
         {
-            if (monsterCharacters == null) return;
-            if (monster == null) continue;
-            if (monster.currentHP <= 0) continue;
+            if (monster == null)
+                continue;
+
+            if (monster.currentHP <= 0)
+                continue;
 
             // 몬스터의 현재 HP만큼 피해
             HP -= monster.currentHP;
-            Debug.Log($"{HP}");
-            ScrollUI.Instance.SubValue(monster.currentHP * 0.01f);
 
+            Debug.Log($"{HP}");
+
+            ScrollUI.Instance.SubValue(
+                monster.currentHP * 0.01f
+            );
         }
 
         EndMonsterTurn();
