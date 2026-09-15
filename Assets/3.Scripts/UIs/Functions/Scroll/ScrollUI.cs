@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ScrollUI : MonoBehaviour
 {
     public static ScrollUI Instance;
-    [SerializeField] private Scrollbar HPscrollbar;
+    [SerializeField] public Scrollbar HPscrollbar;
     [SerializeField] public Scrollbar GGscrollbar;
 
 
@@ -15,6 +15,13 @@ public class ScrollUI : MonoBehaviour
         HPscrollbar.value = 1f;
         GGscrollbar.value = 0;
     }
+
+    public void ResetValue()
+    { 
+    HPscrollbar.value = 1f;
+    GGscrollbar.value = 0;
+    }
+
 
     public void SubValue(float value)
     {

@@ -155,7 +155,6 @@ public class BattleManager : ManagerBase
             if (monster.currentHP <= 0)
                 continue;
 
-            // 몬스터의 현재 HP만큼 피해
             HP -= monster.currentHP;
 
             Debug.Log($"{HP}");
@@ -165,6 +164,11 @@ public class BattleManager : ManagerBase
             );
         }
 
+        // 모든 몬스터 처리 후 한 번만 판정
+        if (ScrollUI.Instance.HPscrollbar.value <= 0.0f)
+        {
+            UIManager.ClaimPopUp("ㅠㅠ", "게임오버", "확인");
+        }
         EndMonsterTurn();
     }
     /// <summary>

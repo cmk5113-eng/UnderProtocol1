@@ -1565,9 +1565,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267.1, y: 26.774}
+  m_AnchoredPosition: {x: 731.031, y: 22.273651}
   m_SizeDelta: {x: 55.7603, y: 53.5483}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.49999973, y: 0.5}
 --- !u!222 &4508464458573327373
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5383,7 +5383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -958375930024521659, guid: eca1fe1ed1ba5a249a22747d93e61f3c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6188,8 +6188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 1-1. Under The Protocol\n wave :           turn
-    : "
+  m_text: "\uC2A4\uD14C\uC774\uC9C0\n wave :           turn : "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
@@ -6999,7 +6998,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267.1, y: -28.523}
+  m_AnchoredPosition: {x: 731.031, y: -24.022512}
   m_SizeDelta: {x: 63.81, y: 48.045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1630341625195407993

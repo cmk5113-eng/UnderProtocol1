@@ -143,6 +143,7 @@ public class PlacementController : UI_CharacterSelectWindows
  
     public static void RemoveAllObject()
     {
+        ScrollUI.Instance.ResetValue();
         if (_objects == null || _objects.Count == 0) return;
 
         SelectionManager.DeselectCharacter();
