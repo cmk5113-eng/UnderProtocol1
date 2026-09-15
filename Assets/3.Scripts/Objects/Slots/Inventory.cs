@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    // 🔴 [핵심] 어디서나 Inventory.Instance로 접근 가능한 싱글톤 선언
-    public static Inventory Instance { get; private set; }
 
     public static SkillSlot cursorSlot;
     public int columns;
@@ -20,13 +18,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private SkillList PassiveList;
     private void Awake()
     {
-        // 싱글톤 인스턴스 중복 체크 및 지정
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        Instance = this;
 
         // 씬이 바뀌어도 파괴되지 않도록 설정 (선택 사항, 필요 없다면 주석 처리 가능)
         //DontDestroyOnLoad(gameObject);

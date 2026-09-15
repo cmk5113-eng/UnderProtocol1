@@ -204,8 +204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC18D\uC131"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -341,8 +341,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD328\uC2DC\uBE0C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -554,8 +554,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD074\uB798\uC2A4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -983,8 +983,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!114 &3932618361890927802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,8 +1360,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uB984"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!114 &5479727601364279917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,8 +1734,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2085,7 +2085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!1 &3319176753923948926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!1 &3959229456021847380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,8 +2526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC561\uD2F0\uBE0C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2663,8 +2663,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2800,8 +2800,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uACE0\uC720"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3381,7 +3381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!1 &5795721320228052585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,8 +3526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB178\uB9D0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3663,8 +3663,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB9C1\uD06C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3953,8 +3953,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4090,8 +4090,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAD81\uADF9\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4621,7 +4621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705540c2c3b21fa48af574736cc7603a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Button_ToggleUI
-  wantType: 26
+  wantType: 24
 --- !u!114 &4522327125711483165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4702,8 +4702,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4839,8 +4839,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
-  m_sharedMaterial: {fileID: 1581489257714542265, guid: 23576d4f59ed84b48be35466b919d8c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
+  m_sharedMaterial: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

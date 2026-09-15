@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.6, y: 141.7}
+  m_AnchoredPosition: {x: -251.32034, y: -173.33812}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6202615132135292600
@@ -169,7 +169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -491.99454, y: -33.23828}
+  m_AnchoredPosition: {x: -53.50879, y: 0}
   m_SizeDelta: {x: 580.0165, y: 406.1838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8187310083744074705
@@ -193,14 +193,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7264151, g: 0.5516643, b: 0.5516643, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -113305609, guid: 3e8d8955fa8b8e24d9a9dfd7eddefda1, type: 3}
+  m_Sprite: {fileID: 2708602397128187201, guid: 09d67c91006336f438148394329828b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -247,7 +247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.24701, y: 37.20813}
+  m_AnchoredPosition: {x: 0, y: 50.04669}
   m_SizeDelta: {x: 68.494, y: 74.4163}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3797555175262767391
@@ -660,7 +660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85, y: 163}
+  m_AnchoredPosition: {x: -99.97772, y: 231.87915}
   m_SizeDelta: {x: 380.061, y: 43.986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6703898650176982973
@@ -809,6 +809,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 7863187834161959783, guid: adb0ab848fb21df4b9f749ab7eeb8a3f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7863187834161959783, guid: adb0ab848fb21df4b9f749ab7eeb8a3f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

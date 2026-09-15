@@ -93,5 +93,4 @@ public class SkillList : ScriptableObject
         if (result != 0) return result;
         return id - other.id;
     }
-
 }
