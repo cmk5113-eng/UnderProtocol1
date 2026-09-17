@@ -5837,6 +5837,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.0009765625
       objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UI_Button_ToggleUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3530342962971114621, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_text
       value: "\uC2A4\uD14C\uC774\uC9C02"
