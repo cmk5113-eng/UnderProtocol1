@@ -100,10 +100,8 @@ public class UIManager : ManagerBase
 
         createdTransform = CreateFullScreen("CreateUI");
         switcherTransform = CreateFullScreen("ScreenSwitcher");
-        switcherTransform.SetAsLastSibling();
         _movableScreen = CreateUI(UIType.Movable, "Movable", MainCanvas?.transform);
         _movableScreen.SetChild(ObjectManager.CreateObject("W_menu"));
-
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
@@ -113,11 +111,11 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Info, "W_Info", switcherTransform);
         CreateUI(UIType.Map, "W_Map", switcherTransform);
         CreateUI(UIType.GameQuit, "W_GameQuit");
-        CreateUI(UIType.HQ, "W_HQ", switcherTransform);
-        CreateUI(UIType.Hero, "W_Hero", switcherTransform);
+        CreateUI(UIType.Hero, "W_Hero");
         CreateUI(UIType.MiniMap, "W_MiniMap");
         CreateUI(UIType.Item, "W_Item");
         CreateUI(UIType.Mission, "W_Mission", switcherTransform);
+        CreateUI(UIType.HQ, "W_HQ", switcherTransform);
         CreateUI(UIType.Action, "W_Action", switcherTransform);
         CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
         CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
