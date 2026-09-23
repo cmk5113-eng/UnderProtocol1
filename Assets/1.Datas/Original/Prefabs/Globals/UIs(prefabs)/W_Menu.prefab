@@ -34,11 +34,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
+<<<<<<< HEAD
   m_Children:
   - {fileID: 3110183986978652926}
   - {fileID: 5507277107547865877}
   - {fileID: 8237632830431642142}
   - {fileID: 7361788781540075273}
+=======
+  m_Children: []
+>>>>>>> fdeecb0 (UI개선)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -67,14 +71,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.0005339965, b: 0.0005339965, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -150977258253458421, guid: 49199767d3c568641be8fe290c4448fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -161,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_DraggableWindows
   rootTransform: {fileID: 6595293051189717942}
+<<<<<<< HEAD
 --- !u!1 &4304313949740556567
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,3 +821,5 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2300582858272479116, guid: 6122f9bab4ee0374c8230117e8734d1c, type: 3}
   m_PrefabInstance: {fileID: 7907402311152326034}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> fdeecb0 (UI개선)
