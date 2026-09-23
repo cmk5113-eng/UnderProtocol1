@@ -5837,15 +5837,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.0009765625
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     - target: {fileID: 2942585151378615572, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2206361402660577516, guid: cda8e95420952b24ea85874837d9eac0, type: 3}
-=======
->>>>>>> f8543ca (Revert "UI개선")
     - target: {fileID: 2947183813209883073, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -5874,7 +5869,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
->>>>>>> 969e1e3 (UI개선)
     - target: {fileID: 3530342962971114621, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_text
       value: "\uC2A4\uD14C\uC774\uC9C02"
