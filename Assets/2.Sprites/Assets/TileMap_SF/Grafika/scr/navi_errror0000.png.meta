@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 9caedd80994947d4284874891f1288aa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -555118023655038052
+    second: navi_errror0000_0
+  - first:
+      213: -4430884089265486740
+    second: navi_errror0000_1
+  - first:
+      213: 7074568509097874342
+    second: navi_errror0000_2
+  - first:
+      213: -2503997970122275816
+    second: navi_errror0000_3
+  - first:
+      213: -3148333641231665368
+    second: navi_errror0000_4
+  - first:
+      213: 4130038645049428745
+    second: navi_errror0000_5
+  - first:
+      213: 8171555772152990766
+    second: navi_errror0000_6
+  - first:
+      213: 4368478874763042558
+    second: navi_errror0000_7
+  - first:
+      213: -75097174928421233
+    second: navi_errror0000_8
+  - first:
+      213: 4191924059944134579
+    second: navi_errror0000_9
+  - first:
+      213: 4357408275205411230
+    second: navi_errror0000_10
+  - first:
+      213: 1121654947751403085
+    second: navi_errror0000_11
+  - first:
+      213: 7181311773001595105
+    second: navi_errror0000_12
+  - first:
+      213: 7127124619175739335
+    second: navi_errror0000_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: navi_errror0000_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 76
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c93ef9f3913db48f0800000000000000
+      internalID: -555118023655038052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 76
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c64866a85665282c0800000000000000
+      internalID: -4430884089265486740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 75
+        width: 43
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a391fb839aed2260800000000000000
+      internalID: 7074568509097874342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 69
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8140098ec13004dd0800000000000000
+      internalID: -2503997970122275816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_4
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 64
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82779ffdb3fde44d0800000000000000
+      internalID: -3148333641231665368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_5
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 73
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90b8eca0448d05930800000000000000
+      internalID: 4130038645049428745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 74
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2cc8751ea2376170800000000000000
+      internalID: 8171555772152990766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_7
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 61
+        width: 33
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe9c033464ff9c30800000000000000
+      internalID: 4368478874763042558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_8
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 75
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e81cc648335fef0800000000000000
+      internalID: -75097174928421233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_9
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 64
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7226609b4bc2a30800000000000000
+      internalID: 4191924059944134579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9157f06dbf987c30800000000000000
+      internalID: 4357408275205411230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_11
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 58
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e18417b3be09f00800000000000000
+      internalID: 1121654947751403085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 60
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e83713620529a360800000000000000
+      internalID: 7181311773001595105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: navi_errror0000_13
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 65
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cf39eb7412a8e260800000000000000
+      internalID: 7127124619175739335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      navi_errror0000_0: -555118023655038052
+      navi_errror0000_1: -4430884089265486740
+      navi_errror0000_10: 4357408275205411230
+      navi_errror0000_11: 1121654947751403085
+      navi_errror0000_12: 7181311773001595105
+      navi_errror0000_13: 7127124619175739335
+      navi_errror0000_2: 7074568509097874342
+      navi_errror0000_3: -2503997970122275816
+      navi_errror0000_4: -3148333641231665368
+      navi_errror0000_5: 4130038645049428745
+      navi_errror0000_6: 8171555772152990766
+      navi_errror0000_7: 4368478874763042558
+      navi_errror0000_8: -75097174928421233
+      navi_errror0000_9: 4191924059944134579
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

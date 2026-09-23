@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9ec207ba62f8c5a44a6f11ff024ae072
+=======
+guid: 52ff3ed07aa9948438b4e3234d9e0e2c
+>>>>>>> 969e1e3 (UI개선)
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -134,9 +138,15 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 19
+<<<<<<< HEAD
         y: 275
         width: 234
         height: 162
+=======
+        y: 282
+        width: 155
+        height: 155
+>>>>>>> 969e1e3 (UI개선)
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,7 +167,11 @@ TextureImporter:
         serializedVersion: 2
         x: 247
         y: 166
+<<<<<<< HEAD
         width: 305
+=======
+        width: 245
+>>>>>>> 969e1e3 (UI개선)
         height: 271
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -179,7 +193,11 @@ TextureImporter:
         serializedVersion: 2
         x: 553
         y: 179
+<<<<<<< HEAD
         width: 384
+=======
+        width: 313
+>>>>>>> 969e1e3 (UI개선)
         height: 378
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -287,6 +305,7 @@ TextureImporter:
       name: "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_7"
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 1309
         y: 104
         width: 418
@@ -294,6 +313,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 1, w: 0}
+=======
+        x: 1327
+        y: 79
+        width: 834
+        height: 478
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+>>>>>>> 969e1e3 (UI개선)
       customData: 
       outline: []
       physicsShape: []
@@ -336,7 +364,11 @@ TextureImporter:
         width: 17
         height: 30
       alignment: 0
+<<<<<<< HEAD
       pivot: {x: 0.5, y: 0.5}
+=======
+      pivot: {x: 0, y: 0}
+>>>>>>> 969e1e3 (UI개선)
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -358,7 +390,11 @@ TextureImporter:
         width: 10
         height: 15
       alignment: 0
+<<<<<<< HEAD
       pivot: {x: 0.5, y: 0.5}
+=======
+      pivot: {x: 0, y: 0}
+>>>>>>> 969e1e3 (UI개선)
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -367,6 +403,7 @@ TextureImporter:
       bones: []
       spriteID: 7dd19e22a9372ffe0800000000000000
       internalID: -1156735048432935465
+<<<<<<< HEAD
       vertices: []
       indices: 
       edges: []
@@ -389,6 +426,8 @@ TextureImporter:
       bones: []
       spriteID: 7aa1ca0aabef0b343994d674fac89055
       internalID: -929654679
+=======
+>>>>>>> 969e1e3 (UI개선)
       vertices: []
       indices: 
       edges: []
@@ -410,7 +449,10 @@ TextureImporter:
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_0": -4166011757792118442
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_1": -7441765912731107587
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_10": -1156735048432935465
+<<<<<<< HEAD
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_11": -929654679
+=======
+>>>>>>> 969e1e3 (UI개선)
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_2": 8005301043226982709
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_3": 8399401579680376591
       "ChatGPT Image 2026\uB144 9\uC6D4 23\uC77C \uC624\uD6C4 07_13_35_4": 5890684770795223697
