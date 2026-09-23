@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+guid: 4061c7aab39b65e41958554f18500344
+=======
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/11_card_fill.png.meta
+guid: 3dd2bbc00f0bb1749bf2a7de29a46039
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6358320739804377641
+    second: 11_card_fill_0
+========
+guid: dbb71ec434570c646bc041e2f32d64e8
+>>>>>>> 969e1e3 (UI개선)
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1141091062355826263
+    second: 09_info_fill_0
+<<<<<<< HEAD
+========
+guid: fb19ece05821ecb4cab52e2510a76015
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 556652182991781442
+    second: 20_button_fill_0
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/20_button_fill.png.meta
+=======
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+>>>>>>> 969e1e3 (UI개선)
+=======
+guid: 572d9c08ddca03b44bba7d8dc4f2a6b9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3653491480874543438
+    second: Dialog_0
+>>>>>>> f8543ca (Revert "UI개선"):Assets/2.Sprites/Dialog.png.meta
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+      name: 09_info_fill_0
+========
+      name: 20_button_fill_0
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/20_button_fill.png.meta
+=======
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/11_card_fill.png.meta
+      name: 11_card_fill_0
+========
+      name: 09_info_fill_0
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+>>>>>>> 969e1e3 (UI개선)
+=======
+      name: Dialog_0
+>>>>>>> f8543ca (Revert "UI개선"):Assets/2.Sprites/Dialog.png.meta
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+        width: 360
+        height: 74
+========
+        width: 300
+        height: 100
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/20_button_fill.png.meta
+=======
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/11_card_fill.png.meta
+        width: 300
+        height: 360
+========
+        width: 360
+        height: 74
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+>>>>>>> 969e1e3 (UI개선)
+=======
+        width: 327
+        height: 329
+>>>>>>> f8543ca (Revert "UI개선"):Assets/2.Sprites/Dialog.png.meta
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+      spriteID: 9a968eb79b70a20f0800000000000000
+      internalID: -1141091062355826263
+========
+      spriteID: 24ebbae0630a9b700800000000000000
+      internalID: 556652182991781442
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/20_button_fill.png.meta
+=======
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/11_card_fill.png.meta
+      spriteID: 7dd06f799f4b2c7a0800000000000000
+      internalID: -6358320739804377641
+========
+      spriteID: 9a968eb79b70a20f0800000000000000
+      internalID: -1141091062355826263
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+>>>>>>> 969e1e3 (UI개선)
+=======
+      spriteID: e496173152fc3b230800000000000000
+      internalID: 3653491480874543438
+>>>>>>> f8543ca (Revert "UI개선"):Assets/2.Sprites/Dialog.png.meta
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+      09_info_fill_0: -1141091062355826263
+========
+      20_button_fill_0: 556652182991781442
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/20_button_fill.png.meta
+=======
+<<<<<<<< HEAD:Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/11_card_fill.png.meta
+      11_card_fill_0: -6358320739804377641
+========
+      09_info_fill_0: -1141091062355826263
+>>>>>>>> 969e1e3 (UI개선):Assets/2.Sprites/Assets/UI/hero_ui_atomic_assets/hero_ui_atoms_png/09_info_fill.png.meta
+>>>>>>> 969e1e3 (UI개선)
+=======
+      Dialog_0: 3653491480874543438
+>>>>>>> f8543ca (Revert "UI개선"):Assets/2.Sprites/Dialog.png.meta
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
