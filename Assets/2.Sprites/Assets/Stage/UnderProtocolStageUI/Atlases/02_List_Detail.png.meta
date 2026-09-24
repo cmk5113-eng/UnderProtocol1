@@ -1,0 +1,686 @@
+fileFormatVersion: 2
+guid: 47fa9f3799825d3e838632a0dada0b58
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 155910899743995352
+    second: D02_Header
+  - first:
+      213: 31852602940155824
+    second: D02_Resource_01
+  - first:
+      213: 758526443729820969
+    second: D02_Resource_02
+  - first:
+      213: 679204171212317651
+    second: D02_Back_Button
+  - first:
+      213: 247433148760587897
+    second: D02_Stage_Row_01_Available
+  - first:
+      213: 751187407136549446
+    second: D02_Stage_Row_02_Available
+  - first:
+      213: 741680559476547058
+    second: D02_Stage_Row_03_Selected
+  - first:
+      213: 1098036635588054687
+    second: D02_Stage_Row_04_Available
+  - first:
+      213: 82664057928857763
+    second: D02_Stage_Row_05_Disabled
+  - first:
+      213: 442284753537335146
+    second: D02_Detail_Panel_Composite
+  - first:
+      213: 92825140031214184
+    second: D02_Part_Preview
+  - first:
+      213: 913834260539526356
+    second: D02_Part_Info_Left
+  - first:
+      213: 622584882144543207
+    second: D02_Part_Info_Right
+  - first:
+      213: 78760181496366219
+    second: D02_Part_Start_Button
+  - first:
+      213: 642161419297419521
+    second: D02_Part_Row_Icon
+  - first:
+      213: 83230874479157755
+    second: D02_Part_Row_Name
+  - first:
+      213: 43063427112191043
+    second: D02_Part_Selected_Icon
+  - first:
+      213: 38218385892031450
+    second: D02_Part_Selected_Name
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 100
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: D02_Header
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 658
+        width: 467
+        height: 66
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f17eb490ee5a5288bcf1979fb8b12b4d
+      internalID: 155910899743995352
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Resource_01
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 659
+        width: 211
+        height: 65
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88e18d212c25e74b2c3164f012bc9fe
+      internalID: 31852602940155824
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Resource_02
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 659
+        width: 192
+        height: 65
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87b5c50d1c35729939e866059c425c9
+      internalID: 758526443729820969
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Back_Button
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 1177
+        width: 191
+        height: 70
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d3f79dc6ed5e169b618f9a54bc47b3
+      internalID: 679204171212317651
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Stage_Row_01_Available
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 741
+        width: 682
+        height: 143
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc7e5041468b504cbdfc9482f1246915
+      internalID: 247433148760587897
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Stage_Row_02_Available
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 740
+        width: 682
+        height: 144
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e8bc8d9853d5de3ab3a687c82b07f49
+      internalID: 751187407136549446
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Stage_Row_03_Selected
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 1100
+        width: 682
+        height: 147
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31410381572c567aa0ee0d1e20654414
+      internalID: 741680559476547058
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Stage_Row_04_Available
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 900
+        width: 682
+        height: 145
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f4bd025c965d4c9daa1bd9686cc9b4
+      internalID: 1098036635588054687
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Stage_Row_05_Disabled
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 900
+        width: 682
+        height: 145
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85edba2025225fd9b5eb55cf8dc1037c
+      internalID: 82664057928857763
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Detail_Panel_Composite
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1263
+        width: 951
+        height: 769
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3896ce7992852909338a39fcd1bf810
+      internalID: 442284753537335146
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Preview
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 1604
+        width: 899
+        height: 428
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca8c242a8795dd58183185b90093b06
+      internalID: 92825140031214184
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Info_Left
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1061
+        width: 303
+        height: 186
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc44fe77bf6b59d2962d4a798df67bc1
+      internalID: 913834260539526356
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Info_Right
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1061
+        width: 591
+        height: 186
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494c9d7dee2f54e496823b0e6c0ccb0e
+      internalID: 622584882144543207
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Start_Button
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 630
+        width: 898
+        height: 94
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62451f528b955ba2bb20204c538a5f69
+      internalID: 78760181496366219
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Row_Icon
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 1138
+        width: 107
+        height: 109
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 19
+        y: 19
+        z: 19
+        w: 19
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67fc5381fbb58e1857a0c34adff5e7c
+      internalID: 642161419297419521
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Row_Name
+      rect:
+        serializedVersion: 2
+        x: 1412
+        y: 776
+        width: 528
+        height: 108
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 21
+        y: 21
+        z: 21
+        w: 21
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faaa327daa9455c4acc227de66e77509
+      internalID: 83230874479157755
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Selected_Icon
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 1921
+        width: 108
+        height: 111
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 20
+        y: 20
+        z: 20
+        w: 20
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6908f06b4c2957c7b9a08b812d0f1c8f
+      internalID: 43063427112191043
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D02_Part_Selected_Name
+      rect:
+        serializedVersion: 2
+        x: 1412
+        y: 933
+        width: 528
+        height: 112
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 21
+        y: 21
+        z: 21
+        w: 21
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7d3a6976b757eb8301050ea468deb5
+      internalID: 38218385892031450
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    customData: ''
+    physicsShape: []
+    bones: []
+    spriteID: 496a6e9e94ee54d88a7b428791c75a85
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      D02_Header: 155910899743995352
+      D02_Resource_01: 31852602940155824
+      D02_Resource_02: 758526443729820969
+      D02_Back_Button: 679204171212317651
+      D02_Stage_Row_01_Available: 247433148760587897
+      D02_Stage_Row_02_Available: 751187407136549446
+      D02_Stage_Row_03_Selected: 741680559476547058
+      D02_Stage_Row_04_Available: 1098036635588054687
+      D02_Stage_Row_05_Disabled: 82664057928857763
+      D02_Detail_Panel_Composite: 442284753537335146
+      D02_Part_Preview: 92825140031214184
+      D02_Part_Info_Left: 913834260539526356
+      D02_Part_Info_Right: 622584882144543207
+      D02_Part_Start_Button: 78760181496366219
+      D02_Part_Row_Icon: 642161419297419521
+      D02_Part_Row_Name: 83230874479157755
+      D02_Part_Selected_Icon: 43063427112191043
+      D02_Part_Selected_Name: 38218385892031450
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: UnderProtocol Stage UI v1
+  assetBundleName: ''
+  assetBundleVariant: ''

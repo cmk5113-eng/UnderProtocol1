@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum UIType
 {
     None, Loading, Title, Movable,Menu, Info, Skill, Inven, Option, Action, Stage, Save, Card,  GameQuit, Map, Hero, Mission, MiniMap,Item, HQ,
-    Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillList, SkillContainer,
+    Dialog, CharacterSelect,ScreenFilter, TargetHoverInfo, SkillList, SkillContainer,Load,
     _Length
 }
 public enum ScreenChangeType
@@ -108,23 +108,23 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Option, "S_Option", switcherTransform);
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
 
-        CreateUI(UIType.Menu, "W_Menu");
+        CreateUI(UIType.Menu, "W_Menu", switcherTransform);
         CreateUI(UIType.Save, "W_Save", switcherTransform);
+        CreateUI(UIType.Load, "W_Load", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
-        CreateUI(UIType.Map, "W_Map", switcherTransform);
         CreateUI(UIType.GameQuit, "W_GameQuit");
         CreateUI(UIType.HQ, "W_HQ", switcherTransform);
         CreateUI(UIType.Hero, "W_Hero", switcherTransform);
-        CreateUI(UIType.MiniMap, "W_MiniMap");
         CreateUI(UIType.Item, "W_Item");
         CreateUI(UIType.Mission, "W_Mission", switcherTransform);
-        CreateUI(UIType.Action, "W_Action", switcherTransform);
         CreateUI(UIType.Dialog, "W_Dialog", switcherTransform);
         CreateUI(UIType.CharacterSelect, "W_CharacterSelect", switcherTransform);
         CreateUI(UIType.ScreenFilter, "W_ScreenFilter", switcherTransform);
         CreateUI(UIType.Skill, "W_Skill", switcherTransform);
         CreateUI(UIType.Inven, "W_Inven", switcherTransform);
         CreateUI(UIType.SkillList, "W_SkillList", switcherTransform);
+     
+
 
         foreach (Transform currentTransform in switcherTransform)
         {

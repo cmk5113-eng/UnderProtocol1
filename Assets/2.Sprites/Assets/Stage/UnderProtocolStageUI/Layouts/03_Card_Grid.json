@@ -1,0 +1,655 @@
+{
+  "number": 3,
+  "title": "Card_Grid",
+  "titleKorean": "카드 그리드형",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/03_Card_Grid.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 23,
+  "sprites": [
+    {
+      "name": "D03_Header",
+      "sourceRectTopLeft": {
+        "x": 13,
+        "y": 11,
+        "width": 473,
+        "height": 63
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Header.png",
+      "rect": {
+        "x": 1436,
+        "y": 814,
+        "width": 473,
+        "height": 63
+      }
+    },
+    {
+      "name": "D03_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1254,
+        "y": 11,
+        "width": 140,
+        "height": 61
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Resource_01.png",
+      "rect": {
+        "x": 16,
+        "y": 678,
+        "width": 140,
+        "height": 61
+      }
+    },
+    {
+      "name": "D03_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1393,
+        "y": 11,
+        "width": 136,
+        "height": 61
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Resource_02.png",
+      "rect": {
+        "x": 172,
+        "y": 678,
+        "width": 136,
+        "height": 61
+      }
+    },
+    {
+      "name": "D03_Resource_03",
+      "sourceRectTopLeft": {
+        "x": 1527,
+        "y": 11,
+        "width": 132,
+        "height": 61
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Resource_03.png",
+      "rect": {
+        "x": 324,
+        "y": 678,
+        "width": 132,
+        "height": 61
+      }
+    },
+    {
+      "name": "D03_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 20,
+        "y": 853,
+        "width": 181,
+        "height": 69
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Back_Button.png",
+      "rect": {
+        "x": 1239,
+        "y": 808,
+        "width": 181,
+        "height": 69
+      }
+    },
+    {
+      "name": "D03_Stage_Card_01_Available",
+      "sourceRectTopLeft": {
+        "x": 38,
+        "y": 104,
+        "width": 387,
+        "height": 351
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_01_Available.png",
+      "rect": {
+        "x": 868,
+        "y": 1681,
+        "width": 387,
+        "height": 351
+      }
+    },
+    {
+      "name": "D03_Stage_Card_02_Selected",
+      "sourceRectTopLeft": {
+        "x": 436,
+        "y": 100,
+        "width": 396,
+        "height": 357
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_02_Selected.png",
+      "rect": {
+        "x": 456,
+        "y": 1675,
+        "width": 396,
+        "height": 357
+      }
+    },
+    {
+      "name": "D03_Stage_Card_03_Available",
+      "sourceRectTopLeft": {
+        "x": 840,
+        "y": 104,
+        "width": 377,
+        "height": 351
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_03_Available.png",
+      "rect": {
+        "x": 1271,
+        "y": 1681,
+        "width": 377,
+        "height": 351
+      }
+    },
+    {
+      "name": "D03_Stage_Card_04_Available",
+      "sourceRectTopLeft": {
+        "x": 38,
+        "y": 471,
+        "width": 387,
+        "height": 350
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_04_Available.png",
+      "rect": {
+        "x": 428,
+        "y": 893,
+        "width": 387,
+        "height": 350
+      }
+    },
+    {
+      "name": "D03_Stage_Card_05_Available",
+      "sourceRectTopLeft": {
+        "x": 436,
+        "y": 471,
+        "width": 396,
+        "height": 350
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_05_Available.png",
+      "rect": {
+        "x": 16,
+        "y": 893,
+        "width": 396,
+        "height": 350
+      }
+    },
+    {
+      "name": "D03_Stage_Card_06_Disabled",
+      "sourceRectTopLeft": {
+        "x": 840,
+        "y": 471,
+        "width": 377,
+        "height": 350
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Stage_Card_06_Disabled.png",
+      "rect": {
+        "x": 831,
+        "y": 893,
+        "width": 377,
+        "height": 350
+      }
+    },
+    {
+      "name": "D03_Detail_Panel_Composite",
+      "sourceRectTopLeft": {
+        "x": 1239,
+        "y": 83,
+        "width": 424,
+        "height": 773
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Detail_Panel_Composite.png",
+      "rect": {
+        "x": 16,
+        "y": 1259,
+        "width": 424,
+        "height": 773
+      }
+    },
+    {
+      "name": "D03_Part_Card_Preview",
+      "sourceRectTopLeft": {
+        "x": 55,
+        "y": 118,
+        "width": 351,
+        "height": 216
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Card_Preview.png",
+      "rect": {
+        "x": 1664,
+        "y": 1816,
+        "width": 351,
+        "height": 216
+      }
+    },
+    {
+      "name": "D03_Part_Card_Caption",
+      "sourceRectTopLeft": {
+        "x": 54,
+        "y": 336,
+        "width": 352,
+        "height": 60
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Card_Caption.png",
+      "rect": {
+        "x": 472,
+        "y": 679,
+        "width": 352,
+        "height": 60
+      }
+    },
+    {
+      "name": "D03_Part_Detail_Preview",
+      "sourceRectTopLeft": {
+        "x": 1255,
+        "y": 111,
+        "width": 391,
+        "height": 255
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Detail_Preview.png",
+      "rect": {
+        "x": 1224,
+        "y": 988,
+        "width": 391,
+        "height": 255
+      }
+    },
+    {
+      "name": "D03_Part_Detail_Description",
+      "sourceRectTopLeft": {
+        "x": 1255,
+        "y": 369,
+        "width": 391,
+        "height": 122
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Detail_Description.png",
+      "rect": {
+        "x": 16,
+        "y": 755,
+        "width": 391,
+        "height": 122
+      }
+    },
+    {
+      "name": "D03_Part_Detail_Reward",
+      "sourceRectTopLeft": {
+        "x": 1255,
+        "y": 492,
+        "width": 391,
+        "height": 123
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Detail_Reward.png",
+      "rect": {
+        "x": 1631,
+        "y": 1120,
+        "width": 391,
+        "height": 123
+      }
+    },
+    {
+      "name": "D03_Part_Detail_Cost",
+      "sourceRectTopLeft": {
+        "x": 1255,
+        "y": 615,
+        "width": 391,
+        "height": 113
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Detail_Cost.png",
+      "rect": {
+        "x": 423,
+        "y": 764,
+        "width": 391,
+        "height": 113
+      }
+    },
+    {
+      "name": "D03_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 1255,
+        "y": 734,
+        "width": 393,
+        "height": 95
+      },
+      "isLayoutPiece": false,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Start_Button.png",
+      "rect": {
+        "x": 830,
+        "y": 782,
+        "width": 393,
+        "height": 95
+      }
+    },
+    {
+      "name": "D03_Part_Rating_01",
+      "sourceRectTopLeft": {
+        "x": 59,
+        "y": 400,
+        "width": 35,
+        "height": 37
+      },
+      "isLayoutPiece": false,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Rating_01.png",
+      "rect": {
+        "x": 1977,
+        "y": 840,
+        "width": 35,
+        "height": 37
+      }
+    },
+    {
+      "name": "D03_Part_Rating_02",
+      "sourceRectTopLeft": {
+        "x": 93,
+        "y": 400,
+        "width": 35,
+        "height": 37
+      },
+      "isLayoutPiece": false,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Rating_02.png",
+      "rect": {
+        "x": 840,
+        "y": 702,
+        "width": 35,
+        "height": 37
+      }
+    },
+    {
+      "name": "D03_Part_Rating_03",
+      "sourceRectTopLeft": {
+        "x": 126,
+        "y": 400,
+        "width": 36,
+        "height": 37
+      },
+      "isLayoutPiece": false,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Rating_03.png",
+      "rect": {
+        "x": 1925,
+        "y": 840,
+        "width": 36,
+        "height": 37
+      }
+    },
+    {
+      "name": "D03_Part_Progress_Fill",
+      "sourceRectTopLeft": {
+        "x": 973,
+        "y": 405,
+        "width": 214,
+        "height": 25
+      },
+      "isLayoutPiece": false,
+      "border": [
+        12,
+        11,
+        12,
+        11
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/03_Card_Grid/D03_Part_Progress_Fill.png",
+      "rect": {
+        "x": 891,
+        "y": 714,
+        "width": 214,
+        "height": 25
+      }
+    }
+  ]
+}

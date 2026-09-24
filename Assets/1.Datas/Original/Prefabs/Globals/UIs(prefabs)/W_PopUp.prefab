@@ -259,10 +259,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4093617107826113447}
-        m_TargetAssemblyTypeName: PlacementController, Assembly-CSharp
-        m_MethodName: RemoveAllObject
-        m_Mode: 1
+      - m_Target: {fileID: 5258174798366379754}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

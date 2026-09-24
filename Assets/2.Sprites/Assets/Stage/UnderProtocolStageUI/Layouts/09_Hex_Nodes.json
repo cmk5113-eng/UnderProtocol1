@@ -1,0 +1,459 @@
+{
+  "number": 9,
+  "title": "Hex_Nodes",
+  "titleKorean": "육각 노드형",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/09_Hex_Nodes.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 16,
+  "sprites": [
+    {
+      "name": "D09_Header",
+      "sourceRectTopLeft": {
+        "x": 12,
+        "y": 4,
+        "width": 386,
+        "height": 80
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Header.png",
+      "rect": {
+        "x": 1189,
+        "y": 815,
+        "width": 386,
+        "height": 80
+      }
+    },
+    {
+      "name": "D09_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1193,
+        "y": 10,
+        "width": 162,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Resource_01.png",
+      "rect": {
+        "x": 1591,
+        "y": 822,
+        "width": 162,
+        "height": 73
+      }
+    },
+    {
+      "name": "D09_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1355,
+        "y": 10,
+        "width": 154,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Resource_02.png",
+      "rect": {
+        "x": 1769,
+        "y": 822,
+        "width": 154,
+        "height": 73
+      }
+    },
+    {
+      "name": "D09_Resource_03",
+      "sourceRectTopLeft": {
+        "x": 1509,
+        "y": 10,
+        "width": 154,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Resource_03.png",
+      "rect": {
+        "x": 16,
+        "y": 571,
+        "width": 154,
+        "height": 73
+      }
+    },
+    {
+      "name": "D09_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 12,
+        "y": 826,
+        "width": 257,
+        "height": 100
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Back_Button.png",
+      "rect": {
+        "x": 1684,
+        "y": 1084,
+        "width": 257,
+        "height": 100
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_01_Available",
+      "sourceRectTopLeft": {
+        "x": 402,
+        "y": 78,
+        "width": 317,
+        "height": 261
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_01_Available.png",
+      "rect": {
+        "x": 1351,
+        "y": 923,
+        "width": 317,
+        "height": 261
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_02_Available",
+      "sourceRectTopLeft": {
+        "x": 140,
+        "y": 201,
+        "width": 320,
+        "height": 271
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_02_Available.png",
+      "rect": {
+        "x": 347,
+        "y": 913,
+        "width": 320,
+        "height": 271
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_03_Available",
+      "sourceRectTopLeft": {
+        "x": 664,
+        "y": 201,
+        "width": 312,
+        "height": 271
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_03_Available.png",
+      "rect": {
+        "x": 683,
+        "y": 913,
+        "width": 312,
+        "height": 271
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_04_Selected",
+      "sourceRectTopLeft": {
+        "x": 388,
+        "y": 335,
+        "width": 340,
+        "height": 283
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_04_Selected.png",
+      "rect": {
+        "x": 1246,
+        "y": 1749,
+        "width": 340,
+        "height": 283
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_05_Disabled",
+      "sourceRectTopLeft": {
+        "x": 128,
+        "y": 474,
+        "width": 333,
+        "height": 276
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_05_Disabled.png",
+      "rect": {
+        "x": 1602,
+        "y": 1756,
+        "width": 333,
+        "height": 276
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_06_Available",
+      "sourceRectTopLeft": {
+        "x": 664,
+        "y": 476,
+        "width": 315,
+        "height": 273
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_06_Available.png",
+      "rect": {
+        "x": 16,
+        "y": 911,
+        "width": 315,
+        "height": 273
+      }
+    },
+    {
+      "name": "D09_Stage_Hex_07_Available",
+      "sourceRectTopLeft": {
+        "x": 398,
+        "y": 617,
+        "width": 324,
+        "height": 267
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Stage_Hex_07_Available.png",
+      "rect": {
+        "x": 1011,
+        "y": 917,
+        "width": 324,
+        "height": 267
+      }
+    },
+    {
+      "name": "D09_Detail_Panel_Composite",
+      "sourceRectTopLeft": {
+        "x": 1033,
+        "y": 92,
+        "width": 629,
+        "height": 832
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Detail_Panel_Composite.png",
+      "rect": {
+        "x": 16,
+        "y": 1200,
+        "width": 629,
+        "height": 832
+      }
+    },
+    {
+      "name": "D09_Part_Preview",
+      "sourceRectTopLeft": {
+        "x": 1064,
+        "y": 130,
+        "width": 569,
+        "height": 363
+      },
+      "isLayoutPiece": false,
+      "border": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Part_Preview.png",
+      "rect": {
+        "x": 661,
+        "y": 1669,
+        "width": 569,
+        "height": 363
+      }
+    },
+    {
+      "name": "D09_Part_Description",
+      "sourceRectTopLeft": {
+        "x": 1064,
+        "y": 493,
+        "width": 569,
+        "height": 235
+      },
+      "isLayoutPiece": false,
+      "border": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Part_Description.png",
+      "rect": {
+        "x": 16,
+        "y": 660,
+        "width": 569,
+        "height": 235
+      }
+    },
+    {
+      "name": "D09_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 1062,
+        "y": 726,
+        "width": 572,
+        "height": 161
+      },
+      "isLayoutPiece": false,
+      "border": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/09_Hex_Nodes/D09_Part_Start_Button.png",
+      "rect": {
+        "x": 601,
+        "y": 734,
+        "width": 572,
+        "height": 161
+      }
+    }
+  ]
+}

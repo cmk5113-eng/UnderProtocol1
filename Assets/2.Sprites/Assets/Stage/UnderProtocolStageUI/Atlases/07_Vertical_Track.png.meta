@@ -1,0 +1,846 @@
+fileFormatVersion: 2
+guid: 82edb4003e7e551ab8238d935a25f22c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 581425112374862947
+    second: D07_Header
+  - first:
+      213: 1012150171221896347
+    second: D07_Resource_01
+  - first:
+      213: 1068528916352483598
+    second: D07_Resource_02
+  - first:
+      213: 1017907369775628969
+    second: D07_Resource_03
+  - first:
+      213: 886570847603573389
+    second: D07_Back_Button
+  - first:
+      213: 932362710662394055
+    second: D07_Stage_01_Available
+  - first:
+      213: 615257222511636938
+    second: D07_Stage_02_Available
+  - first:
+      213: 885922937272844393
+    second: D07_Stage_03_Selected
+  - first:
+      213: 414496723851656595
+    second: D07_Stage_04_Disabled
+  - first:
+      213: 709267951213968152
+    second: D07_Stage_05_Disabled
+  - first:
+      213: 841925007817060972
+    second: D07_Stage_Label_01
+  - first:
+      213: 1129922745358234861
+    second: D07_Stage_Label_02
+  - first:
+      213: 251116487812312367
+    second: D07_Stage_Label_03
+  - first:
+      213: 706045141866509998
+    second: D07_Stage_Label_04
+  - first:
+      213: 456411192865279720
+    second: D07_Stage_Label_05
+  - first:
+      213: 738724945633075062
+    second: D07_Connector_01
+  - first:
+      213: 86712970935471264
+    second: D07_Connector_02
+  - first:
+      213: 767022650542738008
+    second: D07_Connector_03
+  - first:
+      213: 241578348840606783
+    second: D07_Connector_04
+  - first:
+      213: 721211132275447830
+    second: D07_Detail_Panel_Composite
+  - first:
+      213: 617582378047492957
+    second: D07_Part_Preview
+  - first:
+      213: 1040215314165919864
+    second: D07_Part_Description
+  - first:
+      213: 1032593613782248297
+    second: D07_Part_Start_Button
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 100
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: D07_Header
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 880
+        width: 442
+        height: 68
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225009b2581b5ccfa4c479057c972d47
+      internalID: 581425112374862947
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Resource_01
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 774
+        width: 148
+        height: 63
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b747f4829c0f5542a1ddca2c86454b54
+      internalID: 1012150171221896347
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Resource_02
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 774
+        width: 139
+        height: 63
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc835cb9ad25c498f1a4ec50abc4efe
+      internalID: 1068528916352483598
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Resource_03
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 774
+        width: 141
+        height: 63
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a1c0c56ae856d0b76ea9d41adba5cd
+      internalID: 1017907369775628969
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Back_Button
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 882
+        width: 154
+        height: 66
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 545f36378092574a8ee888dc36f5eaab
+      internalID: 886570847603573389
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_01_Available
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 1904
+        width: 129
+        height: 128
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfb508203615e53889790f1a7c0082d
+      internalID: 932362710662394055
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_02_Available
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 1904
+        width: 127
+        height: 128
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82b94ab01065e339e3aa71540e66fcb
+      internalID: 615257222511636938
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_03_Selected
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 1886
+        width: 147
+        height: 146
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f8f52da48854e7bb5002cdc3e79e1c
+      internalID: 885922937272844393
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_04_Disabled
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 1076
+        width: 118
+        height: 121
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3097bf8d2e8b582684a89ca9803ab39b
+      internalID: 414496723851656595
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_05_Disabled
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 1897
+        width: 136
+        height: 135
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e3f4547eb315805900a5a1cf300cdb8
+      internalID: 709267951213968152
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_Label_01
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 879
+        width: 271
+        height: 69
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 24
+        y: 24
+        z: 24
+        w: 24
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53ae63f293d45017941c916b86a70178
+      internalID: 841925007817060972
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_Label_02
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 877
+        width: 250
+        height: 71
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 24
+        y: 24
+        z: 24
+        w: 24
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da0bc94c5605ae982f70ebcb8f2b88f
+      internalID: 1129922745358234861
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_Label_03
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 877
+        width: 261
+        height: 71
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 24
+        y: 24
+        z: 24
+        w: 24
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3cab163487f5cd3b3c0cffebb12c672
+      internalID: 251116487812312367
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_Label_04
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 880
+        width: 248
+        height: 68
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 24
+        y: 24
+        z: 24
+        w: 24
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b38d873cd850aaa63fed7be1b44fa2
+      internalID: 706045141866509998
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Stage_Label_05
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 773
+        width: 267
+        height: 64
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 24
+        y: 24
+        z: 24
+        w: 24
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb5bc22fb5e25695a0ceeb5a77c5e718
+      internalID: 456411192865279720
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Connector_01
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 1086
+        width: 180
+        height: 111
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8f70a2e07c513d8e09512f6d8cf12c
+      internalID: 738724945633075062
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Connector_02
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 1099
+        width: 140
+        height: 98
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3fe4ddc5fcb5a22bf87ecc5af9f1f69
+      internalID: 86712970935471264
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Connector_03
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 1094
+        width: 152
+        height: 103
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32a7b9eeb6b75714bd655fd51c03c771
+      internalID: 767022650542738008
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Connector_04
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 853
+        width: 155
+        height: 95
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b94018dc135041b7955fd89b38085c
+      internalID: 241578348840606783
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Detail_Panel_Composite
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1213
+        width: 694
+        height: 819
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 183450af050e5d25b0044c3bf4e88822
+      internalID: 721211132275447830
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Part_Preview
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1616
+        width: 648
+        height: 416
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 29
+        y: 29
+        z: 29
+        w: 29
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f95bacd5205af5bfc307ac24bb94c8
+      internalID: 617582378047492957
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Part_Description
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 964
+        width: 649
+        height: 233
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 29
+        y: 29
+        z: 29
+        w: 29
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01f08eb523e7599cb2c24d8ee1e3346b
+      internalID: 1040215314165919864
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D07_Part_Start_Button
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 1096
+        width: 650
+        height: 101
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 29
+        y: 29
+        z: 29
+        w: 29
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e79b966dac5777b8897fcfcfa88b2d
+      internalID: 1032593613782248297
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    customData: ''
+    physicsShape: []
+    bones: []
+    spriteID: 4ac7b7543b9e53728542030872b251ed
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      D07_Header: 581425112374862947
+      D07_Resource_01: 1012150171221896347
+      D07_Resource_02: 1068528916352483598
+      D07_Resource_03: 1017907369775628969
+      D07_Back_Button: 886570847603573389
+      D07_Stage_01_Available: 932362710662394055
+      D07_Stage_02_Available: 615257222511636938
+      D07_Stage_03_Selected: 885922937272844393
+      D07_Stage_04_Disabled: 414496723851656595
+      D07_Stage_05_Disabled: 709267951213968152
+      D07_Stage_Label_01: 841925007817060972
+      D07_Stage_Label_02: 1129922745358234861
+      D07_Stage_Label_03: 251116487812312367
+      D07_Stage_Label_04: 706045141866509998
+      D07_Stage_Label_05: 456411192865279720
+      D07_Connector_01: 738724945633075062
+      D07_Connector_02: 86712970935471264
+      D07_Connector_03: 767022650542738008
+      D07_Connector_04: 241578348840606783
+      D07_Detail_Panel_Composite: 721211132275447830
+      D07_Part_Preview: 617582378047492957
+      D07_Part_Description: 1040215314165919864
+      D07_Part_Start_Button: 1032593613782248297
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: UnderProtocol Stage UI v1
+  assetBundleName: ''
+  assetBundleVariant: ''

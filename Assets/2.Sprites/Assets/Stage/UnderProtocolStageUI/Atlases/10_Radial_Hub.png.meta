@@ -1,0 +1,782 @@
+fileFormatVersion: 2
+guid: d8a6203986ae58bea38a733c2721c5ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 768717847211019006
+    second: D10_Header
+  - first:
+      213: 509950399854299939
+    second: D10_Resource_01
+  - first:
+      213: 245629817760127738
+    second: D10_Resource_02
+  - first:
+      213: 859478893366586373
+    second: D10_Back_Button
+  - first:
+      213: 260053392807720702
+    second: D10_Central_Selected_Node
+  - first:
+      213: 812408744428886622
+    second: D10_Stage_Radial_01_Available
+  - first:
+      213: 1050476788684995170
+    second: D10_Stage_Radial_02_Available
+  - first:
+      213: 349986770994087609
+    second: D10_Stage_Radial_03_Available
+  - first:
+      213: 696106767740986337
+    second: D10_Stage_Radial_04_Disabled
+  - first:
+      213: 82264251343961964
+    second: D10_Stage_Radial_05_Available
+  - first:
+      213: 217022866418517249
+    second: D10_Stage_Radial_06_Available
+  - first:
+      213: 18090416038873277
+    second: D10_Spoke_Top
+  - first:
+      213: 1009805307641018831
+    second: D10_Spoke_Upper_Right
+  - first:
+      213: 177084743172626549
+    second: D10_Spoke_Lower_Right
+  - first:
+      213: 21434617546456937
+    second: D10_Spoke_Bottom
+  - first:
+      213: 326697748705795084
+    second: D10_Spoke_Lower_Left
+  - first:
+      213: 1152548832995359762
+    second: D10_Spoke_Upper_Left
+  - first:
+      213: 125241696759741727
+    second: D10_Detail_Panel_Composite
+  - first:
+      213: 651510931225612314
+    second: D10_Part_Detail_Header
+  - first:
+      213: 25912708242900169
+    second: D10_Part_Description
+  - first:
+      213: 125895762282111419
+    second: D10_Part_Start_Button
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 100
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: D10_Header
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 918
+        width: 398
+        height: 61
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef73a3bce6e5c62ba9f9061846c033d
+      internalID: 768717847211019006
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Resource_01
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 919
+        width: 147
+        height: 60
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7497d736f78c59a387b968bce564b24c
+      internalID: 509950399854299939
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Resource_02
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 919
+        width: 149
+        height: 60
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b6cdaa43c15ddebb31bdd3f2471bbf
+      internalID: 245629817760127738
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Back_Button
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 1129
+        width: 188
+        height: 76
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebdad3f5c3d521d88e15236c7736062
+      internalID: 859478893366586373
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Central_Selected_Node
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1725
+        width: 309
+        height: 307
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02294d8712c5068b065f11cd40378d5
+      internalID: 260053392807720702
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_01_Available
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 996
+        width: 213
+        height: 209
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a33fdf77283b53d9bd59bfa23c69e66b
+      internalID: 812408744428886622
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_02_Available
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 995
+        width: 213
+        height: 210
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f6c89d510e25a83a0d5240464d4e191
+      internalID: 1050476788684995170
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_03_Available
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 1820
+        width: 213
+        height: 212
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0811c58fb17858d8843a87ee5c83d412
+      internalID: 349986770994087609
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_04_Disabled
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 995
+        width: 213
+        height: 210
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cff3bcb9605069954f4a5f918b787e
+      internalID: 696106767740986337
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_05_Available
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 1820
+        width: 214
+        height: 212
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dafecdf10555b699ae09650c0eb7f3f
+      internalID: 82264251343961964
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Stage_Radial_06_Available
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 996
+        width: 215
+        height: 209
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afabab26d6f65110a0b15baa1fa8397c
+      internalID: 217022866418517249
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Top
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 1956
+        width: 21
+        height: 76
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ccae600e6856b3ad1cc8a458ce6cec
+      internalID: 18090416038873277
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Upper_Right
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 910
+        width: 109
+        height: 69
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962f3f08924454b38191f38b9e48241d
+      internalID: 1009805307641018831
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Lower_Right
+      rect:
+        serializedVersion: 2
+        x: 1839
+        y: 1132
+        width: 110
+        height: 73
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16f901e24f165b5ea563356ea1a0b77b
+      internalID: 177084743172626549
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Bottom
+      rect:
+        serializedVersion: 2
+        x: 1998
+        y: 1957
+        width: 21
+        height: 75
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de845e9f58e581193de5232dcc4c3ed
+      internalID: 21434617546456937
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Lower_Left
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 1132
+        width: 113
+        height: 73
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc3f158e31958959945a1a139a079aa
+      internalID: 326697748705795084
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Spoke_Upper_Left
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 910
+        width: 110
+        height: 69
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c07ed37eb214576599ab9d3a21d534da
+      internalID: 1152548832995359762
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Detail_Panel_Composite
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1221
+        width: 581
+        height: 811
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb4869fd7a053d6be089b8b375b1440
+      internalID: 125241696759741727
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Part_Detail_Header
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 893
+        width: 548
+        height: 86
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 836cd5b65731548f9e0d65f86e1c2f54
+      internalID: 651510931225612314
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Part_Description
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 1469
+        width: 548
+        height: 563
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1a596466635f2d9ead8cb5725a40d8
+      internalID: 25912708242900169
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D10_Part_Start_Button
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 1100
+        width: 556
+        height: 105
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff9ebbb2ee3a58a998756e7e5f43a026
+      internalID: 125895762282111419
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    customData: ''
+    physicsShape: []
+    bones: []
+    spriteID: be90280c31505fe690dade48c9f9fced
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      D10_Header: 768717847211019006
+      D10_Resource_01: 509950399854299939
+      D10_Resource_02: 245629817760127738
+      D10_Back_Button: 859478893366586373
+      D10_Central_Selected_Node: 260053392807720702
+      D10_Stage_Radial_01_Available: 812408744428886622
+      D10_Stage_Radial_02_Available: 1050476788684995170
+      D10_Stage_Radial_03_Available: 349986770994087609
+      D10_Stage_Radial_04_Disabled: 696106767740986337
+      D10_Stage_Radial_05_Available: 82264251343961964
+      D10_Stage_Radial_06_Available: 217022866418517249
+      D10_Spoke_Top: 18090416038873277
+      D10_Spoke_Upper_Right: 1009805307641018831
+      D10_Spoke_Lower_Right: 177084743172626549
+      D10_Spoke_Bottom: 21434617546456937
+      D10_Spoke_Lower_Left: 326697748705795084
+      D10_Spoke_Upper_Left: 1152548832995359762
+      D10_Detail_Panel_Composite: 125241696759741727
+      D10_Part_Detail_Header: 651510931225612314
+      D10_Part_Description: 25912708242900169
+      D10_Part_Start_Button: 125895762282111419
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: UnderProtocol Stage UI v1
+  assetBundleName: ''
+  assetBundleVariant: ''

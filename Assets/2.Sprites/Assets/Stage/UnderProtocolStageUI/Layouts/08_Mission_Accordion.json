@@ -1,0 +1,487 @@
+{
+  "number": 8,
+  "title": "Mission_Accordion",
+  "titleKorean": "확장형 임무 목록",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/08_Mission_Accordion.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 17,
+  "sprites": [
+    {
+      "name": "D08_Header",
+      "sourceRectTopLeft": {
+        "x": 10,
+        "y": 11,
+        "width": 431,
+        "height": 68
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Header.png",
+      "rect": {
+        "x": 1142,
+        "y": 955,
+        "width": 431,
+        "height": 68
+      }
+    },
+    {
+      "name": "D08_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1313,
+        "y": 12,
+        "width": 179,
+        "height": 64
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Resource_01.png",
+      "rect": {
+        "x": 1655,
+        "y": 1511,
+        "width": 179,
+        "height": 64
+      }
+    },
+    {
+      "name": "D08_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1489,
+        "y": 12,
+        "width": 174,
+        "height": 64
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Resource_02.png",
+      "rect": {
+        "x": 1850,
+        "y": 1511,
+        "width": 174,
+        "height": 64
+      }
+    },
+    {
+      "name": "D08_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 27,
+        "y": 854,
+        "width": 225,
+        "height": 71
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Back_Button.png",
+      "rect": {
+        "x": 1786,
+        "y": 1707,
+        "width": 225,
+        "height": 71
+      }
+    },
+    {
+      "name": "D08_Mission_Row_01_Available",
+      "sourceRectTopLeft": {
+        "x": 27,
+        "y": 94,
+        "width": 1623,
+        "height": 166
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Mission_Row_01_Available.png",
+      "rect": {
+        "x": 16,
+        "y": 1039,
+        "width": 1623,
+        "height": 166
+      }
+    },
+    {
+      "name": "D08_Mission_Row_02_Available",
+      "sourceRectTopLeft": {
+        "x": 27,
+        "y": 261,
+        "width": 1623,
+        "height": 171
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Mission_Row_02_Available.png",
+      "rect": {
+        "x": 16,
+        "y": 1404,
+        "width": 1623,
+        "height": 171
+      }
+    },
+    {
+      "name": "D08_Mission_Row_03_Expanded_Selected",
+      "sourceRectTopLeft": {
+        "x": 25,
+        "y": 427,
+        "width": 1624,
+        "height": 238
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Mission_Row_03_Expanded_Selected.png",
+      "rect": {
+        "x": 16,
+        "y": 1794,
+        "width": 1624,
+        "height": 238
+      }
+    },
+    {
+      "name": "D08_Mission_Row_04_Disabled",
+      "sourceRectTopLeft": {
+        "x": 27,
+        "y": 666,
+        "width": 1623,
+        "height": 167
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Mission_Row_04_Disabled.png",
+      "rect": {
+        "x": 16,
+        "y": 1221,
+        "width": 1623,
+        "height": 167
+      }
+    },
+    {
+      "name": "D08_Part_Row_Icon",
+      "sourceRectTopLeft": {
+        "x": 53,
+        "y": 113,
+        "width": 161,
+        "height": 132
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Row_Icon.png",
+      "rect": {
+        "x": 1097,
+        "y": 1646,
+        "width": 161,
+        "height": 132
+      }
+    },
+    {
+      "name": "D08_Part_Row_Caption",
+      "sourceRectTopLeft": {
+        "x": 213,
+        "y": 115,
+        "width": 1110,
+        "height": 130
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Row_Caption.png",
+      "rect": {
+        "x": 16,
+        "y": 893,
+        "width": 1110,
+        "height": 130
+      }
+    },
+    {
+      "name": "D08_Part_Selected_Icon",
+      "sourceRectTopLeft": {
+        "x": 58,
+        "y": 451,
+        "width": 202,
+        "height": 189
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Selected_Icon.png",
+      "rect": {
+        "x": 1656,
+        "y": 1843,
+        "width": 202,
+        "height": 189
+      }
+    },
+    {
+      "name": "D08_Part_Selected_Info_Left",
+      "sourceRectTopLeft": {
+        "x": 269,
+        "y": 454,
+        "width": 508,
+        "height": 187
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Selected_Info_Left.png",
+      "rect": {
+        "x": 573,
+        "y": 1591,
+        "width": 508,
+        "height": 187
+      }
+    },
+    {
+      "name": "D08_Part_Selected_Info_Right",
+      "sourceRectTopLeft": {
+        "x": 783,
+        "y": 454,
+        "width": 541,
+        "height": 187
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Selected_Info_Right.png",
+      "rect": {
+        "x": 16,
+        "y": 1591,
+        "width": 541,
+        "height": 187
+      }
+    },
+    {
+      "name": "D08_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 1347,
+        "y": 497,
+        "width": 270,
+        "height": 100
+      },
+      "isLayoutPiece": false,
+      "border": [
+        23,
+        23,
+        23,
+        23
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Start_Button.png",
+      "rect": {
+        "x": 1274,
+        "y": 1678,
+        "width": 270,
+        "height": 100
+      }
+    },
+    {
+      "name": "D08_Part_Reward_Slot_01",
+      "sourceRectTopLeft": {
+        "x": 1337,
+        "y": 130,
+        "width": 99,
+        "height": 97
+      },
+      "isLayoutPiece": false,
+      "border": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Reward_Slot_01.png",
+      "rect": {
+        "x": 1874,
+        "y": 1935,
+        "width": 99,
+        "height": 97
+      }
+    },
+    {
+      "name": "D08_Part_Reward_Slot_02",
+      "sourceRectTopLeft": {
+        "x": 1434,
+        "y": 130,
+        "width": 97,
+        "height": 97
+      },
+      "isLayoutPiece": false,
+      "border": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Reward_Slot_02.png",
+      "rect": {
+        "x": 1560,
+        "y": 1681,
+        "width": 97,
+        "height": 97
+      }
+    },
+    {
+      "name": "D08_Part_Reward_Slot_03",
+      "sourceRectTopLeft": {
+        "x": 1529,
+        "y": 130,
+        "width": 97,
+        "height": 97
+      },
+      "isLayoutPiece": false,
+      "border": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/08_Mission_Accordion/D08_Part_Reward_Slot_03.png",
+      "rect": {
+        "x": 1673,
+        "y": 1681,
+        "width": 97,
+        "height": 97
+      }
+    }
+  ]
+}

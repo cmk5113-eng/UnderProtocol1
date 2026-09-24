@@ -1,0 +1,655 @@
+{
+  "number": 7,
+  "title": "Vertical_Track",
+  "titleKorean": "세로 진행 트랙형",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/07_Vertical_Track.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 23,
+  "sprites": [
+    {
+      "name": "D07_Header",
+      "sourceRectTopLeft": {
+        "x": 13,
+        "y": 6,
+        "width": 442,
+        "height": 68
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Header.png",
+      "rect": {
+        "x": 1017,
+        "y": 880,
+        "width": 442,
+        "height": 68
+      }
+    },
+    {
+      "name": "D07_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1235,
+        "y": 8,
+        "width": 148,
+        "height": 63
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Resource_01.png",
+      "rect": {
+        "x": 299,
+        "y": 774,
+        "width": 148,
+        "height": 63
+      }
+    },
+    {
+      "name": "D07_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1383,
+        "y": 8,
+        "width": 139,
+        "height": 63
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Resource_02.png",
+      "rect": {
+        "x": 620,
+        "y": 774,
+        "width": 139,
+        "height": 63
+      }
+    },
+    {
+      "name": "D07_Resource_03",
+      "sourceRectTopLeft": {
+        "x": 1521,
+        "y": 8,
+        "width": 141,
+        "height": 63
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Resource_03.png",
+      "rect": {
+        "x": 463,
+        "y": 774,
+        "width": 141,
+        "height": 63
+      }
+    },
+    {
+      "name": "D07_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 13,
+        "y": 866,
+        "width": 154,
+        "height": 66
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Back_Button.png",
+      "rect": {
+        "x": 1739,
+        "y": 882,
+        "width": 154,
+        "height": 66
+      }
+    },
+    {
+      "name": "D07_Stage_01_Available",
+      "sourceRectTopLeft": {
+        "x": 328,
+        "y": 113,
+        "width": 129,
+        "height": 128
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_01_Available.png",
+      "rect": {
+        "x": 1705,
+        "y": 1904,
+        "width": 129,
+        "height": 128
+      }
+    },
+    {
+      "name": "D07_Stage_02_Available",
+      "sourceRectTopLeft": {
+        "x": 548,
+        "y": 280,
+        "width": 127,
+        "height": 128
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_02_Available.png",
+      "rect": {
+        "x": 1850,
+        "y": 1904,
+        "width": 127,
+        "height": 128
+      }
+    },
+    {
+      "name": "D07_Stage_03_Selected",
+      "sourceRectTopLeft": {
+        "x": 342,
+        "y": 418,
+        "width": 147,
+        "height": 146
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_03_Selected.png",
+      "rect": {
+        "x": 1390,
+        "y": 1886,
+        "width": 147,
+        "height": 146
+      }
+    },
+    {
+      "name": "D07_Stage_04_Disabled",
+      "sourceRectTopLeft": {
+        "x": 558,
+        "y": 594,
+        "width": 118,
+        "height": 121
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_04_Disabled.png",
+      "rect": {
+        "x": 681,
+        "y": 1076,
+        "width": 118,
+        "height": 121
+      }
+    },
+    {
+      "name": "D07_Stage_05_Disabled",
+      "sourceRectTopLeft": {
+        "x": 333,
+        "y": 721,
+        "width": 136,
+        "height": 135
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_05_Disabled.png",
+      "rect": {
+        "x": 1553,
+        "y": 1897,
+        "width": 136,
+        "height": 135
+      }
+    },
+    {
+      "name": "D07_Stage_Label_01",
+      "sourceRectTopLeft": {
+        "x": 459,
+        "y": 136,
+        "width": 271,
+        "height": 69
+      },
+      "isLayoutPiece": true,
+      "border": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_Label_01.png",
+      "rect": {
+        "x": 730,
+        "y": 879,
+        "width": 271,
+        "height": 69
+      }
+    },
+    {
+      "name": "D07_Stage_Label_02",
+      "sourceRectTopLeft": {
+        "x": 677,
+        "y": 303,
+        "width": 250,
+        "height": 71
+      },
+      "isLayoutPiece": true,
+      "border": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_Label_02.png",
+      "rect": {
+        "x": 464,
+        "y": 877,
+        "width": 250,
+        "height": 71
+      }
+    },
+    {
+      "name": "D07_Stage_Label_03",
+      "sourceRectTopLeft": {
+        "x": 84,
+        "y": 449,
+        "width": 261,
+        "height": 71
+      },
+      "isLayoutPiece": true,
+      "border": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_Label_03.png",
+      "rect": {
+        "x": 187,
+        "y": 877,
+        "width": 261,
+        "height": 71
+      }
+    },
+    {
+      "name": "D07_Stage_Label_04",
+      "sourceRectTopLeft": {
+        "x": 679,
+        "y": 617,
+        "width": 248,
+        "height": 68
+      },
+      "isLayoutPiece": true,
+      "border": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_Label_04.png",
+      "rect": {
+        "x": 1475,
+        "y": 880,
+        "width": 248,
+        "height": 68
+      }
+    },
+    {
+      "name": "D07_Stage_Label_05",
+      "sourceRectTopLeft": {
+        "x": 73,
+        "y": 760,
+        "width": 267,
+        "height": 64
+      },
+      "isLayoutPiece": true,
+      "border": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Stage_Label_05.png",
+      "rect": {
+        "x": 16,
+        "y": 773,
+        "width": 267,
+        "height": 64
+      }
+    },
+    {
+      "name": "D07_Connector_01",
+      "sourceRectTopLeft": {
+        "x": 415,
+        "y": 207,
+        "width": 180,
+        "height": 111
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Connector_01.png",
+      "rect": {
+        "x": 815,
+        "y": 1086,
+        "width": 180,
+        "height": 111
+      }
+    },
+    {
+      "name": "D07_Connector_02",
+      "sourceRectTopLeft": {
+        "x": 449,
+        "y": 368,
+        "width": 140,
+        "height": 98
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Connector_02.png",
+      "rect": {
+        "x": 1845,
+        "y": 1099,
+        "width": 140,
+        "height": 98
+      }
+    },
+    {
+      "name": "D07_Connector_03",
+      "sourceRectTopLeft": {
+        "x": 439,
+        "y": 529,
+        "width": 152,
+        "height": 103
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Connector_03.png",
+      "rect": {
+        "x": 1011,
+        "y": 1094,
+        "width": 152,
+        "height": 103
+      }
+    },
+    {
+      "name": "D07_Connector_04",
+      "sourceRectTopLeft": {
+        "x": 432,
+        "y": 673,
+        "width": 155,
+        "height": 95
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Connector_04.png",
+      "rect": {
+        "x": 16,
+        "y": 853,
+        "width": 155,
+        "height": 95
+      }
+    },
+    {
+      "name": "D07_Detail_Panel_Composite",
+      "sourceRectTopLeft": {
+        "x": 959,
+        "y": 84,
+        "width": 694,
+        "height": 819
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Detail_Panel_Composite.png",
+      "rect": {
+        "x": 16,
+        "y": 1213,
+        "width": 694,
+        "height": 819
+      }
+    },
+    {
+      "name": "D07_Part_Preview",
+      "sourceRectTopLeft": {
+        "x": 983,
+        "y": 111,
+        "width": 648,
+        "height": 416
+      },
+      "isLayoutPiece": false,
+      "border": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Part_Preview.png",
+      "rect": {
+        "x": 726,
+        "y": 1616,
+        "width": 648,
+        "height": 416
+      }
+    },
+    {
+      "name": "D07_Part_Description",
+      "sourceRectTopLeft": {
+        "x": 983,
+        "y": 535,
+        "width": 649,
+        "height": 233
+      },
+      "isLayoutPiece": false,
+      "border": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Part_Description.png",
+      "rect": {
+        "x": 16,
+        "y": 964,
+        "width": 649,
+        "height": 233
+      }
+    },
+    {
+      "name": "D07_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 982,
+        "y": 775,
+        "width": 650,
+        "height": 101
+      },
+      "isLayoutPiece": false,
+      "border": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/07_Vertical_Track/D07_Part_Start_Button.png",
+      "rect": {
+        "x": 1179,
+        "y": 1096,
+        "width": 650,
+        "height": 101
+      }
+    }
+  ]
+}

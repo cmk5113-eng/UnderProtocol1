@@ -1,0 +1,654 @@
+fileFormatVersion: 2
+guid: 870083ffa43a5d68940682c3937e3305
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 100879297908776199
+    second: D08_Header
+  - first:
+      213: 810682418758432298
+    second: D08_Resource_01
+  - first:
+      213: 716859826526887807
+    second: D08_Resource_02
+  - first:
+      213: 287866172112863082
+    second: D08_Back_Button
+  - first:
+      213: 841437882144053725
+    second: D08_Mission_Row_01_Available
+  - first:
+      213: 371606539061808663
+    second: D08_Mission_Row_02_Available
+  - first:
+      213: 495616081171275702
+    second: D08_Mission_Row_03_Expanded_Selected
+  - first:
+      213: 681729662803303362
+    second: D08_Mission_Row_04_Disabled
+  - first:
+      213: 729027365271470045
+    second: D08_Part_Row_Icon
+  - first:
+      213: 731234358549719314
+    second: D08_Part_Row_Caption
+  - first:
+      213: 812032326517950989
+    second: D08_Part_Selected_Icon
+  - first:
+      213: 271517302661620925
+    second: D08_Part_Selected_Info_Left
+  - first:
+      213: 314159672252768185
+    second: D08_Part_Selected_Info_Right
+  - first:
+      213: 1133484117568508376
+    second: D08_Part_Start_Button
+  - first:
+      213: 868667176721513617
+    second: D08_Part_Reward_Slot_01
+  - first:
+      213: 650560157177054489
+    second: D08_Part_Reward_Slot_02
+  - first:
+      213: 1148153185373663714
+    second: D08_Part_Reward_Slot_03
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 100
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: D08_Header
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 955
+        width: 431
+        height: 68
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 28
+        y: 28
+        z: 28
+        w: 28
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a3a65d5af615170b12353ecf3f78028
+      internalID: 100879297908776199
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Resource_01
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 1511
+        width: 179
+        height: 64
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075f90cd902053049a319b18a86c651d
+      internalID: 810682418758432298
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Resource_02
+      rect:
+        serializedVersion: 2
+        x: 1850
+        y: 1511
+        width: 174
+        height: 64
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 22
+        y: 22
+        z: 22
+        w: 22
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c05f273fc815815b43f8742c8455fa3
+      internalID: 716859826526887807
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Back_Button
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 1707
+        width: 225
+        height: 71
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 26
+        y: 26
+        z: 26
+        w: 26
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61d1f0c9ecba5a34a1a4e65dae58c7d9
+      internalID: 287866172112863082
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Mission_Row_01_Available
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1039
+        width: 1623
+        height: 166
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8ff25ca6f45da7b8d57649d8740e8b
+      internalID: 841437882144053725
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Mission_Row_02_Available
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1404
+        width: 1623
+        height: 171
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c55e027838b5d7ab12e46ee193d9aa0
+      internalID: 371606539061808663
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Mission_Row_03_Expanded_Selected
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1794
+        width: 1624
+        height: 238
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2a25f1f74d5ccd88c3a8f159854182
+      internalID: 495616081171275702
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Mission_Row_04_Disabled
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1221
+        width: 1623
+        height: 167
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56928d1ac3295d23b255b302c4390f57
+      internalID: 681729662803303362
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Row_Icon
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 1646
+        width: 161
+        height: 132
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe7cc2c8a0253348b9754f075ed8fec
+      internalID: 729027365271470045
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Row_Caption
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 893
+        width: 1110
+        height: 130
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5651be09c51753f1af1320326c5fb583
+      internalID: 731234358549719314
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Selected_Icon
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 1843
+        width: 202
+        height: 189
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca7caa80b0925235a3c087f40ce2d307
+      internalID: 812032326517950989
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Selected_Info_Left
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 1591
+        width: 508
+        height: 187
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251fa7a033125b619e9844d1ef508b9e
+      internalID: 271517302661620925
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Selected_Info_Right
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1591
+        width: 541
+        height: 187
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3695bf4dd8c35d309e6c3ed8da467ebd
+      internalID: 314159672252768185
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Start_Button
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 1678
+        width: 270
+        height: 100
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 23
+        y: 23
+        z: 23
+        w: 23
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ce64135dc75febb1b79fffa7cc6c87
+      internalID: 1133484117568508376
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Reward_Slot_01
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 1935
+        width: 99
+        height: 97
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 21
+        y: 21
+        z: 21
+        w: 21
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef292d7826a53f6ab86fab93adccc6c
+      internalID: 868667176721513617
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Reward_Slot_02
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 1681
+        width: 97
+        height: 97
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 21
+        y: 21
+        z: 21
+        w: 21
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744d79efb2815f55881161550ee1c5f3
+      internalID: 650560157177054489
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D08_Part_Reward_Slot_03
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 1681
+        width: 97
+        height: 97
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 21
+        y: 21
+        z: 21
+        w: 21
+      customData: ''
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf863f986f605deda11073451625bb80
+      internalID: 1148153185373663714
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    customData: ''
+    physicsShape: []
+    bones: []
+    spriteID: 1c80e71db05a5c24bca0a52f211b257b
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      D08_Header: 100879297908776199
+      D08_Resource_01: 810682418758432298
+      D08_Resource_02: 716859826526887807
+      D08_Back_Button: 287866172112863082
+      D08_Mission_Row_01_Available: 841437882144053725
+      D08_Mission_Row_02_Available: 371606539061808663
+      D08_Mission_Row_03_Expanded_Selected: 495616081171275702
+      D08_Mission_Row_04_Disabled: 681729662803303362
+      D08_Part_Row_Icon: 729027365271470045
+      D08_Part_Row_Caption: 731234358549719314
+      D08_Part_Selected_Icon: 812032326517950989
+      D08_Part_Selected_Info_Left: 271517302661620925
+      D08_Part_Selected_Info_Right: 314159672252768185
+      D08_Part_Start_Button: 1133484117568508376
+      D08_Part_Reward_Slot_01: 868667176721513617
+      D08_Part_Reward_Slot_02: 650560157177054489
+      D08_Part_Reward_Slot_03: 1148153185373663714
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: UnderProtocol Stage UI v1
+  assetBundleName: ''
+  assetBundleVariant: ''

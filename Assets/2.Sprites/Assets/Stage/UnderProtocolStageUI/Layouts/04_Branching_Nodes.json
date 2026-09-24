@@ -1,0 +1,599 @@
+{
+  "number": 4,
+  "title": "Branching_Nodes",
+  "titleKorean": "분기 노드형",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/04_Branching_Nodes.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 21,
+  "sprites": [
+    {
+      "name": "D04_Header",
+      "sourceRectTopLeft": {
+        "x": 12,
+        "y": 12,
+        "width": 496,
+        "height": 79
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Header.png",
+      "rect": {
+        "x": 16,
+        "y": 971,
+        "width": 496,
+        "height": 79
+      }
+    },
+    {
+      "name": "D04_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1233,
+        "y": 14,
+        "width": 151,
+        "height": 67
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Resource_01.png",
+      "rect": {
+        "x": 528,
+        "y": 983,
+        "width": 151,
+        "height": 67
+      }
+    },
+    {
+      "name": "D04_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1385,
+        "y": 14,
+        "width": 138,
+        "height": 67
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Resource_02.png",
+      "rect": {
+        "x": 851,
+        "y": 983,
+        "width": 138,
+        "height": 67
+      }
+    },
+    {
+      "name": "D04_Resource_03",
+      "sourceRectTopLeft": {
+        "x": 1524,
+        "y": 14,
+        "width": 140,
+        "height": 67
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Resource_03.png",
+      "rect": {
+        "x": 695,
+        "y": 983,
+        "width": 140,
+        "height": 67
+      }
+    },
+    {
+      "name": "D04_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 12,
+        "y": 843,
+        "width": 186,
+        "height": 75
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Back_Button.png",
+      "rect": {
+        "x": 1591,
+        "y": 1107,
+        "width": 186,
+        "height": 75
+      }
+    },
+    {
+      "name": "D04_Stage_Start",
+      "sourceRectTopLeft": {
+        "x": 43,
+        "y": 417,
+        "width": 202,
+        "height": 108
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Start.png",
+      "rect": {
+        "x": 920,
+        "y": 1074,
+        "width": 202,
+        "height": 108
+      }
+    },
+    {
+      "name": "D04_Stage_Upper_01",
+      "sourceRectTopLeft": {
+        "x": 327,
+        "y": 266,
+        "width": 210,
+        "height": 115
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Upper_01.png",
+      "rect": {
+        "x": 243,
+        "y": 1067,
+        "width": 210,
+        "height": 115
+      }
+    },
+    {
+      "name": "D04_Stage_Upper_02_Selected",
+      "sourceRectTopLeft": {
+        "x": 626,
+        "y": 265,
+        "width": 211,
+        "height": 116
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Upper_02_Selected.png",
+      "rect": {
+        "x": 16,
+        "y": 1066,
+        "width": 211,
+        "height": 116
+      }
+    },
+    {
+      "name": "D04_Stage_Lower_01",
+      "sourceRectTopLeft": {
+        "x": 327,
+        "y": 554,
+        "width": 210,
+        "height": 112
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Lower_01.png",
+      "rect": {
+        "x": 469,
+        "y": 1070,
+        "width": 210,
+        "height": 112
+      }
+    },
+    {
+      "name": "D04_Stage_Lower_02_Disabled",
+      "sourceRectTopLeft": {
+        "x": 626,
+        "y": 554,
+        "width": 209,
+        "height": 112
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Lower_02_Disabled.png",
+      "rect": {
+        "x": 695,
+        "y": 1070,
+        "width": 209,
+        "height": 112
+      }
+    },
+    {
+      "name": "D04_Stage_Boss",
+      "sourceRectTopLeft": {
+        "x": 897,
+        "y": 369,
+        "width": 221,
+        "height": 210
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Stage_Boss.png",
+      "rect": {
+        "x": 1447,
+        "y": 1822,
+        "width": 221,
+        "height": 210
+      }
+    },
+    {
+      "name": "D04_Connector_Start_Upper",
+      "sourceRectTopLeft": {
+        "x": 230,
+        "y": 313,
+        "width": 113,
+        "height": 164
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Start_Upper.png",
+      "rect": {
+        "x": 1684,
+        "y": 1868,
+        "width": 113,
+        "height": 164
+      }
+    },
+    {
+      "name": "D04_Connector_Start_Lower",
+      "sourceRectTopLeft": {
+        "x": 230,
+        "y": 468,
+        "width": 113,
+        "height": 153
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Start_Lower.png",
+      "rect": {
+        "x": 1813,
+        "y": 1879,
+        "width": 113,
+        "height": 153
+      }
+    },
+    {
+      "name": "D04_Connector_Upper_Middle",
+      "sourceRectTopLeft": {
+        "x": 523,
+        "y": 313,
+        "width": 118,
+        "height": 21
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Upper_Middle.png",
+      "rect": {
+        "x": 1218,
+        "y": 1029,
+        "width": 118,
+        "height": 21
+      }
+    },
+    {
+      "name": "D04_Connector_Lower_Middle",
+      "sourceRectTopLeft": {
+        "x": 523,
+        "y": 600,
+        "width": 118,
+        "height": 21
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Lower_Middle.png",
+      "rect": {
+        "x": 1352,
+        "y": 1029,
+        "width": 118,
+        "height": 21
+      }
+    },
+    {
+      "name": "D04_Connector_Upper_Boss",
+      "sourceRectTopLeft": {
+        "x": 823,
+        "y": 313,
+        "width": 195,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Upper_Boss.png",
+      "rect": {
+        "x": 1793,
+        "y": 1109,
+        "width": 195,
+        "height": 73
+      }
+    },
+    {
+      "name": "D04_Connector_Lower_Boss",
+      "sourceRectTopLeft": {
+        "x": 821,
+        "y": 564,
+        "width": 197,
+        "height": 57
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Connector_Lower_Boss.png",
+      "rect": {
+        "x": 1005,
+        "y": 993,
+        "width": 197,
+        "height": 57
+      }
+    },
+    {
+      "name": "D04_Detail_Panel_Composite",
+      "sourceRectTopLeft": {
+        "x": 1179,
+        "y": 84,
+        "width": 485,
+        "height": 834
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Detail_Panel_Composite.png",
+      "rect": {
+        "x": 16,
+        "y": 1198,
+        "width": 485,
+        "height": 834
+      }
+    },
+    {
+      "name": "D04_Part_Detail_Preview",
+      "sourceRectTopLeft": {
+        "x": 1198,
+        "y": 100,
+        "width": 449,
+        "height": 276
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Part_Detail_Preview.png",
+      "rect": {
+        "x": 982,
+        "y": 1756,
+        "width": 449,
+        "height": 276
+      }
+    },
+    {
+      "name": "D04_Part_Detail_Description",
+      "sourceRectTopLeft": {
+        "x": 1198,
+        "y": 380,
+        "width": 449,
+        "height": 400
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Part_Detail_Description.png",
+      "rect": {
+        "x": 517,
+        "y": 1632,
+        "width": 449,
+        "height": 400
+      }
+    },
+    {
+      "name": "D04_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 1201,
+        "y": 795,
+        "width": 437,
+        "height": 86
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/04_Branching_Nodes/D04_Part_Start_Button.png",
+      "rect": {
+        "x": 1138,
+        "y": 1096,
+        "width": 437,
+        "height": 86
+      }
+    }
+  ]
+}

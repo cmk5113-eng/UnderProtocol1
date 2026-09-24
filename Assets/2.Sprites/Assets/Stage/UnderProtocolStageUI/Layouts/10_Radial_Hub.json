@@ -1,0 +1,599 @@
+{
+  "number": 10,
+  "title": "Radial_Hub",
+  "titleKorean": "원형 허브 선택형",
+  "atlasPath": "Assets/UnderProtocolStageUI/Atlases/10_Radial_Hub.png",
+  "atlasWidth": 2048,
+  "atlasHeight": 2048,
+  "spriteCount": 21,
+  "sprites": [
+    {
+      "name": "D10_Header",
+      "sourceRectTopLeft": {
+        "x": 15,
+        "y": 8,
+        "width": 398,
+        "height": 61
+      },
+      "isLayoutPiece": true,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Header.png",
+      "rect": {
+        "x": 831,
+        "y": 918,
+        "width": 398,
+        "height": 61
+      }
+    },
+    {
+      "name": "D10_Resource_01",
+      "sourceRectTopLeft": {
+        "x": 1361,
+        "y": 10,
+        "width": 147,
+        "height": 60
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Resource_01.png",
+      "rect": {
+        "x": 1410,
+        "y": 919,
+        "width": 147,
+        "height": 60
+      }
+    },
+    {
+      "name": "D10_Resource_02",
+      "sourceRectTopLeft": {
+        "x": 1512,
+        "y": 10,
+        "width": 149,
+        "height": 60
+      },
+      "isLayoutPiece": true,
+      "border": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Resource_02.png",
+      "rect": {
+        "x": 1245,
+        "y": 919,
+        "width": 149,
+        "height": 60
+      }
+    },
+    {
+      "name": "D10_Back_Button",
+      "sourceRectTopLeft": {
+        "x": 14,
+        "y": 852,
+        "width": 188,
+        "height": 76
+      },
+      "isLayoutPiece": true,
+      "border": [
+        26,
+        26,
+        26,
+        26
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Back_Button.png",
+      "rect": {
+        "x": 1506,
+        "y": 1129,
+        "width": 188,
+        "height": 76
+      }
+    },
+    {
+      "name": "D10_Central_Selected_Node",
+      "sourceRectTopLeft": {
+        "x": 444,
+        "y": 312,
+        "width": 309,
+        "height": 307
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Central_Selected_Node.png",
+      "rect": {
+        "x": 1177,
+        "y": 1725,
+        "width": 309,
+        "height": 307
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_01_Available",
+      "sourceRectTopLeft": {
+        "x": 493,
+        "y": 61,
+        "width": 213,
+        "height": 209
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_01_Available.png",
+      "rect": {
+        "x": 705,
+        "y": 996,
+        "width": 213,
+        "height": 209
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_02_Available",
+      "sourceRectTopLeft": {
+        "x": 798,
+        "y": 205,
+        "width": 213,
+        "height": 210
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_02_Available.png",
+      "rect": {
+        "x": 16,
+        "y": 995,
+        "width": 213,
+        "height": 210
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_03_Available",
+      "sourceRectTopLeft": {
+        "x": 798,
+        "y": 529,
+        "width": 213,
+        "height": 212
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_03_Available.png",
+      "rect": {
+        "x": 1732,
+        "y": 1820,
+        "width": 213,
+        "height": 212
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_04_Disabled",
+      "sourceRectTopLeft": {
+        "x": 493,
+        "y": 659,
+        "width": 213,
+        "height": 210
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_04_Disabled.png",
+      "rect": {
+        "x": 245,
+        "y": 995,
+        "width": 213,
+        "height": 210
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_05_Available",
+      "sourceRectTopLeft": {
+        "x": 184,
+        "y": 529,
+        "width": 214,
+        "height": 212
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_05_Available.png",
+      "rect": {
+        "x": 1502,
+        "y": 1820,
+        "width": 214,
+        "height": 212
+      }
+    },
+    {
+      "name": "D10_Stage_Radial_06_Available",
+      "sourceRectTopLeft": {
+        "x": 184,
+        "y": 208,
+        "width": 215,
+        "height": 209
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Stage_Radial_06_Available.png",
+      "rect": {
+        "x": 474,
+        "y": 996,
+        "width": 215,
+        "height": 209
+      }
+    },
+    {
+      "name": "D10_Spoke_Top",
+      "sourceRectTopLeft": {
+        "x": 588,
+        "y": 254,
+        "width": 21,
+        "height": 76
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Top.png",
+      "rect": {
+        "x": 1961,
+        "y": 1956,
+        "width": 21,
+        "height": 76
+      }
+    },
+    {
+      "name": "D10_Spoke_Upper_Right",
+      "sourceRectTopLeft": {
+        "x": 716,
+        "y": 335,
+        "width": 109,
+        "height": 69
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Upper_Right.png",
+      "rect": {
+        "x": 706,
+        "y": 910,
+        "width": 109,
+        "height": 69
+      }
+    },
+    {
+      "name": "D10_Spoke_Lower_Right",
+      "sourceRectTopLeft": {
+        "x": 716,
+        "y": 528,
+        "width": 110,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Lower_Right.png",
+      "rect": {
+        "x": 1839,
+        "y": 1132,
+        "width": 110,
+        "height": 73
+      }
+    },
+    {
+      "name": "D10_Spoke_Bottom",
+      "sourceRectTopLeft": {
+        "x": 588,
+        "y": 602,
+        "width": 21,
+        "height": 75
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Bottom.png",
+      "rect": {
+        "x": 1998,
+        "y": 1957,
+        "width": 21,
+        "height": 75
+      }
+    },
+    {
+      "name": "D10_Spoke_Lower_Left",
+      "sourceRectTopLeft": {
+        "x": 368,
+        "y": 528,
+        "width": 113,
+        "height": 73
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Lower_Left.png",
+      "rect": {
+        "x": 1710,
+        "y": 1132,
+        "width": 113,
+        "height": 73
+      }
+    },
+    {
+      "name": "D10_Spoke_Upper_Left",
+      "sourceRectTopLeft": {
+        "x": 370,
+        "y": 334,
+        "width": 110,
+        "height": 69
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Spoke_Upper_Left.png",
+      "rect": {
+        "x": 580,
+        "y": 910,
+        "width": 110,
+        "height": 69
+      }
+    },
+    {
+      "name": "D10_Detail_Panel_Composite",
+      "sourceRectTopLeft": {
+        "x": 1080,
+        "y": 82,
+        "width": 581,
+        "height": 811
+      },
+      "isLayoutPiece": true,
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Simple",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Detail_Panel_Composite.png",
+      "rect": {
+        "x": 16,
+        "y": 1221,
+        "width": 581,
+        "height": 811
+      }
+    },
+    {
+      "name": "D10_Part_Detail_Header",
+      "sourceRectTopLeft": {
+        "x": 1096,
+        "y": 110,
+        "width": 548,
+        "height": 86
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Part_Detail_Header.png",
+      "rect": {
+        "x": 16,
+        "y": 893,
+        "width": 548,
+        "height": 86
+      }
+    },
+    {
+      "name": "D10_Part_Description",
+      "sourceRectTopLeft": {
+        "x": 1096,
+        "y": 200,
+        "width": 548,
+        "height": 563
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Part_Description.png",
+      "rect": {
+        "x": 613,
+        "y": 1469,
+        "width": 548,
+        "height": 563
+      }
+    },
+    {
+      "name": "D10_Part_Start_Button",
+      "sourceRectTopLeft": {
+        "x": 1091,
+        "y": 766,
+        "width": 556,
+        "height": 105
+      },
+      "isLayoutPiece": false,
+      "border": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "recommendedImageType": "Sliced",
+      "pngPath": "Assets/UnderProtocolStageUI/Sprites/10_Radial_Hub/D10_Part_Start_Button.png",
+      "rect": {
+        "x": 934,
+        "y": 1100,
+        "width": 556,
+        "height": 105
+      }
+    }
+  ]
+}
