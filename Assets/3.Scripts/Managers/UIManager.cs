@@ -109,6 +109,7 @@ public class UIManager : ManagerBase
         CreateUI(UIType.Stage, "S_Stage", switcherTransform);
 
         CreateUI(UIType.Menu, "W_Menu", switcherTransform);
+        CreateUI(UIType.MiniMap, "W_MiniMap", switcherTransform);
         CreateUI(UIType.Save, "W_Save", switcherTransform);
         CreateUI(UIType.Load, "W_Load", switcherTransform);
         CreateUI(UIType.Info, "W_Info", switcherTransform);
