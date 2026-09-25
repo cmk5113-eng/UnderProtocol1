@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -243,11 +242,6 @@ public class UseSkill : MonoBehaviour
         caster.actionPoint = 0;
         caster.UpdateActionStateVisual();
 
-        StartCoroutine(CheckMonsterExterminate());
-
-
-
-
         // 이동 모드로 전환
         if (ModeManager.Instance != null)
         {
@@ -303,26 +297,6 @@ public class UseSkill : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    private IEnumerator CheckMonsterExterminate()
-    {
-
-        yield return null;
-
-        MonsterBase[] monsters =
-            UnityEngine.Object.FindObjectsByType<MonsterBase>(
-                FindObjectsSortMode.None
-            );
-
-        if (monsters.Length == 0)
-        {
-
-            Debug.Log(WaveLoader.Instance);
-            WaveLoader.Instance.NextWave();
-        }
-
     }
 
 

@@ -1,4 +1,3 @@
-using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +26,7 @@ public class BattleManager : ManagerBase
     // 씬에 배치된 플레이어와 몬스터들을 관리할 리스트
     [SerializeField] private List<CharacterBase> playerCharacters = new List<CharacterBase>();
     [SerializeField] private List<CharacterBase> monsterCharacters = new List<CharacterBase>();
+    private Coroutine pendingTurnEnd;
 
     private static BattleManager instance;
     public static BattleManager Instance
@@ -56,6 +56,18 @@ public class BattleManager : ManagerBase
         FindMonsters();
         // 첫 번째 플레이어 턴 시작
         StartPlayerTurn();
+    }
+
+    public void ResetBattle()
+    {
+        if (pendingTurnEnd != null)
+        {
+            StopCoroutine(pendingTurnEnd);
+            pendingTurnEnd = null;
+        }
+
+        currentTurn = 1;
+        currentTurnMode = TurnMode.PlayerTurn;
     }
 
     /// <summary>
@@ -111,9 +123,23 @@ public class BattleManager : ManagerBase
         if (currentTurnMode == TurnMode.PlayerTurn)
         {
             Debug.Log($"[Battle] 플레이어 턴 {currentTurn} 종료.");
-            // 💡 턴 종료가 되면 몬스터 턴으로 변경 및 시작
-            StartMonsterTurn();
+            // 중복 클릭을 막고, 같은 프레임에 처치한 몬스터의 삭제를 기다린다.
+            currentTurnMode = TurnMode.MonsterTurn;
+            if (ModeManager.Instance != null)
+                ModeManager.Instance.CurrentMode = GameMode.EnemyTurn;
+
+            if (UseSkill.Instance != null)
+                UseSkill.Instance.ClearAllHighlights();
+
+            pendingTurnEnd = StartCoroutine(FinishTurnAfterDestruction());
         }
+    }
+
+    private IEnumerator FinishTurnAfterDestruction()
+    {
+        yield return null;
+        pendingTurnEnd = null;
+        StartMonsterTurn();
     }
 
     /// <summary>
@@ -176,6 +202,8 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void EndMonsterTurn()
     {
+        if (currentTurnMode != TurnMode.MonsterTurn) return;
+
         Debug.Log($"[Battle] 몬스터 턴 {currentTurn} 종료.");
 
         // 💡 종료되면 플레이어턴으로 변경
@@ -184,6 +212,17 @@ public class BattleManager : ManagerBase
         // 💡 현재 턴 변수 +1
         currentTurn++;
 
+        // 새 웨이브는 기존 몬스터의 행동이 끝난 뒤 생성한다.
+        // 따라서 새로 등장한 몬스터는 다음 플레이어 턴 전에 공격하지 않는다.
+        MonsterBase[] remainingMonsters = FindObjectsByType<MonsterBase>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        if (remainingMonsters.Length == 0 && WaveLoader.Instance != null)
+            WaveLoader.Instance.NextWave();
+
+        FindMonsters();
         StartPlayerTurn();
     }
 
@@ -196,13 +235,34 @@ public class BattleManager : ManagerBase
         if (ModeManager.Instance != null)
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
 
-        // 플레이어 캐릭터들의 AP를 다시 최대치로 채워주는 로직
-        foreach (var player in playerCharacters)
+        // 턴 처리가 끝난 뒤 실제 배치된 플레이어의 행동력을 복구한다.
+        playerCharacters.Clear();
+        CharacterBase[] activeCharacters = FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (CharacterBase player in activeCharacters)
         {
-            if (player != null)
-            {
-                
-            }
+            if (player == null || player.isEnemy || player is MonsterBase)
+                continue;
+
+            playerCharacters.Add(player);
+            player.actionPoint = 1;
+            player.steminaPoint = player.maxStemina;
+            player.UpdateActionStateVisual();
+
+            MovementModule moveModule = player.GetComponent<MovementModule>();
+            if (moveModule != null)
+                moveModule.StopMovement();
+        }
+
+        if (StageUIController.Instance != null)
+        {
+            StageUIController.Instance.UpdateTurn();
+            StageUIController.Instance.UpdateWave();
+            if (SelectionManager.Instance != null)
+                StageUIController.Instance.resetunit();
         }
     }
 
@@ -211,11 +271,8 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void OnMonsterDead()
     {
-        // 💡 몬스터가 다 죽었는지 검사
-        if (monsterCharacters.Count == 0)
-        {
-            WaveLoader.Instance.NextWave();
-        }
+        // 사망 시에는 목록만 갱신하고, 다음 웨이브 판정은 턴 종료 때 한다.
+        FindMonsters();
     }
 
     
@@ -234,6 +291,6 @@ public class BattleManager : ManagerBase
 
     protected override void OnDisconnected()
     {
-
+        ResetBattle();
     }
 }
