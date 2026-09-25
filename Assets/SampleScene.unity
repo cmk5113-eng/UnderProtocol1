@@ -21668,7 +21668,7 @@ PrefabInstance:
       objectReference: {fileID: 1784981428}
     - target: {fileID: 4504936360340223074, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextWave
+      value: StartFirstWave
       objectReference: {fileID: 0}
     - target: {fileID: 6276807804515543633, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

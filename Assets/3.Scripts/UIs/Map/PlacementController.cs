@@ -143,8 +143,14 @@ public class PlacementController : UI_CharacterSelectWindows
  
     public static void RemoveAllObject()
     {
-        ScrollUI.Instance.ResetValue();
-        if (_objects == null || _objects.Count == 0) return;
+        if (ScrollUI.Instance != null)
+            ScrollUI.Instance.ResetValue();
+        if (BattleManager.Instance != null)
+            BattleManager.Instance.ResetBattle();
+
+        // 첫 웨이브는 배치 전에도 생성되므로 플레이어가 없어도 몬스터를 정리한다.
+        if (_objects == null)
+            _objects = new List<GameObject>();
 
         SelectionManager.DeselectCharacter();
 

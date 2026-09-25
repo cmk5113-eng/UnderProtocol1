@@ -9,13 +9,37 @@ public class WaveLoader : MonoBehaviour
 
     int index;
 
-    public static WaveLoader Instance;
+    private static WaveLoader instance;
+    public static WaveLoader Instance
+    {
+        get
+        {
+            // 스테이지 UI가 아직 비활성이어도 진입 시 첫 웨이브를 생성할 수 있다.
+            if (instance == null)
+                instance = FindFirstObjectByType<WaveLoader>(FindObjectsInactive.Include);
+
+            return instance;
+        }
+    }
+
     private void Awake()
     {
-        Instance = this;
+        instance = this;
+    }
+
+    public void StartFirstWave()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Wave == null)
+            return;
+
+        if (GameManager.Instance.Wave.currentWaveIndex == 0)
+            NextWave();
     }
     public void NextWave()
     {
+        if (GameManager.Instance == null || GameManager.Instance.Wave == null)
+            return;
+
         if (GameManager.Instance.Wave.selectedWaves == null ||
             GameManager.Instance.Wave.selectedWaves.Length == 0)
         {
@@ -30,6 +54,18 @@ public class WaveLoader : MonoBehaviour
             return;
         }
 
+        if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null)
+        {
+            Debug.LogWarning("웨이브를 생성할 Tilemap이 없습니다.");
+            return;
+        }
+
+        if (GameManager.Instance.Wave.selectedWaves[GameManager.Instance.Wave.currentWaveIndex] == null)
+        {
+            Debug.LogWarning("현재 인덱스에 웨이브 데이터가 없습니다.");
+            return;
+        }
+
         // 1. selectedWaves에서 현재 웨이브 가져오기
         GameManager.Instance.Wave.currentWave =
             GameManager.Instance.Wave.selectedWaves[
@@ -41,6 +77,9 @@ public class WaveLoader : MonoBehaviour
 
         // 3. 인덱스 증가
         GameManager.Instance.Wave.currentWaveIndex++;
+
+        if (StageUIController.Instance != null)
+            StageUIController.Instance.UpdateWave();
     }
     public void LoadWave()
 

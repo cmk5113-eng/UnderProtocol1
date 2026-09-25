@@ -34,6 +34,12 @@ public class StageUIController : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        UpdateTurn();
+        UpdateWave();
+    }
+
 
     public void Allreset()
     {
@@ -121,52 +127,30 @@ public class StageUIController : MonoBehaviour
 
     public void OnNextTurn()
     {
-        // 1. 턴 종료 처리
+        // 행동력 복구와 UI 갱신은 BattleManager의 턴 종료 완료 후 처리한다.
         if (BattleManager.Instance != null)
         {
             BattleManager.Instance.EndTurn();
         }
-
-        // 💡 [핵심 수정] unitOnStage 변수 대신, 현재 씬(필드)에 실제로 생성되어 있는 모든 캐릭터 컴포넌트를 직접 찾습니다.
-        CharacterBase[] activeCharacters = FindObjectsOfType<CharacterBase>();
-
-        foreach (CharacterBase character in activeCharacters)
-        {
-            if (character != null)
-            {
-                // 진짜 오브젝트의 데이터를 직접 수정합니다.
-                character.actionPoint = 1;
-                character.steminaPoint = character.maxStemina;
-                character.UpdateActionStateVisual();
-                // 이동 잠금(IsMoving) 상태도 함께 안전하게 풀어줍니다.
-                MovementModule moveModule = character.GetComponent<MovementModule>();
-                if (moveModule != null)
-                {
-                    // 목적지 도달 후 잔여 데이터가 남지 않도록 초기화
-                    moveModule.StopMovement();
-                }
-
-                }
-        }
-
-        // 3. UI 글자 갱신
-        UpdateTurn();
-        resetunit();
     }
     public void OnNextWave()
     {
-        //나중에 꼭 지울것!!!!!!!!!!!!!!!!
-        BattleManager.Instance.EndMonsterTurn();
-        UpdateTurn();
+        OnNextTurn();
     }
     public void UpdateTurn()
     {
 
-        currentturn.SetText(BattleManager.currentTurn.ToString());
+        if (currentturn != null)
+            currentturn.SetText(BattleManager.currentTurn.ToString());
     }
     public void UpdateWave()
     {
-        currentwave.SetText(GameManager.Instance.Wave.currentWave.ToString());
+        if (currentwave == null) return;
+
+        WaveManager waveManager = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        currentwave.SetText(waveManager != null && waveManager.currentWave != null
+            ? waveManager.currentWave.ToString()
+            : "0");
     }
 
 
@@ -280,4 +264,3 @@ public class StageUIController : MonoBehaviour
         }
     }
 }
-
