@@ -5,9 +5,12 @@ public class tempcontroller : MonoBehaviour
 {
     public static tempcontroller Instance;
 
-    [SerializeField] private TextMeshProUGUI goldtext;
+    [SerializeField] private TextMeshProUGUI progressText;
 
-    public int currentGold = 0;
+    [SerializeField] private int[] stage1Progress;
+    
+
+
 
     private void Awake()
     {
@@ -19,15 +22,15 @@ public class tempcontroller : MonoBehaviour
 
     public void addGold()
     {
-        currentGold++;
-        UpdateGoldUI();
+        ProgressManager.Progress++;
+        UpdateProgressUI();
     }
 
-    public void UpdateGoldUI()
+    public void UpdateProgressUI()
     {
-        if (goldtext != null)
+        if (progressText != null)
         {
-            goldtext.text = currentGold.ToString();
+            progressText.text = ProgressManager.Progress.ToString();
         }
     }
 }
