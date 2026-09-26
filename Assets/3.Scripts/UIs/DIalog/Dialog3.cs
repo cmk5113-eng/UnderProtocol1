@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Dialog1 : MonoBehaviour, IPointerDownHandler
+public class Dialog3 : MonoBehaviour, IPointerDownHandler
 {
     public Text ScriptText_dialogue;
     public string[] dialogue
