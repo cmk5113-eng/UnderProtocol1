@@ -38,7 +38,7 @@ public class SaveManager : ManagerBase
     {
         if (slot < 0 || slot >= saveDatas.Length) return;
 
-        saveDatas[slot].currentGold = tempcontroller.Instance.currentGold;
+        saveDatas[slot].currentGold = ProgressManager.Progress;
 
         string json = JsonUtility.ToJson(saveDatas[slot]);
 
@@ -70,11 +70,10 @@ public class SaveManager : ManagerBase
         // 컨트롤러 및 UI 업데이트
         if (tempcontroller.Instance != null)
         {
-            tempcontroller.Instance.currentGold = saveDatas[slot].currentGold;
-            tempcontroller.Instance.UpdateGoldUI();
+            ProgressManager.Progress = saveDatas[slot].currentGold;
+            tempcontroller.Instance.UpdateProgressUI();
         }
 
-        Debug.Log($"{slot}번 슬롯 로드 완료");
     }
 
     protected override IEnumerator OnConnected(GameManager newManager)

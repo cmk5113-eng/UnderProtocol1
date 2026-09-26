@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 942fcc99e119a7847ae355267852cbe0
+guid: 9ed7df24daf26d04c83d264dee320a79
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7917110063877324255
-    second: "\uC2A4\uD0AC\uCC3D_0"
+      213: 3328181766914779820
+    second: "ChatGPT \uC774\uBBF8\uC9C0 2026\uB144 9\uC6D4 26\uC77C \uC624\uC804
+      08_30_18-12_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +97,18 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC2A4\uD0AC\uCC3D_0"
+      name: "ChatGPT \uC774\uBBF8\uC9C0 2026\uB144 9\uC6D4 26\uC77C \uC624\uC804
+        08_30_18-12_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 342
-        height: 428
+        width: 1672
+        height: 941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1220ce2f756c02290800000000000000
-      internalID: -7917110063877324255
+      spriteID: caa23ecfea3103e20800000000000000
+      internalID: 3328181766914779820
       vertices: []
       indices: 
       edges: []
@@ -148,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uC2A4\uD0AC\uCC3D_0": -7917110063877324255
+      "ChatGPT \uC774\uBBF8\uC9C0 2026\uB144 9\uC6D4 26\uC77C \uC624\uC804 08_30_18-12_0": 3328181766914779820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
