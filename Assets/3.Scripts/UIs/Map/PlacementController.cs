@@ -141,83 +141,67 @@ public class PlacementController : UI_CharacterSelectWindows
         }
     }
  
+    public void LeaveBattle()
+    {
+        if (BattleManager.Instance != null && BattleManager.Instance.IsBattleActive)
+            BattleManager.Instance.AbortBattle();
+        else
+            RemoveAllObject();
+    }
+
     public static void RemoveAllObject()
     {
-        if (ScrollUI.Instance != null)
-            ScrollUI.Instance.ResetValue();
-        if (BattleManager.Instance != null)
-            BattleManager.Instance.ResetBattle();
-
-        // 첫 웨이브는 배치 전에도 생성되므로 플레이어가 없어도 몬스터를 정리한다.
-        if (_objects == null)
-            _objects = new List<GameObject>();
-
+        if (BattleManager.Instance != null) BattleManager.Instance.ResetBattle();
+        if (UseSkill.Instance != null) UseSkill.Instance.ClearAllHighlights();
         SelectionManager.DeselectCharacter();
+        SelectionManager._characterBase = null;
+        SelectionManager._characterData = null;
+        SelectionManager.SelectedPrefab = null;
+        CurrentSkill = null;
 
-        // =========================
-        // 플레이어 캐릭터 제거
-        // =========================
+        var objects = new HashSet<GameObject>();
+        if (_objects != null) objects.UnionWith(_objects);
+        if (MonsterBase._monsters != null) objects.UnionWith(MonsterBase._monsters);
+        // 비활성 맵이나 다른 배치 경로로 생성된 전투 유닛도 정리한다.
+        foreach (CharacterBase character in FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (character.isSpawned || character.gameObject.activeSelf)
+                objects.Add(character.gameObject);
 
-        List<GameObject> tempObjects = new List<GameObject>(_objects);
-        _objects.Clear();
-
-        for (int i = tempObjects.Count - 1; i >= 0; i--)
+        foreach (GameObject obj in objects)
         {
-            GameObject obj = tempObjects[i];
-
-            if (obj == null)
-                continue;
-
-            MoveTileModule moveModule = obj.GetComponent<MoveTileModule>();
-
-            if (moveModule != null)
-            {
-                moveModule.ClearCharacterPosition();
-            }
-
+            if (obj == null) continue;
+            MovementModule movement = obj.GetComponent<MovementModule>();
+            if (movement != null) movement.StopMovement();
             CharacterBase character = obj.GetComponent<CharacterBase>();
-
             if (character != null && SelectionManager.Instance != null)
-            {
                 SelectionManager.Instance.InitCharacter(character);
-            }
-
-            SelectionManager._characterBase = null;
-
-            if (StageUIController.Instance != null)
-                StageUIController.Instance.Allreset();
-
-            if (UI_CharacterSelectWindows.Instance != null)
-                UI_CharacterSelectWindows.Instance.RemoveCount();
-
+            // Destroy는 프레임 끝에 실행되므로 재진입 시 검색/입력에서 즉시 제외한다.
             ObjectManager.DestroyObject(obj);
+            obj.SetActive(false);
         }
 
-
-        // =========================
-        // 몬스터 제거
-        // =========================
-
-        MonsterBase[] monsters =
-            UnityEngine.Object.FindObjectsByType<MonsterBase>(
-                FindObjectsSortMode.None
-            );
-
-        foreach (MonsterBase monster in monsters)
+        _objects = new List<GameObject>();
+        MonsterBase._monsters.Clear();
+        if (SelectionManager.Instance != null) SelectionManager.Instance.unitOnStage.Clear();
+        if (PlacementManager.Instance != null)
         {
-            if (monster == null)
-                continue;
-
-            MoveTileModule moveModule =
-                monster.GetComponent<MoveTileModule>();
-
-            if (moveModule != null)
-            {
-                moveModule.ClearCharacterPosition();
-            }
-
-            ObjectManager.DestroyObject(monster.gameObject);
+            PlacementManager.Instance.tileDatas.Clear();
+            PlacementManager.Instance.tilemap = null;
         }
+
+        WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        if (wave != null)
+        {
+            wave.selectedWaves = null;
+            wave.currentWave = null;
+            wave.currentWaveIndex = 0;
+        }
+
+        if (ScrollUI.Instance != null) ScrollUI.Instance.ResetValue();
+        if (StageUIController.Instance != null) StageUIController.Instance.Allreset();
+        if (UI_CharacterSelectWindows.Instance != null) UI_CharacterSelectWindows.Instance.RemoveCount();
+        if (ModeManager.Instance != null) ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
     }
     public void SpawnObject()
     {
