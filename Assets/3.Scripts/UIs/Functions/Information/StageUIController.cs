@@ -43,28 +43,16 @@ public class StageUIController : MonoBehaviour
 
     public void Allreset()
     {
-        portrait.sprite = null;
-
-        for (int i = 0; i < 4; i++)
-        { 
-            skill[i] = null;
-        }
-
-        if (SelectionManager.Instance != null && SelectionManager.Instance.unitOnStage != null)
-        {
-
-            // 12로 고정하지 않고, 현재 리스트에 존재하는 요소 개수만큼만 null로 지정
-            for (int i = 0; i < SelectionManager.Instance.unitOnStage.Count; i++)
-            {
-
-                SelectionManager.Instance.unitOnStage[i] = null;
-            }
-
-            // 만약 unitOnStage를 아예 비워주는 것이 목적이라면 Clear()를 사용해도 됩니다.
-            // stageList.Clear();
-        }
-
-        Refresh();
+        asCharacter = null;
+        currentData = null;
+        if (portrait != null) portrait.sprite = null;
+        // Image 컴포넌트의 연결은 유지하고 표시 내용만 초기화한다.
+        foreach (Image image in skill)
+            if (image != null) image.sprite = null;
+        if (SelectionManager.Instance != null) SelectionManager.Instance.unitOnStage.Clear();
+        resetunit();
+        UpdateTurn();
+        UpdateWave();
     }
     public void Refresh()
     {
@@ -203,64 +191,22 @@ public class StageUIController : MonoBehaviour
 
     public void resetunit()
     {
-        // 1번째 슬롯 (0번 인덱스)
-        if (SelectionManager.Instance.unitOnStage.Count > 0)
+        List<CharacterBase> characters = SelectionManager.Instance != null
+            ? SelectionManager.Instance.unitOnStage : null;
+        for (int i = 0; i < unit.Length; i++)
         {
-            unit[0].gameObject.SetActive(true);
-            // 💡 [수정] unit[1]이 아니라 unit[0]의 이미지를 바꿔야 합니다.
-            unit[0].sprite = SelectionManager.Instance.unitOnStage[0].portrait;
-            unitname[0].SetText(SelectionManager.Instance.unitOnStage[0].Name);
-            AP[0].SetText(SelectionManager.Instance.unitOnStage[0].actionPoint.ToString());
-            SP[0].SetText(SelectionManager.Instance.unitOnStage[0].steminaPoint.ToString());
-        }
-        else
-        {
-            unit[0].gameObject.SetActive(false);
-            unitname[0].SetText(""); // 💡 [수정] 0번 텍스트 초기화
-        }
-
-        // 2번째 슬롯 (1번 인덱스)
-        if (SelectionManager.Instance.unitOnStage.Count > 1)
-        {
-            unit[1].gameObject.SetActive(true);
-            unit[1].sprite = SelectionManager.Instance.unitOnStage[1].portrait;
-            unitname[1].SetText(SelectionManager.Instance.unitOnStage[1].Name);
-            AP[1].SetText(SelectionManager.Instance.unitOnStage[1].actionPoint.ToString());
-            SP[1].SetText(SelectionManager.Instance.unitOnStage[1].steminaPoint.ToString());
-        }
-        else
-        {
-            unit[1].gameObject.SetActive(false);
-            unitname[1].SetText("");
-        }
-
-        // 3번째 슬롯 (2번 인덱스)
-        if (SelectionManager.Instance.unitOnStage.Count > 2)
-        {
-            unit[2].gameObject.SetActive(true);
-            unit[2].sprite = SelectionManager.Instance.unitOnStage[2].portrait;
-            unitname[2].SetText(SelectionManager.Instance.unitOnStage[2].Name);
-            AP[2].SetText(SelectionManager.Instance.unitOnStage[2].actionPoint.ToString());
-            SP[2].SetText(SelectionManager.Instance.unitOnStage[2].steminaPoint.ToString());
-        }
-        else
-        {
-            unit[2].gameObject.SetActive(false);
-            unitname[2].SetText("");
-        }
-
-        // 4번째 슬롯 (3번 인덱스)
-        if (SelectionManager.Instance.unitOnStage.Count > 3)
-        {
-            unit[3].gameObject.SetActive(true);
-            unit[3].sprite = SelectionManager.Instance.unitOnStage[3].portrait;
-            unitname[3].SetText(SelectionManager.Instance.unitOnStage[3].Name); 
-            AP[3].SetText(SelectionManager.Instance.unitOnStage[3].actionPoint.ToString());
-            SP[3].SetText(SelectionManager.Instance.unitOnStage[3].steminaPoint.ToString());
-        }
-        else
-        {
-            unit[3].gameObject.SetActive(false);
+            CharacterBase character = characters != null && i < characters.Count ? characters[i] : null;
+            if (unit[i] != null)
+            {
+                unit[i].sprite = character != null ? character.portrait : null;
+                unit[i].gameObject.SetActive(character != null);
+            }
+            if (i < unitname.Length && unitname[i] != null)
+                unitname[i].SetText(character != null ? character.Name : "");
+            if (i < AP.Length && AP[i] != null)
+                AP[i].SetText(character != null ? character.actionPoint.ToString() : "");
+            if (i < SP.Length && SP[i] != null)
+                SP[i].SetText(character != null ? character.steminaPoint.ToString() : "");
         }
     }
 }

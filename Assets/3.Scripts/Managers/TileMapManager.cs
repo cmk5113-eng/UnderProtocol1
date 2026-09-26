@@ -6,8 +6,10 @@ public class TileMapManager : MonoBehaviour
 {
     public void ChangeCurrentCharacter(Tilemap currenttilemap)
     {
-        PlacementManager.Instance.tilemap = null;
+        if (PlacementManager.Instance == null || currenttilemap == null) return;
+        PlacementManager.Instance.tileDatas.Clear();
         PlacementManager.Instance.tilemap = currenttilemap;
+        PlacementManager.Instance.InitializeMapOrigin();
 
     }
 

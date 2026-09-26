@@ -1,212 +1,105 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveLoader : MonoBehaviour
 {
-
     [SerializeField] private List<MonsterData> monsterDatas;
-
-    int index;
-
     private static WaveLoader instance;
+
     public static WaveLoader Instance
     {
         get
         {
-            // 스테이지 UI가 아직 비활성이어도 진입 시 첫 웨이브를 생성할 수 있다.
+            // 맵별 WaveLoader가 있을 때 이전 맵의 캐시를 재사용하지 않는다.
+            if (PlacementManager.Instance != null && PlacementManager.Instance.tilemap != null)
+            {
+                var tilemap = PlacementManager.Instance.tilemap;
+                WaveLoader mapLoader = tilemap.GetComponentInParent<WaveLoader>(true);
+                if (mapLoader != null) return mapLoader;
+                PlacementController map = tilemap.GetComponentInParent<PlacementController>(true);
+                if (map != null)
+                {
+                    mapLoader = map.GetComponentInChildren<WaveLoader>(true);
+                    if (mapLoader != null) return mapLoader;
+                }
+            }
             if (instance == null)
                 instance = FindFirstObjectByType<WaveLoader>(FindObjectsInactive.Include);
-
             return instance;
         }
     }
 
-    private void Awake()
-    {
-        Debug.Log(
-            $"[WaveLoader Awake] " +
-            $"오브젝트={gameObject.name}, " +
-            $"InstanceID={GetInstanceID()}, " +
-            $"MonsterDatas={monsterDatas.Count}"
-        );
-
-        instance = this;
-    }
+    private void Awake() => instance = this;
 
     public void StartFirstWave()
     {
-        Debug.Log("===== StartFirstWave =====");
-
-        if (GameManager.Instance == null)
-        {
-            Debug.LogError("GameManager 없음");
-            return;
-        }
-
-        if (GameManager.Instance.Wave == null)
-        {
-            Debug.LogError("WaveManager 없음");
-            return;
-        }
-
-        Debug.Log($"currentWaveIndex = {GameManager.Instance.Wave.currentWaveIndex}");
-        Debug.Log($"selectedWaves = {GameManager.Instance.Wave.selectedWaves}");
-
-        if (GameManager.Instance.Wave.selectedWaves != null)
-            Debug.Log($"selectedWaves.Length = {GameManager.Instance.Wave.selectedWaves.Length}");
-
-        Debug.Log($"PlacementManager = {PlacementManager.Instance}");
-        Debug.Log($"tilemap = {PlacementManager.Instance?.tilemap}");
-
-        if (GameManager.Instance.Wave.currentWaveIndex == 0)
-            NextWave();
+        WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        if (wave != null && wave.currentWaveIndex == 0) NextWave();
     }
+
     public void NextWave()
     {
-       
+        WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        BattleManager battle = BattleManager.Instance;
+        if (wave == null || battle == null || !battle.IsBattleActive) return;
+        if (wave.selectedWaves == null || wave.selectedWaves.Length == 0) return;
+        if (BattleManager.HasRemainingMonsters()) return;
 
-        if (GameManager.Instance == null || GameManager.Instance.Wave == null)
+        if (wave.currentWaveIndex >= wave.selectedWaves.Length)
         {
-            Debug.LogError("[NextWave] GameManager/Wave 없음");
+            battle.CompleteBattle();
             return;
         }
 
-      
-        if (GameManager.Instance.Wave.selectedWaves == null ||
-            GameManager.Instance.Wave.selectedWaves.Length == 0)
+        if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null)
         {
-            Debug.LogWarning("선택된 웨이브가 없습니다.");
+            Debug.LogWarning("[WaveLoader] 웨이브를 생성할 Tilemap이 없습니다.");
             return;
         }
 
-        if (GameManager.Instance.Wave.currentWaveIndex >=
-            GameManager.Instance.Wave.selectedWaves.Length)
-        {
-            return;
-        }
-
-        if (PlacementManager.Instance == null ||
-            PlacementManager.Instance.tilemap == null)
-        {
-            Debug.LogWarning("웨이브를 생성할 Tilemap이 없습니다.");
-            return;
-        }
-
-        WaveData targetWave =
-            GameManager.Instance.Wave.selectedWaves[
-                GameManager.Instance.Wave.currentWaveIndex
-            ];
-
-        Debug.Log($"[NextWave] targetWave = {targetWave}");
-
+        WaveData targetWave = wave.selectedWaves[wave.currentWaveIndex];
         if (targetWave == null)
         {
-            Debug.LogError(
-                $"[NextWave] selectedWaves[{GameManager.Instance.Wave.currentWaveIndex}]가 null"
-            );
+            Debug.LogError($"[WaveLoader] selectedWaves[{wave.currentWaveIndex}]가 비어 있습니다.");
             return;
         }
 
-        Debug.Log($"[NextWave] monsters = {targetWave.monsters}");
-
-        if (targetWave.monsters != null)
-            Debug.Log($"[NextWave] monster Count = {targetWave.monsters.Count}");
-
-        GameManager.Instance.Wave.currentWave = targetWave;
-
-        Debug.Log($"[NextWave] currentWave 설정 완료 = {GameManager.Instance.Wave.currentWave}");
-
-        LoadWave();
-
-        GameManager.Instance.Wave.currentWaveIndex++;
-
-        Debug.Log(
-            $"[NextWave] 완료. 다음 index = {GameManager.Instance.Wave.currentWaveIndex}"
-        );
-
-        if (StageUIController.Instance != null)
-            StageUIController.Instance.UpdateWave();
+        wave.currentWave = targetWave;
+        // 잘못된 생성 데이터를 빈 웨이브 클리어로 처리하지 않는다.
+        if (!LoadWave()) return;
+        wave.currentWaveIndex++;
+        if (StageUIController.Instance != null) StageUIController.Instance.UpdateWave();
     }
-    public void LoadWave()
+
+    public bool LoadWave()
     {
-        
+        WaveManager manager = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        WaveData wave = manager != null ? manager.currentWave : null;
+        if (wave == null || wave.monsters == null || monsterDatas == null
+            || PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null)
+            return false;
 
-        for (int i = 0; i < monsterDatas.Count; i++)
+        // 전체 설정을 먼저 검사해서 일부만 생성된 웨이브가 중복 생성되는 것을 방지한다.
+        var spawnDatas = new List<MonsterData>();
+        foreach (MonsterSpawnData spawn in wave.monsters)
         {
-            if (monsterDatas[i] == null)
+            MonsterData data = spawn == null ? null
+                : monsterDatas.Find(item => item != null && item.id == spawn.monsterID);
+            if (data == null || data.prefab == null || data.prefab.GetComponent<MonsterBase>() == null)
             {
-                Debug.Log($"monsterDatas[{i}] = NULL");
-                continue;
+                Debug.LogError("[WaveLoader] MonsterData/프리팹/MonsterBase 설정을 확인해주세요.");
+                return false;
             }
-
-           
-        }
-        
-
-        WaveData wave = GameManager.Instance.Wave.currentWave;
-
-        
-        int spawnIndex = 0;
-
-        foreach (MonsterSpawnData spawnData in wave.monsters)
-        {
-            
-
-            MonsterData data =
-                monsterDatas.Find(x => x.id == spawnData.monsterID);
-
-            if (data == null)
-            {
-                Debug.LogError(
-                    $"[Spawn {spawnIndex}] ID {spawnData.monsterID}의 MonsterData 없음"
-                );
-
-                spawnIndex++;
-                continue;
-            }
-
-            if (data.prefab == null)
-            {
-               
-                spawnIndex++;
-                continue;
-            }
-
-            Vector3 worldPosition =
-                PlacementManager.Instance.tilemap
-                    .GetCellCenterWorld(spawnData.position);
-
-
-            GameObject monsterObject = Instantiate(
-                data.prefab,
-                worldPosition,
-                Quaternion.identity
-            );
-
-
-            MonsterBase monster =
-                monsterObject.GetComponent<MonsterBase>();
-
-            if (monster != null)
-            {
-                MonsterBase._monsters.Add(monsterObject);
-
-                Debug.Log(
-                    $"[Spawn {spawnIndex}] MonsterBase 등록 성공 / " +
-                    $"현재 _monsters 수: {MonsterBase._monsters.Count}"
-                );
-            }
-            else
-            {
-                Debug.LogError(
-                    $"[Spawn {spawnIndex}] {monsterObject.name}에 MonsterBase 없음"
-                );
-            }
-
-            spawnIndex++;
+            spawnDatas.Add(data);
         }
 
-      
+        MonsterBase._monsters.RemoveAll(monster => monster == null);
+        for (int i = 0; i < wave.monsters.Count; i++)
+        {
+            Vector3 position = PlacementManager.Instance.tilemap.GetCellCenterWorld(wave.monsters[i].position);
+            GameObject monster = Instantiate(spawnDatas[i].prefab, position, Quaternion.identity);
+            MonsterBase._monsters.Add(monster);
+        }
+        return true;
     }
 }

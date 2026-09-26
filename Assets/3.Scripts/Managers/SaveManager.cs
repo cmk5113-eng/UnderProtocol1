@@ -1,87 +1,67 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
 
 public class SaveManager : ManagerBase
 {
     public SaveData[] saveDatas;
-    public int currentSlot = 0; // 현재 활성화된 슬롯
+    public int currentSlot = 0;
 
     private void Awake()
     {
         saveDatas = new SaveData[3];
-
         for (int i = 0; i < saveDatas.Length; i++)
-        {
-            if (PlayerPrefs.HasKey("SaveData" + i))
-            {
-                string json = PlayerPrefs.GetString("SaveData" + i);
-                saveDatas[i] = JsonUtility.FromJson<SaveData>(json);
-            }
-            else
-            {
-                saveDatas[i] = new SaveData();
-            }
-        }
-
-        // 마지막으로 접근했던 슬롯 번호 가져오기 (없으면 default 0)
-        currentSlot = PlayerPrefs.GetInt("LastUsedSlot", 0);
+            saveDatas[i] = ReadSlot(i);
+        currentSlot = Mathf.Clamp(PlayerPrefs.GetInt("LastUsedSlot", 0), 0, saveDatas.Length - 1);
     }
 
-    private void Start()
+    private void Start() => Load(currentSlot);
+
+    private SaveData ReadSlot(int slot)
     {
-        // 게임 시작 시 마지막 슬롯 데이터를 자동으로 불러와 컨트롤러에 반영
-        Load(currentSlot);
+        if (!PlayerPrefs.HasKey("SaveData" + slot)) return new SaveData();
+        return JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("SaveData" + slot)) ?? new SaveData();
     }
 
     public void Save(int slot)
     {
-        if (slot < 0 || slot >= saveDatas.Length) return;
+        if (saveDatas == null || slot < 0 || slot >= saveDatas.Length) return;
+        if (saveDatas[slot] == null) saveDatas[slot] = new SaveData();
 
-        saveDatas[slot].currentGold = ProgressManager.Progress;
-
-        string json = JsonUtility.ToJson(saveDatas[slot]);
-
-        PlayerPrefs.SetString("SaveData" + slot, json);
-        PlayerPrefs.SetInt("LastUsedSlot", slot); // 마지막 저장 슬롯 기록
+        SaveData data = saveDatas[slot];
+        data.progressVersion = 1;
+        data.progress = ProgressManager.Progress;
+        // 기존 버전과 호환: 종전에는 currentGold에 진행도를 저장했다.
+        data.currentGold = data.progress;
+        data.clearedStageIds = ProgressManager.GetClearedStageIds();
+        data.cleared = data.clearedStageIds.Count > 0;
+        PlayerPrefs.SetString("SaveData" + slot, JsonUtility.ToJson(data));
+        PlayerPrefs.SetInt("LastUsedSlot", slot);
         PlayerPrefs.Save();
-
         currentSlot = slot;
         Debug.Log($"{slot}번 슬롯 저장 완료");
     }
 
     public void Load(int slot)
     {
-        if (slot < 0 || slot >= saveDatas.Length) return;
+        if (saveDatas == null || slot < 0 || slot >= saveDatas.Length) return;
+        // 전투 도중 슬롯을 바꾸면 이전 슬롯의 전투 결과가 새 슬롯에 기록되지 않게 한다.
+        if (BattleManager.Instance != null && BattleManager.Instance.IsBattleActive)
+            BattleManager.Instance.AbortBattle();
 
-        if (!PlayerPrefs.HasKey("SaveData" + slot))
-        {
-            Debug.Log($"{slot}번 슬롯에 저장된 데이터가 없습니다.");
-            return;
-        }
-
-        string json = PlayerPrefs.GetString("SaveData" + slot);
-        saveDatas[slot] = JsonUtility.FromJson<SaveData>(json);
-
+        SaveData data = ReadSlot(slot);
+        saveDatas[slot] = data;
         currentSlot = slot;
         PlayerPrefs.SetInt("LastUsedSlot", slot);
         PlayerPrefs.Save();
-
-        // 컨트롤러 및 UI 업데이트
-        if (tempcontroller.Instance != null)
-        {
-            ProgressManager.Progress = saveDatas[slot].currentGold;
-            tempcontroller.Instance.UpdateProgressUI();
-        }
-
+        ProgressManager.RestoreProgress(data.progressVersion >= 1 ? data.progress : data.currentGold,
+            data.clearedStageIds);
+        Debug.Log($"{slot}번 슬롯 로드 완료");
     }
 
     protected override IEnumerator OnConnected(GameManager newManager)
     {
-        yield return null;
+        yield break;
     }
 
-    protected override void OnDisconnected()
-    {
-    }
+    protected override void OnDisconnected() { }
 }

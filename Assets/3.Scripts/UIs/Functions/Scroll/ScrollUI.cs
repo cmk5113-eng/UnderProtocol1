@@ -8,18 +8,17 @@ public class ScrollUI : MonoBehaviour
     [SerializeField] public Scrollbar GGscrollbar;
 
 
-    void Start()
+    void Awake()
 
     {
         Instance = this;
-        HPscrollbar.value = 1f;
-        GGscrollbar.value = 0;
+        ResetValue();
     }
 
     public void ResetValue()
     { 
-    HPscrollbar.value = 1f;
-    GGscrollbar.value = 0;
+        if (HPscrollbar != null) HPscrollbar.value = 1f;
+        if (GGscrollbar != null) GGscrollbar.value = 0;
     }
 
 

@@ -27,6 +27,56 @@ public class BattleManager : ManagerBase
     [SerializeField] private List<CharacterBase> playerCharacters = new List<CharacterBase>();
     [SerializeField] private List<CharacterBase> monsterCharacters = new List<CharacterBase>();
     private Coroutine pendingTurnEnd;
+    private int activeStageId = -1;
+    private WaveSetter activeStage;
+    public bool IsBattleActive { get; private set; }
+
+    public void BeginBattle(int stageId, WaveSetter stage)
+    {
+        ResetBattle();
+        activeStageId = stageId;
+        activeStage = stage;
+        IsBattleActive = true;
+    }
+
+    public void CompleteBattle()
+    {
+        WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        if (!IsBattleActive || wave == null || wave.selectedWaves == null
+            || wave.selectedWaves.Length == 0 || wave.currentWave == null
+            || wave.currentWaveIndex < wave.selectedWaves.Length || HasRemainingMonsters())
+            return;
+
+        FinishBattle(true);
+    }
+
+    public void AbortBattle() => FinishBattle(false);
+
+    private void FinishBattle(bool cleared)
+    {
+        if (!IsBattleActive) return;
+        IsBattleActive = false;
+        WaveSetter returnStage = activeStage;
+
+        if (cleared && ProgressManager.MarkStageCleared(activeStageId))
+        {
+            SaveManager save = GameManager.Instance != null ? GameManager.Instance.Save : null;
+            if (save != null) save.Save(save.currentSlot);
+        }
+
+        PlacementController.RemoveAllObject();
+        if (returnStage != null) returnStage.ReturnToWorld();
+        Debug.Log(cleared ? "[Battle] 스테이지 클리어. 월드로 복귀합니다."
+            : "[Battle] 전투 종료. 월드로 복귀합니다.");
+    }
+
+    public static bool HasRemainingMonsters()
+    {
+        foreach (MonsterBase monster in FindObjectsByType<MonsterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            if (monster.currentHP > 0) return true;
+        return false;
+    }
 
     private static BattleManager instance;
     public static BattleManager Instance
@@ -53,9 +103,7 @@ public class BattleManager : ManagerBase
 
     private void Start()
     {
-        FindMonsters();
-        // 첫 번째 플레이어 턴 시작
-        StartPlayerTurn();
+        ResetBattle();
     }
 
     public void ResetBattle()
@@ -66,8 +114,14 @@ public class BattleManager : ManagerBase
             pendingTurnEnd = null;
         }
 
+        IsBattleActive = false;
+        activeStageId = -1;
+        activeStage = null;
+        HP = 100;
         currentTurn = 1;
         currentTurnMode = TurnMode.PlayerTurn;
+        playerCharacters.Clear();
+        monsterCharacters.Clear();
     }
 
     /// <summary>
@@ -93,7 +147,7 @@ public class BattleManager : ManagerBase
     }
     public void CheckPlayerApAndTryEndTurn()
     {
-        if (currentTurnMode != TurnMode.PlayerTurn) return;
+        if (!IsBattleActive || currentTurnMode != TurnMode.PlayerTurn) return;
 
         bool allPlayersApZero = true;
         foreach (var player in playerCharacters)
@@ -120,7 +174,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void EndTurn()
     {
-        if (currentTurnMode == TurnMode.PlayerTurn)
+        if (IsBattleActive && currentTurnMode == TurnMode.PlayerTurn)
         {
             Debug.Log($"[Battle] 플레이어 턴 {currentTurn} 종료.");
             // 중복 클릭을 막고, 같은 프레임에 처치한 몬스터의 삭제를 기다린다.
@@ -147,6 +201,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void StartMonsterTurn()
     {
+        if (!IsBattleActive) return;
         currentTurnMode = TurnMode.MonsterTurn;
 
         // ModeManager가 있다면 연동 (필요 시 주석 해제)
@@ -162,6 +217,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void MonsterTurn()
     {
+        if (!IsBattleActive) return;
         Debug.Log("[Battle] 몬스터 턴 시작");
 
 
@@ -185,15 +241,18 @@ public class BattleManager : ManagerBase
 
             Debug.Log($"{HP}");
 
-            ScrollUI.Instance.SubValue(
-                monster.currentHP * 0.01f
-            );
+            if (ScrollUI.Instance != null)
+                ScrollUI.Instance.SubValue(monster.currentHP * 0.01f);
         }
 
         // 모든 몬스터 처리 후 한 번만 판정
-        if (ScrollUI.Instance.HPscrollbar.value <= 0.0f)
+        bool defeated = ScrollUI.Instance != null && ScrollUI.Instance.HPscrollbar != null
+            ? ScrollUI.Instance.HPscrollbar.value <= 0f : HP <= 0f;
+        if (defeated)
         {
-            UIManager.ClaimPopUp("ㅠㅠ", "게임오버", "확인");
+            FinishBattle(false);
+            UIManager.ClaimPopUp("전투 종료", "게임오버", "확인");
+            return;
         }
         EndMonsterTurn();
     }
@@ -202,7 +261,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void EndMonsterTurn()
     {
-        if (currentTurnMode != TurnMode.MonsterTurn) return;
+        if (!IsBattleActive || currentTurnMode != TurnMode.MonsterTurn) return;
 
         Debug.Log($"[Battle] 몬스터 턴 {currentTurn} 종료.");
 
@@ -214,14 +273,11 @@ public class BattleManager : ManagerBase
 
         // 새 웨이브는 기존 몬스터의 행동이 끝난 뒤 생성한다.
         // 따라서 새로 등장한 몬스터는 다음 플레이어 턴 전에 공격하지 않는다.
-        MonsterBase[] remainingMonsters = FindObjectsByType<MonsterBase>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None
-        );
-
-        if (remainingMonsters.Length == 0 && WaveLoader.Instance != null)
+        if (!HasRemainingMonsters() && WaveLoader.Instance != null)
             WaveLoader.Instance.NextWave();
 
+        // 마지막 웨이브에서 월드로 복귀했다면 이동 모드/다음 턴을 다시 열지 않는다.
+        if (!IsBattleActive) return;
         FindMonsters();
         StartPlayerTurn();
     }
@@ -231,6 +287,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void StartPlayerTurn()
     {
+        if (!IsBattleActive) return;
 
         if (ModeManager.Instance != null)
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
