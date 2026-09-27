@@ -51,9 +51,18 @@ public class BattleManager : ManagerBase
     }
 
     public void AbortBattle() => FinishBattle(false);
-
+    UIBase stageScreen = UIManager.ClaimGetUI(UIType.Stage);
     private void FinishBattle(bool cleared)
     {
+        if (stageScreen != null)
+        {
+            stageScreen.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("UIManager에 등록된 Stage 화면이 없습니다.");
+        }
+
         if (!IsBattleActive) return;
         IsBattleActive = false;
         WaveSetter returnStage = activeStage;

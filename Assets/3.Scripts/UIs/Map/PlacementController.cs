@@ -16,6 +16,7 @@ public class PlacementController : UI_CharacterSelectWindows
     public TextMeshProUGUI Max;
     public static GameObject CurrentSkill;
 
+
     private void RefreshUI()
     {
         if (Current != null) Current.text = count.ToString();
@@ -143,6 +144,7 @@ public class PlacementController : UI_CharacterSelectWindows
  
     public void LeaveBattle()
     {
+       
         if (BattleManager.Instance != null && BattleManager.Instance.IsBattleActive)
             BattleManager.Instance.AbortBattle();
         else

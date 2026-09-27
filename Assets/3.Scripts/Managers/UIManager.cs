@@ -106,7 +106,21 @@ public class UIManager : ManagerBase
 
         CreateUI(UIType.Title, "S_Title", switcherTransform);
         CreateUI(UIType.Option, "S_Option", switcherTransform);
-        CreateUI(UIType.Stage, "S_Stage", switcherTransform);
+        UI_StageScreen stageScreen =
+         MainCanvas.GetComponentInChildren<UI_StageScreen>(true);
+
+        if (stageScreen != null)
+        {
+            // 기존 S_Stage를 UIManager에 등록
+            SetUI(UIType.Stage, stageScreen);
+        }
+        else
+        {
+            // 기존 오브젝트가 없을 때 생성
+            CreateUI(UIType.Stage, "S_Stage", switcherTransform);
+        }
+
+        Debug.Log($"[Stage 등록 확인] {GetUI(UIType.Stage)}");
 
         CreateUI(UIType.Menu, "W_Menu", switcherTransform);
         CreateUI(UIType.MiniMap, "W_MiniMap", switcherTransform);
