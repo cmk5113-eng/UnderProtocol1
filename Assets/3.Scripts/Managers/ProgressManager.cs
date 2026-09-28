@@ -8,7 +8,7 @@ public class ProgressManager : ManagerBase
     public static ProgressManager Instance;
     public static event Action OnProgressChanged;
 
-    private static int progress;
+    public static int progress;
     private static readonly HashSet<int> clearedStageIds = new HashSet<int>();
 
     // 기존 Progress 읽기/쓰기와 디버그 증가 버튼도 UI 갱신을 거친다.

@@ -13,6 +13,7 @@ public class StageButtonImageController : MonoBehaviour
     [SerializeField] private Color unclearedColor = Color.white;
     [SerializeField] private Color clearedColor = new Color(0.5f, 1f, 0.7f, 1f);
     [SerializeField] private Color lockedColor = new Color(0.45f, 0.45f, 0.45f, 1f);
+    [SerializeField] private int requredProgress;
 
     private void Awake()
     {
@@ -37,6 +38,11 @@ public class StageButtonImageController : MonoBehaviour
         if (stageButton != null) stageButton.interactable = unlocked;
         if (targetImage == null) return;
 
+        if (requredProgress > ProgressManager.progress)
+        {
+            LockedStage();
+        }
+
         bool cleared = ProgressManager.IsStageCleared(stage.StageId);
         // overrideSprite는 기존 하이라이트 애니메이션의 m_Sprite 변경에 덮어씌워지지 않는다.
         targetImage.overrideSprite = !unlocked ? lockedSprite
@@ -45,4 +51,10 @@ public class StageButtonImageController : MonoBehaviour
             targetImage.sprite = unclearedSprite;
         targetImage.color = !unlocked ? lockedColor : cleared ? clearedColor : unclearedColor;
     }
+
+    public void LockedStage()
+    {
+        targetImage.sprite = lockedSprite;
+    }    
+
 }

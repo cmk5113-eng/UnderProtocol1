@@ -45,7 +45,7 @@ public class tempcontroller : MonoBehaviour
 
     // 기존 씬의 테스트 버튼 연결을 유지한다.
     public void addGold() => ProgressManager.Progress++;
-
+    public void removeGold() => ProgressManager.Progress--;
     public void UpdateProgressUI()
     {
         if (progressText != null)
