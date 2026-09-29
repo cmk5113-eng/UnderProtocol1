@@ -1,0 +1,36 @@
+{
+  "stage_title": "차단선 돌파",
+  "project_title": "UNDER PROTOCOL",
+  "objective": "모든 적 처치",
+  "wave_label": "WAVE",
+  "wave_value": "02 / 03",
+  "enemy_label": "적",
+  "enemy_value": "08",
+  "turn_label": "TURN",
+  "turn_value": "04",
+  "base_health_label": "거점 체력",
+  "base_health_value": "72 / 100",
+  "character_name": "강시후",
+  "character_job": "기동 사수",
+  "action_label": "행동",
+  "action_value": "2 / 3",
+  "movement_label": "이동",
+  "movement_value": "4 / 6",
+  "action_complete": "행동 완료",
+  "skill_tooltip": "잔상 사격 · 직선 범위의 적 공격",
+  "skill_labels": [
+    "기본 공격",
+    "범용 스킬 1",
+    "범용 스킬 2",
+    "궁극기",
+    "패시브"
+  ],
+  "shortcuts": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "friendly_turn": "아군 턴",
+  "end_turn": "턴 종료"
+}

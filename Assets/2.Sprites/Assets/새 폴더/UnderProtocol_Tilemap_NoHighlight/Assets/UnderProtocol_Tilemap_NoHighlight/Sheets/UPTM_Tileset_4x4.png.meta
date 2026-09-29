@@ -1,0 +1,591 @@
+fileFormatVersion: 2
+guid: fa2efcf11c54522eb274fb73761c74d9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: UPTM_Floor_Base
+  - first:
+      213: 21300002
+    second: UPTM_Floor_Worn
+  - first:
+      213: 21300004
+    second: UPTM_Floor_Cracked
+  - first:
+      213: 21300006
+    second: UPTM_Floor_Bolted
+  - first:
+      213: 21300008
+    second: UPTM_Edge_Top
+  - first:
+      213: 21300010
+    second: UPTM_Edge_Right
+  - first:
+      213: 21300012
+    second: UPTM_Edge_Bottom
+  - first:
+      213: 21300014
+    second: UPTM_Edge_Left
+  - first:
+      213: 21300016
+    second: UPTM_Corner_TopLeft
+  - first:
+      213: 21300018
+    second: UPTM_Corner_TopRight
+  - first:
+      213: 21300020
+    second: UPTM_Corner_BottomRight
+  - first:
+      213: 21300022
+    second: UPTM_Corner_BottomLeft
+  - first:
+      213: 21300024
+    second: UPTM_Obstacle_XCrate
+  - first:
+      213: 21300026
+    second: UPTM_Obstacle_Hatch
+  - first:
+      213: 21300028
+    second: UPTM_Obstacle_DoubleBox
+  - first:
+      213: 21300030
+    second: UPTM_Floor_Caution
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 256
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UPTM_Floor_Base
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec3211b97a695b43b410216f384e3e47
+      internalID: 21300000
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Floor_Worn
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd104ecc435a52e2bfa131289cda77ee
+      internalID: 21300002
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Floor_Cracked
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5420d80ce6a45b3f85fffd7c19441459
+      internalID: 21300004
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Floor_Bolted
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f6d2abaf3857e39006f896eede7d07
+      internalID: 21300006
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Edge_Top
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bddef4ef2fc51f9974c2bc5f376825e
+      internalID: 21300008
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Edge_Right
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fc43318347856cab498b087eca05ffb
+      internalID: 21300010
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Edge_Bottom
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ba8d2adc2425c738cf64ff6eef9bdb2
+      internalID: 21300012
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Edge_Left
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ee5c5abde95819ae8126e7494d8710
+      internalID: 21300014
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Corner_TopLeft
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7eaf37eb7fa5864b9390a2f5ba66719
+      internalID: 21300016
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Corner_TopRight
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7b4952646cb577f838214e682c75365
+      internalID: 21300018
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Corner_BottomRight
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc1685935b55180b221095c3d73388d
+      internalID: 21300020
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Corner_BottomLeft
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af94d0a114c553279b6cf6c6b452e25b
+      internalID: 21300022
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Obstacle_XCrate
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdab51d25f165ee79acd6be08b97054a
+      internalID: 21300024
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Obstacle_Hatch
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63568c6e6fd756c49bad83a7650346a9
+      internalID: 21300026
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Obstacle_DoubleBox
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5df704b527c5edcb1de166afd917310
+      internalID: 21300028
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPTM_Floor_Caution
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 160436d1ae0f576c9ad8c768e1931f3a
+      internalID: 21300030
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: dcc48a17dde250fd9419f2d6fbedbb3f
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata: []
+    nameFileIdTable:
+      UPTM_Floor_Base: 21300000
+      UPTM_Floor_Worn: 21300002
+      UPTM_Floor_Cracked: 21300004
+      UPTM_Floor_Bolted: 21300006
+      UPTM_Edge_Top: 21300008
+      UPTM_Edge_Right: 21300010
+      UPTM_Edge_Bottom: 21300012
+      UPTM_Edge_Left: 21300014
+      UPTM_Corner_TopLeft: 21300016
+      UPTM_Corner_TopRight: 21300018
+      UPTM_Corner_BottomRight: 21300020
+      UPTM_Corner_BottomLeft: 21300022
+      UPTM_Obstacle_XCrate: 21300024
+      UPTM_Obstacle_Hatch: 21300026
+      UPTM_Obstacle_DoubleBox: 21300028
+      UPTM_Floor_Caution: 21300030
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

@@ -1,0 +1,1429 @@
+{
+  "name": "UnderProtocol_CombatUI_PNG",
+  "version": 1,
+  "source_screen_px": [
+    1672,
+    941
+  ],
+  "reusable_components": 32,
+  "original_portrait_samples": 7,
+  "total_individual_pngs": 39,
+  "atlas": "Assets/UnderProtocol_CombatUI/Sheets/UPUI_All_Sprites.png",
+  "atlas_size_px": [
+    2048,
+    512
+  ],
+  "items": [
+    {
+      "name": "UPUI_Panel_StageTitle",
+      "description_ko": "스테이지 제목 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_StageTitle.png",
+      "size_px": [
+        300,
+        76
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        27,
+        118,
+        336,
+        204
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1258,
+        "y": 248,
+        "width": 300,
+        "height": 76
+      }
+    },
+    {
+      "name": "UPUI_Panel_Objective",
+      "description_ko": "목표 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_Objective.png",
+      "size_px": [
+        330,
+        52
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        370,
+        131,
+        701,
+        198
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1070,
+        "y": 174,
+        "width": 330,
+        "height": 52
+      }
+    },
+    {
+      "name": "UPUI_Panel_WaveTurn",
+      "description_ko": "웨이브·적·턴 정보 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_WaveTurn.png",
+      "size_px": [
+        592,
+        58
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        733,
+        135,
+        1077,
+        195
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 8,
+        "y": 168,
+        "width": 592,
+        "height": 58
+      }
+    },
+    {
+      "name": "UPUI_Panel_BaseHealth",
+      "description_ko": "거점 체력 정보 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_BaseHealth.png",
+      "size_px": [
+        454,
+        58
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        1099,
+        134,
+        1418,
+        195
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 608,
+        "y": 168,
+        "width": 454,
+        "height": 58
+      }
+    },
+    {
+      "name": "UPUI_Panel_CharacterInfo",
+      "description_ko": "선택 캐릭터 정보 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_CharacterInfo.png",
+      "size_px": [
+        590,
+        172
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        28,
+        335,
+        352,
+        456
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 8,
+        "y": 332,
+        "width": 590,
+        "height": 172
+      }
+    },
+    {
+      "name": "UPUI_Panel_SkillTooltip",
+      "description_ko": "스킬 설명 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_SkillTooltip.png",
+      "size_px": [
+        805,
+        50
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        370,
+        374,
+        755,
+        426
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 8,
+        "y": 110,
+        "width": 805,
+        "height": 50
+      }
+    },
+    {
+      "name": "UPUI_Panel_PortraitStrip",
+      "description_ko": "6인 초상화 목록 배경",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_PortraitStrip.png",
+      "size_px": [
+        464,
+        84
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        780,
+        367,
+        1130,
+        438
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 134,
+        "y": 240,
+        "width": 464,
+        "height": 84
+      }
+    },
+    {
+      "name": "UPUI_Panel_TurnState",
+      "description_ko": "현재 턴 표시 패널",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Panel_TurnState.png",
+      "size_px": [
+        194,
+        38
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        1156,
+        367,
+        1419,
+        434
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 877,
+        "y": 122,
+        "width": 194,
+        "height": 38
+      }
+    },
+    {
+      "name": "UPUI_Frame_PortraitNormal",
+      "description_ko": "일반 초상화 프레임",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_PortraitNormal.png",
+      "size_px": [
+        76,
+        84
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        100,
+        537,
+        277,
+        759
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 606,
+        "y": 240,
+        "width": 76,
+        "height": 84
+      }
+    },
+    {
+      "name": "UPUI_Frame_PortraitSelected",
+      "description_ko": "선택 초상화 프레임",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_PortraitSelected.png",
+      "size_px": [
+        76,
+        84
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        441,
+        530,
+        644,
+        763
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 690,
+        "y": 240,
+        "width": 76,
+        "height": 84
+      }
+    },
+    {
+      "name": "UPUI_Frame_PortraitLarge",
+      "description_ko": "큰 초상화 프레임",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_PortraitLarge.png",
+      "size_px": [
+        168,
+        168
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        773,
+        529,
+        1025,
+        765
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 606,
+        "y": 336,
+        "width": 168,
+        "height": 168
+      }
+    },
+    {
+      "name": "UPUI_Frame_SkillNormal",
+      "description_ko": "일반 스킬 슬롯",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_SkillNormal.png",
+      "size_px": [
+        146,
+        146
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        1156,
+        544,
+        1378,
+        758
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1326,
+        "y": 358,
+        "width": 146,
+        "height": 146
+      }
+    },
+    {
+      "name": "UPUI_Frame_SkillSelected",
+      "description_ko": "선택 스킬 슬롯",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_SkillSelected.png",
+      "size_px": [
+        158,
+        158
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        77,
+        816,
+        304,
+        1016
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 958,
+        "y": 346,
+        "width": 158,
+        "height": 158
+      }
+    },
+    {
+      "name": "UPUI_Frame_PassiveDisabled",
+      "description_ko": "패시브·비활성 슬롯",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Frame_PassiveDisabled.png",
+      "size_px": [
+        118,
+        90
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        427,
+        824,
+        658,
+        1003
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 8,
+        "y": 234,
+        "width": 118,
+        "height": 90
+      }
+    },
+    {
+      "name": "UPUI_Button_EndTurn",
+      "description_ko": "턴 종료 버튼 배경",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Button_EndTurn.png",
+      "size_px": [
+        194,
+        146
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        774,
+        824,
+        1046,
+        1010
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1124,
+        "y": 358,
+        "width": 194,
+        "height": 146
+      }
+    },
+    {
+      "name": "UPUI_Button_Pause",
+      "description_ko": "일시정지 버튼 배경",
+      "category": "Panels",
+      "png": "Assets/UnderProtocol_CombatUI/Panels/UPUI_Button_Pause.png",
+      "size_px": [
+        64,
+        64
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-9e6b0961-9966-41bd-b77f-c7a26dc20ff3.png",
+      "source_crop_top_left": [
+        1185,
+        838,
+        1354,
+        995
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1566,
+        "y": 260,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "name": "UPUI_Icon_Pause",
+      "description_ko": "일시정지",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_Pause.png",
+      "size_px": [
+        28,
+        32
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        133,
+        151,
+        271,
+        307
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1079,
+        "y": 128,
+        "width": 28,
+        "height": 32
+      }
+    },
+    {
+      "name": "UPUI_Icon_Objective",
+      "description_ko": "목표 마름모",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_Objective.png",
+      "size_px": [
+        24,
+        24
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        413,
+        152,
+        569,
+        307
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1297,
+        "y": 136,
+        "width": 24,
+        "height": 24
+      }
+    },
+    {
+      "name": "UPUI_Icon_JobReticle",
+      "description_ko": "직업 조준선",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_JobReticle.png",
+      "size_px": [
+        28,
+        28
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        678,
+        134,
+        865,
+        323
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1225,
+        "y": 132,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "name": "UPUI_Icon_ActionPoint",
+      "description_ko": "행동력",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_ActionPoint.png",
+      "size_px": [
+        30,
+        30
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        972,
+        148,
+        1136,
+        312
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1115,
+        "y": 130,
+        "width": 30,
+        "height": 30
+      }
+    },
+    {
+      "name": "UPUI_Icon_Movement",
+      "description_ko": "이동력",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_Movement.png",
+      "size_px": [
+        28,
+        28
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        111,
+        443,
+        278,
+        610
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1261,
+        "y": 132,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "name": "UPUI_Icon_BasicAttack",
+      "description_ko": "기본 공격 쌍권총",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_BasicAttack.png",
+      "size_px": [
+        98,
+        98
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        381,
+        431,
+        596,
+        618
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1852,
+        "y": 406,
+        "width": 98,
+        "height": 98
+      }
+    },
+    {
+      "name": "UPUI_Icon_SkillDash",
+      "description_ko": "범용 스킬 질주",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_SkillDash.png",
+      "size_px": [
+        124,
+        110
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        648,
+        429,
+        882,
+        634
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1602,
+        "y": 394,
+        "width": 124,
+        "height": 110
+      }
+    },
+    {
+      "name": "UPUI_Icon_SkillRadar",
+      "description_ko": "범용 스킬 레이더",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_SkillRadar.png",
+      "size_px": [
+        110,
+        110
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        942,
+        413,
+        1171,
+        638
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1734,
+        "y": 394,
+        "width": 110,
+        "height": 110
+      }
+    },
+    {
+      "name": "UPUI_Icon_Ultimate",
+      "description_ko": "궁극기 궤도 별",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_Ultimate.png",
+      "size_px": [
+        114,
+        114
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        73,
+        730,
+        306,
+        944
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1480,
+        "y": 390,
+        "width": 114,
+        "height": 114
+      }
+    },
+    {
+      "name": "UPUI_Icon_PassiveRun",
+      "description_ko": "패시브 달리기",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_PassiveRun.png",
+      "size_px": [
+        60,
+        60
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        413,
+        744,
+        567,
+        922
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1638,
+        "y": 264,
+        "width": 60,
+        "height": 60
+      }
+    },
+    {
+      "name": "UPUI_Icon_EndTurn",
+      "description_ko": "턴 종료 화살표",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Icon_EndTurn.png",
+      "size_px": [
+        48,
+        42
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        700,
+        770,
+        855,
+        895
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 821,
+        "y": 118,
+        "width": 48,
+        "height": 42
+      }
+    },
+    {
+      "name": "UPUI_Divider_Horizontal",
+      "description_ko": "가로 구분선",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Divider_Horizontal.png",
+      "size_px": [
+        384,
+        4
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        938,
+        825,
+        1178,
+        842
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 8,
+        "y": 98,
+        "width": 384,
+        "height": 4
+      }
+    },
+    {
+      "name": "UPUI_Gauge_HealthTrack",
+      "description_ko": "체력 게이지 빈 바탕",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Gauge_HealthTrack.png",
+      "size_px": [
+        216,
+        20
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        73,
+        1081,
+        329,
+        1125
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1329,
+        "y": 140,
+        "width": 216,
+        "height": 20
+      }
+    },
+    {
+      "name": "UPUI_Gauge_HealthFill",
+      "description_ko": "체력 게이지 채움",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Gauge_HealthFill.png",
+      "size_px": [
+        208,
+        12
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Filled / Horizontal / Left",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        448,
+        1087,
+        708,
+        1121
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1553,
+        "y": 148,
+        "width": 208,
+        "height": 12
+      }
+    },
+    {
+      "name": "UPUI_Badge_KeyDark",
+      "description_ko": "단축키 어두운 배지",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Badge_KeyDark.png",
+      "size_px": [
+        28,
+        28
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        799,
+        1058,
+        887,
+        1146
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1153,
+        "y": 132,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "name": "UPUI_Badge_KeyLight",
+      "description_ko": "단축키 밝은 배지",
+      "category": "Icons",
+      "png": "Assets/UnderProtocol_CombatUI/Icons/UPUI_Badge_KeyLight.png",
+      "size_px": [
+        28,
+        28
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "recommended_image_type": "Sliced",
+      "source_sheet": "exec-91a149f4-9b06-4f33-a65d-8712eeb63bc2.png",
+      "source_crop_top_left": [
+        1011,
+        1058,
+        1102,
+        1146
+      ],
+      "contains_baked_text": false,
+      "atlas_rect_bottom_left": {
+        "x": 1189,
+        "y": 132,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot01",
+      "description_ko": "원본 화면 초상화 샘플 1",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot01.png",
+      "size_px": [
+        75,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        25,
+        653,
+        100,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": false,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 774,
+        "y": 243,
+        "width": 75,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot02",
+      "description_ko": "원본 화면 초상화 샘플 2",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot02.png",
+      "size_px": [
+        73,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        105,
+        653,
+        178,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": false,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 857,
+        "y": 243,
+        "width": 73,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot03",
+      "description_ko": "원본 화면 초상화 샘플 3",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot03.png",
+      "size_px": [
+        70,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        183,
+        653,
+        253,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": false,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 1180,
+        "y": 243,
+        "width": 70,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot04",
+      "description_ko": "원본 화면 초상화 샘플 4",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot04.png",
+      "size_px": [
+        72,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        259,
+        653,
+        331,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": true,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 1100,
+        "y": 243,
+        "width": 72,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot05",
+      "description_ko": "원본 화면 초상화 샘플 5",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot05.png",
+      "size_px": [
+        73,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        335,
+        653,
+        408,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": false,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 938,
+        "y": 243,
+        "width": 73,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Slot06",
+      "description_ko": "원본 화면 초상화 샘플 6",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Slot06.png",
+      "size_px": [
+        73,
+        81
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        413,
+        653,
+        486,
+        734
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": true,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 1019,
+        "y": 243,
+        "width": 73,
+        "height": 81
+      }
+    },
+    {
+      "name": "UPUI_PortraitSample_Large",
+      "description_ko": "원본 화면 초상화 샘플 7",
+      "category": "PortraitSamples",
+      "png": "Assets/UnderProtocol_CombatUI/PortraitSamples/UPUI_PortraitSample_Large.png",
+      "size_px": [
+        168,
+        166
+      ],
+      "ppu": 100,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "border_lbrt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "recommended_image_type": "Simple",
+      "source_crop_top_left": [
+        25,
+        750,
+        193,
+        916
+      ],
+      "source_sheet": "selected_original_screenshot",
+      "contains_baked_text": false,
+      "note": "Original screenshot crop; includes original frame/state shading. Slots 04 and 06 include the original action-complete label.",
+      "atlas_rect_bottom_left": {
+        "x": 782,
+        "y": 338,
+        "width": 168,
+        "height": 166
+      }
+    }
+  ]
+}

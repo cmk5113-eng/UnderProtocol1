@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "reusable_ui_pngs": 32,
+  "portrait_sample_pngs": 7,
+  "total_individual_pngs": 39,
+  "alpha": "32 UI components verified RGBA with transparent outer pixels",
+  "sprite_atlas": "39 exact matching non-overlapping slices",
+  "sprite_borders": "valid and matched between single PNGs and atlas",
+  "original_portraits": "pixel-identical crops from the exact selected screenshot",
+  "guid_uniqueness": "passed",
+  "unity_editor_import_test": "not_run_no_editor_available"
+}

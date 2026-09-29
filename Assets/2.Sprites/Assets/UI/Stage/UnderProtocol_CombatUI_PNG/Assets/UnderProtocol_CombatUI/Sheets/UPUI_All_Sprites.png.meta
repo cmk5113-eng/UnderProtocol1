@@ -1,0 +1,1304 @@
+fileFormatVersion: 2
+guid: be956a9761c3556f9abfc38d9a0483dc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: UPUI_Panel_StageTitle
+  - first:
+      213: 21300002
+    second: UPUI_Panel_Objective
+  - first:
+      213: 21300004
+    second: UPUI_Panel_WaveTurn
+  - first:
+      213: 21300006
+    second: UPUI_Panel_BaseHealth
+  - first:
+      213: 21300008
+    second: UPUI_Panel_CharacterInfo
+  - first:
+      213: 21300010
+    second: UPUI_Panel_SkillTooltip
+  - first:
+      213: 21300012
+    second: UPUI_Panel_PortraitStrip
+  - first:
+      213: 21300014
+    second: UPUI_Panel_TurnState
+  - first:
+      213: 21300016
+    second: UPUI_Frame_PortraitNormal
+  - first:
+      213: 21300018
+    second: UPUI_Frame_PortraitSelected
+  - first:
+      213: 21300020
+    second: UPUI_Frame_PortraitLarge
+  - first:
+      213: 21300022
+    second: UPUI_Frame_SkillNormal
+  - first:
+      213: 21300024
+    second: UPUI_Frame_SkillSelected
+  - first:
+      213: 21300026
+    second: UPUI_Frame_PassiveDisabled
+  - first:
+      213: 21300028
+    second: UPUI_Button_EndTurn
+  - first:
+      213: 21300030
+    second: UPUI_Button_Pause
+  - first:
+      213: 21300032
+    second: UPUI_Icon_Pause
+  - first:
+      213: 21300034
+    second: UPUI_Icon_Objective
+  - first:
+      213: 21300036
+    second: UPUI_Icon_JobReticle
+  - first:
+      213: 21300038
+    second: UPUI_Icon_ActionPoint
+  - first:
+      213: 21300040
+    second: UPUI_Icon_Movement
+  - first:
+      213: 21300042
+    second: UPUI_Icon_BasicAttack
+  - first:
+      213: 21300044
+    second: UPUI_Icon_SkillDash
+  - first:
+      213: 21300046
+    second: UPUI_Icon_SkillRadar
+  - first:
+      213: 21300048
+    second: UPUI_Icon_Ultimate
+  - first:
+      213: 21300050
+    second: UPUI_Icon_PassiveRun
+  - first:
+      213: 21300052
+    second: UPUI_Icon_EndTurn
+  - first:
+      213: 21300054
+    second: UPUI_Divider_Horizontal
+  - first:
+      213: 21300056
+    second: UPUI_Gauge_HealthTrack
+  - first:
+      213: 21300058
+    second: UPUI_Gauge_HealthFill
+  - first:
+      213: 21300060
+    second: UPUI_Badge_KeyDark
+  - first:
+      213: 21300062
+    second: UPUI_Badge_KeyLight
+  - first:
+      213: 21300064
+    second: UPUI_PortraitSample_Slot01
+  - first:
+      213: 21300066
+    second: UPUI_PortraitSample_Slot02
+  - first:
+      213: 21300068
+    second: UPUI_PortraitSample_Slot03
+  - first:
+      213: 21300070
+    second: UPUI_PortraitSample_Slot04
+  - first:
+      213: 21300072
+    second: UPUI_PortraitSample_Slot05
+  - first:
+      213: 21300074
+    second: UPUI_PortraitSample_Slot06
+  - first:
+      213: 21300076
+    second: UPUI_PortraitSample_Large
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spritePixelsToUnits: 100
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UPUI_Panel_StageTitle
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 248
+        width: 300
+        height: 76
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 12
+        y: 12
+        z: 12
+        w: 12
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c37ba75ac25c83b306629180b43f97
+      internalID: 21300000
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_Objective
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 174
+        width: 330
+        height: 52
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 8
+        y: 8
+        z: 8
+        w: 8
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f989c9ce0a4f5c57bd89118d7de6282c
+      internalID: 21300002
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_WaveTurn
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 168
+        width: 592
+        height: 58
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65def451a3555f9f849a107dda6b1c06
+      internalID: 21300004
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_BaseHealth
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 168
+        width: 454
+        height: 58
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8163bfb40a578f95e582a980ffdec7
+      internalID: 21300006
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_CharacterInfo
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 332
+        width: 590
+        height: 172
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 6
+        y: 6
+        z: 6
+        w: 6
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e1aa8c042365a3798ac46f634f209a8
+      internalID: 21300008
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_SkillTooltip
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 110
+        width: 805
+        height: 50
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454d9c6796005a96a36703626bfefe84
+      internalID: 21300010
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_PortraitStrip
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 240
+        width: 464
+        height: 84
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67185a95d1a51e09f81e7e891d2dbb9
+      internalID: 21300012
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Panel_TurnState
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 122
+        width: 194
+        height: 38
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3081980c2fa85a168159c74c66ab32da
+      internalID: 21300014
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_PortraitNormal
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 240
+        width: 76
+        height: 84
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 6
+        y: 6
+        z: 6
+        w: 6
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9863be77abc5238b701f03d3aad0f4c
+      internalID: 21300016
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_PortraitSelected
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 240
+        width: 76
+        height: 84
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 8
+        y: 8
+        z: 8
+        w: 8
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c0ea857d9b05eb8b30661ab18c6bca4
+      internalID: 21300018
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_PortraitLarge
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 336
+        width: 168
+        height: 168
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 6
+        y: 6
+        z: 6
+        w: 6
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d220f990193354b8b9b9402bd47fb9f4
+      internalID: 21300020
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_SkillNormal
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 358
+        width: 146
+        height: 146
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 6
+        y: 6
+        z: 6
+        w: 6
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d770167ad4f5deb8ed90981169285c4
+      internalID: 21300022
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_SkillSelected
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 346
+        width: 158
+        height: 158
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 15
+        y: 15
+        z: 15
+        w: 15
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d5da07195c57b5888749a4f71249f5
+      internalID: 21300024
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Frame_PassiveDisabled
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 234
+        width: 118
+        height: 90
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b677c29fbdf85dba8b1ea0c5f468b8d8
+      internalID: 21300026
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Button_EndTurn
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 358
+        width: 194
+        height: 146
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 7
+        y: 7
+        z: 7
+        w: 7
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219bed62f6d3519a983d59a2e624f6c4
+      internalID: 21300028
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Button_Pause
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 260
+        width: 64
+        height: 64
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3438724e0cf526e870f183210d17e53
+      internalID: 21300030
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_Pause
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 128
+        width: 28
+        height: 32
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0be2c79a2f05313887b31ded7ed8d36
+      internalID: 21300032
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_Objective
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 136
+        width: 24
+        height: 24
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99f906261cea509d8f0eebf7d1f4bb36
+      internalID: 21300034
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_JobReticle
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 132
+        width: 28
+        height: 28
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ae339724f4523b8d3ee9997d8e5942
+      internalID: 21300036
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_ActionPoint
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 130
+        width: 30
+        height: 30
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7bb7f3ee085c978670f402e7ade05a
+      internalID: 21300038
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_Movement
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 132
+        width: 28
+        height: 28
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151ab3c3e1eb5810be90f0779b91f906
+      internalID: 21300040
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_BasicAttack
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 406
+        width: 98
+        height: 98
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 063e0c5d0ef55840958f0555c4ab03d2
+      internalID: 21300042
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_SkillDash
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 394
+        width: 124
+        height: 110
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c786253ddf7f57699ed947c8c9328a4a
+      internalID: 21300044
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_SkillRadar
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 394
+        width: 110
+        height: 110
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25a4fbe9b135ef5b82cf83875b8b5a4
+      internalID: 21300046
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_Ultimate
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 390
+        width: 114
+        height: 114
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da41fa73b31d5b02b66ea58b01e6da3f
+      internalID: 21300048
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_PassiveRun
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 264
+        width: 60
+        height: 60
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2cbc609738578888a84263a4abc99a
+      internalID: 21300050
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Icon_EndTurn
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 118
+        width: 48
+        height: 42
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a33ef628e2583598dbae42de96bbad
+      internalID: 21300052
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Divider_Horizontal
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 98
+        width: 384
+        height: 4
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ed715ea29e5ce99bc1b4cddbfabf83
+      internalID: 21300054
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Gauge_HealthTrack
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 140
+        width: 216
+        height: 20
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 5
+        y: 5
+        z: 5
+        w: 5
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12eca9fb65a58fd81aa7ea5cb3c62b7
+      internalID: 21300056
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Gauge_HealthFill
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 148
+        width: 208
+        height: 12
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c78dc71939517e951f0146426cf14a
+      internalID: 21300058
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Badge_KeyDark
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 132
+        width: 28
+        height: 28
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 4
+        y: 4
+        z: 4
+        w: 4
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0c1910797a530b84b56747b365afc6
+      internalID: 21300060
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_Badge_KeyLight
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 132
+        width: 28
+        height: 28
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 4
+        y: 4
+        z: 4
+        w: 4
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d62f2c8f3d8f54f58e87d2d8a87454f2
+      internalID: 21300062
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot01
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 243
+        width: 75
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860cad33e59953c8b3145b693dab6a2a
+      internalID: 21300064
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot02
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 243
+        width: 73
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90aa316311b577a98272a11d8043032
+      internalID: 21300066
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot03
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 243
+        width: 70
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028e5dd2623a54aa87d5dbbd707f6234
+      internalID: 21300068
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot04
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 243
+        width: 72
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72c41ad0b005d9fb546ae7b772c84aa
+      internalID: 21300070
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot05
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 243
+        width: 73
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfbc64160ce51a48132f1266ae45400
+      internalID: 21300072
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Slot06
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 243
+        width: 73
+        height: 81
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42f3fe79b9015d809cb2f5564f7855b4
+      internalID: 21300074
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UPUI_PortraitSample_Large
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 338
+        width: 168
+        height: 166
+      alignment: 0
+      pivot:
+        x: 0.5
+        y: 0.5
+      border:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4dc0d38248f56c8b5aba934408b3409
+      internalID: 21300076
+      vertices: []
+      indices: ''
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 31188aa734725d60aaa0ff9cb4e495e8
+    internalID: 0
+    vertices: []
+    indices: ''
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata: []
+    nameFileIdTable:
+      UPUI_Panel_StageTitle: 21300000
+      UPUI_Panel_Objective: 21300002
+      UPUI_Panel_WaveTurn: 21300004
+      UPUI_Panel_BaseHealth: 21300006
+      UPUI_Panel_CharacterInfo: 21300008
+      UPUI_Panel_SkillTooltip: 21300010
+      UPUI_Panel_PortraitStrip: 21300012
+      UPUI_Panel_TurnState: 21300014
+      UPUI_Frame_PortraitNormal: 21300016
+      UPUI_Frame_PortraitSelected: 21300018
+      UPUI_Frame_PortraitLarge: 21300020
+      UPUI_Frame_SkillNormal: 21300022
+      UPUI_Frame_SkillSelected: 21300024
+      UPUI_Frame_PassiveDisabled: 21300026
+      UPUI_Button_EndTurn: 21300028
+      UPUI_Button_Pause: 21300030
+      UPUI_Icon_Pause: 21300032
+      UPUI_Icon_Objective: 21300034
+      UPUI_Icon_JobReticle: 21300036
+      UPUI_Icon_ActionPoint: 21300038
+      UPUI_Icon_Movement: 21300040
+      UPUI_Icon_BasicAttack: 21300042
+      UPUI_Icon_SkillDash: 21300044
+      UPUI_Icon_SkillRadar: 21300046
+      UPUI_Icon_Ultimate: 21300048
+      UPUI_Icon_PassiveRun: 21300050
+      UPUI_Icon_EndTurn: 21300052
+      UPUI_Divider_Horizontal: 21300054
+      UPUI_Gauge_HealthTrack: 21300056
+      UPUI_Gauge_HealthFill: 21300058
+      UPUI_Badge_KeyDark: 21300060
+      UPUI_Badge_KeyLight: 21300062
+      UPUI_PortraitSample_Slot01: 21300064
+      UPUI_PortraitSample_Slot02: 21300066
+      UPUI_PortraitSample_Slot03: 21300068
+      UPUI_PortraitSample_Slot04: 21300070
+      UPUI_PortraitSample_Slot05: 21300072
+      UPUI_PortraitSample_Slot06: 21300074
+      UPUI_PortraitSample_Large: 21300076
+  mipmapLimitGroupName: ''
+  pSDRemoveMatte: 0
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "individual_png_count": 16,
+  "sheet_sprite_count": 16,
+  "tile_size": [
+    256,
+    256
+  ],
+  "sheet_size": [
+    1024,
+    1024
+  ],
+  "pixel_identity": "all singles match atlas slice pixels exactly",
+  "alpha": "opaque; full rectangular floor tiles",
+  "unity_rects": "16 unique, non-overlapping, full-coverage slices; bottom-left coordinates verified",
+  "texture_guids": "unique",
+  "unity_editor_import_test": "not_run_no_editor_available"
+}
