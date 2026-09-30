@@ -30132,7 +30132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222032476103939041, guid: ac71237d32ee2744fbd8c3280789b75d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7508865898716380122, guid: ac71237d32ee2744fbd8c3280789b75d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -51655,6 +51655,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3fa5aa5c7639047b38031186827def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModeChanger
+--- !u!1 &1616146151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5385688775922488751, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+  m_PrefabInstance: {fileID: 1819932272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1616146153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616146151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1b07c735320ac48904f8b8b7b48917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NumberButtonShortcut
+  buttons:
+  - {fileID: 297830760}
+  - {fileID: 331187282}
+  - {fileID: 1428132708}
+  - {fileID: 376664926}
+  - {fileID: 1387923649}
+  - {fileID: 413915640}
+  - {fileID: 1392645549}
+  - {fileID: 485170384}
+  - {fileID: 1129394505}
+  - {fileID: 1476557837}
+  - {fileID: 1799658568}
+  - {fileID: 1570789543}
 --- !u!1 &1617888421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6803339735909852581, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
@@ -56742,6 +56772,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 253884093}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5385688775922488751, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1616146153}
     - targetCorrespondingSourceObject: {fileID: 3479323272022994940, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 297830760}
