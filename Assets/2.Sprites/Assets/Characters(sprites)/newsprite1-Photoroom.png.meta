@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: 646ad8453ac9b9a42994c22a9ce5d7f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2891205856429359648
+    second: newsprite1-Photoroom_0
+  - first:
+      213: 255029446220184697
+    second: newsprite1-Photoroom_1
+  - first:
+      213: -8519546362586955978
+    second: newsprite1-Photoroom_2
+  - first:
+      213: 9124952477577704234
+    second: newsprite1-Photoroom_3
+  - first:
+      213: -6278521137184018863
+    second: newsprite1-Photoroom_4
+  - first:
+      213: 1566384415380545000
+    second: newsprite1-Photoroom_5
+  - first:
+      213: -3745828360511335531
+    second: newsprite1-Photoroom_6
+  - first:
+      213: -7827312496727285303
+    second: newsprite1-Photoroom_7
+  - first:
+      213: 2820883192205711227
+    second: newsprite1-Photoroom_8
+  - first:
+      213: -1097341491229327415
+    second: newsprite1-Photoroom_9
+  - first:
+      213: 618816735982896544
+    second: newsprite1-Photoroom_10
+  - first:
+      213: 5528158230711708229
+    second: newsprite1-Photoroom_11
+  - first:
+      213: -4219003468351205913
+    second: newsprite1-Photoroom_12
+  - first:
+      213: 969615038661589610
+    second: newsprite1-Photoroom_13
+  - first:
+      213: -7850620641761250349
+    second: newsprite1-Photoroom_14
+  - first:
+      213: -6079121059536016805
+    second: newsprite1-Photoroom_15
+  - first:
+      213: -849780090913939412
+    second: newsprite1-Photoroom_16
+  - first:
+      213: 93723432423088095
+    second: newsprite1-Photoroom_17
+  - first:
+      213: -1483348138269488911
+    second: newsprite1-Photoroom_18
+  - first:
+      213: 2600480524680926465
+    second: newsprite1-Photoroom_19
+  - first:
+      213: 8877468940186790366
+    second: newsprite1-Photoroom_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 137
+        width: 55
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022400d7860af1820800000000000000
+      internalID: 2891205856429359648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 138
+        width: 66
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97cf73d1eeb0a8300800000000000000
+      internalID: 255029446220184697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 203
+        width: 51
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f7882c8bd74c980800000000000000
+      internalID: -8519546362586955978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 136
+        width: 44
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23f65aaee752ae70800000000000000
+      internalID: 9124952477577704234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 204
+        width: 46
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e6d5f6a463ed8a0800000000000000
+      internalID: -6278521137184018863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 136
+        width: 57
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed1774a35aecb510800000000000000
+      internalID: 1566384415380545000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 204
+        width: 65
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 593532ec3f4240cc0800000000000000
+      internalID: -3745828360511335531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 137
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c1289e41cccf5390800000000000000
+      internalID: -7827312496727285303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 204
+        width: 47
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b779a40515ac52720800000000000000
+      internalID: 2820883192205711227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 137
+        width: 38
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf7af94ab575c0f0800000000000000
+      internalID: -1097341491229327415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 37
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5c351fa8a769800800000000000000
+      internalID: 618816735982896544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 68
+        width: 38
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a29b31f96f7bc40800000000000000
+      internalID: 5528158230711708229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_12
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 0
+        width: 38
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed09c2e2b61375c0800000000000000
+      internalID: -4219003468351205913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_13
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 68
+        width: 38
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6afc4c8db3c47d00800000000000000
+      internalID: 969615038661589610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_14
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 38
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d3b875ee1efc0390800000000000000
+      internalID: -7850620641761250349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_15
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 69
+        width: 39
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a62cbda9f92aba0800000000000000
+      internalID: -6079121059536016805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_16
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 1
+        width: 37
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2020e77289f434f0800000000000000
+      internalID: -849780090913939412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_17
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 0
+        width: 38
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdf55b817f8fc4100800000000000000
+      internalID: 93723432423088095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_18
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 69
+        width: 36
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f8c5343ab61a6be0800000000000000
+      internalID: -1483348138269488911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_19
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 69
+        width: 38
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1059dee5243c61420800000000000000
+      internalID: 2600480524680926465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newsprite1-Photoroom_20
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 37
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed9a56c57fa133b70800000000000000
+      internalID: 8877468940186790366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      newsprite1-Photoroom_0: 2891205856429359648
+      newsprite1-Photoroom_1: 255029446220184697
+      newsprite1-Photoroom_10: 618816735982896544
+      newsprite1-Photoroom_11: 5528158230711708229
+      newsprite1-Photoroom_12: -4219003468351205913
+      newsprite1-Photoroom_13: 969615038661589610
+      newsprite1-Photoroom_14: -7850620641761250349
+      newsprite1-Photoroom_15: -6079121059536016805
+      newsprite1-Photoroom_16: -849780090913939412
+      newsprite1-Photoroom_17: 93723432423088095
+      newsprite1-Photoroom_18: -1483348138269488911
+      newsprite1-Photoroom_19: 2600480524680926465
+      newsprite1-Photoroom_2: -8519546362586955978
+      newsprite1-Photoroom_20: 8877468940186790366
+      newsprite1-Photoroom_3: 9124952477577704234
+      newsprite1-Photoroom_4: -6278521137184018863
+      newsprite1-Photoroom_5: 1566384415380545000
+      newsprite1-Photoroom_6: -3745828360511335531
+      newsprite1-Photoroom_7: -7827312496727285303
+      newsprite1-Photoroom_8: 2820883192205711227
+      newsprite1-Photoroom_9: -1097341491229327415
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

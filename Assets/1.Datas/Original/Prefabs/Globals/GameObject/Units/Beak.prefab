@@ -90,15 +90,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 919477770774084557, guid: 37c4fba44fb4a1d4baaf6d8fcb95d2c1, type: 3}
+  m_Sprite: {fileID: -6986075016316244048, guid: de555f7085a6d304fa71a143d26be7c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.18, y: 1.56}
+  m_Size: {x: 0.55, y: 0.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!61 &8462990768351432443
 BoxCollider2D:
@@ -138,8 +138,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.18, y: 1.5609196}
-    newSize: {x: 1.18, y: 1.56}
+    oldSize: {x: 0.55, y: 0.69}
+    newSize: {x: 0.55, y: 0.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
   spriteRenderer: {fileID: 0}
-  portrait: {fileID: 954729893, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
+  portrait: {fileID: 5354240399570116777, guid: 3ffdcb94c36ed274984418e15060abb3, type: 3}
   selectable: 1
   Name: Beak
   MaxHP: 0

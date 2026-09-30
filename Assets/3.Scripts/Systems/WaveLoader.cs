@@ -34,6 +34,7 @@ public class WaveLoader : MonoBehaviour
     public void StartFirstWave()
     {
         WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+
         if (wave != null && wave.currentWaveIndex == 0) NextWave();
     }
 
@@ -66,8 +67,17 @@ public class WaveLoader : MonoBehaviour
 
         wave.currentWave = targetWave;
         // 잘못된 생성 데이터를 빈 웨이브 클리어로 처리하지 않는다.
-        if (!LoadWave()) return;
+        bool loaded = LoadWave();
+ 
+
+        if (!loaded) return;
+
         wave.currentWaveIndex++;
+
+        Debug.Log(
+            $"[생성 후] index={wave.currentWaveIndex}, " +
+            $"remaining={BattleManager.HasRemainingMonsters()}"
+        );
         if (StageUIController.Instance != null) StageUIController.Instance.UpdateWave();
     }
 
@@ -97,7 +107,19 @@ public class WaveLoader : MonoBehaviour
         for (int i = 0; i < wave.monsters.Count; i++)
         {
             Vector3 position = PlacementManager.Instance.tilemap.GetCellCenterWorld(wave.monsters[i].position);
+           
             GameObject monster = Instantiate(spawnDatas[i].prefab, position, Quaternion.identity);
+
+
+            var map = PlacementManager.Instance.tilemap;
+            var grid = map.layoutGrid;
+
+            Debug.Log(
+                $"[맵 변환] active={map.gameObject.activeInHierarchy}, " +
+                $"localScale={map.transform.localScale.ToString("F6")}, " +
+                $"lossyScale={map.transform.lossyScale.ToString("F6")}, " +
+                $"cellSize={grid.cellSize}, cellGap={grid.cellGap}");
+
             MonsterBase._monsters.Add(monster);
         }
         return true;

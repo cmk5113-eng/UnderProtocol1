@@ -365,7 +365,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 42538398036391872, guid: 24c79941f5ea8924b9bbd67f0f3741ac, type: 3}
+  m_Sprite: {fileID: 8129756510744891502, guid: 2233731a1196d324f9e892e43787a0cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBase
   spriteRenderer: {fileID: 0}
-  portrait: {fileID: -1227564231286400416, guid: 39271f904d3434d4a9004b1e03cae208, type: 3}
+  portrait: {fileID: -278310546204315325, guid: 45ba693b8ab403443a3d2e92bdaf26ac, type: 3}
   selectable: 1
   Name: Ryu
   MaxHP: 0

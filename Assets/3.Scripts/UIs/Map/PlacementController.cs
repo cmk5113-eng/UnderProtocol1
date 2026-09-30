@@ -141,16 +141,19 @@ public class PlacementController : UI_CharacterSelectWindows
             }
         }
     }
- 
+
     public void LeaveBattle()
     {
-       
-        if (BattleManager.Instance != null && BattleManager.Instance.IsBattleActive)
-            BattleManager.Instance.AbortBattle();
+        var battle = BattleManager.Instance;
+        Debug.Log($"[LeaveBattle 시작] battle={battle}, active={battle?.IsBattleActive}");
+
+        if (battle != null && battle.IsBattleActive)
+            battle.AbortBattle();
         else
             RemoveAllObject();
-    }
 
+        Debug.Log($"[LeaveBattle 완료] active={battle?.IsBattleActive}");
+    }
     public static void RemoveAllObject()
     {
         if (BattleManager.Instance != null) BattleManager.Instance.ResetBattle();

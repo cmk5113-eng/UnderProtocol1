@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class StageUIController : MonoBehaviour
 {
     public static StageUIController Instance { get; private set; }
-  
 
+    [SerializeField] private Sprite defaultImage;
     [SerializeField] private Image portrait;
+    [SerializeField] private TMPro.TextMeshProUGUI characterName;
     [SerializeField] private Image[] skill = new Image[4];
 
     [SerializeField] private Image[] unit = new Image[12];
-    [SerializeField] private TMPro.TextMeshProUGUI[] AP = new TMPro.TextMeshProUGUI[12];
-    [SerializeField] private TMPro.TextMeshProUGUI[] SP = new TMPro.TextMeshProUGUI[12];
+    [SerializeField] private TMPro.TextMeshProUGUI AP;
+    [SerializeField] private TMPro.TextMeshProUGUI SP;
+
     [SerializeField] public TMPro.TextMeshProUGUI currentwave;
     [SerializeField] public TMPro.TextMeshProUGUI currentturn;
 
@@ -44,10 +46,10 @@ public class StageUIController : MonoBehaviour
     {
         asCharacter = null;
         currentData = null;
-        if (portrait != null) portrait.sprite = null;
+        if (portrait != null) portrait.sprite = defaultImage;
         // Image 컴포넌트의 연결은 유지하고 표시 내용만 초기화한다.
         foreach (Image image in skill)
-            if (image != null) image.sprite = null;
+            if (image != null) image.sprite = defaultImage;
         if (SelectionManager.Instance != null) SelectionManager.Instance.unitOnStage.Clear();
         resetunit();
         UpdateTurn();
@@ -95,6 +97,9 @@ public class StageUIController : MonoBehaviour
         if (data != null)
         {
             portrait.sprite = data.Portrait;
+            characterName.SetText(data.characterName);
+            AP.SetText(data.actionPoint.ToString());
+            SP.SetText(data.steminaPoint.ToString());
 
             // 스킬 데이터 안전성 검사(? 연산자를 사용해 데이터가 부족해도 크래시 방지)
             skill[0].sprite = data.active != null && data.active.Length > 0 ? data.active[0]?.icon : null;
@@ -111,7 +116,36 @@ public class StageUIController : MonoBehaviour
     }
 
 
+    public void OnClickUnit(int slotIndex)
+    {
+        if (SelectionManager.Instance == null)
+            return;
 
+        var characters = SelectionManager.Instance.unitOnStage;
+
+        if (slotIndex < 0 || slotIndex >= characters.Count)
+            return;
+
+        CharacterBase target = characters[slotIndex];
+
+        if (target == null || !target.isSpawned)
+            return;
+
+        // 캐릭터를 바꾸기 전에 스킬 조준과 하이라이트 해제
+        if (UseSkill.Instance != null)
+            UseSkill.Instance.ClearAllHighlights();
+
+        // 스킬 사용 모드였다면 이동 모드로 복귀
+        if (ModeManager.Instance != null &&
+            ModeManager.Instance.CurrentMode == ModeManager.GameMode.UseSkill)
+        {
+            ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
+        }
+
+        // 해당 캐릭터 선택 후 초상화·스킬 정보 갱신
+        SelectionManager.SelectCharacter(target);
+        Refresh();
+    }
     public void OnNextTurn()
     {
         // 행동력 복구와 UI 갱신은 BattleManager의 턴 종료 완료 후 처리한다.
@@ -197,13 +231,9 @@ public class StageUIController : MonoBehaviour
             CharacterBase character = characters != null && i < characters.Count ? characters[i] : null;
             if (unit[i] != null)
             {
-                unit[i].sprite = character != null ? character.portrait : null;
-                unit[i].gameObject.SetActive(character != null);
+                unit[i].sprite = character != null ? character.portrait : defaultImage;
             } 
-            if (i < AP.Length && AP[i] != null)
-                AP[i].SetText(character != null ? character.actionPoint.ToString() : "");
-            if (i < SP.Length && SP[i] != null)
-                SP[i].SetText(character != null ? character.steminaPoint.ToString() : "");
+ 
         }
     }
 }
