@@ -11,10 +11,9 @@ public class StageUIController : MonoBehaviour
     [SerializeField] private Image portrait;
     [SerializeField] private Image[] skill = new Image[4];
 
-    [SerializeField] private Image[] unit = new Image[4];
-    [SerializeField] private TMPro.TextMeshProUGUI[] unitname = new TMPro.TextMeshProUGUI[4];
-    [SerializeField] private TMPro.TextMeshProUGUI[] AP = new TMPro.TextMeshProUGUI[4];
-    [SerializeField] private TMPro.TextMeshProUGUI[] SP = new TMPro.TextMeshProUGUI[4];
+    [SerializeField] private Image[] unit = new Image[12];
+    [SerializeField] private TMPro.TextMeshProUGUI[] AP = new TMPro.TextMeshProUGUI[12];
+    [SerializeField] private TMPro.TextMeshProUGUI[] SP = new TMPro.TextMeshProUGUI[12];
     [SerializeField] public TMPro.TextMeshProUGUI currentwave;
     [SerializeField] public TMPro.TextMeshProUGUI currentturn;
 
@@ -200,9 +199,7 @@ public class StageUIController : MonoBehaviour
             {
                 unit[i].sprite = character != null ? character.portrait : null;
                 unit[i].gameObject.SetActive(character != null);
-            }
-            if (i < unitname.Length && unitname[i] != null)
-                unitname[i].SetText(character != null ? character.Name : "");
+            } 
             if (i < AP.Length && AP[i] != null)
                 AP[i].SetText(character != null ? character.actionPoint.ToString() : "");
             if (i < SP.Length && SP[i] != null)
