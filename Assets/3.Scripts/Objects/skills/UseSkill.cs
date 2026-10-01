@@ -22,6 +22,7 @@ public class UseSkill : MonoBehaviour
 
     private Vector3Int lastMouseCell = new Vector3Int(-999, -999, -999);
     private bool isSkillTargetingActive = false;
+    private int patternRotation = 0;
     private int CurrentSkillRange =>
     currentSkill != null ? currentSkill.range : 0;
 
@@ -43,6 +44,7 @@ public class UseSkill : MonoBehaviour
 
         if (!isSkillTargetingActive || tilemap == null || (currentSkill == null ) || caster == null) return;
 
+        HandlePatternRotation();
         HandleRealtimeAoE();
 
         if (Input.GetMouseButtonDown(0))
@@ -86,6 +88,7 @@ public class UseSkill : MonoBehaviour
 
         currentSkill = skill;
         caster = skillCaster;
+        patternRotation = 0;
         isSkillTargetingActive = true;
         lastMouseCell = new Vector3Int(-999, -999, -999);
 
@@ -99,6 +102,7 @@ public class UseSkill : MonoBehaviour
             HighlightPattern(
                 casterCell,
                 currentSkill.rangePattern,
+                patternRotation,
                 castRangeColor,
                 castRangeTiles
             );
@@ -136,6 +140,7 @@ public class UseSkill : MonoBehaviour
                     HighlightRoePattern(
                         currentMouseCell,
                         currentSkill.roePattern,
+                        patternRotation,
                         aoeColor,
                         aoeTiles
                     );
@@ -248,10 +253,13 @@ public class UseSkill : MonoBehaviour
 
             if (currentSkill.HasRoePattern)
             {
-                Vector2Int localPosition = new Vector2Int(
+                Vector2Int rotatedPosition = new Vector2Int(
                     cellPos.x - clickedCell.x,
                     cellPos.y - clickedCell.y
                 );
+
+                Vector2Int localPosition =
+                    RotateOffset(rotatedPosition, -patternRotation);
 
                 SkillPatternTile patternTile =
                     currentSkill.roePattern.Find(
@@ -278,7 +286,8 @@ public class UseSkill : MonoBehaviour
                     caster,
                     currentSkill,
                     clickedCell,
-                    patternHits
+                    patternHits,
+                    patternRotation
                 );
             }
             else
@@ -339,9 +348,96 @@ public class UseSkill : MonoBehaviour
         }
     }
 
+    private void HandlePatternRotation()
+    {
+        if (currentSkill == null ||
+            !currentSkill.canRotate ||
+            (!currentSkill.HasRangePattern &&
+             !currentSkill.HasRoePattern))
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotatePatternClockwise();
+        }
+    }
+
+    public void RotatePatternClockwise()
+    {
+        if (!isSkillTargetingActive ||
+            currentSkill == null ||
+            !currentSkill.canRotate)
+        {
+            return;
+        }
+
+        patternRotation = (patternRotation + 1) % 4;
+        RefreshRotatedPatterns();
+
+        Debug.Log(
+            $"[Skill] Pattern rotation: {patternRotation * 90} degrees"
+        );
+    }
+
+    private void RefreshRotatedPatterns()
+    {
+        if (tilemap == null || caster == null || currentSkill == null)
+            return;
+
+        ClearTileList(aoeTiles);
+        ClearTileList(castRangeTiles);
+
+        Vector3Int casterCell =
+            tilemap.WorldToCell(caster.transform.position);
+        casterCell.z = 0;
+
+        if (currentSkill.HasRangePattern)
+        {
+            HighlightPattern(
+                casterCell,
+                currentSkill.rangePattern,
+                patternRotation,
+                castRangeColor,
+                castRangeTiles
+            );
+        }
+        else
+        {
+            HighlightRange(
+                casterCell,
+                CurrentSkillRange,
+                castRangeColor,
+                castRangeTiles
+            );
+        }
+
+        lastMouseCell = new Vector3Int(-999, -999, -999);
+    }
+
+    private Vector2Int RotateOffset(Vector2Int position, int rotation)
+    {
+        rotation = ((rotation % 4) + 4) % 4;
+
+        switch (rotation)
+        {
+            case 1:
+                return new Vector2Int(-position.y, position.x);
+            case 2:
+                return new Vector2Int(-position.x, -position.y);
+            case 3:
+                return new Vector2Int(position.y, -position.x);
+            default:
+                return position;
+        }
+    }
+
+
     private void HighlightPattern(
         Vector3Int centerCell,
         List<Vector2Int> pattern,
+        int rotation,
         Color color,
         List<Vector3Int> saveList)
     {
@@ -350,9 +446,11 @@ public class UseSkill : MonoBehaviour
 
         foreach (Vector2Int offset in pattern)
         {
+            Vector2Int rotatedOffset = RotateOffset(offset, rotation);
+
             Vector3Int targetCell = new Vector3Int(
-                centerCell.x + offset.x,
-                centerCell.y + offset.y,
+                centerCell.x + rotatedOffset.x,
+                centerCell.y + rotatedOffset.y,
                 0
             );
 
@@ -363,6 +461,7 @@ public class UseSkill : MonoBehaviour
     private void HighlightRoePattern(
         Vector3Int pivotCell,
         List<SkillPatternTile> pattern,
+        int rotation,
         Color color,
         List<Vector3Int> saveList)
     {
@@ -374,9 +473,12 @@ public class UseSkill : MonoBehaviour
             if (tile == null)
                 continue;
 
+            Vector2Int rotatedOffset =
+                RotateOffset(tile.position, rotation);
+
             Vector3Int targetCell = new Vector3Int(
-                pivotCell.x + tile.position.x,
-                pivotCell.y + tile.position.y,
+                pivotCell.x + rotatedOffset.x,
+                pivotCell.y + rotatedOffset.y,
                 0
             );
 
@@ -535,6 +637,7 @@ public class UseSkill : MonoBehaviour
     public void ClearAllHighlights()
     {
         isSkillTargetingActive = false;
+        patternRotation = 0;
 
         // 💡 참조 비우기
         currentSkill = null;
