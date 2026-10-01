@@ -121,8 +121,7 @@ public class SkillList : ScriptableObject
     public List<SkillPatternTile> roePattern = new List<SkillPatternTile>();
 
     // Legacy fallback data. Kept serialized so existing skill assets continue to work.
-    [HideInInspector] public SkillRangeType rangeType;
-    [HideInInspector] public SkillAoeType aoeType;
+ 
     [HideInInspector] public SkillFieldEffectType fieldEffectType;
     [HideInInspector] public SkillStatusEffectType statusEffectType;
     [HideInInspector] public int range;

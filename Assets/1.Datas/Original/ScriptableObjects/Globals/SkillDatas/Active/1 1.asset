@@ -23,12 +23,20 @@ MonoBehaviour:
   aoeType: 0
   effectType: 1
   targetType: 0
+  icon: {fileID: -691408170, guid: dbb212744d348bf469f1008b3dd0727a, type: 3}
+  cost: 0
+  condition: 
+  canRotate: 0
+  rangePattern:
+  - {x: -5, y: 0}
+  - {x: -4, y: 0}
+  - {x: -4, y: 1}
+  - {x: -4, y: -1}
+  roePattern: []
   fieldEffectType: 0
   statusEffectType: 0
-  icon: {fileID: -691408170, guid: dbb212744d348bf469f1008b3dd0727a, type: 3}
   range: 5
   aoe: 2
-  cost: 0
   cooldown: 0
   delay: 0
   damage: 1
