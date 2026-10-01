@@ -195,15 +195,12 @@ public class UseSkill : MonoBehaviour
             return;
         }
 
-        List<GameObject> enemiesToDestroy = new List<GameObject>();
+        List<CharacterBase> targets = new List<CharacterBase>();
 
         foreach (Vector3Int cellPos in aoeTiles)
         {
             Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
-
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
-
-            //Debug.Log($"AOE 셀 : {cellPos}, 월드 위치 : {worldPos}, Collider : {hit}");
 
             if (hit == null)
                 continue;
@@ -211,31 +208,32 @@ public class UseSkill : MonoBehaviour
             CharacterBase targetCharacter =
                 hit.GetComponentInParent<CharacterBase>();
 
-            //Debug.Log($"감지된 오브젝트 : {hit.gameObject}, Character : {targetCharacter}");
-
-            if (targetCharacter != null && hit.CompareTag("Enemy"))
+            if (targetCharacter != null &&
+                targetCharacter.isEnemy &&
+                !targets.Contains(targetCharacter))
             {
-                if (!enemiesToDestroy.Contains(targetCharacter.gameObject))
-                {
-                    enemiesToDestroy.Add(targetCharacter.gameObject);
-                }
+                targets.Add(targetCharacter);
             }
         }
-        int inGrave = enemiesToDestroy.Count; 
 
-        if (ScrollUI.Instance != null)
+        SkillExecuteResult result = null;
+
+        if (ExecuteSkill.Instance != null)
         {
-            ScrollUI.Instance.PlusGaugevalue(0.02f * inGrave);
+            result = ExecuteSkill.Instance.Execute(
+                caster,
+                currentSkill,
+                targets
+            );
+        }
+        else
+        {
+            Debug.LogWarning("[Skill] ExecuteSkill.Instance is missing.");
         }
 
-        foreach (GameObject enemyObj in enemiesToDestroy)
+        if (result != null && ScrollUI.Instance != null)
         {
-            if (enemyObj != null)
-            {
-               
-
-                ObjectManager.DestroyObject(enemyObj);
-            }
+            ScrollUI.Instance.PlusGaugevalue(0.02f * result.hitCount);
         }
 
         // 스킬 사용
