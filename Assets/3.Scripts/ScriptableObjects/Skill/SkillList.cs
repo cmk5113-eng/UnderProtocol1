@@ -34,9 +34,16 @@ public enum SkillAoeType
 //{
 //    Mana, Stamina, Health, Energy
 //}
+[System.Flags]
 public enum SkillEffectType
 {
-    Damage, Heal, Buff, Debuff, Summon
+    None = 0,
+    Damage = 1 << 0,
+    Push = 1 << 1,
+    Heal = 1 << 2,
+    Buff = 1 << 3,
+    Debuff = 1 << 4,
+    Summon = 1 << 5
 }
 //public enum SkillCooldownType
 //{
@@ -83,6 +90,7 @@ public class SkillList : ScriptableObject
     public int cooldown;
     public int delay;
     public int damage;
+    public int pushDistance;
     public int level;
     public int MaxLevel;
 
