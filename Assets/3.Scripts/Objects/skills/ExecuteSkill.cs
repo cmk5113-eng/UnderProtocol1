@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class SkillExecuteResult
 {
@@ -33,7 +34,7 @@ public class ExecuteSkill : MonoBehaviour
 
         if (skill.effectType.HasFlag(SkillEffectType.Push))
         {
-            PushSkill(skill, targets);
+            PushSkill(caster, skill, targets);
         }
 
         return result;
@@ -63,20 +64,159 @@ public class ExecuteSkill : MonoBehaviour
     }
 
     private void PushSkill(
+        CharacterBase caster,
         SkillList skill,
         List<CharacterBase> targets)
     {
-        if (targets == null || skill.pushDistance <= 0)
+        if (caster == null || targets == null || skill.pushDistance <= 0)
             return;
+
+        if (PlacementManager.Instance == null ||
+            PlacementManager.Instance.tilemap == null)
+            return;
+
+        Tilemap tilemap = PlacementManager.Instance.tilemap;
+        Vector3Int casterCell = tilemap.WorldToCell(caster.transform.position);
+        casterCell.z = 0;
 
         foreach (CharacterBase target in targets)
         {
             if (target == null || target.IsDead)
                 continue;
 
-            Debug.Log($"[Push] {target.name} : {skill.pushDistance} tiles");
+            Vector3Int targetCell = tilemap.WorldToCell(target.transform.position);
+            targetCell.z = 0;
 
-            // Actual tile movement will be implemented after occupancy rules are defined.
+            Vector3Int direction = GetCardinalDirection(casterCell, targetCell);
+
+            if (direction == Vector3Int.zero)
+                continue;
+
+            TryPush(target, direction, skill.pushDistance);
         }
+    }
+
+    /// <summary>
+    /// Pushes one character in a cardinal tile direction.
+    /// Stops before map bounds, missing tiles, or occupied tiles.
+    /// Returns the number of tiles actually moved.
+    /// </summary>
+    public int TryPush(
+        CharacterBase target,
+        Vector3Int direction,
+        int distance)
+    {
+        if (target == null || target.IsDead || distance <= 0)
+            return 0;
+
+        if (PlacementManager.Instance == null ||
+            PlacementManager.Instance.tilemap == null)
+            return 0;
+
+        direction = NormalizeCardinal(direction);
+
+        if (direction == Vector3Int.zero)
+            return 0;
+
+        Tilemap tilemap = PlacementManager.Instance.tilemap;
+
+        Vector3Int startCell = tilemap.WorldToCell(target.transform.position);
+        startCell.z = 0;
+
+        Vector3Int destinationCell = startCell;
+        int movedDistance = 0;
+
+        for (int i = 0; i < distance; i++)
+        {
+            Vector3Int nextCell = destinationCell + direction;
+
+            if (!tilemap.HasTile(nextCell))
+                break;
+
+            TileData nextData = PlacementManager.Instance.GetTileData(nextCell);
+
+            if (nextData == null || !nextData.isempty)
+                break;
+
+            destinationCell = nextCell;
+            movedDistance++;
+        }
+
+        if (movedDistance <= 0)
+        {
+            Debug.Log($"[Push Blocked] {target.name} at {startCell}");
+            return 0;
+        }
+
+        TileData startData = PlacementManager.Instance.GetTileData(startCell);
+        if (startData != null)
+        {
+            startData.isempty = true;
+            startData.Character = null;
+        }
+
+        TileData destinationData =
+            PlacementManager.Instance.GetTileData(destinationCell);
+
+        if (destinationData != null)
+        {
+            destinationData.isempty = false;
+            destinationData.Character = target;
+        }
+
+        Vector3 destinationWorld =
+            tilemap.GetCellCenterWorld(destinationCell);
+        destinationWorld.z = target.transform.position.z;
+        target.transform.position = destinationWorld;
+
+        MoveTileModule moveTile = target.GetComponent<MoveTileModule>();
+        if (moveTile != null)
+        {
+            moveTile.StopMovement();
+            moveTile.UpdateCurrentTile();
+        }
+
+        Debug.Log(
+            $"[Push] {target.name} : {startCell} -> {destinationCell} " +
+            $"({movedDistance}/{distance} tiles)");
+
+        return movedDistance;
+    }
+
+    private Vector3Int GetCardinalDirection(
+        Vector3Int from,
+        Vector3Int to)
+    {
+        int dx = to.x - from.x;
+        int dy = to.y - from.y;
+
+        if (Mathf.Abs(dx) >= Mathf.Abs(dy))
+        {
+            if (dx > 0) return Vector3Int.right;
+            if (dx < 0) return Vector3Int.left;
+        }
+        else
+        {
+            if (dy > 0) return Vector3Int.up;
+            if (dy < 0) return Vector3Int.down;
+        }
+
+        return Vector3Int.zero;
+    }
+
+    private Vector3Int NormalizeCardinal(Vector3Int direction)
+    {
+        if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0) return Vector3Int.right;
+            if (direction.x < 0) return Vector3Int.left;
+        }
+        else
+        {
+            if (direction.y > 0) return Vector3Int.up;
+            if (direction.y < 0) return Vector3Int.down;
+        }
+
+        return Vector3Int.zero;
     }
 }
