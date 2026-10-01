@@ -94,12 +94,24 @@ public class UseSkill : MonoBehaviour
 
         casterCell.z = 0;
 
-        HighlightRange(
-            casterCell,
-            CurrentSkillRange,
-            castRangeColor,
-            castRangeTiles
-        );
+        if (currentSkill.HasRangePattern)
+        {
+            HighlightPattern(
+                casterCell,
+                currentSkill.rangePattern,
+                castRangeColor,
+                castRangeTiles
+            );
+        }
+        else
+        {
+            HighlightRange(
+                casterCell,
+                CurrentSkillRange,
+                castRangeColor,
+                castRangeTiles
+            );
+        }
     }
      
     
@@ -119,12 +131,28 @@ public class UseSkill : MonoBehaviour
 
             if (castRangeTiles.Contains(currentMouseCell))
             {
-                // 💡 삼항연산자 대신 안전한 CurrentSkillAoe 프로퍼티 사용
-                int targetAoe = CurrentSkillAoe;
-
-                if (targetAoe > 0)
+                if (currentSkill.HasRoePattern)
                 {
-                    HighlightRange(currentMouseCell, targetAoe, aoeColor, aoeTiles);
+                    HighlightRoePattern(
+                        currentMouseCell,
+                        currentSkill.roePattern,
+                        aoeColor,
+                        aoeTiles
+                    );
+                }
+                else
+                {
+                    int targetAoe = CurrentSkillAoe;
+
+                    if (targetAoe > 0)
+                    {
+                        HighlightRange(
+                            currentMouseCell,
+                            targetAoe,
+                            aoeColor,
+                            aoeTiles
+                        );
+                    }
                 }
             }
         }
@@ -196,6 +224,7 @@ public class UseSkill : MonoBehaviour
         }
 
         List<CharacterBase> targets = new List<CharacterBase>();
+        List<SkillTargetHit> patternHits = new List<SkillTargetHit>();
 
         foreach (Vector3Int cellPos in aoeTiles)
         {
@@ -208,11 +237,34 @@ public class UseSkill : MonoBehaviour
             CharacterBase targetCharacter =
                 hit.GetComponentInParent<CharacterBase>();
 
-            if (targetCharacter != null &&
-                targetCharacter.isEnemy &&
-                !targets.Contains(targetCharacter))
+            if (targetCharacter == null ||
+                !targetCharacter.isEnemy ||
+                targets.Contains(targetCharacter))
             {
-                targets.Add(targetCharacter);
+                continue;
+            }
+
+            targets.Add(targetCharacter);
+
+            if (currentSkill.HasRoePattern)
+            {
+                Vector2Int localPosition = new Vector2Int(
+                    cellPos.x - clickedCell.x,
+                    cellPos.y - clickedCell.y
+                );
+
+                SkillPatternTile patternTile =
+                    currentSkill.roePattern.Find(
+                        tile => tile.position == localPosition
+                    );
+
+                if (patternTile != null)
+                {
+                    patternHits.Add(new SkillTargetHit(
+                        targetCharacter,
+                        patternTile
+                    ));
+                }
             }
         }
 
@@ -220,11 +272,23 @@ public class UseSkill : MonoBehaviour
 
         if (ExecuteSkill.Instance != null)
         {
-            result = ExecuteSkill.Instance.Execute(
-                caster,
-                currentSkill,
-                targets
-            );
+            if (currentSkill.HasRoePattern)
+            {
+                result = ExecuteSkill.Instance.ExecutePattern(
+                    caster,
+                    currentSkill,
+                    clickedCell,
+                    patternHits
+                );
+            }
+            else
+            {
+                result = ExecuteSkill.Instance.Execute(
+                    caster,
+                    currentSkill,
+                    targets
+                );
+            }
         }
         else
         {
@@ -274,6 +338,65 @@ public class UseSkill : MonoBehaviour
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.UseSkill;
         }
     }
+
+    private void HighlightPattern(
+        Vector3Int centerCell,
+        List<Vector2Int> pattern,
+        Color color,
+        List<Vector3Int> saveList)
+    {
+        if (pattern == null)
+            return;
+
+        foreach (Vector2Int offset in pattern)
+        {
+            Vector3Int targetCell = new Vector3Int(
+                centerCell.x + offset.x,
+                centerCell.y + offset.y,
+                0
+            );
+
+            HighlightCell(targetCell, color, saveList);
+        }
+    }
+
+    private void HighlightRoePattern(
+        Vector3Int pivotCell,
+        List<SkillPatternTile> pattern,
+        Color color,
+        List<Vector3Int> saveList)
+    {
+        if (pattern == null)
+            return;
+
+        foreach (SkillPatternTile tile in pattern)
+        {
+            if (tile == null)
+                continue;
+
+            Vector3Int targetCell = new Vector3Int(
+                pivotCell.x + tile.position.x,
+                pivotCell.y + tile.position.y,
+                0
+            );
+
+            HighlightCell(targetCell, color, saveList);
+        }
+    }
+
+    private void HighlightCell(
+        Vector3Int cell,
+        Color color,
+        List<Vector3Int> saveList)
+    {
+        if (!tilemap.HasTile(cell) || saveList.Contains(cell))
+            return;
+
+        tilemap.SetTileFlags(cell, TileFlags.None);
+        tilemap.SetColor(cell, color);
+        saveList.Add(cell);
+    }
+
 
     private void HighlightRange(Vector3Int centerCell, int radius, Color color, List<Vector3Int> saveList)
     {
