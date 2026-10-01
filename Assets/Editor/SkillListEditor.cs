@@ -20,8 +20,6 @@ public class SkillListEditor : Editor
         DrawCommon();
         EditorGUILayout.Space(8);
         DrawPatternEditor();
-        EditorGUILayout.Space(8);
-        DrawLegacy();
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -40,6 +38,11 @@ public class SkillListEditor : Editor
         DrawProperty("cost", "코스트");
         DrawProperty("condition", "조건");
         DrawProperty("canRotate", "회전 가능");
+        DrawProperty("cooldown", "쿨다운");
+        DrawProperty("delay", "딜레이");
+        DrawProperty("level", "레벨");
+        DrawProperty("MaxLevel", "최대 레벨");
+        DrawProperty("skillsList", "연결 스킬");
     }
 
     private void DrawPatternEditor()
@@ -318,24 +321,6 @@ public class SkillListEditor : Editor
         }
 
         EditorUtility.SetDirty(skill);
-    }
-
-    private void DrawLegacy()
-    {
-        EditorGUILayout.LabelField("기존 데이터 / 호환", EditorStyles.boldLabel);
-        DrawProperty("rangeType", "기존 Range Type");
-        DrawProperty("aoeType", "기존 AoE Type");
-        DrawProperty("range", "기존 Range");
-        DrawProperty("aoe", "기존 AoE");
-        DrawProperty("damage", "기본 Damage");
-        DrawProperty("pushDistance", "기본 Push Distance");
-        DrawProperty("fieldEffectType", "기존 Field Effect");
-        DrawProperty("statusEffectType", "기존 Status Effect");
-        DrawProperty("cooldown", "Cooldown");
-        DrawProperty("delay", "Delay");
-        DrawProperty("level", "Level");
-        DrawProperty("MaxLevel", "Max Level");
-        DrawProperty("skillsList", "Skills List");
     }
 
     private void DrawProperty(string propertyName, string label)
