@@ -56,7 +56,8 @@ public class ExecuteSkill : MonoBehaviour
         CharacterBase caster,
         SkillList skill,
         Vector3Int pivotCell,
-        List<SkillTargetHit> hits)
+        List<SkillTargetHit> hits,
+        int patternRotation = 0)
     {
         SkillExecuteResult result = new SkillExecuteResult();
 
@@ -74,7 +75,7 @@ public class ExecuteSkill : MonoBehaviour
         pivotCell.z = 0;
 
         Vector3Int forward =
-            GetCardinalDirection(casterCell, pivotCell);
+            GetPatternForward(patternRotation);
 
         foreach (SkillTargetHit hit in hits)
         {
@@ -144,6 +145,23 @@ public class ExecuteSkill : MonoBehaviour
         }
 
         return result;
+    }
+
+    private Vector3Int GetPatternForward(int rotation)
+    {
+        rotation = ((rotation % 4) + 4) % 4;
+
+        switch (rotation)
+        {
+            case 1:
+                return Vector3Int.up;
+            case 2:
+                return Vector3Int.left;
+            case 3:
+                return Vector3Int.down;
+            default:
+                return Vector3Int.right;
+        }
     }
 
     private Vector3Int GetPushDirection(
