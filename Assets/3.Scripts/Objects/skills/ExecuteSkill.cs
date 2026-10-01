@@ -8,6 +8,18 @@ public class SkillExecuteResult
     public int killCount;
 }
 
+public class SkillTargetHit
+{
+    public CharacterBase target;
+    public SkillPatternTile tile;
+
+    public SkillTargetHit(CharacterBase target, SkillPatternTile tile)
+    {
+        this.target = target;
+        this.tile = tile;
+    }
+}
+
 public class ExecuteSkill : MonoBehaviour
 {
     public static ExecuteSkill Instance { get; private set; }
@@ -38,6 +50,123 @@ public class ExecuteSkill : MonoBehaviour
         }
 
         return result;
+    }
+
+    public SkillExecuteResult ExecutePattern(
+        CharacterBase caster,
+        SkillList skill,
+        Vector3Int pivotCell,
+        List<SkillTargetHit> hits)
+    {
+        SkillExecuteResult result = new SkillExecuteResult();
+
+        if (caster == null || skill == null || hits == null)
+            return result;
+
+        if (PlacementManager.Instance == null ||
+            PlacementManager.Instance.tilemap == null)
+            return result;
+
+        Tilemap tilemap = PlacementManager.Instance.tilemap;
+        Vector3Int casterCell =
+            tilemap.WorldToCell(caster.transform.position);
+        casterCell.z = 0;
+        pivotCell.z = 0;
+
+        Vector3Int forward =
+            GetCardinalDirection(casterCell, pivotCell);
+
+        foreach (SkillTargetHit hit in hits)
+        {
+            if (hit == null ||
+                hit.target == null ||
+                hit.target.IsDead ||
+                hit.tile == null)
+            {
+                continue;
+            }
+
+            CharacterBase target = hit.target;
+            SkillPatternTile tile = hit.tile;
+
+            if (skill.effectType.HasFlag(SkillEffectType.Damage) &&
+                tile.damage > 0)
+            {
+                result.hitCount++;
+                target.TakeDamage(tile.damage);
+
+                if (target == null || target.IsDead)
+                {
+                    result.killCount++;
+                    continue;
+                }
+            }
+
+            if (skill.effectType.HasFlag(SkillEffectType.Push) &&
+                tile.push &&
+                tile.pushDistance > 0)
+            {
+                Vector3Int targetCell =
+                    tilemap.WorldToCell(target.transform.position);
+                targetCell.z = 0;
+
+                Vector3Int pushDirection = GetPushDirection(
+                    tile.pushDirection,
+                    casterCell,
+                    targetCell,
+                    forward
+                );
+
+                TryPush(
+                    target,
+                    pushDirection,
+                    tile.pushDistance
+                );
+            }
+
+            if (tile.appliesDebuff)
+            {
+                Debug.Log(
+                    $"[Skill] Debuff '{tile.debuffType}' is configured " +
+                    $"for {target.name}, but runtime debuff handling " +
+                    "is not implemented yet."
+                );
+            }
+
+            if (tile.fieldEffect != SkillTileFieldEffectType.None)
+            {
+                Debug.Log(
+                    $"[Skill] Field effect '{tile.fieldEffect}' is " +
+                    "configured, but runtime field effect handling " +
+                    "is not implemented yet."
+                );
+            }
+        }
+
+        return result;
+    }
+
+    private Vector3Int GetPushDirection(
+        SkillPushDirection pushDirection,
+        Vector3Int casterCell,
+        Vector3Int targetCell,
+        Vector3Int forward)
+    {
+        switch (pushDirection)
+        {
+            case SkillPushDirection.TowardCaster:
+                return GetCardinalDirection(targetCell, casterCell);
+
+            case SkillPushDirection.Forward:
+                return forward;
+
+            case SkillPushDirection.Backward:
+                return -forward;
+
+            case SkillPushDirection.AwayFromCaster:
+            default:
+                return GetCardinalDirection(casterCell, targetCell);
+        }
     }
 
     private void AttackSkill(
