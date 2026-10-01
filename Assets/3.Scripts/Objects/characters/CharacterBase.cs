@@ -76,6 +76,11 @@ public class CharacterBase : MonoBehaviour
         {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
+
+        if (currentHP <= 0 && MaxHP > 0)
+        {
+            currentHP = MaxHP;
+        }
     }
 
     public void OnSelected()
@@ -108,6 +113,46 @@ public class CharacterBase : MonoBehaviour
         }
 
     }
+    public bool IsDead => currentHP <= 0;
+
+    public void InitializeHP()
+    {
+        currentHP = Mathf.Max(0, MaxHP);
+    }
+
+    public virtual void TakeDamage(int damage)
+    {
+        if (IsDead)
+            return;
+
+        damage = Mathf.Max(0, damage);
+        currentHP = Mathf.Max(0, currentHP - damage);
+
+        Debug.Log($"[Damage] {name} : {damage} damage / HP {currentHP}/{MaxHP}");
+
+        if (IsDead)
+        {
+            Die();
+        }
+    }
+
+    public virtual void Heal(int amount)
+    {
+        if (IsDead)
+            return;
+
+        amount = Mathf.Max(0, amount);
+        currentHP = Mathf.Min(MaxHP, currentHP + amount);
+
+        Debug.Log($"[Heal] {name} : {amount} heal / HP {currentHP}/{MaxHP}");
+    }
+
+    protected virtual void Die()
+    {
+        Debug.Log($"[Death] {name}");
+        ObjectManager.DestroyObject(gameObject);
+    }
+
     public void UpdateActionStateVisual()
     {
         if (isEnemy)
