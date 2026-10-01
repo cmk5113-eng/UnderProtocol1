@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class SkillListEditor : Editor
             MessageType.Info);
 
         DrawGrid(skill);
+        DrawPresetButtons(skill);
 
         using (new EditorGUILayout.HorizontalScope())
         {
@@ -78,6 +80,98 @@ public class SkillListEditor : Editor
 
         if (mode == PatternMode.ROE && selectedRoeTile.HasValue)
             DrawSelectedRoeTile(skill, selectedRoeTile.Value);
+    }
+
+
+    private void DrawPresetButtons(SkillList skill)
+    {
+        EditorGUILayout.Space(4);
+        EditorGUILayout.LabelField("자주 쓰는 모양", EditorStyles.boldLabel);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("직선 4"))
+                ApplyPreset(skill, new[]
+                {
+                    new Vector2Int(1, 0),
+                    new Vector2Int(2, 0),
+                    new Vector2Int(3, 0),
+                    new Vector2Int(4, 0)
+                });
+
+            if (GUILayout.Button("3×3"))
+                ApplyPreset(skill, MakeRectangle(1, 3, -1, 1));
+
+            if (GUILayout.Button("십자"))
+                ApplyPreset(skill, new[]
+                {
+                    new Vector2Int(0, 1),
+                    new Vector2Int(0, -1),
+                    new Vector2Int(1, 0),
+                    new Vector2Int(-1, 0)
+                });
+
+            if (GUILayout.Button("부채꼴"))
+                ApplyPreset(skill, new[]
+                {
+                    new Vector2Int(1, 0),
+                    new Vector2Int(2, -1),
+                    new Vector2Int(2, 0),
+                    new Vector2Int(2, 1),
+                    new Vector2Int(3, -2),
+                    new Vector2Int(3, -1),
+                    new Vector2Int(3, 0),
+                    new Vector2Int(3, 1),
+                    new Vector2Int(3, 2)
+                });
+        }
+
+        EditorGUILayout.LabelField(
+            "프리셋을 누르면 현재 탭의 패턴을 교체합니다.",
+            EditorStyles.miniLabel);
+    }
+
+    private Vector2Int[] MakeRectangle(int minX, int maxX, int minY, int maxY)
+    {
+        List<Vector2Int> cells = new List<Vector2Int>();
+
+        for (int x = minX; x <= maxX; x++)
+        {
+            for (int y = minY; y <= maxY; y++)
+                cells.Add(new Vector2Int(x, y));
+        }
+
+        return cells.ToArray();
+    }
+
+    private void ApplyPreset(SkillList skill, Vector2Int[] cells)
+    {
+        Undo.RecordObject(skill, "Apply Skill Pattern Preset");
+
+        if (mode == PatternMode.Range)
+        {
+            skill.rangePattern.Clear();
+            skill.rangePattern.AddRange(cells);
+        }
+        else
+        {
+            skill.roePattern.Clear();
+
+            foreach (Vector2Int position in cells)
+            {
+                skill.roePattern.Add(new SkillPatternTile
+                {
+                    position = position,
+                    distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
+                    damage = skill.damage,
+                    pushDistance = skill.pushDistance
+                });
+            }
+
+            selectedRoeTile = null;
+        }
+
+        EditorUtility.SetDirty(skill);
     }
 
     private void DrawGrid(SkillList skill)
