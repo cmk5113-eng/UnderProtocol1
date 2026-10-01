@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40ff144ecfffa3a42bcf7d2da2b53c0d
+guid: bc9d8fd153b4d924ca06e21819e38085
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8534530010731754736
-    second: Gemini_Generated_Image_bxznzubxznzubxzn_0
+      213: 576967398320463186
+    second: "\uBE44 \uB0B4\uB9AC\uB294 \uBE4C\uBCF4\uB4DC\uC640 \uC218\uC9C1 \uD0D0\uC870\uB4F1-2_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gemini_Generated_Image_bxznzubxznzubxzn_0
+      name: "\uBE44 \uB0B4\uB9AC\uB294 \uBE4C\uBCF4\uB4DC\uC640 \uC218\uC9C1 \uD0D0\uC870\uB4F1-2_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1072
-        height: 992
+        width: 1672
+        height: 941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01b4c615c224f8980800000000000000
-      internalID: -8534530010731754736
+      spriteID: 25d5fd7baccc10800800000000000000
+      internalID: 576967398320463186
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gemini_Generated_Image_bxznzubxznzubxzn_0: -8534530010731754736
+      "\uBE44 \uB0B4\uB9AC\uB294 \uBE4C\uBCF4\uB4DC\uC640 \uC218\uC9C1 \uD0D0\uC870\uB4F1-2_0": 576967398320463186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
