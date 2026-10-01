@@ -99,7 +99,6 @@ public class SkillList : ScriptableObject
     public string skillName;
     [TextArea] public string description;
     public int id;
-    public List<SkillList> skillsList;
     public SkillType type;
     public SkillClassType classType;
     public SkillElementType elementType;
@@ -111,22 +110,25 @@ public class SkillList : ScriptableObject
     public int cost;
     public string condition;
     public bool canRotate;
+    public int cooldown;
+    public int delay;
+    public int level;
+    public int MaxLevel;
+    public List<SkillList> skillsList;
 
     [Header("타일 패턴")]
     public List<Vector2Int> rangePattern = new List<Vector2Int>();
     public List<SkillPatternTile> roePattern = new List<SkillPatternTile>();
 
-    [Header("기존 데이터 (호환용)")]
-    public SkillFieldEffectType fieldEffectType;
-    public SkillStatusEffectType statusEffectType;
-    public int range;
-    public int aoe;
-    public int cooldown;
-    public int delay;
-    public int damage;
-    public int pushDistance;
-    public int level;
-    public int MaxLevel;
+    // Legacy fallback data. Kept serialized so existing skill assets continue to work.
+    [HideInInspector] public SkillRangeType rangeType;
+    [HideInInspector] public SkillAoeType aoeType;
+    [HideInInspector] public SkillFieldEffectType fieldEffectType;
+    [HideInInspector] public SkillStatusEffectType statusEffectType;
+    [HideInInspector] public int range;
+    [HideInInspector] public int aoe;
+    [HideInInspector] public int damage;
+    [HideInInspector] public int pushDistance;
 
     public bool HasRangePattern => rangePattern != null && rangePattern.Count > 0;
     public bool HasRoePattern => roePattern != null && roePattern.Count > 0;
