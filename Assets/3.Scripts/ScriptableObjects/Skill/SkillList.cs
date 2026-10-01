@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO.Enumeration;
 using UnityEngine;
 
 public enum SkillType
@@ -16,6 +15,7 @@ public enum SkillTargetType
 {
     Enemy, Ally, Self, Position, Skill, SkillAOE, SkillRange, Field
 }
+
 public enum SkillElementType
 {
     Fire, Ice, Earth, Wind, Dark, Electric
@@ -25,15 +25,12 @@ public enum SkillRangeType
 {
     Melee, Ranged, Global
 }
+
 public enum SkillAoeType
 {
     Single, Line, Circle, Cone
 }
 
-//public enum SkillCostType
-//{
-//    Mana, Stamina, Health, Energy
-//}
 [System.Flags]
 public enum SkillEffectType
 {
@@ -45,33 +42,62 @@ public enum SkillEffectType
     Debuff = 1 << 4,
     Summon = 1 << 5
 }
-//public enum SkillCooldownType
-//{
-//    Turn, Time, Action
-//}
-//public enum SkillDamageType
-//{
-//    Physical, Magical, True
-//} 
-//public enum SkillTargetingType
-//{
-//    Single, Multi, Area
-//}
+
 public enum SkillStatusEffectType
 {
     Stun, Paralysis, Slow, Burn, Freeze, Airborne
 }
+
 public enum SkillFieldEffectType
 {
     Fire, Water, Earth, Wind, Light, Dark
 }
 
+public enum SkillTileFieldEffectType
+{
+    None,
+    Fire,
+    Electric,
+    Ice
+}
+
+public enum SkillPushDirection
+{
+    AwayFromCaster,
+    TowardCaster,
+    Forward,
+    Backward
+}
+
+[System.Serializable]
+public class SkillPatternTile
+{
+    public Vector2Int position;
+    public int distanceFromCaster;
+
+    public int damage;
+    public bool appliesDebuff;
+    public SkillStatusEffectType debuffType;
+
+    public SkillTileFieldEffectType fieldEffect;
+
+    public bool push;
+    public SkillPushDirection pushDirection = SkillPushDirection.AwayFromCaster;
+
+    [Tooltip("0이면 대상 수 제한 없음")]
+    [Min(0)]
+    public int pushTargetCount;
+
+    [Min(0)]
+    public int pushDistance;
+}
 
 [CreateAssetMenu(fileName = "Skill", menuName = "SkillContainer")]
 public class SkillList : ScriptableObject
 {
-    public string skillName;   
-    public string description;
+    [Header("공통")]
+    public string skillName;
+    [TextArea] public string description;
     public int id;
     public List<SkillList> skillsList;
     public SkillType type;
@@ -81,18 +107,29 @@ public class SkillList : ScriptableObject
     public SkillAoeType aoeType;
     public SkillEffectType effectType;
     public SkillTargetType targetType;
+    public Sprite icon;
+    public int cost;
+    public string condition;
+    public bool canRotate;
+
+    [Header("타일 패턴")]
+    public List<Vector2Int> rangePattern = new List<Vector2Int>();
+    public List<SkillPatternTile> roePattern = new List<SkillPatternTile>();
+
+    [Header("기존 데이터 (호환용)")]
     public SkillFieldEffectType fieldEffectType;
     public SkillStatusEffectType statusEffectType;
-    public Sprite icon;
     public int range;
     public int aoe;
-    public int cost;
     public int cooldown;
     public int delay;
     public int damage;
     public int pushDistance;
     public int level;
     public int MaxLevel;
+
+    public bool HasRangePattern => rangePattern != null && rangePattern.Count > 0;
+    public bool HasRoePattern => roePattern != null && roePattern.Count > 0;
 
     public virtual int CompareByType(SkillList other)
     {

@@ -1,0 +1,253 @@
+#if UNITY_EDITOR
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+
+[CustomEditor(typeof(SkillList), true)]
+public class SkillListEditor : Editor
+{
+    private const int GridSize = 11;
+    private const float CellSize = 30f;
+
+    private enum PatternMode { Range, ROE }
+    private PatternMode mode;
+    private Vector2Int? selectedRoeTile;
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        DrawCommon();
+        EditorGUILayout.Space(8);
+        DrawPatternEditor();
+        EditorGUILayout.Space(8);
+        DrawLegacy();
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    private void DrawCommon()
+    {
+        EditorGUILayout.LabelField("공통", EditorStyles.boldLabel);
+        DrawProperty("skillName", "이름");
+        DrawProperty("description", "설명");
+        DrawProperty("id", "ID");
+        DrawProperty("icon", "아이콘");
+        DrawProperty("type", "스킬 종류");
+        DrawProperty("classType", "클래스");
+        DrawProperty("elementType", "속성");
+        DrawProperty("targetType", "대상");
+        DrawProperty("effectType", "효과");
+        DrawProperty("cost", "코스트");
+        DrawProperty("condition", "조건");
+        DrawProperty("canRotate", "회전 가능");
+    }
+
+    private void DrawPatternEditor()
+    {
+        SkillList skill = (SkillList)target;
+        EditorGUILayout.LabelField("타일 패턴", EditorStyles.boldLabel);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Toggle(mode == PatternMode.Range, "사정거리", "Button"))
+                mode = PatternMode.Range;
+            if (GUILayout.Toggle(mode == PatternMode.ROE, "ROE", "Button"))
+                mode = PatternMode.ROE;
+        }
+
+        EditorGUILayout.HelpBox(
+            mode == PatternMode.Range
+                ? "중앙 C는 시전자입니다. 타일을 클릭해 시전 가능한 위치를 켜거나 끕니다."
+                : "중앙 O는 현재 선택 타일(Pivot)입니다. ROE 타일을 클릭하면 아래에서 타일별 효과를 편집합니다.",
+            MessageType.Info);
+
+        DrawGrid(skill);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("패턴 초기화"))
+            {
+                Undo.RecordObject(skill, "Clear Skill Pattern");
+                if (mode == PatternMode.Range) skill.rangePattern.Clear();
+                else { skill.roePattern.Clear(); selectedRoeTile = null; }
+                EditorUtility.SetDirty(skill);
+            }
+
+            if (GUILayout.Button("좌우 반전"))
+                MirrorPattern(skill);
+        }
+
+        if (mode == PatternMode.ROE && selectedRoeTile.HasValue)
+            DrawSelectedRoeTile(skill, selectedRoeTile.Value);
+    }
+
+    private void DrawGrid(SkillList skill)
+    {
+        int half = GridSize / 2;
+        EditorGUILayout.LabelField("기준 방향  →  (+X)", EditorStyles.centeredGreyMiniLabel);
+
+        for (int y = half; y >= -half; y--)
+        {
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.FlexibleSpace();
+                for (int x = -half; x <= half; x++)
+                {
+                    Vector2Int position = new Vector2Int(x, y);
+                    bool pivot = position == Vector2Int.zero;
+                    bool active = IsActive(skill, position);
+                    bool selected = selectedRoeTile.HasValue && selectedRoeTile.Value == position && mode == PatternMode.ROE;
+                    string label = pivot ? (mode == PatternMode.Range ? "C" : "O") : GetCellLabel(skill, position, active);
+
+                    GUIStyle style = new GUIStyle(GUI.skin.button);
+                    if (active) style.fontStyle = FontStyle.Bold;
+                    if (selected) style.fontSize = 13;
+
+                    if (GUILayout.Button(label, style, GUILayout.Width(CellSize), GUILayout.Height(CellSize)) && !pivot)
+                        ToggleCell(skill, position);
+                }
+                GUILayout.FlexibleSpace();
+            }
+        }
+    }
+
+    private string GetCellLabel(SkillList skill, Vector2Int position, bool active)
+    {
+        if (!active) return "□";
+        if (mode == PatternMode.Range) return "■";
+
+        SkillPatternTile tile = skill.roePattern.FirstOrDefault(t => t.position == position);
+        return tile != null && tile.damage != 0 ? tile.damage.ToString() : "■";
+    }
+
+    private bool IsActive(SkillList skill, Vector2Int position)
+    {
+        return mode == PatternMode.Range
+            ? skill.rangePattern.Contains(position)
+            : skill.roePattern.Any(t => t.position == position);
+    }
+
+    private void ToggleCell(SkillList skill, Vector2Int position)
+    {
+        Undo.RecordObject(skill, "Edit Skill Pattern");
+
+        if (mode == PatternMode.Range)
+        {
+            if (skill.rangePattern.Contains(position)) skill.rangePattern.Remove(position);
+            else skill.rangePattern.Add(position);
+        }
+        else
+        {
+            SkillPatternTile existing = skill.roePattern.FirstOrDefault(t => t.position == position);
+            if (existing != null)
+            {
+                skill.roePattern.Remove(existing);
+                if (selectedRoeTile == position) selectedRoeTile = null;
+            }
+            else
+            {
+                skill.roePattern.Add(new SkillPatternTile
+                {
+                    position = position,
+                    distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
+                    damage = skill.damage,
+                    pushDistance = skill.pushDistance
+                });
+                selectedRoeTile = position;
+            }
+        }
+
+        EditorUtility.SetDirty(skill);
+    }
+
+    private void DrawSelectedRoeTile(SkillList skill, Vector2Int position)
+    {
+        SkillPatternTile tile = skill.roePattern.FirstOrDefault(t => t.position == position);
+        if (tile == null) return;
+
+        EditorGUILayout.Space(8);
+        EditorGUILayout.LabelField($"ROE 선택 타일 ({position.x}, {position.y})", EditorStyles.boldLabel);
+
+        EditorGUI.BeginChangeCheck();
+
+        EditorGUI.BeginDisabledGroup(true);
+        EditorGUILayout.Vector2IntField("좌표", tile.position);
+        EditorGUILayout.IntField("시전자로부터 거리 (고정)", tile.distanceFromCaster);
+        EditorGUI.EndDisabledGroup();
+
+        tile.damage = EditorGUILayout.IntField("데미지", tile.damage);
+        tile.appliesDebuff = EditorGUILayout.Toggle("디버프", tile.appliesDebuff);
+        if (tile.appliesDebuff)
+            tile.debuffType = (SkillStatusEffectType)EditorGUILayout.EnumPopup("디버프 종류", tile.debuffType);
+
+        tile.fieldEffect = (SkillTileFieldEffectType)EditorGUILayout.EnumPopup("필드 효과", tile.fieldEffect);
+        tile.push = EditorGUILayout.Toggle("밀치기", tile.push);
+
+        if (tile.push)
+        {
+            tile.pushDirection = (SkillPushDirection)EditorGUILayout.EnumPopup("어디로 밀칠까", tile.pushDirection);
+            tile.pushTargetCount = Mathf.Max(0, EditorGUILayout.IntField(new GUIContent("몇 명 밀칠까", "0이면 제한 없음"), tile.pushTargetCount));
+            tile.pushDistance = Mathf.Max(0, EditorGUILayout.IntField("몇 칸 밀칠까", tile.pushDistance));
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(skill, "Edit ROE Tile");
+            EditorUtility.SetDirty(skill);
+        }
+    }
+
+    private void MirrorPattern(SkillList skill)
+    {
+        Undo.RecordObject(skill, "Mirror Skill Pattern");
+
+        if (mode == PatternMode.Range)
+        {
+            for (int i = 0; i < skill.rangePattern.Count; i++)
+            {
+                Vector2Int p = skill.rangePattern[i];
+                skill.rangePattern[i] = new Vector2Int(p.x, -p.y);
+            }
+        }
+        else
+        {
+            foreach (SkillPatternTile tile in skill.roePattern)
+            {
+                tile.position = new Vector2Int(tile.position.x, -tile.position.y);
+                tile.distanceFromCaster = Mathf.Abs(tile.position.x) + Mathf.Abs(tile.position.y);
+            }
+
+            if (selectedRoeTile.HasValue)
+            {
+                Vector2Int p = selectedRoeTile.Value;
+                selectedRoeTile = new Vector2Int(p.x, -p.y);
+            }
+        }
+
+        EditorUtility.SetDirty(skill);
+    }
+
+    private void DrawLegacy()
+    {
+        EditorGUILayout.LabelField("기존 데이터 / 호환", EditorStyles.boldLabel);
+        DrawProperty("rangeType", "기존 Range Type");
+        DrawProperty("aoeType", "기존 AoE Type");
+        DrawProperty("range", "기존 Range");
+        DrawProperty("aoe", "기존 AoE");
+        DrawProperty("damage", "기본 Damage");
+        DrawProperty("pushDistance", "기본 Push Distance");
+        DrawProperty("fieldEffectType", "기존 Field Effect");
+        DrawProperty("statusEffectType", "기존 Status Effect");
+        DrawProperty("cooldown", "Cooldown");
+        DrawProperty("delay", "Delay");
+        DrawProperty("level", "Level");
+        DrawProperty("MaxLevel", "Max Level");
+        DrawProperty("skillsList", "Skills List");
+    }
+
+    private void DrawProperty(string propertyName, string label)
+    {
+        SerializedProperty property = serializedObject.FindProperty(propertyName);
+        if (property != null) EditorGUILayout.PropertyField(property, new GUIContent(label), true);
+    }
+}
+#endif
