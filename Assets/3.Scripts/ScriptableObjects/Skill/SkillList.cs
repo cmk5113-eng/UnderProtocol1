@@ -102,8 +102,6 @@ public class SkillList : ScriptableObject
     public SkillType type;
     public SkillClassType classType;
     public SkillElementType elementType;
-    public SkillRangeType rangeType;
-    public SkillAoeType aoeType;
     public SkillEffectType effectType;
     public SkillTargetType targetType;
     public Sprite icon;
