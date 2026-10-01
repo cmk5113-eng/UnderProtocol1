@@ -18,6 +18,7 @@ public class SkillListEditor : Editor
     {
         serializedObject.Update();
         DrawCommon();
+        EnsureDefaultRangePattern((SkillList)target);
         EditorGUILayout.Space(8);
         DrawPatternEditor();
         serializedObject.ApplyModifiedProperties();
@@ -45,6 +46,38 @@ public class SkillListEditor : Editor
         DrawProperty("skillsList", "연결 스킬");
     }
 
+    private void EnsureDefaultRangePattern(SkillList skill)
+    {
+        if (skill == null ||
+            skill.rangePattern == null ||
+            skill.rangePattern.Count > 0)
+        {
+            return;
+        }
+
+        // Existing skills with legacy range data keep their old fallback behavior.
+        if (skill.range > 0)
+            return;
+
+        Undo.RecordObject(skill, "Create Default Skill Range");
+
+        const int defaultRadius = 3;
+
+        for (int x = -defaultRadius; x <= defaultRadius; x++)
+        {
+            for (int y = -defaultRadius; y <= defaultRadius; y++)
+            {
+                if (x == 0 && y == 0)
+                    continue;
+
+                if (Mathf.Abs(x) + Mathf.Abs(y) <= defaultRadius)
+                    skill.rangePattern.Add(new Vector2Int(x, y));
+            }
+        }
+
+        EditorUtility.SetDirty(skill);
+    }
+
     private void DrawPatternEditor()
     {
         SkillList skill = (SkillList)target;
@@ -61,7 +94,7 @@ public class SkillListEditor : Editor
         EditorGUILayout.HelpBox(
             mode == PatternMode.Range
                 ? "중앙 C는 시전자입니다. 타일을 클릭해 시전 가능한 위치를 켜거나 끕니다."
-                : "중앙 O는 현재 선택 타일(Pivot)입니다. ROE 타일을 클릭하면 아래에서 타일별 효과를 편집합니다.",
+                : "중앙 O는 현재 선택 타일(Pivot)이며 공격 타일로도 사용할 수 있습니다. O를 포함한 ROE 타일을 클릭해 켜거나 끕니다.",
             MessageType.Info);
 
         DrawGrid(skill);
@@ -199,8 +232,17 @@ public class SkillListEditor : Editor
                     if (active) style.fontStyle = FontStyle.Bold;
                     if (selected) style.fontSize = 13;
 
-                    if (GUILayout.Button(label, style, GUILayout.Width(CellSize), GUILayout.Height(CellSize)) && !pivot)
+                    bool canToggle = mode == PatternMode.ROE || !pivot;
+
+                    if (GUILayout.Button(
+                            label,
+                            style,
+                            GUILayout.Width(CellSize),
+                            GUILayout.Height(CellSize)) &&
+                        canToggle)
+                    {
                         ToggleCell(skill, position);
+                    }
                 }
                 GUILayout.FlexibleSpace();
             }
