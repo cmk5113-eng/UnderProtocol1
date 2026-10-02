@@ -50503,6 +50503,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492782873}
   m_CullTransparentMesh: 1
+--- !u!1 &1496671463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496671464}
+  - component: {fileID: 1496671466}
+  - component: {fileID: 1496671465}
+  - component: {fileID: 1496671467}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1496671464
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496671463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 647034856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1890.5215, y: 71.07721}
+  m_SizeDelta: {x: 1611.043, y: 1048.1544}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1496671465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496671463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1496671466
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496671463}
+  m_CullTransparentMesh: 1
+--- !u!95 &1496671467
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496671463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e200ae17a6743dc49a0114f4cf49a488, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1498608506
 GameObject:
   m_ObjectHideFlags: 0
@@ -51493,9 +51591,46 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 687794600}
   ScriptText_dialoguename: {fileID: 1623721874}
   ScriptImage_portrait: {fileID: 1307633372}
-  dialogue: []
-  dialoguename: []
-  portraits: []
+  dialogue:
+  - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
+    \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
+    \uC548\uC5D0 \uC8FC\uBBFC\uB4E4\uC774 \uBAB8\uC744 \uC219\uC774\uACE0 \uC788\uB2E4.
+    \uCC28\uACE0\uC9C0 \uC785\uAD6C\uC5D0\uC11C \uD0D0\uC870\uB4F1\uC774 \uC9C0\uB098\uAC04\uB2E4.]
+    \uB3C4\uC724: \uBC84\uC2A4 \uC138 \uB300. \uC5F0\uB8CC\uB294 \uB450 \uB300\uBD84\uC774\uAD70.
+    \uC0AC\uB78C\uC744 \uB098\uB220 \uD0DC\uC6CC\uC57C\uACA0\uC5B4. \uC720\uB098:
+    \uBD80\uC0C1\uC790\uB294 \uC55E\uCC28\uB85C \uC62E\uAE38\uAC8C\uC694. \uB4A4\uCC28\uC5D0\uB294
+    \uC544\uC774\uB4E4 \uBCF4\uD638\uC790\uAC00 \uAC19\uC774 \uD0C0\uC57C \uD574\uC694.
+    \uC11C\uB9B0: \uD070\uAE38\uC740 \uC804\uBD80 \uAC80\uBB38 \uC911\uC774\uC57C.
+    \uC815\uBE44 \uD130\uB110\uB85C \uBE60\uC9C0\uBA74 \uB418\uB294\uB370 \uCD9C\uC785\uBB38
+    \uC804\uC6D0\uC774 \uB04A\uACBC\uC5B4. \uC2DC\uD6C4: \uC774\uB7F0 \uBB38\uC5D0\uB294
+    \uAF2D \uC190\uC7A1\uC774\uAC00 \uC548 \uB2EC\uB824 \uC788\uB354\uB77C. \uBBF8\uB798
+    \uAE30\uC220\uC758 \uBE44\uADF9\uC774\uC9C0. \uC9C0\uD718\uAD00: \uC218\uB3D9
+    \uAC1C\uBC29 \uC7A5\uCE58\uB294? \uC11C\uB9B0: \uCC28\uACE0\uC9C0 \uBC18\uB300\uD3B8
+    \uBC30\uC804\uC2E4. \uADF8\uB7F0\uB370 \uCD94\uC801 \uB4DC\uB860\uC774 \uBA3C\uC800
+    \uB3C4\uCC29\uD588\uC5B4. \uCC28\uB7C9\uC744 \uBC1C\uACAC\uD558\uBA74 \uC704\uCE58\uAC00
+    \uB118\uC5B4\uAC00. \uB3C4\uC724: \uB0B4\uAC00 \uBC30\uC804\uC2E4\uAE4C\uC9C0
+    \uAC04\uB2E4. \uBC84\uC2A4 \uCABD\uC73C\uB85C\uB294 \uD55C \uBC1C\uB3C4 \uBABB
+    \uBCF4\uB0B4. \uC9C0\uD718\uAD00: \uB4DC\uB860\uC744 \uC815\uB9AC\uD558\uACE0
+    \uBB38\uC744 \uC5F0\uB2E4. \uCD9C\uBC1C \uC2E0\uD638 \uC804\uAE4C\uC9C0 \uC2DC\uB3D9\uC740
+    \uAC78\uC9C0 \uB9C8. \uC804\uD22C \uD6C4 [\uCCA0\uBB38\uC774 \uCC9C\uCC9C\uD788
+    \uC62C\uB77C\uAC04\uB2E4. \uBC84\uC2A4 \uC6B4\uC804\uC0AC\uAC00 \uC190\uC744
+    \uB4E4\uC5B4 \uC2E0\uD638\uD55C\uB2E4.] \uC6B4\uC804\uC0AC: \uB2E4\uC74C \uAD50\uCC28\uB85C\uAE4C\uC9C0\uB294
+    \uC555\uB2C8\uB2E4. \uADF8\uB2E4\uC74C\uC5D4 \uC5B4\uB514\uB85C \uAC00\uC8E0?
+    \uC11C\uB9B0: \uB300\uD53C\uC18C \uC88C\uD45C\uB97C \uACC4\uAE30\uD310\uC5D0
+    \uB123\uC5C8\uC5B4\uC694. \uC548\uB0B4\uAC00 \uB04A\uAE30\uBA74 \uD30C\uB780
+    \uBC30\uAD00\uC744 \uB530\uB77C\uAC00\uC138\uC694. \uC720\uB098: \uB3C4\uCC29\uD558\uBA74
+    \uC57D\uD488\uBD80\uD130 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uBA85\uB2E8\uC740
+    \uC81C\uAC00 \uBCF4\uB0B4\uB458\uAC8C\uC694. \uC2DC\uD6C4: \uBB38\uC740 \uC5F4\uB838\uB294\uB370
+    \uC6B0\uB9B0 \uC548 \uD0C0\uB294 \uBD84\uC704\uAE30\uB124. \uC11C\uB9B0: \uC774\uC1A1
+    \uCC28\uB7C9 \uC2E0\uD638\uB97C \uCC3E\uC558\uC5B4. \uD3D0\uC5ED\uC5D0 \uC815\uCC28
+    \uC911\uC774\uC57C. \uD0D1\uC2B9\uC790 \uBA85\uB2E8\uC5D0 \uC124\uBE44 \uC815\uBE44\uC0AC\uAC00
+    \uC5EC\uB7EC \uBA85 \uC788\uC5B4. \uC9C0\uD718\uAD00: \uC0AC\uB78C\uC744 \uACE8\uB77C
+    \uB370\uB824\uAC00\uB294 \uC774\uC720\uBD80\uD130 \uD655\uC778\uD558\uC790. \uD3D0\uC5ED\uC73C\uB85C
+    \uAC04\uB2E4. "
+  dialoguename:
+  - 
+  portraits:
+  - {fileID: 0}
 --- !u!114 &1531568134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71926,6 +72061,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3957388400871344509, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1191164070}
+    - targetCorrespondingSourceObject: {fileID: 3957388400871344509, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1496671464}
     - targetCorrespondingSourceObject: {fileID: 5871131536492742652, guid: 8c52d866e6f53fb41ac680671358bc4b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2106388056}
