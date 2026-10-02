@@ -55,7 +55,7 @@ public class SaveManager : ManagerBase
         PlayerPrefs.Save();
         ProgressManager.RestoreProgress(data.progressVersion >= 1 ? data.progress : data.currentGold,
             data.clearedStageIds);
-        Debug.Log($"{slot}번 슬롯 로드 완료");
+      
     }
 
     protected override IEnumerator OnConnected(GameManager newManager)

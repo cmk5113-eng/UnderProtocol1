@@ -119,8 +119,7 @@ public class UIManager : ManagerBase
             // 기존 오브젝트가 없을 때 생성
             CreateUI(UIType.Stage, "S_Stage", switcherTransform);
         }
-
-        Debug.Log($"[Stage 등록 확인] {GetUI(UIType.Stage)}");
+ 
 
         CreateUI(UIType.Menu, "W_Menu", switcherTransform);
         CreateUI(UIType.MiniMap, "W_MiniMap", switcherTransform);

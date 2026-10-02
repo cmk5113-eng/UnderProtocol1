@@ -63,7 +63,7 @@ public class PlacementController : UI_CharacterSelectWindows
 
             if (ModeManager.Instance != null && ModeManager.Instance.CurrentMode == ModeManager.GameMode.CharacterSelect)
             {
-                Debug.Log($"MoveTileModule.Instance : {MoveTileModule.Instance}");
+            
                 if (targetTilemap.HasTile(clickCellPos))
                 {
                     if (SelectionManager.SelectedPrefab!= null)
@@ -80,8 +80,7 @@ public class PlacementController : UI_CharacterSelectWindows
 
                         if (target != null)
                         {
-                            Debug.Log($"[Destroy] 이미 존재하는 {target.name} 오브젝트를 삭제합니다.");
-
+                           
                             // 기존 오브젝트가 있던 위치의 타일 찾기
                             Vector3Int oldCellPos = targetTilemap.WorldToCell(target.transform.position);
 
@@ -144,15 +143,13 @@ public class PlacementController : UI_CharacterSelectWindows
 
     public void LeaveBattle()
     {
-        var battle = BattleManager.Instance;
-        Debug.Log($"[LeaveBattle 시작] battle={battle}, active={battle?.IsBattleActive}");
+        var battle = BattleManager.Instance; 
 
         if (battle != null && battle.IsBattleActive)
             battle.AbortBattle();
         else
             RemoveAllObject();
-
-        Debug.Log($"[LeaveBattle 완료] active={battle?.IsBattleActive}");
+        
     }
     public static void RemoveAllObject()
     {

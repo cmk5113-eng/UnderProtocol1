@@ -105,7 +105,7 @@ public class StageUIController : MonoBehaviour
             skill[1].sprite = data.active != null && data.active.Length > 1 ? data.active[1]?.icon : null;
             skill[2].sprite = data.ultimateSkill?.icon;
             skill[3].sprite = data.normalSkill?.icon;
-
+            skill[4].sprite = data.passive[0]?.icon;
             currentData = data;
 
             Summon();

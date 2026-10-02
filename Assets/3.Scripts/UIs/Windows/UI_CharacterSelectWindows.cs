@@ -21,9 +21,9 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
     [SerializeField] private TextMeshProUGUI maxText;
     public void ChangeModeToCharacterSelect()
     {
-        Debug.Log($"ModeManager.Instance = {ModeManager.Instance}");
+   
         ModeManager.Instance.CurrentMode = ModeManager.GameMode.CharacterSelect;
-        Debug.Log($"모드변경완료 현재모드 : {ModeManager.Instance.CurrentMode}");
+        
     }
     public void ChangeCurrentCharacter(GameObject selectedPrefab)
     {
@@ -34,7 +34,7 @@ public class UI_CharacterSelectWindows : UI_ScreenBase
         // 1. ���޹��� �������� ���� ĳ���ͷ� ���
         SelectionManager.SelectedPrefab = selectedPrefab;
         SelectionManager.DeselectCharacter();
-        Debug.Log($"현재캐릭터{selectedPrefab}");
+         
         StageUIController.Instance.Refresh();
 
         // 3. UI ������Ʈ �� �ļ� �۾�
