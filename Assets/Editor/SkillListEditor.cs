@@ -18,10 +18,37 @@ public class SkillListEditor : Editor
     {
         serializedObject.Update();
         DrawCommon();
-        EnsureDefaultRangePattern((SkillList)target);
-        EditorGUILayout.Space(8);
-        DrawPatternEditor();
+        if (target is PassiveSkill)
+        {
+            DrawPassiveSettings();
+        }
+        else
+        {
+            EnsureDefaultRangePattern((SkillList)target);
+            EditorGUILayout.Space(8);
+            DrawPatternEditor();
+        }
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void DrawPassiveSettings()
+    {
+        EditorGUILayout.Space(8);
+        EditorGUILayout.LabelField("패시브 발동 / 수치", EditorStyles.boldLabel);
+        DrawProperty("trigger", "발동 시점");
+        DrawProperty("passiveEffect", "패시브 효과");
+        DrawProperty("maxActivationsPerTurn", "턴당 발동 횟수 (0 = 무제한)");
+        DrawProperty("passiveDamage", "추가 공격 / 지속 피해량");
+        DrawProperty("movementPoints", "이동 횟수 회복량");
+        DrawProperty("extraActions", "추가 행동 횟수");
+        DrawProperty("durationTurns", "지속 적 턴 수");
+        DrawProperty("bombRadius", "폭탄 반경 (0 = 한 칸)");
+        EditorGUILayout.HelpBox(
+            "CharacterData의 Staticpassive 또는 Passive 슬롯에 연결하면 배틀매니저가 자동 실행합니다. " +
+            "양옆은 외곽의 인접 아군, 맞은편은 반대 가장자리의 같은 행/열입니다. " +
+            "이동 보너스는 Stemina Point에 적용되고, 폭탄/화상은 적 행동 전에 피해를 줍니다. " +
+            "None은 효과 없음이며 패시브 추가 공격은 공격 패시브를 연쇄 발동하지 않습니다.",
+            MessageType.Info);
     }
 
     private void DrawCommon()

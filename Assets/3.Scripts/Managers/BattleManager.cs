@@ -30,6 +30,12 @@ public class BattleManager : ManagerBase
     private int activeStageId = -1;
     private WaveSetter activeStage;
     public bool IsBattleActive { get; private set; }
+    private readonly BattlePassiveSystem passiveSystem = new BattlePassiveSystem();
+    [Header("패시브")]
+    [SerializeField] private bool logPassiveActivations = true;
+    public BattlePassiveSystem Passives => passiveSystem;
+    public bool IsPlayerTurn => IsBattleActive && currentTurnMode == TurnMode.PlayerTurn;
+    public bool CanAcceptPlayerAction => IsPlayerTurn && !passiveSystem.IsResolving && !HasMovingPlayers();
 
     public void BeginBattle(int stageId, WaveSetter stage)
     {
@@ -37,6 +43,7 @@ public class BattleManager : ManagerBase
         activeStageId = stageId;
         activeStage = stage;
         IsBattleActive = true;
+        passiveSystem.BeginPlayerTurn(currentTurn);
     }
 
     public void CompleteBattle()
@@ -51,9 +58,11 @@ public class BattleManager : ManagerBase
     }
 
     public void AbortBattle() => FinishBattle(false);
-    UIBase stageScreen = UIManager.ClaimGetUI(UIType.Stage);
     private void FinishBattle(bool cleared)
     {
+        if (!IsBattleActive) return;
+        // UI registration happens after construction; resolve the screen when leaving battle.
+        UIBase stageScreen = UIManager.ClaimGetUI(UIType.Stage);
         if (stageScreen != null)
         {
             stageScreen.gameObject.SetActive(false);
@@ -63,7 +72,6 @@ public class BattleManager : ManagerBase
             Debug.LogError("UIManager에 등록된 Stage 화면이 없습니다.");
         }
 
-        if (!IsBattleActive) return;
         IsBattleActive = false;
         WaveSetter returnStage = activeStage;
 
@@ -108,6 +116,13 @@ public class BattleManager : ManagerBase
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+        passiveSystem.PassiveActivated += LogPassiveActivation;
+    }
+
+    private void LogPassiveActivation(CharacterBase owner, PassiveSkill skill)
+    {
+        if (logPassiveActivations && owner != null && skill != null)
+            Debug.Log($"[Passive] {owner.Data.characterName}: {skill.skillName}");
     }
 
     private void Start()
@@ -131,6 +146,44 @@ public class BattleManager : ManagerBase
         currentTurnMode = TurnMode.PlayerTurn;
         playerCharacters.Clear();
         monsterCharacters.Clear();
+        passiveSystem.ResetBattle();
+    }
+
+    public void NotifyAttackCompleted(CharacterBase actor, SkillList skill, SkillExecuteResult result,
+        Vector3Int aim, ICollection<Vector3Int> attackArea)
+    {
+        if (!IsPlayerTurn || passiveSystem.IsResolving || PlacementManager.Instance == null) return;
+        CharacterBase[] characters = FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
+        passiveSystem.OnAttackCompleted(actor, skill, result, aim, attackArea,
+            characters, PlacementManager.Instance.tilemap);
+        RefreshActionPointsUI();
+    }
+
+    public void NotifyMovementCompleted(CharacterBase actor, Vector3Int from, Vector3Int to)
+    {
+        if (!IsPlayerTurn || passiveSystem.IsResolving || PlacementManager.Instance == null) return;
+        CharacterBase[] characters = FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
+        passiveSystem.OnMovementCompleted(actor, from, to, characters, PlacementManager.Instance.tilemap);
+        RefreshActionPointsUI();
+    }
+
+    private static void RefreshActionPointsUI()
+    {
+        if (StageUIController.Instance != null) StageUIController.Instance.RefreshActionPoints();
+    }
+
+    private static bool HasMovingPlayers()
+    {
+        foreach (CharacterBase player in FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            if (!BattlePassiveSystem.IsPlayer(player)) continue;
+            MovementModule movement = player.GetComponent<MovementModule>();
+            if (movement != null && movement.IsMoving) return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -156,7 +209,14 @@ public class BattleManager : ManagerBase
     }
     public void CheckPlayerApAndTryEndTurn()
     {
-        if (!IsBattleActive || currentTurnMode != TurnMode.PlayerTurn) return;
+        if (!CanAcceptPlayerAction) return;
+
+        // The first turn starts after placement, so do not rely on the previous turn's roster.
+        playerCharacters.Clear();
+        foreach (CharacterBase player in FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            if (BattlePassiveSystem.IsPlayer(player)) playerCharacters.Add(player);
+        if (playerCharacters.Count == 0) return;
 
         bool allPlayersApZero = true;
         foreach (var player in playerCharacters)
@@ -183,7 +243,7 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void EndTurn()
     {
-        if (IsBattleActive && currentTurnMode == TurnMode.PlayerTurn)
+        if (CanAcceptPlayerAction)
         {
             Debug.Log($"[Battle] 플레이어 턴 {currentTurn} 종료.");
             // 중복 클릭을 막고, 같은 프레임에 처치한 몬스터의 삭제를 기다린다.
@@ -226,8 +286,13 @@ public class BattleManager : ManagerBase
     /// </summary>
     public void MonsterTurn()
     {
-        if (!IsBattleActive) return;
+        if (!IsBattleActive || currentTurnMode != TurnMode.MonsterTurn) return;
         Debug.Log("[Battle] 몬스터 턴 시작");
+
+        CharacterBase[] characters = FindObjectsByType<CharacterBase>(
+            FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
+        if (PlacementManager.Instance != null)
+            passiveSystem.BeforeMonsterTurn(currentTurn, characters, PlacementManager.Instance.tilemap);
 
 
         if (monsterCharacters == null)
@@ -244,6 +309,9 @@ public class BattleManager : ManagerBase
                 continue;
 
             if (monster.currentHP <= 0)
+                continue;
+
+            if (passiveSystem.ShouldSkipMonsterAction(monster))
                 continue;
 
             HP -= monster.currentHP;
@@ -297,6 +365,8 @@ public class BattleManager : ManagerBase
     public void StartPlayerTurn()
     {
         if (!IsBattleActive) return;
+        currentTurnMode = TurnMode.PlayerTurn;
+        passiveSystem.BeginPlayerTurn(currentTurn);
 
         if (ModeManager.Instance != null)
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
@@ -310,12 +380,13 @@ public class BattleManager : ManagerBase
 
         foreach (CharacterBase player in activeCharacters)
         {
-            if (player == null || player.isEnemy || player is MonsterBase)
+            if (!BattlePassiveSystem.IsPlayer(player))
                 continue;
 
             playerCharacters.Add(player);
-            player.actionPoint = 1;
+            player.actionPoint = Mathf.Max(1, player.maxAP);
             player.steminaPoint = player.maxStemina;
+            passiveSystem.ApplyStartOfTurnBonuses(player);
             player.UpdateActionStateVisual();
 
             MovementModule moveModule = player.GetComponent<MovementModule>();
@@ -329,6 +400,7 @@ public class BattleManager : ManagerBase
             StageUIController.Instance.UpdateWave();
             if (SelectionManager.Instance != null)
                 StageUIController.Instance.resetunit();
+            StageUIController.Instance.RefreshActionPoints();
         }
     }
 

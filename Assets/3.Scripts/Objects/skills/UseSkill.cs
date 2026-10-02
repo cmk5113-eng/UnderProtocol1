@@ -66,6 +66,9 @@ public class UseSkill : MonoBehaviour
     /// </summary>
     public void StartSkillTargeting(SkillList skill, CharacterBase skillCaster)
     {
+        if (skill == null || skillCaster == null) return;
+        BattleManager battle = BattleManager.Instance;
+        if (battle != null && battle.IsBattleActive && !battle.CanAcceptPlayerAction) return;
         if (ModeManager.Instance != null &&
             ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
         {
@@ -183,6 +186,9 @@ public class UseSkill : MonoBehaviour
 
     public void ExecuteSkillOnTarget()
     {
+        if (!isSkillTargetingActive || currentSkill == null) return;
+        BattleManager battle = BattleManager.Instance;
+        if (battle != null && battle.IsBattleActive && !battle.CanAcceptPlayerAction) return;
         if (ModeManager.Instance == null ||
             ModeManager.Instance.CurrentMode != ModeManager.GameMode.UseSkill)
         {
@@ -230,8 +236,12 @@ public class UseSkill : MonoBehaviour
 
         List<CharacterBase> targets = new List<CharacterBase>();
         List<SkillTargetHit> patternHits = new List<SkillTargetHit>();
+        var attackCells = new List<Vector3Int>(aoeTiles);
+        // Legacy single-target skills do not paint an AOE, but still hit the clicked cell.
+        if (!currentSkill.HasRoePattern && CurrentSkillAoe <= 0 && tilemap.HasTile(clickedCell))
+            attackCells.Add(clickedCell);
 
-        foreach (Vector3Int cellPos in aoeTiles)
+        foreach (Vector3Int cellPos in attackCells)
         {
             Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
@@ -302,6 +312,7 @@ public class UseSkill : MonoBehaviour
         else
         {
             Debug.LogWarning("[Skill] ExecuteSkill.Instance is missing.");
+            return;
         }
 
         if (result != null && ScrollUI.Instance != null)
@@ -309,9 +320,10 @@ public class UseSkill : MonoBehaviour
             ScrollUI.Instance.PlusGaugevalue(0.02f * result.hitCount);
         }
 
-        // 스킬 사용
-        caster.actionPoint = 0;
-        caster.UpdateActionStateVisual();
+        // Spend the action BEFORE passives can grant another one.
+        CharacterBase actionActor = caster;
+        SkillList actionSkill = currentSkill;
+        actionActor.actionPoint = Mathf.Max(0, actionActor.actionPoint - 1);
 
         // 이동 모드로 전환
         if (ModeManager.Instance != null)
@@ -321,6 +333,11 @@ public class UseSkill : MonoBehaviour
         }
 
         ClearAllHighlights();
+
+        if (battle != null)
+            battle.NotifyAttackCompleted(actionActor, actionSkill, result, clickedCell, attackCells);
+        actionActor.UpdateActionStateVisual();
+        // Keep the existing explicit EndTurn flow: movement bonuses can still be used after attacking.
     }
 
     private void DebugDetectedEnemiesCount(List<GameObject> enemies)

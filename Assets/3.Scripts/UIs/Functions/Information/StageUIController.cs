@@ -98,8 +98,7 @@ public class StageUIController : MonoBehaviour
         {
             portrait.sprite = data.Portrait;
             characterName.SetText(data.characterName);
-            AP.SetText(data.actionPoint.ToString());
-            SP.SetText(data.steminaPoint.ToString());
+            RefreshActionPoints();
 
             // 스킬 데이터 안전성 검사(? 연산자를 사용해 데이터가 부족해도 크래시 방지)
             skill[0].sprite = data.active != null && data.active.Length > 0 ? data.active[0]?.icon : null;
@@ -145,6 +144,13 @@ public class StageUIController : MonoBehaviour
         // 해당 캐릭터 선택 후 초상화·스킬 정보 갱신
         SelectionManager.SelectCharacter(target);
         Refresh();
+    }
+    // Display the live character's resources, not shared ScriptableObject defaults.
+    public void RefreshActionPoints()
+    {
+        CharacterBase character = SelectionManager.CharacterBase;
+        if (AP != null) AP.SetText(character != null ? character.actionPoint.ToString() : "0");
+        if (SP != null) SP.SetText(character != null ? character.steminaPoint.ToString() : "0");
     }
     public void OnNextTurn()
     {

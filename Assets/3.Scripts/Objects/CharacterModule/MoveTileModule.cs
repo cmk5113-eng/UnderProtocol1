@@ -24,6 +24,7 @@ public class MoveTileModule : MovementModule
 
     public Vector3Int CurrentTile { get; private set; }
     private Vector3Int previousTile; // [추가] 이동 전 출발 타일 저장용
+    private bool pendingMoveNotification;
 
     private Vector3Int mapOrigin;
 
@@ -111,16 +112,18 @@ public class MoveTileModule : MovementModule
     public void MoveToTileDirect(Vector3Int targetCell)
     {
         var tm = TM;
-        if (tm == null) return;
+        if (tm == null || IsMoving) return;
 
         // [핵심] 이동 시작 전 현재 위치(출발 타일)를 기억
         UpdateCurrentTile();
         previousTile = CurrentTile;
+        if (previousTile == targetCell) return;
 
         Vector3 targetPos = tm.GetCellCenterWorld(targetCell);
         targetPos.z = transform.position.z;
 
         MoveToDestination(targetPos, 0.05f);
+        pendingMoveNotification = IsMoving;
     }
 
     public void MoveToTile(Vector3Int targetCell)
@@ -134,14 +137,17 @@ public class MoveTileModule : MovementModule
     public void OnMoveComplete()
     {
         UpdateCurrentTile(); // 도착 타일 갱신
+        if (!pendingMoveNotification) return;
+        pendingMoveNotification = false;
 
         if (PlacementManager.Instance != null)
         {
             // 1. 이전 타일 점유 해제 (isempty = true)
             TileData prevData = PlacementManager.Instance.GetTileData(previousTile);
-            if (prevData != null)
+            if (prevData != null && (prevData.Character == null || prevData.Character == Owner))
             {
                 prevData.isempty = true;
+                prevData.Character = null;
             }
 
             // 2. 새로운 도착 타일 점유 설정 (isempty = false)
@@ -149,10 +155,15 @@ public class MoveTileModule : MovementModule
             if (currentData != null)
             {
                 currentData.isempty = false;
+                currentData.Character = Owner;
             }
 
             Debug.Log($"[Tile Occupancy] 이전 타일:{previousTile}(빈 공간 처리) -> 현재 타일:{CurrentTile}(점유 처리)");
         }
+
+        // MovementModule already deducted stamina. Notify only after the final tile is occupied.
+        if (BattleManager.Instance != null)
+            BattleManager.Instance.NotifyMovementCompleted(Owner, previousTile, CurrentTile);
     }
 
     public bool TryStepByInput(Vector2 input)
@@ -178,9 +189,10 @@ public class MoveTileModule : MovementModule
 
         TileData data = PlacementManager.Instance.GetTileData(CurrentTile);
 
-        if (data != null)
+        if (data != null && (data.Character == null || data.Character == Owner))
         {
             data.isempty = true;
+            data.Character = null;
             Debug.Log($"[Tile Occupancy] 캐릭터 삭제: {CurrentTile} → 빈 타일");
         }
     }
