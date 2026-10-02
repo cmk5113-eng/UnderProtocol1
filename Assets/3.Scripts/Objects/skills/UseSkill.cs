@@ -538,6 +538,32 @@ public class UseSkill : MonoBehaviour
             }
         }
     }
+    public void UI_StartNormalSkill()
+    {
+
+        Debug.Log($"현재타일맵{tilemap}");
+        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
+        ClearAllHighlights();
+
+        CharacterBase currentCaster = SelectionManager.CharacterBase;
+
+        if (currentCaster.isSpawned == false)
+        {
+            Debug.Log("캐릭터를소환해주세요");
+            return;
+        }
+        if (StageUIController.Instance == null) return;
+        CharacterData currentData = StageUIController.Instance.CurrentData;
+
+        if (currentCaster != null && currentData != null && currentData.normalSkill != null)
+        {
+            NormalSkill targetSkill = currentData.normalSkill;
+            if (targetSkill != null)
+            {
+                StartSkillTargeting(targetSkill, currentCaster);
+            }
+        }
+    }
 
 
     /// <summary>

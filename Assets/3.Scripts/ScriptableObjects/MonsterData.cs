@@ -10,5 +10,11 @@ public class MonsterData : ScriptableObject
     public int atk = 1;
     public bool isDead = false;
     public bool isActive = false;
+    public float fireResistance = 0f;
+    public float iceResistance = 0f;
+    public float electricResistance = 0f;
+    public float earthResistance = 0f;
+    public float windResistance = 0f;
+    public float darkResistance = 0f;
 
 }

@@ -50,7 +50,7 @@ public enum SkillStatusEffectType
 
 public enum SkillFieldEffectType
 {
-    Fire, Water, Earth, Wind, Light, Dark
+    Fire, Ice, Earth, Wind, Electric, Dark
 }
 
 public enum SkillTileFieldEffectType
@@ -58,7 +58,10 @@ public enum SkillTileFieldEffectType
     None,
     Fire,
     Electric,
-    Ice
+    Ice,
+    Wind,
+    Earth,
+    Dark
 }
 
 public enum SkillPushDirection
