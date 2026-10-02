@@ -150,6 +150,18 @@ public class CharacterBase : MonoBehaviour
     protected virtual void Die()
     {
         Debug.Log($"[Death] {name}");
+        // Auto-attacks and DOT use the same death path. Release any occupied/pushed tile too.
+        if (PlacementManager.Instance != null && PlacementManager.Instance.tilemap != null)
+        {
+            Vector3Int cell = PlacementManager.Instance.tilemap.WorldToCell(transform.position);
+            cell.z = 0;
+            TileData tile = PlacementManager.Instance.GetTileData(cell);
+            if (tile != null && tile.Character == this)
+            {
+                tile.Character = null;
+                tile.isempty = true;
+            }
+        }
         ObjectManager.DestroyObject(gameObject);
     }
 

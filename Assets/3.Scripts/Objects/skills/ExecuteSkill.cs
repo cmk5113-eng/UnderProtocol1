@@ -6,6 +6,8 @@ public class SkillExecuteResult
 {
     public int hitCount;
     public int killCount;
+    // Preserve exactly which enemies took damage for survivor-only follow-up attacks.
+    public readonly List<CharacterBase> damagedTargets = new List<CharacterBase>();
 }
 
 public class SkillTargetHit
@@ -94,6 +96,7 @@ public class ExecuteSkill : MonoBehaviour
                 tile.damage > 0)
             {
                 result.hitCount++;
+                if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
                 target.TakeDamage(tile.damage);
 
                 if (target == null || target.IsDead)
@@ -197,10 +200,11 @@ public class ExecuteSkill : MonoBehaviour
 
         foreach (CharacterBase target in targets)
         {
-            if (target == null || target.IsDead)
+            if (target == null || target.IsDead || skill.damage <= 0)
                 continue;
 
             result.hitCount++;
+            if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
             target.TakeDamage(skill.damage);
 
             if (target == null || target.IsDead)
