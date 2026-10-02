@@ -24,6 +24,14 @@
         public Image[] PassiveSkill = new Image[4];
         public Image[] UniqueSkill = new Image[4];
 
+        private void OnEnable()
+        {
+            SaveManager.OnSaveLoaded += RefreshUI;
+            RefreshUI();
+        }
+
+        private void OnDisable() => SaveManager.OnSaveLoaded -= RefreshUI;
+
         private void Start()
         {
             if (nextButton != null)
@@ -49,6 +57,7 @@
             if (characterList == null || characterList.Count == 0)
                 return null;
 
+            currentIndex = Mathf.Clamp(currentIndex, 0, characterList.Count - 1);
             return characterList[currentIndex];
         }
 
@@ -82,6 +91,6 @@
             if (PassiveSkill[2]) PassiveSkill[2].sprite = data.passive[2]?.icon;
             if (PassiveSkill[3]) PassiveSkill[3].sprite = data.passive[3]?.icon;
 
-        Debug.Log($"실제 UI 이미지 적용 확인: {data.characterName}의 {ActiveSkill[0].sprite?.name}");
+        Debug.Log($"실제 UI 이미지 적용 확인: {data.characterName}");
     }
     }
