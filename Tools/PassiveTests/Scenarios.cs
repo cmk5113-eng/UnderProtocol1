@@ -230,5 +230,6 @@ public static class Scenarios
             ui.RefreshActionPoints();Check(ap.text=="2"&&sp.text=="5","live resource UI");
         });
         Console.WriteLine("PASS: "+checks+" behavioural assertions");
+        SaveScenarios.RunAll();
     }
 }

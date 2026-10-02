@@ -12,6 +12,8 @@ namespace UnityEngine
     [AttributeUsage(AttributeTargets.All)] public class TextAreaAttribute : Attribute { }
     [AttributeUsage(AttributeTargets.All)] public class HideInInspector : Attribute { }
     [AttributeUsage(AttributeTargets.All)] public class CreateAssetMenuAttribute : Attribute { public string menuName, fileName; }
+    public enum RuntimeInitializeLoadType { SubsystemRegistration }
+    [AttributeUsage(AttributeTargets.All)] public class RuntimeInitializeOnLoadMethodAttribute : Attribute { public RuntimeInitializeOnLoadMethodAttribute(RuntimeInitializeLoadType t) {} }
     public enum FindObjectsInactive { Exclude, Include }
     public enum FindObjectsSortMode { None, InstanceID }
     public class Object
@@ -59,7 +61,7 @@ namespace UnityEngine
         public void StopCoroutine(Coroutine routine) { }
     }
     public class Coroutine { public IEnumerator routine; }
-    public class ScriptableObject : Object { }
+    public class ScriptableObject : Object { public static T CreateInstance<T>() where T : ScriptableObject,new() => new T(); }
     public class Transform : Object { public Vector3 position; }
     public class Sprite : Object { }
     public class SpriteRenderer : Component { public Color color; }
@@ -135,6 +137,7 @@ namespace UnityEngine
         public static float Max(float a,float b)=>Math.Max(a,b);
         public static int Min(int a,int b)=>Math.Min(a,b);
         public static float Min(float a,float b)=>Math.Min(a,b);
+        public static int Clamp(int n,int min,int max)=>Math.Min(max,Math.Max(min,n));
     }
     public static class Random { static System.Random random=new System.Random(21); public static int Range(int a,int b)=>random.Next(a,b); }
     public static class Debug { public static void Log(object o) {} public static void LogWarning(object o) {} public static void LogError(object o) {} }

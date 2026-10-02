@@ -8,8 +8,6 @@ public class GameManager { public static GameManager Instance=new GameManager();
 public class WaveManager { public WaveData[] selectedWaves; public WaveData currentWave; public int currentWaveIndex; }
 public class WaveData {}
 public class WaveSetter { public void ReturnToWorld() {} }
-public class SaveManager { public int currentSlot; public void Save(int slot) {} }
-public static class ProgressManager { public static bool MarkStageCleared(int id)=>true; }
 public class WaveLoader { public static WaveLoader Instance=new WaveLoader(); public int calls; public void NextWave() { calls++; } }
 public enum UIType { Stage }
 public class UIBase : MonoBehaviour {}

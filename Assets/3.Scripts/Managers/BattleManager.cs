@@ -28,6 +28,7 @@ public class BattleManager : ManagerBase
     [SerializeField] private List<CharacterBase> monsterCharacters = new List<CharacterBase>();
     private Coroutine pendingTurnEnd;
     private int activeStageId = -1;
+    private int lastCompletedPlayerTurn;
     private WaveSetter activeStage;
     public bool IsBattleActive { get; private set; }
     private readonly BattlePassiveSystem passiveSystem = new BattlePassiveSystem();
@@ -75,7 +76,10 @@ public class BattleManager : ManagerBase
         IsBattleActive = false;
         WaveSetter returnStage = activeStage;
 
-        if (cleared && ProgressManager.MarkStageCleared(activeStageId))
+        WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
+        if (cleared && ProgressManager.RecordStageClear(activeStageId,
+            Mathf.Max(1, lastCompletedPlayerTurn), HP, wave != null && wave.selectedWaves != null
+                ? wave.selectedWaves.Length : 0))
         {
             SaveManager save = GameManager.Instance != null ? GameManager.Instance.Save : null;
             if (save != null) save.Save(save.currentSlot);
@@ -143,6 +147,7 @@ public class BattleManager : ManagerBase
         activeStage = null;
         HP = 100;
         currentTurn = 1;
+        lastCompletedPlayerTurn = 0;
         currentTurnMode = TurnMode.PlayerTurn;
         playerCharacters.Clear();
         monsterCharacters.Clear();
@@ -287,6 +292,7 @@ public class BattleManager : ManagerBase
     public void MonsterTurn()
     {
         if (!IsBattleActive || currentTurnMode != TurnMode.MonsterTurn) return;
+        lastCompletedPlayerTurn = currentTurn;
         Debug.Log("[Battle] 몬스터 턴 시작");
 
         CharacterBase[] characters = FindObjectsByType<CharacterBase>(

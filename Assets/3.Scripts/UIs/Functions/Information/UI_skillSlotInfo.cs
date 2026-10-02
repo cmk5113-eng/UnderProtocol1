@@ -45,7 +45,7 @@ public class UI_SkillSlotInfo : MonoBehaviour
 
     public void SelectSkill()
     {
-        if (connectedDataSlot == null) return;
+        if (connectedDataSlot == null || CanvasManager.Instance == null) return;
 
         if (heroUI == null)
             heroUI = FindFirstObjectByType<UI_Hero>();
@@ -59,28 +59,42 @@ public class UI_SkillSlotInfo : MonoBehaviour
         ActiveSkill activeSkill = skill as ActiveSkill;
         PassiveSkill passiveSkill = skill as PassiveSkill;
 
+        if (current.active == null || current.active.Length < 2) System.Array.Resize(ref current.active, 2);
+        if (current.passive == null || current.passive.Length < 4) System.Array.Resize(ref current.passive, 4);
+
         switch (CanvasManager.Instance.CurrentSkillGroup)
         {
             case SkillLoadButton.SkillGroupType.Active1:
-                if (activeSkill != null) current.active[0] = activeSkill;
+                if (activeSkill == null) return;
+                current.active[0] = activeSkill;
                 break;
             case SkillLoadButton.SkillGroupType.Active2:
-                if (activeSkill != null) current.active[1] = activeSkill;
+                if (activeSkill == null) return;
+                current.active[1] = activeSkill;
                 break;
             case SkillLoadButton.SkillGroupType.Passive1:
-                if (passiveSkill != null) current.passive[0] = passiveSkill;
+                if (passiveSkill == null) return;
+                current.passive[0] = passiveSkill;
                 break;
             case SkillLoadButton.SkillGroupType.Passive2:
-                if (passiveSkill != null) current.passive[1] = passiveSkill;
+                if (passiveSkill == null) return;
+                current.passive[1] = passiveSkill;
                 break;
             case SkillLoadButton.SkillGroupType.Passive3:
-                if (passiveSkill != null) current.passive[2] = passiveSkill;
+                if (passiveSkill == null) return;
+                current.passive[2] = passiveSkill;
                 break;
             case SkillLoadButton.SkillGroupType.Passive4:
-                if (passiveSkill != null) current.passive[3] = passiveSkill;
+                if (passiveSkill == null) return;
+                current.passive[3] = passiveSkill;
                 break;
+            default:
+                return;
         }
 
         heroUI.RefreshUI();
+        if (UseSkill.Instance != null) UseSkill.Instance.ClearAllHighlights();
+        SaveManager save = GameManager.Instance != null ? GameManager.Instance.Save : null;
+        if (save != null) save.Save(save.currentSlot);
     }
 }

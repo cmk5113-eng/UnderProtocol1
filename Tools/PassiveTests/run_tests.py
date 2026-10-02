@@ -1,4 +1,4 @@
-"""Compile real combat scripts against small Unity doubles, then run behavioural scenarios.
+"""Compile real combat/save scripts against small Unity doubles, then run behavioural scenarios.
 Set PASSIVE_DOTNET and PASSIVE_CSC for a runtime+Roslyn installation, or install a .NET SDK.
 This checks C# and logic; it is not a Unity import, Editor or Play Mode test.
 """
@@ -32,9 +32,21 @@ sources=[
  'Assets/3.Scripts/Managers/BattleManager.cs',
  'Assets/3.Scripts/Managers/ModeManager.cs',
  'Assets/3.Scripts/UIs/Functions/Information/StageUIController.cs',
+ 'Assets/3.Scripts/Objects/SaveData.cs',
+ 'Assets/3.Scripts/Systems/SaveCatalog.cs',
+ 'Assets/3.Scripts/Systems/CharacterLoadoutPersistence.cs',
+ 'Assets/3.Scripts/Managers/SaveManager.cs',
+ 'Assets/3.Scripts/Managers/ProgressManager.cs',
+ 'Assets/3.Scripts/UIs/Windows/UI_Hero.cs',
+ 'Assets/3.Scripts/UIs/Functions/Information/UI_skillSlotInfo.cs',
+ 'Assets/3.Scripts/Objects/Slots/SkillSlot.cs',
+ 'Assets/Editor/SaveCatalogBuilder.cs',
  'Tools/PassiveTests/UnityStubs.cs',
  'Tools/PassiveTests/ProjectStubs.cs',
  'Tools/PassiveTests/Scenarios.cs',
+ 'Tools/SaveTests/SaveApiStubs.cs',
+ 'Tools/SaveTests/EditorApiStubs.cs',
+ 'Tools/SaveTests/SaveScenarios.cs',
 ]
 with tempfile.TemporaryDirectory(prefix='passive-tests-') as directory:
     out=pathlib.Path(directory)

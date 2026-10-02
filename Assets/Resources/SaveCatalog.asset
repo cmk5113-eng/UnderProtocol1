@@ -1,0 +1,346 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061bddb4f618464abe9b43c83e171858, type: 3}
+  m_Name: SaveCatalog
+  m_EditorClassIdentifier:
+  characters:
+  - id: 077c7cceb560b994c885a95867177c30
+    character: {fileID: 11400000, guid: 077c7cceb560b994c885a95867177c30, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: 2a23f05b5845612498c18af6e3f7bafe, type: 2}
+    - {fileID: 11400000, guid: ce438ea1ee87ba14486ec216fa9db4a4, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: 276c6d2797571624daab119546ec098f, type: 2}
+    - {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+    - {fileID: 11400000, guid: 06a898203e446bd45947f84e2904ddee, type: 2}
+    - {fileID: 11400000, guid: 276c6d2797571624daab119546ec098f, type: 2}
+  - id: 14e9f8d2338f2ba428c37f8f2acb745e
+    character: {fileID: 11400000, guid: 14e9f8d2338f2ba428c37f8f2acb745e, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: 2be11b8fa07228348be1c4365381cd17, type: 2}
+    - {fileID: 11400000, guid: ea90a6239dfdce440a3d71b1d2aed4c8, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: f55430487a3a8a940ad9126d9c427bce, type: 2}
+    - {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+    - {fileID: 11400000, guid: 407f290659caa6e418179abe7e76905d, type: 2}
+    - {fileID: 11400000, guid: 407f290659caa6e418179abe7e76905d, type: 2}
+  - id: 281c98331dcc139448b3c63bc3b5cc06
+    character: {fileID: 11400000, guid: 281c98331dcc139448b3c63bc3b5cc06, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: b5dc7b4457868214b9505da6e958d1fd, type: 2}
+    - {fileID: 11400000, guid: 4bdd9da81f4c121478aba2bf8ae17a44, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: 407f290659caa6e418179abe7e76905d, type: 2}
+    - {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+    - {fileID: 11400000, guid: 9473573f3b36b7d4685c05316afe66f4, type: 2}
+    - {fileID: 11400000, guid: fd3ea51b676b329448a2d75a64accfd7, type: 2}
+  - id: 2b13d240f7978474eb7382129506b13a
+    character: {fileID: 11400000, guid: 2b13d240f7978474eb7382129506b13a, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: a0ea0df228455c1469afb7c25837acc4, type: 2}
+    - {fileID: 11400000, guid: dba2fb7b673bc51469cd0ac29d96ab90, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: a9dede655bfe85046b00e529749feaf2, type: 2}
+    - {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+    - {fileID: 11400000, guid: ed6ac95c692c9724e9d1eb84d145d069, type: 2}
+    - {fileID: 11400000, guid: d3edc8d824ea8cb48a63297069cb6c1b, type: 2}
+  - id: 3a8da795944dd604f9fe556377c4bae3
+    character: {fileID: 11400000, guid: 3a8da795944dd604f9fe556377c4bae3, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: f4f20e8265e125549ba5fb74f07c34c2, type: 2}
+    - {fileID: 11400000, guid: c743b43a1b711714fa5e988ff70b8da8, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: fd3ea51b676b329448a2d75a64accfd7, type: 2}
+    - {fileID: 11400000, guid: e133c2a45ba12fb4b9026164b0c04000, type: 2}
+    - {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+    - {fileID: 11400000, guid: 06a898203e446bd45947f84e2904ddee, type: 2}
+  - id: 4ed0675d87d937d45854174ece57ca1e
+    character: {fileID: 11400000, guid: 4ed0675d87d937d45854174ece57ca1e, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: 1f3f1daa34818c64bbac3bf04eeafbcf, type: 2}
+    - {fileID: 11400000, guid: 39a419ca51711a84684a60bce5e0da10, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+    - {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+    - {fileID: 11400000, guid: ed6ac95c692c9724e9d1eb84d145d069, type: 2}
+    - {fileID: 11400000, guid: a96521eba4e847d42ad0d907a2c1acec, type: 2}
+  - id: 68a7709f1e5ca2445bae80977cfd1b30
+    character: {fileID: 11400000, guid: 68a7709f1e5ca2445bae80977cfd1b30, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: cb9fb01a2df8260408566ed50483476b, type: 2}
+    - {fileID: 11400000, guid: 1f7518cd39ccdf34bbafb271c3e2bb9c, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: fb5ac1ec32440604fa4a0776b893a457, type: 2}
+    - {fileID: 11400000, guid: a96521eba4e847d42ad0d907a2c1acec, type: 2}
+    - {fileID: 11400000, guid: fb5ac1ec32440604fa4a0776b893a457, type: 2}
+    - {fileID: 11400000, guid: 407f290659caa6e418179abe7e76905d, type: 2}
+  - id: 6b5d7a888ec4bf4448631afc45ecf1bf
+    character: {fileID: 11400000, guid: 6b5d7a888ec4bf4448631afc45ecf1bf, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: f98c99f234fabca4ab1b4b96c97ee03f, type: 2}
+    - {fileID: 11400000, guid: 8b20c03f4d9f4cd49abd035f9bd1a28b, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: fb5ac1ec32440604fa4a0776b893a457, type: 2}
+    - {fileID: 11400000, guid: e133c2a45ba12fb4b9026164b0c04000, type: 2}
+    - {fileID: 11400000, guid: 06a898203e446bd45947f84e2904ddee, type: 2}
+    - {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+  - id: 8dbc5e3e1d99c1946b67702134acac19
+    character: {fileID: 11400000, guid: 8dbc5e3e1d99c1946b67702134acac19, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: 83a46f444660dc74593bc257f1cf8c07, type: 2}
+    - {fileID: 11400000, guid: d3c4fbeee68335c44a345e9c089859c7, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+    - {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+    - {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+    - {fileID: 11400000, guid: 9473573f3b36b7d4685c05316afe66f4, type: 2}
+  - id: 953c9d56a58e70b4bb08ed9d275c04a4
+    character: {fileID: 11400000, guid: 953c9d56a58e70b4bb08ed9d275c04a4, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: c743b43a1b711714fa5e988ff70b8da8, type: 2}
+    - {fileID: 11400000, guid: b62231a336a70e74d83f8572e3a7f6b2, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: 700a26d324bc2884a893a45efb0f08b9, type: 2}
+    - {fileID: 11400000, guid: d3edc8d824ea8cb48a63297069cb6c1b, type: 2}
+    - {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+    - {fileID: 11400000, guid: f55430487a3a8a940ad9126d9c427bce, type: 2}
+  - id: ba67f9954e204944ea364d5a04676397
+    character: {fileID: 11400000, guid: ba67f9954e204944ea364d5a04676397, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: a91dc3ea505fd664ea1ccaa4b6eb3a15, type: 2}
+    - {fileID: 11400000, guid: c743b43a1b711714fa5e988ff70b8da8, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: d3edc8d824ea8cb48a63297069cb6c1b, type: 2}
+    - {fileID: 11400000, guid: fb5ac1ec32440604fa4a0776b893a457, type: 2}
+    - {fileID: 11400000, guid: ed6ac95c692c9724e9d1eb84d145d069, type: 2}
+    - {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+  - id: c02f3da5fd6dfdb4ea811710f506ee6e
+    character: {fileID: 11400000, guid: c02f3da5fd6dfdb4ea811710f506ee6e, type: 2}
+    defaultActive:
+    - {fileID: 11400000, guid: 4bdd9da81f4c121478aba2bf8ae17a44, type: 2}
+    - {fileID: 11400000, guid: b5dc7b4457868214b9505da6e958d1fd, type: 2}
+    defaultPassive:
+    - {fileID: 11400000, guid: d3edc8d824ea8cb48a63297069cb6c1b, type: 2}
+    - {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+    - {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+    - {fileID: 11400000, guid: 06a898203e446bd45947f84e2904ddee, type: 2}
+  skills:
+  - id: 014cd8c16ee8e9f49b2a2d8412ad7cc2
+    skill: {fileID: 11400000, guid: 014cd8c16ee8e9f49b2a2d8412ad7cc2, type: 2}
+  - id: 01a03ec98de94b58af32b560aa9c7215
+    skill: {fileID: 11400000, guid: 01a03ec98de94b58af32b560aa9c7215, type: 2}
+  - id: 020e08c96b6f02445963b1bbb5429aa8
+    skill: {fileID: 11400000, guid: 020e08c96b6f02445963b1bbb5429aa8, type: 2}
+  - id: 030843f501648ae4aa638e4d689375e9
+    skill: {fileID: 11400000, guid: 030843f501648ae4aa638e4d689375e9, type: 2}
+  - id: 06045ae764244d3083318b30382d2392
+    skill: {fileID: 11400000, guid: 06045ae764244d3083318b30382d2392, type: 2}
+  - id: 0606fc417e67639498762dafdc3fe1ad
+    skill: {fileID: 11400000, guid: 0606fc417e67639498762dafdc3fe1ad, type: 2}
+  - id: 06a898203e446bd45947f84e2904ddee
+    skill: {fileID: 11400000, guid: 06a898203e446bd45947f84e2904ddee, type: 2}
+  - id: 06cbc6439685fbc459555dc35a7bad63
+    skill: {fileID: 11400000, guid: 06cbc6439685fbc459555dc35a7bad63, type: 2}
+  - id: 0aea5ef13bf971240ae2193f728bd810
+    skill: {fileID: 11400000, guid: 0aea5ef13bf971240ae2193f728bd810, type: 2}
+  - id: 0bec7520eeefdc349a19a91eba46039b
+    skill: {fileID: 11400000, guid: 0bec7520eeefdc349a19a91eba46039b, type: 2}
+  - id: 0d38b2d8a95e3e948947abe4c79d8891
+    skill: {fileID: 11400000, guid: 0d38b2d8a95e3e948947abe4c79d8891, type: 2}
+  - id: 1f3f1daa34818c64bbac3bf04eeafbcf
+    skill: {fileID: 11400000, guid: 1f3f1daa34818c64bbac3bf04eeafbcf, type: 2}
+  - id: 1f7518cd39ccdf34bbafb271c3e2bb9c
+    skill: {fileID: 11400000, guid: 1f7518cd39ccdf34bbafb271c3e2bb9c, type: 2}
+  - id: 22e4249cffa744d4a465985c7a43a5f0
+    skill: {fileID: 11400000, guid: 22e4249cffa744d4a465985c7a43a5f0, type: 2}
+  - id: 276c6d2797571624daab119546ec098f
+    skill: {fileID: 11400000, guid: 276c6d2797571624daab119546ec098f, type: 2}
+  - id: 2a23f05b5845612498c18af6e3f7bafe
+    skill: {fileID: 11400000, guid: 2a23f05b5845612498c18af6e3f7bafe, type: 2}
+  - id: 2be11b8fa07228348be1c4365381cd17
+    skill: {fileID: 11400000, guid: 2be11b8fa07228348be1c4365381cd17, type: 2}
+  - id: 2d9daee7e4d380b48b403021b4291548
+    skill: {fileID: 11400000, guid: 2d9daee7e4d380b48b403021b4291548, type: 2}
+  - id: 2f246cd67f311804fa756bbb9d4c4b95
+    skill: {fileID: 11400000, guid: 2f246cd67f311804fa756bbb9d4c4b95, type: 2}
+  - id: 39412f9089d789e42942ae2c3fc1b1e6
+    skill: {fileID: 11400000, guid: 39412f9089d789e42942ae2c3fc1b1e6, type: 2}
+  - id: 39a419ca51711a84684a60bce5e0da10
+    skill: {fileID: 11400000, guid: 39a419ca51711a84684a60bce5e0da10, type: 2}
+  - id: 3b05b5ffaa8c553429f56eebae38aba3
+    skill: {fileID: 11400000, guid: 3b05b5ffaa8c553429f56eebae38aba3, type: 2}
+  - id: 40533d7b90eb19a4893d383c3c25d01e
+    skill: {fileID: 11400000, guid: 40533d7b90eb19a4893d383c3c25d01e, type: 2}
+  - id: 407f290659caa6e418179abe7e76905d
+    skill: {fileID: 11400000, guid: 407f290659caa6e418179abe7e76905d, type: 2}
+  - id: 42967b33c8c54fccb03b45e8d1f820df
+    skill: {fileID: 11400000, guid: 42967b33c8c54fccb03b45e8d1f820df, type: 2}
+  - id: 42a976151a7a49c087a9b11afc0f2483
+    skill: {fileID: 11400000, guid: 42a976151a7a49c087a9b11afc0f2483, type: 2}
+  - id: 442c27a953059ca47af2b29f76194ab6
+    skill: {fileID: 11400000, guid: 442c27a953059ca47af2b29f76194ab6, type: 2}
+  - id: 48ccf3fcf5d1449887d0a67560b22a6e
+    skill: {fileID: 11400000, guid: 48ccf3fcf5d1449887d0a67560b22a6e, type: 2}
+  - id: 4bdd9da81f4c121478aba2bf8ae17a44
+    skill: {fileID: 11400000, guid: 4bdd9da81f4c121478aba2bf8ae17a44, type: 2}
+  - id: 4e8dc2f81021e574e839fc66dfceb553
+    skill: {fileID: 11400000, guid: 4e8dc2f81021e574e839fc66dfceb553, type: 2}
+  - id: 4f11c00f844f9db49b9790d39cd98c14
+    skill: {fileID: 11400000, guid: 4f11c00f844f9db49b9790d39cd98c14, type: 2}
+  - id: 526f29986e563b7449df98621b38fcc3
+    skill: {fileID: 11400000, guid: 526f29986e563b7449df98621b38fcc3, type: 2}
+  - id: 54a3d6b09dbc68540a545f7b475db1f6
+    skill: {fileID: 11400000, guid: 54a3d6b09dbc68540a545f7b475db1f6, type: 2}
+  - id: 5fa57debd835412a887116e0799f9925
+    skill: {fileID: 11400000, guid: 5fa57debd835412a887116e0799f9925, type: 2}
+  - id: 659f9c8b7cbdd774db92e24920415210
+    skill: {fileID: 11400000, guid: 659f9c8b7cbdd774db92e24920415210, type: 2}
+  - id: 6ff3d4673d91afe41a28ed6535104b25
+    skill: {fileID: 11400000, guid: 6ff3d4673d91afe41a28ed6535104b25, type: 2}
+  - id: 700a26d324bc2884a893a45efb0f08b9
+    skill: {fileID: 11400000, guid: 700a26d324bc2884a893a45efb0f08b9, type: 2}
+  - id: 7023f4303c6045eb98b6ff0b992c5040
+    skill: {fileID: 11400000, guid: 7023f4303c6045eb98b6ff0b992c5040, type: 2}
+  - id: 7196d8eeaa2a0744798c85cdc05c13a9
+    skill: {fileID: 11400000, guid: 7196d8eeaa2a0744798c85cdc05c13a9, type: 2}
+  - id: 7371e271820fb944d88f69d6e82b36c2
+    skill: {fileID: 11400000, guid: 7371e271820fb944d88f69d6e82b36c2, type: 2}
+  - id: 76d385cab2ca13443b481894e7f717ba
+    skill: {fileID: 11400000, guid: 76d385cab2ca13443b481894e7f717ba, type: 2}
+  - id: 76ff06e005c6deb429bd45815dc6b990
+    skill: {fileID: 11400000, guid: 76ff06e005c6deb429bd45815dc6b990, type: 2}
+  - id: 78127b1a3fc949e1b0ac04103b9062cd
+    skill: {fileID: 11400000, guid: 78127b1a3fc949e1b0ac04103b9062cd, type: 2}
+  - id: 78a2b08341666254ba182aa9722e15a4
+    skill: {fileID: 11400000, guid: 78a2b08341666254ba182aa9722e15a4, type: 2}
+  - id: 7aeb0baa8be185f44b2a2103c0269713
+    skill: {fileID: 11400000, guid: 7aeb0baa8be185f44b2a2103c0269713, type: 2}
+  - id: 83a46f444660dc74593bc257f1cf8c07
+    skill: {fileID: 11400000, guid: 83a46f444660dc74593bc257f1cf8c07, type: 2}
+  - id: 85cf61c431b85ff4ab45e3bcdfcd802e
+    skill: {fileID: 11400000, guid: 85cf61c431b85ff4ab45e3bcdfcd802e, type: 2}
+  - id: 87315dcb3c956d34fbadb3880826280c
+    skill: {fileID: 11400000, guid: 87315dcb3c956d34fbadb3880826280c, type: 2}
+  - id: 8b20c03f4d9f4cd49abd035f9bd1a28b
+    skill: {fileID: 11400000, guid: 8b20c03f4d9f4cd49abd035f9bd1a28b, type: 2}
+  - id: 8b658c968a15c9f4daa4a4cfa09da10b
+    skill: {fileID: 11400000, guid: 8b658c968a15c9f4daa4a4cfa09da10b, type: 2}
+  - id: 8c515db3cfb06b54aad9ce8c65ac7a7f
+    skill: {fileID: 11400000, guid: 8c515db3cfb06b54aad9ce8c65ac7a7f, type: 2}
+  - id: 91bfe9ab9041409d9648ee76dc189fe7
+    skill: {fileID: 11400000, guid: 91bfe9ab9041409d9648ee76dc189fe7, type: 2}
+  - id: 9216de3a68f92704a93c1d5426e56e4c
+    skill: {fileID: 11400000, guid: 9216de3a68f92704a93c1d5426e56e4c, type: 2}
+  - id: 9343a8d186271954e9c44ffe66514501
+    skill: {fileID: 11400000, guid: 9343a8d186271954e9c44ffe66514501, type: 2}
+  - id: 9473573f3b36b7d4685c05316afe66f4
+    skill: {fileID: 11400000, guid: 9473573f3b36b7d4685c05316afe66f4, type: 2}
+  - id: 9660ce2e5e18028468f316995fc8981f
+    skill: {fileID: 11400000, guid: 9660ce2e5e18028468f316995fc8981f, type: 2}
+  - id: 96b1a799132f8f3439165d9bc4a8ae0d
+    skill: {fileID: 11400000, guid: 96b1a799132f8f3439165d9bc4a8ae0d, type: 2}
+  - id: 9a406795e37a8164f9dd4a31c787d5ee
+    skill: {fileID: 11400000, guid: 9a406795e37a8164f9dd4a31c787d5ee, type: 2}
+  - id: 9b822d1c81dfa4a4aa4af2dbdc613fd2
+    skill: {fileID: 11400000, guid: 9b822d1c81dfa4a4aa4af2dbdc613fd2, type: 2}
+  - id: 9ea2eca1678747689eec47eca1a8ab67
+    skill: {fileID: 11400000, guid: 9ea2eca1678747689eec47eca1a8ab67, type: 2}
+  - id: a0ea0df228455c1469afb7c25837acc4
+    skill: {fileID: 11400000, guid: a0ea0df228455c1469afb7c25837acc4, type: 2}
+  - id: a1758c92dd2fe8b49ba8ff676e6bd136
+    skill: {fileID: 11400000, guid: a1758c92dd2fe8b49ba8ff676e6bd136, type: 2}
+  - id: a381ce4a26cb7a546a417f9fd72e5de6
+    skill: {fileID: 11400000, guid: a381ce4a26cb7a546a417f9fd72e5de6, type: 2}
+  - id: a789e2614bf7eec4bb71686a5e1ae52f
+    skill: {fileID: 11400000, guid: a789e2614bf7eec4bb71686a5e1ae52f, type: 2}
+  - id: a91dc3ea505fd664ea1ccaa4b6eb3a15
+    skill: {fileID: 11400000, guid: a91dc3ea505fd664ea1ccaa4b6eb3a15, type: 2}
+  - id: a96521eba4e847d42ad0d907a2c1acec
+    skill: {fileID: 11400000, guid: a96521eba4e847d42ad0d907a2c1acec, type: 2}
+  - id: a9dede655bfe85046b00e529749feaf2
+    skill: {fileID: 11400000, guid: a9dede655bfe85046b00e529749feaf2, type: 2}
+  - id: b586247cea548224d8532ec734f8b1ad
+    skill: {fileID: 11400000, guid: b586247cea548224d8532ec734f8b1ad, type: 2}
+  - id: b5dc7b4457868214b9505da6e958d1fd
+    skill: {fileID: 11400000, guid: b5dc7b4457868214b9505da6e958d1fd, type: 2}
+  - id: b61a6309d775ab446b2f21480417c4d5
+    skill: {fileID: 11400000, guid: b61a6309d775ab446b2f21480417c4d5, type: 2}
+  - id: b62231a336a70e74d83f8572e3a7f6b2
+    skill: {fileID: 11400000, guid: b62231a336a70e74d83f8572e3a7f6b2, type: 2}
+  - id: c1b884ffc6d101b4c9d71c41abfa5306
+    skill: {fileID: 11400000, guid: c1b884ffc6d101b4c9d71c41abfa5306, type: 2}
+  - id: c331f132246769a489748314317b63e6
+    skill: {fileID: 11400000, guid: c331f132246769a489748314317b63e6, type: 2}
+  - id: c6702b1f6a96f544cbca04bc9fe40bbe
+    skill: {fileID: 11400000, guid: c6702b1f6a96f544cbca04bc9fe40bbe, type: 2}
+  - id: c683764d1ba301f4f9e60bac5a760c90
+    skill: {fileID: 11400000, guid: c683764d1ba301f4f9e60bac5a760c90, type: 2}
+  - id: c6d7e3e49822f9145970915d1dfd290b
+    skill: {fileID: 11400000, guid: c6d7e3e49822f9145970915d1dfd290b, type: 2}
+  - id: c743b43a1b711714fa5e988ff70b8da8
+    skill: {fileID: 11400000, guid: c743b43a1b711714fa5e988ff70b8da8, type: 2}
+  - id: cb9fb01a2df8260408566ed50483476b
+    skill: {fileID: 11400000, guid: cb9fb01a2df8260408566ed50483476b, type: 2}
+  - id: ce438ea1ee87ba14486ec216fa9db4a4
+    skill: {fileID: 11400000, guid: ce438ea1ee87ba14486ec216fa9db4a4, type: 2}
+  - id: cf3315f386030df43bb49c90e1dbb5c7
+    skill: {fileID: 11400000, guid: cf3315f386030df43bb49c90e1dbb5c7, type: 2}
+  - id: d20a8992abf79664faaa9889bbd80143
+    skill: {fileID: 11400000, guid: d20a8992abf79664faaa9889bbd80143, type: 2}
+  - id: d3c4fbeee68335c44a345e9c089859c7
+    skill: {fileID: 11400000, guid: d3c4fbeee68335c44a345e9c089859c7, type: 2}
+  - id: d3edc8d824ea8cb48a63297069cb6c1b
+    skill: {fileID: 11400000, guid: d3edc8d824ea8cb48a63297069cb6c1b, type: 2}
+  - id: d6c49186d3543ce4ab7334ab4b3aa0ad
+    skill: {fileID: 11400000, guid: d6c49186d3543ce4ab7334ab4b3aa0ad, type: 2}
+  - id: db407393af7900b4baebd5d202420253
+    skill: {fileID: 11400000, guid: db407393af7900b4baebd5d202420253, type: 2}
+  - id: dba2fb7b673bc51469cd0ac29d96ab90
+    skill: {fileID: 11400000, guid: dba2fb7b673bc51469cd0ac29d96ab90, type: 2}
+  - id: ddc03ba811aa57e48a10fb1db5dfe626
+    skill: {fileID: 11400000, guid: ddc03ba811aa57e48a10fb1db5dfe626, type: 2}
+  - id: e133c2a45ba12fb4b9026164b0c04000
+    skill: {fileID: 11400000, guid: e133c2a45ba12fb4b9026164b0c04000, type: 2}
+  - id: e1a795eeca77b514e935a36ab9df9e79
+    skill: {fileID: 11400000, guid: e1a795eeca77b514e935a36ab9df9e79, type: 2}
+  - id: e1aa7293cc768fe4aaf7fdb4c2594b20
+    skill: {fileID: 11400000, guid: e1aa7293cc768fe4aaf7fdb4c2594b20, type: 2}
+  - id: e476821bc6cf40e8afe4572d52a55d5d
+    skill: {fileID: 11400000, guid: e476821bc6cf40e8afe4572d52a55d5d, type: 2}
+  - id: ea90a6239dfdce440a3d71b1d2aed4c8
+    skill: {fileID: 11400000, guid: ea90a6239dfdce440a3d71b1d2aed4c8, type: 2}
+  - id: ed274a4bbf5bdea468f000a334f2c9d8
+    skill: {fileID: 11400000, guid: ed274a4bbf5bdea468f000a334f2c9d8, type: 2}
+  - id: ed6ac95c692c9724e9d1eb84d145d069
+    skill: {fileID: 11400000, guid: ed6ac95c692c9724e9d1eb84d145d069, type: 2}
+  - id: eea4179475bcbed46bc7fb284e025e58
+    skill: {fileID: 11400000, guid: eea4179475bcbed46bc7fb284e025e58, type: 2}
+  - id: f06df474fb39e9d47a6e9417745b3cd8
+    skill: {fileID: 11400000, guid: f06df474fb39e9d47a6e9417745b3cd8, type: 2}
+  - id: f38d3f58278889b4d81a0f70fb2f2f28
+    skill: {fileID: 11400000, guid: f38d3f58278889b4d81a0f70fb2f2f28, type: 2}
+  - id: f4f20e8265e125549ba5fb74f07c34c2
+    skill: {fileID: 11400000, guid: f4f20e8265e125549ba5fb74f07c34c2, type: 2}
+  - id: f55430487a3a8a940ad9126d9c427bce
+    skill: {fileID: 11400000, guid: f55430487a3a8a940ad9126d9c427bce, type: 2}
+  - id: f98c99f234fabca4ab1b4b96c97ee03f
+    skill: {fileID: 11400000, guid: f98c99f234fabca4ab1b4b96c97ee03f, type: 2}
+  - id: fa10ad874abd74f4eb3f1f1430dfe3d2
+    skill: {fileID: 11400000, guid: fa10ad874abd74f4eb3f1f1430dfe3d2, type: 2}
+  - id: fa30d06479b666b46bd09bdca87967fa
+    skill: {fileID: 11400000, guid: fa30d06479b666b46bd09bdca87967fa, type: 2}
+  - id: fb5ac1ec32440604fa4a0776b893a457
+    skill: {fileID: 11400000, guid: fb5ac1ec32440604fa4a0776b893a457, type: 2}
+  - id: fd3ea51b676b329448a2d75a64accfd7
+    skill: {fileID: 11400000, guid: fd3ea51b676b329448a2d75a64accfd7, type: 2}
+  - id: ffe50157c805dc842b14cc6745b280f1
+    skill: {fileID: 11400000, guid: ffe50157c805dc842b14cc6745b280f1, type: 2}
