@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e7c1d98c8b4c54aa70c02026b24c11, type: 3}
+  m_Name: Example Stage Map Data
+  m_EditorClassIdentifier: Assembly-CSharp::StageMapData
+  fieldEffects:
+  - position: {x: 0, y: -14, z: 0}
+    effectType: 1
+    value: 1
+    duration: 3
+  - position: {x: 1, y: -14, z: 0}
+    effectType: 1
+    value: 1
+    duration: 3
+  - position: {x: 2, y: -14, z: 0}
+    effectType: 1
+    value: 1
+    duration: 3
+  - position: {x: 0, y: -15, z: 0}
+    effectType: 3
+    value: 1
+    duration: 2
+  - position: {x: 2, y: -15, z: 0}
+    effectType: 3
+    value: 1
+    duration: 2
+  obstacles:
+  - prefab: {fileID: 100100000, guid: 8d628d526e7f5fe4fbcb4d0ce8671d86, type: 3}
+    position: {x: 0, y: -16, z: 0}
+    rotationQuarterTurns: 0
+  - prefab: {fileID: 100100000, guid: 8d628d526e7f5fe4fbcb4d0ce8671d86, type: 3}
+    position: {x: 2, y: -16, z: 0}
+    rotationQuarterTurns: 0
