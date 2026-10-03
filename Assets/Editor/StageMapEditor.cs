@@ -107,16 +107,15 @@ public class StageMapEditor : EditorWindow
             return;
         }
 
-        int stageCount = manager.StageWaveIndex != null ? manager.StageWaveIndex.Count : 0;
-        if (stageCount == 0)
-        {
-            EditorGUILayout.HelpBox("WaveManager의 StageWaveIndex가 아직 초기화되지 않았습니다. Play Mode가 아니라면 WaveManager Inspector의 stage1Waves~stage5Waves를 직접 읽도록 에디터를 보완해야 합니다.", MessageType.Warning);
-            return;
-        }
+        SerializedObject managerSO = new SerializedObject(manager);
+        string[] stageProperties = { "stage1Waves", "stage2Waves", "stage3Waves", "stage4Waves", "stage5Waves" };
+        stageIndex = EditorGUILayout.IntSlider("Stage Index", stageIndex, 0, stageProperties.Length - 1);
+        SerializedProperty waveArray = managerSO.FindProperty(stageProperties[stageIndex]);
+        if (waveArray == null) return;
 
-        stageIndex = EditorGUILayout.IntSlider("Stage Index", stageIndex, 0, stageCount - 1);
-        WaveData[] waves = manager.GetStageWaves(stageIndex);
-        if (waves == null) return;
+        WaveData[] waves = new WaveData[waveArray.arraySize];
+        for (int i = 0; i < waveArray.arraySize; i++)
+            waves[i] = waveArray.GetArrayElementAtIndex(i).objectReferenceValue as WaveData;
 
         selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waves.Length - 1));
         for (int i = 0; i < waves.Length; i++)
@@ -130,7 +129,8 @@ public class StageMapEditor : EditorWindow
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(manager, "Change Existing Stage Wave");
-                manager.SetStageWave(stageIndex, i, changed);
+                waveArray.GetArrayElementAtIndex(i).objectReferenceValue = changed;
+                managerSO.ApplyModifiedProperties();
                 EditorUtility.SetDirty(manager);
             }
             EditorGUILayout.EndHorizontal();
