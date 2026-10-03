@@ -11,14 +11,6 @@ public class StageMapLoader : MonoBehaviour
     private readonly List<GameObject> spawnedObstacles = new List<GameObject>();
 
     public StageMapData MapData => mapData;
-    public IReadOnlyList<WaveData> Waves => mapData != null ? mapData.waves : null;
-
-    public WaveData[] GetWaves()
-    {
-        if (mapData == null || mapData.waves == null) return new WaveData[0];
-        return mapData.waves.FindAll(wave => wave != null).ToArray();
-    }
-
     public void LoadMapData()
     {
         ClearRuntimeObjects();
