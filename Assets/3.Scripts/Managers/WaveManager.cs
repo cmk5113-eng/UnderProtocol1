@@ -32,6 +32,20 @@ public class WaveManager : ManagerBase
     {
     }
 
+    public WaveData[] GetStageWaves(int stageIndex)
+    {
+        if (stageIndex < 0 || stageIndex >= StageWaveIndex.Count) return null;
+        return StageWaveIndex[stageIndex];
+    }
+
+    public bool SetStageWave(int stageIndex, int waveIndex, WaveData waveData)
+    {
+        WaveData[] waves = GetStageWaves(stageIndex);
+        if (waves == null || waveIndex < 0 || waveIndex >= waves.Length) return false;
+        waves[waveIndex] = waveData;
+        return true;
+    }
+
     public void SetWave(WaveData waveData)
     {
         currentWave = waveData;
