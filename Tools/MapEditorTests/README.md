@@ -23,7 +23,7 @@
 python Tools/MapEditorTests/run_tests.py
 ```
 
-.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter 소스를 API double과 함께 C# 9로 컴파일합니다. 18개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 진행도/클리어 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다.
+.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter 소스를 API double과 함께 C# 9로 컴파일합니다. 19개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 새 컴포넌트 버전 표시, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 진행도/클리어 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다.
 
 이 검증은 Unity의 실제 렌더링, 임포트, Undo 엔진, 에셋/프리팹/Scene 직렬화 또는 Play Mode 테스트를 대신하지 않습니다.
 

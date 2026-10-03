@@ -40,6 +40,15 @@ public class WaveManager : ManagerBase
     public int currentWaveIndex = 0;
     public WaveData currentWave;
 
+    private void Reset()
+    {
+        // 새 컴포넌트는 이관 대상이 아니다. 저장 시 null 배열이 빈 배열로
+        // 정규화되더라도 이전 다섯 Stage로 오인하지 않도록 버전을 기록한다.
+        stages = new List<StageWaveData>();
+        stageDataMigrated = true;
+        stage1Waves = stage2Waves = stage3Waves = stage4Waves = stage5Waves = null;
+    }
+
 
     protected override IEnumerator OnConnected(GameManager newManager)
     {

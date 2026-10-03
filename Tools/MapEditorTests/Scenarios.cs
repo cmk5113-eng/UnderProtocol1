@@ -263,6 +263,15 @@ internal static class Scenarios
         Check(f.manager.currentWave == wave && MonsterBase._monsters.Count == 1, "Stage Index 29 did not load the authored wave");
     }
 
+    private static void NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization()
+    {
+        NewFixture(); var fresh = new GameObject("reset manager").AddComponent<WaveManager>();
+        Call(fresh, "Reset");
+        for (int i = 1; i <= 5; i++) Set(fresh, "stage" + i + "Waves", Array.Empty<WaveData>());
+        Check(fresh.StageCount == 0 && !fresh.NeedsStageMigration, "new component's empty legacy fields created five stages");
+        StageWaveEditorUtility.AddStage(fresh); Check(fresh.StageCount == 1, "new component could not author stages after reset");
+    }
+
     private static void StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo()
     {
         Fixture f = NewFixture(); var middle = new WaveData(); var later = new WaveData();
@@ -310,6 +319,7 @@ internal static class Scenarios
             SaveTargetsSelectedAssetAndRejectsInvalidSpawns, NewWaveCreationAndCancellation, WaveListSaveIncludesBindingScene,
             PaintedWaveLoadsThroughRealWaveLoader, GridCoordinatesAndDragPainting, SwitchingTilemapsResolvesNewStageAndPalette, PlayModeGuardsAndPaintUndo,
             LegacyMigrationPreservesAllFiveStagesAndStaysEmptyAfterDeletion, ThirtyStagesCanBeAuthoredAndLoaded,
+            NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization,
             StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo, DetachedStagesRejectBattleEntryAndCanBeReconnected,
             DynamicStageEditingGuardsInvalidIndexesAndPlayMode };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
