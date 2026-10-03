@@ -12,5 +12,5 @@ public class MonsterSpawnData
 [CreateAssetMenu(menuName = "Game/Wave Data")]
 public class WaveData : ScriptableObject
 {
-    public List<MonsterSpawnData> monsters;
+    public List<MonsterSpawnData> monsters = new List<MonsterSpawnData>();
 }

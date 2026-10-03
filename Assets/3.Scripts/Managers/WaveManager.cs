@@ -34,8 +34,16 @@ public class WaveManager : ManagerBase
 
     public WaveData[] GetStageWaves(int stageIndex)
     {
-        if (stageIndex < 0 || stageIndex >= StageWaveIndex.Count) return null;
-        return StageWaveIndex[stageIndex];
+        // OnConnected는 Play Mode에서 실행된다. 에디터도 저장된 배열을 바로 읽는다.
+        switch (stageIndex)
+        {
+            case 0: return stage1Waves;
+            case 1: return stage2Waves;
+            case 2: return stage3Waves;
+            case 3: return stage4Waves;
+            case 4: return stage5Waves;
+            default: return null;
+        }
     }
 
     public bool SetStageWave(int stageIndex, int waveIndex, WaveData waveData)

@@ -1,17 +1,19 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class StageMapEditor : EditorWindow
+public partial class StageMapEditor : EditorWindow
 {
     private enum EditMode { Monster, Obstacle, FieldEffect, Erase }
+    private static readonly string[] StageWaveProperties = { "stage1Waves", "stage2Waves", "stage3Waves", "stage4Waves", "stage5Waves" };
 
-    private StageMapData stageMapData;
-    private Tilemap tilemap;
-    private int selectedWaveIndex;
-    private int monsterId;
+    [SerializeField] private StageMapData stageMapData;
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private int selectedWaveIndex;
+    private bool scenePaintingEnabled;
     private GameObject obstaclePrefab;
     private int obstacleRotation;
     private bool obstacleBlocksMovement = true;
@@ -50,18 +52,53 @@ public class StageMapEditor : EditorWindow
     [MenuItem("Tools/Stage Map Editor")]
     public static void Open() => GetWindow<StageMapEditor>("Stage Map Editor");
 
-    private void OnEnable() => SceneView.duringSceneGui += OnSceneGUI;
-    private void OnDisable() => SceneView.duringSceneGui -= OnSceneGUI;
+    private void OnEnable()
+    {
+        minSize = new Vector2(430, 500);
+        SceneView.duringSceneGui += OnSceneGUI;
+        Undo.undoRedoPerformed += RefreshViews;
+    }
+
+    private void OnDisable()
+    {
+        EndPaintStroke();
+        SceneView.duringSceneGui -= OnSceneGUI;
+        Undo.undoRedoPerformed -= RefreshViews;
+    }
+
+    private void RefreshViews()
+    {
+        Repaint();
+        SceneView.RepaintAll();
+    }
 
     private void OnGUI()
     {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            EditorGUILayout.HelpBox("몬스터 배치와 웨이브 목록은 Play Mode를 종료한 뒤 편집하세요.", MessageType.Info);
+        using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode)) DrawEditorGUI();
+    }
+
+    private void DrawEditorGUI()
+    {
         scroll = EditorGUILayout.BeginScrollView(scroll);
         EditorGUILayout.LabelField("Stage Map Editor", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("Tilemap을 중심으로 이 맵에서 사용할 웨이브/장애물/필드 이펙트를 편집합니다. Scene View 좌클릭 배치, 우클릭 삭제.", MessageType.Info);
+        EditorGUILayout.HelpBox("Tilemap과 Wave를 선택한 뒤 몬스터를 아래 타일판에 찍으세요. 좌클릭/드래그 배치, 우클릭/드래그 삭제. WaveData와 웨이브 목록(Scene)은 각각 저장합니다.", MessageType.Info);
 
         EditorGUI.BeginChangeCheck();
         tilemap = (Tilemap)EditorGUILayout.ObjectField("Tilemap", tilemap, typeof(Tilemap), true);
         if (EditorGUI.EndChangeCheck()) TryAutoFindStageMapData();
+
+        if (GUILayout.Button("Hierarchy에서 선택한 Tilemap 가져오기") && Selection.activeGameObject != null)
+        {
+            Tilemap selected = Selection.activeGameObject.GetComponent<Tilemap>()
+                ?? Selection.activeGameObject.GetComponentInChildren<Tilemap>(true);
+            if (selected != null)
+            {
+                tilemap = selected;
+                TryAutoFindStageMapData();
+            }
+        }
 
         stageMapData = (StageMapData)EditorGUILayout.ObjectField("Stage Map Data", stageMapData, typeof(StageMapData), false);
 
@@ -70,6 +107,7 @@ public class StageMapEditor : EditorWindow
 
         EditorGUILayout.Space();
         mode = (EditMode)GUILayout.Toolbar((int)mode, new[] { "Monster", "Obstacle", "Field Effect", "Erase" });
+        scenePaintingEnabled = EditorGUILayout.Toggle("Scene View에서도 배치", scenePaintingEnabled);
         EditorGUILayout.Space();
 
         switch (mode)
@@ -121,10 +159,9 @@ public class StageMapEditor : EditorWindow
             EditorGUILayout.HelpBox("이 Tilemap에는 아직 StageMapBinding이 없습니다. 아래 버튼으로 연결 정보를 만든 뒤 Stage Index를 지정하세요.", MessageType.Warning);
             if (GUILayout.Button("이 Tilemap에 Stage Binding 추가"))
             {
-                GameObject target = tilemap.transform.parent != null ? tilemap.transform.parent.gameObject : tilemap.gameObject;
-                binding = Undo.AddComponent<StageMapBinding>(target);
+                binding = Undo.AddComponent<StageMapBinding>(tilemap.gameObject);
                 binding.EditorSetTilemap(tilemap);
-                EditorUtility.SetDirty(binding);
+                MarkSceneObjectDirty(binding);
             }
             return;
         }
@@ -136,48 +173,155 @@ public class StageMapEditor : EditorWindow
         EditorGUILayout.PropertyField(mapDataProp, new GUIContent("Stage Map Data"));
         if (bindingSO.ApplyModifiedProperties())
         {
-            EditorUtility.SetDirty(binding);
+            MarkSceneObjectDirty(binding);
             stageMapData = binding.MapData;
+            RefreshViews();
         }
 
         if (binding.MapData != null) stageMapData = binding.MapData;
-        int stageIndex = Mathf.Max(0, binding.StageIndex);
+        int stageIndex = binding.StageIndex;
 
         SerializedObject managerSO = new SerializedObject(manager);
-        string[] stageProperties = { "stage1Waves", "stage2Waves", "stage3Waves", "stage4Waves", "stage5Waves" };
-        if (stageIndex >= stageProperties.Length)
+        if (stageIndex < 0 || stageIndex >= StageWaveProperties.Length)
         {
-            EditorGUILayout.HelpBox($"Stage Index {stageIndex}에 대응하는 WaveManager 배열이 없습니다.", MessageType.Error);
+            EditorGUILayout.HelpBox("Stage Index는 0~4입니다. 0 = Stage 1, 1 = Stage 2 ... 4 = Stage 5.", MessageType.Error);
             return;
         }
 
-        SerializedProperty waveArray = managerSO.FindProperty(stageProperties[stageIndex]);
+        SerializedProperty waveArray = managerSO.FindProperty(StageWaveProperties[stageIndex]);
         if (waveArray == null) return;
 
-        WaveData[] waves = new WaveData[waveArray.arraySize];
-        for (int i = 0; i < waveArray.arraySize; i++)
-            waves[i] = waveArray.GetArrayElementAtIndex(i).objectReferenceValue as WaveData;
-
-        selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waves.Length - 1));
+        selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waveArray.arraySize - 1));
         EditorGUILayout.LabelField($"연결: {tilemap.name} → Stage {stageIndex + 1}", EditorStyles.miniBoldLabel);
+        EditorGUILayout.LabelField($"총 {waveArray.arraySize} Waves · 위에서 아래 순서로 실행");
 
-        for (int i = 0; i < waves.Length; i++)
+        for (int i = 0; i < waveArray.arraySize; i++)
         {
+            bool listChanged = false;
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Toggle(selectedWaveIndex == i, $"Wave {i + 1}", "Button", GUILayout.Width(75)))
+            {
+                if (selectedWaveIndex != i) RefreshViews();
                 selectedWaveIndex = i;
+            }
 
             EditorGUI.BeginChangeCheck();
-            WaveData changed = (WaveData)EditorGUILayout.ObjectField(waves[i], typeof(WaveData), false);
+            WaveData changed = (WaveData)EditorGUILayout.ObjectField(waveArray.GetArrayElementAtIndex(i).objectReferenceValue, typeof(WaveData), false);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(manager, "Change Existing Stage Wave");
                 waveArray.GetArrayElementAtIndex(i).objectReferenceValue = changed;
-                managerSO.ApplyModifiedProperties();
-                EditorUtility.SetDirty(manager);
+                ApplyWaveListChanges(managerSO);
             }
+            using (new EditorGUI.DisabledScope(i == 0))
+                if (GUILayout.Button("↑", GUILayout.Width(25))) { MoveWaveSlot(i, i - 1); listChanged = true; }
+            using (new EditorGUI.DisabledScope(i == waveArray.arraySize - 1))
+                if (GUILayout.Button("↓", GUILayout.Width(25))) { MoveWaveSlot(i, i + 1); listChanged = true; }
+            if (GUILayout.Button("−", GUILayout.Width(25))) { RemoveWaveSlot(i); listChanged = true; }
             EditorGUILayout.EndHorizontal();
+            if (listChanged) GUIUtility.ExitGUI();
         }
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("빈 Wave 슬롯 추가")) { AddWaveSlot(null); GUIUtility.ExitGUI(); }
+        if (GUILayout.Button("새 WaveData 추가")) { CreateWaveAsset(-1); GUIUtility.ExitGUI(); }
+        EditorGUILayout.EndHorizontal();
+        if (GUILayout.Button("웨이브 목록 저장 (Scene)")) SaveWaveList();
+        EditorGUILayout.HelpBox("WaveData 칸에 기존 에셋을 넣으면 불러옵니다. ↑/↓ 순서 변경, − 목록에서 제거(에셋은 유지). 빈 슬롯은 전투 진입 전에 채워주세요.", MessageType.Info);
+    }
+
+    private SerializedProperty GetWaveArray(SerializedObject managerSO)
+    {
+        StageMapBinding binding = CurrentBinding;
+        return binding != null && binding.StageIndex >= 0 && binding.StageIndex < StageWaveProperties.Length
+            ? managerSO.FindProperty(StageWaveProperties[binding.StageIndex]) : null;
+    }
+
+    private void ApplyWaveListChanges(SerializedObject managerSO)
+    {
+        if (managerSO.ApplyModifiedProperties()) MarkSceneObjectDirty((Component)managerSO.targetObject);
+        RefreshViews();
+    }
+
+    private void AddWaveSlot(WaveData wave)
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null) return;
+        SerializedObject so = new SerializedObject(manager);
+        SerializedProperty array = GetWaveArray(so);
+        if (array == null) return;
+        selectedWaveIndex = array.arraySize;
+        array.arraySize++;
+        // Unity는 배열을 늘리면 마지막 참조를 복사하므로 새 슬롯을 명시적으로 설정한다.
+        array.GetArrayElementAtIndex(selectedWaveIndex).objectReferenceValue = wave;
+        ApplyWaveListChanges(so);
+    }
+
+    private void RemoveWaveSlot(int index)
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null) return;
+        SerializedObject so = new SerializedObject(manager);
+        SerializedProperty array = GetWaveArray(so);
+        if (array == null || index < 0 || index >= array.arraySize) return;
+        array.GetArrayElementAtIndex(index).objectReferenceValue = null;
+        array.DeleteArrayElementAtIndex(index);
+        if (selectedWaveIndex > index) selectedWaveIndex--;
+        selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, array.arraySize - 1));
+        ApplyWaveListChanges(so);
+    }
+
+    private void MoveWaveSlot(int from, int to)
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null) return;
+        SerializedObject so = new SerializedObject(manager);
+        SerializedProperty array = GetWaveArray(so);
+        if (array == null || from < 0 || to < 0 || from >= array.arraySize || to >= array.arraySize) return;
+        array.MoveArrayElement(from, to);
+        if (selectedWaveIndex == from) selectedWaveIndex = to;
+        else if (from < selectedWaveIndex && to >= selectedWaveIndex) selectedWaveIndex--;
+        else if (from > selectedWaveIndex && to <= selectedWaveIndex) selectedWaveIndex++;
+        ApplyWaveListChanges(so);
+    }
+
+    private void CreateWaveAsset(int slot)
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null || CurrentBinding == null) return;
+        SerializedObject so = new SerializedObject(manager);
+        SerializedProperty array = GetWaveArray(so);
+        if (array == null || slot >= array.arraySize) return;
+        string path = EditorUtility.SaveFilePanelInProject("WaveData 만들기", $"Stage{CurrentBinding.StageIndex + 1}_Wave{(slot < 0 ? array.arraySize : slot) + 1}", "asset", "몬스터 배치를 저장할 WaveData 경로를 선택하세요.");
+        if (string.IsNullOrEmpty(path)) return;
+        WaveData wave = CreateInstance<WaveData>();
+        AssetDatabase.CreateAsset(wave, path);
+        if (slot < 0) AddWaveSlot(wave);
+        else
+        {
+            array.GetArrayElementAtIndex(slot).objectReferenceValue = wave;
+            selectedWaveIndex = slot;
+            ApplyWaveListChanges(so);
+        }
+        AssetDatabase.SaveAssetIfDirty(wave);
+        EditorGUIUtility.PingObject(wave);
+    }
+
+    private static void MarkSceneObjectDirty(Component component)
+    {
+        EditorUtility.SetDirty(component);
+        PrefabUtility.RecordPrefabInstancePropertyModifications(component);
+        if (component.gameObject.scene.IsValid()) EditorSceneManager.MarkSceneDirty(component.gameObject.scene);
+    }
+
+    private void SaveWaveList()
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null) return;
+        var scene = manager.gameObject.scene;
+        if (!scene.IsValid() || !EditorSceneManager.SaveScene(scene)) return;
+        StageMapBinding binding = CurrentBinding;
+        if (binding != null && binding.gameObject.scene != scene && !EditorSceneManager.SaveScene(binding.gameObject.scene)) return;
+        ShowNotification(new GUIContent("웨이브 목록과 Stage Binding 저장 완료"));
     }
 
     private StageMapBinding FindBinding(Tilemap target)
@@ -190,23 +334,6 @@ public class StageMapEditor : EditorWindow
         foreach (StageMapBinding candidate in Object.FindObjectsByType<StageMapBinding>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             if (candidate.TargetTilemap == target) return candidate;
         return null;
-    }
-
-    private void DrawMonsterSettings()
-    {
-        WaveData wave = CurrentWave;
-        EditorGUILayout.LabelField($"현재 Wave: {(wave != null ? (selectedWaveIndex + 1).ToString() : "없음")}");
-        if (wave == null)
-        {
-            EditorGUILayout.HelpBox("위 Wave 목록에서 편집할 WaveData를 선택하세요.", MessageType.Warning);
-            return;
-        }
-        monsterId = EditorGUILayout.IntField("Monster ID", monsterId);
-
-        SerializedObject so = new SerializedObject(wave);
-        SerializedProperty monsters = so.FindProperty("monsters");
-        EditorGUILayout.PropertyField(monsters, new GUIContent("현재 Wave 몬스터"), true);
-        if (so.ApplyModifiedProperties()) EditorUtility.SetDirty(wave);
     }
 
     private void DrawObstacleSettings()
@@ -240,8 +367,13 @@ public class StageMapEditor : EditorWindow
 
     private void TryAutoFindStageMapData()
     {
-        if (tilemap == null) return;
         selectedWaveIndex = 0;
+        selectedMonster = null;
+        gridScroll = Vector2.zero;
+        stageMapData = null;
+        RefreshViews();
+        if (tilemap == null) return;
+        gridLayer = tilemap.cellBounds.zMin;
         StageMapBinding binding = FindBinding(tilemap);
         if (binding != null && binding.MapData != null)
         {
@@ -268,40 +400,46 @@ public class StageMapEditor : EditorWindow
     {
         if (tilemap == null) return;
         DrawPreview();
+        if (!scenePaintingEnabled || EditorApplication.isPlayingOrWillChangePlaymode) return;
 
         Event e = Event.current;
+        int control = GUIUtility.GetControlID(FocusType.Passive);
+        if (e != null && e.type == EventType.Layout) HandleUtility.AddDefaultControl(control);
         if (e == null || e.alt || e.type != EventType.MouseDown || (e.button != 0 && e.button != 1)) return;
+        if (HandleUtility.nearestControl != control) return;
 
         Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
-        Plane plane = new Plane(tilemap.transform.forward, tilemap.transform.position);
+        Plane plane = new Plane(tilemap.transform.forward, tilemap.GetCellCenterWorld(new Vector3Int(0, 0, gridLayer)));
         if (!plane.Raycast(ray, out float distance)) return;
 
         Vector3Int cell = tilemap.WorldToCell(ray.GetPoint(distance));
+        cell.z = gridLayer;
         if (!tilemap.HasTile(cell)) return;
 
-        if (e.button == 1 || mode == EditMode.Erase) EraseCell(cell);
-        else PaintCell(cell);
-
-        e.Use();
-        Repaint();
-        SceneView.RepaintAll();
+        bool changed = e.button == 1 || mode == EditMode.Erase ? EraseCell(cell) : PaintCell(cell);
+        if (changed) e.Use();
+        RefreshViews();
     }
 
-    private void PaintCell(Vector3Int cell)
+    private bool PaintCell(Vector3Int cell)
     {
+        if (EditorApplication.isPlayingOrWillChangePlaymode || tilemap == null || !tilemap.HasTile(cell)) return false;
         if (mode == EditMode.Monster)
         {
             WaveData wave = CurrentWave;
-            if (wave == null) return;
+            RefreshMonsterPalette();
+            if (wave == null || GetMonsterProblem(selectedMonster) != null) return false;
+            if (wave.monsters != null && wave.monsters.FindAll(x => x != null && x.position == cell).Count == 1
+                && wave.monsters.Exists(x => x != null && x.position == cell && x.monsterID == selectedMonster.id)) return false;
             Undo.RecordObject(wave, "Place Stage Monster");
             if (wave.monsters == null) wave.monsters = new List<MonsterSpawnData>();
             wave.monsters.RemoveAll(x => x != null && x.position == cell);
-            wave.monsters.Add(new MonsterSpawnData { monsterID = monsterId, position = cell });
+            wave.monsters.Add(new MonsterSpawnData { monsterID = selectedMonster.id, position = cell });
             EditorUtility.SetDirty(wave);
         }
         else if (mode == EditMode.Obstacle)
         {
-            if (stageMapData == null || obstaclePrefab == null) return;
+            if (stageMapData == null || obstaclePrefab == null) return false;
             Undo.RecordObject(stageMapData, "Place Stage Obstacle");
             if (stageMapData.obstacles == null) stageMapData.obstacles = new List<ObstacleSpawnData>();
             stageMapData.obstacles.RemoveAll(x => x != null && x.position == cell);
@@ -313,7 +451,7 @@ public class StageMapEditor : EditorWindow
         }
         else if (mode == EditMode.FieldEffect)
         {
-            if (stageMapData == null) return;
+            if (stageMapData == null) return false;
             Undo.RecordObject(stageMapData, "Paint Stage Field Effect");
             if (stageMapData.fieldEffects == null) stageMapData.fieldEffects = new List<FieldEffectSpawnData>();
             stageMapData.fieldEffects.RemoveAll(x => x != null && x.position == cell);
@@ -322,22 +460,37 @@ public class StageMapEditor : EditorWindow
             });
             EditorUtility.SetDirty(stageMapData);
         }
+        else return false;
+        return true;
     }
 
-    private void EraseCell(Vector3Int cell)
+    private bool EraseCell(Vector3Int cell)
     {
+        if (EditorApplication.isPlayingOrWillChangePlaymode || tilemap == null || !tilemap.HasTile(cell)) return false;
+        bool changed = false;
         WaveData wave = CurrentWave;
-        if (wave != null && wave.monsters != null)
+        if ((mode == EditMode.Monster || mode == EditMode.Erase) && wave != null && wave.monsters != null
+            && wave.monsters.Exists(x => x != null && x.position == cell))
         {
             Undo.RecordObject(wave, "Erase Stage Monster");
-            if (wave.monsters.RemoveAll(x => x != null && x.position == cell) > 0) EditorUtility.SetDirty(wave);
+            wave.monsters.RemoveAll(x => x != null && x.position == cell);
+            EditorUtility.SetDirty(wave);
+            changed = true;
         }
-        if (stageMapData == null) return;
-        Undo.RecordObject(stageMapData, "Erase Stage Map Data");
-        bool changed = false;
-        if (stageMapData.obstacles != null) changed |= stageMapData.obstacles.RemoveAll(x => x != null && x.position == cell) > 0;
-        if (stageMapData.fieldEffects != null) changed |= stageMapData.fieldEffects.RemoveAll(x => x != null && x.position == cell) > 0;
-        if (changed) EditorUtility.SetDirty(stageMapData);
+        if (stageMapData == null) return changed;
+        bool eraseObstacle = (mode == EditMode.Obstacle || mode == EditMode.Erase) && stageMapData.obstacles != null
+            && stageMapData.obstacles.Exists(x => x != null && x.position == cell);
+        bool eraseEffect = (mode == EditMode.FieldEffect || mode == EditMode.Erase) && stageMapData.fieldEffects != null
+            && stageMapData.fieldEffects.Exists(x => x != null && x.position == cell);
+        if (eraseObstacle || eraseEffect)
+        {
+            Undo.RecordObject(stageMapData, "Erase Stage Map Data");
+            if (eraseObstacle) stageMapData.obstacles.RemoveAll(x => x != null && x.position == cell);
+            if (eraseEffect) stageMapData.fieldEffects.RemoveAll(x => x != null && x.position == cell);
+            EditorUtility.SetDirty(stageMapData);
+            changed = true;
+        }
+        return changed;
     }
 
     private void DrawPreview()
@@ -351,7 +504,15 @@ public class StageMapEditor : EditorWindow
         }
         WaveData wave = CurrentWave;
         if (wave != null && wave.monsters != null)
-            foreach (var d in wave.monsters) if (d != null) DrawCell(d.position, new Color(1f,.2f,.25f,.35f), $"M:{d.monsterID}");
+        {
+            RefreshMonsterPalette();
+            foreach (var d in wave.monsters)
+            {
+                if (d == null) continue;
+                MonsterData data = FindMonsterData(d.monsterID);
+                DrawCell(d.position, new Color(1f,.2f,.25f,.35f), data != null ? $"{MonsterLabel(data)} ({d.monsterID})" : $"M:{d.monsterID}");
+            }
+        }
     }
 
     private void DrawCell(Vector3Int cell, Color color, string label)
