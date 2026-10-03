@@ -61,6 +61,7 @@ namespace UnityEngine
         public T AddComponent<T>() where T : Component, new() { var value = new T { gameObject = this, name = name }; Components.Add(value); return value; }
         public T GetComponent<T>() where T : Component => Components.OfType<T>().FirstOrDefault();
         public T GetComponentInChildren<T>(bool include = false) where T : Component => transform.GetComponentInChildren<T>(include);
+        public void SetActive(bool value) => activeSelf = value;
     }
     public class Transform : Component { public Vector3 position; public Vector3 forward = new Vector3(0, 0, 1); public Vector3 lossyScale = new Vector3(1, 1, 1); public Vector3 localScale = new Vector3(1, 1, 1); }
     public class ScriptableObject : Object { public static T CreateInstance<T>() where T : ScriptableObject, new() => new T(); }
@@ -148,6 +149,7 @@ namespace UnityEngine
     public static class GUILayoutUtility { public static Rect GetRect(float width, float height, params GUILayoutOption[] options) => new Rect(0, 0, 400, height); }
     public static class Debug { public static void Log(object text) { } public static void LogError(object text) { } public static void LogWarning(object text) { } }
     public class SerializeField : Attribute { }
+    public class HideInInspector : Attribute { }
     public class Tooltip : Attribute { public Tooltip(string text) { } }
     public class Min : Attribute { public Min(float value) { } }
     public class RangeAttribute : Attribute { public RangeAttribute(float min, float max) { } }
@@ -183,6 +185,13 @@ namespace UnityEditor
     using UnityEngine;
     public class EditorWindow : ScriptableObject { public Vector2 minSize; public Rect position = new Rect(0, 0, 500, 900); public static T GetWindow<T>(string title) where T : new() => new T(); public void Repaint() { } public void ShowNotification(GUIContent value) { } }
     public class MenuItem : Attribute { public MenuItem(string name) { } }
+    public class CustomEditor : Attribute { public CustomEditor(Type type) { } }
+    public class Editor : ScriptableObject
+    {
+        public UObject target; public SerializedObject serializedObject;
+        public virtual void OnInspectorGUI() { }
+        public static void DrawPropertiesExcluding(SerializedObject so, params string[] excluded) { }
+    }
     public enum MessageType { Info, Warning, Error }
     public class SceneView { public static event Action<SceneView> duringSceneGui; public static SceneView lastActiveSceneView; public static void RepaintAll() { } public void FrameSelected() { } }
     public static class Selection { public static GameObject activeGameObject; }
@@ -224,6 +233,7 @@ namespace UnityEditor
     public static class Undo
     {
         public static event Action undoRedoPerformed; public static readonly Stack<Action> Records = new Stack<Action>();
+        private static int group; private static readonly Dictionary<int, int> starts = new Dictionary<int, int>();
         public static void RecordObject(UObject target, string name)
         {
             var fields = target.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -236,26 +246,42 @@ namespace UnityEditor
             if (value is IList list)
             {
                 var copy = (IList)Activator.CreateInstance(value.GetType());
-                foreach (object item in list) copy.Add(item is MonsterSpawnData spawn ? new MonsterSpawnData { monsterID = spawn.monsterID, position = spawn.position } : item);
+                foreach (object item in list)
+                    copy.Add(item is MonsterSpawnData spawn ? new MonsterSpawnData { monsterID = spawn.monsterID, position = spawn.position }
+                        : item is StageWaveData stage ? new StageWaveData { waves = stage.waves == null ? null : (WaveData[])stage.waves.Clone() } : item);
                 return copy;
             }
             return value;
         }
         public static void PerformUndo() { Records.Pop()(); undoRedoPerformed?.Invoke(); }
         public static T AddComponent<T>(GameObject gameObject) where T : Component, new() => gameObject.AddComponent<T>();
-        public static void IncrementCurrentGroup() { } public static int GetCurrentGroup() => 1; public static void SetCurrentGroupName(string name) { } public static void CollapseUndoOperations(int group) { }
+        public static void IncrementCurrentGroup() { group++; starts[group] = Records.Count; }
+        public static int GetCurrentGroup() => group;
+        public static void SetCurrentGroupName(string name) { }
+        public static void CollapseUndoOperations(int value)
+        {
+            if (!starts.TryGetValue(value, out int count)) return;
+            var actions = new List<Action>(); while (Records.Count > count) actions.Add(Records.Pop());
+            if (actions.Count > 0) Records.Push(() => { foreach (Action action in actions) action(); });
+        }
     }
     public class SerializedObject
     {
         public readonly UObject targetObject; private readonly List<SerializedProperty> properties = new List<SerializedProperty>();
         public SerializedObject(UObject target) { targetObject = target ?? throw new ArgumentNullException(nameof(target)); }
+        public void Update() { }
         public SerializedProperty FindProperty(string name)
         {
             FieldInfo field = targetObject.GetType().GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (field == null) return null;
             var value = field.GetValue(targetObject);
             if (value is Array array) value = array.Clone();
-            else if (value is IList list) { var copy = (IList)Activator.CreateInstance(value.GetType()); foreach (object item in list) copy.Add(item); value = copy; }
+            else if (value is IList list)
+            {
+                var copy = (IList)Activator.CreateInstance(value.GetType());
+                foreach (object item in list) copy.Add(item is StageWaveData stage ? new StageWaveData { waves = stage.waves == null ? null : (WaveData[])stage.waves.Clone() } : item);
+                value = copy;
+            }
             var property = new SerializedProperty(field, value); properties.Add(property); return property;
         }
         public bool ApplyModifiedProperties()
@@ -269,6 +295,7 @@ namespace UnityEditor
     public class SerializedProperty
     {
         internal FieldInfo field; internal object value; internal bool changed; private readonly SerializedProperty root; private readonly int index;
+        private SerializedProperty parent; private object parentTarget;
         internal SerializedProperty(FieldInfo field, object value) { this.field = field; this.value = value; root = this; }
         private SerializedProperty(SerializedProperty root, int index) { this.root = root; this.index = index; }
         public int arraySize
@@ -278,25 +305,37 @@ namespace UnityEditor
             {
                 Array old = root.value as Array; Type element = root.field.FieldType.GetElementType(); var array = Array.CreateInstance(element, value);
                 if (old != null) { Array.Copy(old, array, Math.Min(old.Length, value)); if (value > old.Length && old.Length > 0) for (int i = old.Length; i < value; i++) array.SetValue(old.GetValue(old.Length - 1), i); }
-                root.value = array; root.changed = true;
+                root.value = array; root.MarkChanged();
             }
         }
-        public UObject objectReferenceValue { get => (UObject)((IList)root.value)[index]; set { ((IList)root.value)[index] = value; root.changed = true; } }
+        private void MarkChanged()
+        {
+            changed = true;
+            if (parent != null) { field.SetValue(parentTarget, value); parent.MarkChanged(); }
+        }
+        public UObject objectReferenceValue { get => (UObject)((IList)root.value)[index]; set { ((IList)root.value)[index] = value; root.MarkChanged(); } }
         public SerializedProperty GetArrayElementAtIndex(int index) => new SerializedProperty(root, index);
+        public SerializedProperty FindPropertyRelative(string name)
+        {
+            object target = ((IList)root.value)[index];
+            FieldInfo field = target.GetType().GetField(name);
+            object value = field.GetValue(target); if (value is Array array) value = array.Clone();
+            return new SerializedProperty(field, value) { parent = root, parentTarget = target };
+        }
         public void DeleteArrayElementAtIndex(int index)
         {
             // Object reference arrays first clear non-null elements instead of removing them.
-            if (((IList)root.value)[index] != null) { ((IList)root.value)[index] = null; root.changed = true; return; }
+            if (((IList)root.value)[index] != null) { ((IList)root.value)[index] = null; root.MarkChanged(); return; }
             var old = (Array)root.value; var array = Array.CreateInstance(old.GetType().GetElementType(), old.Length - 1);
             for (int from = 0, to = 0; from < old.Length; from++) if (from != index) array.SetValue(old.GetValue(from), to++);
-            root.value = array; root.changed = true;
+            root.value = array; root.MarkChanged();
         }
         public void MoveArrayElement(int from, int to)
         {
             var array = (Array)root.value; object item = array.GetValue(from);
             if (from < to) for (int i = from; i < to; i++) array.SetValue(array.GetValue(i + 1), i);
             else for (int i = from; i > to; i--) array.SetValue(array.GetValue(i - 1), i);
-            array.SetValue(item, to); root.changed = true;
+            array.SetValue(item, to); root.MarkChanged();
         }
     }
     public static class HandleUtility { public static int nearestControl; public static Ray GUIPointToWorldRay(Vector2 point) => default; public static void AddDefaultControl(int id) => nearestControl = id; }
@@ -315,8 +354,25 @@ namespace NUnit.Framework { }
 public class ManagerBase : UnityEngine.MonoBehaviour { protected virtual IEnumerator OnConnected(GameManager manager) { yield break; } protected virtual void OnDisconnected() { } }
 public class GameManager : UnityEngine.MonoBehaviour { public static GameManager Instance; public WaveManager Wave; }
 public class PlacementManager : UnityEngine.MonoBehaviour { public static PlacementManager Instance; public UnityEngine.Tilemaps.Tilemap tilemap; }
-public class PlacementController : UnityEngine.MonoBehaviour { }
+public class PlacementController : UnityEngine.MonoBehaviour { public static void RemoveAllObject() { MonsterBase._monsters.Clear(); } }
 public class StageMapLoader : UnityEngine.MonoBehaviour { public StageMapData MapData; }
 public class MonsterBase : UnityEngine.MonoBehaviour { public static readonly List<UnityEngine.GameObject> _monsters = new List<UnityEngine.GameObject>(); }
-public class BattleManager : UnityEngine.MonoBehaviour { public static BattleManager Instance; public bool IsBattleActive; public static bool HasRemainingMonsters() => MonsterBase._monsters.Count > 0; public void CompleteBattle() { } }
+public class BattleManager : UnityEngine.MonoBehaviour
+{
+    public static BattleManager Instance; public bool IsBattleActive; public int LastStageId;
+    public static bool HasRemainingMonsters() => MonsterBase._monsters.Count > 0;
+    public void CompleteBattle() { IsBattleActive = false; }
+    public void BeginBattle(int stageId, WaveSetter setter) { IsBattleActive = true; LastStageId = stageId; }
+}
 public class StageUIController : UnityEngine.MonoBehaviour { public static StageUIController Instance; public void UpdateWave() { } }
+namespace UnityEngine.Events { public class UnityEvent { public event Action Handler; public void Invoke() => Handler?.Invoke(); public void AddListener(Action action) => Handler += action; } }
+public class tempcontroller : UnityEngine.MonoBehaviour
+{
+    public bool allow = true;
+    public bool CanEnterStage(int index) => allow && index >= 0;
+    public bool TryGetRequiredProgress(int index, out int value) { value = 0; return index >= 0; }
+}
+public static class ProgressManager { public static int Progress; }
+public enum UIType { CharacterSelect, Stage, Menu }
+public static class UIManager { public static void ClaimPopUp(string title, string message, string action) { } public static void ClaimCloseUI(UIType type) { } }
+public class ModeManager : UnityEngine.MonoBehaviour { public static ModeManager Instance; public enum GameMode { None } public void ChangeMode(GameMode mode) { } }

@@ -4,6 +4,10 @@ using UnityEngine.Events;
 public class WaveSetter : MonoBehaviour
 {
     [SerializeField] public int index;
+    [Tooltip("맵에 StageMapBinding이 없을 때 별도로 지정한 웨이브 목록 번호를 사용합니다.")]
+    [SerializeField] private bool overrideWaveStageIndex;
+    [Tooltip("WaveManager 스테이지 목록의 번호입니다. -1은 연결 해제 상태입니다.")]
+    [Min(-1)] [SerializeField] private int waveStageIndex;
     [Tooltip("클리어 기록용 고유 번호. 웨이브 구성을 공유해도 서로 다른 스테이지는 다른 번호를 사용합니다.")]
     [SerializeField] private int stageId = -1;
     [SerializeField] private tempcontroller progressController;
@@ -15,7 +19,16 @@ public class WaveSetter : MonoBehaviour
     private GameObject battleMapRoot;
 
     public int StageId => stageId >= 0 ? stageId : index;
+    public int WaveStageIndex => overrideWaveStageIndex ? waveStageIndex : index;
     public bool CanEnterStage => progressController != null && progressController.CanEnterStage(index);
+
+#if UNITY_EDITOR
+    public void EditorSetWaveStageIndex(int value)
+    {
+        overrideWaveStageIndex = true;
+        waveStageIndex = value;
+    }
+#endif
 
     public void SelectSkillByIndex()
     {
@@ -31,23 +44,22 @@ public class WaveSetter : MonoBehaviour
 
         WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
         BattleManager battle = BattleManager.Instance;
-        if (wave == null || battle == null || battle.IsBattleActive
-            || index < 0 || index >= wave.StageWaveIndex.Count)
+        if (wave == null || battle == null || battle.IsBattleActive || index < 0)
             return;
 
-        int waveStageIndex = index;
+        int selectedStageIndex = WaveStageIndex;
         var activeTilemap = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
         StageMapBinding mapBinding = activeTilemap != null
             ? activeTilemap.GetComponentInParent<StageMapBinding>(true) : null;
-        if (mapBinding != null) waveStageIndex = mapBinding.StageIndex;
+        if (mapBinding != null) selectedStageIndex = mapBinding.StageIndex;
 
-        if (waveStageIndex < 0 || waveStageIndex >= wave.StageWaveIndex.Count)
+        if (selectedStageIndex < 0 || selectedStageIndex >= wave.StageCount)
         {
-            Debug.LogWarning($"[WaveSetter] Tilemap의 Stage Index {waveStageIndex}가 WaveManager 범위를 벗어났습니다.");
+            Debug.LogWarning($"[WaveSetter] Stage Index {selectedStageIndex}가 WaveManager 범위를 벗어났거나 연결 해제 상태입니다.");
             return;
         }
 
-        WaveData[] waves = wave.StageWaveIndex[waveStageIndex];
+        WaveData[] waves = wave.GetStageWaves(selectedStageIndex);
         if (waves == null || waves.Length == 0 || System.Array.Exists(waves, item => item == null))
         {
             Debug.LogWarning($"[WaveSetter] {StageId} 스테이지의 웨이브 설정을 확인해주세요.");
