@@ -10,7 +10,6 @@ public class StageMapEditor : EditorWindow
 
     private StageMapData stageMapData;
     private Tilemap tilemap;
-    private int stageIndex;
     private int selectedWaveIndex;
     private int monsterId;
     private GameObject obstaclePrefab;
@@ -26,12 +25,15 @@ public class StageMapEditor : EditorWindow
 
     private WaveManager SceneWaveManager => Object.FindFirstObjectByType<WaveManager>(FindObjectsInactive.Include);
 
+    private StageMapBinding CurrentBinding => FindBinding(tilemap);
+
     private WaveData[] CurrentStageWaves
     {
         get
         {
             WaveManager manager = SceneWaveManager;
-            return manager != null ? manager.GetStageWaves(stageIndex) : null;
+            StageMapBinding binding = CurrentBinding;
+            return manager != null && binding != null ? manager.GetStageWaves(binding.StageIndex) : null;
         }
     }
 
@@ -99,7 +101,13 @@ public class StageMapEditor : EditorWindow
 
     private void DrawWaveSection()
     {
-        EditorGUILayout.LabelField("기존 WaveManager Waves", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("이 Tilemap의 기존 Waves", EditorStyles.boldLabel);
+        if (tilemap == null)
+        {
+            EditorGUILayout.HelpBox("먼저 Tilemap을 선택하세요.", MessageType.Warning);
+            return;
+        }
+
         WaveManager manager = SceneWaveManager;
         if (manager == null)
         {
@@ -107,9 +115,42 @@ public class StageMapEditor : EditorWindow
             return;
         }
 
+        StageMapBinding binding = CurrentBinding;
+        if (binding == null)
+        {
+            EditorGUILayout.HelpBox("이 Tilemap에는 아직 StageMapBinding이 없습니다. 아래 버튼으로 연결 정보를 만든 뒤 Stage Index를 지정하세요.", MessageType.Warning);
+            if (GUILayout.Button("이 Tilemap에 Stage Binding 추가"))
+            {
+                GameObject target = tilemap.transform.parent != null ? tilemap.transform.parent.gameObject : tilemap.gameObject;
+                binding = Undo.AddComponent<StageMapBinding>(target);
+                binding.EditorSetTilemap(tilemap);
+                EditorUtility.SetDirty(binding);
+            }
+            return;
+        }
+
+        SerializedObject bindingSO = new SerializedObject(binding);
+        SerializedProperty stageIndexProp = bindingSO.FindProperty("stageIndex");
+        SerializedProperty mapDataProp = bindingSO.FindProperty("mapData");
+        EditorGUILayout.PropertyField(stageIndexProp, new GUIContent("Stage Index"));
+        EditorGUILayout.PropertyField(mapDataProp, new GUIContent("Stage Map Data"));
+        if (bindingSO.ApplyModifiedProperties())
+        {
+            EditorUtility.SetDirty(binding);
+            stageMapData = binding.MapData;
+        }
+
+        if (binding.MapData != null) stageMapData = binding.MapData;
+        int stageIndex = Mathf.Max(0, binding.StageIndex);
+
         SerializedObject managerSO = new SerializedObject(manager);
         string[] stageProperties = { "stage1Waves", "stage2Waves", "stage3Waves", "stage4Waves", "stage5Waves" };
-        stageIndex = EditorGUILayout.IntSlider("Stage Index", stageIndex, 0, stageProperties.Length - 1);
+        if (stageIndex >= stageProperties.Length)
+        {
+            EditorGUILayout.HelpBox($"Stage Index {stageIndex}에 대응하는 WaveManager 배열이 없습니다.", MessageType.Error);
+            return;
+        }
+
         SerializedProperty waveArray = managerSO.FindProperty(stageProperties[stageIndex]);
         if (waveArray == null) return;
 
@@ -118,6 +159,8 @@ public class StageMapEditor : EditorWindow
             waves[i] = waveArray.GetArrayElementAtIndex(i).objectReferenceValue as WaveData;
 
         selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waves.Length - 1));
+        EditorGUILayout.LabelField($"연결: {tilemap.name} → Stage {stageIndex + 1}", EditorStyles.miniBoldLabel);
+
         for (int i = 0; i < waves.Length; i++)
         {
             EditorGUILayout.BeginHorizontal();
@@ -135,8 +178,18 @@ public class StageMapEditor : EditorWindow
             }
             EditorGUILayout.EndHorizontal();
         }
+    }
 
-        EditorGUILayout.HelpBox("여기 표시되는 WaveData는 실제 게임에서 WaveSetter가 사용하는 WaveManager.StageWaveIndex와 동일한 데이터입니다.", MessageType.None);
+    private StageMapBinding FindBinding(Tilemap target)
+    {
+        if (target == null) return null;
+        StageMapBinding binding = target.GetComponent<StageMapBinding>();
+        if (binding != null) return binding;
+        binding = target.GetComponentInParent<StageMapBinding>(true);
+        if (binding != null && binding.TargetTilemap == target) return binding;
+        foreach (StageMapBinding candidate in Object.FindObjectsByType<StageMapBinding>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            if (candidate.TargetTilemap == target) return candidate;
+        return null;
     }
 
     private void DrawMonsterSettings()
@@ -188,6 +241,13 @@ public class StageMapEditor : EditorWindow
     private void TryAutoFindStageMapData()
     {
         if (tilemap == null) return;
+        selectedWaveIndex = 0;
+        StageMapBinding binding = FindBinding(tilemap);
+        if (binding != null && binding.MapData != null)
+        {
+            stageMapData = binding.MapData;
+            return;
+        }
         StageMapLoader loader = tilemap.GetComponentInParent<StageMapLoader>(true);
         if (loader != null && loader.MapData != null) stageMapData = loader.MapData;
     }

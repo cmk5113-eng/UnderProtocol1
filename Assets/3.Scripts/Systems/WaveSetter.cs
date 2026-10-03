@@ -35,7 +35,19 @@ public class WaveSetter : MonoBehaviour
             || index < 0 || index >= wave.StageWaveIndex.Count)
             return;
 
-        WaveData[] waves = wave.StageWaveIndex[index];
+        int waveStageIndex = index;
+        var activeTilemap = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
+        StageMapBinding mapBinding = activeTilemap != null
+            ? activeTilemap.GetComponentInParent<StageMapBinding>(true) : null;
+        if (mapBinding != null) waveStageIndex = mapBinding.StageIndex;
+
+        if (waveStageIndex < 0 || waveStageIndex >= wave.StageWaveIndex.Count)
+        {
+            Debug.LogWarning($"[WaveSetter] Tilemap의 Stage Index {waveStageIndex}가 WaveManager 범위를 벗어났습니다.");
+            return;
+        }
+
+        WaveData[] waves = wave.StageWaveIndex[waveStageIndex];
         if (waves == null || waves.Length == 0 || System.Array.Exists(waves, item => item == null))
         {
             Debug.LogWarning($"[WaveSetter] {StageId} 스테이지의 웨이브 설정을 확인해주세요.");
