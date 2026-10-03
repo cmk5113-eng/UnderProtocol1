@@ -8,7 +8,6 @@ using UnityEngine.Tilemaps;
 public partial class StageMapEditor : EditorWindow
 {
     private enum EditMode { Monster, Obstacle, FieldEffect, Erase }
-    private static readonly string[] StageWaveProperties = { "stage1Waves", "stage2Waves", "stage3Waves", "stage4Waves", "stage5Waves" };
 
     [SerializeField] private StageMapData stageMapData;
     [SerializeField] private Tilemap tilemap;
@@ -140,16 +139,46 @@ public partial class StageMapEditor : EditorWindow
     private void DrawWaveSection()
     {
         EditorGUILayout.LabelField("이 Tilemap의 기존 Waves", EditorStyles.boldLabel);
-        if (tilemap == null)
-        {
-            EditorGUILayout.HelpBox("먼저 Tilemap을 선택하세요.", MessageType.Warning);
-            return;
-        }
-
         WaveManager manager = SceneWaveManager;
         if (manager == null)
         {
             EditorGUILayout.HelpBox("현재 Scene에서 WaveManager를 찾을 수 없습니다.", MessageType.Warning);
+            return;
+        }
+
+        StageWaveEditorUtility.EnsureMigrated(manager);
+        EditorGUILayout.LabelField($"전체 스테이지: {manager.StageCount}개 · Stage Index는 0부터 시작");
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Stage 추가"))
+        {
+            int addedIndex = StageWaveEditorUtility.AddStage(manager);
+            StageMapBinding selectedBinding = CurrentBinding;
+            if (selectedBinding != null && addedIndex >= 0)
+            {
+                Undo.RecordObject(selectedBinding, "Connect New Wave Stage");
+                selectedBinding.EditorSetStageIndex(addedIndex);
+                MarkSceneObjectDirty(selectedBinding);
+                selectedWaveIndex = 0;
+            }
+            RefreshViews();
+            GUIUtility.ExitGUI();
+        }
+        StageMapBinding currentBinding = CurrentBinding;
+        using (new EditorGUI.DisabledScope(currentBinding == null || currentBinding.StageIndex < 0 || currentBinding.StageIndex >= manager.StageCount))
+        {
+            if (GUILayout.Button("현재 Stage 삭제"))
+            {
+                StageWaveEditorUtility.RemoveStage(manager, currentBinding.StageIndex);
+                selectedWaveIndex = 0;
+                RefreshViews();
+                GUIUtility.ExitGUI();
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+        if (GUILayout.Button("스테이지/웨이브 목록 저장 (Scene)")) SaveWaveList();
+        if (tilemap == null)
+        {
+            EditorGUILayout.HelpBox("몬스터와 Wave를 편집하려면 Tilemap을 선택하세요.", MessageType.Warning);
             return;
         }
 
@@ -182,13 +211,13 @@ public partial class StageMapEditor : EditorWindow
         int stageIndex = binding.StageIndex;
 
         SerializedObject managerSO = new SerializedObject(manager);
-        if (stageIndex < 0 || stageIndex >= StageWaveProperties.Length)
+        if (stageIndex < 0 || stageIndex >= manager.StageCount)
         {
-            EditorGUILayout.HelpBox("Stage Index는 0~4입니다. 0 = Stage 1, 1 = Stage 2 ... 4 = Stage 5.", MessageType.Error);
+            EditorGUILayout.HelpBox(manager.StageCount == 0 ? "Stage 추가로 첫 스테이지를 만드세요." : $"Stage Index를 0~{manager.StageCount - 1} 사이로 지정하세요. -1은 연결 해제 상태입니다.", MessageType.Warning);
             return;
         }
 
-        SerializedProperty waveArray = managerSO.FindProperty(StageWaveProperties[stageIndex]);
+        SerializedProperty waveArray = GetWaveArray(managerSO);
         if (waveArray == null) return;
 
         selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waveArray.arraySize - 1));
@@ -232,8 +261,9 @@ public partial class StageMapEditor : EditorWindow
     private SerializedProperty GetWaveArray(SerializedObject managerSO)
     {
         StageMapBinding binding = CurrentBinding;
-        return binding != null && binding.StageIndex >= 0 && binding.StageIndex < StageWaveProperties.Length
-            ? managerSO.FindProperty(StageWaveProperties[binding.StageIndex]) : null;
+        SerializedProperty stages = managerSO.FindProperty("stages");
+        return stages != null && binding != null && binding.StageIndex >= 0 && binding.StageIndex < stages.arraySize
+            ? stages.GetArrayElementAtIndex(binding.StageIndex).FindPropertyRelative("waves") : null;
     }
 
     private void ApplyWaveListChanges(SerializedObject managerSO)

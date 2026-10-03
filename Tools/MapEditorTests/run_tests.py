@@ -33,8 +33,10 @@ sources = [
     "Assets/3.Scripts/Systems/StageMapData.cs",
     "Assets/3.Scripts/Systems/StageMapBinding.cs",
     "Assets/3.Scripts/Systems/WaveLoader.cs",
+    "Assets/3.Scripts/Systems/WaveSetter.cs",
     "Assets/Editor/StageMapEditor.cs",
     "Assets/Editor/StageMapEditor.Monsters.cs",
+    "Assets/Editor/WaveManagerEditor.cs",
     "Tools/MapEditorTests/ApiDoubles.cs",
     "Tools/MapEditorTests/Scenarios.cs",
 ]
