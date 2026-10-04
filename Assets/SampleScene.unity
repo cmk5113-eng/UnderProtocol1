@@ -2722,7 +2722,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2734,7 +2734,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1350473406}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -4500,7 +4500,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -4512,7 +4512,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 814390585}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -9338,8 +9338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7716042, y: 0.25937036}
   m_AnchorMax: {x: 0.98854166, y: 0.6251482}
-  m_AnchoredPosition: {x: -282.89062, y: 107.53162}
-  m_SizeDelta: {x: 44.61148, y: 34.622253}
+  m_AnchoredPosition: {x: -143.80045, y: 107.53162}
+  m_SizeDelta: {x: 52.200874, y: 34.622253}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &118114713
 MonoBehaviour:
@@ -10469,10 +10469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
+  index: 22
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 2
+  stageId: 22
   progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
@@ -10503,7 +10503,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1934019301}
+      - m_Target: {fileID: 670416939}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -10520,14 +10520,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
+          m_ObjectArgument: {fileID: 678137567}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11869,7 +11869,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11881,7 +11881,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1310816867}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -12667,7 +12667,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -12679,7 +12679,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1529362000}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -13175,10 +13175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
+  index: 27
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 2
+  stageId: 27
   progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
@@ -13209,7 +13209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1934019301}
+      - m_Target: {fileID: 170653083}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -13226,14 +13226,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
+          m_ObjectArgument: {fileID: 689107245}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -16243,10 +16243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
+  index: 10
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 0
+  stageId: 10
   progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
@@ -16277,7 +16277,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 571273957}
+      - m_Target: {fileID: 787842615}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -16294,14 +16294,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
+          m_ObjectArgument: {fileID: 197180086}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -16975,7 +16975,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &210698948
 Animator:
   serializedVersion: 7
@@ -17010,10 +17010,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
+  index: 20
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 0
+  stageId: 20
   progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
@@ -17044,7 +17044,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 571273957}
+      - m_Target: {fileID: 2087263149}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -17061,14 +17061,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
+          m_ObjectArgument: {fileID: 1038018075}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -18036,7 +18036,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -18048,7 +18048,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1463959447}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -20340,7 +20340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7716042, y: 0.25937036}
   m_AnchorMax: {x: 0.98854166, y: 0.6251482}
-  m_AnchoredPosition: {x: -282.89062, y: 107.53162}
+  m_AnchoredPosition: {x: -291, y: -70}
   m_SizeDelta: {x: 44.61148, y: 34.622253}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &268702075
@@ -22866,10 +22866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
+  index: 23
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 3
+  stageId: 23
   progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
@@ -22900,7 +22900,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1774859752}
+      - m_Target: {fileID: 422503648}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -22917,14 +22917,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
+          m_ObjectArgument: {fileID: 1046082723}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -23906,7 +23906,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -23918,7 +23918,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 60783210}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -26468,7 +26468,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -26480,7 +26480,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1078128306}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -27713,7 +27713,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -32097,7 +32097,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -32109,7 +32109,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 999521781}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -32282,7 +32282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7716042, y: 0.25937036}
   m_AnchorMax: {x: 0.98854166, y: 0.6251482}
-  m_AnchoredPosition: {x: -282.89062, y: 107.53162}
+  m_AnchoredPosition: {x: -22.306, y: -70.834}
   m_SizeDelta: {x: 44.61148, y: 34.622253}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &459064380
@@ -32927,8 +32927,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7716042, y: 0.25937036}
   m_AnchorMax: {x: 0.98854166, y: 0.6251482}
-  m_AnchoredPosition: {x: -282.89062, y: 107.53162}
-  m_SizeDelta: {x: 44.61148, y: 34.622253}
+  m_AnchoredPosition: {x: -38.031, y: 101}
+  m_SizeDelta: {x: 52.200874, y: 34.622253}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &471439624
 MonoBehaviour:
@@ -45733,7 +45733,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -45745,7 +45745,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1038018072}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -49216,7 +49216,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -49228,7 +49228,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 922334038}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -50453,7 +50453,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &629394703
 Animator:
   serializedVersion: 7
@@ -50488,10 +50488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
+  index: 9
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 4
+  stageId: 9
   progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
@@ -50522,7 +50522,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2143253506}
+      - m_Target: {fileID: 1233844106}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -50539,14 +50539,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
+          m_ObjectArgument: {fileID: 949546056}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -52553,10 +52553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
+  index: 18
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 3
+  stageId: 18
   progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
@@ -52587,7 +52587,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1774859752}
+      - m_Target: {fileID: 940768317}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -52604,14 +52604,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
+          m_ObjectArgument: {fileID: 922334041}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -58213,7 +58213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -63691,7 +63691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -66386,7 +66386,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &819587305
 Animator:
   serializedVersion: 7
@@ -66421,10 +66421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
+  index: 15
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 0
+  stageId: 15
   progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
@@ -66455,7 +66455,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 571273957}
+      - m_Target: {fileID: 269526417}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -66472,14 +66472,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
+          m_ObjectArgument: {fileID: 1414043003}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -67262,7 +67262,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -67274,7 +67274,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 640511926}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -70625,10 +70625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
+  index: 21
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 1
+  stageId: 21
   progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
@@ -70659,7 +70659,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 289737606}
+      - m_Target: {fileID: 20642164}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -70676,14 +70676,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
+          m_ObjectArgument: {fileID: 1600402742}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -75419,10 +75419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
+  index: 13
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 3
+  stageId: 13
   progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
@@ -75453,7 +75453,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1774859752}
+      - m_Target: {fileID: 797922556}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -75470,14 +75470,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
+          m_ObjectArgument: {fileID: 109464428}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -76183,7 +76183,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -76195,7 +76195,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1947230698}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -77578,7 +77578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -317342662, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
+  m_Sprite: {fileID: -1484115074, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79857,7 +79857,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &1015392579
 Animator:
   serializedVersion: 7
@@ -79892,10 +79892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
+  index: 24
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 4
+  stageId: 24
   progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
@@ -79926,7 +79926,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2143253506}
+      - m_Target: {fileID: 605221561}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -79943,14 +79943,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
+          m_ObjectArgument: {fileID: 814390588}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -84772,7 +84772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -317342662, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
+  m_Sprite: {fileID: 707925637, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -86405,10 +86405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
+  index: 8
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 3
+  stageId: 8
   progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
@@ -86439,7 +86439,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1774859752}
+      - m_Target: {fileID: 667335712}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -86456,14 +86456,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
+          m_ObjectArgument: {fileID: 1752567230}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -89699,7 +89699,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!114 &1143516646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89712,10 +89712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
+  index: 19
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 4
+  stageId: 19
   progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
@@ -89746,7 +89746,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2143253506}
+      - m_Target: {fileID: 1233874835}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -89763,14 +89763,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
+          m_ObjectArgument: {fileID: 60783212}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -92331,10 +92331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
+  index: 16
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 1
+  stageId: 16
   progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
@@ -92365,7 +92365,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 289737606}
+      - m_Target: {fileID: 2141808975}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -92382,14 +92382,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
+          m_ObjectArgument: {fileID: 1463959450}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -92957,7 +92957,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -93998,7 +93998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1191164070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94480,7 +94480,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -94492,7 +94492,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1871441324}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -99998,7 +99998,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -100010,7 +100010,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1414043000}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -100562,7 +100562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -317342662, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
+  m_Sprite: {fileID: 255415165, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -101456,7 +101456,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -101468,7 +101468,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1030557324}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -102915,7 +102915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -317342662, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
+  m_Sprite: {fileID: -1297286161, guid: d8c79748ea8f36345875139e7907bb68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -104907,7 +104907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4249043924637981938, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4584311820175007225, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       propertyPath: m_text
@@ -106330,7 +106330,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -106342,7 +106342,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 655596542}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -106516,7 +106516,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -106528,7 +106528,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1046082720}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -109401,7 +109401,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -109413,7 +109413,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 689107242}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -111929,10 +111929,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
+  index: 14
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 4
+  stageId: 14
   progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
@@ -111963,7 +111963,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2143253506}
+      - m_Target: {fileID: 1440459459}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -111980,14 +111980,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
+          m_ObjectArgument: {fileID: 1350473409}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -114964,10 +114964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
+  index: 28
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 3
+  stageId: 28
   progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
@@ -114998,7 +114998,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1774859752}
+      - m_Target: {fileID: 2016611354}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -115015,14 +115015,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
+          m_ObjectArgument: {fileID: 1947230701}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -117884,10 +117884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
+  index: 7
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 2
+  stageId: 7
   progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
@@ -117918,7 +117918,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1934019301}
+      - m_Target: {fileID: 557938217}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -117935,14 +117935,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
+          m_ObjectArgument: {fileID: 870210769}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -125936,7 +125936,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -128067,7 +128067,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &1684835065
 Animator:
   serializedVersion: 7
@@ -128102,10 +128102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
+  index: 29
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 4
+  stageId: 29
   progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
@@ -128136,7 +128136,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2143253506}
+      - m_Target: {fileID: 1702879044}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -128153,14 +128153,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
+          m_ObjectArgument: {fileID: 574266971}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -132760,10 +132760,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
+  index: 12
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 2
+  stageId: 12
   progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
@@ -132794,7 +132794,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1934019301}
+      - m_Target: {fileID: 83676579}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -132811,14 +132811,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
+          m_ObjectArgument: {fileID: 999521784}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -134075,7 +134075,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -134087,7 +134087,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 109464425}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -137319,7 +137319,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &1844600610
 Animator:
   serializedVersion: 7
@@ -137354,10 +137354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
+  index: 5
   overrideWaveStageIndex: 0
-  waveStageIndex: 6
-  stageId: 0
+  waveStageIndex: 0
+  stageId: 5
   progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
@@ -137412,7 +137412,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -138647,7 +138647,7 @@ PrefabInstance:
     - target: {fileID: 1636829684535443960, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 505281032}
     - target: {fileID: 1636829684535443960, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -138839,7 +138839,7 @@ PrefabInstance:
     - target: {fileID: 2846640542146185044, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 138528065}
     - target: {fileID: 2846640542146185044, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -138899,7 +138899,7 @@ PrefabInstance:
     - target: {fileID: 3402075973053181155, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 515135528}
     - target: {fileID: 3402075973053181155, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -138959,7 +138959,7 @@ PrefabInstance:
     - target: {fileID: 5251446392247879000, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 259105978}
     - target: {fileID: 5251446392247879000, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -139019,7 +139019,7 @@ PrefabInstance:
     - target: {fileID: 5926813712552877033, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1256830251}
     - target: {fileID: 5926813712552877033, guid: 60ca686eed09fde45af486a3ddeb3096, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -141487,10 +141487,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
+  index: 6
   overrideWaveStageIndex: 0
-  waveStageIndex: 7
-  stageId: 1
+  waveStageIndex: 0
+  stageId: 6
   progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
@@ -141521,7 +141521,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 289737606}
+      - m_Target: {fileID: 1648748029}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -141545,7 +141545,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -142582,7 +142582,7 @@ MonoBehaviour:
   unclearedColor: {r: 1, g: 1, b: 1, a: 1}
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-  requredProgress: 100
+  requredProgress: 0
 --- !u!95 &1924910651
 Animator:
   serializedVersion: 7
@@ -142617,10 +142617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
+  index: 25
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 0
+  stageId: 25
   progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
@@ -142651,7 +142651,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 571273957}
+      - m_Target: {fileID: 942954481}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -142668,14 +142668,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
+          m_ObjectArgument: {fileID: 640511929}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -143418,7 +143418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7716042, y: 0.25937036}
   m_AnchorMax: {x: 0.98854166, y: 0.6251482}
-  m_AnchoredPosition: {x: -282.89062, y: 107.53162}
+  m_AnchoredPosition: {x: -151, y: -70}
   m_SizeDelta: {x: 44.61148, y: 34.622253}
   m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &1944031742
@@ -144867,7 +144867,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -144879,7 +144879,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 574266968}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -145252,7 +145252,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -145264,7 +145264,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1646532539}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -147648,7 +147648,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -147660,7 +147660,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 1600402739}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -147916,10 +147916,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
+  index: 17
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 2
+  stageId: 17
   progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
@@ -147950,7 +147950,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1934019301}
+      - m_Target: {fileID: 1509680921}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -147967,14 +147967,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
+          m_ObjectArgument: {fileID: 1030557327}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -149453,7 +149453,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -149465,7 +149465,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 678137564}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -149634,7 +149634,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -149646,7 +149646,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 197180082}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -150209,7 +150209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -150221,7 +150221,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 784017949}
+      - m_Target: {fileID: 791731158}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -150732,10 +150732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
+  index: 26
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 1
+  stageId: 26
   progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
@@ -150766,7 +150766,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 289737606}
+      - m_Target: {fileID: 1883834242}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -150783,14 +150783,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
+          m_ObjectArgument: {fileID: 791731161}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -152407,10 +152407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
+  index: 11
   overrideWaveStageIndex: 0
   waveStageIndex: 0
-  stageId: 1
+  stageId: 11
   progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
@@ -152441,7 +152441,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 289737606}
+      - m_Target: {fileID: 1153612609}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -152458,14 +152458,14 @@ MonoBehaviour:
         m_MethodName: ChangeCurrentCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
+          m_ObjectArgument: {fileID: 1529362004}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 791038765}
+      - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -155625,7 +155625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2136932786
 RectTransform:
   m_ObjectHideFlags: 0
