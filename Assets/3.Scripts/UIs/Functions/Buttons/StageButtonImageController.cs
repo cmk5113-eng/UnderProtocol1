@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button), typeof(WaveSetter))]
-public class StageButtonImageController : MonoBehaviour
+public class StageButtonImageController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private WaveSetter stage;
     [SerializeField] private Button stageButton;
@@ -18,27 +19,84 @@ public class StageButtonImageController : MonoBehaviour
     // 기존 직렬화 이름을 유지해 Scene/Prefab에 입력한 값을 그대로 사용한다.
     public int RequiredProgress => Mathf.Max(0, requredProgress);
 
+    private Transform hoverCircle;
+    private Transform hoverBox;
+
     private void Awake()
     {
         if (stage == null) stage = GetComponent<WaveSetter>();
         if (stageButton == null) stageButton = GetComponent<Button>();
         if (targetImage == null) targetImage = GetComponent<Image>();
         if (unclearedSprite == null && targetImage != null) unclearedSprite = targetImage.sprite;
+        hoverCircle = transform.Find("Circle");
+        hoverBox = transform.Find("Box");
+
+        if (stageButton != null && stageButton.transition == Selectable.Transition.Animation)
+        {
+            // 클릭/키보드 선택은 Hover가 아니다. 기존 Normal/Highlighted 컨트롤러를 사용한다.
+            AnimationTriggers triggers = stageButton.animationTriggers;
+            triggers.pressedTrigger = triggers.normalTrigger;
+            triggers.selectedTrigger = triggers.normalTrigger;
+            triggers.disabledTrigger = triggers.normalTrigger;
+        }
     }
 
     private void OnEnable()
     {
         ProgressManager.OnProgressChanged += Refresh;
+        ClearHover();
         Refresh();
     }
 
-    private void OnDisable() => ProgressManager.OnProgressChanged -= Refresh;
+    private void OnDisable()
+    {
+        ProgressManager.OnProgressChanged -= Refresh;
+        ClearHover();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) => ClearSelection();
+
+    public void OnPointerExit(PointerEventData eventData) => ClearHover();
+
+    private void ClearSelection()
+    {
+        EventSystem events = EventSystem.current;
+        if (events != null && !events.alreadySelecting && events.currentSelectedGameObject == gameObject)
+            events.SetSelectedGameObject(null);
+    }
+
+    public void ClearHover()
+    {
+        ClearSelection();
+        Animator animator = stageButton != null ? stageButton.animator : null;
+        if (animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null)
+        {
+            string normal = stageButton.animationTriggers.normalTrigger;
+            bool hasNormal = false;
+            foreach (AnimatorControllerParameter parameter in animator.parameters)
+            {
+                if (parameter.type != AnimatorControllerParameterType.Trigger) continue;
+                animator.ResetTrigger(parameter.nameHash);
+                if (parameter.name == normal) hasNormal = true;
+            }
+            if (hasNormal)
+            {
+                animator.SetTrigger(normal);
+                animator.Update(0f);
+            }
+        }
+
+        // 부모 화면을 닫는 프레임에도 자식의 activeSelf를 남기지 않는다.
+        if (hoverCircle != null) hoverCircle.gameObject.SetActive(false);
+        if (hoverBox != null) hoverBox.gameObject.SetActive(false);
+    }
 
     public void Refresh()
     {
         if (stage == null) return;
         bool unlocked = stage.CanEnterStage;
         if (stageButton != null) stageButton.interactable = unlocked;
+        if (!unlocked) ClearHover();
         if (targetImage == null) return;
 
         bool cleared = ProgressManager.IsStageCleared(stage.StageId);

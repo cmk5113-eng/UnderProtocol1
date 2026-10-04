@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -48,6 +49,7 @@ internal static class Scenarios
         EditorUtility.Dirty.Clear(); EditorUtility.NextAssetPath = null; EditorSceneManager.Dirty.Clear(); EditorSceneManager.Saved.Clear();
         EditorApplication.isPlayingOrWillChangePlaymode = false; MonsterBase._monsters.Clear(); GUIUtility.hotControl = 0; Event.current = null;
         ProgressManager.ResetForTest(); UIManager.LastPopUpMessage = null;
+        EventSystem.current = null;
         var f = new Fixture { editor = new StageMapEditor(), first = new WaveData { name = "first" }, second = new WaveData { name = "second" }, terrain = new StageMapData() };
         f.manager = new GameObject("manager").AddComponent<WaveManager>();
         SetStageWaves(f.manager, 0, new[] { f.first, f.second });
@@ -260,6 +262,7 @@ internal static class Scenarios
         Call(f.editor, "PaintCell", new Vector3Int(0, 0)); Call(f.editor, "SaveCurrentWave");
         var setter = new GameObject("stage button").AddComponent<WaveSetter>(); setter.index = 100;
         Set(setter, "progressController", new GameObject("progress").AddComponent<tempcontroller>());
+        SelectMapOnEntry(setter, f.map);
         setter.SelectSkillByIndex();
         Check(BattleManager.Instance.IsBattleActive && BattleManager.Instance.LastStageId == 100, "battle entry still used fixed stage count or changed clear ID");
         Check(f.manager.currentWave == wave && MonsterBase._monsters.Count == 1, "Stage Index 29 did not load the authored wave");
@@ -296,6 +299,7 @@ internal static class Scenarios
     {
         Fixture f = NewFixture(); var setter = new GameObject("button").AddComponent<WaveSetter>(); setter.index = 0;
         Set(setter, "progressController", new GameObject("progress").AddComponent<tempcontroller>());
+        SelectMapOnEntry(setter, f.map);
         StageWaveEditorUtility.RemoveStage(f.manager, 0);
         Check(f.binding.StageIndex == -1 && setter.WaveStageIndex == -1, "removed stage was rebound implicitly");
         setter.SelectSkillByIndex(); Check(!BattleManager.Instance.IsBattleActive, "detached map entered a different stage");
@@ -316,7 +320,7 @@ internal static class Scenarios
 
     private static StageButtonImageController StageButton(WaveSetter setter, int required)
     {
-        setter.gameObject.AddComponent<Button>();
+        if (setter.GetComponent<Button>() == null) setter.gameObject.AddComponent<Button>();
         setter.gameObject.AddComponent<Image>().sprite = new Sprite { name = "uncleared" };
         StageButtonImageController controller = setter.gameObject.AddComponent<StageButtonImageController>();
         Set(controller, "requredProgress", required);
@@ -353,6 +357,7 @@ internal static class Scenarios
         var setter = new GameObject("stage 30 button").AddComponent<WaveSetter>(); setter.index = 29;
         StageButtonImageController controller = StageButton(setter, 100);
         int entered = 0; Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => entered++);
+        SelectMapOnEntry(setter, f.map);
         ProgressManager.Progress = 99; setter.SelectSkillByIndex();
         Check(!BattleManager.Instance.IsBattleActive && entered == 0 && f.manager.selectedWaves == null, "direct invocation bypassed require check");
         Check(UIManager.LastPopUpMessage.Contains("100") && UIManager.LastPopUpMessage.Contains("99"), "locked popup did not use button requirement and actual progress");
@@ -407,6 +412,141 @@ internal static class Scenarios
         Call(controller, "OnDisable");
     }
 
+    private static void SelectMapOnEntry(WaveSetter setter, Tilemap map)
+    {
+        TileMapManager selector = new GameObject("map selector").AddComponent<TileMapManager>();
+        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => selector.ChangeCurrentCharacter(map));
+    }
+
+    private static StageButtonImageController AnimatedStageButton(out WaveSetter setter, out Animator animator)
+    {
+        setter = new GameObject("animated stage").AddComponent<WaveSetter>();
+        Button button = setter.gameObject.AddComponent<Button>(); button.transition = Selectable.Transition.Animation;
+        button.animationTriggers.highlightedTrigger = "HighLighted";
+        animator = setter.gameObject.AddComponent<Animator>();
+        animator.parameters = new[] {
+            new AnimatorControllerParameter { name = "HighLighted", type = AnimatorControllerParameterType.Trigger },
+            new AnimatorControllerParameter { name = "Normal", type = AnimatorControllerParameterType.Trigger } };
+        new GameObject("Circle") { parent = setter.gameObject };
+        new GameObject("Box") { parent = setter.gameObject };
+        return StageButton(setter, 0);
+    }
+
+    private static void ShowHover(WaveSetter setter, Animator animator)
+    {
+        setter.transform.Find("Circle").gameObject.SetActive(true);
+        setter.transform.Find("Box").gameObject.SetActive(true);
+        animator.SetTrigger("HighLighted");
+    }
+
+    private static bool HoverHidden(WaveSetter setter) => !setter.transform.Find("Circle").gameObject.activeSelf
+        && !setter.transform.Find("Box").gameObject.activeSelf;
+
+    private static void ClickedButtonClearsHoverAndSelection()
+    {
+        NewFixture();
+        StageButtonImageController ui = AnimatedStageButton(out WaveSetter setter, out Animator animator);
+        Button button = setter.GetComponent<Button>();
+        Check(button.animationTriggers.pressedTrigger == "Normal" && button.animationTriggers.selectedTrigger == "Normal"
+            && button.animationTriggers.disabledTrigger == "Normal", "unsupported click/selection triggers can leave Hover running");
+        EventSystem.current = new EventSystem { currentSelectedGameObject = setter.gameObject };
+        ShowHover(setter, animator);
+        ui.OnPointerExit(new PointerEventData());
+        Check(EventSystem.current.currentSelectedGameObject == null && HoverHidden(setter), "clicked button stayed selected or visible after pointer exit");
+        Check(animator.LastAppliedTrigger == "Normal" && animator.PendingTriggers.Count == 0, "pending Hover trigger restarted after cleanup");
+        EventSystem.current.currentSelectedGameObject = setter.gameObject;
+        ui.OnPointerEnter(new PointerEventData());
+        Check(EventSystem.current.currentSelectedGameObject == null, "old selection prevented Hover on pointer re-entry");
+        var other = new GameObject("new selected control"); EventSystem.current.currentSelectedGameObject = other;
+        ui.OnPointerExit(new PointerEventData());
+        Check(EventSystem.current.currentSelectedGameObject == other, "hover cleanup cleared another control's selection");
+        Call(ui, "OnDisable");
+    }
+
+    private static void LockedAndReenabledButtonsDoNotRestoreHover()
+    {
+        NewFixture();
+        StageButtonImageController ui = AnimatedStageButton(out WaveSetter setter, out Animator animator);
+        ShowHover(setter, animator); setter.gameObject.SetActive(false); Call(ui, "OnDisable");
+        Check(HoverHidden(setter), "closing the world kept activeSelf on Hover children");
+        setter.gameObject.SetActive(true); Call(ui, "OnEnable");
+        Check(HoverHidden(setter) && animator.LastAppliedTrigger == "Normal", "reopening the world restored the old Hover");
+        ShowHover(setter, animator); Set(ui, "requredProgress", 100); ProgressManager.Progress = 0;
+        Check(!setter.GetComponent<Button>().interactable && HoverHidden(setter), "locking a hovered button left its effects visible");
+        EventSystem.current = new EventSystem { currentSelectedGameObject = setter.gameObject, alreadySelecting = true };
+        ui.ClearHover();
+        Check(EventSystem.current.currentSelectedGameObject == setter.gameObject && HoverHidden(setter), "cleanup re-entered EventSystem selection");
+        Call(ui, "OnDisable");
+    }
+
+    private static void ConfigureStageScreens(WaveSetter setter, Tilemap map, GameObject world, GameObject screen, GameObject scenario)
+    {
+        Set(setter, "worldScreen", world); Set(setter, "scenarioScreen", screen);
+        var entered = Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered");
+        entered.AddPersistentListener(screen, nameof(GameObject.SetActive), () => screen.SetActive(true));
+        entered.AddPersistentListener(scenario, nameof(GameObject.SetActive), () => scenario.SetActive(true));
+        SelectMapOnEntry(setter, map);
+        entered.AddListener(() => { map.gameObject.parent.SetActive(true); world.SetActive(false); });
+    }
+
+    private static void ReenteringStagesClosesPreviousScenarioAndTilemap()
+    {
+        Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        f.second.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = new Vector3Int(-1, 0) });
+        SetStageWaves(f.manager, 1, new[] { f.second });
+        var otherMap = new GameObject("second tilemap") { parent = f.map.gameObject.parent, activeSelf = false }.AddComponent<Tilemap>();
+        var binding = otherMap.gameObject.AddComponent<StageMapBinding>(); binding.EditorSetTilemap(otherMap); binding.EditorSetStageIndex(1);
+        var mapDecoration = new GameObject("map decoration") { parent = f.map.gameObject.parent };
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var firstScenario = new GameObject("first scenario") { parent = screen, activeSelf = false };
+        var secondScenario = new GameObject("second scenario") { parent = screen, activeSelf = false };
+        var background = new GameObject("shared background") { parent = screen };
+        var first = new GameObject("first stage") { parent = world }.AddComponent<WaveSetter>(); first.index = 0;
+        var second = new GameObject("second stage") { parent = world }.AddComponent<WaveSetter>(); second.index = 1;
+        ConfigureStageScreens(first, f.map, world, screen, firstScenario);
+        ConfigureStageScreens(second, otherMap, world, screen, secondScenario);
+        first.SelectSkillByIndex();
+        Check(f.manager.currentWave == f.first && firstScenario.activeInHierarchy && !secondScenario.activeSelf, "first entry did not select its content");
+        GameObject firstMonster = MonsterBase._monsters.Single();
+        PlacementController.RemoveAllObject(); first.ReturnToWorld();
+        Check(!firstScenario.activeSelf && !f.map.gameObject.activeSelf && !firstMonster.activeSelf && world.activeSelf, "leaving battle kept old child content active");
+        // 부모가 닫힌 상태에 이전 activeSelf/Tilemap 참조가 남아 있어도 새 입장을 격리한다.
+        firstScenario.SetActive(true); f.map.gameObject.SetActive(true); PlacementManager.Instance.tilemap = f.map;
+        second.SelectSkillByIndex();
+        Check(f.manager.currentWave == f.second && BattleManager.Instance.LastStageId == 1, "entry read the previous map's wave binding");
+        Check(secondScenario.activeInHierarchy && !firstScenario.activeSelf, "new scenario re-enabled the previous scenario");
+        Check(otherMap.gameObject.activeInHierarchy && !f.map.gameObject.activeSelf && PlacementManager.Instance.OriginMap == otherMap, "new map kept an old tilemap or origin");
+        Check(MonsterBase._monsters.Count == 1 && MonsterBase._monsters[0].name == "B clone", "new stage spawned previous stage monsters");
+        Check(background.activeSelf && mapDecoration.activeSelf, "stage cleanup disabled shared decorations");
+        PlacementController.RemoveAllObject(); second.ReturnToWorld();
+        Check(!secondScenario.activeSelf && !otherMap.gameObject.activeSelf && !screen.activeSelf && world.activeSelf, "second return did not close selected content");
+    }
+
+    private static void WrongParentBindingCannotSelectAnotherMapsWaves()
+    {
+        Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        f.map.gameObject.Components.Remove(f.binding);
+        Tilemap otherMap = new GameObject("unselected map") { parent = f.map.gameObject.parent }.AddComponent<Tilemap>();
+        StageMapBinding ambiguous = f.map.gameObject.parent.AddComponent<StageMapBinding>(); ambiguous.EditorSetStageIndex(1);
+        StageMapBinding shared = f.map.gameObject.parent.AddComponent<StageMapBinding>(); shared.EditorSetTilemap(otherMap); shared.EditorSetStageIndex(1);
+        var setter = new GameObject("stage without own binding").AddComponent<WaveSetter>(); setter.index = 0;
+        SelectMapOnEntry(setter, f.map); setter.SelectSkillByIndex();
+        Check(BattleManager.Instance.IsBattleActive && f.manager.currentWave == f.first, "shared Grid binding for a different Tilemap replaced the button's wave index");
+        Check(!otherMap.gameObject.activeSelf && f.map.gameObject.activeSelf, "unselected sibling Tilemap stayed enabled");
+    }
+
+    private static void InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive()
+    {
+        Fixture f = NewFixture(); f.binding.EditorSetStageIndex(-1);
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var scenario = new GameObject("invalid stage scenario") { parent = screen, activeSelf = false };
+        var setter = new GameObject("invalid stage").AddComponent<WaveSetter>(); setter.index = 0;
+        ConfigureStageScreens(setter, f.map, world, screen, scenario);
+        setter.SelectSkillByIndex();
+        Check(!BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null && PlacementManager.Instance.tilemap == null, "failed entry kept battle state or selected waves");
+        Check(!scenario.activeSelf && !screen.activeSelf && !f.map.gameObject.activeSelf && !f.map.gameObject.parent.activeSelf && world.activeSelf, "failed entry kept stage content enabled");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -419,7 +559,10 @@ internal static class Scenarios
             DynamicStageEditingGuardsInvalidIndexesAndPlayMode,
             RequiredProgressControlsButtonAndEntryAtTheBoundary, DirectStageEntryChecksRequireWithoutTempcontroller,
             EachStageButtonKeepsItsOwnRequirement, ClearedAppearanceDoesNotBypassRequireAndRefreshesAfterLoad,
-            DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection };
+            DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection,
+            ClickedButtonClearsHoverAndSelection, LockedAndReenabledButtonsDoNotRestoreHover,
+            ReenteringStagesClosesPreviousScenarioAndTilemap, WrongParentBindingCannotSelectAnotherMapsWaves,
+            InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;

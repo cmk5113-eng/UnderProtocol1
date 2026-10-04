@@ -23,7 +23,7 @@
 python Tools/MapEditorTests/run_tests.py
 ```
 
-.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter, StageButtonImageController 소스를 API double과 함께 C# 9로 컴파일합니다. 24개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 새 컴포넌트 버전 표시, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다. 버튼별 필요 진행도의 경계(99/100/101), tempcontroller 무시, 직접 함수 호출의 입장 검사, 버튼별 조건 격리, 진행도/클리어 기록 변경 시 표시 갱신도 포함합니다.
+.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter, TileMapManager, StageButtonImageController 소스를 API double과 함께 C# 9로 컴파일합니다. 29개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 새 컴포넌트 버전 표시, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다. 버튼별 필요 진행도의 경계(99/100/101), tempcontroller 무시, 직접 함수 호출의 입장 검사, 버튼별 조건 격리, 진행도/클리어 기록 변경 시 표시 갱신도 포함합니다. 클릭 후 포인터 이탈, 월드 화면 재열기와 잠금 시 Hover 초기화, 스테이지 간 시나리오/Tilemap 격리, 새 맵의 웨이브 선택, 공용 Grid의 미지정/다른 맵 Binding 무시, 잘못된 스테이지 진입 후 화면 복구도 검증합니다.
 
 이 검증은 Unity의 실제 렌더링, 임포트, Undo 엔진, 에셋/프리팹/Scene 직렬화 또는 Play Mode 테스트를 대신하지 않습니다.
 
@@ -37,3 +37,5 @@ python Tools/MapEditorTests/run_tests.py
 - 기존 5개 Stage의 WaveData가 같은 순서로 이관되는지 확인합니다. 6개 이상 Stage를 추가하고 저장·재시작한 후에도 목록이 유지되어야 합니다.
 - 중간 Stage를 삭제한 뒤 모든 로드된 맵과 전투 버튼의 연결을 확인합니다. 삭제한 연결은 `-1`, 뒤쪽 연결은 이전보다 하나 작은 번호여야 하며, WaveSetter의 기본 웨이브/클리어 번호는 같아야 합니다. Ctrl+Z/Ctrl+Y로 한 번에 복원·삭제되는지 확인합니다.
 - 기존 Scene/Prefab의 `Requred Progress` 값이 유지되는지 확인합니다. 100으로 설정한 버튼은 진행도 99에서 잠기고 100부터 열려야 합니다. 다른 저장 슬롯을 로드했을 때 버튼의 잠김/미클리어/클리어 표시와 실제 입장 조건이 일치해야 합니다.
+- 스테이지 버튼을 클릭하고 마우스를 옮기거나 월드 화면을 다시 열면 이전 Circle/Box가 사라져야 합니다. 다시 마우스를 올렸을 때는 해당 버튼의 Hover가 실행되어야 합니다.
+- 1번 스테이지에서 복귀한 뒤 2번에 진입하고 이를 다른 스테이지에서도 반복합니다. Scenario와 Tilemap은 선택한 하나만 켜지고, 웨이브/몬스터/맵 원점도 새 맵을 따라야 합니다. 잘못된 웨이브 연결은 월드로 복귀하고 시나리오/맵을 남기지 않아야 합니다.

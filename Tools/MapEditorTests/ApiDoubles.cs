@@ -35,6 +35,14 @@ namespace UnityEngine
                 if (current.GetComponent<T>() is T component) return component;
             return null;
         }
+        public T[] GetComponentsInParent<T>(bool includeInactive = false) where T : Component
+        {
+            var result = new List<T>();
+            for (GameObject current = gameObject; current != null; current = current.parent)
+                if (includeInactive || current.activeInHierarchy)
+                    result.AddRange(current.Components.OfType<T>());
+            return result.ToArray();
+        }
         public T GetComponentInChildren<T>(bool includeInactive = false) where T : Component
         {
             T local = GetComponent<T>();
@@ -63,7 +71,51 @@ namespace UnityEngine
         public T GetComponentInChildren<T>(bool include = false) where T : Component => transform.GetComponentInChildren<T>(include);
         public void SetActive(bool value) => activeSelf = value;
     }
-    public class Transform : Component { public Vector3 position; public Vector3 forward = new Vector3(0, 0, 1); public Vector3 lossyScale = new Vector3(1, 1, 1); public Vector3 localScale = new Vector3(1, 1, 1); }
+    public class Transform : Component
+    {
+        public Vector3 position; public Vector3 forward = new Vector3(0, 0, 1); public Vector3 lossyScale = new Vector3(1, 1, 1); public Vector3 localScale = new Vector3(1, 1, 1);
+        public Transform parent => gameObject.parent?.transform;
+        public int childCount => GameObject.All.Count(g => g.parent == gameObject);
+        public Transform GetChild(int index) => GameObject.All.Where(g => g.parent == gameObject).ElementAt(index).transform;
+        public Transform Find(string path)
+        {
+            Transform current = this;
+            foreach (string name in path.Split('/'))
+            {
+                current = GameObject.All.FirstOrDefault(g => g.parent == current.gameObject && g.name == name)?.transform;
+                if (current == null) return null;
+            }
+            return current;
+        }
+        public bool IsChildOf(Transform ancestor)
+        {
+            for (Transform current = this; current != null; current = current.parent)
+                if (current == ancestor) return true;
+            return false;
+        }
+    }
+    public enum AnimatorControllerParameterType { Float, Int, Bool, Trigger }
+    public class AnimatorControllerParameter
+    {
+        public string name; public AnimatorControllerParameterType type;
+        public int nameHash => name.GetHashCode();
+    }
+    public class Animator : Component
+    {
+        public bool enabled = true;
+        public bool isActiveAndEnabled => enabled && gameObject.activeInHierarchy;
+        public Object runtimeAnimatorController = new Object();
+        public AnimatorControllerParameter[] parameters = Array.Empty<AnimatorControllerParameter>();
+        public readonly HashSet<int> PendingTriggers = new HashSet<int>();
+        public string LastAppliedTrigger;
+        public void ResetTrigger(int hash) => PendingTriggers.Remove(hash);
+        public void SetTrigger(string name) => PendingTriggers.Add(name.GetHashCode());
+        public void Update(float delta)
+        {
+            LastAppliedTrigger = parameters.FirstOrDefault(p => PendingTriggers.Contains(p.nameHash))?.name;
+            PendingTriggers.Clear();
+        }
+    }
     public class ScriptableObject : Object { public static T CreateInstance<T>() where T : ScriptableObject, new() => new T(); }
     public class Texture : Object { public int width = 64, height = 64; }
     public class Texture2D : Texture { }
@@ -164,8 +216,32 @@ namespace UnityEngine
 }
 namespace UnityEngine.UI
 {
-    public class Button : UnityEngine.Component { public bool interactable = true; }
+    public class AnimationTriggers
+    {
+        public string normalTrigger = "Normal", highlightedTrigger = "Highlighted", pressedTrigger = "Pressed", selectedTrigger = "Selected", disabledTrigger = "Disabled";
+    }
+    public class Selectable : UnityEngine.Component
+    {
+        public enum Transition { None, ColorTint, SpriteSwap, Animation }
+        public Transition transition = Transition.ColorTint;
+        public AnimationTriggers animationTriggers = new AnimationTriggers();
+        public UnityEngine.Animator animator => GetComponent<UnityEngine.Animator>();
+    }
+    public class Button : Selectable { public bool interactable = true; }
     public class Image : UnityEngine.Component { public UnityEngine.Sprite sprite, overrideSprite; public UnityEngine.Color color; }
+}
+namespace UnityEngine.EventSystems
+{
+    public class PointerEventData { }
+    public interface IPointerEnterHandler { void OnPointerEnter(PointerEventData data); }
+    public interface IPointerExitHandler { void OnPointerExit(PointerEventData data); }
+    public class EventSystem
+    {
+        public static EventSystem current;
+        public bool alreadySelecting;
+        public UnityEngine.GameObject currentSelectedGameObject;
+        public void SetSelectedGameObject(UnityEngine.GameObject value) => currentSelectedGameObject = value;
+    }
 }
 namespace UnityEngine.SceneManagement
 {
@@ -364,8 +440,25 @@ namespace UnityEditor.SceneManagement
 namespace NUnit.Framework { }
 public class ManagerBase : UnityEngine.MonoBehaviour { protected virtual IEnumerator OnConnected(GameManager manager) { yield break; } protected virtual void OnDisconnected() { } }
 public class GameManager : UnityEngine.MonoBehaviour { public static GameManager Instance; public WaveManager Wave; }
-public class PlacementManager : UnityEngine.MonoBehaviour { public static PlacementManager Instance; public UnityEngine.Tilemaps.Tilemap tilemap; }
-public class PlacementController : UnityEngine.MonoBehaviour { public static void RemoveAllObject() { MonsterBase._monsters.Clear(); } }
+public class PlacementManager : UnityEngine.MonoBehaviour
+{
+    public static PlacementManager Instance; public UnityEngine.Tilemaps.Tilemap tilemap;
+    public readonly Dictionary<UnityEngine.Vector3Int, object> tileDatas = new Dictionary<UnityEngine.Vector3Int, object>();
+    public UnityEngine.Tilemaps.Tilemap OriginMap;
+    public void InitializeMapOrigin() => OriginMap = tilemap;
+}
+public class PlacementController : UnityEngine.MonoBehaviour
+{
+    public static void RemoveAllObject()
+    {
+        foreach (UnityEngine.GameObject monster in MonsterBase._monsters) monster.SetActive(false);
+        MonsterBase._monsters.Clear();
+        if (PlacementManager.Instance != null) { PlacementManager.Instance.tilemap = null; PlacementManager.Instance.tileDatas.Clear(); }
+        if (BattleManager.Instance != null) BattleManager.Instance.IsBattleActive = false;
+        WaveManager wave = GameManager.Instance?.Wave;
+        if (wave != null) { wave.selectedWaves = null; wave.currentWave = null; wave.currentWaveIndex = 0; }
+    }
+}
 public class StageMapLoader : UnityEngine.MonoBehaviour { public StageMapData MapData; }
 public class MonsterBase : UnityEngine.MonoBehaviour { public static readonly List<UnityEngine.GameObject> _monsters = new List<UnityEngine.GameObject>(); }
 public class BattleManager : UnityEngine.MonoBehaviour
@@ -376,7 +469,21 @@ public class BattleManager : UnityEngine.MonoBehaviour
     public void BeginBattle(int stageId, WaveSetter setter) { IsBattleActive = true; LastStageId = stageId; }
 }
 public class StageUIController : UnityEngine.MonoBehaviour { public static StageUIController Instance; public void UpdateWave() { } }
-namespace UnityEngine.Events { public class UnityEvent { public event Action Handler; public void Invoke() => Handler?.Invoke(); public void AddListener(Action action) => Handler += action; } }
+namespace UnityEngine.Events
+{
+    public class UnityEvent
+    {
+        public event Action Handler;
+        private readonly List<(UnityEngine.Object target, string method)> persistent = new List<(UnityEngine.Object, string)>();
+        public void Invoke() => Handler?.Invoke();
+        public void AddListener(Action action) => Handler += action;
+        public void AddPersistentListener(UnityEngine.Object target, string method, Action action)
+        { persistent.Add((target,method)); Handler += action; }
+        public int GetPersistentEventCount() => persistent.Count;
+        public string GetPersistentMethodName(int index) => persistent[index].method;
+        public UnityEngine.Object GetPersistentTarget(int index) => persistent[index].target;
+    }
+}
 public class tempcontroller : UnityEngine.MonoBehaviour
 {
     public bool allow = true;

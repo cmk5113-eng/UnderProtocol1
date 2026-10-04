@@ -28,6 +28,7 @@ version, location = [re.match(r"Microsoft.NETCore.App (\S+) \[(.*)\]", line).gro
 framework = pathlib.Path(location) / version
 sources = [
     "Assets/3.Scripts/Managers/WaveManager.cs",
+    "Assets/3.Scripts/Managers/TileMapManager.cs",
     "Assets/3.Scripts/ScriptableObjects/MonsterData.cs",
     "Assets/3.Scripts/Systems/WaveData.cs",
     "Assets/3.Scripts/Systems/StageMapData.cs",
