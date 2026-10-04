@@ -1,0 +1,468 @@
+{
+  "asset_name": "UnderProtocol_Tilemap_NoHighlight",
+  "version": 1,
+  "tile_size": [
+    256,
+    256
+  ],
+  "sheet_size": [
+    1024,
+    1024
+  ],
+  "sheet_grid": [
+    4,
+    4
+  ],
+  "highlights_included": false,
+  "alpha": "All tiles are opaque floor tiles; obstacle tiles include their floor.",
+  "sprites": [
+    {
+      "index": 1,
+      "name": "UPTM_Floor_Base",
+      "description_ko": "기본 금속 바닥",
+      "type": "floor",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Floor_Base.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 1,
+      "sheet_column": 1,
+      "unity_rect_bottom_left": {
+        "x": 0,
+        "y": 768,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        0,
+        0,
+        315,
+        312
+      ]
+    },
+    {
+      "index": 2,
+      "name": "UPTM_Floor_Worn",
+      "description_ko": "마모된 금속 바닥",
+      "type": "floor",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Floor_Worn.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 1,
+      "sheet_column": 2,
+      "unity_rect_bottom_left": {
+        "x": 256,
+        "y": 768,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        315,
+        0,
+        627,
+        312
+      ]
+    },
+    {
+      "index": 3,
+      "name": "UPTM_Floor_Cracked",
+      "description_ko": "균열 금속 바닥",
+      "type": "floor",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Floor_Cracked.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 1,
+      "sheet_column": 3,
+      "unity_rect_bottom_left": {
+        "x": 512,
+        "y": 768,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        627,
+        0,
+        940,
+        312
+      ]
+    },
+    {
+      "index": 4,
+      "name": "UPTM_Floor_Bolted",
+      "description_ko": "볼트 금속 바닥",
+      "type": "floor",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Floor_Bolted.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 1,
+      "sheet_column": 4,
+      "unity_rect_bottom_left": {
+        "x": 768,
+        "y": 768,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        940,
+        0,
+        1254,
+        312
+      ]
+    },
+    {
+      "index": 5,
+      "name": "UPTM_Edge_Top",
+      "description_ko": "위쪽 외곽",
+      "type": "edge",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Edge_Top.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 2,
+      "sheet_column": 1,
+      "unity_rect_bottom_left": {
+        "x": 0,
+        "y": 512,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        0,
+        312,
+        315,
+        625
+      ]
+    },
+    {
+      "index": 6,
+      "name": "UPTM_Edge_Right",
+      "description_ko": "오른쪽 외곽",
+      "type": "edge",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Edge_Right.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 2,
+      "sheet_column": 2,
+      "unity_rect_bottom_left": {
+        "x": 256,
+        "y": 512,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        315,
+        312,
+        627,
+        625
+      ]
+    },
+    {
+      "index": 7,
+      "name": "UPTM_Edge_Bottom",
+      "description_ko": "아래쪽 외곽",
+      "type": "edge",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Edge_Bottom.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 2,
+      "sheet_column": 3,
+      "unity_rect_bottom_left": {
+        "x": 512,
+        "y": 512,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        627,
+        312,
+        940,
+        625
+      ]
+    },
+    {
+      "index": 8,
+      "name": "UPTM_Edge_Left",
+      "description_ko": "왼쪽 외곽",
+      "type": "edge",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Edge_Left.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 2,
+      "sheet_column": 4,
+      "unity_rect_bottom_left": {
+        "x": 768,
+        "y": 512,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        940,
+        312,
+        1254,
+        625
+      ]
+    },
+    {
+      "index": 9,
+      "name": "UPTM_Corner_TopLeft",
+      "description_ko": "왼쪽 위 모서리",
+      "type": "corner",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Corner_TopLeft.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 3,
+      "sheet_column": 1,
+      "unity_rect_bottom_left": {
+        "x": 0,
+        "y": 256,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        0,
+        625,
+        315,
+        928
+      ]
+    },
+    {
+      "index": 10,
+      "name": "UPTM_Corner_TopRight",
+      "description_ko": "오른쪽 위 모서리",
+      "type": "corner",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Corner_TopRight.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 3,
+      "sheet_column": 2,
+      "unity_rect_bottom_left": {
+        "x": 256,
+        "y": 256,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        315,
+        625,
+        627,
+        928
+      ]
+    },
+    {
+      "index": 11,
+      "name": "UPTM_Corner_BottomRight",
+      "description_ko": "오른쪽 아래 모서리",
+      "type": "corner",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Corner_BottomRight.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 3,
+      "sheet_column": 3,
+      "unity_rect_bottom_left": {
+        "x": 512,
+        "y": 256,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        627,
+        625,
+        940,
+        928
+      ]
+    },
+    {
+      "index": 12,
+      "name": "UPTM_Corner_BottomLeft",
+      "description_ko": "왼쪽 아래 모서리",
+      "type": "corner",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Corner_BottomLeft.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 3,
+      "sheet_column": 4,
+      "unity_rect_bottom_left": {
+        "x": 768,
+        "y": 256,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        940,
+        625,
+        1254,
+        928
+      ]
+    },
+    {
+      "index": 13,
+      "name": "UPTM_Obstacle_XCrate",
+      "description_ko": "X 보강 상자 + 바닥",
+      "type": "obstacle",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Obstacle_XCrate.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 4,
+      "sheet_column": 1,
+      "unity_rect_bottom_left": {
+        "x": 0,
+        "y": 0,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        0,
+        928,
+        315,
+        1254
+      ]
+    },
+    {
+      "index": 14,
+      "name": "UPTM_Obstacle_Hatch",
+      "description_ko": "금속 덮개 + 바닥",
+      "type": "obstacle",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Obstacle_Hatch.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 4,
+      "sheet_column": 2,
+      "unity_rect_bottom_left": {
+        "x": 256,
+        "y": 0,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        315,
+        928,
+        627,
+        1254
+      ]
+    },
+    {
+      "index": 15,
+      "name": "UPTM_Obstacle_DoubleBox",
+      "description_ko": "이중 패널 상자 + 바닥",
+      "type": "obstacle",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Obstacle_DoubleBox.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 4,
+      "sheet_column": 3,
+      "unity_rect_bottom_left": {
+        "x": 512,
+        "y": 0,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        627,
+        928,
+        940,
+        1254
+      ]
+    },
+    {
+      "index": 16,
+      "name": "UPTM_Floor_Caution",
+      "description_ko": "노란 경고선 바닥",
+      "type": "floor",
+      "png": "Assets/UnderProtocol_Tilemap_NoHighlight/Sprites/UPTM_Floor_Caution.png",
+      "width": 256,
+      "height": 256,
+      "ppu": 256,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sheet_row_top_down": 4,
+      "sheet_column": 4,
+      "unity_rect_bottom_left": {
+        "x": 768,
+        "y": 0,
+        "width": 256,
+        "height": 256
+      },
+      "source_crop_top_left": [
+        940,
+        928,
+        1254,
+        1254
+      ]
+    }
+  ]
+}
