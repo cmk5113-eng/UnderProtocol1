@@ -14,16 +14,19 @@
 
 | 위치 | 설정 | 의미 |
 |---|---|---|
-| 각 `S_World`의 `Progress` 오브젝트 | `tempcontroller → Stage 1 Progress` | 0번 요소부터 첫 번째 스테이지의 최소 진행도. 현재 기본값은 `0, 1, 2, 3, 4`입니다. |
-| 각 스테이지 버튼 | `WaveSetter → Index` | 기존 웨이브 구성 번호 0~4입니다. |
+| 각 `S_World`의 `Progress` 오브젝트 | `tempcontroller` | 현재 진행도 표시와 디버그 증감 버튼에 사용합니다. `Stage 1 Progress` 배열은 스테이지 입장 조건에 사용하지 않습니다. |
+| 각 스테이지 버튼 | `StageButtonImageController → Requred Progress` | 이 값 이상이면 버튼과 실제 전투 진입을 함께 허용합니다. 0이면 진행도 제한이 없습니다. |
+| 각 스테이지 버튼 | `WaveSetter → Index` | 기본 웨이브 구성 번호입니다. 맵의 `StageMapBinding` 또는 별도 웨이브 번호가 있으면 해당 연결을 사용합니다. |
 | 각 스테이지 버튼 | `WaveSetter → Stage Id` | 클리어 기록용 고유 ID. 6개 월드에 0~29를 부여했습니다. 저장 후에는 재사용/재배치하지 마세요. |
 | 각 스테이지 버튼 | `StageButtonImageController` | `Target Image`는 보이는 `Box` 이미지입니다. 미클리어/클리어/잠김 스프라이트와 색상을 교체할 수 있습니다. |
 
-진행도가 필요 값 **이상**이어야 입장합니다. 배열에 해당 인덱스가 없으면 입장을 차단합니다. 예를 들어 세 번째 요소가 5이면 `Progress >= 5`가 필요합니다.
+진행도가 버튼의 `Requred Progress` 값 **이상**이어야 입장합니다. 예를 들어 100이면 진행도 99에서는 잠기고 100부터 열립니다. 스테이지 번호가 5, 29 등이어도 필요 진행도 배열의 길이와 관계없이 같은 조건을 적용합니다. 웨이브 설정과 클리어 기록 번호는 각각 별도로 검사합니다.
+
+기존 `requredProgress` 직렬화 이름을 유지하므로 Scene/Prefab에 입력한 값은 그대로 사용합니다. 별도 이미지 컨트롤러가 없는 기존 WaveSetter는 필요 진행도를 0으로 취급합니다.
 
 클리어는 초록색, 잠김은 회색으로 표시하고 프로젝트에 있는 스프라이트를 사용합니다. `overrideSprite`를 사용하므로 기존 버튼 애니메이션이 클리어 이미지를 덮어쓰지 않습니다.
 
-새 버튼을 추가할 때는 `Button.onClick`에 `WaveSetter.SelectSkillByIndex`만 연결하세요. 화면 활성화와 맵 선택 이벤트는 `WaveSetter.On Stage Entered` 안에 넣어 진행도 검사 이후 실행되도록 합니다. `Progress Controller`, 복귀할 `World Screen`, 닫을 `Scenario Screen`, 고유 `Stage Id`도 지정하세요.
+새 버튼을 추가할 때는 `Button.onClick`에 `WaveSetter.SelectSkillByIndex`만 연결하세요. 화면 활성화와 맵 선택 이벤트는 `WaveSetter.On Stage Entered` 안에 넣어 진행도 검사 이후 실행되도록 합니다. 버튼의 `Requred Progress`, 복귀할 `World Screen`, 닫을 `Scenario Screen`, 고유 `Stage Id`를 지정하세요. 이전 `Progress Controller` 연결은 숨겨 두며 입장 판정에 사용하지 않습니다.
 
 ## 검증
 
@@ -33,3 +36,5 @@
 - Unity 에디터 컴파일 및 실제 플레이 모드 검증은 이 환경에서 실행하지 못했습니다.
 
 Unity에서는 마지막 적 처치 후 턴 종료, 동일 스테이지 재클리어, 진행도가 부족한 스테이지 클릭, 다른 저장 슬롯 로드 후 버튼 상태를 확인하면 됩니다.
+
+버튼별 필요 진행도 검증은 `python Tools/MapEditorTests/run_tests.py`에 포함되어 있습니다. 필요 값 100의 경계(99/100/101), index 29의 실제 웨이브 진입, tempcontroller 연결 없음/거부 상태, 버튼마다 다른 조건, 슬롯 변경에 따른 클리어/잠김 이미지 갱신을 확인합니다. Unity에서 기존 Scene/Prefab의 `Requred Progress` 값이 유지되는지도 확인하세요.

@@ -13,7 +13,10 @@ public class StageButtonImageController : MonoBehaviour
     [SerializeField] private Color unclearedColor = Color.white;
     [SerializeField] private Color clearedColor = new Color(0.5f, 1f, 0.7f, 1f);
     [SerializeField] private Color lockedColor = new Color(0.45f, 0.45f, 0.45f, 1f);
-    [SerializeField] private int requredProgress;
+    [Tooltip("이 값 이상일 때 스테이지 버튼을 활성화하고 전투 진입을 허용합니다. 0이면 진행도 제한이 없습니다.")]
+    [SerializeField, Min(0)] private int requredProgress;
+    // 기존 직렬화 이름을 유지해 Scene/Prefab에 입력한 값을 그대로 사용한다.
+    public int RequiredProgress => Mathf.Max(0, requredProgress);
 
     private void Awake()
     {
@@ -37,11 +40,6 @@ public class StageButtonImageController : MonoBehaviour
         bool unlocked = stage.CanEnterStage;
         if (stageButton != null) stageButton.interactable = unlocked;
         if (targetImage == null) return;
-
-        if (requredProgress > ProgressManager.progress)
-        {
-            LockedStage();
-        }
 
         bool cleared = ProgressManager.IsStageCleared(stage.StageId);
         // overrideSprite는 기존 하이라이트 애니메이션의 m_Sprite 변경에 덮어씌워지지 않는다.

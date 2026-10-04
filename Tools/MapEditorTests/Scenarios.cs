@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 internal static class Scenarios
 {
@@ -46,6 +47,7 @@ internal static class Scenarios
         GameObject.All.Clear(); AssetDatabase.Assets.Clear(); AssetDatabase.Saved.Clear(); Undo.Records.Clear();
         EditorUtility.Dirty.Clear(); EditorUtility.NextAssetPath = null; EditorSceneManager.Dirty.Clear(); EditorSceneManager.Saved.Clear();
         EditorApplication.isPlayingOrWillChangePlaymode = false; MonsterBase._monsters.Clear(); GUIUtility.hotControl = 0; Event.current = null;
+        ProgressManager.ResetForTest(); UIManager.LastPopUpMessage = null;
         var f = new Fixture { editor = new StageMapEditor(), first = new WaveData { name = "first" }, second = new WaveData { name = "second" }, terrain = new StageMapData() };
         f.manager = new GameObject("manager").AddComponent<WaveManager>();
         SetStageWaves(f.manager, 0, new[] { f.first, f.second });
@@ -312,6 +314,99 @@ internal static class Scenarios
         Check(!f.manager.SetStageWave(99, 0, new WaveData()), "invalid stage wave update accepted");
     }
 
+    private static StageButtonImageController StageButton(WaveSetter setter, int required)
+    {
+        setter.gameObject.AddComponent<Button>();
+        setter.gameObject.AddComponent<Image>().sprite = new Sprite { name = "uncleared" };
+        StageButtonImageController controller = setter.gameObject.AddComponent<StageButtonImageController>();
+        Set(controller, "requredProgress", required);
+        Set(controller, "lockedSprite", new Sprite { name = "locked" });
+        Set(controller, "clearedSprite", new Sprite { name = "cleared" });
+        Call(controller, "Awake"); Call(controller, "OnEnable");
+        return controller;
+    }
+
+    private static void RequiredProgressControlsButtonAndEntryAtTheBoundary()
+    {
+        NewFixture();
+        var setter = new GameObject("stage 30").AddComponent<WaveSetter>(); setter.index = 29;
+        var legacy = new GameObject("legacy progress").AddComponent<tempcontroller>(); legacy.allow = false;
+        Set(setter, "progressController", legacy);
+        StageButtonImageController controller = StageButton(setter, 100);
+        Button button = setter.GetComponent<Button>(); Image image = setter.GetComponent<Image>();
+        foreach (int progress in new[] { 0, 99, 100, 101, 99 })
+        {
+            ProgressManager.Progress = progress;
+            bool expected = progress >= 100;
+            Check(setter.RequiredProgress == 100 && setter.CanEnterStage == expected, "require boundary still depended on tempcontroller or stage index");
+            Check(button.interactable == expected, "progress change did not refresh button interaction");
+            Check(image.overrideSprite == (expected ? null : Get<Sprite>(controller, "lockedSprite")), "button sprite did not follow entry permission");
+            Check(image.color.Equals(expected ? Color.white : new Color(.45f, .45f, .45f, 1)), "button color did not follow entry permission");
+        }
+        Call(controller, "OnDisable");
+    }
+
+    private static void DirectStageEntryChecksRequireWithoutTempcontroller()
+    {
+        Fixture f = NewFixture(); SetStageWaves(f.manager, 29, new[] { f.first }); f.binding.EditorSetStageIndex(29);
+        Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        var setter = new GameObject("stage 30 button").AddComponent<WaveSetter>(); setter.index = 29;
+        StageButtonImageController controller = StageButton(setter, 100);
+        int entered = 0; Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => entered++);
+        ProgressManager.Progress = 99; setter.SelectSkillByIndex();
+        Check(!BattleManager.Instance.IsBattleActive && entered == 0 && f.manager.selectedWaves == null, "direct invocation bypassed require check");
+        Check(UIManager.LastPopUpMessage.Contains("100") && UIManager.LastPopUpMessage.Contains("99"), "locked popup did not use button requirement and actual progress");
+        ProgressManager.Progress = 100; setter.SelectSkillByIndex();
+        Check(BattleManager.Instance.IsBattleActive && BattleManager.Instance.LastStageId == 29 && entered == 1, "stage 30 was still locked by absent tempcontroller or its five-slot array");
+        Check(f.manager.currentWave == f.first && MonsterBase._monsters.Count == 1, "unlocked stage did not load its configured wave");
+        Call(controller, "OnDisable");
+    }
+
+    private static void EachStageButtonKeepsItsOwnRequirement()
+    {
+        NewFixture();
+        var first = new GameObject("first button").AddComponent<WaveSetter>(); first.index = 7;
+        var second = new GameObject("second button").AddComponent<WaveSetter>(); second.index = 7;
+        StageButtonImageController firstUI = StageButton(first, 0), secondUI = StageButton(second, 100);
+        ProgressManager.Progress = 50;
+        Check(first.CanEnterStage && first.GetComponent<Button>().interactable, "zero requirement was not unlocked");
+        Check(!second.CanEnterStage && !second.GetComponent<Button>().interactable, "requirements leaked between buttons sharing an index");
+        ProgressManager.Progress = 100;
+        Check(first.CanEnterStage && second.CanEnterStage && second.GetComponent<Button>().interactable, "equal requirement did not unlock independent button");
+        Call(firstUI, "OnDisable"); Call(secondUI, "OnDisable");
+    }
+
+    private static void ClearedAppearanceDoesNotBypassRequireAndRefreshesAfterLoad()
+    {
+        NewFixture();
+        var setter = new GameObject("cleared stage").AddComponent<WaveSetter>(); setter.index = 12;
+        StageButtonImageController controller = StageButton(setter, 100);
+        Image image = setter.GetComponent<Image>(); Button button = setter.GetComponent<Button>();
+        ProgressManager.ClearedStages.Add(setter.StageId); ProgressManager.Progress = 99;
+        Check(!button.interactable && image.overrideSprite == Get<Sprite>(controller, "lockedSprite"), "clear record bypassed requirement");
+        ProgressManager.Progress = 100;
+        Check(button.interactable && image.overrideSprite == Get<Sprite>(controller, "clearedSprite") && image.color.Equals(new Color(.5f, 1, .7f, 1)), "unlocked clear record did not use cleared appearance");
+        ProgressManager.ClearedStages.Clear(); ProgressManager.Progress = 100;
+        Check(button.interactable && image.overrideSprite == null && image.sprite == Get<Sprite>(controller, "unclearedSprite"), "new save slot kept another slot's cleared sprite");
+        ProgressManager.Progress = 0;
+        Check(!button.interactable && image.overrideSprite == Get<Sprite>(controller, "lockedSprite"), "lower-progress slot did not relock button");
+        Call(controller, "OnDisable");
+    }
+
+    private static void DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection()
+    {
+        NewFixture();
+        var setter = new GameObject("legacy setter without button art").AddComponent<WaveSetter>(); setter.index = 29;
+        Check(setter.RequiredProgress == 0 && setter.CanEnterStage, "setter without image controller still required a tempcontroller connection");
+        Button button = setter.gameObject.AddComponent<Button>();
+        StageButtonImageController controller = setter.gameObject.AddComponent<StageButtonImageController>();
+        Set(controller, "requredProgress", -10); Call(controller, "Awake"); Call(controller, "OnEnable");
+        Check(controller.RequiredProgress == 0 && setter.CanEnterStage && button.interactable, "negative requirement or absent image broke entry permission");
+        Set(controller, "requredProgress", 5); controller.Refresh();
+        Check(!setter.CanEnterStage && !button.interactable, "button without an image bypassed positive requirement");
+        Call(controller, "OnDisable");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -321,7 +416,10 @@ internal static class Scenarios
             LegacyMigrationPreservesAllFiveStagesAndStaysEmptyAfterDeletion, ThirtyStagesCanBeAuthoredAndLoaded,
             NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization,
             StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo, DetachedStagesRejectBattleEntryAndCanBeReconnected,
-            DynamicStageEditingGuardsInvalidIndexesAndPlayMode };
+            DynamicStageEditingGuardsInvalidIndexesAndPlayMode,
+            RequiredProgressControlsButtonAndEntryAtTheBoundary, DirectStageEntryChecksRequireWithoutTempcontroller,
+            EachStageButtonKeepsItsOwnRequirement, ClearedAppearanceDoesNotBypassRequireAndRefreshesAfterLoad,
+            DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;
