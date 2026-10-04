@@ -34,6 +34,7 @@ sources = [
     "Assets/3.Scripts/Systems/StageMapBinding.cs",
     "Assets/3.Scripts/Systems/WaveLoader.cs",
     "Assets/3.Scripts/Systems/WaveSetter.cs",
+    "Assets/3.Scripts/UIs/Functions/Buttons/StageButtonImageController.cs",
     "Assets/Editor/StageMapEditor.cs",
     "Assets/Editor/StageMapEditor.Monsters.cs",
     "Assets/Editor/WaveManagerEditor.cs",

@@ -10,7 +10,8 @@ public class WaveSetter : MonoBehaviour
     [Min(-1)] [SerializeField] private int waveStageIndex;
     [Tooltip("클리어 기록용 고유 번호. 웨이브 구성을 공유해도 서로 다른 스테이지는 다른 번호를 사용합니다.")]
     [SerializeField] private int stageId = -1;
-    [SerializeField] private tempcontroller progressController;
+    // 이전 Scene/Prefab의 연결은 보존하되 입장 조건에서는 사용하지 않는다.
+    [SerializeField, HideInInspector] private tempcontroller progressController;
     [SerializeField] private GameObject worldScreen;
     [SerializeField] private GameObject scenarioScreen;
     [Tooltip("진행도 검사 통과 후 실행할 기존 화면/맵 설정입니다. 버튼에는 SelectSkillByIndex만 연결합니다.")]
@@ -20,7 +21,15 @@ public class WaveSetter : MonoBehaviour
 
     public int StageId => stageId >= 0 ? stageId : index;
     public int WaveStageIndex => overrideWaveStageIndex ? waveStageIndex : index;
-    public bool CanEnterStage => progressController != null && progressController.CanEnterStage(index);
+    public int RequiredProgress
+    {
+        get
+        {
+            StageButtonImageController button = GetComponent<StageButtonImageController>();
+            return button != null ? button.RequiredProgress : 0;
+        }
+    }
+    public bool CanEnterStage => ProgressManager.Progress >= RequiredProgress;
 
 #if UNITY_EDITOR
     public void EditorSetWaveStageIndex(int value)
@@ -34,10 +43,7 @@ public class WaveSetter : MonoBehaviour
     {
         if (!CanEnterStage)
         {
-            string message = progressController != null
-                && progressController.TryGetRequiredProgress(index, out int required)
-                ? $"진행도 {required} 이상이 필요합니다. (현재 {ProgressManager.Progress})"
-                : "스테이지의 필요 진행도를 설정해주세요.";
+            string message = $"진행도 {RequiredProgress} 이상이 필요합니다. (현재 {ProgressManager.Progress})";
             UIManager.ClaimPopUp("진입 불가", message, "확인");
             return;
         }

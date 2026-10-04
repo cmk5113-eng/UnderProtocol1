@@ -104,7 +104,12 @@ namespace UnityEngine
         public BoundsInt(int x, int y, int z, int width, int height, int depth) { position = new Vector3Int(x, y, z); size = new Vector3Int(width, height, depth); }
         public bool Contains(Vector3Int cell) => cell.x >= xMin && cell.x < xMax && cell.y >= yMin && cell.y < yMax && cell.z >= zMin && cell.z < zMax;
     }
-    public struct Color { public Color(float r, float g, float b, float a = 1) { } public static Color white => default; }
+    public struct Color
+    {
+        public float r, g, b, a;
+        public Color(float r, float g, float b, float a = 1) { this.r = r; this.g = g; this.b = b; this.a = a; }
+        public static Color white => new Color(1, 1, 1, 1);
+    }
     public struct Quaternion { public static Quaternion identity => default; }
     public struct Ray { public Vector3 GetPoint(float distance) => default; }
     public struct Plane { public Plane(Vector3 normal, Vector3 point) { } public bool Raycast(Ray ray, out float distance) { distance = 0; return false; } }
@@ -149,12 +154,18 @@ namespace UnityEngine
     public static class GUILayoutUtility { public static Rect GetRect(float width, float height, params GUILayoutOption[] options) => new Rect(0, 0, 400, height); }
     public static class Debug { public static void Log(object text) { } public static void LogError(object text) { } public static void LogWarning(object text) { } }
     public class SerializeField : Attribute { }
+    public class RequireComponent : Attribute { public RequireComponent(Type first, Type second) { } }
     public class HideInInspector : Attribute { }
     public class Tooltip : Attribute { public Tooltip(string text) { } }
     public class Min : Attribute { public Min(float value) { } }
     public class RangeAttribute : Attribute { public RangeAttribute(float min, float max) { } }
     public class Header : Attribute { public Header(string text) { } }
     public class CreateAssetMenuAttribute : Attribute { public string menuName; }
+}
+namespace UnityEngine.UI
+{
+    public class Button : UnityEngine.Component { public bool interactable = true; }
+    public class Image : UnityEngine.Component { public UnityEngine.Sprite sprite, overrideSprite; public UnityEngine.Color color; }
 }
 namespace UnityEngine.SceneManagement
 {
@@ -372,7 +383,24 @@ public class tempcontroller : UnityEngine.MonoBehaviour
     public bool CanEnterStage(int index) => allow && index >= 0;
     public bool TryGetRequiredProgress(int index, out int value) { value = 0; return index >= 0; }
 }
-public static class ProgressManager { public static int Progress; }
+public static class ProgressManager
+{
+    private static int progress;
+    public static event Action OnProgressChanged;
+    public static readonly HashSet<int> ClearedStages = new HashSet<int>();
+    public static int Progress
+    {
+        get => progress;
+        set { progress = Math.Max(0, value); OnProgressChanged?.Invoke(); }
+    }
+    public static bool IsStageCleared(int id) => ClearedStages.Contains(id);
+    public static void ResetForTest() { progress = 0; OnProgressChanged = null; ClearedStages.Clear(); }
+}
 public enum UIType { CharacterSelect, Stage, Menu }
-public static class UIManager { public static void ClaimPopUp(string title, string message, string action) { } public static void ClaimCloseUI(UIType type) { } }
+public static class UIManager
+{
+    public static string LastPopUpMessage;
+    public static void ClaimPopUp(string title, string message, string action) => LastPopUpMessage = message;
+    public static void ClaimCloseUI(UIType type) { }
+}
 public class ModeManager : UnityEngine.MonoBehaviour { public static ModeManager Instance; public enum GameMode { None } public void ChangeMode(GameMode mode) { } }
