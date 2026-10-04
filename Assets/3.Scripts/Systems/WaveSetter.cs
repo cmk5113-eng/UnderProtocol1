@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class WaveSetter : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class WaveSetter : MonoBehaviour
     [SerializeField] private UnityEvent onStageEntered = new UnityEvent();
 
     private GameObject battleMapRoot;
+    private Tilemap battleTilemap;
 
     public int StageId => stageId >= 0 ? stageId : index;
     public int WaveStageIndex => overrideWaveStageIndex ? waveStageIndex : index;
@@ -53,26 +55,10 @@ public class WaveSetter : MonoBehaviour
         if (wave == null || battle == null || battle.IsBattleActive || index < 0)
             return;
 
-        int selectedStageIndex = WaveStageIndex;
-        var activeTilemap = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
-        StageMapBinding mapBinding = activeTilemap != null
-            ? activeTilemap.GetComponentInParent<StageMapBinding>(true) : null;
-        if (mapBinding != null) selectedStageIndex = mapBinding.StageIndex;
-
-        if (selectedStageIndex < 0 || selectedStageIndex >= wave.StageCount)
-        {
-            Debug.LogWarning($"[WaveSetter] Stage Index {selectedStageIndex}가 WaveManager 범위를 벗어났거나 연결 해제 상태입니다.");
-            return;
-        }
-
-        WaveData[] waves = wave.GetStageWaves(selectedStageIndex);
-        if (waves == null || waves.Length == 0 || System.Array.Exists(waves, item => item == null))
-        {
-            Debug.LogWarning($"[WaveSetter] {StageId} 스테이지의 웨이브 설정을 확인해주세요.");
-            return;
-        }
-
+        StageButtonImageController button = GetComponent<StageButtonImageController>();
+        if (button != null) button.ClearHover();
         PlacementController.RemoveAllObject();
+        HideStageScenarios();
         onStageEntered.Invoke();
 
         // 종료 시 tilemap 참조를 초기화하므로 선택한 맵 루트를 미리 보관한다.
@@ -80,11 +66,35 @@ public class WaveSetter : MonoBehaviour
         PlacementController selectedMap = selectedTilemap != null
             ? selectedTilemap.GetComponentInParent<PlacementController>(true) : null;
         battleMapRoot = selectedMap != null ? selectedMap.gameObject : null;
+        battleTilemap = selectedTilemap;
         WaveLoader loader = WaveLoader.Instance;
         if (PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null || loader == null)
         {
             Debug.LogError("[WaveSetter] 스테이지의 Tilemap 또는 WaveLoader가 없습니다.");
-            ReturnToWorld();
+            CancelStageEntry();
+            return;
+        }
+
+        // 입장 이벤트가 선택한 새 맵을 읽는다. 이전 맵/공용 Grid의 Binding을 재사용하지 않는다.
+        int selectedStageIndex = WaveStageIndex;
+        foreach (StageMapBinding binding in selectedTilemap.GetComponentsInParent<StageMapBinding>(true))
+        {
+            if (!binding.IsBoundTo(selectedTilemap)) continue;
+            selectedStageIndex = binding.StageIndex;
+            break;
+        }
+        if (selectedStageIndex < 0 || selectedStageIndex >= wave.StageCount)
+        {
+            Debug.LogWarning($"[WaveSetter] Stage Index {selectedStageIndex}가 WaveManager 범위를 벗어났거나 연결 해제 상태입니다.");
+            CancelStageEntry();
+            return;
+        }
+
+        WaveData[] waves = wave.GetStageWaves(selectedStageIndex);
+        if (waves == null || waves.Length == 0 || System.Array.Exists(waves, item => item == null))
+        {
+            Debug.LogWarning($"[WaveSetter] {StageId} 스테이지의 웨이브 설정을 확인해주세요.");
+            CancelStageEntry();
             return;
         }
 
@@ -95,15 +105,43 @@ public class WaveSetter : MonoBehaviour
         loader.StartFirstWave();
     }
 
+    private void CancelStageEntry()
+    {
+        PlacementController.RemoveAllObject();
+        ReturnToWorld();
+    }
+
+    private void HideStageScenarios()
+    {
+        if (scenarioScreen == null) return;
+        // 기존 UnityEvent의 시나리오 연결을 사용해 배경/공통 UI는 유지하고 대화만 닫는다.
+        foreach (WaveSetter stage in FindObjectsByType<WaveSetter>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (stage.scenarioScreen != scenarioScreen) continue;
+            for (int i = 0; i < stage.onStageEntered.GetPersistentEventCount(); i++)
+            {
+                if (stage.onStageEntered.GetPersistentMethodName(i) != nameof(GameObject.SetActive)) continue;
+                GameObject scenario = stage.onStageEntered.GetPersistentTarget(i) as GameObject;
+                if (scenario != null && scenario != scenarioScreen
+                    && scenario.transform.IsChildOf(scenarioScreen.transform))
+                    scenario.SetActive(false);
+            }
+        }
+    }
+
     public void ReturnToWorld()
     {
         // 배치 화면/전투 화면과 맵은 서로 다른 프리팹에 있으므로 모두 닫는다.
         UIManager.ClaimCloseUI(UIType.CharacterSelect);
         UIManager.ClaimCloseUI(UIType.Stage);
         UIManager.ClaimCloseUI(UIType.Menu);
+        if (battleTilemap != null) battleTilemap.gameObject.SetActive(false);
+        battleTilemap = null;
         if (battleMapRoot != null) battleMapRoot.SetActive(false);
         battleMapRoot = null;
 
+        HideStageScenarios();
         if (scenarioScreen != null) scenarioScreen.SetActive(false);
         if (worldScreen != null) worldScreen.SetActive(true);
         if (ModeManager.Instance != null)
