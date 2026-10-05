@@ -85,9 +85,7 @@ public class StageButtonImageController : MonoBehaviour, IPointerEnterHandler, I
                 animator.Update(0f);
             }
         }
-
-        // 부모 화면을 닫는 프레임에도 자식의 activeSelf를 남기지 않는다.
-        if (hoverCircle != null) hoverCircle.gameObject.SetActive(false);
+         
         if (hoverBox != null) hoverBox.gameObject.SetActive(false);
     }
 
