@@ -45,7 +45,6 @@ public static class ObjectManager { public static void DestroyObject(GameObject 
 public class ControllerBase : MonoBehaviour {}
 public interface IRunnable {}
 public static class InputManager { public static event Action<bool,Vector2,Vector3> OnMouseLeftButton,OnMouseRightButton; }
-public class MonsterData {}
 public class ActiveSkill : SkillList {}
 public class NormalSkill : SkillList {}
 public class LinkSkill : SkillList {}

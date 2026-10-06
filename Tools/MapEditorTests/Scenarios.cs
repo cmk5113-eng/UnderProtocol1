@@ -188,6 +188,40 @@ internal static class Scenarios
         Check(MonsterBase._monsters[0].transform.position.x == -1.5f && MonsterBase._monsters[0].transform.position.y == 1.5f, "runtime lost tile coordinates");
     }
 
+    private static void SpawnedMonstersUseDataHPInsteadOfPrefabHP()
+    {
+        Fixture f = NewFixture();
+        f.a.hp = 5;
+        f.b.hp = 3;
+        MonsterBase prefabA = f.a.prefab.GetComponent<MonsterBase>();
+        MonsterBase prefabB = f.b.prefab.GetComponent<MonsterBase>();
+        prefabA.MaxHP = prefabA.currentHP = 1;
+        prefabB.MaxHP = 99;
+        prefabB.currentHP = 77;
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(-2, 1) });
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = new Vector3Int(0, -1) });
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(-1, 0) });
+        f.manager.currentWave = f.first;
+        Check(f.loader.LoadWave(), "HP regression wave failed to load");
+        Check(MonsterBase._monsters.Count == 3, "wrong HP regression spawn count");
+        MonsterBase first = MonsterBase._monsters[0].GetComponent<MonsterBase>();
+        MonsterBase second = MonsterBase._monsters[1].GetComponent<MonsterBase>();
+        MonsterBase third = MonsterBase._monsters[2].GetComponent<MonsterBase>();
+        Check(first.MaxHP == 5 && first.currentHP == 5, "data HP did not replace the 1-HP prefab");
+        Check(second.MaxHP == 3 && second.currentHP == 3, "another monster ID inherited stale prefab HP");
+        first.currentHP = 2;
+        Check(third.MaxHP == 5 && third.currentHP == 5 && f.a.hp == 5, "same-ID spawns shared current HP");
+        Check(prefabA.currentHP == 1 && prefabB.currentHP == 77, "spawn initialization changed a prefab");
+
+        f.a.hp = 8;
+        f.second.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(0, 0) });
+        f.manager.currentWave = f.second;
+        Check(f.loader.LoadWave(), "subsequent HP regression wave failed to load");
+        MonsterBase next = MonsterBase._monsters[3].GetComponent<MonsterBase>();
+        Check(next.MaxHP == 8 && next.currentHP == 8, "new spawn did not use the updated data HP");
+        Check(first.currentHP == 2 && third.currentHP == 5, "new spawn reset an existing monster's HP");
+    }
+
     private static void GridCoordinatesAndDragPainting()
     {
         Fixture f = NewFixture(); MethodInfo hit = typeof(StageMapEditor).GetMethod("TryGetGridCell", BindingFlags.Static | BindingFlags.NonPublic);
@@ -552,7 +586,8 @@ internal static class Scenarios
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
             ListAdditionRemovalAndUndo, ReorderingPreservesSelectedAsset, InvalidMonsterDataCannotBePainted,
             SaveTargetsSelectedAssetAndRejectsInvalidSpawns, NewWaveCreationAndCancellation, WaveListSaveIncludesBindingScene,
-            PaintedWaveLoadsThroughRealWaveLoader, GridCoordinatesAndDragPainting, SwitchingTilemapsResolvesNewStageAndPalette, PlayModeGuardsAndPaintUndo,
+            PaintedWaveLoadsThroughRealWaveLoader, SpawnedMonstersUseDataHPInsteadOfPrefabHP,
+            GridCoordinatesAndDragPainting, SwitchingTilemapsResolvesNewStageAndPalette, PlayModeGuardsAndPaintUndo,
             LegacyMigrationPreservesAllFiveStagesAndStaysEmptyAfterDeletion, ThirtyStagesCanBeAuthoredAndLoaded,
             NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization,
             StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo, DetachedStagesRejectBattleEntryAndCanBeReconnected,
