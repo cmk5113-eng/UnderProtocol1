@@ -20,7 +20,12 @@ namespace UnityEngine
         {
             var copy = new GameObject(prefab.name + " clone");
             copy.transform.position = position;
-            if (prefab.GetComponent<MonsterBase>() != null) copy.AddComponent<MonsterBase>();
+            if (prefab.GetComponent<MonsterBase>() is MonsterBase source)
+            {
+                MonsterBase monster = copy.AddComponent<MonsterBase>();
+                monster.MaxHP = source.MaxHP;
+                monster.currentHP = source.currentHP;
+            }
             return copy;
         }
     }
@@ -460,7 +465,11 @@ public class PlacementController : UnityEngine.MonoBehaviour
     }
 }
 public class StageMapLoader : UnityEngine.MonoBehaviour { public StageMapData MapData; }
-public class MonsterBase : UnityEngine.MonoBehaviour { public static readonly List<UnityEngine.GameObject> _monsters = new List<UnityEngine.GameObject>(); }
+public class CharacterBase : UnityEngine.MonoBehaviour
+{
+    public int MaxHP, currentHP;
+    public void InitializeHP() => currentHP = UnityEngine.Mathf.Max(0, MaxHP);
+}
 public class BattleManager : UnityEngine.MonoBehaviour
 {
     public static BattleManager Instance; public bool IsBattleActive; public int LastStageId;

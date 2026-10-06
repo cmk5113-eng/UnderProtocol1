@@ -26,6 +26,7 @@ sources=[
  'Assets/3.Scripts/Objects/characters/CharacterBase.cs',
  'Assets/3.Scripts/Objects/characters/CharacterData.cs',
  'Assets/3.Scripts/Objects/Enemy/MonsterBase.cs',
+ 'Assets/3.Scripts/ScriptableObjects/MonsterData.cs',
  'Assets/3.Scripts/Objects/CharacterModule/CharacterModule.cs',
  'Assets/3.Scripts/Objects/CharacterModule/MovementModule.cs',
  'Assets/3.Scripts/Objects/CharacterModule/MoveTileModule.cs',

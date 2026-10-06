@@ -76,6 +76,34 @@ public static class Scenarios
     static void Case(string name,Action run) {Setup();run();Console.WriteLine("PASS "+name);}
     public static void Main()
     {
+        Case("monster data HP survives real attacks and remains per instance",()=>{
+            var p=Player(0,4);
+            var data=new MonsterData {hp=5};
+            var target=Enemy(5,5,1);
+            var other=Enemy(6,5,1);
+            target.Initialize(data); other.Initialize(data);
+            Cast(p,5,5);
+            Check(target.MaxHP==5&&target.currentHP==4&&!target.IsDead&&target.gameObject.activeSelf,"5-HP monster died to one damage");
+            Check(other.currentHP==5&&data.hp==5,"attack changed another instance or its data");
+            for(int remaining=3;remaining>=0;remaining--) {
+                p.actionPoint=1; Cast(p,5,5);
+                Check(target.currentHP==remaining,"damage did not use initialized current HP");
+                Check(target.IsDead==(remaining==0),"monster died before its HP was exhausted");
+            }
+            Check(!target.gameObject.activeSelf&&other.currentHP==5,"death affected the other monster");
+            var next=Enemy(7,5,1); next.Initialize(data);
+            Check(next.currentHP==5&&next.MaxHP==5,"fresh monster inherited damage from a previous instance");
+        });
+        Case("area attack respects different monster data HP",()=>{
+            var p=Player(0,4);
+            var weak=Enemy(5,5,1); weak.Initialize(new MonsterData {hp=1});
+            var strong=Enemy(6,5,1); strong.Initialize(new MonsterData {hp=5});
+            var result=executor.Execute(p,Attack(),new List<CharacterBase> {weak,strong});
+            Check(weak.IsDead&&!weak.gameObject.activeSelf,"1-HP monster survived one damage");
+            Check(!strong.IsDead&&strong.currentHP==4&&strong.gameObject.activeSelf,"area attack killed the 5-HP monster");
+            Check(result.hitCount==2&&result.killCount==1,"area attack kill count ignored initialized HP");
+            Check(BattleManager.HP==100,"monster damage changed shared battle HP");
+        });
         Case("12 asset bindings and defaults",()=>{
             foreach(string key in new[]{"Do","Jo","Ryu","Ha","Namgung","Kang","Pyo","Choi","Lee","Min","Seo","Beak"}) {
                 var p=Passive(key);Check(p.passiveEffect!=PassiveEffect.None,key+" effect");

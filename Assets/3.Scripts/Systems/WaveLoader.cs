@@ -109,6 +109,7 @@ public class WaveLoader : MonoBehaviour
             Vector3 position = PlacementManager.Instance.tilemap.GetCellCenterWorld(wave.monsters[i].position);
            
             GameObject monster = Instantiate(spawnDatas[i].prefab, position, Quaternion.identity);
+            monster.GetComponent<MonsterBase>().Initialize(spawnDatas[i]);
 
 
             var map = PlacementManager.Instance.tilemap;

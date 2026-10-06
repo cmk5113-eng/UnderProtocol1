@@ -30,6 +30,7 @@ sources = [
     "Assets/3.Scripts/Managers/WaveManager.cs",
     "Assets/3.Scripts/Managers/TileMapManager.cs",
     "Assets/3.Scripts/ScriptableObjects/MonsterData.cs",
+    "Assets/3.Scripts/Objects/Enemy/MonsterBase.cs",
     "Assets/3.Scripts/Systems/WaveData.cs",
     "Assets/3.Scripts/Systems/StageMapData.cs",
     "Assets/3.Scripts/Systems/StageMapBinding.cs",
