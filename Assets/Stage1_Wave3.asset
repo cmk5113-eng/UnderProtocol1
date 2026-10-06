@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e251b1270e08a48809fb13402c0b3f, type: 3}
   m_Name: Stage1_Wave3
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  monsters: []
+  monsters:
+  - monsterID: 0
+    position: {x: 3, y: -15, z: 0}
