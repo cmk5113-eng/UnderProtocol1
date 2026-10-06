@@ -1,4 +1,4 @@
-"""Compile real combat/save scripts against small Unity doubles, then run behavioural scenarios.
+"""Compile real combat/save/hover scripts against small Unity doubles, then run behavioural scenarios.
 Set PASSIVE_DOTNET and PASSIVE_CSC for a runtime+Roslyn installation, or install a .NET SDK.
 This checks C# and logic; it is not a Unity import, Editor or Play Mode test.
 """
@@ -33,6 +33,11 @@ sources=[
  'Assets/3.Scripts/Managers/BattleManager.cs',
  'Assets/3.Scripts/Managers/ModeManager.cs',
  'Assets/3.Scripts/UIs/Functions/Information/StageUIController.cs',
+ 'Assets/3.Scripts/UIs/Functions/Information/UI_TargetHoverInfo.cs',
+ 'Assets/3.Scripts/UIs/UIBase.cs',
+ 'Assets/3.Scripts/UIs/OpenableUIBase.cs',
+ 'Assets/3.Scripts/Interfaces/IOpenable.cs',
+ 'Assets/3.Scripts/UIs/Map/TileManager.cs',
  'Assets/3.Scripts/Objects/SaveData.cs',
  'Assets/3.Scripts/Systems/SaveCatalog.cs',
  'Assets/3.Scripts/Systems/CharacterLoadoutPersistence.cs',
@@ -45,6 +50,7 @@ sources=[
  'Tools/PassiveTests/UnityStubs.cs',
  'Tools/PassiveTests/ProjectStubs.cs',
  'Tools/PassiveTests/Scenarios.cs',
+ 'Tools/PassiveTests/HoverScenarios.cs',
  'Tools/SaveTests/SaveApiStubs.cs',
  'Tools/SaveTests/EditorApiStubs.cs',
  'Tools/SaveTests/SaveScenarios.cs',

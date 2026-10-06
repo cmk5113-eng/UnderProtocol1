@@ -37,12 +37,15 @@ namespace UnityEngine
     {
         readonly List<Component> components = new List<Component>();
         public bool activeSelf = true;
-        public bool activeInHierarchy => activeSelf;
-        public Transform transform = new Transform();
+        public bool activeInHierarchy => activeSelf && (transform.parent==null || transform.parent.gameObject.activeInHierarchy);
+        public Transform transform;
+        public GameObject() { transform=new Transform { gameObject=this }; }
         public void SetActive(bool active) { activeSelf = active; }
-        public void Attach(Component c) { c.gameObject = this; components.Add(c); }
+        public void Attach(Component c) { c.gameObject?.components.Remove(c); c.gameObject = this; components.Add(c); }
         public T GetComponent<T>() where T : class => components.OfType<T>().FirstOrDefault();
-        public T[] GetComponentsInChildren<T>() => components.OfType<T>().ToArray();
+        public T GetComponentInParent<T>() where T : class => GetComponent<T>() ?? transform.parent?.gameObject.GetComponentInParent<T>();
+        public T[] GetComponentsInChildren<T>(bool includeInactive=false) => components.OfType<T>()
+            .Concat(transform.children.Where(c=>includeInactive||c.gameObject.activeInHierarchy).SelectMany(c=>c.gameObject.GetComponentsInChildren<T>(includeInactive))).ToArray();
     }
     public class Component : Object
     {
@@ -50,8 +53,9 @@ namespace UnityEngine
         public Transform transform => gameObject.transform;
         public Component() { new GameObject().Attach(this); }
         public T GetComponent<T>() where T : class => gameObject.GetComponent<T>();
-        public T GetComponentInParent<T>() where T : class => GetComponent<T>();
-        public T GetComponentInChildren<T>() where T : class => GetComponent<T>();
+        public T GetComponentInParent<T>() where T : class => gameObject.GetComponentInParent<T>();
+        public T GetComponentInChildren<T>() where T : class => gameObject.GetComponentsInChildren<T>().FirstOrDefault();
+        public T[] GetComponentsInChildren<T>(bool includeInactive=false) => gameObject.GetComponentsInChildren<T>(includeInactive);
         public bool TryGetComponent<T>(out T value) where T : class { value = GetComponent<T>(); return value != null; }
         public bool CompareTag(string tag) => false;
     }
@@ -62,9 +66,17 @@ namespace UnityEngine
     }
     public class Coroutine { public IEnumerator routine; }
     public class ScriptableObject : Object { public static T CreateInstance<T>() where T : ScriptableObject,new() => new T(); }
-    public class Transform : Object { public Vector3 position; }
+    public class Transform : Object
+    {
+        public Vector3 position;
+        public GameObject gameObject;
+        public Transform parent { get; private set; }
+        public readonly List<Transform> children=new List<Transform>();
+        public void SetParent(Transform value) { parent?.children.Remove(this); parent=value; parent?.children.Add(this); }
+        public bool IsChildOf(Transform value) => this==value || (parent!=null && parent.IsChildOf(value));
+    }
     public class Sprite : Object { }
-    public class SpriteRenderer : Component { public Color color; }
+    public class SpriteRenderer : Component { public Color color; public Sprite sprite; }
     public struct Color
     {
         public float r,g,b,a;
@@ -78,6 +90,7 @@ namespace UnityEngine
         public float sqrMagnitude => x*x+y*y;
         public static float Distance(Vector2 a,Vector2 b) => (float)Math.Sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
         public static implicit operator Vector2(Vector3 v) => new Vector2(v.x,v.y);
+        public static Vector2 operator +(Vector2 a,Vector2 b) => new Vector2(a.x+b.x,a.y+b.y);
     }
     public struct Vector3
     {
@@ -148,6 +161,7 @@ namespace UnityEngine
     public static class Physics2D
     {
         public static Collider2D OverlapPoint(Vector2 p) => Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None).FirstOrDefault(c=>Vector2.Distance(c.transform.position,p)<0.01f);
+        public static Collider2D[] OverlapPointAll(Vector2 p) => Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None).Where(c=>Vector2.Distance(c.transform.position,p)<0.01f).ToArray();
     }
 }
 namespace UnityEngine.Tilemaps
@@ -158,16 +172,23 @@ namespace UnityEngine.Tilemaps
     {
         public BoundsInt cellBounds=new BoundsInt(0,0,0,10,10,1);
         public float scale=1;
+        public Dictionary<Vector3Int,Sprite> sprites=new Dictionary<Vector3Int,Sprite>();
         public void CompressBounds() {}
         public bool HasTile(Vector3Int c)=>PassiveGeometry.IsOnBoard(c,cellBounds);
         public Vector3Int WorldToCell(Vector3 p)=>new Vector3Int((int)Math.Floor((p.x-transform.position.x)/scale),(int)Math.Floor((p.y-transform.position.y)/scale));
         public Vector3 GetCellCenterWorld(Vector3Int c)=>transform.position+new Vector3((c.x+0.5f)*scale,(c.y+0.5f)*scale,0);
+        public Sprite GetSprite(Vector3Int c)=>sprites.TryGetValue(c,out var sprite)?sprite:null;
         public void SetColor(Vector3Int c,Color col) {}
         public void SetTileFlags(Vector3Int c,TileFlags flags) {}
         public void RefreshAllTiles() {}
     }
 }
-namespace TMPro { public class TextMeshProUGUI : UnityEngine.Component { public string text; public void SetText(string s) { text=s; } } }
-namespace UnityEngine.UI { public class Image : UnityEngine.Component { public UnityEngine.Sprite sprite; } }
+namespace TMPro { public class TextMeshProUGUI : UnityEngine.UI.Graphic { public string text; public void SetText(string s) { text=s; } } }
+namespace UnityEngine.UI
+{
+    public class Graphic : UnityEngine.Component { public bool raycastTarget=true; }
+    public class Image : Graphic { public UnityEngine.Sprite sprite; public bool enabled=true,preserveAspect; }
+    public class Selectable : UnityEngine.Component { }
+}
 namespace UnityEngine.TextCore.Text { }
 namespace JetBrains.Annotations { }
