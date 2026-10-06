@@ -1,0 +1,17 @@
+Built-in image generation tool used to redraw the original 4x4 atlas.
+Final generated atlas was sliced along cell boundaries and each tile normalized to 256x256px. No brightness/sharpening filters were applied after generation.
+
+Use case: lighting-weather / precise-object-edit.
+Asset type: production-ready 2D Unity top-down tilemap spritesheet, editing the attached original tileset.
+Input image 1 is the EDIT TARGET. Redraw this exact atlas with much clearer edges and substantially brighter values so the tiles are immediately readable in a tactical game.
+
+ABSOLUTE LAYOUT INVARIANTS: one perfectly square image; EXACTLY 4 columns and 4 rows of equal square cells; no padding, no gutters beyond the existing thin tile seams, no outer margin, every cell fills its allotted quarter of the canvas. Keep the precise row order, object identity, scale, directions, footprint, and orthographic top-down camera. Grid lines must be positioned at exactly 25%, 50%, 75%. Tiles must remain edge-to-edge with rectangular, axis-aligned outlines, not diamonds. Retain the existing design rather than redesigning it.
+Row 1 from left to right: plain floor plate; worn floor plate; cracked floor plate; bolted floor plate.
+Row 2: top border rail; right border rail; bottom border rail; left border rail.
+Row 3: top-left corner rails; top-right corner rails; bottom-right corner rails; bottom-left corner rails.
+Row 4: X-braced crate centered on floor; square hatch centered on floor; vertical double-panel box centered on floor; yellow diagonal caution stripe on the LEFT side of a floor tile.
+
+REDRAW AND LIGHTING: original almost-black blue-gray plate surfaces become visibly brighter medium-light slate steel, approximately RGB 105,122,136 on the main planes. Aim for around twice the perceived original brightness in the floor midtones. Exposed metal edges and bolts become pale silver around RGB 180,196,205; recesses and seams remain deep charcoal around RGB 30,42,50 for readable local contrast. Strong, crisp but natural metal bevels with narrow distinct bright edge strokes, clean bolts, sharp crack silhouettes. Do not wash out the whole image. Avoid black crushed shadow regions. Keep deep grooves dark enough to clearly define tile boundaries. All 16 cells should have consistent brightness and material styling. Obstacles must clearly stand apart from the floor using brighter top faces, defined dark outlines and compact directional contact shadows. Yellow caution paint should become clear saturated ochre yellow and easy to see.
+Simplify fine scratch noise and muddy mottled texture: fewer, cleaner scratches and subtle wear, no grainy blur. Professional hand-painted game asset finish with clean precise detail, no soft focus, no excessive bloom, no over-sharpening halos. Illuminate evenly from upper left. Keep urban sci-fi metal mood and original blue-gray palette.
+Background: all cells stay fully opaque floor plates, obstacles include floor. No transparency.
+No characters, no UI, no labels, no letters, no watermark, no selection outlines, no neon or cyan glow, no highlights indicating selection. The whole output is the game asset, not a sample map or presentation card. Square 2048x2048 atlas if possible, exact uniform 4x4 layout.

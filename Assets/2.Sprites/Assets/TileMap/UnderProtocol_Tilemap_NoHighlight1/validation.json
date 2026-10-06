@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "png_sprite_count": 16,
+  "tile_size": [
+    256,
+    256
+  ],
+  "sheet_size": [
+    1024,
+    1024
+  ],
+  "opaque_rgba": true,
+  "atlas_matches_individual_sprites": true,
+  "all_original_meta_files_identical": true,
+  "unique_guid_count": 20,
+  "original_rects_and_ppu_preserved": true,
+  "every_tile_is_brighter": true,
+  "luminance_0_to_255": [
+    {
+      "name": "UPTM_Floor_Base",
+      "original": 40.88,
+      "redrawn": 101.84
+    },
+    {
+      "name": "UPTM_Floor_Worn",
+      "original": 43.7,
+      "redrawn": 103.8
+    },
+    {
+      "name": "UPTM_Floor_Cracked",
+      "original": 45.1,
+      "redrawn": 103.49
+    },
+    {
+      "name": "UPTM_Floor_Bolted",
+      "original": 40.85,
+      "redrawn": 98.44
+    },
+    {
+      "name": "UPTM_Edge_Top",
+      "original": 41.76,
+      "redrawn": 98.75
+    },
+    {
+      "name": "UPTM_Edge_Right",
+      "original": 42.7,
+      "redrawn": 97.92
+    },
+    {
+      "name": "UPTM_Edge_Bottom",
+      "original": 42.55,
+      "redrawn": 97.93
+    },
+    {
+      "name": "UPTM_Edge_Left",
+      "original": 40.64,
+      "redrawn": 95.14
+    },
+    {
+      "name": "UPTM_Corner_TopLeft",
+      "original": 40.86,
+      "redrawn": 95.03
+    },
+    {
+      "name": "UPTM_Corner_TopRight",
+      "original": 40.68,
+      "redrawn": 94.27
+    },
+    {
+      "name": "UPTM_Corner_BottomRight",
+      "original": 40.43,
+      "redrawn": 92.57
+    },
+    {
+      "name": "UPTM_Corner_BottomLeft",
+      "original": 39.82,
+      "redrawn": 91.19
+    },
+    {
+      "name": "UPTM_Obstacle_XCrate",
+      "original": 37.23,
+      "redrawn": 87.81
+    },
+    {
+      "name": "UPTM_Obstacle_Hatch",
+      "original": 43.4,
+      "redrawn": 101.71
+    },
+    {
+      "name": "UPTM_Obstacle_DoubleBox",
+      "original": 35.55,
+      "redrawn": 87.74
+    },
+    {
+      "name": "UPTM_Floor_Caution",
+      "original": 40.92,
+      "redrawn": 101.5
+    }
+  ],
+  "unity_editor_import_tested": false
+}
