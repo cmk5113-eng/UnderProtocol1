@@ -259,5 +259,6 @@ public static class Scenarios
         });
         Console.WriteLine("PASS: "+checks+" behavioural assertions");
         SaveScenarios.RunAll();
+        HoverScenarios.RunAll();
     }
 }
