@@ -604,23 +604,34 @@ internal static class Scenarios
         return dialogue;
     }
 
-    private static void DialogueCompletionShowsSkipAndKeepsLastLine()
+    private static void DialogueCompletionInvokesExistingSkipOnce()
     {
         foreach (Type type in new[] { typeof(Dialog1), typeof(Dialog2), typeof(Dialog3), typeof(Dialog4), typeof(Dialog5) })
         {
             NewFixture();
             var scenario = new GameObject("story");
-            var skip = new GameObject("next") { parent = scenario }.AddComponent<Button>();
+            var skip = new GameObject(type == typeof(Dialog1) ? "assigned skip" : "next") { parent = scenario }.AddComponent<Button>();
+            bool visible = type != typeof(Dialog2);
+            skip.gameObject.SetActive(visible); skip.interactable = false;
+            var calls = new List<string>();
+            skip.onClick.AddPersistentListener(scenario, "FirstAction", () => calls.Add("first"));
+            skip.onClick.AddPersistentListener(scenario, "SecondAction", () => calls.Add("second"));
+            skip.onClick.AddListener(() => calls.Add("runtime"));
+            Button.ButtonClickedEvent original = skip.onClick;
             Dialog1 dialogue = AddDialogue(scenario, type, new[] { "first", "last" });
+            if (type == typeof(Dialog1)) Set(dialogue, "skipButton", skip);
             Set(dialogue, "dialoguename", new[] { "speaker" });
             Set(dialogue, "portraits", Array.Empty<Sprite>());
             Call(dialogue, "OnEnable");
-            Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", type.Name + " did not start with hidden skip");
+            Check(calls.Count == 0 && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", type.Name + " invoked skip before dialogue finished");
+            Check(skip.gameObject.activeSelf == visible && !skip.interactable && skip.onClick == original, "opening dialogue changed the authored skip button");
             dialogue.OnPointerDown(new PointerEventData());
-            Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", type.Name + " did not advance before showing skip");
+            Check(calls.Count == 0 && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", type.Name + " did not advance to the final line before invoking skip");
             Check(Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialoguename").text == "", "short speaker data must be tolerated");
             dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
-            Check(skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", "finished dialogue looped or did not show skip");
+            Check(calls.SequenceEqual(new[] { "first", "second", "runtime" }), type.Name + " did not invoke all existing skip callbacks in order exactly once");
+            Check(skip.onClick == original && skip.gameObject.activeSelf == visible && !skip.interactable, "completion replaced the skip event or changed button visibility");
+            Check(Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", "finished dialogue looped");
             Check(UIManager.LastPopUpMessage == null, "dialogue completion still opened a popup");
         }
     }
@@ -629,18 +640,26 @@ internal static class Scenarios
     {
         NewFixture(); var scenario = new GameObject("story");
         var skip = new GameObject("next") { parent = scenario }.AddComponent<Button>();
+        int calls = 0; skip.onClick.AddPersistentListener(scenario, "Finish", () => calls++);
+        Button.ButtonClickedEvent original = skip.onClick;
         Dialog1 dialogue = AddDialogue(scenario, typeof(Dialog5), new[] { "first", "last" });
         Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
-        Call(dialogue, "OnDisable"); Call(dialogue, "OnEnable");
-        Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", "reopening a scenario did not reset dialogue and skip");
+        Check(calls == 1, "first completion did not invoke skip once");
+        scenario.SetActive(false); scenario.SetActive(true); Call(dialogue, "OnEnable");
+        Check(calls == 1 && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", "reopening a scenario did not reset dialogue or invoked skip early");
+        dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+        Check(calls == 2 && skip.onClick == original, "reopened scenario lost or duplicated its skip callbacks");
         foreach (string[] empty in new[] { Array.Empty<string>(), null })
         {
-            Set(dialogue, "dialogue", empty); Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData());
-            Check(skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "", "empty dialogue must show skip without indexing errors");
+            int before = calls;
+            Set(dialogue, "dialogue", empty); Call(dialogue, "OnEnable");
+            Check(calls == before && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "", "empty dialogue changed screens during activation or indexed missing data");
+            dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+            Check(calls == before + 1 && skip.onClick == original, "empty dialogue did not invoke its existing skip callbacks once");
         }
     }
 
-    private static void PostBattleScenarioSurvivesCleanupAndSkipsToWorld()
+    private static void PostBattleScenarioUsesExistingSkipAndConfiguredDestination()
     {
         Fixture f = NewFixture();
         var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
@@ -648,14 +667,16 @@ internal static class Scenarios
         var after = new GameObject("after") { parent = screen, activeSelf = false };
         var skip = new GameObject("next") { parent = after }.AddComponent<Button>();
         Dialog1 dialogue = AddDialogue(after, typeof(Dialog2), new[] { "after battle" });
-        int startedBattle = 0; skip.onClick.AddPersistentListener(world, "StartBattle", () => startedBattle++);
-        Button.ButtonClickedEvent original = skip.onClick;
         Set(f.binding, "postBattleScenario", after);
         var otherMap = new GameObject("other map").AddComponent<Tilemap>();
         var otherBinding = otherMap.gameObject.AddComponent<StageMapBinding>(); otherBinding.EditorSetTilemap(otherMap);
         var stale = new GameObject("previous post scenario") { parent = screen };
         Set(otherBinding, "postBattleScenario", stale);
         var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); setter.index = 0;
+        int completed = 0;
+        skip.onClick.AddPersistentListener(after, "CompleteStory", () => completed++);
+        skip.onClick.AddPersistentListener(setter, nameof(WaveSetter.ReturnToWorld), setter.ReturnToWorld);
+        Button.ButtonClickedEvent original = skip.onClick;
         ConfigureStageScreens(setter, f.map, world, screen, before);
         setter.SelectSkillByIndex();
         Check(!after.activeSelf && !stale.activeSelf, "stage entry left a post scenario visible");
@@ -665,16 +686,27 @@ internal static class Scenarios
         Call(dialogue, "OnEnable");
         Check(after.activeInHierarchy && !before.activeSelf && !stale.activeSelf && !world.activeSelf, "post scenario opened alongside old content or world");
         Check(!f.map.gameObject.activeSelf && !f.map.gameObject.parent.activeSelf && !BattleManager.Instance.IsBattleActive, "post scenario kept battle view or state open");
-        Check(!skip.gameObject.activeSelf, "post skip must wait for dialogue completion");
-        dialogue.OnPointerDown(new PointerEventData()); Check(skip.gameObject.activeSelf, "post completion did not show skip");
-        skip.onClick.Invoke(); Call(dialogue, "OnDisable");
-        Check(world.activeSelf && !screen.activeSelf && !after.activeSelf && startedBattle == 0, "post skip started battle instead of returning to world");
-        Check(skip.onClick == original, "temporary post skip binding was not restored");
+        Check(completed == 0 && skip.onClick == original && skip.gameObject.activeSelf, "post scenario changed its existing skip button");
+        dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+        Check(world.activeSelf && !screen.activeSelf && !after.activeSelf && completed == 1, "post completion did not automatically run the configured world return callbacks once");
+        Check(skip.onClick == original, "post completion replaced its existing skip event");
         setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
         Check(setter.ShowPostBattleScenario(), "replayed stage lost its configured post scenario");
-        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData()); skip.onClick.Invoke(); Call(dialogue, "OnDisable");
-        Check(world.activeSelf && startedBattle == 0, "replayed post skip used stale callbacks");
-        skip.onClick.Invoke(); Check(startedBattle == 1, "original pre-battle button listener was not preserved");
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData());
+        Check(world.activeSelf && completed == 2 && skip.onClick == original, "replayed post completion lost or duplicated authored callbacks");
+
+        var destination = new GameObject("configured destination") { activeSelf = false };
+        var configured = new Button.ButtonClickedEvent();
+        configured.AddPersistentListener(destination, nameof(GameObject.SetActive), () => destination.SetActive(true));
+        configured.AddPersistentListener(after, nameof(GameObject.SetActive), () => after.SetActive(false));
+        configured.AddPersistentListener(screen, nameof(GameObject.SetActive), () => screen.SetActive(false));
+        skip.onClick = configured;
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(setter.ShowPostBattleScenario(), "stage lost its post scenario after a skip callback edit");
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData());
+        Check(destination.activeSelf && !world.activeSelf && !screen.activeSelf && !after.activeSelf && completed == 2,
+            "post completion ignored the configured destination and forced a world return");
+        Check(skip.onClick == configured, "post scenario replaced newly configured skip callbacks");
     }
 
     private static void MissingPostBattleScenarioKeepsWorldFallback()
@@ -706,8 +738,8 @@ internal static class Scenarios
             ClickedButtonClearsHoverAndSelection, LockedAndReenabledButtonsDoNotRestoreHover,
             ReenteringStagesClosesPreviousScenarioAndTilemap, WrongParentBindingCannotSelectAnotherMapsWaves,
             InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive,
-            DialogueCompletionShowsSkipAndKeepsLastLine, DialogueReopensFromStartAndEmptyDataCanExit,
-            PostBattleScenarioSurvivesCleanupAndSkipsToWorld, MissingPostBattleScenarioKeepsWorldFallback };
+            DialogueCompletionInvokesExistingSkipOnce, DialogueReopensFromStartAndEmptyDataCanExit,
+            PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;

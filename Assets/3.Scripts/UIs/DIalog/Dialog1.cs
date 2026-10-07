@@ -19,20 +19,13 @@ public class Dialog1 : MonoBehaviour, IPointerDownHandler
 
     private int dialogue_count;
     private bool dialogueFinished;
-    private Button.ButtonClickedEvent originalSkipClick;
 
     protected virtual void OnEnable()
     {
         dialogue_count = 0;
         dialogueFinished = false;
         ResolveSkipButton();
-        if (skipButton != null) skipButton.gameObject.SetActive(false);
         ShowDialogue();
-    }
-
-    protected virtual void OnDisable()
-    {
-        RestoreSkipAction();
     }
 
     public void OnPointerDown(PointerEventData data)
@@ -49,27 +42,6 @@ public class Dialog1 : MonoBehaviour, IPointerDownHandler
         ShowDialogue();
     }
 
-    // 전투 후에는 기존 전투 시작 버튼 연결을 잠시 대체하고, 닫힐 때 복원한다.
-    public void SetSkipAction(System.Action onSkip)
-    {
-        ResolveSkipButton();
-        if (skipButton == null) return;
-
-        RestoreSkipAction();
-        if (onSkip == null) return;
-
-        originalSkipClick = skipButton.onClick;
-        skipButton.onClick = new Button.ButtonClickedEvent();
-        skipButton.onClick.AddListener(() => onSkip());
-    }
-
-    private void RestoreSkipAction()
-    {
-        if (skipButton != null && originalSkipClick != null)
-            skipButton.onClick = originalSkipClick;
-        originalSkipClick = null;
-    }
-
     private void ResolveSkipButton()
     {
         if (skipButton != null) return;
@@ -83,7 +55,8 @@ public class Dialog1 : MonoBehaviour, IPointerDownHandler
     private void CompleteDialogue()
     {
         dialogueFinished = true;
-        if (skipButton != null) skipButton.gameObject.SetActive(true);
+        // 버튼을 실제로 눌렀을 때와 같은 인스펙터 연결을 한 번 실행한다.
+        if (skipButton != null) skipButton.onClick.Invoke();
     }
 
     private void ShowDialogue()
@@ -97,7 +70,5 @@ public class Dialog1 : MonoBehaviour, IPointerDownHandler
         if (ScriptImage_portrait != null)
             ScriptImage_portrait.sprite = hasDialogue && portraits != null && dialogue_count < portraits.Length
                 ? portraits[dialogue_count] : null;
-
-        if (!hasDialogue) CompleteDialogue();
     }
 }
