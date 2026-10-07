@@ -17,13 +17,20 @@
 
 몬스터 팔레트는 해당 맵의 WaveLoader > Monster Datas를 사용합니다. 몬스터가 없으면 이 목록에 MonsterData를 등록하고, ID가 겹치지 않도록 설정하세요. 프리팹 루트에는 MonsterBase가 있어야 합니다. Scene View에서도 찍으려면 **Scene View에서도 배치**를 켭니다. Obstacle / Field Effect는 각 종류만 지우며 Erase 모드는 해당 칸의 모든 종류를 지웁니다.
 
+## 전투 후 시나리오와 스킵
+
+- Tilemap의 **StageMapBinding > Post Battle Scenario**에 전투 후 표시할 시나리오 루트 GameObject를 지정합니다. 대사 오브젝트와 `next` 버튼을 함께 포함한 루트를 넣으세요. StageMapBinding이 없으면 맵 에디터에서 추가하고 기존 Stage Index와 Target Tilemap을 연결합니다.
+- 클리어 기록과 자동 저장, 전투 유닛/맵 정리를 마친 뒤 설정한 시나리오를 엽니다. 시나리오가 미지정이거나 패배/중도 퇴장한 경우 월드로 복귀합니다.
+- Dialog1~Dialog5는 마지막 대사 뒤 클릭 시 종료 팝업 대신 스킵 버튼을 표시합니다. **Skip Button**을 직접 지정할 수 있고, 미지정 시 같은 시나리오의 `next` 버튼을 찾습니다. 다시 열면 첫 대사부터 시작하며, 빈 대사도 스킵 버튼으로 종료할 수 있습니다.
+- 전투 후 스킵 버튼은 월드 복귀로 동작하고 닫힐 때 원래 버튼 이벤트를 복원합니다. 전투 전 시나리오의 기존 버튼 연결과 대사/UI 직렬화 필드명은 유지합니다.
+
 ## 자동 검증
 
 ```bash
 python Tools/MapEditorTests/run_tests.py
 ```
 
-.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter, TileMapManager, StageButtonImageController 소스를 API double과 함께 C# 9로 컴파일합니다. 29개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 새 컴포넌트 버전 표시, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다. 버튼별 필요 진행도의 경계(99/100/101), tempcontroller 무시, 직접 함수 호출의 입장 검사, 버튼별 조건 격리, 진행도/클리어 기록 변경 시 표시 갱신도 포함합니다. 클릭 후 포인터 이탈, 월드 화면 재열기와 잠금 시 Hover 초기화, 스테이지 간 시나리오/Tilemap 격리, 새 맵의 웨이브 선택, 공용 Grid의 미지정/다른 맵 Binding 무시, 잘못된 스테이지 진입 후 화면 복구도 검증합니다.
+.NET SDK가 필요합니다. `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 실제 에디터, WaveManager, WaveData, WaveLoader, WaveSetter, TileMapManager, StageButtonImageController 소스를 API double과 함께 C# 9로 컴파일합니다. 34개 시나리오에서 기존 맵/웨이브 편집 검증, 5개 기존 배열 이관, 새 컴포넌트 버전 표시, 30개 스테이지 작성과 전투 진입, 스테이지 삭제 후 연결 보정과 번호 보존, 삭제 후 빈 목록 유지, 연결 해제 및 복원, 잘못된 번호와 Play Mode 편집 차단을 확인합니다. 버튼별 필요 진행도의 경계(99/100/101), tempcontroller 무시, 직접 함수 호출의 입장 검사, 버튼별 조건 격리, 진행도/클리어 기록 변경 시 표시 갱신도 포함합니다. 클릭 후 포인터 이탈, 월드 화면 재열기와 잠금 시 Hover 초기화, 스테이지 간 시나리오/Tilemap 격리, 새 맵의 웨이브 선택, 공용 Grid의 미지정/다른 맵 Binding 무시, 잘못된 스테이지 진입 후 화면 복구도 검증합니다. 최근 Circle을 Normal 아이콘으로 유지하는 동작에 맞춰 Hover 검증을 갱신했으며, Dialog1~Dialog5의 종료/재열기/빈 대사, 선택한 맵의 전투 후 시나리오 보존, 스킵의 월드 복귀와 원래 이벤트 복원, 미지정 시 월드 복귀도 포함합니다.
 
 이 검증은 Unity의 실제 렌더링, 임포트, Undo 엔진, 에셋/프리팹/Scene 직렬화 또는 Play Mode 테스트를 대신하지 않습니다.
 

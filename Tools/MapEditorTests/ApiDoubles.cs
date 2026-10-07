@@ -34,6 +34,8 @@ namespace UnityEngine
         public GameObject gameObject;
         public Transform transform => gameObject.transform;
         public T GetComponent<T>() where T : Component => gameObject.GetComponent<T>();
+        public T[] GetComponentsInChildren<T>(bool includeInactive = false) where T : Component
+            => gameObject.GetComponentsInChildren<T>(includeInactive);
         public T GetComponentInParent<T>(bool includeInactive = false) where T : Component
         {
             for (GameObject current = gameObject; current != null; current = current.parent)
@@ -74,6 +76,9 @@ namespace UnityEngine
         public T AddComponent<T>() where T : Component, new() { var value = new T { gameObject = this, name = name }; Components.Add(value); return value; }
         public T GetComponent<T>() where T : Component => Components.OfType<T>().FirstOrDefault();
         public T GetComponentInChildren<T>(bool include = false) where T : Component => transform.GetComponentInChildren<T>(include);
+        public T[] GetComponentsInChildren<T>(bool includeInactive = false) where T : Component
+            => All.Where(g => g.transform.IsChildOf(transform) && (includeInactive || g.activeInHierarchy))
+                .SelectMany(g => g.Components).OfType<T>().ToArray();
         public void SetActive(bool value) => activeSelf = value;
     }
     public class Transform : Component
@@ -232,12 +237,18 @@ namespace UnityEngine.UI
         public AnimationTriggers animationTriggers = new AnimationTriggers();
         public UnityEngine.Animator animator => GetComponent<UnityEngine.Animator>();
     }
-    public class Button : Selectable { public bool interactable = true; }
+    public class Button : Selectable
+    {
+        public bool interactable = true;
+        public class ButtonClickedEvent : UnityEngine.Events.UnityEvent { }
+        public ButtonClickedEvent onClick = new ButtonClickedEvent();
+    }
     public class Image : UnityEngine.Component { public UnityEngine.Sprite sprite, overrideSprite; public UnityEngine.Color color; }
 }
 namespace UnityEngine.EventSystems
 {
     public class PointerEventData { }
+    public interface IPointerDownHandler { void OnPointerDown(PointerEventData data); }
     public interface IPointerEnterHandler { void OnPointerEnter(PointerEventData data); }
     public interface IPointerExitHandler { void OnPointerExit(PointerEventData data); }
     public class EventSystem
@@ -443,6 +454,7 @@ namespace UnityEditor.SceneManagement
     }
 }
 namespace NUnit.Framework { }
+namespace TMPro { public class TextMeshProUGUI : UnityEngine.Component { public string text; } }
 public class ManagerBase : UnityEngine.MonoBehaviour { protected virtual IEnumerator OnConnected(GameManager manager) { yield break; } protected virtual void OnDisconnected() { } }
 public class GameManager : UnityEngine.MonoBehaviour { public static GameManager Instance; public WaveManager Wave; }
 public class PlacementManager : UnityEngine.MonoBehaviour

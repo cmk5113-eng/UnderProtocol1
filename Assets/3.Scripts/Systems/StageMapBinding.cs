@@ -8,9 +8,14 @@ public class StageMapBinding : MonoBehaviour
     [SerializeField] private Tilemap targetTilemap;
     [SerializeField] private StageMapData mapData;
 
+    [Header("전투 후 시나리오")]
+    [Tooltip("이 타일맵을 클리어한 뒤 표시할 시나리오 오브젝트입니다. 미지정 시 월드로 복귀합니다.")]
+    [SerializeField] private GameObject postBattleScenario;
+
     public int StageIndex => stageIndex;
     public Tilemap TargetTilemap => targetTilemap != null ? targetTilemap : GetComponentInChildren<Tilemap>(true);
     public StageMapData MapData => mapData;
+    public GameObject PostBattleScenario => postBattleScenario;
 
     public bool IsBoundTo(Tilemap tilemap)
     {

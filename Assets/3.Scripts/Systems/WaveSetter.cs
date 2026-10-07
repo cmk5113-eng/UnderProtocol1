@@ -20,6 +20,7 @@ public class WaveSetter : MonoBehaviour
 
     private GameObject battleMapRoot;
     private Tilemap battleTilemap;
+    private GameObject postBattleScenario;
 
     public int StageId => stageId >= 0 ? stageId : index;
     public int WaveStageIndex => overrideWaveStageIndex ? waveStageIndex : index;
@@ -77,10 +78,12 @@ public class WaveSetter : MonoBehaviour
 
         // 입장 이벤트가 선택한 새 맵을 읽는다. 이전 맵/공용 Grid의 Binding을 재사용하지 않는다.
         int selectedStageIndex = WaveStageIndex;
+        postBattleScenario = null;
         foreach (StageMapBinding binding in selectedTilemap.GetComponentsInParent<StageMapBinding>(true))
         {
             if (!binding.IsBoundTo(selectedTilemap)) continue;
             selectedStageIndex = binding.StageIndex;
+            postBattleScenario = binding.PostBattleScenario;
             break;
         }
         if (selectedStageIndex < 0 || selectedStageIndex >= wave.StageCount)
@@ -114,6 +117,14 @@ public class WaveSetter : MonoBehaviour
     private void HideStageScenarios()
     {
         if (scenarioScreen == null) return;
+        foreach (StageMapBinding binding in FindObjectsByType<StageMapBinding>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            GameObject scenario = binding.PostBattleScenario;
+            if (scenario != null && scenario != scenarioScreen
+                && scenario.transform.IsChildOf(scenarioScreen.transform))
+                scenario.SetActive(false);
+        }
         // 기존 UnityEvent의 시나리오 연결을 사용해 배경/공통 UI는 유지하고 대화만 닫는다.
         foreach (WaveSetter stage in FindObjectsByType<WaveSetter>(
             FindObjectsInactive.Include, FindObjectsSortMode.None))
@@ -130,7 +141,23 @@ public class WaveSetter : MonoBehaviour
         }
     }
 
-    public void ReturnToWorld()
+    public bool ShowPostBattleScenario()
+    {
+        if (postBattleScenario == null) return false;
+
+        CloseBattleView();
+        HideStageScenarios();
+        postBattleScenario.SetActive(false);
+        foreach (Dialog1 dialogue in postBattleScenario.GetComponentsInChildren<Dialog1>(true))
+            dialogue.SetSkipAction(ReturnToWorld);
+
+        if (worldScreen != null) worldScreen.SetActive(false);
+        if (scenarioScreen != null) scenarioScreen.SetActive(true);
+        postBattleScenario.SetActive(true);
+        return true;
+    }
+
+    private void CloseBattleView()
     {
         // 배치 화면/전투 화면과 맵은 서로 다른 프리팹에 있으므로 모두 닫는다.
         UIManager.ClaimCloseUI(UIType.CharacterSelect);
@@ -141,10 +168,17 @@ public class WaveSetter : MonoBehaviour
         if (battleMapRoot != null) battleMapRoot.SetActive(false);
         battleMapRoot = null;
 
+        if (ModeManager.Instance != null)
+            ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
+    }
+
+    public void ReturnToWorld()
+    {
+        CloseBattleView();
+        if (postBattleScenario != null) postBattleScenario.SetActive(false);
+        postBattleScenario = null;
         HideStageScenarios();
         if (scenarioScreen != null) scenarioScreen.SetActive(false);
         if (worldScreen != null) worldScreen.SetActive(true);
-        if (ModeManager.Instance != null)
-            ModeManager.Instance.ChangeMode(ModeManager.GameMode.None);
     }
 }
