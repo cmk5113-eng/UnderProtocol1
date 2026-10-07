@@ -83,6 +83,11 @@ public class SkillPatternTile
     public SkillStatusEffectType debuffType;
 
     public SkillTileFieldEffectType fieldEffect;
+    [Tooltip("화염/전기 피해량, 바람 이동 칸 수, 대지/암흑의 결계 피해 감소량입니다.")]
+    [Min(1)] public int fieldEffectValue = 1;
+    [Tooltip("적 턴 시작 시 적용할 횟수입니다. 같은 칸에 재시전하면 갱신합니다.")]
+    [Min(1)] public int fieldEffectDuration = 3;
+    public SkillPushDirection fieldPushDirection = SkillPushDirection.AwayFromCaster;
 
     public bool push;
     public SkillPushDirection pushDirection = SkillPushDirection.AwayFromCaster;

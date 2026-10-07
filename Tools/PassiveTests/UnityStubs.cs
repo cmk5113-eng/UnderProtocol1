@@ -173,12 +173,14 @@ namespace UnityEngine.Tilemaps
         public BoundsInt cellBounds=new BoundsInt(0,0,0,10,10,1);
         public float scale=1;
         public Dictionary<Vector3Int,Sprite> sprites=new Dictionary<Vector3Int,Sprite>();
+        public Dictionary<Vector3Int,Color> colors=new Dictionary<Vector3Int,Color>();
         public void CompressBounds() {}
         public bool HasTile(Vector3Int c)=>PassiveGeometry.IsOnBoard(c,cellBounds);
         public Vector3Int WorldToCell(Vector3 p)=>new Vector3Int((int)Math.Floor((p.x-transform.position.x)/scale),(int)Math.Floor((p.y-transform.position.y)/scale));
         public Vector3 GetCellCenterWorld(Vector3Int c)=>transform.position+new Vector3((c.x+0.5f)*scale,(c.y+0.5f)*scale,0);
         public Sprite GetSprite(Vector3Int c)=>sprites.TryGetValue(c,out var sprite)?sprite:null;
-        public void SetColor(Vector3Int c,Color col) {}
+        public Color GetColor(Vector3Int c)=>colors.TryGetValue(c,out var color)?color:Color.white;
+        public void SetColor(Vector3Int c,Color col) { colors[c]=col; }
         public void SetTileFlags(Vector3Int c,TileFlags flags) {}
         public void RefreshAllTiles() {}
     }

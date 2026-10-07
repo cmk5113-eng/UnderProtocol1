@@ -374,6 +374,14 @@ public class SkillListEditor : Editor
             tile.debuffType = (SkillStatusEffectType)EditorGUILayout.EnumPopup("디버프 종류", tile.debuffType);
 
         tile.fieldEffect = (SkillTileFieldEffectType)EditorGUILayout.EnumPopup("필드 효과", tile.fieldEffect);
+        if (tile.fieldEffect != SkillTileFieldEffectType.None)
+        {
+            tile.fieldEffectValue = Mathf.Max(1, EditorGUILayout.IntField("필드 세기", tile.fieldEffectValue));
+            tile.fieldEffectDuration = Mathf.Max(1, EditorGUILayout.IntField("필드 지속 턴", tile.fieldEffectDuration));
+            if (tile.fieldEffect == SkillTileFieldEffectType.Wind)
+                tile.fieldPushDirection = (SkillPushDirection)EditorGUILayout.EnumPopup("바람 방향", tile.fieldPushDirection);
+            EditorGUILayout.HelpBox("화염·전기: 턴 피해 / 얼음: 적 행동 차단 / 바람: 밀치기 / 대지·암흑: 적의 결계 피해 감소. 같은 칸은 새 필드로 교체합니다.", MessageType.Info);
+        }
         tile.push = EditorGUILayout.Toggle("밀치기", tile.push);
 
         if (tile.push)

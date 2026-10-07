@@ -63,7 +63,7 @@ public class ExecuteSkill : MonoBehaviour
     {
         SkillExecuteResult result = new SkillExecuteResult();
 
-        if (caster == null || skill == null || hits == null)
+        if (caster == null || skill == null)
             return result;
 
         if (PlacementManager.Instance == null ||
@@ -79,6 +79,21 @@ public class ExecuteSkill : MonoBehaviour
         Vector3Int forward =
             GetPatternForward(patternRotation);
 
+        // Fields belong to ROE cells, including empty cells and cells whose enemy was killed.
+        BattleManager battle = BattleManager.Instance;
+        if (battle != null && battle.IsBattleActive && skill.roePattern != null)
+            foreach (SkillPatternTile tile in skill.roePattern)
+            {
+                if (tile == null || tile.fieldEffect == SkillTileFieldEffectType.None) continue;
+                Vector2Int offset = RotateOffset(tile.position, patternRotation);
+                Vector3Int cell = pivotCell + new Vector3Int(offset.x, offset.y, 0);
+                Vector3Int direction = GetPushDirection(tile.fieldPushDirection, casterCell, cell, forward);
+                if (direction == Vector3Int.zero) direction = forward;
+                battle.Fields.Apply(tilemap, cell, caster, tile.fieldEffect,
+                    tile.fieldEffectValue, tile.fieldEffectDuration, direction);
+            }
+
+        if (hits == null) return result;
         foreach (SkillTargetHit hit in hits)
         {
             if (hit == null ||
@@ -137,17 +152,21 @@ public class ExecuteSkill : MonoBehaviour
                 );
             }
 
-            if (tile.fieldEffect != SkillTileFieldEffectType.None)
-            {
-                Debug.Log(
-                    $"[Skill] Field effect '{tile.fieldEffect}' is " +
-                    "configured, but runtime field effect handling " +
-                    "is not implemented yet."
-                );
-            }
         }
 
         return result;
+    }
+
+    private static Vector2Int RotateOffset(Vector2Int position, int rotation)
+    {
+        rotation = ((rotation % 4) + 4) % 4;
+        switch (rotation)
+        {
+            case 1: return new Vector2Int(-position.y, position.x);
+            case 2: return new Vector2Int(-position.x, -position.y);
+            case 3: return new Vector2Int(position.y, -position.x);
+            default: return position;
+        }
     }
 
     private Vector3Int GetPatternForward(int rotation)

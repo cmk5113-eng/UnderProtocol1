@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UObj=UnityEngine.Object;
 
-public static class Scenarios
+public static partial class Scenarios
 {
     static int checks;
     static Tilemap map;
@@ -257,6 +257,7 @@ public static class Scenarios
             var ui=new StageUIController();var ap=new TMPro.TextMeshProUGUI();var sp=new TMPro.TextMeshProUGUI();Set(ui,"AP",ap);Set(ui,"SP",sp);
             ui.RefreshActionPoints();Check(ap.text=="2"&&sp.text=="5","live resource UI");
         });
+        RunFieldEffectScenarios();
         Console.WriteLine("PASS: "+checks+" behavioural assertions");
         SaveScenarios.RunAll();
         HoverScenarios.RunAll();

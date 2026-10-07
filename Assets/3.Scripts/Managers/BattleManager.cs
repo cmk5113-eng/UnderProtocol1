@@ -32,11 +32,14 @@ public class BattleManager : ManagerBase
     private WaveSetter activeStage;
     public bool IsBattleActive { get; private set; }
     private readonly BattlePassiveSystem passiveSystem = new BattlePassiveSystem();
+    private readonly BattleFieldEffectSystem fieldEffectSystem = new BattleFieldEffectSystem();
     [Header("패시브")]
     [SerializeField] private bool logPassiveActivations = true;
     public BattlePassiveSystem Passives => passiveSystem;
+    public BattleFieldEffectSystem Fields => fieldEffectSystem;
     public bool IsPlayerTurn => IsBattleActive && currentTurnMode == TurnMode.PlayerTurn;
-    public bool CanAcceptPlayerAction => IsPlayerTurn && !passiveSystem.IsResolving && !HasMovingPlayers();
+    public bool CanAcceptPlayerAction => IsPlayerTurn && !passiveSystem.IsResolving
+        && !fieldEffectSystem.IsResolving && !HasMovingPlayers();
 
     public void BeginBattle(int stageId, WaveSetter stage)
     {
@@ -159,6 +162,7 @@ public class BattleManager : ManagerBase
         playerCharacters.Clear();
         monsterCharacters.Clear();
         passiveSystem.ResetBattle();
+        fieldEffectSystem.ResetBattle();
     }
 
     public void NotifyAttackCompleted(CharacterBase actor, SkillList skill, SkillExecuteResult result,
@@ -305,7 +309,11 @@ public class BattleManager : ManagerBase
         CharacterBase[] characters = FindObjectsByType<CharacterBase>(
             FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
         if (PlacementManager.Instance != null)
+        {
             passiveSystem.BeforeMonsterTurn(currentTurn, characters, PlacementManager.Instance.tilemap);
+            fieldEffectSystem.BeforeMonsterTurn(currentTurn, characters, PlacementManager.Instance.tilemap,
+                ExecuteSkill.Instance, passiveSystem);
+        }
 
 
         if (monsterCharacters == null)
@@ -324,15 +332,16 @@ public class BattleManager : ManagerBase
             if (monster.currentHP <= 0)
                 continue;
 
-            if (passiveSystem.ShouldSkipMonsterAction(monster))
+            if (passiveSystem.ShouldSkipMonsterAction(monster) || fieldEffectSystem.ShouldSkipMonsterAction(monster))
                 continue;
 
-            HP -= monster.currentHP;
+            int monsterDamage = fieldEffectSystem.MonsterDamage(monster, monster.currentHP);
+            HP -= monsterDamage;
 
             Debug.Log($"{HP}");
 
             if (ScrollUI.Instance != null)
-                ScrollUI.Instance.SubValue(monster.currentHP * 0.01f);
+                ScrollUI.Instance.SubValue(monsterDamage * 0.01f);
         }
 
         // 모든 몬스터 처리 후 한 번만 판정
@@ -380,6 +389,7 @@ public class BattleManager : ManagerBase
         if (!IsBattleActive) return;
         currentTurnMode = TurnMode.PlayerTurn;
         passiveSystem.BeginPlayerTurn(currentTurn);
+        fieldEffectSystem.ClearTurnModifiers();
 
         if (ModeManager.Instance != null)
             ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
