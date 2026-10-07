@@ -13,8 +13,17 @@ using UnityEngine.UI;
 internal static class Scenarios
 {
     private const BindingFlags Private = BindingFlags.NonPublic | BindingFlags.Instance;
-    private static void Set(object target, string field, object value) => target.GetType().GetField(field, Private | BindingFlags.Public).SetValue(target, value);
-    private static T Get<T>(object target, string field) => (T)target.GetType().GetField(field, Private | BindingFlags.Public).GetValue(target);
+    private static FieldInfo Field(object target, string field)
+    {
+        for (Type type = target.GetType(); type != null; type = type.BaseType)
+        {
+            FieldInfo found = type.GetField(field, Private | BindingFlags.Public | BindingFlags.DeclaredOnly);
+            if (found != null) return found;
+        }
+        throw new MissingFieldException(target.GetType().Name, field);
+    }
+    private static void Set(object target, string field, object value) => Field(target, field).SetValue(target, value);
+    private static T Get<T>(object target, string field) => (T)Field(target, field).GetValue(target);
     private static object Call(object target, string method, params object[] args) => target.GetType().GetMethod(method, Private).Invoke(target, args);
     private static WaveData Current(StageMapEditor editor) => (WaveData)typeof(StageMapEditor).GetProperty("CurrentWave", Private).GetValue(editor);
     private static void Mode(StageMapEditor editor, string mode) => Set(editor, "mode", Enum.Parse(typeof(StageMapEditor).GetNestedType("EditMode", BindingFlags.NonPublic), mode));
@@ -473,7 +482,7 @@ internal static class Scenarios
         animator.SetTrigger("HighLighted");
     }
 
-    private static bool HoverHidden(WaveSetter setter) => !setter.transform.Find("Circle").gameObject.activeSelf
+    private static bool HoverCleared(WaveSetter setter) => setter.transform.Find("Circle").gameObject.activeSelf
         && !setter.transform.Find("Box").gameObject.activeSelf;
 
     private static void ClickedButtonClearsHoverAndSelection()
@@ -486,7 +495,7 @@ internal static class Scenarios
         EventSystem.current = new EventSystem { currentSelectedGameObject = setter.gameObject };
         ShowHover(setter, animator);
         ui.OnPointerExit(new PointerEventData());
-        Check(EventSystem.current.currentSelectedGameObject == null && HoverHidden(setter), "clicked button stayed selected or visible after pointer exit");
+        Check(EventSystem.current.currentSelectedGameObject == null && HoverCleared(setter), "clicked button stayed selected, kept Hover box, or hid its normal icon after pointer exit");
         Check(animator.LastAppliedTrigger == "Normal" && animator.PendingTriggers.Count == 0, "pending Hover trigger restarted after cleanup");
         EventSystem.current.currentSelectedGameObject = setter.gameObject;
         ui.OnPointerEnter(new PointerEventData());
@@ -502,14 +511,14 @@ internal static class Scenarios
         NewFixture();
         StageButtonImageController ui = AnimatedStageButton(out WaveSetter setter, out Animator animator);
         ShowHover(setter, animator); setter.gameObject.SetActive(false); Call(ui, "OnDisable");
-        Check(HoverHidden(setter), "closing the world kept activeSelf on Hover children");
+        Check(HoverCleared(setter), "closing the world kept Hover box or hid the normal icon");
         setter.gameObject.SetActive(true); Call(ui, "OnEnable");
-        Check(HoverHidden(setter) && animator.LastAppliedTrigger == "Normal", "reopening the world restored the old Hover");
+        Check(HoverCleared(setter) && animator.LastAppliedTrigger == "Normal", "reopening the world restored the old Hover");
         ShowHover(setter, animator); Set(ui, "requredProgress", 100); ProgressManager.Progress = 0;
-        Check(!setter.GetComponent<Button>().interactable && HoverHidden(setter), "locking a hovered button left its effects visible");
+        Check(!setter.GetComponent<Button>().interactable && HoverCleared(setter), "locking a hovered button left its effects visible");
         EventSystem.current = new EventSystem { currentSelectedGameObject = setter.gameObject, alreadySelecting = true };
         ui.ClearHover();
-        Check(EventSystem.current.currentSelectedGameObject == setter.gameObject && HoverHidden(setter), "cleanup re-entered EventSystem selection");
+        Check(EventSystem.current.currentSelectedGameObject == setter.gameObject && HoverCleared(setter), "cleanup re-entered EventSystem selection");
         Call(ui, "OnDisable");
     }
 
@@ -563,10 +572,13 @@ internal static class Scenarios
         Tilemap otherMap = new GameObject("unselected map") { parent = f.map.gameObject.parent }.AddComponent<Tilemap>();
         StageMapBinding ambiguous = f.map.gameObject.parent.AddComponent<StageMapBinding>(); ambiguous.EditorSetStageIndex(1);
         StageMapBinding shared = f.map.gameObject.parent.AddComponent<StageMapBinding>(); shared.EditorSetTilemap(otherMap); shared.EditorSetStageIndex(1);
+        Set(ambiguous, "postBattleScenario", new GameObject("ambiguous post scenario"));
+        Set(shared, "postBattleScenario", new GameObject("other map post scenario"));
         var setter = new GameObject("stage without own binding").AddComponent<WaveSetter>(); setter.index = 0;
         SelectMapOnEntry(setter, f.map); setter.SelectSkillByIndex();
         Check(BattleManager.Instance.IsBattleActive && f.manager.currentWave == f.first, "shared Grid binding for a different Tilemap replaced the button's wave index");
         Check(!otherMap.gameObject.activeSelf && f.map.gameObject.activeSelf, "unselected sibling Tilemap stayed enabled");
+        Check(!setter.ShowPostBattleScenario(), "a different or ambiguous map binding selected a post scenario");
     }
 
     private static void InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive()
@@ -579,6 +591,102 @@ internal static class Scenarios
         setter.SelectSkillByIndex();
         Check(!BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null && PlacementManager.Instance.tilemap == null, "failed entry kept battle state or selected waves");
         Check(!scenario.activeSelf && !screen.activeSelf && !f.map.gameObject.activeSelf && !f.map.gameObject.parent.activeSelf && world.activeSelf, "failed entry kept stage content enabled");
+    }
+
+    private static Dialog1 AddDialogue(GameObject scenario, Type type, string[] lines)
+    {
+        var child = new GameObject("scenario") { parent = scenario };
+        var dialogue = (Dialog1)typeof(GameObject).GetMethod(nameof(GameObject.AddComponent)).MakeGenericMethod(type).Invoke(child, null);
+        Set(dialogue, "dialogue", lines);
+        Set(dialogue, "ScriptText_dialogue", child.AddComponent<TMPro.TextMeshProUGUI>());
+        Set(dialogue, "ScriptText_dialoguename", new GameObject("speaker") { parent = scenario }.AddComponent<TMPro.TextMeshProUGUI>());
+        Set(dialogue, "ScriptImage_portrait", child.AddComponent<Image>());
+        return dialogue;
+    }
+
+    private static void DialogueCompletionShowsSkipAndKeepsLastLine()
+    {
+        foreach (Type type in new[] { typeof(Dialog1), typeof(Dialog2), typeof(Dialog3), typeof(Dialog4), typeof(Dialog5) })
+        {
+            NewFixture();
+            var scenario = new GameObject("story");
+            var skip = new GameObject("next") { parent = scenario }.AddComponent<Button>();
+            Dialog1 dialogue = AddDialogue(scenario, type, new[] { "first", "last" });
+            Set(dialogue, "dialoguename", new[] { "speaker" });
+            Set(dialogue, "portraits", Array.Empty<Sprite>());
+            Call(dialogue, "OnEnable");
+            Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", type.Name + " did not start with hidden skip");
+            dialogue.OnPointerDown(new PointerEventData());
+            Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", type.Name + " did not advance before showing skip");
+            Check(Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialoguename").text == "", "short speaker data must be tolerated");
+            dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+            Check(skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "last", "finished dialogue looped or did not show skip");
+            Check(UIManager.LastPopUpMessage == null, "dialogue completion still opened a popup");
+        }
+    }
+
+    private static void DialogueReopensFromStartAndEmptyDataCanExit()
+    {
+        NewFixture(); var scenario = new GameObject("story");
+        var skip = new GameObject("next") { parent = scenario }.AddComponent<Button>();
+        Dialog1 dialogue = AddDialogue(scenario, typeof(Dialog5), new[] { "first", "last" });
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+        Call(dialogue, "OnDisable"); Call(dialogue, "OnEnable");
+        Check(!skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "first", "reopening a scenario did not reset dialogue and skip");
+        foreach (string[] empty in new[] { Array.Empty<string>(), null })
+        {
+            Set(dialogue, "dialogue", empty); Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData());
+            Check(skip.gameObject.activeSelf && Get<TMPro.TextMeshProUGUI>(dialogue, "ScriptText_dialogue").text == "", "empty dialogue must show skip without indexing errors");
+        }
+    }
+
+    private static void PostBattleScenarioSurvivesCleanupAndSkipsToWorld()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var before = new GameObject("before") { parent = screen, activeSelf = false };
+        var after = new GameObject("after") { parent = screen, activeSelf = false };
+        var skip = new GameObject("next") { parent = after }.AddComponent<Button>();
+        Dialog1 dialogue = AddDialogue(after, typeof(Dialog2), new[] { "after battle" });
+        int startedBattle = 0; skip.onClick.AddPersistentListener(world, "StartBattle", () => startedBattle++);
+        Button.ButtonClickedEvent original = skip.onClick;
+        Set(f.binding, "postBattleScenario", after);
+        var otherMap = new GameObject("other map").AddComponent<Tilemap>();
+        var otherBinding = otherMap.gameObject.AddComponent<StageMapBinding>(); otherBinding.EditorSetTilemap(otherMap);
+        var stale = new GameObject("previous post scenario") { parent = screen };
+        Set(otherBinding, "postBattleScenario", stale);
+        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); setter.index = 0;
+        ConfigureStageScreens(setter, f.map, world, screen, before);
+        setter.SelectSkillByIndex();
+        Check(!after.activeSelf && !stale.activeSelf, "stage entry left a post scenario visible");
+        PlacementController.RemoveAllObject();
+        Check(PlacementManager.Instance.tilemap == null, "test did not clear the live map reference");
+        Check(setter.ShowPostBattleScenario(), "post scenario was lost during battle cleanup");
+        Call(dialogue, "OnEnable");
+        Check(after.activeInHierarchy && !before.activeSelf && !stale.activeSelf && !world.activeSelf, "post scenario opened alongside old content or world");
+        Check(!f.map.gameObject.activeSelf && !f.map.gameObject.parent.activeSelf && !BattleManager.Instance.IsBattleActive, "post scenario kept battle view or state open");
+        Check(!skip.gameObject.activeSelf, "post skip must wait for dialogue completion");
+        dialogue.OnPointerDown(new PointerEventData()); Check(skip.gameObject.activeSelf, "post completion did not show skip");
+        skip.onClick.Invoke(); Call(dialogue, "OnDisable");
+        Check(world.activeSelf && !screen.activeSelf && !after.activeSelf && startedBattle == 0, "post skip started battle instead of returning to world");
+        Check(skip.onClick == original, "temporary post skip binding was not restored");
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(setter.ShowPostBattleScenario(), "replayed stage lost its configured post scenario");
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData()); skip.onClick.Invoke(); Call(dialogue, "OnDisable");
+        Check(world.activeSelf && startedBattle == 0, "replayed post skip used stale callbacks");
+        skip.onClick.Invoke(); Check(startedBattle == 1, "original pre-battle button listener was not preserved");
+    }
+
+    private static void MissingPostBattleScenarioKeepsWorldFallback()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var before = new GameObject("before") { parent = screen, activeSelf = false };
+        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); setter.index = 0;
+        ConfigureStageScreens(setter, f.map, world, screen, before); setter.SelectSkillByIndex();
+        PlacementController.RemoveAllObject();
+        Check(!setter.ShowPostBattleScenario(), "unconfigured stage claimed a post scenario"); setter.ReturnToWorld();
+        Check(world.activeSelf && !screen.activeSelf && !before.activeSelf && !f.map.gameObject.activeSelf, "world fallback left stage content active");
     }
 
     public static int Main()
@@ -597,7 +705,9 @@ internal static class Scenarios
             DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection,
             ClickedButtonClearsHoverAndSelection, LockedAndReenabledButtonsDoNotRestoreHover,
             ReenteringStagesClosesPreviousScenarioAndTilemap, WrongParentBindingCannotSelectAnotherMapsWaves,
-            InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive };
+            InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive,
+            DialogueCompletionShowsSkipAndKeepsLastLine, DialogueReopensFromStartAndEmptyDataCanExit,
+            PostBattleScenarioSurvivesCleanupAndSkipsToWorld, MissingPostBattleScenarioKeepsWorldFallback };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;

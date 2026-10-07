@@ -86,9 +86,16 @@ public class BattleManager : ManagerBase
         }
 
         PlacementController.RemoveAllObject();
-        if (returnStage != null) returnStage.ReturnToWorld();
-        Debug.Log(cleared ? "[Battle] 스테이지 클리어. 월드로 복귀합니다."
-            : "[Battle] 전투 종료. 월드로 복귀합니다.");
+        if (cleared && returnStage != null && returnStage.ShowPostBattleScenario())
+        {
+            Debug.Log("[Battle] 스테이지 클리어. 전투 후 시나리오를 표시합니다.");
+        }
+        else
+        {
+            if (returnStage != null) returnStage.ReturnToWorld();
+            Debug.Log(cleared ? "[Battle] 스테이지 클리어. 월드로 복귀합니다."
+                : "[Battle] 전투 종료. 월드로 복귀합니다.");
+        }
     }
 
     public static bool HasRemainingMonsters()
@@ -359,7 +366,7 @@ public class BattleManager : ManagerBase
         if (!HasRemainingMonsters() && WaveLoader.Instance != null)
             WaveLoader.Instance.NextWave();
 
-        // 마지막 웨이브에서 월드로 복귀했다면 이동 모드/다음 턴을 다시 열지 않는다.
+        // 마지막 웨이브가 끝났다면 시나리오/월드 전환 뒤 이동 모드/다음 턴을 다시 열지 않는다.
         if (!IsBattleActive) return;
         FindMonsters();
         StartPlayerTurn();

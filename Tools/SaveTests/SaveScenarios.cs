@@ -162,6 +162,29 @@ public static class SaveScenarios
             string saved=PlayerPrefs.GetString("SaveData0");battle.BeginBattle(4,null);battle.AbortBattle();
             Check(PlayerPrefs.GetString("SaveData0")==saved&&ProgressManager.GetStageClearRecord(4).clearCount==2,"abort never saves clear record");
         });
+        foreach (bool hasPostScenario in new[] { true, false })
+        {
+            Case(hasPostScenario ? "stage clear opens post scenario after saving" : "stage clear without post scenario falls back to world",()=>{
+                var f=new Fixture();var battle=new BattleManager();Call(battle,"Awake");
+                var stage=new WaveSetter { HasPostScenario=hasPostScenario };
+                var wave=GameManager.Instance.Wave;wave.selectedWaves=new[]{new WaveData()};wave.currentWave=wave.selectedWaves[0];wave.currentWaveIndex=1;
+                battle.BeginBattle(8,stage);battle.CompleteBattle();
+                Check(!battle.IsBattleActive&&stage.PostScenarioCalls==1,"clear did not retain its stage through battle cleanup");
+                Check(stage.WorldReturnCalls==(hasPostScenario?0:1),"clear returned to world despite a post scenario, or lost its fallback");
+                Check(ProgressManager.IsStageCleared(8)&&Stored(0).stageClearRecords[0].clearCount==1,"clear transition bypassed records or autosave");
+                battle.CompleteBattle();Check(stage.PostScenarioCalls==1,"duplicate completion reopened post scenario");
+            });
+        }
+        Case("abort and defeat return to world without victory scenario or clear record",()=>{
+            new Fixture();var battle=new BattleManager();Call(battle,"Awake");
+            var stage=new WaveSetter { HasPostScenario=true };
+            battle.BeginBattle(9,stage);battle.AbortBattle();
+            Check(!battle.IsBattleActive&&stage.PostScenarioCalls==0&&stage.WorldReturnCalls==1,"abort opened victory scenario");
+            battle.BeginBattle(9,stage);ScrollUI.Instance=new ScrollUI();ScrollUI.Instance.HPscrollbar.value=0;
+            battle.StartMonsterTurn();
+            Check(!battle.IsBattleActive&&stage.PostScenarioCalls==0&&stage.WorldReturnCalls==2,"defeat opened victory scenario");
+            Check(!ProgressManager.IsStageCleared(9)&&!PlayerPrefs.HasKey("SaveData0"),"abort or defeat recorded a clear");
+        });
         Case("skill selection autosaves all six slot types and load refreshes open hero UI",()=>{
             var f=new Fixture();var hero=new UI_Hero {characterList=f.heroes.ToList()};
             hero.ActiveSkill=new[]{new UnityEngine.UI.Image(),new UnityEngine.UI.Image()};

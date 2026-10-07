@@ -7,7 +7,13 @@ public abstract class ManagerBase : MonoBehaviour { protected abstract IEnumerat
 public class GameManager { public static GameManager Instance=new GameManager(); public WaveManager Wave=new WaveManager(); public SaveManager Save=new SaveManager(); public static event Action<float> OnPhysicsCharacter; }
 public class WaveManager { public WaveData[] selectedWaves; public WaveData currentWave; public int currentWaveIndex; }
 public class WaveData {}
-public class WaveSetter { public void ReturnToWorld() {} }
+public class WaveSetter
+{
+    public bool HasPostScenario;
+    public int PostScenarioCalls, WorldReturnCalls;
+    public bool ShowPostBattleScenario() { PostScenarioCalls++; return HasPostScenario; }
+    public void ReturnToWorld() { WorldReturnCalls++; }
+}
 public class WaveLoader { public static WaveLoader Instance=new WaveLoader(); public int calls; public void NextWave() { calls++; } }
 public enum UIType { Stage }
 public class UIManager { public static UIBase ClaimGetUI(UIType type)=>null; public static void ClaimPopUp(string a,string b,string c) {} }
