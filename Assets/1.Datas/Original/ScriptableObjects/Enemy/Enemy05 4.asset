@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4208e886b5d264a89257bda4c2341d, type: 3}
   m_Name: Enemy05 4
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  id: 4
+  id: 8
   monsterName: 
   prefab: {fileID: 7731222998606032136, guid: 8caf12b090e8b7046a7455a8607b250e, type: 3}
   hp: 5
   atk: 1
   isDead: 0
   isActive: 0
+  fireResistance: 0
+  iceResistance: 0
+  electricResistance: 0
+  earthResistance: 0
+  windResistance: 0
+  darkResistance: 0

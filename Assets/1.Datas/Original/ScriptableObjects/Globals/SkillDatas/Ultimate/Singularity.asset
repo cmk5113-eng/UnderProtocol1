@@ -15,22 +15,155 @@ MonoBehaviour:
   skillName: 
   description: 
   id: 0
-  skillsList: []
   type: 0
   classType: 0
   elementType: 0
-  rangeType: 0
-  aoeType: 0
   effectType: 0
   targetType: 0
-  fieldEffectType: 0
-  statusEffectType: 0
   icon: {fileID: -6383042842582445400, guid: 287f0478aa007504a86682613078aa21, type: 3}
-  range: 1
-  aoe: 1
   cost: 1
+  condition: 
+  canRotate: 1
   cooldown: 1
   delay: 0
-  damage: 0
   level: 0
   MaxLevel: 0
+  skillsList: []
+  rangePattern: []
+  roePattern:
+  - position: {x: 0, y: 0}
+    distanceFromCaster: 0
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 1, y: 1}
+    distanceFromCaster: 2
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 1, y: 0}
+    distanceFromCaster: 1
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 1, y: -1}
+    distanceFromCaster: 2
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 2, y: -1}
+    distanceFromCaster: 3
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 2, y: 0}
+    distanceFromCaster: 2
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 2, y: 1}
+    distanceFromCaster: 3
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 3, y: 1}
+    distanceFromCaster: 4
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 3, y: 0}
+    distanceFromCaster: 3
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 3, y: -1}
+    distanceFromCaster: 4
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 4, y: -1}
+    distanceFromCaster: 5
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 4, y: 0}
+    distanceFromCaster: 4
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 4, y: 1}
+    distanceFromCaster: 5
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  fieldEffectType: 0
+  statusEffectType: 0
+  range: 1
+  aoe: 1
+  damage: 0
+  pushDistance: 0

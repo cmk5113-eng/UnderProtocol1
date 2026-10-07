@@ -15,22 +15,25 @@ MonoBehaviour:
   skillName: 
   description: 
   id: 0
-  skillsList: []
   type: 0
   classType: 0
   elementType: 0
-  rangeType: 0
-  aoeType: 0
   effectType: 0
   targetType: 0
-  fieldEffectType: 0
-  statusEffectType: 0
   icon: {fileID: 642299042, guid: 2b4432f756853774ba732dbe06296c04, type: 3}
-  range: 1
-  aoe: 1
   cost: 1
+  condition: 
+  canRotate: 0
   cooldown: 1
   delay: 0
-  damage: 0
   level: 0
   MaxLevel: 0
+  skillsList: []
+  rangePattern: []
+  roePattern: []
+  fieldEffectType: 0
+  statusEffectType: 0
+  range: 1
+  aoe: 1
+  damage: 0
+  pushDistance: 0
