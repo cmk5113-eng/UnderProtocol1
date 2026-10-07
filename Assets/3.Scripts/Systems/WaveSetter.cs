@@ -148,8 +148,6 @@ public class WaveSetter : MonoBehaviour
         CloseBattleView();
         HideStageScenarios();
         postBattleScenario.SetActive(false);
-        foreach (Dialog1 dialogue in postBattleScenario.GetComponentsInChildren<Dialog1>(true))
-            dialogue.SetSkipAction(ReturnToWorld);
 
         if (worldScreen != null) worldScreen.SetActive(false);
         if (scenarioScreen != null) scenarioScreen.SetActive(true);
