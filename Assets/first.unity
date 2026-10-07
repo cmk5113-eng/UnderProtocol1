@@ -5872,6 +5872,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2028182898}
   ScriptText_dialoguename: {fileID: 1330163828}
   ScriptImage_portrait: {fileID: 807507656}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -8069,6 +8070,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1500833157}
   ScriptText_dialoguename: {fileID: 621767133}
   ScriptImage_portrait: {fileID: 291943450}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -11183,6 +11185,7 @@ MonoBehaviour:
   stageIndex: 15
   targetTilemap: {fileID: 97617576}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 2071452109}
 --- !u!1 &101626404
 GameObject:
   m_ObjectHideFlags: 0
@@ -16870,6 +16873,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1751317071}
   ScriptText_dialoguename: {fileID: 2078959155}
   ScriptImage_portrait: {fileID: 1710417012}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -18489,6 +18493,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1198446525}
   ScriptText_dialoguename: {fileID: 186947332}
   ScriptImage_portrait: {fileID: 1864572611}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -18900,6 +18905,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 760840603}
   ScriptText_dialoguename: {fileID: 1512253351}
   ScriptImage_portrait: {fileID: 337173424}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -20994,6 +21000,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 945471493}
   ScriptText_dialoguename: {fileID: 786389833}
   ScriptImage_portrait: {fileID: 60688886}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -24107,6 +24114,7 @@ MonoBehaviour:
   stageIndex: 12
   targetTilemap: {fileID: 212375720}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 2024755179}
 --- !u!1 &212851484
 GameObject:
   m_ObjectHideFlags: 0
@@ -24381,6 +24389,138 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218410019}
   m_CullTransparentMesh: 1
+--- !u!1 &219647528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2293514800607060250, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &219647530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8386169223040392229, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219647528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &219647532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219647528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 219647530}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 219647528}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1648935922}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 537116041}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1598920687}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1957448809}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 637379282}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &221587292
 GameObject:
   m_ObjectHideFlags: 0
@@ -24528,6 +24668,109 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4049776007391133089, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
   m_PrefabInstance: {fileID: 1594812134}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &223835100
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223835096}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -2177679757666737952, guid: a308644d62724be4f8e50e08fa99e04c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.2, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!114 &223835101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223835096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 3
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &227660112
 GameObject:
   m_ObjectHideFlags: 0
@@ -30988,6 +31231,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 688798244}
   ScriptText_dialoguename: {fileID: 1015406926}
   ScriptImage_portrait: {fileID: 1271183981}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -31759,6 +32003,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1617340137}
   ScriptText_dialoguename: {fileID: 1409554755}
   ScriptImage_portrait: {fileID: 925912594}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -31958,6 +32203,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1161422929}
   ScriptText_dialoguename: {fileID: 93951326}
   ScriptImage_portrait: {fileID: 1561968892}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -33489,6 +33735,7 @@ MonoBehaviour:
   stageIndex: 19
   targetTilemap: {fileID: 305866305}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 377011443}
 --- !u!1 &306643067
 GameObject:
   m_ObjectHideFlags: 0
@@ -34961,6 +35208,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 982198465}
   ScriptText_dialoguename: {fileID: 1625767140}
   ScriptImage_portrait: {fileID: 1162129550}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -36911,6 +37159,7 @@ MonoBehaviour:
   stageIndex: 16
   targetTilemap: {fileID: 323468373}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 836293628}
 --- !u!1 &323606442
 GameObject:
   m_ObjectHideFlags: 0
@@ -37737,6 +37986,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1184005755}
   ScriptText_dialoguename: {fileID: 432455673}
   ScriptImage_portrait: {fileID: 1502634853}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -39980,6 +40230,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2063692828}
   ScriptText_dialoguename: {fileID: 1617228783}
   ScriptImage_portrait: {fileID: 1540643354}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -42568,6 +42819,7 @@ MonoBehaviour:
   stageIndex: 4
   targetTilemap: {fileID: 381458843}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 600518765}
 --- !u!1 &381743670
 GameObject:
   m_ObjectHideFlags: 0
@@ -46064,6 +46316,7 @@ MonoBehaviour:
   stageIndex: 20
   targetTilemap: {fileID: 416602137}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 739960607}
 --- !u!1 &419834180
 GameObject:
   m_ObjectHideFlags: 0
@@ -47318,6 +47571,7 @@ MonoBehaviour:
   stageIndex: 1
   targetTilemap: {fileID: 419834183}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1627629424}
 --- !u!213 &420509400
 Sprite:
   m_ObjectHideFlags: 0
@@ -48861,6 +49115,7 @@ MonoBehaviour:
   stageIndex: 5
   targetTilemap: {fileID: 423403745}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 171681933}
 --- !u!1 &424115629
 GameObject:
   m_ObjectHideFlags: 0
@@ -50568,6 +50823,7 @@ MonoBehaviour:
   stageIndex: 21
   targetTilemap: {fileID: 427371789}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 85123463}
 --- !u!1 &427372962
 GameObject:
   m_ObjectHideFlags: 0
@@ -51822,6 +52078,7 @@ MonoBehaviour:
   stageIndex: 7
   targetTilemap: {fileID: 427372965}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1534907803}
 --- !u!1 &427494396
 GameObject:
   m_ObjectHideFlags: 0
@@ -52103,6 +52360,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1423591817}
   ScriptText_dialoguename: {fileID: 310045121}
   ScriptImage_portrait: {fileID: 72515308}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -53980,6 +54238,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 659876639}
   ScriptText_dialoguename: {fileID: 323606444}
   ScriptImage_portrait: {fileID: 618806971}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -54590,6 +54849,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1662252283}
   ScriptText_dialoguename: {fileID: 329465465}
   ScriptImage_portrait: {fileID: 200092494}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -54789,6 +55049,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1309936900}
   ScriptText_dialoguename: {fileID: 70543429}
   ScriptImage_portrait: {fileID: 1892013442}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -59117,6 +59378,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1759661878}
   ScriptText_dialoguename: {fileID: 1945255584}
   ScriptImage_portrait: {fileID: 651337136}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -60360,6 +60622,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1897911647}
   ScriptText_dialoguename: {fileID: 1737688959}
   ScriptImage_portrait: {fileID: 1152732011}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -61364,6 +61627,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 318339848}
   ScriptText_dialoguename: {fileID: 564565089}
   ScriptImage_portrait: {fileID: 340400622}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -62989,6 +63253,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
   m_PrefabInstance: {fileID: 537030405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &537116041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8570024904725475661, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537688492
 GameObject:
   m_ObjectHideFlags: 0
@@ -63398,6 +63667,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 917002729}
   ScriptText_dialoguename: {fileID: 1739047479}
   ScriptImage_portrait: {fileID: 1285720835}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -83793,6 +84063,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 600481170}
   ScriptText_dialoguename: {fileID: 454288850}
   ScriptImage_portrait: {fileID: 785718210}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -86442,6 +86713,7 @@ MonoBehaviour:
   stageIndex: 17
   targetTilemap: {fileID: 592584342}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 830442911}
 --- !u!1 &596670937
 GameObject:
   m_ObjectHideFlags: 0
@@ -88801,6 +89073,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 971004903}
   ScriptText_dialoguename: {fileID: 2058863601}
   ScriptImage_portrait: {fileID: 434363931}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -90325,6 +90598,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636830297}
   m_CullTransparentMesh: 1
+--- !u!1 &637379282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7649856743356801762, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &639810557
 GameObject:
   m_ObjectHideFlags: 0
@@ -91579,6 +91857,7 @@ MonoBehaviour:
   stageIndex: 24
   targetTilemap: {fileID: 639810560}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 93867980}
 --- !u!1 &642934605
 GameObject:
   m_ObjectHideFlags: 0
@@ -94273,6 +94552,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 313627931}
   ScriptText_dialoguename: {fileID: 2066414381}
   ScriptImage_portrait: {fileID: 947244167}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -97443,6 +97723,7 @@ MonoBehaviour:
   stageIndex: 18
   targetTilemap: {fileID: 690716906}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 2084343673}
 --- !u!213 &691024747
 Sprite:
   m_ObjectHideFlags: 0
@@ -99550,6 +99831,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2115354135}
   ScriptText_dialoguename: {fileID: 866860060}
   ScriptImage_portrait: {fileID: 1466439598}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -101138,6 +101420,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 243142709}
   ScriptText_dialoguename: {fileID: 1990964486}
   ScriptImage_portrait: {fileID: 2143588471}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -102567,6 +102850,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1257967964}
   ScriptText_dialoguename: {fileID: 650803149}
   ScriptImage_portrait: {fileID: 248131916}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -104974,6 +105258,7 @@ MonoBehaviour:
   stageIndex: 13
   targetTilemap: {fileID: 760149121}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1882926289}
 --- !u!1 &760840601
 GameObject:
   m_ObjectHideFlags: 0
@@ -105859,6 +106144,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 108597362}
   ScriptText_dialoguename: {fileID: 45328346}
   ScriptImage_portrait: {fileID: 518466556}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -107564,6 +107850,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 305725074}
   ScriptText_dialoguename: {fileID: 736425051}
   ScriptImage_portrait: {fileID: 430528321}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -108708,6 +108995,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 694767879}
   ScriptText_dialoguename: {fileID: 654004264}
   ScriptImage_portrait: {fileID: 1055131876}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -111352,6 +111640,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 855364879}
   ScriptText_dialoguename: {fileID: 2104632756}
   ScriptImage_portrait: {fileID: 311075781}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -113236,6 +113525,7 @@ MonoBehaviour:
   stageIndex: 10
   targetTilemap: {fileID: 836783367}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 670375413}
 --- !u!1 &838892202
 GameObject:
   m_ObjectHideFlags: 0
@@ -116658,6 +116948,7 @@ MonoBehaviour:
   stageIndex: 27
   targetTilemap: {fileID: 863791526}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 470027370}
 --- !u!213 &864073946
 Sprite:
   m_ObjectHideFlags: 0
@@ -119394,6 +119685,7 @@ MonoBehaviour:
   stageIndex: 9
   targetTilemap: {fileID: 878652271}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1993436438}
 --- !u!1 &878742519
 GameObject:
   m_ObjectHideFlags: 0
@@ -121596,6 +121888,7 @@ MonoBehaviour:
   stageIndex: 22
   targetTilemap: {fileID: 891093691}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1311979058}
 --- !u!1 &892760560
 GameObject:
   m_ObjectHideFlags: 0
@@ -127717,6 +128010,7 @@ MonoBehaviour:
   stageIndex: 8
   targetTilemap: {fileID: 934336041}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1062144539}
 --- !u!1 &935920549
 GameObject:
   m_ObjectHideFlags: 0
@@ -129666,6 +129960,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2128495483}
   ScriptText_dialoguename: {fileID: 84515941}
   ScriptImage_portrait: {fileID: 658781366}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -130305,6 +130600,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1394238986}
   ScriptText_dialoguename: {fileID: 957213113}
   ScriptImage_portrait: {fileID: 1157840442}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -131776,6 +132072,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 81307828}
   ScriptText_dialoguename: {fileID: 563891934}
   ScriptImage_portrait: {fileID: 432561002}
+  skipButton: {fileID: 0}
   dialogue:
   - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
     \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
@@ -132601,6 +132898,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 926775544}
   ScriptText_dialoguename: {fileID: 2096105843}
   ScriptImage_portrait: {fileID: 1947765041}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -140408,6 +140706,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 77687485}
   ScriptText_dialoguename: {fileID: 2014814940}
   ScriptImage_portrait: {fileID: 2027989192}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -146384,6 +146683,7 @@ MonoBehaviour:
   stageIndex: 26
   targetTilemap: {fileID: 1149254971}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1118089247}
 --- !u!1 &1151592523
 GameObject:
   m_ObjectHideFlags: 0
@@ -149196,6 +149496,7 @@ MonoBehaviour:
   stageIndex: 28
   targetTilemap: {fileID: 1162440187}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1337185263}
 --- !u!1 &1162599139
 GameObject:
   m_ObjectHideFlags: 0
@@ -151046,6 +151347,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 871450779}
   ScriptText_dialoguename: {fileID: 1276197693}
   ScriptImage_portrait: {fileID: 408077157}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -153678,6 +153980,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1319549118}
   ScriptText_dialoguename: {fileID: 159196303}
   ScriptImage_portrait: {fileID: 817308747}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -155693,6 +155996,7 @@ MonoBehaviour:
   stageIndex: 14
   targetTilemap: {fileID: 1211682848}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1038952248}
 --- !u!1 &1212654606
 GameObject:
   m_ObjectHideFlags: 0
@@ -161376,6 +161680,7 @@ MonoBehaviour:
   stageIndex: 11
   targetTilemap: {fileID: 1256309944}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1234731204}
 --- !u!1 &1256830251
 GameObject:
   m_ObjectHideFlags: 0
@@ -161944,6 +162249,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1217478791}
   ScriptText_dialoguename: {fileID: 121394385}
   ScriptImage_portrait: {fileID: 720804447}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -167292,6 +167598,7 @@ MonoBehaviour:
   stageIndex: 2
   targetTilemap: {fileID: 1301812295}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1913788864}
 --- !u!1 &1303666265
 GameObject:
   m_ObjectHideFlags: 0
@@ -167488,6 +167795,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 561187267}
   ScriptText_dialoguename: {fileID: 210348449}
   ScriptImage_portrait: {fileID: 689668799}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -172677,6 +172985,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1997706736}
   ScriptText_dialoguename: {fileID: 2645189}
   ScriptImage_portrait: {fileID: 88629099}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -176819,6 +177128,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1682711642}
   ScriptText_dialoguename: {fileID: 1192167618}
   ScriptImage_portrait: {fileID: 1860445009}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -177018,6 +177328,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1290293922}
   ScriptText_dialoguename: {fileID: 1429096007}
   ScriptImage_portrait: {fileID: 1140419804}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -177583,6 +177894,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 972429899}
   ScriptText_dialoguename: {fileID: 171502265}
   ScriptImage_portrait: {fileID: 2023117065}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -182015,6 +182327,7 @@ MonoBehaviour:
   stageIndex: 3
   targetTilemap: {fileID: 1436426405}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 244558499}
 --- !u!1 &1439833158
 GameObject:
   m_ObjectHideFlags: 0
@@ -189406,6 +189719,7 @@ MonoBehaviour:
   stageIndex: 23
   targetTilemap: {fileID: 1522209256}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1053498435}
 --- !u!1 &1523825881
 GameObject:
   m_ObjectHideFlags: 0
@@ -190082,6 +190396,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 687794600}
   ScriptText_dialoguename: {fileID: 1623721874}
   ScriptImage_portrait: {fileID: 1307633372}
+  skipButton: {fileID: 0}
   dialogue:
   - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
     \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
@@ -191147,6 +191462,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1222226730}
   ScriptText_dialoguename: {fileID: 1001201157}
   ScriptImage_portrait: {fileID: 1296204728}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -194625,6 +194941,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
     - target: {fileID: 1401867486258513632, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401867486258513632, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -194753,6 +195073,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
     - target: {fileID: 4227860028343126666, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227860028343126666, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -194763,6 +195087,10 @@ PrefabInstance:
     - target: {fileID: 4249043924637981938, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614787040741876708, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4683142942188635449, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_fontAsset
@@ -194925,6 +195253,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
     - target: {fileID: 6641419909881022739, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641419909881022739, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -194961,6 +195293,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7887106510698557477, guid: 2a63b186e3e627f49b1b0282cf2f6d09, type: 2}
     - target: {fileID: 7212202875143796257, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212202875143796257, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -194968,6 +195304,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 602da5a8f7eea2342b6c1accd9342197, type: 2}
+    - target: {fileID: 7649856743356801762, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8148802538495243875, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -204.126
@@ -194984,6 +195324,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 179.27444
       objectReference: {fileID: 0}
+    - target: {fileID: 8212885350296697799, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8247326709145716110, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -194995,6 +195339,10 @@ PrefabInstance:
     - target: {fileID: 8386169223040392229, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570024904725475661, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8700434406807110604, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
       propertyPath: wantType
@@ -195012,8 +195360,20 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 7741236441293121567, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
     - {fileID: 1018413016885269339, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4049776007391133089, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1648935923}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4249043924637981938, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 223835100}
+    - targetCorrespondingSourceObject: {fileID: 4249043924637981938, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 223835101}
+    - targetCorrespondingSourceObject: {fileID: 2293514800607060250, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 219647532}
   m_SourcePrefab: {fileID: 100100000, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
 --- !u!1 &1595457891
 GameObject:
@@ -195636,6 +195996,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598761727}
   m_CullTransparentMesh: 1
+--- !u!1 &1598920687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8212885350296697799, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1599096050
 GameObject:
   m_ObjectHideFlags: 0
@@ -197425,6 +197790,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1297633764}
   ScriptText_dialoguename: {fileID: 2021103037}
   ScriptImage_portrait: {fileID: 1678959322}
+  skipButton: {fileID: 0}
   dialogue:
   - "[\uBD88 \uAEBC\uC9C4 \uC0C1\uC810\uB4E4. \uAC04\uD310 \uD558\uB098\uB9CC \uAE5C\uBE61\uC778\uB2E4.
     \uAE38 \uAC74\uB108 \uC804\uAD11\uD310\uC5D0\uB294 \u2018\uB2F9\uC2E0\uC758 \uB0B4\uC77C\uC744
@@ -197753,6 +198119,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 477169667}
   ScriptText_dialoguename: {fileID: 859105716}
   ScriptImage_portrait: {fileID: 1675289603}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -197952,6 +198319,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 722073243}
   ScriptText_dialoguename: {fileID: 449174770}
   ScriptImage_portrait: {fileID: 840166467}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -198912,6 +199280,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648748029}
+  m_CullTransparentMesh: 1
+--- !u!1 &1648935922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648935923}
+  - component: {fileID: 1648935925}
+  - component: {fileID: 1648935924}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1648935923
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648935922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 223835097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: -0.00012207031}
+  m_SizeDelta: {x: -0.00012207, y: -0.00024414}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1648935924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648935922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -8122619608681884335, guid: a88f4b0c56ca902409d5eb770321efa8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1648935925
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648935922}
   m_CullTransparentMesh: 1
 --- !u!1 &1651351275
 GameObject:
@@ -201551,6 +201994,7 @@ MonoBehaviour:
   stageIndex: 25
   targetTilemap: {fileID: 1665430229}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1528941819}
 --- !u!1 &1666634552
 GameObject:
   m_ObjectHideFlags: 0
@@ -204187,6 +204631,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2109892891}
   ScriptText_dialoguename: {fileID: 255720981}
   ScriptImage_portrait: {fileID: 1012910129}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -205098,6 +205543,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2070010418}
   ScriptText_dialoguename: {fileID: 221587294}
   ScriptImage_portrait: {fileID: 80517032}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -205297,6 +205743,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 748297275}
   ScriptText_dialoguename: {fileID: 2117685632}
   ScriptImage_portrait: {fileID: 398166928}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -207118,6 +207565,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 265099947}
   ScriptText_dialoguename: {fileID: 828841798}
   ScriptImage_portrait: {fileID: 281866169}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -213768,6 +214216,7 @@ MonoBehaviour:
   stageIndex: 29
   targetTilemap: {fileID: 1784545346}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1287164961}
 --- !u!1 &1785187524
 GameObject:
   m_ObjectHideFlags: 0
@@ -215259,6 +215708,7 @@ GameObject:
   - component: {fileID: 1798922316}
   - component: {fileID: 1798922318}
   - component: {fileID: 1798922317}
+  - component: {fileID: 1798922319}
   m_Layer: 0
   m_Name: Tilemap (1)
   m_TagString: Untagged
@@ -216486,6 +216936,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1798922319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798922315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
+  stageIndex: 0
+  targetTilemap: {fileID: 1798922318}
+  mapData: {fileID: 0}
+  postBattleScenario: {fileID: 318553873}
 --- !u!1 &1799015349
 GameObject:
   m_ObjectHideFlags: 0
@@ -217751,6 +218217,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1396881649}
   ScriptText_dialoguename: {fileID: 665434652}
   ScriptImage_portrait: {fileID: 1612225256}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -218477,6 +218944,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 140923428}
   ScriptText_dialoguename: {fileID: 426875000}
   ScriptImage_portrait: {fileID: 695059283}
+  skipButton: {fileID: 0}
   dialogue:
   - "[\uBD88 \uAEBC\uC9C4 \uC0C1\uC810\uB4E4. \uAC04\uD310 \uD558\uB098\uB9CC \uAE5C\uBE61\uC778\uB2E4.
     \uAE38 \uAC74\uB108 \uC804\uAD11\uD310\uC5D0\uB294 \u2018\uB2F9\uC2E0\uC758 \uB0B4\uC77C\uC744
@@ -220221,6 +220689,7 @@ MonoBehaviour:
   stageIndex: 5
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!114 &1833153757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220236,6 +220705,7 @@ MonoBehaviour:
   stageIndex: 3
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!114 &1833153758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220251,6 +220721,7 @@ MonoBehaviour:
   stageIndex: 4
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!114 &1833153759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220266,6 +220737,7 @@ MonoBehaviour:
   stageIndex: 2
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!114 &1833153760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220281,6 +220753,7 @@ MonoBehaviour:
   stageIndex: 1
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!114 &1833153761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220296,6 +220769,7 @@ MonoBehaviour:
   stageIndex: 0
   targetTilemap: {fileID: 0}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 0}
 --- !u!1 &1836363750
 GameObject:
   m_ObjectHideFlags: 0
@@ -226016,6 +226490,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1090497129}
   ScriptText_dialoguename: {fileID: 506201505}
   ScriptImage_portrait: {fileID: 819007040}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -230608,6 +231083,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952430062}
   m_CullTransparentMesh: 1
+--- !u!1 &1957448809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4614787040741876708, guid: ba466c1f90e00c34e9f2b80f609e5a63, type: 3}
+  m_PrefabInstance: {fileID: 1594812134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957523201
 GameObject:
   m_ObjectHideFlags: 0
@@ -231015,6 +231495,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 907698376}
   ScriptText_dialoguename: {fileID: 1767797540}
   ScriptImage_portrait: {fileID: 514137212}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -232049,6 +232530,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 68695735}
   ScriptText_dialoguename: {fileID: 1726108179}
   ScriptImage_portrait: {fileID: 727116117}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -236728,6 +237210,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 876475296}
   ScriptText_dialoguename: {fileID: 2125723137}
   ScriptImage_portrait: {fileID: 870658065}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -238921,6 +239404,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1768243434}
   ScriptText_dialoguename: {fileID: 1158198169}
   ScriptImage_portrait: {fileID: 614657691}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -240315,6 +240799,7 @@ MonoBehaviour:
   stageIndex: 6
   targetTilemap: {fileID: 2055466450}
   mapData: {fileID: 0}
+  postBattleScenario: {fileID: 1212654606}
 --- !u!1 &2058558560
 GameObject:
   m_ObjectHideFlags: 0
@@ -241917,6 +242402,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1294208030}
   ScriptText_dialoguename: {fileID: 243552626}
   ScriptImage_portrait: {fileID: 41921004}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -243178,6 +243664,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 295465938}
   ScriptText_dialoguename: {fileID: 455683192}
   ScriptImage_portrait: {fileID: 1293042996}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
