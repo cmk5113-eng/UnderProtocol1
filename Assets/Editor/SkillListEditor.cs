@@ -121,7 +121,7 @@ public class SkillListEditor : Editor
         EditorGUILayout.HelpBox(
             mode == PatternMode.Range
                 ? "중앙 C는 시전자입니다. 타일을 클릭해 시전 가능한 위치를 켜거나 끕니다."
-                : "중앙 O는 현재 선택 타일(Pivot)이며 공격 타일로도 사용할 수 있습니다. O를 포함한 ROE 타일을 클릭해 켜거나 끕니다.",
+                : "중앙 O는 현재 선택 타일(Pivot)이며 공격 타일로도 사용할 수 있습니다. 좌클릭하면 데미지가 1 → 2 → 3 → 1로 순환하며, 우클릭은 타일을 켜거나 끕니다.",
             MessageType.Info);
 
         DrawGrid(skill);
@@ -268,7 +268,10 @@ public class SkillListEditor : Editor
                             GUILayout.Height(CellSize)) &&
                         canToggle)
                     {
-                        ToggleCell(skill, position);
+                        if (mode == PatternMode.ROE && Event.current.button == 0)
+                            CycleRoeTileDamage(skill, position);
+                        else
+                            ToggleCell(skill, position);
                     }
                 }
                 GUILayout.FlexibleSpace();
@@ -290,6 +293,31 @@ public class SkillListEditor : Editor
         return mode == PatternMode.Range
             ? skill.rangePattern.Contains(position)
             : skill.roePattern.Any(t => t.position == position);
+    }
+
+    private void CycleRoeTileDamage(SkillList skill, Vector2Int position)
+    {
+        Undo.RecordObject(skill, "Cycle ROE Tile Damage");
+
+        SkillPatternTile tile = skill.roePattern.FirstOrDefault(t => t.position == position);
+        if (tile == null)
+        {
+            tile = new SkillPatternTile
+            {
+                position = position,
+                distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
+                damage = 1,
+                pushDistance = skill.pushDistance
+            };
+            skill.roePattern.Add(tile);
+        }
+        else
+        {
+            tile.damage = tile.damage >= 1 && tile.damage < 3 ? tile.damage + 1 : 1;
+        }
+
+        selectedRoeTile = position;
+        EditorUtility.SetDirty(skill);
     }
 
     private void ToggleCell(SkillList skill, Vector2Int position)
