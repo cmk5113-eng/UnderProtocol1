@@ -267,21 +267,24 @@ public sealed class BattlePassiveSystem
         target.TakeDamage(damage);
         // Kill rewards may run, but attack passives cannot recursively trigger more attacks.
         if (target == null || target.IsDead || !target.gameObject.activeInHierarchy)
-        {
-            if (IsPlayer(source))
-                foreach (PassiveSkill skill in EquippedPassives(source))
-                    if (skill.passiveEffect == PassiveEffect.RestoreMovementPerKill
-                        && CanActivate(source, skill) && RestoreMovement(source, skill.movementPoints))
-                        Activated(source, skill);
-        }
+            NotifyDamageKill(source);
         return true;
     }
 
-    private bool RestoreMovement(CharacterBase character, int amount)
+    public void NotifyDamageKill(CharacterBase source, bool carryToNextTurn = false)
+    {
+        if (!IsPlayer(source)) return;
+        foreach (PassiveSkill skill in EquippedPassives(source))
+            if (skill.passiveEffect == PassiveEffect.RestoreMovementPerKill
+                && CanActivate(source, skill) && RestoreMovement(source, skill.movementPoints, carryToNextTurn))
+                Activated(source, skill);
+    }
+
+    private bool RestoreMovement(CharacterBase character, int amount, bool carryToNextTurn = false)
     {
         if (!IsPlayer(character) || amount <= 0) return false;
         // A bonus can exceed the normal per-turn allowance and is reset on the next player turn.
-        if (processingMonsterTurn)
+        if (processingMonsterTurn || carryToNextTurn)
         {
             int pending;
             pendingMovement.TryGetValue(character, out pending);

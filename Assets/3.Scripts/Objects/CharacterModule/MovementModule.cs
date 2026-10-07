@@ -286,7 +286,7 @@ public class MovementModule : CharacterModule, IRunnable
             if (tilemap.HasTile(pos))
             {
                 tilemap.SetTileFlags(pos, TileFlags.None);
-                tilemap.SetColor(pos, Color.white);
+                tilemap.SetColor(pos, BattleFieldEffectSystem.TileColor(tilemap, pos));
             }
         }
     }

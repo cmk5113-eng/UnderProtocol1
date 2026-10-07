@@ -670,7 +670,7 @@ public class UseSkill : MonoBehaviour
                 }
                 else
                 {
-                    tilemap.SetColor(pos, Color.white);
+                    tilemap.SetColor(pos, BattleFieldEffectSystem.TileColor(tilemap, pos));
                 }
             }
         }

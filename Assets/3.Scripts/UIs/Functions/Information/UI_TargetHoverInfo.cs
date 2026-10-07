@@ -186,6 +186,8 @@ public class UI_TargetHoverInfo : OpenableUIBase
         string details = IsEnemy(character)
             ? monsterData != null ? $"공격력: {monsterData.atk}" : "몬스터"
             : $"행동력: {character.actionPoint}/{character.maxAP} · 이동력: {character.steminaPoint}/{character.maxStemina}";
+        string field = map != null ? BattleFieldEffectSystem.Describe(map, CharacterCell(character, map)) : "";
+        if (!string.IsNullOrEmpty(field)) details += "\n" + field;
         string position = map != null ? PositionLabel(CharacterCell(character, map)) : "";
         SetContent(image, displayName, stats, details, position);
     }
@@ -193,9 +195,12 @@ public class UI_TargetHoverInfo : OpenableUIBase
     void ShowTile(Vector3Int cell, TileData tile, Tilemap map)
     {
         bool outside = tile.Type == TileData.tiletype.outside;
+        string details = outside ? "아군 이동·배치 영역" : "몬스터 배치 영역";
+        string field = BattleFieldEffectSystem.Describe(map, cell);
+        if (!string.IsNullOrEmpty(field)) details += "\n" + field;
         SetContent(map.GetSprite(cell), outside ? "외곽 타일" : "내부 타일",
             tile.isempty ? "비어 있음" : "장애물 있음",
-            outside ? "아군 이동·배치 영역" : "몬스터 배치 영역", PositionLabel(cell));
+            details, PositionLabel(cell));
     }
 
     static string PositionLabel(Vector3Int cell)
