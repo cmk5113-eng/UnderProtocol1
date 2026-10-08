@@ -47,6 +47,34 @@ public static class BattleTileOccupancy
         return distance;
     }
 
+    public static bool TryGetClosestCell(CharacterBase character, Tilemap map, Vector3Int origin,
+        out Vector3Int closest, ICollection<Vector3Int> area = null)
+    {
+        closest = new Vector3Int();
+        int distance = int.MaxValue;
+        foreach (Vector3Int cell in Cells(character, map))
+        {
+            if (!map.HasTile(cell) || (area != null && !area.Contains(cell))) continue;
+            int candidate = Mathf.Abs(cell.x - origin.x) + Mathf.Abs(cell.y - origin.y);
+            if (candidate >= distance) continue;
+            closest = cell;
+            distance = candidate;
+        }
+        return distance != int.MaxValue;
+    }
+
+    public static int ApplyDamage(CharacterBase character, Tilemap map, IDictionary<Vector3Int, int> damageByCell)
+    {
+        if (character == null || character.IsDead || damageByCell == null) return 0;
+        if (character is MonsterBase monster) return monster.TakeDamageOnCells(map, damageByCell);
+        int damage = 0;
+        foreach (var hit in damageByCell)
+            if (ContainsCell(character, map, hit.Key)) damage = Mathf.Max(damage, hit.Value);
+        int before = character.currentHP;
+        if (damage > 0) character.TakeDamage(damage);
+        return before - character.currentHP;
+    }
+
     public static CharacterBase FindAt(Tilemap map, Vector3Int cell)
     {
         if (map == null || !map.HasTile(cell)) return null;

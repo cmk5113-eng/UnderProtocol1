@@ -14,6 +14,8 @@ public class MonsterData : ScriptableObject
     public Vector2Int footprintSize = new Vector2Int(1, 1);
     [Tooltip("스프라이트를 점유 영역 크기에 맞춥니다. 기존 몬스터는 기본적으로 사용하지 않습니다.")]
     public bool fitSpriteToFootprint;
+    [Tooltip("점유한 칸마다 실드가 하나씩 생깁니다. 실드는 피해가 있는 공격 1회를 막고 사라집니다.")]
+    public bool hasShield;
     public Vector2Int FootprintSize => new Vector2Int(Mathf.Max(1, footprintSize.x), Mathf.Max(1, footprintSize.y));
 
     public IEnumerable<Vector3Int> GetOccupiedCells(Vector3Int anchor)

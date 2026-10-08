@@ -185,12 +185,23 @@ public class UI_TargetHoverInfo : OpenableUIBase
         string stats = IsEnemy(character)
             ? $"HP: {character.currentHP} / {character.MaxHP}"
             : $"공용 결계 HP: {BattleManager.HP:0.##}";
+        Vector3Int displayCell = new Vector3Int();
+        if (map != null)
+        {
+            displayCell = hoveredCell ?? map.WorldToCell(InputManager.CursorWorldPosition);
+            displayCell.z = 0;
+            if (!BattleTileOccupancy.ContainsCell(character, map, displayCell)) displayCell = CharacterCell(character, map);
+        }
+        if (monster != null && monster.ShieldCapacity > 0)
+            stats += $"\n실드: {monster.ShieldCount}/{monster.ShieldCapacity}칸";
         string details = IsEnemy(character)
             ? monsterData != null ? $"공격력: {monsterData.atk}" : "몬스터"
             : $"행동력: {character.actionPoint}/{character.maxAP} · 이동력: {character.steminaPoint}/{character.maxStemina}";
         if (monster != null && (monster.FootprintSize.x > 1 || monster.FootprintSize.y > 1))
             details += $"\n점유 크기: {monster.FootprintSize.x} × {monster.FootprintSize.y}";
-        string field = map != null ? BattleFieldEffectSystem.Describe(map, hoveredCell ?? CharacterCell(character, map)) : "";
+        if (monster != null && monster.ShieldCapacity > 0 && map != null)
+            details += monster.HasCellShield(map, displayCell) ? "\n현재 칸 실드: 있음" : "\n현재 칸 실드: 없음";
+        string field = map != null ? BattleFieldEffectSystem.Describe(map, displayCell) : "";
         if (!string.IsNullOrEmpty(field)) details += "\n" + field;
         string position = map != null ? PositionLabel(CharacterCell(character, map)) : "";
         SetContent(image, displayName, stats, details, position);

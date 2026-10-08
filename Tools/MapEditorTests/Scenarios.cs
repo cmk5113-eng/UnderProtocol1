@@ -816,6 +816,24 @@ internal static class Scenarios
         Check(f.loader.LoadWave() && MonsterBase._monsters.Count == 1, "a corrected footprint could not be loaded");
     }
 
+    private static void WaveLoaderInitializesCellShieldsSeparatelyForEachSpawn()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 1); f.a.hasShield = true; f.a.hp = 8;
+        var first = new Vector3Int(-2, -1); var second = new Vector3Int(-2, 1);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = first });
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = second }); f.manager.currentWave = f.first;
+        Check(f.loader.LoadWave() && MonsterBase._monsters.Count == 2, "shielded wave did not create both units");
+        MonsterBase a = MonsterBase._monsters[0].GetComponent<MonsterBase>();
+        MonsterBase b = MonsterBase._monsters[1].GetComponent<MonsterBase>();
+        Check(a.ShieldCount == 2 && b.ShieldCount == 2 && a.HasCellShield(f.map, first) && b.HasCellShield(f.map, second),
+            "WaveLoader did not initialize one shield for every authored body cell");
+        a.TakeDamageAtCell(f.map, first, 3);
+        Check(a.currentHP == 8 && a.ShieldCount == 1 && b.ShieldCount == 2 && f.a.hasShield,
+            "a shield hit leaked to HP, shared data, or another spawn");
+        a.TakeDamageAtCell(f.map, first, 3);
+        Check(a.currentHP == 5 && b.currentHP == 8, "exposed cell did not damage only its own unit");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -837,7 +855,8 @@ internal static class Scenarios
             PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback,
             LargeMonsterPaintEraseAndUndoUseTheWholeBody, LargeMonsterPaintingRejectsEdgesHolesAndOtherUnits,
             LargeMonsterSaveValidationChecksEveryCoveredCell, WaveLoaderRegistersOneLargeUnitAtEveryBodyCell,
-            InvalidLargeWaveCannotPartiallySpawnOrAdvance, WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits };
+            InvalidLargeWaveCannotPartiallySpawnOrAdvance, WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits,
+            WaveLoaderInitializesCellShieldsSeparatelyForEachSpawn };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;

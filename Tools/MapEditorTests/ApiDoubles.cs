@@ -499,6 +499,12 @@ public class CharacterBase : UnityEngine.MonoBehaviour
     public bool isEnemy;
     public bool IsDead => currentHP <= 0;
     public void InitializeHP() => currentHP = UnityEngine.Mathf.Max(0, MaxHP);
+    public virtual void TakeDamage(int damage)
+    {
+        if (IsDead) return;
+        currentHP = UnityEngine.Mathf.Max(0, currentHP - UnityEngine.Mathf.Max(0, damage));
+        if (IsDead) Die();
+    }
     protected virtual void Die() { gameObject.SetActive(false); }
 }
 public class BattleManager : UnityEngine.MonoBehaviour

@@ -272,7 +272,8 @@ public class UseSkill : MonoBehaviour
                 {
                     patternHits.Add(new SkillTargetHit(
                         targetCharacter,
-                        patternTile
+                        patternTile,
+                        cellPos
                     ));
                 }
             }
@@ -297,7 +298,8 @@ public class UseSkill : MonoBehaviour
                 result = ExecuteSkill.Instance.Execute(
                     caster,
                     currentSkill,
-                    targets
+                    targets,
+                    attackCells
                 );
             }
         }

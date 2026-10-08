@@ -86,18 +86,19 @@ public sealed class BattleFieldEffectSystem
         }
 
         // Snapshot occupants so wind cannot cause a second field tick by moving into another cell.
-        var affected = new Dictionary<CharacterBase, Dictionary<SkillTileFieldEffectType, BattleFieldEffect>>();
+        var affected = new Dictionary<CharacterBase, Dictionary<SkillTileFieldEffectType, Dictionary<Vector3Int, BattleFieldEffect>>>();
         foreach (CharacterBase target in characters)
         {
             if (!IsEnemy(target) || affected.ContainsKey(target)) continue;
-            var effects = new Dictionary<SkillTileFieldEffectType, BattleFieldEffect>();
+            var effects = new Dictionary<SkillTileFieldEffectType, Dictionary<Vector3Int, BattleFieldEffect>>();
             foreach (Vector3Int cell in BattleTileOccupancy.Cells(target, map))
             {
                 BattleFieldEffect field;
                 if (!map.HasTile(cell) || !fields.TryGetValue(cell, out field)) continue;
-                BattleFieldEffect existing;
-                if (!effects.TryGetValue(field.Type, out existing) || field.Value > existing.Value)
-                    effects[field.Type] = field;
+                Dictionary<Vector3Int, BattleFieldEffect> contacts;
+                if (!effects.TryGetValue(field.Type, out contacts))
+                    effects[field.Type] = contacts = new Dictionary<Vector3Int, BattleFieldEffect>();
+                contacts[cell] = field;
             }
             affected[target] = effects;
         }
@@ -108,17 +109,33 @@ public sealed class BattleFieldEffectSystem
             foreach (var targetEffects in affected)
             {
                 CharacterBase target = targetEffects.Key;
-                foreach (BattleFieldEffect field in targetEffects.Value.Values)
+                // Resolve damage at the original body cells before wind moves the whole body.
+                foreach (SkillTileFieldEffectType type in new[] { SkillTileFieldEffectType.Fire, SkillTileFieldEffectType.Electric })
+                {
+                    if (!IsEnemy(target)) break;
+                    Dictionary<Vector3Int, BattleFieldEffect> contacts;
+                    if (!targetEffects.Value.TryGetValue(type, out contacts)) continue;
+                    var damageByCell = new Dictionary<Vector3Int, int>();
+                    BattleFieldEffect damageSource = null;
+                    foreach (var contact in contacts)
+                    {
+                        damageByCell[contact.Key] = contact.Value.Value;
+                        if (target is MonsterBase monster && monster.HasCellShield(map, contact.Key)) continue;
+                        if (damageSource == null || contact.Value.Value > damageSource.Value) damageSource = contact.Value;
+                    }
+                    int dealt = BattleTileOccupancy.ApplyDamage(target, map, damageByCell);
+                    if (dealt > 0 && !IsEnemy(target) && passives != null && damageSource != null)
+                        passives.NotifyDamageKill(damageSource.source, true);
+                }
+                foreach (var effectContacts in targetEffects.Value)
                 {
                     if (!IsEnemy(target)) continue;
+                    if (effectContacts.Key == SkillTileFieldEffectType.Fire || effectContacts.Key == SkillTileFieldEffectType.Electric) continue;
+                    BattleFieldEffect field = null;
+                    foreach (BattleFieldEffect candidate in effectContacts.Value.Values)
+                        if (field == null || candidate.Value > field.Value) field = candidate;
                     switch (field.Type)
                     {
-                        case SkillTileFieldEffectType.Fire:
-                        case SkillTileFieldEffectType.Electric:
-                            target.TakeDamage(field.Value);
-                            if (!IsEnemy(target) && passives != null)
-                                passives.NotifyDamageKill(field.source, true);
-                            break;
                         case SkillTileFieldEffectType.Ice:
                             frozenThisTurn.Add(target);
                             break;

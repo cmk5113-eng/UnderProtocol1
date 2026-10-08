@@ -118,6 +118,23 @@ public static class HoverScenarios
             Check(!summary.text.Contains("HP:")&&PlacementManager.Instance.GetTileData(C(7,5)).isempty,
                 "death retained a body tile or stale info");
         });
+        Case("shield count and hovered body shield update after damage and movement",()=>
+        {
+            var monster=Monster(C(4,4),"실드병",8);
+            monster.Initialize(new MonsterData { monsterName="실드병",hp=8,footprintSize=new Vector2Int(2,2),hasShield=true });
+            Check(monster.TryPlace(map,C(4,4)),"shield hover fixture could not be placed");
+            Refresh(C(4,4));
+            Check(summary.text.Contains("실드: 4/4칸")&&summary.text.Contains("현재 칸 실드: 있음"),"initial shield info missing");
+            monster.TakeDamageAtCell(map,C(4,5),3);Call("LateUpdate");
+            Check(summary.text.Contains("HP: 8 / 8")&&summary.text.Contains("실드: 3/4칸")&&summary.text.Contains("현재 칸 실드: 있음"),
+                "shield loss did not refresh while hovering an intact neighbor");
+            Refresh(C(4,5));Check(summary.text.Contains("현재 칸 실드: 없음"),"hover did not distinguish an exposed body cell");
+            monster.TakeDamageAtCell(map,C(4,5),3);Call("LateUpdate");
+            Check(summary.text.Contains("HP: 5 / 8")&&summary.text.Contains("실드: 3/4칸"),"exposed HP hit changed shield count");
+            Check(monster.TryPlace(map,C(5,4)),"shield hover unit could not move");
+            Refresh(C(5,5));Check(summary.text.Contains("현재 칸 실드: 없음")&&summary.text.Contains("실드: 3/4칸"),
+                "hovered shield status did not follow its moved body part");
+        });
         Case("player uses shared barrier and runtime resources even with zero individual HP",()=>
         {
             var player=Player(C(0,4)); BattleManager.HP=73;

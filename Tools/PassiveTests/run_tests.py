@@ -54,6 +54,7 @@ sources=[
  'Tools/PassiveTests/Scenarios.cs',
  'Tools/PassiveTests/FieldEffectScenarios.cs',
  'Tools/PassiveTests/MultiCellMonsterScenarios.cs',
+ 'Tools/PassiveTests/CellShieldScenarios.cs',
  'Tools/PassiveTests/HoverScenarios.cs',
  'Tools/SaveTests/SaveApiStubs.cs',
  'Tools/SaveTests/EditorApiStubs.cs',

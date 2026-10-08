@@ -14,11 +14,13 @@ public class SkillTargetHit
 {
     public CharacterBase target;
     public SkillPatternTile tile;
+    public Vector3Int? cell;
 
-    public SkillTargetHit(CharacterBase target, SkillPatternTile tile)
+    public SkillTargetHit(CharacterBase target, SkillPatternTile tile, Vector3Int? cell = null)
     {
         this.target = target;
         this.tile = tile;
+        this.cell = cell;
     }
 }
 
@@ -34,7 +36,8 @@ public class ExecuteSkill : MonoBehaviour
     public SkillExecuteResult Execute(
         CharacterBase caster,
         SkillList skill,
-        List<CharacterBase> targets)
+        List<CharacterBase> targets,
+        ICollection<Vector3Int> attackCells = null)
     {
         SkillExecuteResult result = new SkillExecuteResult();
 
@@ -43,7 +46,7 @@ public class ExecuteSkill : MonoBehaviour
 
         if (skill.effectType.HasFlag(SkillEffectType.Damage))
         {
-            AttackSkill(skill, targets, result);
+            AttackSkill(caster, skill, targets, attackCells, result);
         }
 
         if (skill.effectType.HasFlag(SkillEffectType.Push))
@@ -94,7 +97,7 @@ public class ExecuteSkill : MonoBehaviour
             }
 
         if (hits == null) return result;
-        var groupedHits = new Dictionary<CharacterBase, List<SkillPatternTile>>();
+        var groupedHits = new Dictionary<CharacterBase, List<SkillTargetHit>>();
         foreach (SkillTargetHit hit in hits)
         {
             if (hit == null ||
@@ -105,33 +108,39 @@ public class ExecuteSkill : MonoBehaviour
                 continue;
             }
 
-            List<SkillPatternTile> tiles;
+            List<SkillTargetHit> tiles;
             if (!groupedHits.TryGetValue(hit.target, out tiles))
-                groupedHits[hit.target] = tiles = new List<SkillPatternTile>();
-            tiles.Add(hit.tile);
+                groupedHits[hit.target] = tiles = new List<SkillTargetHit>();
+            tiles.Add(hit);
         }
 
         foreach (var group in groupedHits)
         {
             CharacterBase target = group.Key;
             if (target == null || target.IsDead) continue;
-            int damage = 0;
+            var damageByCell = new Dictionary<Vector3Int, int>();
             SkillPatternTile pushTile = null;
             SkillPatternTile debuffTile = null;
-            foreach (SkillPatternTile tile in group.Value)
+            foreach (SkillTargetHit hit in group.Value)
             {
-                // One unit gets one hit: use the strongest overlapping ROE, independent of tile order.
-                damage = Mathf.Max(damage, tile.damage);
+                SkillPatternTile tile = hit.tile;
+                Vector2Int offset = RotateOffset(tile.position, patternRotation);
+                Vector3Int cell = hit.cell ?? pivotCell + new Vector3Int(offset.x, offset.y, 0);
+                cell.z = 0;
+                if (!BattleTileOccupancy.ContainsCell(target, tilemap, cell) || !tilemap.HasTile(cell)) continue;
+                int previous;
+                damageByCell.TryGetValue(cell, out previous);
+                if (tile.damage > previous) damageByCell[cell] = tile.damage;
                 if (tile.push && (pushTile == null || tile.pushDistance > pushTile.pushDistance)) pushTile = tile;
                 if (tile.appliesDebuff && debuffTile == null) debuffTile = tile;
             }
 
             if (skill.effectType.HasFlag(SkillEffectType.Damage) &&
-                damage > 0)
+                damageByCell.Count > 0)
             {
                 result.hitCount++;
-                if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
-                target.TakeDamage(damage);
+                int dealt = BattleTileOccupancy.ApplyDamage(target, tilemap, damageByCell);
+                if (dealt > 0) result.damagedTargets.Add(target);
 
                 if (target == null || target.IsDead)
                 {
@@ -229,8 +238,10 @@ public class ExecuteSkill : MonoBehaviour
     }
 
     private void AttackSkill(
+        CharacterBase caster,
         SkillList skill,
         List<CharacterBase> targets,
+        ICollection<Vector3Int> attackCells,
         SkillExecuteResult result)
     {
         if (targets == null)
@@ -242,9 +253,34 @@ public class ExecuteSkill : MonoBehaviour
             if (target == null || target.IsDead || skill.damage <= 0 || !damaged.Add(target))
                 continue;
 
+            Tilemap map = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
+            int dealt;
+            if (map != null)
+            {
+                var damageByCell = new Dictionary<Vector3Int, int>();
+                if (attackCells != null)
+                {
+                    foreach (Vector3Int cell in attackCells)
+                        if (map.HasTile(cell) && BattleTileOccupancy.ContainsCell(target, map, cell))
+                            damageByCell[cell] = skill.damage;
+                }
+                else
+                {
+                    Vector3Int origin = map.WorldToCell(caster.transform.position); origin.z = 0;
+                    if (BattleTileOccupancy.TryGetClosestCell(target, map, origin, out Vector3Int cell))
+                        damageByCell[cell] = skill.damage;
+                }
+                if (damageByCell.Count == 0) continue;
+                dealt = BattleTileOccupancy.ApplyDamage(target, map, damageByCell);
+            }
+            else
+            {
+                int before = target.currentHP;
+                target.TakeDamage(skill.damage);
+                dealt = before - target.currentHP;
+            }
             result.hitCount++;
-            if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
-            target.TakeDamage(skill.damage);
+            if (dealt > 0) result.damagedTargets.Add(target);
 
             if (target == null || target.IsDead)
             {

@@ -108,7 +108,7 @@ public partial class StageMapEditor
             string problem = GetMonsterProblem(data);
             using (new EditorGUI.DisabledScope(problem != null))
             {
-                GUIContent content = new GUIContent($"{MonsterLabel(data)}\nID {data.id} · {data.FootprintSize.x}×{data.FootprintSize.y}", MonsterThumbnail(data), problem ?? $"{MonsterLabel(data)} 배치");
+                GUIContent content = new GUIContent($"{MonsterLabel(data)}\nID {data.id} · {data.FootprintSize.x}×{data.FootprintSize.y}{(data.hasShield ? " · 실드" : "")}", MonsterThumbnail(data), problem ?? $"{MonsterLabel(data)} 배치");
                 if (GUILayout.Toggle(selectedMonster == data, content, "Button", GUILayout.Width(100), GUILayout.Height(70)))
                     selectedMonster = data;
             }
@@ -118,7 +118,7 @@ public partial class StageMapEditor
         selectedMonster = (MonsterData)EditorGUILayout.ObjectField("배치할 몬스터", selectedMonster, typeof(MonsterData), false);
         string selectionProblem = GetMonsterProblem(selectedMonster);
         if (selectionProblem != null) EditorGUILayout.HelpBox(selectionProblem, MessageType.Warning);
-        else EditorGUILayout.LabelField($"{MonsterLabel(selectedMonster)} · ID {selectedMonster.id} · {selectedMonster.FootprintSize.x}×{selectedMonster.FootprintSize.y} · 왼쪽 아래 기준 칸에 좌클릭 배치 / 점유 칸 우클릭 삭제");
+        else EditorGUILayout.LabelField($"{MonsterLabel(selectedMonster)} · ID {selectedMonster.id} · {selectedMonster.FootprintSize.x}×{selectedMonster.FootprintSize.y}{(selectedMonster.hasShield ? " · 칸별 실드 있음" : "")} · 왼쪽 아래 기준 칸에 좌클릭 배치 / 점유 칸 우클릭 삭제");
 
         DrawMonsterGrid(wave);
 
