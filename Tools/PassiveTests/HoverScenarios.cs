@@ -92,6 +92,32 @@ public static class HoverScenarios
             Check(summary.text.Contains("HP: 7 / 7"),"hover child uses parent CharacterBase");
             Check(image.sprite==sprite,"sprite lookup includes children");
         });
+        Case("large monster body tiles share live info and show the hovered tile field",()=>
+        {
+            var anchor=C(4,4); var corner=C(5,5); var monster=Monster(anchor,"거대병",8);
+            monster.Initialize(new MonsterData { monsterName="거대병",hp=8,footprintSize=new Vector2Int(2,2) });
+            Check(monster.TryPlace(map,anchor),"large hover fixture could not be placed");
+            foreach (var cell in monster.GetOccupiedCells(map))
+            {
+                Refresh(cell);
+                Check(summary.text.Contains("거대병")&&summary.text.Contains("HP: 8 / 8")&&summary.text.Contains("점유 크기: 2 × 2"),
+                    "a body cell showed empty tile info or separate HP");
+            }
+            var battle=new BattleManager();
+            typeof(BattleManager).GetMethod("Awake",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(battle,null);
+            battle.BeginBattle(0,null);
+            battle.Fields.Apply(map,corner,null,SkillTileFieldEffectType.Fire,2,3,Vector3Int.right);
+            Refresh(corner);
+            Check(summary.text.Contains(BattleFieldEffectSystem.Describe(map,corner)),"corner hover showed the anchor field instead");
+            monster.TakeDamage(2); Call("LateUpdate");
+            Check(summary.text.Contains("HP: 6 / 8"),"large body hover did not update live HP");
+            Check(monster.TryPlace(map,C(6,4)),"large hover unit could not move");
+            Refresh(anchor,monster.gameObject);
+            Check(!summary.text.Contains("HP:")&&summary.text.Contains("비어 있음"),"old body hover retained the moved monster");
+            Refresh(C(7,5)); monster.TakeDamage(6); Call("LateUpdate");
+            Check(!summary.text.Contains("HP:")&&PlacementManager.Instance.GetTileData(C(7,5)).isempty,
+                "death retained a body tile or stale info");
+        });
         Case("player uses shared barrier and runtime resources even with zero individual HP",()=>
         {
             var player=Player(C(0,4)); BattleManager.HP=73;

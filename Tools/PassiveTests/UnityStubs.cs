@@ -54,7 +54,7 @@ namespace UnityEngine
         public Component() { new GameObject().Attach(this); }
         public T GetComponent<T>() where T : class => gameObject.GetComponent<T>();
         public T GetComponentInParent<T>() where T : class => gameObject.GetComponentInParent<T>();
-        public T GetComponentInChildren<T>() where T : class => gameObject.GetComponentsInChildren<T>().FirstOrDefault();
+        public T GetComponentInChildren<T>(bool includeInactive=false) where T : class => gameObject.GetComponentsInChildren<T>(includeInactive).FirstOrDefault();
         public T[] GetComponentsInChildren<T>(bool includeInactive=false) => gameObject.GetComponentsInChildren<T>(includeInactive);
         public bool TryGetComponent<T>(out T value) where T : class { value = GetComponent<T>(); return value != null; }
         public bool CompareTag(string tag) => false;
@@ -69,6 +69,7 @@ namespace UnityEngine
     public class Transform : Object
     {
         public Vector3 position;
+        public Vector3 localScale=new Vector3(1,1,1);
         public GameObject gameObject;
         public Transform parent { get; private set; }
         public readonly List<Transform> children=new List<Transform>();
@@ -76,7 +77,13 @@ namespace UnityEngine
         public bool IsChildOf(Transform value) => this==value || (parent!=null && parent.IsChildOf(value));
     }
     public class Sprite : Object { }
-    public class SpriteRenderer : Component { public Color color; public Sprite sprite; }
+    public struct Bounds { public Vector3 size; }
+    public class SpriteRenderer : Component
+    {
+        public Color color; public Sprite sprite;
+        public Vector3 unscaledSize=new Vector3(1,1,1);
+        public Bounds bounds => new Bounds { size=new Vector3(Math.Abs(unscaledSize.x*transform.localScale.x),Math.Abs(unscaledSize.y*transform.localScale.y),1) };
+    }
     public struct Color
     {
         public float r,g,b,a;
@@ -102,6 +109,7 @@ namespace UnityEngine
         public static Vector3 operator +(Vector3 a,Vector3 b) => new Vector3(a.x+b.x,a.y+b.y,a.z+b.z);
         public static Vector3 operator -(Vector3 a,Vector3 b) => new Vector3(a.x-b.x,a.y-b.y,a.z-b.z);
         public static Vector3 operator *(float a,Vector3 b) => new Vector3(a*b.x,a*b.y,a*b.z);
+        public static Vector3 operator *(Vector3 a,float b) => b*a;
         public static implicit operator Vector3(Vector2 v) => new Vector3(v.x,v.y);
     }
     public struct Vector2Int : IEquatable<Vector2Int>

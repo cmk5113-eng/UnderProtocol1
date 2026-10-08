@@ -230,7 +230,7 @@ public sealed class BattlePassiveSystem
                 foreach (CharacterBase survivor in result.damagedTargets)
                 {
                     // Do not hit enemies pushed out of the original AOE, or already killed by support.
-                    if (IsEnemy(survivor) && attackArea.Contains(Cell(survivor, map)))
+                    if (IsEnemy(survivor) && BattleTileOccupancy.Intersects(survivor, map, attackArea))
                         hitAny |= Damage(owner, survivor, skill.passiveDamage);
                 }
                 return hitAny;
@@ -331,7 +331,7 @@ public sealed class BattlePassiveSystem
                 Bomb bomb = bombs[i];
                 if (bomb.map != map || !map.HasTile(bomb.cell)) { bombs.RemoveAt(i); continue; }
                 foreach (CharacterBase target in characters)
-                    if (IsEnemy(target) && PassiveGeometry.Distance(Cell(target, map), bomb.cell) <= bomb.radius)
+                    if (IsEnemy(target) && BattleTileOccupancy.Distance(target, map, bomb.cell) <= bomb.radius)
                         Damage(bomb.source, target, bomb.damage);
                 bomb.turns--;
                 if (bomb.turns <= 0) bombs.RemoveAt(i);
@@ -360,7 +360,7 @@ public sealed class BattlePassiveSystem
     private static CharacterBase FindEnemyAt(Vector3Int cell, IList<CharacterBase> characters, Tilemap map)
     {
         foreach (CharacterBase target in characters)
-            if (IsEnemy(target) && Cell(target, map) == cell) return target;
+            if (IsEnemy(target) && BattleTileOccupancy.ContainsCell(target, map, cell)) return target;
         return null;
     }
 
@@ -370,8 +370,8 @@ public sealed class BattlePassiveSystem
         int bestDistance = int.MaxValue;
         foreach (CharacterBase target in characters)
         {
-            if (!IsEnemy(target) || !map.HasTile(Cell(target, map))) continue;
-            int distance = PassiveGeometry.Distance(from, Cell(target, map));
+            if (!IsEnemy(target) || !BattleTileOccupancy.IsOnMap(target, map)) continue;
+            int distance = BattleTileOccupancy.Distance(target, map, from);
             if (distance < bestDistance || (distance == bestDistance
                 && nearest != null && target.GetInstanceID() < nearest.GetInstanceID()))
             {
@@ -386,7 +386,7 @@ public sealed class BattlePassiveSystem
     {
         var enemies = new List<CharacterBase>();
         foreach (CharacterBase target in characters)
-            if (IsEnemy(target) && map.HasTile(Cell(target, map))) enemies.Add(target);
+            if (IsEnemy(target) && BattleTileOccupancy.IsOnMap(target, map)) enemies.Add(target);
         return enemies.Count == 0 ? null : enemies[UnityEngine.Random.Range(0, enemies.Count)];
     }
 }

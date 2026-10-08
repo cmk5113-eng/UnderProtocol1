@@ -538,6 +538,7 @@ internal static class Scenarios
         f.second.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = new Vector3Int(-1, 0) });
         SetStageWaves(f.manager, 1, new[] { f.second });
         var otherMap = new GameObject("second tilemap") { parent = f.map.gameObject.parent, activeSelf = false }.AddComponent<Tilemap>();
+        otherMap.Tiles.UnionWith(f.map.Tiles);
         var binding = otherMap.gameObject.AddComponent<StageMapBinding>(); binding.EditorSetTilemap(otherMap); binding.EditorSetStageIndex(1);
         var mapDecoration = new GameObject("map decoration") { parent = f.map.gameObject.parent };
         var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
@@ -721,6 +722,100 @@ internal static class Scenarios
         Check(world.activeSelf && !screen.activeSelf && !before.activeSelf && !f.map.gameObject.activeSelf, "world fallback left stage content active");
     }
 
+    private static void LargeMonsterPaintEraseAndUndoUseTheWholeBody()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
+        var anchor = new Vector3Int(-2, -1); var corner = new Vector3Int(-1, 0);
+        Check((bool)Call(f.editor, "PaintCell", anchor), "2x2 monster could not be painted at a valid anchor");
+        Check(f.first.monsters.Count == 1 && f.first.monsters[0].position == anchor, "large monster was serialized as multiple units");
+        Check(Call(f.editor, "GetWaveProblem", f.first) == null, "valid footprint failed save validation");
+        int undoCount = Undo.Records.Count;
+        Check(!(bool)Call(f.editor, "PaintCell", corner) && Undo.Records.Count == undoCount,
+            "dragging over the same body moved or duplicated the monster");
+        Check((bool)Call(f.editor, "EraseCell", corner) && f.first.monsters.Count == 0,
+            "erasing an occupied corner did not remove the whole monster");
+        Undo.PerformUndo();
+        Check(f.first.monsters.Count == 1 && f.first.monsters[0].position == anchor, "undo did not restore a single large monster");
+    }
+
+    private static void LargeMonsterPaintingRejectsEdgesHolesAndOtherUnits()
+    {
+        Fixture f = NewFixture();
+        var small = new Vector3Int(-1, 0);
+        Set(f.editor, "selectedMonster", f.b); Call(f.editor, "PaintCell", small);
+        Set(f.editor, "selectedMonster", f.a); f.a.footprintSize = new Vector2Int(2, 2);
+        int undoCount = Undo.Records.Count;
+        Check(!(bool)Call(f.editor, "PaintCell", new Vector3Int(-2, -1)), "overlap with another monster was accepted");
+        Check(!(bool)Call(f.editor, "PaintCell", new Vector3Int(0, 1)), "body outside the map was accepted");
+        f.map.Tiles.Remove(new Vector3Int(0, 0));
+        Check(!(bool)Call(f.editor, "PaintCell", small), "non-anchor hole was accepted while replacing a unit");
+        Check(f.first.monsters.Count == 1 && f.first.monsters[0].monsterID == f.b.id && Undo.Records.Count == undoCount,
+            "rejected placement deleted an existing monster or recorded undo");
+    }
+
+    private static void LargeMonsterSaveValidationChecksEveryCoveredCell()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
+        var anchor = new Vector3Int(-2, -1); var corner = new Vector3Int(-1, 0);
+        Call(f.editor, "PaintCell", anchor);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = corner });
+        Call(f.editor, "SaveCurrentWave"); Check(AssetDatabase.Saved.Count == 0, "overlapping bodies were saved");
+        f.first.monsters.RemoveAt(1); f.map.Tiles.Remove(corner);
+        Call(f.editor, "SaveCurrentWave"); Check(AssetDatabase.Saved.Count == 0, "body covering a missing tile was saved");
+        f.map.Tiles.Add(corner);
+        f.terrain.obstacles.Add(new ObstacleSpawnData { position = corner, blocksMovement = true });
+        Call(f.editor, "SaveCurrentWave"); Check(AssetDatabase.Saved.Count == 0, "body covering a blocking obstacle was saved");
+        f.terrain.obstacles[0].blocksMovement = false;
+        Call(f.editor, "SaveCurrentWave"); Check(AssetDatabase.Saved.Count == 1, "nonblocking terrain prevented a valid save");
+    }
+
+    private static void WaveLoaderRegistersOneLargeUnitAtEveryBodyCell()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2); f.a.hp = 8;
+        var anchor = new Vector3Int(-2, -1);
+        Call(f.editor, "PaintCell", anchor); f.manager.currentWave = f.first;
+        Check(f.loader.LoadWave(), "valid authored 2x2 wave did not load");
+        Check(MonsterBase._monsters.Count == 1, "2x2 wave created more than one monster");
+        MonsterBase monster = MonsterBase._monsters[0].GetComponent<MonsterBase>();
+        foreach (Vector3Int cell in f.a.GetOccupiedCells(anchor))
+            Check(PlacementManager.Instance.GetTileData(cell).Character == monster, "a body cell was not registered to the shared unit");
+        Check(monster.currentHP == 8 && monster.transform.position.x == -1 && monster.transform.position.y == 0,
+            "large unit did not use authored HP or the center of its whole body");
+        Check(monster.GetAnchorCell(f.map) == anchor && f.manager.currentWaveIndex == 0,
+            "LoadWave changed the stored anchor or advanced the wave before success handling");
+        monster.ReleaseOccupancy();
+        foreach (Vector3Int cell in f.a.GetOccupiedCells(anchor))
+            Check(PlacementManager.Instance.GetTileData(cell).isempty, "large unit cleanup left an occupied tile");
+    }
+
+    private static void InvalidLargeWaveCannotPartiallySpawnOrAdvance()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = new Vector3Int(-2, -1) });
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(0, 0) });
+        f.manager.currentWave = f.first; f.manager.selectedWaves = new[] { f.first };
+        Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0, "invalid second body left a partial wave");
+        BattleManager.Instance.IsBattleActive = true; f.loader.NextWave();
+        Check(f.manager.currentWaveIndex == 0 && MonsterBase._monsters.Count == 0, "failed load advanced the wave or spawned a partial unit");
+        f.first.monsters[1].position = new Vector3Int(-2, -1);
+        Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0, "overlapping spawn rectangles were accepted");
+    }
+
+    private static void WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits()
+    {
+        Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
+        var anchor = new Vector3Int(-2, -1); var corner = new Vector3Int(-1, 0);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = anchor }); f.manager.currentWave = f.first;
+        TileData blocked = PlacementManager.Instance.GetTileData(corner); blocked.isempty = false;
+        Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0 && !blocked.isempty,
+            "body covering a blocker was spawned or changed the blocker");
+        var other = new GameObject("already placed").AddComponent<MonsterBase>(); blocked.Character = other;
+        Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0 && blocked.Character == other,
+            "body covering another unit was spawned or changed that unit");
+        blocked.Character = null;
+        Check(f.loader.LoadWave() && MonsterBase._monsters.Count == 1, "a corrected footprint could not be loaded");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -739,7 +834,10 @@ internal static class Scenarios
             ReenteringStagesClosesPreviousScenarioAndTilemap, WrongParentBindingCannotSelectAnotherMapsWaves,
             InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive,
             DialogueCompletionInvokesExistingSkipOnce, DialogueReopensFromStartAndEmptyDataCanExit,
-            PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback };
+            PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback,
+            LargeMonsterPaintEraseAndUndoUseTheWholeBody, LargeMonsterPaintingRejectsEdgesHolesAndOtherUnits,
+            LargeMonsterSaveValidationChecksEveryCoveredCell, WaveLoaderRegistersOneLargeUnitAtEveryBodyCell,
+            InvalidLargeWaveCannotPartiallySpawnOrAdvance, WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;
