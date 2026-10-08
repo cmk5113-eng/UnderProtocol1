@@ -122,42 +122,44 @@ public class UI_TargetHoverInfo : OpenableUIBase
 
         CharacterBase character = hoveredObject != null
             ? hoveredObject.GetComponentInParent<CharacterBase>() : null;
-        if (!IsOnMap(character, map)) character = FindAtPoint(worldPosition, cell, map, false);
+        if (!IsOnMap(character, map) || !BattleTileOccupancy.ContainsCell(character, map, cell))
+            character = FindAtPoint(worldPosition, cell, map);
 
         TileData tile = PlacementManager.Instance.GetTileData(cell);
         if (character == null && IsOnMap(tile.Character, map)
-            && CharacterCell(tile.Character, map) == cell)
+            && BattleTileOccupancy.ContainsCell(tile.Character, map, cell))
             character = tile.Character;
 
         // 타일 중심도 검사해서 작은 스프라이트의 주변을 가리켜도 해당 유닛을 표시한다.
-        if (character == null) character = FindAtPoint(map.GetCellCenterWorld(cell), cell, map, true);
+        if (character == null) character = FindAtPoint(map.GetCellCenterWorld(cell), cell, map);
         target = character;
-        if (character != null) ShowCharacter(character, map);
+        if (character != null) ShowCharacter(character, map, cell);
         else ShowTile(cell, tile, map);
     }
 
     static Vector3Int CharacterCell(CharacterBase character, Tilemap map)
     {
+        if (character is MonsterBase monster) return monster.GetAnchorCell(map);
         Vector3Int cell = map.WorldToCell(character.transform.position);
         cell.z = 0;
         return cell;
     }
 
     static bool IsOnMap(CharacterBase character, Tilemap map) => IsLiveTarget(character)
-        && map.HasTile(CharacterCell(character, map));
+        && BattleTileOccupancy.IsOnMap(character, map);
 
-    static CharacterBase FindAtPoint(Vector3 point, Vector3Int cell, Tilemap map, bool sameCell)
+    static CharacterBase FindAtPoint(Vector3 point, Vector3Int cell, Tilemap map)
     {
         foreach (Collider2D hit in Physics2D.OverlapPointAll(point))
         {
             CharacterBase character = hit.GetComponentInParent<CharacterBase>();
-            if (IsOnMap(character, map) && (!sameCell || CharacterCell(character, map) == cell))
+            if (IsOnMap(character, map) && BattleTileOccupancy.ContainsCell(character, map, cell))
                 return character;
         }
         return null;
     }
 
-    void ShowCharacter(CharacterBase character, Tilemap map)
+    void ShowCharacter(CharacterBase character, Tilemap map, Vector3Int? hoveredCell = null)
     {
         MonsterBase monster = character as MonsterBase;
         MonsterData monsterData = monster != null ? monster.MonsterData : null;
@@ -183,10 +185,23 @@ public class UI_TargetHoverInfo : OpenableUIBase
         string stats = IsEnemy(character)
             ? $"HP: {character.currentHP} / {character.MaxHP}"
             : $"공용 결계 HP: {BattleManager.HP:0.##}";
+        Vector3Int displayCell = new Vector3Int();
+        if (map != null)
+        {
+            displayCell = hoveredCell ?? map.WorldToCell(InputManager.CursorWorldPosition);
+            displayCell.z = 0;
+            if (!BattleTileOccupancy.ContainsCell(character, map, displayCell)) displayCell = CharacterCell(character, map);
+        }
+        if (monster != null && monster.ShieldCapacity > 0)
+            stats += $"\n실드: {monster.ShieldCount}/{monster.ShieldCapacity}칸";
         string details = IsEnemy(character)
             ? monsterData != null ? $"공격력: {monsterData.atk}" : "몬스터"
             : $"행동력: {character.actionPoint}/{character.maxAP} · 이동력: {character.steminaPoint}/{character.maxStemina}";
-        string field = map != null ? BattleFieldEffectSystem.Describe(map, CharacterCell(character, map)) : "";
+        if (monster != null && (monster.FootprintSize.x > 1 || monster.FootprintSize.y > 1))
+            details += $"\n점유 크기: {monster.FootprintSize.x} × {monster.FootprintSize.y}";
+        if (monster != null && monster.ShieldCapacity > 0 && map != null)
+            details += monster.HasCellShield(map, displayCell) ? "\n현재 칸 실드: 있음" : "\n현재 칸 실드: 없음";
+        string field = map != null ? BattleFieldEffectSystem.Describe(map, displayCell) : "";
         if (!string.IsNullOrEmpty(field)) details += "\n" + field;
         string position = map != null ? PositionLabel(CharacterCell(character, map)) : "";
         SetContent(image, displayName, stats, details, position);

@@ -459,11 +459,24 @@ public partial class StageMapEditor : EditorWindow
             WaveData wave = CurrentWave;
             RefreshMonsterPalette();
             if (wave == null || GetMonsterProblem(selectedMonster) != null) return false;
-            if (wave.monsters != null && wave.monsters.FindAll(x => x != null && x.position == cell).Count == 1
-                && wave.monsters.Exists(x => x != null && x.position == cell && x.monsterID == selectedMonster.id)) return false;
+            var replacing = wave.monsters != null ? wave.monsters.FindAll(spawn => SpawnCovers(spawn, cell)) : new List<MonsterSpawnData>();
+            if (replacing.Count == 1 && replacing[0].monsterID == selectedMonster.id) return false;
+            foreach (Vector3Int occupied in selectedMonster.GetOccupiedCells(cell))
+            {
+                if (!tilemap.HasTile(occupied) || HasBlockingObstacle(occupied))
+                {
+                    ShowNotification(new GUIContent("몬스터의 모든 점유 칸에 타일이 있어야 하며 장애물과 겹칠 수 없습니다."));
+                    return false;
+                }
+                if (wave.monsters != null && wave.monsters.Exists(spawn => !replacing.Contains(spawn) && SpawnCovers(spawn, occupied)))
+                {
+                    ShowNotification(new GUIContent("다른 몬스터의 점유 영역과 겹칩니다."));
+                    return false;
+                }
+            }
             Undo.RecordObject(wave, "Place Stage Monster");
             if (wave.monsters == null) wave.monsters = new List<MonsterSpawnData>();
-            wave.monsters.RemoveAll(x => x != null && x.position == cell);
+            wave.monsters.RemoveAll(spawn => replacing.Contains(spawn));
             wave.monsters.Add(new MonsterSpawnData { monsterID = selectedMonster.id, position = cell });
             EditorUtility.SetDirty(wave);
         }
@@ -499,11 +512,12 @@ public partial class StageMapEditor : EditorWindow
         if (EditorApplication.isPlayingOrWillChangePlaymode || tilemap == null || !tilemap.HasTile(cell)) return false;
         bool changed = false;
         WaveData wave = CurrentWave;
+        if (mode == EditMode.Monster || mode == EditMode.Erase) RefreshMonsterPalette();
         if ((mode == EditMode.Monster || mode == EditMode.Erase) && wave != null && wave.monsters != null
-            && wave.monsters.Exists(x => x != null && x.position == cell))
+            && wave.monsters.Exists(spawn => SpawnCovers(spawn, cell)))
         {
             Undo.RecordObject(wave, "Erase Stage Monster");
-            wave.monsters.RemoveAll(x => x != null && x.position == cell);
+            wave.monsters.RemoveAll(spawn => SpawnCovers(spawn, cell));
             EditorUtility.SetDirty(wave);
             changed = true;
         }
@@ -540,7 +554,9 @@ public partial class StageMapEditor : EditorWindow
             {
                 if (d == null) continue;
                 MonsterData data = FindMonsterData(d.monsterID);
-                DrawCell(d.position, new Color(1f,.2f,.25f,.35f), data != null ? $"{MonsterLabel(data)} ({d.monsterID})" : $"M:{d.monsterID}");
+                foreach (Vector3Int cell in SpawnCells(d))
+                    DrawCell(cell, new Color(1f,.2f,.25f,.35f), cell == d.position
+                        ? data != null ? $"{MonsterLabel(data)} ({d.monsterID})" : $"M:{d.monsterID}" : "");
             }
         }
     }

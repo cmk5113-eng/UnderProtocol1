@@ -243,23 +243,15 @@ public class UseSkill : MonoBehaviour
 
         foreach (Vector3Int cellPos in attackCells)
         {
-            Vector3 worldPos = tilemap.GetCellCenterWorld(cellPos);
-            Collider2D hit = Physics2D.OverlapPoint(worldPos);
-
-            if (hit == null)
-                continue;
-
-            CharacterBase targetCharacter =
-                hit.GetComponentInParent<CharacterBase>();
+            CharacterBase targetCharacter = BattleTileOccupancy.FindAt(tilemap, cellPos);
 
             if (targetCharacter == null ||
-                !targetCharacter.isEnemy ||
-                targets.Contains(targetCharacter))
+                !targetCharacter.isEnemy)
             {
                 continue;
             }
 
-            targets.Add(targetCharacter);
+            if (!targets.Contains(targetCharacter)) targets.Add(targetCharacter);
 
             if (currentSkill.HasRoePattern)
             {
@@ -273,14 +265,15 @@ public class UseSkill : MonoBehaviour
 
                 SkillPatternTile patternTile =
                     currentSkill.roePattern.Find(
-                        tile => tile.position == localPosition
+                        tile => tile != null && tile.position == localPosition
                     );
 
                 if (patternTile != null)
                 {
                     patternHits.Add(new SkillTargetHit(
                         targetCharacter,
-                        patternTile
+                        patternTile,
+                        cellPos
                     ));
                 }
             }
@@ -305,7 +298,8 @@ public class UseSkill : MonoBehaviour
                 result = ExecuteSkill.Instance.Execute(
                     caster,
                     currentSkill,
-                    targets
+                    targets,
+                    attackCells
                 );
             }
         }

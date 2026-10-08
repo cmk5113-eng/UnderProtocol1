@@ -177,7 +177,7 @@ public sealed class BattlePassiveSystem
                 Vector3Int front = PassiveGeometry.FrontCell(Cell(owner, map), aim, bounds);
                 if (!map.HasTile(front)) return false;
                 target = FindEnemyAt(front, characters, map);
-                return Damage(owner, target, skill.passiveDamage);
+                return DamageCells(owner, target, new Dictionary<Vector3Int, int> { [front] = skill.passiveDamage }, map);
             case PassiveEffect.PlantBomb:
                 if (!map.HasTile(aim) || skill.passiveDamage <= 0) return false;
                 Bomb bomb = bombs.Find(item => item.source == owner && item.skill == skill
@@ -192,7 +192,7 @@ public sealed class BattlePassiveSystem
                 bomb.turns = Mathf.Max(1, skill.durationTurns);
                 return true;
             case PassiveEffect.AttackNearestToActor:
-                return Damage(owner, Nearest(Cell(actor, map), characters, map), skill.passiveDamage);
+                return Damage(owner, Nearest(Cell(actor, map), characters, map), skill.passiveDamage, Cell(actor, map));
             case PassiveEffect.AttackNearestToOwner:
                 return Damage(owner, Nearest(Cell(owner, map), characters, map), skill.passiveDamage);
             case PassiveEffect.RestoreActorMovement:
@@ -230,8 +230,8 @@ public sealed class BattlePassiveSystem
                 foreach (CharacterBase survivor in result.damagedTargets)
                 {
                     // Do not hit enemies pushed out of the original AOE, or already killed by support.
-                    if (IsEnemy(survivor) && attackArea.Contains(Cell(survivor, map)))
-                        hitAny |= Damage(owner, survivor, skill.passiveDamage);
+                    if (IsEnemy(survivor) && BattleTileOccupancy.Intersects(survivor, map, attackArea))
+                        hitAny |= Damage(owner, survivor, skill.passiveDamage, null, attackArea);
                 }
                 return hitAny;
             default: return false;
@@ -261,13 +261,35 @@ public sealed class BattlePassiveSystem
         PassiveActivated?.Invoke(owner, skill);
     }
 
-    private bool Damage(CharacterBase source, CharacterBase target, int damage)
+    private bool Damage(CharacterBase source, CharacterBase target, int damage,
+        Vector3Int? origin = null, ICollection<Vector3Int> area = null)
     {
         if (!IsEnemy(target) || damage <= 0) return false;
+        Tilemap map = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
+        if (map != null)
+        {
+            Vector3Int from = origin ?? (source != null ? Cell(source, map) : Cell(target, map));
+            if (!BattleTileOccupancy.TryGetClosestCell(target, map, from, out Vector3Int cell, area)) return false;
+            return DamageCells(source, target, new Dictionary<Vector3Int, int> { [cell] = damage }, map);
+        }
         target.TakeDamage(damage);
         // Kill rewards may run, but attack passives cannot recursively trigger more attacks.
         if (target == null || target.IsDead || !target.gameObject.activeInHierarchy)
             NotifyDamageKill(source);
+        return true;
+    }
+
+    private bool DamageCells(CharacterBase source, CharacterBase target,
+        IDictionary<Vector3Int, int> damageByCell, Tilemap map)
+    {
+        if (!IsEnemy(target)) return false;
+        bool contacted = false;
+        foreach (var hit in damageByCell)
+            if (hit.Value > 0 && map.HasTile(hit.Key) && BattleTileOccupancy.ContainsCell(target, map, hit.Key))
+            { contacted = true; break; }
+        if (!contacted) return false;
+        BattleTileOccupancy.ApplyDamage(target, map, damageByCell);
+        if (target == null || target.IsDead || !target.gameObject.activeInHierarchy) NotifyDamageKill(source);
         return true;
     }
 
@@ -330,9 +352,15 @@ public sealed class BattlePassiveSystem
             {
                 Bomb bomb = bombs[i];
                 if (bomb.map != map || !map.HasTile(bomb.cell)) { bombs.RemoveAt(i); continue; }
+                var contacted = new HashSet<CharacterBase>();
                 foreach (CharacterBase target in characters)
-                    if (IsEnemy(target) && PassiveGeometry.Distance(Cell(target, map), bomb.cell) <= bomb.radius)
-                        Damage(bomb.source, target, bomb.damage);
+                {
+                    if (!IsEnemy(target) || !contacted.Add(target)) continue;
+                    var damageByCell = new Dictionary<Vector3Int, int>();
+                    foreach (Vector3Int cell in BattleTileOccupancy.Cells(target, map))
+                        if (PassiveGeometry.Distance(cell, bomb.cell) <= bomb.radius) damageByCell[cell] = bomb.damage;
+                    DamageCells(bomb.source, target, damageByCell, map);
+                }
                 bomb.turns--;
                 if (bomb.turns <= 0) bombs.RemoveAt(i);
             }
@@ -360,7 +388,7 @@ public sealed class BattlePassiveSystem
     private static CharacterBase FindEnemyAt(Vector3Int cell, IList<CharacterBase> characters, Tilemap map)
     {
         foreach (CharacterBase target in characters)
-            if (IsEnemy(target) && Cell(target, map) == cell) return target;
+            if (IsEnemy(target) && BattleTileOccupancy.ContainsCell(target, map, cell)) return target;
         return null;
     }
 
@@ -370,8 +398,8 @@ public sealed class BattlePassiveSystem
         int bestDistance = int.MaxValue;
         foreach (CharacterBase target in characters)
         {
-            if (!IsEnemy(target) || !map.HasTile(Cell(target, map))) continue;
-            int distance = PassiveGeometry.Distance(from, Cell(target, map));
+            if (!IsEnemy(target) || !BattleTileOccupancy.IsOnMap(target, map)) continue;
+            int distance = BattleTileOccupancy.Distance(target, map, from);
             if (distance < bestDistance || (distance == bestDistance
                 && nearest != null && target.GetInstanceID() < nearest.GetInstanceID()))
             {
@@ -386,7 +414,7 @@ public sealed class BattlePassiveSystem
     {
         var enemies = new List<CharacterBase>();
         foreach (CharacterBase target in characters)
-            if (IsEnemy(target) && map.HasTile(Cell(target, map))) enemies.Add(target);
+            if (IsEnemy(target) && BattleTileOccupancy.IsOnMap(target, map)) enemies.Add(target);
         return enemies.Count == 0 ? null : enemies[UnityEngine.Random.Range(0, enemies.Count)];
     }
 }

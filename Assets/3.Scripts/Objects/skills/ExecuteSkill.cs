@@ -14,11 +14,13 @@ public class SkillTargetHit
 {
     public CharacterBase target;
     public SkillPatternTile tile;
+    public Vector3Int? cell;
 
-    public SkillTargetHit(CharacterBase target, SkillPatternTile tile)
+    public SkillTargetHit(CharacterBase target, SkillPatternTile tile, Vector3Int? cell = null)
     {
         this.target = target;
         this.tile = tile;
+        this.cell = cell;
     }
 }
 
@@ -34,7 +36,8 @@ public class ExecuteSkill : MonoBehaviour
     public SkillExecuteResult Execute(
         CharacterBase caster,
         SkillList skill,
-        List<CharacterBase> targets)
+        List<CharacterBase> targets,
+        ICollection<Vector3Int> attackCells = null)
     {
         SkillExecuteResult result = new SkillExecuteResult();
 
@@ -43,7 +46,7 @@ public class ExecuteSkill : MonoBehaviour
 
         if (skill.effectType.HasFlag(SkillEffectType.Damage))
         {
-            AttackSkill(skill, targets, result);
+            AttackSkill(caster, skill, targets, attackCells, result);
         }
 
         if (skill.effectType.HasFlag(SkillEffectType.Push))
@@ -94,6 +97,7 @@ public class ExecuteSkill : MonoBehaviour
             }
 
         if (hits == null) return result;
+        var groupedHits = new Dictionary<CharacterBase, List<SkillTargetHit>>();
         foreach (SkillTargetHit hit in hits)
         {
             if (hit == null ||
@@ -104,15 +108,39 @@ public class ExecuteSkill : MonoBehaviour
                 continue;
             }
 
-            CharacterBase target = hit.target;
-            SkillPatternTile tile = hit.tile;
+            List<SkillTargetHit> tiles;
+            if (!groupedHits.TryGetValue(hit.target, out tiles))
+                groupedHits[hit.target] = tiles = new List<SkillTargetHit>();
+            tiles.Add(hit);
+        }
+
+        foreach (var group in groupedHits)
+        {
+            CharacterBase target = group.Key;
+            if (target == null || target.IsDead) continue;
+            var damageByCell = new Dictionary<Vector3Int, int>();
+            SkillPatternTile pushTile = null;
+            SkillPatternTile debuffTile = null;
+            foreach (SkillTargetHit hit in group.Value)
+            {
+                SkillPatternTile tile = hit.tile;
+                Vector2Int offset = RotateOffset(tile.position, patternRotation);
+                Vector3Int cell = hit.cell ?? pivotCell + new Vector3Int(offset.x, offset.y, 0);
+                cell.z = 0;
+                if (!BattleTileOccupancy.ContainsCell(target, tilemap, cell) || !tilemap.HasTile(cell)) continue;
+                int previous;
+                damageByCell.TryGetValue(cell, out previous);
+                if (tile.damage > previous) damageByCell[cell] = tile.damage;
+                if (tile.push && (pushTile == null || tile.pushDistance > pushTile.pushDistance)) pushTile = tile;
+                if (tile.appliesDebuff && debuffTile == null) debuffTile = tile;
+            }
 
             if (skill.effectType.HasFlag(SkillEffectType.Damage) &&
-                tile.damage > 0)
+                damageByCell.Count > 0)
             {
                 result.hitCount++;
-                if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
-                target.TakeDamage(tile.damage);
+                int dealt = BattleTileOccupancy.ApplyDamage(target, tilemap, damageByCell);
+                if (dealt > 0) result.damagedTargets.Add(target);
 
                 if (target == null || target.IsDead)
                 {
@@ -122,15 +150,15 @@ public class ExecuteSkill : MonoBehaviour
             }
 
             if (skill.effectType.HasFlag(SkillEffectType.Push) &&
-                tile.push &&
-                tile.pushDistance > 0)
+                pushTile != null &&
+                pushTile.pushDistance > 0)
             {
                 Vector3Int targetCell =
                     tilemap.WorldToCell(target.transform.position);
                 targetCell.z = 0;
 
                 Vector3Int pushDirection = GetPushDirection(
-                    tile.pushDirection,
+                    pushTile.pushDirection,
                     casterCell,
                     targetCell,
                     forward
@@ -139,14 +167,14 @@ public class ExecuteSkill : MonoBehaviour
                 TryPush(
                     target,
                     pushDirection,
-                    tile.pushDistance
+                    pushTile.pushDistance
                 );
             }
 
-            if (tile.appliesDebuff)
+            if (debuffTile != null)
             {
                 Debug.Log(
-                    $"[Skill] Debuff '{tile.debuffType}' is configured " +
+                    $"[Skill] Debuff '{debuffTile.debuffType}' is configured " +
                     $"for {target.name}, but runtime debuff handling " +
                     "is not implemented yet."
                 );
@@ -210,21 +238,49 @@ public class ExecuteSkill : MonoBehaviour
     }
 
     private void AttackSkill(
+        CharacterBase caster,
         SkillList skill,
         List<CharacterBase> targets,
+        ICollection<Vector3Int> attackCells,
         SkillExecuteResult result)
     {
         if (targets == null)
             return;
 
+        var damaged = new HashSet<CharacterBase>();
         foreach (CharacterBase target in targets)
         {
-            if (target == null || target.IsDead || skill.damage <= 0)
+            if (target == null || target.IsDead || skill.damage <= 0 || !damaged.Add(target))
                 continue;
 
+            Tilemap map = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
+            int dealt;
+            if (map != null)
+            {
+                var damageByCell = new Dictionary<Vector3Int, int>();
+                if (attackCells != null)
+                {
+                    foreach (Vector3Int cell in attackCells)
+                        if (map.HasTile(cell) && BattleTileOccupancy.ContainsCell(target, map, cell))
+                            damageByCell[cell] = skill.damage;
+                }
+                else
+                {
+                    Vector3Int origin = map.WorldToCell(caster.transform.position); origin.z = 0;
+                    if (BattleTileOccupancy.TryGetClosestCell(target, map, origin, out Vector3Int cell))
+                        damageByCell[cell] = skill.damage;
+                }
+                if (damageByCell.Count == 0) continue;
+                dealt = BattleTileOccupancy.ApplyDamage(target, map, damageByCell);
+            }
+            else
+            {
+                int before = target.currentHP;
+                target.TakeDamage(skill.damage);
+                dealt = before - target.currentHP;
+            }
             result.hitCount++;
-            if (!result.damagedTargets.Contains(target)) result.damagedTargets.Add(target);
-            target.TakeDamage(skill.damage);
+            if (dealt > 0) result.damagedTargets.Add(target);
 
             if (target == null || target.IsDead)
             {
@@ -249,9 +305,10 @@ public class ExecuteSkill : MonoBehaviour
         Vector3Int casterCell = tilemap.WorldToCell(caster.transform.position);
         casterCell.z = 0;
 
+        var pushed = new HashSet<CharacterBase>();
         foreach (CharacterBase target in targets)
         {
-            if (target == null || target.IsDead)
+            if (target == null || target.IsDead || !pushed.Add(target))
                 continue;
 
             Vector3Int targetCell = tilemap.WorldToCell(target.transform.position);
@@ -289,6 +346,24 @@ public class ExecuteSkill : MonoBehaviour
             return 0;
 
         Tilemap tilemap = PlacementManager.Instance.tilemap;
+
+        if (target is MonsterBase monster)
+        {
+            Vector3Int anchor = monster.GetAnchorCell(tilemap);
+            Vector3Int destination = anchor;
+            int moved = 0;
+            for (int i = 0; i < distance; i++)
+            {
+                Vector3Int next = destination + direction;
+                if (!monster.CanPlaceAt(tilemap, next)) break;
+                destination = next;
+                moved++;
+            }
+            if (moved == 0 || !monster.TryPlace(tilemap, destination)) return 0;
+            MovementModule movement = target.GetComponent<MovementModule>();
+            if (movement != null) movement.StopMovement();
+            return moved;
+        }
 
         Vector3Int startCell = tilemap.WorldToCell(target.transform.position);
         startCell.z = 0;

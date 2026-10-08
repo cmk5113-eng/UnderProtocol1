@@ -258,6 +258,8 @@ public static partial class Scenarios
             ui.RefreshActionPoints();Check(ap.text=="2"&&sp.text=="5","live resource UI");
         });
         RunFieldEffectScenarios();
+        RunMultiCellMonsterScenarios();
+        RunCellShieldScenarios();
         Console.WriteLine("PASS: "+checks+" behavioural assertions");
         SaveScenarios.RunAll();
         HoverScenarios.RunAll();

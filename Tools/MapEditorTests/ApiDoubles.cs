@@ -12,6 +12,7 @@ namespace UnityEngine
     public class Object
     {
         public string name;
+        public static void Destroy(Object value) { if (value is GameObject obj) obj.SetActive(false); }
         public static T[] FindObjectsByType<T>(FindObjectsInactive inactive, FindObjectsSortMode sort) where T : Object
             => GameObject.All.Where(g => inactive == FindObjectsInactive.Include || g.activeSelf).SelectMany(g => g.Components).OfType<T>().ToArray();
         public static T FindFirstObjectByType<T>(FindObjectsInactive inactive) where T : Object
@@ -130,13 +131,23 @@ namespace UnityEngine
     public class Texture : Object { public int width = 64, height = 64; }
     public class Texture2D : Texture { }
     public class Sprite : Object { public Texture2D texture; public Rect rect; }
-    public class SpriteRenderer : Component { public Sprite sprite; }
+    public struct Bounds { public Vector3 size; }
+    public class SpriteRenderer : Component
+    {
+        public Sprite sprite;
+        public Bounds bounds => new Bounds { size = new Vector3(Math.Abs(transform.localScale.x),Math.Abs(transform.localScale.y),1) };
+    }
     public class Grid : Component { public Vector3 cellSize = new Vector3(1, 1, 0); public Vector3 cellGap; }
     public struct Vector2 { public float x, y; public Vector2(float x, float y) { this.x = x; this.y = y; } public static Vector2 zero => default; }
+    public struct Vector2Int { public int x, y; public Vector2Int(int x, int y) { this.x = x; this.y = y; } }
     public struct Vector3
     {
         public float x, y, z;
         public Vector3(float x, float y, float z) { this.x = x; this.y = y; this.z = z; }
+        public float magnitude => (float)Math.Sqrt(x*x+y*y+z*z);
+        public static Vector3 operator +(Vector3 a,Vector3 b) => new Vector3(a.x+b.x,a.y+b.y,a.z+b.z);
+        public static Vector3 operator -(Vector3 a,Vector3 b) => new Vector3(a.x-b.x,a.y-b.y,a.z-b.z);
+        public static Vector3 operator *(Vector3 a,float value) => new Vector3(a.x*value,a.y*value,a.z*value);
         public static Vector3 Scale(Vector3 a, Vector3 b) => new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
         public string ToString(string format) => $"({x}, {y}, {z})";
     }
@@ -280,7 +291,7 @@ namespace UnityEngine.Tilemaps
         public bool HasTile(UnityEngine.Vector3Int cell) => Tiles.Contains(cell);
         public UnityEngine.Sprite GetSprite(UnityEngine.Vector3Int cell) => null;
         public UnityEngine.Vector3 GetCellCenterWorld(UnityEngine.Vector3Int cell) => new UnityEngine.Vector3(cell.x + .5f, cell.y + .5f, cell.z);
-        public UnityEngine.Vector3Int WorldToCell(UnityEngine.Vector3 point) => new UnityEngine.Vector3Int((int)point.x, (int)point.y, (int)point.z);
+        public UnityEngine.Vector3Int WorldToCell(UnityEngine.Vector3 point) => new UnityEngine.Vector3Int((int)Math.Floor(point.x), (int)Math.Floor(point.y), (int)Math.Floor(point.z));
     }
 }
 namespace UnityEditor
@@ -460,7 +471,12 @@ public class GameManager : UnityEngine.MonoBehaviour { public static GameManager
 public class PlacementManager : UnityEngine.MonoBehaviour
 {
     public static PlacementManager Instance; public UnityEngine.Tilemaps.Tilemap tilemap;
-    public readonly Dictionary<UnityEngine.Vector3Int, object> tileDatas = new Dictionary<UnityEngine.Vector3Int, object>();
+    public readonly Dictionary<UnityEngine.Vector3Int, TileData> tileDatas = new Dictionary<UnityEngine.Vector3Int, TileData>();
+    public TileData GetTileData(UnityEngine.Vector3Int cell)
+    {
+        if (!tileDatas.TryGetValue(cell,out var data)) tileDatas[cell]=data=new TileData();
+        return data;
+    }
     public UnityEngine.Tilemaps.Tilemap OriginMap;
     public void InitializeMapOrigin() => OriginMap = tilemap;
 }
@@ -480,7 +496,16 @@ public class StageMapLoader : UnityEngine.MonoBehaviour { public StageMapData Ma
 public class CharacterBase : UnityEngine.MonoBehaviour
 {
     public int MaxHP, currentHP;
+    public bool isEnemy;
+    public bool IsDead => currentHP <= 0;
     public void InitializeHP() => currentHP = UnityEngine.Mathf.Max(0, MaxHP);
+    public virtual void TakeDamage(int damage)
+    {
+        if (IsDead) return;
+        currentHP = UnityEngine.Mathf.Max(0, currentHP - UnityEngine.Mathf.Max(0, damage));
+        if (IsDead) Die();
+    }
+    protected virtual void Die() { gameObject.SetActive(false); }
 }
 public class BattleManager : UnityEngine.MonoBehaviour
 {

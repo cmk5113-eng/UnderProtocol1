@@ -45,6 +45,20 @@ public partial class StageMapEditor
     }
 
     private MonsterData FindMonsterData(int id) => monsterPalette.Find(data => data.id == id);
+    private IEnumerable<Vector3Int> SpawnCells(MonsterSpawnData spawn)
+    {
+        MonsterData data = FindMonsterData(spawn.monsterID);
+        if (data == null) { yield return spawn.position; yield break; }
+        foreach (Vector3Int cell in data.GetOccupiedCells(spawn.position)) yield return cell;
+    }
+    private bool SpawnCovers(MonsterSpawnData spawn, Vector3Int cell)
+    {
+        if (spawn == null) return false;
+        foreach (Vector3Int occupied in SpawnCells(spawn)) if (occupied == cell) return true;
+        return false;
+    }
+    private bool HasBlockingObstacle(Vector3Int cell) => stageMapData != null && stageMapData.obstacles != null
+        && stageMapData.obstacles.Exists(obstacle => obstacle != null && obstacle.blocksMovement && obstacle.position == cell);
     private static string MonsterLabel(MonsterData data) => string.IsNullOrEmpty(data.monsterName) ? data.name : data.monsterName;
 
     private string GetMonsterProblem(MonsterData data)
@@ -94,7 +108,7 @@ public partial class StageMapEditor
             string problem = GetMonsterProblem(data);
             using (new EditorGUI.DisabledScope(problem != null))
             {
-                GUIContent content = new GUIContent($"{MonsterLabel(data)}\nID {data.id}", MonsterThumbnail(data), problem ?? $"{MonsterLabel(data)} 배치");
+                GUIContent content = new GUIContent($"{MonsterLabel(data)}\nID {data.id} · {data.FootprintSize.x}×{data.FootprintSize.y}{(data.hasShield ? " · 실드" : "")}", MonsterThumbnail(data), problem ?? $"{MonsterLabel(data)} 배치");
                 if (GUILayout.Toggle(selectedMonster == data, content, "Button", GUILayout.Width(100), GUILayout.Height(70)))
                     selectedMonster = data;
             }
@@ -104,7 +118,7 @@ public partial class StageMapEditor
         selectedMonster = (MonsterData)EditorGUILayout.ObjectField("배치할 몬스터", selectedMonster, typeof(MonsterData), false);
         string selectionProblem = GetMonsterProblem(selectedMonster);
         if (selectionProblem != null) EditorGUILayout.HelpBox(selectionProblem, MessageType.Warning);
-        else EditorGUILayout.LabelField($"{MonsterLabel(selectedMonster)} · ID {selectedMonster.id} · 좌클릭 배치 / 우클릭 삭제");
+        else EditorGUILayout.LabelField($"{MonsterLabel(selectedMonster)} · ID {selectedMonster.id} · {selectedMonster.FootprintSize.x}×{selectedMonster.FootprintSize.y}{(selectedMonster.hasShield ? " · 칸별 실드 있음" : "")} · 왼쪽 아래 기준 칸에 좌클릭 배치 / 점유 칸 우클릭 삭제");
 
         DrawMonsterGrid(wave);
 
@@ -135,10 +149,14 @@ public partial class StageMapEditor
         foreach (MonsterSpawnData spawn in wave.monsters)
         {
             if (spawn == null) return "빈 몬스터 항목을 제거하세요.";
-            if (!tilemap.HasTile(spawn.position)) return $"{spawn.position}에는 타일이 없습니다. 배치를 수정하세요.";
-            if (!occupied.Add(spawn.position)) return $"{spawn.position}에 몬스터가 중복 배치되어 있습니다.";
             string problem = GetMonsterProblem(FindMonsterData(spawn.monsterID));
             if (problem != null) return $"ID {spawn.monsterID} · {problem}";
+            foreach (Vector3Int cell in SpawnCells(spawn))
+            {
+                if (!tilemap.HasTile(cell)) return $"몬스터 점유 칸 {cell}에는 타일이 없습니다. 기준 칸이나 크기를 수정하세요.";
+                if (!occupied.Add(cell)) return $"{cell}에 몬스터의 점유 영역이 겹칩니다.";
+                if (HasBlockingObstacle(cell)) return $"{cell}에 이동을 막는 장애물이 있습니다.";
+            }
         }
         return null;
     }
@@ -185,7 +203,9 @@ public partial class StageMapEditor
 
         var spawns = new Dictionary<Vector3Int, MonsterSpawnData>();
         if (wave.monsters != null)
-            foreach (MonsterSpawnData spawn in wave.monsters) if (spawn != null) spawns[spawn.position] = spawn;
+            foreach (MonsterSpawnData spawn in wave.monsters)
+                if (spawn != null)
+                    foreach (Vector3Int cell in SpawnCells(spawn)) spawns[cell] = spawn;
 
         // 보이는 범위만 그려 넓은/희소 Tilemap에서도 창이 멈추지 않는다.
         int firstColumn = Mathf.Clamp(Mathf.FloorToInt((gridScroll.x - gridRect.x) / gridCellSize), 0, bounds.size.x - 1);
@@ -211,8 +231,9 @@ public partial class StageMapEditor
                     EditorGUI.DrawRect(rect, new Color(1, .15f, .18f, .5f));
                     MonsterData data = FindMonsterData(spawn.monsterID);
                     Texture2D thumbnail = MonsterThumbnail(data);
-                    if (thumbnail != null) GUI.DrawTexture(rect, thumbnail, ScaleMode.ScaleToFit);
-                    GUI.Label(rect, new GUIContent(spawn.monsterID.ToString(), $"{(data != null ? MonsterLabel(data) : "미등록 몬스터")} · {cell}"), EditorStyles.whiteMiniLabel);
+                    if (cell == spawn.position && thumbnail != null) GUI.DrawTexture(rect, thumbnail, ScaleMode.ScaleToFit);
+                    GUI.Label(rect, new GUIContent(cell == spawn.position ? spawn.monsterID.ToString() : "",
+                        $"{(data != null ? MonsterLabel(data) : "미등록 몬스터")} · 기준 {spawn.position} · 점유 {cell}"), EditorStyles.whiteMiniLabel);
                 }
                 else GUI.Label(rect, new GUIContent("", cell.ToString()));
             }

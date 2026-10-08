@@ -91,6 +91,8 @@ public class WaveLoader : MonoBehaviour
 
         // 전체 설정을 먼저 검사해서 일부만 생성된 웨이브가 중복 생성되는 것을 방지한다.
         var spawnDatas = new List<MonsterData>();
+        var occupied = new HashSet<Vector3Int>();
+        var map = PlacementManager.Instance.tilemap;
         foreach (MonsterSpawnData spawn in wave.monsters)
         {
             MonsterData data = spawn == null ? null
@@ -100,19 +102,43 @@ public class WaveLoader : MonoBehaviour
                 Debug.LogError("[WaveLoader] MonsterData/프리팹/MonsterBase 설정을 확인해주세요.");
                 return false;
             }
+            foreach (Vector3Int cell in data.GetOccupiedCells(spawn.position))
+            {
+                if (!map.HasTile(cell) || !occupied.Add(cell) || !PlacementManager.Instance.GetTileData(cell).isempty)
+                {
+                    Debug.LogError($"[WaveLoader] {data.monsterName}의 점유 영역 {cell}이 맵 밖이거나 다른 유닛/장애물과 겹칩니다.");
+                    return false;
+                }
+            }
             spawnDatas.Add(data);
         }
 
         MonsterBase._monsters.RemoveAll(monster => monster == null);
+        var createdMonsters = new List<GameObject>();
         for (int i = 0; i < wave.monsters.Count; i++)
         {
             Vector3 position = PlacementManager.Instance.tilemap.GetCellCenterWorld(wave.monsters[i].position);
            
             GameObject monster = Instantiate(spawnDatas[i].prefab, position, Quaternion.identity);
-            monster.GetComponent<MonsterBase>().Initialize(spawnDatas[i]);
-
-
-            var map = PlacementManager.Instance.tilemap;
+            MonsterBase unit = monster.GetComponent<MonsterBase>();
+            unit.Initialize(spawnDatas[i]);
+            if (!unit.TryPlace(map, wave.monsters[i].position))
+            {
+                // Prefab callbacks may change occupancy after validation; roll back this load atomically.
+                unit.ReleaseOccupancy();
+                monster.SetActive(false);
+                Destroy(monster);
+                foreach (GameObject created in createdMonsters)
+                {
+                    if (created == null) continue;
+                    created.GetComponent<MonsterBase>().ReleaseOccupancy();
+                    created.SetActive(false);
+                    MonsterBase._monsters.Remove(created);
+                    Destroy(created);
+                }
+                return false;
+            }
+            createdMonsters.Add(monster);
             var grid = map.layoutGrid;
 
             Debug.Log(
