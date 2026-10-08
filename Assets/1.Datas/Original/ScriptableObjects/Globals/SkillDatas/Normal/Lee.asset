@@ -20,7 +20,7 @@ MonoBehaviour:
   elementType: 0
   effectType: 1
   targetType: 0
-  icon: {fileID: -4346244404228752641, guid: cbc5cb9f109a2f94e9b7d317e3352671, type: 3}
+  icon: {fileID: 9176423708927514683, guid: c9e7632dc48a5cd448c740a995324a73, type: 3}
   cost: 0
   condition: 
   canRotate: 1
@@ -60,37 +60,49 @@ MonoBehaviour:
     damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 1
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
     push: 0
     pushDirection: 0
     pushTargetCount: 0
     pushDistance: 0
   - position: {x: 1, y: 0}
     distanceFromCaster: 1
-    damage: 0
+    damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 1
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
     push: 0
     pushDirection: 0
     pushTargetCount: 0
     pushDistance: 0
   - position: {x: 1, y: 1}
     distanceFromCaster: 2
-    damage: 0
+    damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 1
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
     push: 0
     pushDirection: 0
     pushTargetCount: 0
     pushDistance: 0
   - position: {x: 2, y: 1}
     distanceFromCaster: 3
-    damage: 0
+    damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 1
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
     push: 0
     pushDirection: 0
     pushTargetCount: 0
