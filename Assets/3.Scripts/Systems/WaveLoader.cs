@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class WaveLoader : MonoBehaviour
 {
-    [SerializeField] private List<MonsterData> monsterDatas;
     private static WaveLoader instance;
 
     public static WaveLoader Instance
@@ -14,7 +13,8 @@ public class WaveLoader : MonoBehaviour
             if (PlacementManager.Instance != null && PlacementManager.Instance.tilemap != null)
             {
                 var tilemap = PlacementManager.Instance.tilemap;
-                WaveLoader mapLoader = tilemap.GetComponentInParent<WaveLoader>(true);
+                WaveLoader mapLoader = tilemap.GetComponentInChildren<WaveLoader>(true);
+                if (mapLoader == null) mapLoader = tilemap.GetComponentInParent<WaveLoader>(true);
                 if (mapLoader != null) return mapLoader;
                 PlacementController map = tilemap.GetComponentInParent<PlacementController>(true);
                 if (map != null)
@@ -85,9 +85,26 @@ public class WaveLoader : MonoBehaviour
     {
         WaveManager manager = GameManager.Instance != null ? GameManager.Instance.Wave : null;
         WaveData wave = manager != null ? manager.currentWave : null;
+        StageMapEntry settings = PlacementManager.Instance != null && manager != null
+            ? manager.GetMap(PlacementManager.Instance.tilemap) : null;
+        List<MonsterData> monsterDatas = settings != null ? settings.monsterDatas : null;
         if (wave == null || wave.monsters == null || monsterDatas == null
+            || manager.ActiveMap != settings
+            || settings.waves == null || System.Array.IndexOf(settings.waves, wave) < 0
             || PlacementManager.Instance == null || PlacementManager.Instance.tilemap == null)
             return false;
+
+        var monstersById = new Dictionary<int, MonsterData>();
+        foreach (MonsterData data in monsterDatas)
+        {
+            if (data == null) continue;
+            if (monstersById.ContainsKey(data.id))
+            {
+                Debug.LogError($"[WaveLoader] Stage Map Editor의 Monster ID {data.id}가 중복 등록되어 있습니다.");
+                return false;
+            }
+            monstersById.Add(data.id, data);
+        }
 
         // 전체 설정을 먼저 검사해서 일부만 생성된 웨이브가 중복 생성되는 것을 방지한다.
         var spawnDatas = new List<MonsterData>();
@@ -95,8 +112,8 @@ public class WaveLoader : MonoBehaviour
         var map = PlacementManager.Instance.tilemap;
         foreach (MonsterSpawnData spawn in wave.monsters)
         {
-            MonsterData data = spawn == null ? null
-                : monsterDatas.Find(item => item != null && item.id == spawn.monsterID);
+            MonsterData data = null;
+            if (spawn != null) monstersById.TryGetValue(spawn.monsterID, out data);
             if (data == null || data.prefab == null || data.prefab.GetComponent<MonsterBase>() == null)
             {
                 Debug.LogError("[WaveLoader] MonsterData/프리팹/MonsterBase 설정을 확인해주세요.");
@@ -152,3 +169,4 @@ public class WaveLoader : MonoBehaviour
         return true;
     }
 }
+

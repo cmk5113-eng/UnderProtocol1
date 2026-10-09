@@ -3885,9 +3885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 15
-  progressController: {fileID: 2015691833}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -3928,18 +3925,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -5407,9 +5392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -7985,39 +7967,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60469b56f5749b14f9c4c7293bd92ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  stage1Waves:
-  - {fileID: 11400000, guid: d97db849a447c75478a8af02dc13b6d3, type: 2}
-  - {fileID: 11400000, guid: f3de2127db47d044286d4362c1bf25df, type: 2}
-  - {fileID: 11400000, guid: 7cdf265d067f7ba418fe98261ad495eb, type: 2}
-  - {fileID: 11400000, guid: 31146e36565d18940986286f9577cff7, type: 2}
-  - {fileID: 11400000, guid: 4b63dfd78ab7e7343b1b543db0641c33, type: 2}
-  stage2Waves:
-  - {fileID: 11400000, guid: 87971134b0b5d92439551e44060bd302, type: 2}
-  - {fileID: 11400000, guid: 62cc87e3f1f70844fb3dff224b83c121, type: 2}
-  - {fileID: 11400000, guid: bfe8983869c223f49a0a28c1da2505bd, type: 2}
-  - {fileID: 11400000, guid: b2da0339eab200042ad7b7acf15341b2, type: 2}
-  - {fileID: 11400000, guid: b31f4b73439dd8f42860c6af8486f75e, type: 2}
-  stage3Waves:
-  - {fileID: 11400000, guid: 182e6c7b05064ad42a2ea0f65d7e3cde, type: 2}
-  - {fileID: 11400000, guid: f2c76b9c5963c7f43b496f52b25f6706, type: 2}
-  - {fileID: 11400000, guid: a57470a8370afd04ba72fd1a3c6ff245, type: 2}
-  - {fileID: 11400000, guid: 7779027a470ebf145ac07d54871b1430, type: 2}
-  - {fileID: 11400000, guid: aafcddf760f6d2845adc16fefa85ca21, type: 2}
-  stage4Waves:
-  - {fileID: 11400000, guid: 8cbeddfecb66352448939d05cd9e25d5, type: 2}
-  - {fileID: 11400000, guid: 1adb2e801f1a9244795e343d4e11b427, type: 2}
-  - {fileID: 11400000, guid: a41df84005ec48f4d9d4f4e2d32fc5a9, type: 2}
-  - {fileID: 11400000, guid: 0bf02a818bdf44d46875d67649ceeff0, type: 2}
-  - {fileID: 11400000, guid: a673952c58da5ad4a84000751b3a9682, type: 2}
-  stage5Waves:
-  - {fileID: 11400000, guid: 8a9d29fd282860d44b41a3b0cc86de47, type: 2}
-  - {fileID: 11400000, guid: e7a41c01fcc04514186960f77978add8, type: 2}
-  - {fileID: 11400000, guid: c00e745ce9747024ab49cef2a99ec2dd, type: 2}
-  - {fileID: 11400000, guid: 8008a6b4a0606ba4b8465af7ed6e6230, type: 2}
-  - {fileID: 11400000, guid: 3f6d90f54a46c554c9f8e5704fd8a67a, type: 2}
-  selectedWaves: []
-  currentWaveIndex: 0
-  currentWave: {fileID: 0}
+  maps:
+  - tilemap: {fileID: 1418667598}
+    stageId: 0
+    stageButtons:
+    - button: {fileID: 128016642}
+      clearId: 15
+    - button: {fileID: 471651497}
+      clearId: 25
+    - button: {fileID: 865440360}
+      clearId: 10
+    - button: {fileID: 1071986607}
+      clearId: 5
+    - button: {fileID: 1574977900}
+      clearId: 20
+    - button: {fileID: 1932128095}
+      clearId: -1
+    waves:
+    - {fileID: 11400000, guid: 3dfbbdcddf003854c9657cbb427ddd75, type: 2}
+    - {fileID: 11400000, guid: b7952fd3606c3f14982c6dea9def3fc5, type: 2}
+    - {fileID: 11400000, guid: 1f4e9f9faee4f724a9f650afd2269d97, type: 2}
+    - {fileID: 11400000, guid: 0098880125840f84db10f33b6f5f5dc0, type: 2}
+    - {fileID: 11400000, guid: b1ef495c50f6e74479c46984914d63c6, type: 2}
+    - {fileID: 11400000, guid: 90c9a96959008254faf35e8a3b406bb4, type: 2}
+    - {fileID: 11400000, guid: 2355a756eb3bef242ba891d80cea4d6c, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 196732269}
+    stageId: 1
+    stageButtons:
+    - button: {fileID: 315900246}
+      clearId: 21
+    - button: {fileID: 347602490}
+      clearId: 26
+    - button: {fileID: 905656232}
+      clearId: 16
+    - button: {fileID: 1087510856}
+      clearId: -1
+    - button: {fileID: 1406601828}
+      clearId: 11
+    - button: {fileID: 1867179542}
+      clearId: 6
+    waves:
+    - {fileID: 11400000, guid: 5edebb8579ecd724d864f9d3cf2dcc8d, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 225301747}
+    stageId: 2
+    stageButtons:
+    - button: {fileID: 474853449}
+      clearId: 22
+    - button: {fileID: 741011334}
+      clearId: 17
+    - button: {fileID: 1213508696}
+      clearId: 27
+    - button: {fileID: 1734441154}
+      clearId: 12
+    - button: {fileID: 1796673618}
+      clearId: -1
+    - button: {fileID: 2009990480}
+      clearId: 7
+    waves:
+    - {fileID: 11400000, guid: 36eceeb93cb4fb6408188eb60f123736, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 790707236}
+    stageId: 3
+    stageButtons:
+    - button: {fileID: 1183345201}
+      clearId: 23
+    - button: {fileID: 1226971321}
+      clearId: 13
+    - button: {fileID: 1381576930}
+      clearId: 8
+    - button: {fileID: 1650638064}
+      clearId: 28
+    - button: {fileID: 1724516689}
+      clearId: -1
+    - button: {fileID: 2080146598}
+      clearId: 18
+    waves:
+    - {fileID: 11400000, guid: fca9bf609894f00448b65d7428b4dea1, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 784017951}
+    stageId: 4
+    stageButtons:
+    - button: {fileID: 395895431}
+      clearId: 29
+    - button: {fileID: 586336184}
+      clearId: 19
+    - button: {fileID: 832881106}
+      clearId: 14
+    - button: {fileID: 1219473412}
+      clearId: 24
+    - button: {fileID: 2060298612}
+      clearId: -1
+    - button: {fileID: 2093994103}
+      clearId: 9
+    waves:
+    - {fileID: 11400000, guid: 79b1627ec81f98044a0a528fac30ed59, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
 --- !u!1 &289737606
 GameObject:
   m_ObjectHideFlags: 0
@@ -8960,9 +9043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 21
-  progressController: {fileID: 1279001049}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -9003,18 +9083,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -9798,9 +9866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 26
-  progressController: {fileID: 328915759}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -9841,18 +9906,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -11102,9 +11155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 29
-  progressController: {fileID: 328915759}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -11145,18 +11195,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -12783,9 +12821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 25
-  progressController: {fileID: 328915759}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -12826,18 +12861,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -13049,9 +13072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 22
-  progressController: {fileID: 1279001049}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -13092,18 +13112,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -19881,30 +19889,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 236c6bb1036d5967892d4aad9745cf2e, type: 3}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 7844625508223309319, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -23154,9 +23138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 19
-  progressController: {fileID: 2015691833}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -23197,18 +23178,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -25940,9 +25909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 17
-  progressController: {fileID: 2015691833}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -25983,18 +25949,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -28176,9 +28130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 14
-  progressController: {fileID: 837593585}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -28219,18 +28170,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -29084,9 +29023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 10
-  progressController: {fileID: 837593585}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -29127,18 +29063,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -29824,9 +29748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 16
-  progressController: {fileID: 2015691833}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -29867,18 +29788,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -34684,9 +34593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 5
-  progressController: {fileID: 1336877796}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -34727,18 +34633,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -35075,9 +34969,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 1
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -35118,18 +35009,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -38017,9 +37896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 23
-  progressController: {fileID: 1279001049}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -38060,18 +37936,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -38961,9 +38825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 27
-  progressController: {fileID: 328915759}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -39004,18 +38865,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -39319,9 +39168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 24
-  progressController: {fileID: 1279001049}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -39362,18 +39208,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -39889,9 +39723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 13
-  progressController: {fileID: 837593585}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -39932,18 +39763,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -47951,9 +47770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 8
-  progressController: {fileID: 1336877796}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -47994,18 +47810,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -48634,9 +48438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 11
-  progressController: {fileID: 837593585}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -48677,18 +48478,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -53139,9 +52928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 20
-  progressController: {fileID: 1279001049}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -53182,18 +52968,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -55938,9 +55712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 28
-  progressController: {fileID: 328915759}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -55981,18 +55752,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -57155,9 +56914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 3
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -57198,18 +56954,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -57466,9 +57210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 12
-  progressController: {fileID: 837593585}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -57509,18 +57250,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -58437,9 +58166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 2
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -58480,18 +58206,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -61504,9 +61218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  stageId: 6
-  progressController: {fileID: 1336877796}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -61547,18 +61258,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 196732269}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -64484,9 +64183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  stageId: 0
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -64527,18 +64223,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1418667598}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -66194,9 +65878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  stageId: 7
-  progressController: {fileID: 1336877796}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -66237,18 +65918,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 225301747}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -67514,9 +67183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 4
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -67557,18 +67223,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -68320,9 +67974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  stageId: 18
-  progressController: {fileID: 2015691833}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -68363,18 +68014,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 790707236}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -68661,9 +68300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  stageId: 9
-  progressController: {fileID: 1336877796}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -68704,18 +68340,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 784017951}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -72228,3 +71852,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 3264656843074194971}
+

@@ -29,6 +29,12 @@ namespace UnityEngine
             }
             return copy;
         }
+        public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+        {
+            GameObject copy = Instantiate(prefab, position, rotation);
+            copy.parent = parent != null ? parent.gameObject : null;
+            return copy;
+        }
     }
     public class Component : Object
     {
@@ -153,6 +159,7 @@ namespace UnityEngine
     }
     public struct Vector3Int : IEquatable<Vector3Int>
     {
+        public static Vector3Int zero => default;
         public int x, y, z;
         public Vector3Int(int x, int y, int z = 0) { this.x = x; this.y = y; this.z = z; }
         public bool Equals(Vector3Int value) => x == value.x && y == value.y && z == value.z;
@@ -183,7 +190,7 @@ namespace UnityEngine
         public Color(float r, float g, float b, float a = 1) { this.r = r; this.g = g; this.b = b; this.a = a; }
         public static Color white => new Color(1, 1, 1, 1);
     }
-    public struct Quaternion { public static Quaternion identity => default; }
+    public struct Quaternion { public static Quaternion identity => default; public static Quaternion Euler(float x, float y, float z) => default; }
     public struct Ray { public Vector3 GetPoint(float distance) => default; }
     public struct Plane { public Plane(Vector3 normal, Vector3 point) { } public bool Raycast(Ray ray, out float distance) { distance = 0; return false; } }
     public static class Mathf
@@ -362,11 +369,19 @@ namespace UnityEditor
                 var copy = (IList)Activator.CreateInstance(value.GetType());
                 foreach (object item in list)
                     copy.Add(item is MonsterSpawnData spawn ? new MonsterSpawnData { monsterID = spawn.monsterID, position = spawn.position }
-                        : item is StageWaveData stage ? new StageWaveData { waves = stage.waves == null ? null : (WaveData[])stage.waves.Clone() } : item);
+                        : item is StageMapEntry map ? CopyMap(map) : item);
                 return copy;
             }
             return value;
         }
+        public static StageMapEntry CopyMap(StageMapEntry map) => new StageMapEntry
+        {
+            tilemap = map.tilemap, stageId = map.stageId, mapData = map.mapData, postBattleScenario = map.postBattleScenario,
+            waves = map.waves == null ? null : (WaveData[])map.waves.Clone(),
+            monsterDatas = map.monsterDatas == null ? null : new List<MonsterData>(map.monsterDatas),
+            stageButtons = map.stageButtons == null ? null : map.stageButtons.Select(item => item == null ? null
+                : new StageMapButton { button = item.button, clearId = item.clearId }).ToList()
+        };
         public static void PerformUndo() { Records.Pop()(); undoRedoPerformed?.Invoke(); }
         public static T AddComponent<T>(GameObject gameObject) where T : Component, new() => gameObject.AddComponent<T>();
         public static void IncrementCurrentGroup() { group++; starts[group] = Records.Count; }
@@ -393,7 +408,7 @@ namespace UnityEditor
             else if (value is IList list)
             {
                 var copy = (IList)Activator.CreateInstance(value.GetType());
-                foreach (object item in list) copy.Add(item is StageWaveData stage ? new StageWaveData { waves = stage.waves == null ? null : (WaveData[])stage.waves.Clone() } : item);
+                foreach (object item in list) copy.Add(item is StageMapEntry map ? Undo.CopyMap(map) : item);
                 value = copy;
             }
             var property = new SerializedProperty(field, value); properties.Add(property); return property;
@@ -427,7 +442,11 @@ namespace UnityEditor
             changed = true;
             if (parent != null) { field.SetValue(parentTarget, value); parent.MarkChanged(); }
         }
-        public UObject objectReferenceValue { get => (UObject)((IList)root.value)[index]; set { ((IList)root.value)[index] = value; root.MarkChanged(); } }
+        public UObject objectReferenceValue
+        {
+            get => root == this ? (UObject)value : (UObject)((IList)root.value)[index];
+            set { if (root == this) { this.value = value; MarkChanged(); } else { ((IList)root.value)[index] = value; root.MarkChanged(); } }
+        }
         public SerializedProperty GetArrayElementAtIndex(int index) => new SerializedProperty(root, index);
         public SerializedProperty FindPropertyRelative(string name)
         {
@@ -486,13 +505,20 @@ public class PlacementController : UnityEngine.MonoBehaviour
     {
         foreach (UnityEngine.GameObject monster in MonsterBase._monsters) monster.SetActive(false);
         MonsterBase._monsters.Clear();
+        foreach (StageMapLoader loader in UnityEngine.Object.FindObjectsByType<StageMapLoader>(UnityEngine.FindObjectsInactive.Include, UnityEngine.FindObjectsSortMode.None)) loader.ClearRuntimeObjects();
         if (PlacementManager.Instance != null) { PlacementManager.Instance.tilemap = null; PlacementManager.Instance.tileDatas.Clear(); }
         if (BattleManager.Instance != null) BattleManager.Instance.IsBattleActive = false;
         WaveManager wave = GameManager.Instance?.Wave;
-        if (wave != null) { wave.selectedWaves = null; wave.currentWave = null; wave.currentWaveIndex = 0; }
+        if (wave != null) wave.ResetSelection();
     }
 }
-public class StageMapLoader : UnityEngine.MonoBehaviour { public StageMapData MapData; }
+public enum SkillTileFieldEffectType { None, Fire, Electric, Ice, Wind, Earth, Dark }
+public class BattleFieldEffectSystem
+{
+    public readonly List<(UnityEngine.Tilemaps.Tilemap map, UnityEngine.Vector3Int cell, SkillTileFieldEffectType type)> Applied = new List<(UnityEngine.Tilemaps.Tilemap, UnityEngine.Vector3Int, SkillTileFieldEffectType)>();
+    public bool Apply(UnityEngine.Tilemaps.Tilemap map, UnityEngine.Vector3Int cell, CharacterBase source, SkillTileFieldEffectType type, int value, int duration, UnityEngine.Vector3Int direction)
+    { Applied.Add((map, cell, type)); return map.HasTile(cell); }
+}
 public class CharacterBase : UnityEngine.MonoBehaviour
 {
     public int MaxHP, currentHP;
@@ -510,6 +536,7 @@ public class CharacterBase : UnityEngine.MonoBehaviour
 public class BattleManager : UnityEngine.MonoBehaviour
 {
     public static BattleManager Instance; public bool IsBattleActive; public int LastStageId;
+    public BattleFieldEffectSystem Fields { get; } = new BattleFieldEffectSystem();
     public static bool HasRemainingMonsters() => MonsterBase._monsters.Count > 0;
     public void CompleteBattle() { IsBattleActive = false; }
     public void BeginBattle(int stageId, WaveSetter setter) { IsBattleActive = true; LastStageId = stageId; }
@@ -557,3 +584,4 @@ public static class UIManager
     public static void ClaimCloseUI(UIType type) { }
 }
 public class ModeManager : UnityEngine.MonoBehaviour { public static ModeManager Instance; public enum GameMode { None } public void ChangeMode(GameMode mode) { } }
+

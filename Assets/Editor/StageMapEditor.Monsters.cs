@@ -13,33 +13,12 @@ public partial class StageMapEditor
     private int paintUndoGroup = -1;
     private readonly List<MonsterData> monsterPalette = new List<MonsterData>();
 
-    private WaveLoader FindMapWaveLoader()
-    {
-        if (tilemap == null) return null;
-        // WaveLoader.Instance와 같은 우선순위로 이 맵의 실제 생성 목록을 사용한다.
-        WaveLoader loader = tilemap.GetComponentInParent<WaveLoader>(true);
-        if (loader != null) return loader;
-        PlacementController map = tilemap.GetComponentInParent<PlacementController>(true);
-        if (map != null)
-        {
-            loader = map.GetComponentInChildren<WaveLoader>(true);
-            if (loader != null) return loader;
-        }
-        return Object.FindFirstObjectByType<WaveLoader>(FindObjectsInactive.Include);
-    }
-
     private void RefreshMonsterPalette()
     {
         monsterPalette.Clear();
-        WaveLoader loader = FindMapWaveLoader();
-        if (loader == null) return;
-        SerializedProperty list = new SerializedObject(loader).FindProperty("monsterDatas");
-        if (list == null) return;
-        for (int i = 0; i < list.arraySize; i++)
-        {
-            MonsterData data = list.GetArrayElementAtIndex(i).objectReferenceValue as MonsterData;
+        if (CurrentMap == null || CurrentMap.monsterDatas == null) return;
+        foreach (MonsterData data in CurrentMap.monsterDatas)
             if (data != null) monsterPalette.Add(data);
-        }
         if (selectedMonster == null)
             selectedMonster = monsterPalette.Find(data => GetMonsterProblem(data) == null);
     }
@@ -64,9 +43,9 @@ public partial class StageMapEditor
     private string GetMonsterProblem(MonsterData data)
     {
         if (data == null) return "배치할 몬스터를 선택하세요.";
-        if (!monsterPalette.Contains(data)) return "선택한 MonsterData를 이 맵의 WaveLoader > Monster Datas에 등록하세요.";
+        if (!monsterPalette.Contains(data)) return "선택한 MonsterData를 맵에디터의 등록된 몬스터 목록에 추가하세요.";
         if (monsterPalette.FindAll(item => item.id == data.id).Count != 1)
-            return $"Monster ID {data.id}가 중복 등록되어 있습니다. WaveLoader의 ID를 고유하게 설정하세요.";
+            return $"Monster ID {data.id}가 중복 등록되어 있습니다. 맵에디터의 ID를 고유하게 설정하세요.";
         if (data.prefab == null || data.prefab.GetComponent<MonsterBase>() == null)
             return "MonsterData의 Prefab과 프리팹 루트의 MonsterBase를 설정하세요.";
         return null;
@@ -94,11 +73,8 @@ public partial class StageMapEditor
             return;
         }
 
-        using (new EditorGUI.DisabledScope(true))
-            EditorGUILayout.ObjectField("몬스터 목록 출처", FindMapWaveLoader(), typeof(WaveLoader), true);
-
         if (monsterPalette.Count == 0)
-            EditorGUILayout.HelpBox("이 맵의 WaveLoader > Monster Datas에 MonsterData를 등록하세요. 등록된 몬스터가 여기에 표시됩니다.", MessageType.Warning);
+            EditorGUILayout.HelpBox("위의 등록된 몬스터 목록에 MonsterData를 추가하세요.", MessageType.Warning);
 
         int columns = Mathf.Max(1, Mathf.FloorToInt((position.width - 40) / 105f));
         for (int i = 0; i < monsterPalette.Count; i++)
@@ -293,3 +269,4 @@ public partial class StageMapEditor
     }
 }
 #endif
+

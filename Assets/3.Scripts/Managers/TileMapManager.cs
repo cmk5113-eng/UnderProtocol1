@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 public class TileMapManager : MonoBehaviour
 {
     public void ChangeCurrentCharacter(Tilemap currenttilemap)
+        => SelectMap(currenttilemap);
+
+    public static void SelectMap(Tilemap currenttilemap)
     {
         if (PlacementManager.Instance == null || currenttilemap == null) return;
 
@@ -32,3 +35,4 @@ public class TileMapManager : MonoBehaviour
 
     
 }
+

@@ -54,7 +54,7 @@ Resources 카탈로그가 런타임에 에셋을 제공하므로 미배치/비�
 
 ## 클리어 기록을 UI에서 읽기
 
-현재 씬은 스테이지 1~30에 내부 ID 0~29를 사용한다. 다른 스테이지가 같은 웨이브 구성을 공유해도 `WaveSetter.StageId`는 서로 달라야 한다.
+현재 씬은 스테이지 1~30에 내부 ID 0~29를 사용한다. ID는 Stage Map Editor의 맵 설정과 입장 버튼의 Clear Id에서 관리한다. 다른 스테이지가 같은 맵/웨이브를 공유하면 버튼마다 기존 고유 ID를 지정한다. `WaveSetter.StageId`는 이 설정을 읽는다.
 기존 `ProgressManager.IsStageCleared(stageId)`와 스테이지 버튼 이미지는 그대로 작동한다.
 
 ```csharp
@@ -81,3 +81,4 @@ python Tools/SaveTests/validate_catalog.py
 .NET SDK가 필요하다. 별도 런타임/Roslyn을 사용할 경우 `PASSIVE_DOTNET`과 `PASSIVE_CSC`를 지정한다.
 이 환경에는 Unity 에디터가 없어 실제 임포트/Play Mode/빌드 실행은 확인하지 못했다. JSON 검증은 필드 기반 JSON API 대체 객체로 수행했다.
 Unity에서는 서로 다른 두 슬롯에 다른 스킬/클리어 결과를 저장한 뒤 재실행하고, 슬롯별 복원과 재클리어 횟수 증가를 확인한다.
+
