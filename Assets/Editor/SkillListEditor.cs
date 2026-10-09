@@ -226,8 +226,7 @@ public class SkillListEditor : Editor
                 {
                     position = position,
                     distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
-                    damage = skill.damage,
-                    pushDistance = skill.pushDistance
+                    damage = 1
                 });
             }
 
@@ -306,8 +305,7 @@ public class SkillListEditor : Editor
             {
                 position = position,
                 distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
-                damage = 1,
-                pushDistance = skill.pushDistance
+                damage = 1
             };
             skill.roePattern.Add(tile);
         }
@@ -343,8 +341,7 @@ public class SkillListEditor : Editor
                 {
                     position = position,
                     distanceFromCaster = Mathf.Abs(position.x) + Mathf.Abs(position.y),
-                    damage = skill.damage,
-                    pushDistance = skill.pushDistance
+                    damage = 1
                 });
                 selectedRoeTile = position;
             }
@@ -435,3 +432,4 @@ public class SkillListEditor : Editor
     }
 }
 #endif
+

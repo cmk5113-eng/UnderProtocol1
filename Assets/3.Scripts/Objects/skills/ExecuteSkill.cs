@@ -10,22 +10,15 @@ public class SkillExecuteResult
     public readonly List<CharacterBase> damagedTargets = new List<CharacterBase>();
 }
 
-public class SkillTargetHit
-{
-    public CharacterBase target;
-    public SkillPatternTile tile;
-    public Vector3Int? cell;
-
-    public SkillTargetHit(CharacterBase target, SkillPatternTile tile, Vector3Int? cell = null)
-    {
-        this.target = target;
-        this.tile = tile;
-        this.cell = cell;
-    }
-}
-
 public class ExecuteSkill : MonoBehaviour
 {
+    private sealed class SkillTargetHit
+    {
+        public CharacterBase target;
+        public SkillPatternTile tile;
+        public Vector3Int cell;
+    }
+
     public static ExecuteSkill Instance { get; private set; }
 
     private void Awake()
@@ -33,40 +26,15 @@ public class ExecuteSkill : MonoBehaviour
         Instance = this;
     }
 
-    public SkillExecuteResult Execute(
-        CharacterBase caster,
-        SkillList skill,
-        List<CharacterBase> targets,
-        ICollection<Vector3Int> attackCells = null)
-    {
-        SkillExecuteResult result = new SkillExecuteResult();
-
-        if (caster == null || skill == null)
-            return result;
-
-        if (skill.effectType.HasFlag(SkillEffectType.Damage))
-        {
-            AttackSkill(caster, skill, targets, attackCells, result);
-        }
-
-        if (skill.effectType.HasFlag(SkillEffectType.Push))
-        {
-            PushSkill(caster, skill, targets);
-        }
-
-        return result;
-    }
-
     public SkillExecuteResult ExecutePattern(
         CharacterBase caster,
         SkillList skill,
         Vector3Int pivotCell,
-        List<SkillTargetHit> hits,
         int patternRotation = 0)
     {
         SkillExecuteResult result = new SkillExecuteResult();
 
-        if (caster == null || skill == null)
+        if (caster == null || skill == null || !skill.HasRoePattern)
             return result;
 
         if (PlacementManager.Instance == null ||
@@ -82,6 +50,20 @@ public class ExecuteSkill : MonoBehaviour
         Vector3Int forward =
             GetPatternForward(patternRotation);
 
+        // Resolve contacts and per-cell values exclusively from the skill editor's ROE.
+        // Callers provide a pivot and rotation, never a replacement target/tile list.
+        var hits = new List<SkillTargetHit>();
+        foreach (SkillPatternTile tile in skill.roePattern)
+        {
+            if (tile == null) continue;
+            Vector2Int offset = RotateOffset(tile.position, patternRotation);
+            Vector3Int cell = pivotCell + new Vector3Int(offset.x, offset.y, 0);
+            if (!tilemap.HasTile(cell)) continue;
+            CharacterBase target = BattleTileOccupancy.FindAt(tilemap, cell);
+            if (target == null || target.IsDead || !target.isEnemy) continue;
+            hits.Add(new SkillTargetHit { target = target, tile = tile, cell = cell });
+        }
+
         // Fields belong to ROE cells, including empty cells and cells whose enemy was killed.
         BattleManager battle = BattleManager.Instance;
         if (battle != null && battle.IsBattleActive && skill.roePattern != null)
@@ -96,7 +78,6 @@ public class ExecuteSkill : MonoBehaviour
                     tile.fieldEffectValue, tile.fieldEffectDuration, direction);
             }
 
-        if (hits == null) return result;
         var groupedHits = new Dictionary<CharacterBase, List<SkillTargetHit>>();
         foreach (SkillTargetHit hit in hits)
         {
@@ -124,8 +105,7 @@ public class ExecuteSkill : MonoBehaviour
             foreach (SkillTargetHit hit in group.Value)
             {
                 SkillPatternTile tile = hit.tile;
-                Vector2Int offset = RotateOffset(tile.position, patternRotation);
-                Vector3Int cell = hit.cell ?? pivotCell + new Vector3Int(offset.x, offset.y, 0);
+                Vector3Int cell = hit.cell;
                 cell.z = 0;
                 if (!BattleTileOccupancy.ContainsCell(target, tilemap, cell) || !tilemap.HasTile(cell)) continue;
                 int previous;
@@ -234,92 +214,6 @@ public class ExecuteSkill : MonoBehaviour
             case SkillPushDirection.AwayFromCaster:
             default:
                 return GetCardinalDirection(casterCell, targetCell);
-        }
-    }
-
-    private void AttackSkill(
-        CharacterBase caster,
-        SkillList skill,
-        List<CharacterBase> targets,
-        ICollection<Vector3Int> attackCells,
-        SkillExecuteResult result)
-    {
-        if (targets == null)
-            return;
-
-        var damaged = new HashSet<CharacterBase>();
-        foreach (CharacterBase target in targets)
-        {
-            if (target == null || target.IsDead || skill.damage <= 0 || !damaged.Add(target))
-                continue;
-
-            Tilemap map = PlacementManager.Instance != null ? PlacementManager.Instance.tilemap : null;
-            int dealt;
-            if (map != null)
-            {
-                var damageByCell = new Dictionary<Vector3Int, int>();
-                if (attackCells != null)
-                {
-                    foreach (Vector3Int cell in attackCells)
-                        if (map.HasTile(cell) && BattleTileOccupancy.ContainsCell(target, map, cell))
-                            damageByCell[cell] = skill.damage;
-                }
-                else
-                {
-                    Vector3Int origin = map.WorldToCell(caster.transform.position); origin.z = 0;
-                    if (BattleTileOccupancy.TryGetClosestCell(target, map, origin, out Vector3Int cell))
-                        damageByCell[cell] = skill.damage;
-                }
-                if (damageByCell.Count == 0) continue;
-                dealt = BattleTileOccupancy.ApplyDamage(target, map, damageByCell);
-            }
-            else
-            {
-                int before = target.currentHP;
-                target.TakeDamage(skill.damage);
-                dealt = before - target.currentHP;
-            }
-            result.hitCount++;
-            if (dealt > 0) result.damagedTargets.Add(target);
-
-            if (target == null || target.IsDead)
-            {
-                result.killCount++;
-            }
-        }
-    }
-
-    private void PushSkill(
-        CharacterBase caster,
-        SkillList skill,
-        List<CharacterBase> targets)
-    {
-        if (caster == null || targets == null || skill.pushDistance <= 0)
-            return;
-
-        if (PlacementManager.Instance == null ||
-            PlacementManager.Instance.tilemap == null)
-            return;
-
-        Tilemap tilemap = PlacementManager.Instance.tilemap;
-        Vector3Int casterCell = tilemap.WorldToCell(caster.transform.position);
-        casterCell.z = 0;
-
-        var pushed = new HashSet<CharacterBase>();
-        foreach (CharacterBase target in targets)
-        {
-            if (target == null || target.IsDead || !pushed.Add(target))
-                continue;
-
-            Vector3Int targetCell = tilemap.WorldToCell(target.transform.position);
-            targetCell.z = 0;
-
-            Vector3Int direction = GetCardinalDirection(casterCell, targetCell);
-
-            if (direction == Vector3Int.zero)
-                continue;
-
-            TryPush(target, direction, skill.pushDistance);
         }
     }
 
@@ -465,3 +359,4 @@ public class ExecuteSkill : MonoBehaviour
         return Vector3Int.zero;
     }
 }
+

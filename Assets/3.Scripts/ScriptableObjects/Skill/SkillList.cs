@@ -126,14 +126,11 @@ public class SkillList : ScriptableObject
     public List<Vector2Int> rangePattern = new List<Vector2Int>();
     public List<SkillPatternTile> roePattern = new List<SkillPatternTile>();
 
-    // Legacy fallback data. Kept serialized so existing skill assets continue to work.
+    // Cast range is separate from ROE. Impact shape and values live only in roePattern.
  
     [HideInInspector] public SkillFieldEffectType fieldEffectType;
     [HideInInspector] public SkillStatusEffectType statusEffectType;
     [HideInInspector] public int range;
-    [HideInInspector] public int aoe;
-    [HideInInspector] public int damage;
-    [HideInInspector] public int pushDistance;
 
     public bool HasRangePattern => rangePattern != null && rangePattern.Count > 0;
     public bool HasRoePattern => roePattern != null && roePattern.Count > 0;
@@ -146,3 +143,4 @@ public class SkillList : ScriptableObject
         return id - other.id;
     }
 }
+

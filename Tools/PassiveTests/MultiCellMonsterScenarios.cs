@@ -51,10 +51,11 @@ public static partial class Scenarios
             foreach(var cell in new[]{C(4,4),C(4,5),C(5,4),C(5,5)})
                 Check(PlacementManager.Instance.GetTileData(cell).Character==null&&PlacementManager.Instance.GetTileData(cell).isempty,"death retained body occupancy");
         });
-        Case("legacy duplicate target list also produces one hit and one kill",()=>{
+        Case("duplicate authored ROE cells produce one hit and one kill",()=>{
             var p=Player(0,4);var e=LargeEnemy(4,4,1);
-            var result=executor.Execute(p,Attack(),new List<CharacterBase>{e,e,e,e});
-            Check(result.hitCount==1&&result.killCount==1&&result.damagedTargets.Count==1,"legacy list treated body cells as distinct targets");
+            var skill=QuadAttack();skill.roePattern.Add(skill.roePattern[0]);
+            var result=executor.ExecutePattern(p,skill,C(4,4));
+            Check(result.hitCount==1&&result.killCount==1&&result.damagedTargets.Count==1,"authored cells treated body cells as distinct targets");
         });
         Case("multi-cell push checks the full leading edge and allows self overlap",()=>{
             var e=LargeEnemy(4,4);var blocker=Enemy(7,5,4);
@@ -127,3 +128,4 @@ public static partial class Scenarios
         });
     }
 }
+
