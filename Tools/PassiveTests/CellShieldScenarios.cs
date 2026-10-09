@@ -16,7 +16,7 @@ public static partial class Scenarios
     static void RunCellShieldScenarios()
     {
         Case("cell shields absorb one whole attack and preserve other body cells",()=>{
-            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=Attack();skill.damage=3;
+            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=Attack(3);
             Check(e.ShieldCount==4&&e.ShieldCapacity==4,"2x2 monster did not start with four shields");
             Cast(p,5,5,skill);
             Check(e.currentHP==8&&e.ShieldCount==3&&!e.HasCellShield(map,C(5,5)),"shield leaked damage or broke the wrong body cell");
@@ -56,9 +56,9 @@ public static partial class Scenarios
             }
         });
         Case("duplicate ROE contacts break a cell shield once while zero damage and push keep it",()=>{
-            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=QuadAttack(3);
-            var hit=new SkillTargetHit(e,skill.roePattern[0],C(4,4));
-            var result=executor.ExecutePattern(p,skill,C(4,4),new List<SkillTargetHit>{hit,hit,hit});
+            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=Attack(3);
+            skill.roePattern.Add(skill.roePattern[0]);skill.roePattern.Add(skill.roePattern[0]);
+            var result=executor.ExecutePattern(p,skill,C(4,4));
             Check(e.currentHP==8&&e.ShieldCount==3&&result.hitCount==1&&result.damagedTargets.Count==0,
                 "duplicate hit penetrated a shield in the same cast");
             e.TakeDamageAtCell(map,C(4,5),0);e.TakeDamageAtCell(map,C(4,5),-3);
@@ -90,10 +90,10 @@ public static partial class Scenarios
                 Check(e.currentHP==8&&e.ShieldCount==3&&!e.HasCellShield(map,expected[rotation]),"rotation stripped the wrong shield at "+rotation);
             }
         });
-        Case("legacy area damage forwards contacted cells and direct fallback respects shields",()=>{
-            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=Attack();skill.damage=3;skill.aoe=1;
+        Case("authored area damage contacts its cells and direct damage respects shields",()=>{
+            var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=Attack(3,1);
             Cast(p,4,4,skill);
-            Check(e.currentHP==8&&e.ShieldCount<4&&e.ShieldCount>0,"legacy AOE lost impact cells or broke the entire body");
+            Check(e.currentHP==8&&e.ShieldCount<4&&e.ShieldCount>0,"authored ROE lost impact cells or broke the entire body");
             Setup();e=ShieldedEnemy(4,4);CharacterBase target=e;target.TakeDamage(3);
             Check(e.currentHP==8&&e.ShieldCount==3,"polymorphic damage bypassed the fallback shield");
             target.TakeDamage(3);Check(e.currentHP==5&&e.ShieldCount==3,"fallback jumped to an unhit shield instead of the same body cell");
@@ -120,7 +120,7 @@ public static partial class Scenarios
         });
         Case("bombs break each shield in their radius and burn uses one closest body cell",()=>{
             var p=Player(0,4,"Jo");p.Data.staticpassive.bombRadius=1;p.Data.staticpassive.durationTurns=2;
-            var e=ShieldedEnemy(4,4);var skill=Attack();skill.damage=0;Cast(p,4,4,skill);Tick(1);
+            var e=ShieldedEnemy(4,4);var skill=Attack(0);Cast(p,4,4,skill);Tick(1);
             Check(e.currentHP==8&&e.ShieldCount==1&&e.HasCellShield(map,C(5,5)),"bomb ignored its radius or stacked damage through new shields");
             Tick(2);Check(e.currentHP==7&&e.ShieldCount==1,"persistent bomb did not damage exposed cells once");
             Setup();p=Player(0,4,"Namgung");p.Data.staticpassive.durationTurns=2;e=ShieldedEnemy(4,4);Cast(p,8,8);Tick(1);
@@ -156,3 +156,4 @@ public static partial class Scenarios
         });
     }
 }
+

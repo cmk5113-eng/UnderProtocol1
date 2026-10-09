@@ -26,9 +26,6 @@ public class UseSkill : MonoBehaviour
     private int CurrentSkillRange =>
     currentSkill != null ? currentSkill.range : 0;
 
-    private int CurrentSkillAoe =>
-        currentSkill != null ? currentSkill.aoe : 0;
-
     private void Awake()
     {
         Instance = this;
@@ -67,6 +64,12 @@ public class UseSkill : MonoBehaviour
     public void StartSkillTargeting(SkillList skill, CharacterBase skillCaster)
     {
         if (skill == null || skillCaster == null) return;
+        if (!skill.HasRoePattern)
+        {
+            CancelTargeting();
+            Debug.LogWarning("[Skill] 스킬에디터에서 ROE 타일을 설정해주세요.");
+            return;
+        }
         BattleManager battle = BattleManager.Instance;
         if (battle != null && battle.IsBattleActive && !battle.CanAcceptPlayerAction) return;
         if (ModeManager.Instance != null &&
@@ -138,30 +141,13 @@ public class UseSkill : MonoBehaviour
 
             if (castRangeTiles.Contains(currentMouseCell))
             {
-                if (currentSkill.HasRoePattern)
-                {
-                    HighlightRoePattern(
-                        currentMouseCell,
-                        currentSkill.roePattern,
-                        patternRotation,
-                        aoeColor,
-                        aoeTiles
-                    );
-                }
-                else
-                {
-                    int targetAoe = CurrentSkillAoe;
-
-                    if (targetAoe > 0)
-                    {
-                        HighlightRange(
-                            currentMouseCell,
-                            targetAoe,
-                            aoeColor,
-                            aoeTiles
-                        );
-                    }
-                }
+                HighlightRoePattern(
+                    currentMouseCell,
+                    currentSkill.roePattern,
+                    patternRotation,
+                    aoeColor,
+                    aoeTiles
+                );
             }
         }
     }
@@ -187,6 +173,11 @@ public class UseSkill : MonoBehaviour
     public void ExecuteSkillOnTarget()
     {
         if (!isSkillTargetingActive || currentSkill == null) return;
+        if (!currentSkill.HasRoePattern)
+        {
+            CancelTargeting();
+            return;
+        }
         BattleManager battle = BattleManager.Instance;
         if (battle != null && battle.IsBattleActive && !battle.CanAcceptPlayerAction) return;
         if (ModeManager.Instance == null ||
@@ -234,74 +225,21 @@ public class UseSkill : MonoBehaviour
             return;
         }
 
-        List<CharacterBase> targets = new List<CharacterBase>();
-        List<SkillTargetHit> patternHits = new List<SkillTargetHit>();
+        // Refresh from the authored ROE rather than using a stale preview or an AOE radius.
+        ClearTileList(aoeTiles);
+        HighlightRoePattern(clickedCell, currentSkill.roePattern, patternRotation, aoeColor, aoeTiles);
         var attackCells = new List<Vector3Int>(aoeTiles);
-        // Legacy single-target skills do not paint an AOE, but still hit the clicked cell.
-        if (!currentSkill.HasRoePattern && CurrentSkillAoe <= 0 && tilemap.HasTile(clickedCell))
-            attackCells.Add(clickedCell);
-
-        foreach (Vector3Int cellPos in attackCells)
-        {
-            CharacterBase targetCharacter = BattleTileOccupancy.FindAt(tilemap, cellPos);
-
-            if (targetCharacter == null ||
-                !targetCharacter.isEnemy)
-            {
-                continue;
-            }
-
-            if (!targets.Contains(targetCharacter)) targets.Add(targetCharacter);
-
-            if (currentSkill.HasRoePattern)
-            {
-                Vector2Int rotatedPosition = new Vector2Int(
-                    cellPos.x - clickedCell.x,
-                    cellPos.y - clickedCell.y
-                );
-
-                Vector2Int localPosition =
-                    RotateOffset(rotatedPosition, -patternRotation);
-
-                SkillPatternTile patternTile =
-                    currentSkill.roePattern.Find(
-                        tile => tile != null && tile.position == localPosition
-                    );
-
-                if (patternTile != null)
-                {
-                    patternHits.Add(new SkillTargetHit(
-                        targetCharacter,
-                        patternTile,
-                        cellPos
-                    ));
-                }
-            }
-        }
 
         SkillExecuteResult result = null;
 
         if (ExecuteSkill.Instance != null)
         {
-            if (currentSkill.HasRoePattern)
-            {
-                result = ExecuteSkill.Instance.ExecutePattern(
-                    caster,
-                    currentSkill,
-                    clickedCell,
-                    patternHits,
-                    patternRotation
-                );
-            }
-            else
-            {
-                result = ExecuteSkill.Instance.Execute(
-                    caster,
-                    currentSkill,
-                    targets,
-                    attackCells
-                );
-            }
+            result = ExecuteSkill.Instance.ExecutePattern(
+                caster,
+                currentSkill,
+                clickedCell,
+                patternRotation
+            );
         }
         else
         {
@@ -647,7 +585,8 @@ public class UseSkill : MonoBehaviour
                 StartSkillTargeting(targetSkill, currentCaster);
             }
         }
-        ScrollUI.Instance.SubGaugeValue(1f);
+        if (isSkillTargetingActive)
+            ScrollUI.Instance.SubGaugeValue(1f);
     }
 
     private void ClearTileList(List<Vector3Int> tileList)
@@ -701,6 +640,12 @@ public class UseSkill : MonoBehaviour
     private void CancelTargeting()
     {
         ClearAllHighlights();
+        if (ModeManager.Instance != null &&
+            ModeManager.Instance.CurrentMode == ModeManager.GameMode.UseSkill)
+        {
+            ModeManager.Instance.CurrentMode = ModeManager.GameMode.Movement;
+        }
         Debug.Log("스킬 조준이 취소되었습니다.");
     }
 }
+

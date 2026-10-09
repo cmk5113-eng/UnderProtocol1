@@ -113,14 +113,14 @@ public static partial class Scenarios
             battle.Fields.BeforeMonsterTurn(2,Actors(),map,executor,battle.Passives);
             Check(e.currentHP==3&&battle.Fields.Count==0,"second field tick did not expire");
         });
-        Case("invalid ROE cells, null hits, z normalization and serialized defaults",()=>{
+        Case("invalid ROE cells, null tiles, z normalization and serialized defaults",()=>{
             var p=Player(0,4);var skill=FieldSkill(SkillTileFieldEffectType.Fire,0,0);
             skill.roePattern.Add(null);skill.roePattern.Add(new SkillPatternTile {position=new Vector2Int(40,40),fieldEffect=SkillTileFieldEffectType.Fire});
             skill.roePattern.Add(new SkillPatternTile {position=new Vector2Int(1,0),fieldEffect=SkillTileFieldEffectType.None});
-            executor.ExecutePattern(p,skill,new Vector3Int(5,5,7),null);
+            executor.ExecutePattern(p,skill,new Vector3Int(5,5,7));
             Check(battle.Fields.Count==1&&FieldAt(5,5).Value==1&&FieldAt(5,5).RemainingTurns==1,"invalid cells or zero settings were not handled safely");
             var defaults=new SkillPatternTile();Check(defaults.fieldEffectValue==1&&defaults.fieldEffectDuration==3,"new field defaults missing");
-            battle.ResetBattle();executor.ExecutePattern(p,skill,C(5,5),null);
+            battle.ResetBattle();executor.ExecutePattern(p,skill,C(5,5));
             Check(battle.Fields.Count==0,"out-of-battle execution planted fields");
         });
         Case("field tint and hover detail survive targeting and movement preview cleanup",()=>{
@@ -155,3 +155,4 @@ public static partial class Scenarios
         });
     }
 }
+

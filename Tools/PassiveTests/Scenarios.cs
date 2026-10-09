@@ -56,7 +56,14 @@ public static partial class Scenarios
         var tile=PlacementManager.Instance.GetTileData(C(x,y));tile.isempty=false;tile.Character=e;
         return e;
     }
-    static SkillList Attack()=>new SkillList {effectType=SkillEffectType.Damage,type=SkillType.Normal,damage=1,range=20,aoe=0};
+    static SkillList Attack(int damage=1,int radius=0)
+    {
+        var skill=new SkillList {effectType=SkillEffectType.Damage,type=SkillType.Normal,range=20};
+        for(int x=-radius;x<=radius;x++) for(int y=-radius;y<=radius;y++)
+            if(Math.Abs(x)+Math.Abs(y)<=radius)
+                skill.roePattern.Add(new SkillPatternTile {position=new Vector2Int(x,y),damage=damage});
+        return skill;
+    }
     static void Cast(CharacterBase p,int x,int y,SkillList skill=null)
     {
         SelectionManager.CharacterBase=p;
@@ -98,7 +105,8 @@ public static partial class Scenarios
             var p=Player(0,4);
             var weak=Enemy(5,5,1); weak.Initialize(new MonsterData {hp=1});
             var strong=Enemy(6,5,1); strong.Initialize(new MonsterData {hp=5});
-            var result=executor.Execute(p,Attack(),new List<CharacterBase> {weak,strong});
+            var skill=Attack();skill.roePattern.Add(new SkillPatternTile {position=new Vector2Int(1,0),damage=1});
+            var result=executor.ExecutePattern(p,skill,C(5,5));
             Check(weak.IsDead&&!weak.gameObject.activeSelf,"1-HP monster survived one damage");
             Check(!strong.IsDead&&strong.currentHP==4&&strong.gameObject.activeSelf,"area attack killed the 5-HP monster");
             Check(result.hitCount==2&&result.killCount==1,"area attack kill count ignored initialized HP");
@@ -172,7 +180,8 @@ public static partial class Scenarios
         });
         Case("Kang actual multi-kills and passive-kill credit",()=>{
             var p=Player(0,4,"Kang");p.steminaPoint=0;var a=Enemy(4,4,1);var b=Enemy(5,4,1);var skill=Attack();
-            var result=executor.Execute(p,skill,new List<CharacterBase>{a,b});
+            skill.roePattern.Add(new SkillPatternTile {position=new Vector2Int(1,0),damage=1});
+            var result=executor.ExecutePattern(p,skill,C(4,4));
             battle.NotifyAttackCompleted(p,skill,result,C(4,4),new[]{C(4,4),C(5,4)});
             Check(result.killCount==2&&p.steminaPoint==2,"two kills give two movement points, uncapped");
             Check(PlacementManager.Instance.GetTileData(C(4,4)).isempty&&PlacementManager.Instance.GetTileData(C(5,4)).Character==null,"death releases occupied cells");
@@ -210,8 +219,9 @@ public static partial class Scenarios
             var p=Player(0,4,"Beak");var e=Enemy(5,5,3);var untouched=Enemy(7,7,3);Cast(p,5,5);
             Check(e.currentHP==1&&untouched.currentHP==3,"one extra hit on original survivor only");
             p.actionPoint=1;var dead=Enemy(6,6,1);Cast(p,6,6);Check(dead.IsDead&&untouched.currentHP==3,"base kill gives no unrelated extra hit");
-            var pushed=Enemy(4,4,5);var skill=Attack();skill.effectType|=SkillEffectType.Push;skill.pushDistance=1;
-            var result=executor.Execute(p,skill,new List<CharacterBase>{pushed});
+            var pushed=Enemy(4,4,5);var skill=Attack();skill.effectType|=SkillEffectType.Push;
+            skill.roePattern[0].push=true;skill.roePattern[0].pushDistance=1;
+            var result=executor.ExecutePattern(p,skill,C(4,4));
             Check(map.WorldToCell(pushed.transform.position)==C(5,4),"real executor pushed target");
             battle.NotifyAttackCompleted(p,skill,result,C(4,4),new[]{C(4,4)});Check(pushed.currentHP==4,"survivor outside original area excluded");
         });
@@ -257,6 +267,7 @@ public static partial class Scenarios
             var ui=new StageUIController();var ap=new TMPro.TextMeshProUGUI();var sp=new TMPro.TextMeshProUGUI();Set(ui,"AP",ap);Set(ui,"SP",sp);
             ui.RefreshActionPoints();Check(ap.text=="2"&&sp.text=="5","live resource UI");
         });
+        RunRoeScenarios();
         RunFieldEffectScenarios();
         RunMultiCellMonsterScenarios();
         RunCellShieldScenarios();
@@ -265,3 +276,4 @@ public static partial class Scenarios
         HoverScenarios.RunAll();
     }
 }
+

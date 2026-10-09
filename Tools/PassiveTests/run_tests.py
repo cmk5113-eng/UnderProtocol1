@@ -52,6 +52,7 @@ sources=[
  'Tools/PassiveTests/UnityStubs.cs',
  'Tools/PassiveTests/ProjectStubs.cs',
  'Tools/PassiveTests/Scenarios.cs',
+ 'Tools/PassiveTests/RoeScenarios.cs',
  'Tools/PassiveTests/FieldEffectScenarios.cs',
  'Tools/PassiveTests/MultiCellMonsterScenarios.cs',
  'Tools/PassiveTests/CellShieldScenarios.cs',
@@ -69,3 +70,4 @@ with tempfile.TemporaryDirectory(prefix='passive-tests-') as directory:
     if compiled.returncode: raise SystemExit(compiled.returncode)
     (out/'Tests.runtimeconfig.json').write_text(json.dumps({'runtimeOptions':{'tfm':'netcoreapp'+'.'.join(version.split('.')[:2]),'framework':{'name':'Microsoft.NETCore.App','version':version}}}))
     raise SystemExit(subprocess.run([dotnet,str(out/'Tests.dll')],env=env,cwd=root).returncode)
+
