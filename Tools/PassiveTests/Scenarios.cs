@@ -260,8 +260,10 @@ public static partial class Scenarios
         RunFieldEffectScenarios();
         RunMultiCellMonsterScenarios();
         RunCellShieldScenarios();
+        RunStageUIScenarios();
         Console.WriteLine("PASS: "+checks+" behavioural assertions");
         SaveScenarios.RunAll();
         HoverScenarios.RunAll();
     }
 }
+

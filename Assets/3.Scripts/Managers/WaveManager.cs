@@ -42,6 +42,11 @@ public class WaveManager : ManagerBase
     [NonSerialized] public int currentWaveIndex;
     [NonSerialized] public WaveData currentWave;
 
+    // currentWaveIndex advances only after a successful load; it is then the 1-based ordinal.
+    public int CurrentWaveNumber => currentWave != null && selectedWaves != null
+        && currentWaveIndex > 0 && currentWaveIndex <= selectedWaves.Length
+        && selectedWaves[currentWaveIndex - 1] == currentWave ? currentWaveIndex : 0;
+
     public StageMapEntry GetMap(Tilemap tilemap)
     {
         if (tilemap == null) return null;

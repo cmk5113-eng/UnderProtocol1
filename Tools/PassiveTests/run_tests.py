@@ -35,6 +35,8 @@ sources=[
  'Assets/3.Scripts/Managers/BattleManager.cs',
  'Assets/3.Scripts/Managers/ModeManager.cs',
  'Assets/3.Scripts/UIs/Functions/Information/StageUIController.cs',
+ 'Assets/3.Scripts/UIs/Functions/Information/MonsterHealthBar.cs',
+ 'Assets/3.Scripts/UIs/Functions/Information/UI_SkillTooltip.cs',
  'Assets/3.Scripts/UIs/Functions/Information/UI_TargetHoverInfo.cs',
  'Assets/3.Scripts/UIs/UIBase.cs',
  'Assets/3.Scripts/UIs/OpenableUIBase.cs',
@@ -56,6 +58,7 @@ sources=[
  'Tools/PassiveTests/MultiCellMonsterScenarios.cs',
  'Tools/PassiveTests/CellShieldScenarios.cs',
  'Tools/PassiveTests/HoverScenarios.cs',
+ 'Tools/PassiveTests/StageUIScenarios.cs',
  'Tools/SaveTests/SaveApiStubs.cs',
  'Tools/SaveTests/EditorApiStubs.cs',
  'Tools/SaveTests/SaveScenarios.cs',
@@ -69,3 +72,4 @@ with tempfile.TemporaryDirectory(prefix='passive-tests-') as directory:
     if compiled.returncode: raise SystemExit(compiled.returncode)
     (out/'Tests.runtimeconfig.json').write_text(json.dumps({'runtimeOptions':{'tfm':'netcoreapp'+'.'.join(version.split('.')[:2]),'framework':{'name':'Microsoft.NETCore.App','version':version}}}))
     raise SystemExit(subprocess.run([dotnet,str(out/'Tests.dll')],env=env,cwd=root).returncode)
+

@@ -10,7 +10,7 @@ public class StageUIController : MonoBehaviour
     [SerializeField] private Sprite defaultImage;
     [SerializeField] private Image portrait;
     [SerializeField] private TMPro.TextMeshProUGUI characterName;
-    [SerializeField] private Image[] skill = new Image[4];
+    [SerializeField] private Image[] skill = new Image[5];
 
     [SerializeField] private Image[] unit = new Image[12];
     [SerializeField] private TMPro.TextMeshProUGUI AP;
@@ -18,6 +18,8 @@ public class StageUIController : MonoBehaviour
 
     [SerializeField] public TMPro.TextMeshProUGUI currentwave;
     [SerializeField] public TMPro.TextMeshProUGUI currentturn;
+    [SerializeField] private TMPro.TextMeshProUGUI currentenemy;
+    private UI_SkillTooltip skillTooltip;
 
 
    
@@ -33,17 +35,40 @@ public class StageUIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        BindStageInfo();
+    }
+
+    private void BindStageInfo()
+    {
+        Transform wave = transform.Find("Top/StageInfo/wave");
+        Transform enemy = transform.Find("Top/StageInfo/enemy");
+        if (currentwave == null && wave != null) currentwave = wave.GetComponent<TMPro.TextMeshProUGUI>();
+        if (currentenemy == null && enemy != null) currentenemy = enemy.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     private void OnEnable()
     {
+        BindStageInfo();
         UpdateTurn();
         UpdateWave();
+    }
+
+    private void LateUpdate()
+    {
+        UpdateWave();
+    }
+
+    private void OnDisable() => HideSkillTooltip();
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
 
     public void Allreset()
     {
+        HideSkillTooltip();
         asCharacter = null;
         currentData = null;
         if (portrait != null) portrait.sprite = defaultImage;
@@ -57,6 +82,7 @@ public class StageUIController : MonoBehaviour
     }
     public void Refresh()
     {
+        HideSkillTooltip();
         if (SelectionManager.CharacterBase == null)
         {
             return;
@@ -172,12 +198,63 @@ public class StageUIController : MonoBehaviour
     }
     public void UpdateWave()
     {
-        if (currentwave == null) return;
-
         WaveManager waveManager = GameManager.Instance != null ? GameManager.Instance.Wave : null;
-        currentwave.SetText(waveManager != null && waveManager.currentWave != null
-            ? waveManager.currentWave.ToString()
-            : "0");
+        BattleManager battle = BattleManager.Instance;
+        SetCounter(currentwave, battle != null && battle.IsBattleActive && waveManager != null ? waveManager.CurrentWaveNumber : 0);
+        UpdateEnemies();
+    }
+
+    public void UpdateEnemies()
+    {
+        BattleManager battle = BattleManager.Instance;
+        SetCounter(currentenemy, battle != null && battle.IsBattleActive ? BattleManager.CountRemainingMonsters() : 0);
+    }
+
+    private static void SetCounter(TMPro.TextMeshProUGUI label, int value)
+    {
+        if (label == null) return;
+        string text = value.ToString();
+        if (label.text != text) label.SetText(text);
+    }
+
+    public SkillList GetSkill(int slotIndex)
+    {
+        if (currentData == null) return null;
+        switch (slotIndex)
+        {
+            case 0:
+            case 1: return currentData.active != null && slotIndex < currentData.active.Length ? currentData.active[slotIndex] : null;
+            case 2: return currentData.ultimateSkill;
+            case 3: return currentData.normalSkill;
+            case 4: return currentData.passive != null && currentData.passive.Length > 0 ? currentData.passive[0] : null;
+            default: return null;
+        }
+    }
+
+    public void ShowSkillTooltip(int slotIndex)
+    {
+        SkillList selected = GetSkill(slotIndex);
+        if (selected == null || skill == null || slotIndex < 0 || slotIndex >= skill.Length || skill[slotIndex] == null)
+        {
+            HideSkillTooltip();
+            return;
+        }
+        RectTransform anchor = skill[slotIndex].transform as RectTransform;
+        if (anchor == null || !(transform is RectTransform root)) return;
+        if (skillTooltip == null)
+            skillTooltip = UI_SkillTooltip.Create(root, characterName != null ? characterName.font : currentwave != null ? currentwave.font : null);
+        skillTooltip.Show(selected, anchor);
+    }
+
+    public void HideSkillTooltip()
+    {
+        if (skillTooltip != null) skillTooltip.Hide();
+    }
+
+    public void OnClickPassiveSkill()
+    {
+        if (UseSkill.Instance != null) UseSkill.Instance.ClearAllHighlights();
+        ShowSkillTooltip(4);
     }
 
 
@@ -201,29 +278,15 @@ public class StageUIController : MonoBehaviour
     }
     public void OnClickSkill1()
     {
-        // 시전자(asCharacter)와 데이터(currentData)가 정상적으로 존재하고, 스킬이 있는지 체크
-        if (asCharacter != null && currentData != null && currentData.active != null && currentData.active.Length > 0)
-        {
-            ActiveSkill targetSkill = currentData.active[0];
-            if (targetSkill != null)
-            {
-                // 하이라이트 매니저 작동! (스킬 정보와 캐릭터 위치/정보 전달)
-                UseSkill.Instance.StartSkillTargeting(targetSkill, asCharacter);
-            }
-        }
+        if (UseSkill.Instance != null) UseSkill.Instance.UI_StartSkill1();
+        else ShowSkillTooltip(0);
     }
 
     // 2번 스킬 버튼에 연결할 함수
     public void OnClickSkill2()
     {
-        if (asCharacter != null && currentData != null && currentData.active != null && currentData.active.Length > 1)
-        {
-            ActiveSkill targetSkill = currentData.active[1];
-            if (targetSkill != null)
-            {
-                UseSkill.Instance.StartSkillTargeting(targetSkill, asCharacter);
-            }
-        }
+        if (UseSkill.Instance != null) UseSkill.Instance.UI_StartSkill2();
+        else ShowSkillTooltip(1);
     }
 
     // 궁극기(3번) 스킬 버튼에 연결할 함수
@@ -243,3 +306,4 @@ public class StageUIController : MonoBehaviour
         }
     }
 }
+

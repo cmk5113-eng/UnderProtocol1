@@ -6,6 +6,7 @@ using System.Linq;
 namespace UnityEngine
 {
     [AttributeUsage(AttributeTargets.All)] public class SerializeField : Attribute { }
+    [AttributeUsage(AttributeTargets.Class)] public class DisallowMultipleComponent : Attribute { }
     [AttributeUsage(AttributeTargets.All)] public class HeaderAttribute : Attribute { public HeaderAttribute(string s) {} }
     [AttributeUsage(AttributeTargets.All)] public class TooltipAttribute : Attribute { public TooltipAttribute(string s) {} }
     [AttributeUsage(AttributeTargets.All)] public class MinAttribute : Attribute { public MinAttribute(float f) {} }
@@ -39,10 +40,18 @@ namespace UnityEngine
         public bool activeSelf = true;
         public bool activeInHierarchy => activeSelf && (transform.parent==null || transform.parent.gameObject.activeInHierarchy);
         public Transform transform;
-        public GameObject() { transform=new Transform { gameObject=this }; }
+        public GameObject() : this("GameObject") { }
+        public GameObject(string name, params Type[] types)
+        {
+            this.name=name;
+            Type transformType=types.FirstOrDefault(t=>typeof(Transform).IsAssignableFrom(t))??typeof(Transform);
+            transform=(Transform)Activator.CreateInstance(transformType);transform.gameObject=this;
+            foreach(Type type in types.Where(t=>!typeof(Transform).IsAssignableFrom(t))) Attach((Component)Activator.CreateInstance(type));
+        }
         public void SetActive(bool active) { activeSelf = active; }
         public void Attach(Component c) { c.gameObject?.components.Remove(c); c.gameObject = this; components.Add(c); }
-        public T GetComponent<T>() where T : class => components.OfType<T>().FirstOrDefault();
+        public T AddComponent<T>() where T : Component,new() { var value=new T();Attach(value);return value; }
+        public T GetComponent<T>() where T : class => transform as T ?? components.OfType<T>().FirstOrDefault();
         public T GetComponentInParent<T>() where T : class => GetComponent<T>() ?? transform.parent?.gameObject.GetComponentInParent<T>();
         public T[] GetComponentsInChildren<T>(bool includeInactive=false) => components.OfType<T>()
             .Concat(transform.children.Where(c=>includeInactive||c.gameObject.activeInHierarchy).SelectMany(c=>c.gameObject.GetComponentsInChildren<T>(includeInactive))).ToArray();
@@ -68,32 +77,63 @@ namespace UnityEngine
     public class ScriptableObject : Object { public static T CreateInstance<T>() where T : ScriptableObject,new() => new T(); }
     public class Transform : Object
     {
-        public Vector3 position;
+        public Vector3 localPosition;
+        public Vector3 position { get=>parent==null?localPosition:parent.TransformPoint(localPosition);set=>localPosition=parent==null?value:parent.InverseTransformPoint(value); }
         public Vector3 localScale=new Vector3(1,1,1);
+        public Vector3 lossyScale => parent==null?localScale:new Vector3(parent.lossyScale.x*localScale.x,parent.lossyScale.y*localScale.y,parent.lossyScale.z*localScale.z);
+        public Quaternion rotation;
         public GameObject gameObject;
         public Transform parent { get; private set; }
         public readonly List<Transform> children=new List<Transform>();
-        public void SetParent(Transform value) { parent?.children.Remove(this); parent=value; parent?.children.Add(this); }
+        public void SetParent(Transform value, bool worldPositionStays=true) { Vector3 old=position;parent?.children.Remove(this);parent=value;parent?.children.Add(this);if(worldPositionStays) position=old; }
         public bool IsChildOf(Transform value) => this==value || (parent!=null && parent.IsChildOf(value));
+        public void SetAsLastSibling() { parent?.children.Remove(this);parent?.children.Add(this); }
+        public T GetComponent<T>() where T : class => gameObject.GetComponent<T>();
+        public Transform Find(string path) { Transform node=this;foreach(string name in path.Split('/')) {node=node.children.FirstOrDefault(t=>t.gameObject.name==name);if(node==null)return null;}return node; }
+        public Vector3 TransformPoint(Vector3 p)=>position+new Vector3(p.x*lossyScale.x,p.y*lossyScale.y,p.z*lossyScale.z);
+        public Vector3 InverseTransformPoint(Vector3 p) {p=p-position;return new Vector3(p.x/lossyScale.x,p.y/lossyScale.y,p.z/lossyScale.z);}
     }
+    public struct Quaternion { public static Quaternion identity=>new Quaternion(); }
+    public struct Rect
+    {
+        public float xMin,yMin,width,height;
+        public float xMax=>xMin+width;
+        public float yMax=>yMin+height;
+        public Rect(float x,float y,float w,float h) {xMin=x;yMin=y;width=w;height=h;}
+    }
+    public class RectTransform : Transform
+    {
+        public Vector2 anchorMin,anchorMax,pivot=new Vector2(0.5f,0.5f),sizeDelta,offsetMin,offsetMax;
+        public Rect rect=>new Rect(-sizeDelta.x*pivot.x,-sizeDelta.y*pivot.y,sizeDelta.x,sizeDelta.y);
+        public void GetWorldCorners(Vector3[] corners)
+        {
+            Rect r=rect;corners[0]=TransformPoint(new Vector3(r.xMin,r.yMin));corners[1]=TransformPoint(new Vector3(r.xMin,r.yMax));
+            corners[2]=TransformPoint(new Vector3(r.xMax,r.yMax));corners[3]=TransformPoint(new Vector3(r.xMax,r.yMin));
+        }
+    }
+    public enum RenderMode { WorldSpace,ScreenSpaceOverlay }
+    public class Canvas : Component { public RenderMode renderMode;public bool overrideSorting;public int sortingLayerID,sortingOrder; }
     public class Sprite : Object { }
-    public struct Bounds { public Vector3 size; }
+    public struct Bounds { public Vector3 size,center;public Vector3 max=>center+size*0.5f; }
     public class SpriteRenderer : Component
     {
-        public Color color; public Sprite sprite;
+        public Color color; public Sprite sprite; public int sortingLayerID,sortingOrder;
         public Vector3 unscaledSize=new Vector3(1,1,1);
-        public Bounds bounds => new Bounds { size=new Vector3(Math.Abs(unscaledSize.x*transform.localScale.x),Math.Abs(unscaledSize.y*transform.localScale.y),1) };
+        public Bounds bounds => new Bounds { center=transform.position,size=new Vector3(Math.Abs(unscaledSize.x*transform.lossyScale.x),Math.Abs(unscaledSize.y*transform.lossyScale.y),1) };
     }
     public struct Color
     {
         public float r,g,b,a;
         public Color(float r,float g,float b,float a=1) {this.r=r;this.g=g;this.b=b;this.a=a;}
         public static Color white => new Color(1,1,1);
+        public static Color Lerp(Color a,Color b,float t)=>new Color(a.r+(b.r-a.r)*t,a.g+(b.g-a.g)*t,a.b+(b.b-a.b)*t,a.a+(b.a-a.a)*t);
     }
     public struct Vector2
     {
         public float x,y;
         public Vector2(float x,float y) {this.x=x;this.y=y;}
+        public static Vector2 zero=>new Vector2();
+        public static Vector2 one=>new Vector2(1,1);
         public float sqrMagnitude => x*x+y*y;
         public static float Distance(Vector2 a,Vector2 b) => (float)Math.Sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
         public static implicit operator Vector2(Vector3 v) => new Vector2(v.x,v.y);
@@ -159,6 +199,9 @@ namespace UnityEngine
         public static int Min(int a,int b)=>Math.Min(a,b);
         public static float Min(float a,float b)=>Math.Min(a,b);
         public static int Clamp(int n,int min,int max)=>Math.Min(max,Math.Max(min,n));
+        public static float Clamp(float n,float min,float max)=>Math.Min(max,Math.Max(min,n));
+        public static float Clamp01(float n)=>Clamp(n,0f,1f);
+        public const float Infinity=float.PositiveInfinity;
     }
     public static class Random { static System.Random random=new System.Random(21); public static int Range(int a,int b)=>random.Next(a,b); }
     public static class Debug { public static void Log(object o) {} public static void LogWarning(object o) {} public static void LogError(object o) {} }
@@ -193,12 +236,24 @@ namespace UnityEngine.Tilemaps
         public void RefreshAllTiles() {}
     }
 }
-namespace TMPro { public class TextMeshProUGUI : UnityEngine.UI.Graphic { public string text; public void SetText(string s) { text=s; } } }
+namespace TMPro
+{
+    public class TMP_FontAsset : UnityEngine.ScriptableObject { }
+    public enum TextAlignmentOptions { TopLeft }
+    public class TextMeshProUGUI : UnityEngine.UI.Graphic
+    {
+        public string text;public TMP_FontAsset font;public float fontSize,fontSizeMin,fontSizeMax;public bool enableAutoSizing;public TextAlignmentOptions alignment;
+        public void SetText(string s) {text=s;}
+        public UnityEngine.Vector2 GetPreferredValues(string content,float width,float height)
+            =>new UnityEngine.Vector2(width,Math.Max(1,(int)Math.Ceiling(content.Length*fontSize*0.5f/width))*fontSize*1.25f);
+    }
+}
 namespace UnityEngine.UI
 {
-    public class Graphic : UnityEngine.Component { public bool raycastTarget=true; }
+    public class Graphic : UnityEngine.Component { public bool raycastTarget=true;public UnityEngine.Color color; }
     public class Image : Graphic { public UnityEngine.Sprite sprite; public bool enabled=true,preserveAspect; }
     public class Selectable : UnityEngine.Component { }
 }
 namespace UnityEngine.TextCore.Text { }
 namespace JetBrains.Annotations { }
+

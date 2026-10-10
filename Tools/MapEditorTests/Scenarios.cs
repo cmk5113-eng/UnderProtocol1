@@ -890,6 +890,21 @@ internal static class Scenarios
         Check(!GameObject.All.Any(obj => obj.name == "obstacle clone"), "invalid terrain left a partially loaded obstacle");
     }
 
+    private static void WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets()
+    {
+        Fixture f = NewFixture();
+        f.entry.waves = new[] { f.first, f.second, f.first };
+        BattleManager.Instance.IsBattleActive = true;
+        Check(f.manager.CurrentWaveNumber == 0, "unloaded wave has an ordinal");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 1, "first empty wave did not display 1");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 2, "second wave did not display 2");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 3, "reused wave asset displayed its first position");
+        f.manager.ResetSelection(); Check(f.manager.CurrentWaveNumber == 0, "exit kept the previous ordinal");
+        f.manager.SelectMap(f.map);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = 99999, position = new Vector3Int(0, 0) });
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 0, "failed spawn advanced the displayed ordinal");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -915,7 +930,8 @@ internal static class Scenarios
             WaveLoaderInitializesCellShieldsSeparatelyForEachSpawn,
             CatalogRegistrationControlsRuntimeSpawnsAndRetry, DuplicateCatalogFailsBeforeSpawningOrAdvancing,
             MapSwitchUsesItsOwnCatalogAndRejectsStaleSelection, SharedMapButtonsKeepTheirOwnClearIds,
-            EditorMapDataLoadsAtEntryAndCleansUpOnExit, InvalidMapDataDoesNotLeavePartialBattleObjects };
+            EditorMapDataLoadsAtEntryAndCleansUpOnExit, InvalidMapDataDoesNotLeavePartialBattleObjects,
+            WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;

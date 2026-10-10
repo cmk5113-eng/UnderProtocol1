@@ -5,7 +5,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public abstract class ManagerBase : MonoBehaviour { protected abstract IEnumerator OnConnected(GameManager gm); protected abstract void OnDisconnected(); }
 public class GameManager { public static GameManager Instance=new GameManager(); public WaveManager Wave=new WaveManager(); public SaveManager Save=new SaveManager(); public static event Action<float> OnPhysicsCharacter; }
-public class WaveManager { public WaveData[] selectedWaves; public WaveData currentWave; public int currentWaveIndex; }
+public class WaveManager
+{
+    public WaveData[] selectedWaves;public WaveData currentWave;public int currentWaveIndex;
+    public int CurrentWaveNumber=>currentWave!=null&&selectedWaves!=null&&currentWaveIndex>0&&currentWaveIndex<=selectedWaves.Length
+        &&selectedWaves[currentWaveIndex-1]==currentWave?currentWaveIndex:0;
+}
 public class WaveData {}
 public class WaveSetter
 {
@@ -67,3 +72,4 @@ public class ActiveSkill : SkillList {}
 public class NormalSkill : SkillList {}
 public class LinkSkill : SkillList {}
 public class UltimateSkill : SkillList {}
+

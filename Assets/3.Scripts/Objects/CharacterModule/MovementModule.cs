@@ -269,7 +269,7 @@ public class MovementModule : CharacterModule, IRunnable
                 if (tilemap.HasTile(targetCell))
                 {
                     tilemap.SetTileFlags(targetCell, TileFlags.None);
-                    tilemap.SetColor(targetCell, highlightColor);
+                    tilemap.SetColor(targetCell, BattleFieldEffectSystem.PreviewColor(tilemap, targetCell, highlightColor));
                 }
             }
         }
@@ -291,3 +291,4 @@ public class MovementModule : CharacterModule, IRunnable
         }
     }
 }
+

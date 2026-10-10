@@ -23322,7 +23322,7 @@ GameObject:
   - component: {fileID: 596670939}
   - component: {fileID: 596670940}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48866,9 +48866,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8151650}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 8151653}
+        m_TargetAssemblyTypeName: StageUIController, Assembly-CSharp
+        m_MethodName: OnClickPassiveSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -50973,7 +50973,7 @@ GameObject:
   - component: {fileID: 1513715994}
   - component: {fileID: 1513715993}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59210,6 +59210,10 @@ PrefabInstance:
       propertyPath: currentwave
       value: 
       objectReference: {fileID: 596670940}
+    - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: currentenemy
+      value:
+      objectReference: {fileID: 1513715993}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: defaultImage
       value: 

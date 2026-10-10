@@ -542,6 +542,8 @@ public class BattleManager : UnityEngine.MonoBehaviour
     public void BeginBattle(int stageId, WaveSetter setter) { IsBattleActive = true; LastStageId = stageId; }
 }
 public class StageUIController : UnityEngine.MonoBehaviour { public static StageUIController Instance; public void UpdateWave() { } }
+// PassiveTests checks the real HP bar's state/position; map tests check spawn/data flow.
+public class MonsterHealthBar : UnityEngine.MonoBehaviour { public void Bind(MonsterBase monster) { } }
 namespace UnityEngine.Events
 {
     public class UnityEvent
