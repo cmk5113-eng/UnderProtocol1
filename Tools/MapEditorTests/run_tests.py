@@ -34,7 +34,7 @@ sources = [
     "Assets/3.Scripts/UIs/Map/TileManager.cs",
     "Assets/3.Scripts/Systems/WaveData.cs",
     "Assets/3.Scripts/Systems/StageMapData.cs",
-    "Assets/3.Scripts/Systems/StageMapBinding.cs",
+    "Assets/3.Scripts/Systems/StageMapLoader.cs",
     "Assets/3.Scripts/Systems/WaveLoader.cs",
     "Assets/3.Scripts/Systems/WaveSetter.cs",
     "Assets/3.Scripts/UIs/DIalog/Dialog1.cs",
@@ -51,6 +51,15 @@ sources = [
 ]
 with tempfile.TemporaryDirectory(prefix="map-editor-tests-") as directory:
     output = pathlib.Path(directory)
+    runtime_sources = [path for path in sources if not path.startswith("Assets/Editor/") and not path.endswith("Scenarios.cs")]
+    runtime_args = ["/nologo", "/noconfig", "/nostdlib+", "/langversion:9.0", "/target:library",
+                    "/nowarn:0169,0414,0067,0649", "/out:" + str(output / "Runtime.dll")]
+    runtime_args += ["/reference:" + str(path) for path in framework.glob("*.dll")]
+    runtime_args += [str(root / path) for path in runtime_sources]
+    runtime = subprocess.run([dotnet, csc, *runtime_args], env=env)
+    if runtime.returncode:
+        raise SystemExit(runtime.returncode)
+    print("PASS runtime scripts compile without UNITY_EDITOR (API doubles)", flush=True)
     args = ["/nologo", "/noconfig", "/nostdlib+", "/langversion:9.0", "/define:UNITY_EDITOR", "/target:exe",
             "/nowarn:0169,0414,0067,0649", "/out:" + str(output / "Tests.dll")]
     args += ["/reference:" + str(path) for path in framework.glob("*.dll")]
@@ -63,3 +72,4 @@ with tempfile.TemporaryDirectory(prefix="map-editor-tests-") as directory:
         "framework": {"name": "Microsoft.NETCore.App", "version": version},
     }}))
     raise SystemExit(subprocess.run([dotnet, str(output / "Tests.dll")], env=env, cwd=root).returncode)
+

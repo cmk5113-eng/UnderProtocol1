@@ -2,130 +2,116 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
+// Stage Map Editor가 저장하는 맵별 설정. 목록 순서는 연결이나 클리어 ID에 영향을 주지 않는다.
+[Serializable]
+public class StageMapButton
+{
+    public WaveSetter button;
+    // 같은 맵을 사용하는 여러 버튼의 기존 클리어 기록을 보존한다. -1이면 맵의 ID 사용.
+    [Min(-1)] public int clearId = -1;
+}
 
 [Serializable]
-public class StageWaveData
+public class StageMapEntry
 {
+    public Tilemap tilemap;
+    [Min(0)] public int stageId;
+    public List<StageMapButton> stageButtons = new List<StageMapButton>();
     public WaveData[] waves = Array.Empty<WaveData>();
+    public List<MonsterData> monsterDatas = new List<MonsterData>();
+    public StageMapData mapData;
+    public GameObject postBattleScenario;
+
+    public int GetStageId(WaveSetter button)
+    {
+        StageMapButton entry = stageButtons != null
+            ? stageButtons.Find(item => item != null && item.button == button) : null;
+        return entry != null && entry.clearId >= 0 ? entry.clearId : stageId;
+    }
 }
 
 public class WaveManager : ManagerBase
 {
-    [SerializeField] private List<StageWaveData> stages = new List<StageWaveData>();
-    [SerializeField, HideInInspector] private bool stageDataMigrated;
+    [SerializeField, HideInInspector] private List<StageMapEntry> maps = new List<StageMapEntry>();
 
-    // 기존 Scene/Prefab의 직렬화 이름을 유지해 연결된 WaveData를 한 번 이관한다.
-    // 새 WaveManager에는 이 필드들의 초기 배열을 만들지 않는다.
-    [SerializeField, HideInInspector] private WaveData[] stage1Waves;
-    [SerializeField, HideInInspector] private WaveData[] stage2Waves;
-    [SerializeField, HideInInspector] private WaveData[] stage3Waves;
-    [SerializeField, HideInInspector] private WaveData[] stage4Waves;
-    [SerializeField, HideInInspector] private WaveData[] stage5Waves;
+    public IReadOnlyList<StageMapEntry> Maps => maps;
+    public StageMapEntry ActiveMap { get; private set; }
+    public WaveData[] selectedWaves => ActiveMap != null ? ActiveMap.waves : null;
+    [NonSerialized] public int currentWaveIndex;
+    [NonSerialized] public WaveData currentWave;
 
-    public bool NeedsStageMigration => !stageDataMigrated;
-    public int StageCount { get { MigrateLegacyStages(); return stages.Count; } }
+    // currentWaveIndex advances only after a successful load; it is then the 1-based ordinal.
+    public int CurrentWaveNumber => currentWave != null && selectedWaves != null
+        && currentWaveIndex > 0 && currentWaveIndex <= selectedWaves.Length
+        && selectedWaves[currentWaveIndex - 1] == currentWave ? currentWaveIndex : 0;
 
-    // 기존 조회 코드 호환용. 에디터와 런타임 모두 동일한 저장 목록을 읽는다.
-    public List<WaveData[]> StageWaveIndex
+    public StageMapEntry GetMap(Tilemap tilemap)
     {
-        get
+        if (tilemap == null) return null;
+        StageMapEntry found = null;
+        foreach (StageMapEntry map in maps)
         {
-            MigrateLegacyStages();
-            var result = new List<WaveData[]>(stages.Count);
-            foreach (StageWaveData stage in stages) result.Add(stage != null ? stage.waves : null);
-            return result;
+            if (map == null || map.tilemap != tilemap) continue;
+            if (found != null) return null; // 중복 연결을 임의로 선택하지 않는다.
+            found = map;
         }
-    }
-    public WaveData[] selectedWaves;
-    public int currentWaveIndex = 0;
-    public WaveData currentWave;
-
-    private void Reset()
-    {
-        // 새 컴포넌트는 이관 대상이 아니다. 저장 시 null 배열이 빈 배열로
-        // 정규화되더라도 이전 다섯 Stage로 오인하지 않도록 버전을 기록한다.
-        stages = new List<StageWaveData>();
-        stageDataMigrated = true;
-        stage1Waves = stage2Waves = stage3Waves = stage4Waves = stage5Waves = null;
+        return found;
     }
 
-
-    protected override IEnumerator OnConnected(GameManager newManager)
+    public StageMapEntry GetMap(WaveSetter button)
     {
-        MigrateLegacyStages();
-        yield break;
-    }
-   
-    protected override void OnDisconnected()
-    {
-    }
-
-    public WaveData[] GetStageWaves(int stageIndex)
-    {
-        MigrateLegacyStages();
-        return stageIndex >= 0 && stageIndex < stages.Count && stages[stageIndex] != null
-            ? stages[stageIndex].waves : null;
-    }
-
-    public bool MigrateLegacyStages()
-    {
-        if (stageDataMigrated) return false;
-        if (stages == null) stages = new List<StageWaveData>();
-        if (stages.Count == 0 && (stage1Waves != null || stage2Waves != null || stage3Waves != null || stage4Waves != null || stage5Waves != null))
+        if (button == null) return null;
+        StageMapEntry found = null;
+        foreach (StageMapEntry map in maps)
         {
-            // 하드코딩된 다섯 필드는 이전 파일을 읽을 때만 사용한다.
-            foreach (WaveData[] legacy in new[] { stage1Waves, stage2Waves, stage3Waves, stage4Waves, stage5Waves })
-                stages.Add(new StageWaveData { waves = legacy ?? Array.Empty<WaveData>() });
+            if (map == null || map.stageButtons == null || !map.stageButtons.Exists(item => item != null && item.button == button)) continue;
+            if (map.stageButtons.FindAll(item => item != null && item.button == button).Count != 1) return null;
+            if (found != null) return null;
+            found = map;
         }
-        stageDataMigrated = true;
+        return found != null && GetMap(found.tilemap) == found ? found : null;
+    }
+
+    public bool SelectMap(Tilemap tilemap)
+    {
+        ResetSelection();
+        ActiveMap = GetMap(tilemap);
+        return ActiveMap != null;
+    }
+
+    public void ResetSelection()
+    {
+        ActiveMap = null;
+        currentWaveIndex = 0;
+        currentWave = null;
+    }
+
+#if UNITY_EDITOR
+    public bool EditorAddMap(Tilemap tilemap)
+    {
+        if (tilemap == null || maps.Exists(map => map != null && map.tilemap == tilemap)) return false;
+        int stageId = 0;
+        foreach (StageMapEntry map in maps)
+        {
+            if (map == null) continue;
+            stageId = Math.Max(stageId, map.stageId + 1);
+            if (map.stageButtons != null) foreach (StageMapButton button in map.stageButtons)
+                if (button != null) stageId = Math.Max(stageId, button.clearId + 1);
+        }
+        maps.Add(new StageMapEntry { tilemap = tilemap, stageId = stageId });
         return true;
     }
 
-    public int AddStage()
+    public bool EditorRemoveMap(Tilemap tilemap)
     {
-        MigrateLegacyStages();
-        stages.Add(new StageWaveData());
-        return stages.Count - 1;
+        StageMapEntry map = GetMap(tilemap);
+        return map != null && maps.Remove(map);
     }
+#endif
 
-    public bool RemoveStage(int stageIndex)
-    {
-        MigrateLegacyStages();
-        if (stageIndex < 0 || stageIndex >= stages.Count) return false;
-        stages.RemoveAt(stageIndex);
-        return true;
-    }
-
-    public bool SetStageWave(int stageIndex, int waveIndex, WaveData waveData)
-    {
-        WaveData[] waves = GetStageWaves(stageIndex);
-        if (waves == null || waveIndex < 0 || waveIndex >= waves.Length) return false;
-        waves[waveIndex] = waveData;
-        return true;
-    }
-
-    public void SetWave(WaveData waveData)
-    {
-        currentWave = waveData;
-    }
-
- 
-    public void ExecuteWave()
-    {
-        if (currentWave == null)
-        {
-            Debug.LogError("���� ���̺갡 �����ϴ�.");
-            return;
-        }
-
-        foreach (MonsterSpawnData monster in currentWave.monsters)
-        {
-            Debug.Log(
-                $"���� ID : {monster.monsterID}, " +
-                $"��ǥ : {monster.position}"
-            );
-
-            // ���⼭ ���� ����
-        }
-    }
+    protected override IEnumerator OnConnected(GameManager newManager) { yield break; }
+    protected override void OnDisconnected() => ResetSelection();
 }
+

@@ -102,11 +102,15 @@ public class BattleManager : ManagerBase
     }
 
     public static bool HasRemainingMonsters()
+        => CountRemainingMonsters() > 0;
+
+    public static int CountRemainingMonsters()
     {
+        int count = 0;
         foreach (MonsterBase monster in FindObjectsByType<MonsterBase>(
             FindObjectsInactive.Exclude, FindObjectsSortMode.None))
-            if (monster.currentHP > 0) return true;
-        return false;
+            if (monster.currentHP > 0) count++;
+        return count;
     }
 
     private static BattleManager instance;
@@ -455,3 +459,4 @@ public class BattleManager : ManagerBase
         ResetBattle();
     }
 }
+

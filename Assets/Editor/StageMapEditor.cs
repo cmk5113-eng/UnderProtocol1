@@ -9,7 +9,7 @@ public partial class StageMapEditor : EditorWindow
 {
     private enum EditMode { Monster, Obstacle, FieldEffect, Erase }
 
-    [SerializeField] private StageMapData stageMapData;
+    private StageMapData stageMapData => CurrentMap != null ? CurrentMap.mapData : null;
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private int selectedWaveIndex;
     private bool scenePaintingEnabled;
@@ -24,17 +24,31 @@ public partial class StageMapEditor : EditorWindow
     private EditMode mode = EditMode.Monster;
     private Vector2 scroll;
 
-    private WaveManager SceneWaveManager => Object.FindFirstObjectByType<WaveManager>(FindObjectsInactive.Include);
+    private WaveManager SceneWaveManager
+    {
+        get
+        {
+            WaveManager[] managers = Object.FindObjectsByType<WaveManager>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            WaveManager found = null;
+            foreach (WaveManager manager in managers)
+            {
+                if (tilemap != null && manager.GetMap(tilemap) == null
+                    && manager.gameObject.scene != tilemap.gameObject.scene) continue;
+                if (found != null) return null;
+                found = manager;
+            }
+            return found;
+        }
+    }
 
-    private StageMapBinding CurrentBinding => FindBinding(tilemap);
+    private StageMapEntry CurrentMap => SceneWaveManager != null ? SceneWaveManager.GetMap(tilemap) : null;
 
     private WaveData[] CurrentStageWaves
     {
         get
         {
             WaveManager manager = SceneWaveManager;
-            StageMapBinding binding = CurrentBinding;
-            return manager != null && binding != null ? manager.GetStageWaves(binding.StageIndex) : null;
+            return manager != null && CurrentMap != null ? CurrentMap.waves : null;
         }
     }
 
@@ -82,7 +96,7 @@ public partial class StageMapEditor : EditorWindow
     {
         scroll = EditorGUILayout.BeginScrollView(scroll);
         EditorGUILayout.LabelField("Stage Map Editor", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("Tilemap과 Wave를 선택한 뒤 몬스터를 아래 타일판에 찍으세요. 좌클릭/드래그 배치, 우클릭/드래그 삭제. WaveData와 웨이브 목록(Scene)은 각각 저장합니다.", MessageType.Info);
+        EditorGUILayout.HelpBox("이 창에서 Tilemap, 입장 버튼, 웨이브 순서와 몬스터 목록을 설정하세요. 좌클릭/드래그 배치, 우클릭/드래그 삭제. WaveData 배치와 맵 설정(Scene)은 각각 저장합니다.", MessageType.Info);
 
         EditorGUI.BeginChangeCheck();
         tilemap = (Tilemap)EditorGUILayout.ObjectField("Tilemap", tilemap, typeof(Tilemap), true);
@@ -98,8 +112,6 @@ public partial class StageMapEditor : EditorWindow
                 TryAutoFindStageMapData();
             }
         }
-
-        stageMapData = (StageMapData)EditorGUILayout.ObjectField("Stage Map Data", stageMapData, typeof(StageMapData), false);
 
         EditorGUILayout.Space();
         DrawWaveSection();
@@ -138,90 +150,60 @@ public partial class StageMapEditor : EditorWindow
 
     private void DrawWaveSection()
     {
-        EditorGUILayout.LabelField("이 Tilemap의 기존 Waves", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("이 Tilemap의 맵 설정", EditorStyles.boldLabel);
         WaveManager manager = SceneWaveManager;
         if (manager == null)
         {
-            EditorGUILayout.HelpBox("현재 Scene에서 WaveManager를 찾을 수 없습니다.", MessageType.Warning);
+            EditorGUILayout.HelpBox("선택한 Tilemap의 Scene에는 WaveManager가 하나 있어야 합니다.", MessageType.Warning);
             return;
         }
 
-        StageWaveEditorUtility.EnsureMigrated(manager);
-        EditorGUILayout.LabelField($"전체 스테이지: {manager.StageCount}개 · Stage Index는 0부터 시작");
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Stage 추가"))
-        {
-            int addedIndex = StageWaveEditorUtility.AddStage(manager);
-            StageMapBinding selectedBinding = CurrentBinding;
-            if (selectedBinding != null && addedIndex >= 0)
-            {
-                Undo.RecordObject(selectedBinding, "Connect New Wave Stage");
-                selectedBinding.EditorSetStageIndex(addedIndex);
-                MarkSceneObjectDirty(selectedBinding);
-                selectedWaveIndex = 0;
-            }
-            RefreshViews();
-            GUIUtility.ExitGUI();
-        }
-        StageMapBinding currentBinding = CurrentBinding;
-        using (new EditorGUI.DisabledScope(currentBinding == null || currentBinding.StageIndex < 0 || currentBinding.StageIndex >= manager.StageCount))
-        {
-            if (GUILayout.Button("현재 Stage 삭제"))
-            {
-                StageWaveEditorUtility.RemoveStage(manager, currentBinding.StageIndex);
-                selectedWaveIndex = 0;
-                RefreshViews();
-                GUIUtility.ExitGUI();
-            }
-        }
-        EditorGUILayout.EndHorizontal();
-        if (GUILayout.Button("스테이지/웨이브 목록 저장 (Scene)")) SaveWaveList();
+        EditorGUILayout.LabelField($"맵에디터에 등록된 맵: {manager.Maps.Count}개");
         if (tilemap == null)
         {
-            EditorGUILayout.HelpBox("몬스터와 Wave를 편집하려면 Tilemap을 선택하세요.", MessageType.Warning);
+            EditorGUILayout.HelpBox("Tilemap을 선택하세요.", MessageType.Warning);
             return;
         }
-
-        StageMapBinding binding = CurrentBinding;
-        if (binding == null)
+        if (CurrentMap == null)
         {
-            EditorGUILayout.HelpBox("이 Tilemap에는 아직 StageMapBinding이 없습니다. 아래 버튼으로 연결 정보를 만든 뒤 Stage Index를 지정하세요.", MessageType.Warning);
-            if (GUILayout.Button("이 Tilemap에 Stage Binding 추가"))
-            {
-                binding = Undo.AddComponent<StageMapBinding>(tilemap.gameObject);
-                binding.EditorSetTilemap(tilemap);
-                MarkSceneObjectDirty(binding);
-            }
+            EditorGUILayout.HelpBox("이 Tilemap은 맵에디터에 등록되지 않았습니다.", MessageType.Warning);
+            if (GUILayout.Button("이 Tilemap 등록")) { RegisterCurrentMap(); GUIUtility.ExitGUI(); }
             return;
         }
-
-        SerializedObject bindingSO = new SerializedObject(binding);
-        SerializedProperty stageIndexProp = bindingSO.FindProperty("stageIndex");
-        SerializedProperty mapDataProp = bindingSO.FindProperty("mapData");
-        EditorGUILayout.PropertyField(stageIndexProp, new GUIContent("Stage Index"));
-        EditorGUILayout.PropertyField(mapDataProp, new GUIContent("Stage Map Data"));
-        if (bindingSO.ApplyModifiedProperties())
-        {
-            MarkSceneObjectDirty(binding);
-            stageMapData = binding.MapData;
-            RefreshViews();
-        }
-
-        if (binding.MapData != null) stageMapData = binding.MapData;
-        int stageIndex = binding.StageIndex;
 
         SerializedObject managerSO = new SerializedObject(manager);
-        if (stageIndex < 0 || stageIndex >= manager.StageCount)
-        {
-            EditorGUILayout.HelpBox(manager.StageCount == 0 ? "Stage 추가로 첫 스테이지를 만드세요." : $"Stage Index를 0~{manager.StageCount - 1} 사이로 지정하세요. -1은 연결 해제 상태입니다.", MessageType.Warning);
-            return;
-        }
+        SerializedProperty mapProperty = GetMapProperty(managerSO);
+        if (mapProperty == null) return;
+        EditorGUILayout.PropertyField(mapProperty.FindPropertyRelative("stageId"), new GUIContent("클리어 기록 ID"));
+        EditorGUILayout.PropertyField(mapProperty.FindPropertyRelative("stageButtons"), new GUIContent("입장 버튼 (Clear ID -1: 맵 ID)"), true);
+        EditorGUILayout.PropertyField(mapProperty.FindPropertyRelative("mapData"), new GUIContent("Stage Map Data"));
+        EditorGUILayout.PropertyField(mapProperty.FindPropertyRelative("postBattleScenario"), new GUIContent("전투 후 시나리오"));
+        EditorGUILayout.PropertyField(mapProperty.FindPropertyRelative("monsterDatas"), new GUIContent("등록된 몬스터"), true);
+        if (managerSO.ApplyModifiedProperties()) { MarkSceneObjectDirty(manager); RefreshViews(); }
+
+        if (CurrentMap.stageId < 0)
+            EditorGUILayout.HelpBox("클리어 기록 ID는 0 이상이어야 합니다.", MessageType.Error);
+        foreach (StageMapEntry map in manager.Maps)
+            if (map != CurrentMap && map != null && map.stageId == CurrentMap.stageId)
+                EditorGUILayout.HelpBox("다른 맵과 클리어 기록 ID가 같습니다. 고유한 ID를 지정하세요.", MessageType.Warning);
+        if (CurrentMap.stageButtons == null || CurrentMap.stageButtons.Count == 0)
+            EditorGUILayout.HelpBox("이 맵을 여는 WaveSetter 버튼을 등록하세요.", MessageType.Warning);
+        else foreach (StageMapButton button in CurrentMap.stageButtons)
+            if (button == null || button.button == null || manager.GetMap(button.button) != CurrentMap)
+                EditorGUILayout.HelpBox("빈 버튼을 제거하고, 한 버튼을 여러 맵에 등록하지 마세요.", MessageType.Error);
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Stage Map Data 생성")) CreateMapDataAsset();
+        if (GUILayout.Button("이 맵 설정 삭제")) { RemoveCurrentMap(); GUIUtility.ExitGUI(); }
+        EditorGUILayout.EndHorizontal();
+        if (stageMapData != null && GUILayout.Button("장애물/필드 데이터 저장"))
+            AssetDatabase.SaveAssetIfDirty(stageMapData);
 
         SerializedProperty waveArray = GetWaveArray(managerSO);
         if (waveArray == null) return;
 
         selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, Mathf.Max(0, waveArray.arraySize - 1));
-        EditorGUILayout.LabelField($"연결: {tilemap.name} → Stage {stageIndex + 1}", EditorStyles.miniBoldLabel);
+        EditorGUILayout.LabelField($"맵: {tilemap.name} · 클리어 기록 ID {CurrentMap.stageId}", EditorStyles.miniBoldLabel);
         EditorGUILayout.LabelField($"총 {waveArray.arraySize} Waves · 위에서 아래 순서로 실행");
 
         for (int i = 0; i < waveArray.arraySize; i++)
@@ -254,16 +236,60 @@ public partial class StageMapEditor : EditorWindow
         if (GUILayout.Button("빈 Wave 슬롯 추가")) { AddWaveSlot(null); GUIUtility.ExitGUI(); }
         if (GUILayout.Button("새 WaveData 추가")) { CreateWaveAsset(-1); GUIUtility.ExitGUI(); }
         EditorGUILayout.EndHorizontal();
-        if (GUILayout.Button("웨이브 목록 저장 (Scene)")) SaveWaveList();
+        if (GUILayout.Button("맵 설정 저장 (Scene)")) SaveWaveList();
         EditorGUILayout.HelpBox("WaveData 칸에 기존 에셋을 넣으면 불러옵니다. ↑/↓ 순서 변경, − 목록에서 제거(에셋은 유지). 빈 슬롯은 전투 진입 전에 채워주세요.", MessageType.Info);
     }
 
     private SerializedProperty GetWaveArray(SerializedObject managerSO)
     {
-        StageMapBinding binding = CurrentBinding;
-        SerializedProperty stages = managerSO.FindProperty("stages");
-        return stages != null && binding != null && binding.StageIndex >= 0 && binding.StageIndex < stages.arraySize
-            ? stages.GetArrayElementAtIndex(binding.StageIndex).FindPropertyRelative("waves") : null;
+        return GetMapProperty(managerSO)?.FindPropertyRelative("waves");
+    }
+
+    private SerializedProperty GetMapProperty(SerializedObject managerSO)
+    {
+        SerializedProperty maps = managerSO.FindProperty("maps");
+        if (maps == null || tilemap == null) return null;
+        for (int i = 0; i < maps.arraySize; i++)
+            if (maps.GetArrayElementAtIndex(i).FindPropertyRelative("tilemap").objectReferenceValue == tilemap)
+                return maps.GetArrayElementAtIndex(i);
+        return null;
+    }
+
+    private bool RegisterCurrentMap()
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null || tilemap == null || EditorApplication.isPlayingOrWillChangePlaymode || CurrentMap != null) return false;
+        Undo.RecordObject(manager, "Register Map in Stage Map Editor");
+        if (!manager.EditorAddMap(tilemap)) return false;
+        MarkSceneObjectDirty(manager);
+        selectedWaveIndex = 0;
+        RefreshViews();
+        return true;
+    }
+
+    private bool RemoveCurrentMap()
+    {
+        WaveManager manager = SceneWaveManager;
+        if (manager == null || EditorApplication.isPlayingOrWillChangePlaymode || CurrentMap == null) return false;
+        Undo.RecordObject(manager, "Remove Map from Stage Map Editor");
+        if (!manager.EditorRemoveMap(tilemap)) return false;
+        MarkSceneObjectDirty(manager);
+        selectedWaveIndex = 0;
+        RefreshViews();
+        return true;
+    }
+
+    private void CreateMapDataAsset()
+    {
+        if (CurrentMap == null) return;
+        string path = EditorUtility.SaveFilePanelInProject("Stage Map Data 만들기", $"Stage{CurrentMap.stageId + 1}_Map", "asset", "장애물/필드 배치를 저장할 경로를 선택하세요.");
+        if (string.IsNullOrEmpty(path)) return;
+        StageMapData data = CreateInstance<StageMapData>();
+        AssetDatabase.CreateAsset(data, path);
+        SerializedObject so = new SerializedObject(SceneWaveManager);
+        GetMapProperty(so).FindPropertyRelative("mapData").objectReferenceValue = data;
+        ApplyWaveListChanges(so);
+        AssetDatabase.SaveAssetIfDirty(data);
     }
 
     private void ApplyWaveListChanges(SerializedObject managerSO)
@@ -317,11 +343,11 @@ public partial class StageMapEditor : EditorWindow
     private void CreateWaveAsset(int slot)
     {
         WaveManager manager = SceneWaveManager;
-        if (manager == null || CurrentBinding == null) return;
+        if (manager == null || CurrentMap == null) return;
         SerializedObject so = new SerializedObject(manager);
         SerializedProperty array = GetWaveArray(so);
         if (array == null || slot >= array.arraySize) return;
-        string path = EditorUtility.SaveFilePanelInProject("WaveData 만들기", $"Stage{CurrentBinding.StageIndex + 1}_Wave{(slot < 0 ? array.arraySize : slot) + 1}", "asset", "몬스터 배치를 저장할 WaveData 경로를 선택하세요.");
+        string path = EditorUtility.SaveFilePanelInProject("WaveData 만들기", $"Stage{CurrentMap.stageId + 1}_Wave{(slot < 0 ? array.arraySize : slot) + 1}", "asset", "몬스터 배치를 저장할 WaveData 경로를 선택하세요.");
         if (string.IsNullOrEmpty(path)) return;
         WaveData wave = CreateInstance<WaveData>();
         AssetDatabase.CreateAsset(wave, path);
@@ -349,21 +375,8 @@ public partial class StageMapEditor : EditorWindow
         if (manager == null) return;
         var scene = manager.gameObject.scene;
         if (!scene.IsValid() || !EditorSceneManager.SaveScene(scene)) return;
-        StageMapBinding binding = CurrentBinding;
-        if (binding != null && binding.gameObject.scene != scene && !EditorSceneManager.SaveScene(binding.gameObject.scene)) return;
-        ShowNotification(new GUIContent("웨이브 목록과 Stage Binding 저장 완료"));
-    }
-
-    private StageMapBinding FindBinding(Tilemap target)
-    {
-        if (target == null) return null;
-        StageMapBinding binding = target.GetComponent<StageMapBinding>();
-        if (binding != null) return binding;
-        binding = target.GetComponentInParent<StageMapBinding>(true);
-        if (binding != null && binding.TargetTilemap == target) return binding;
-        foreach (StageMapBinding candidate in Object.FindObjectsByType<StageMapBinding>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-            if (candidate.TargetTilemap == target) return candidate;
-        return null;
+        if (tilemap != null && tilemap.gameObject.scene != scene && !EditorSceneManager.SaveScene(tilemap.gameObject.scene)) return;
+        ShowNotification(new GUIContent("맵에디터 설정 저장 완료"));
     }
 
     private void DrawObstacleSettings()
@@ -400,18 +413,9 @@ public partial class StageMapEditor : EditorWindow
         selectedWaveIndex = 0;
         selectedMonster = null;
         gridScroll = Vector2.zero;
-        stageMapData = null;
         RefreshViews();
         if (tilemap == null) return;
         gridLayer = tilemap.cellBounds.zMin;
-        StageMapBinding binding = FindBinding(tilemap);
-        if (binding != null && binding.MapData != null)
-        {
-            stageMapData = binding.MapData;
-            return;
-        }
-        StageMapLoader loader = tilemap.GetComponentInParent<StageMapLoader>(true);
-        if (loader != null && loader.MapData != null) stageMapData = loader.MapData;
     }
 
     private void DrawCounts()
@@ -573,3 +577,4 @@ public partial class StageMapEditor : EditorWindow
     }
 }
 #endif
+

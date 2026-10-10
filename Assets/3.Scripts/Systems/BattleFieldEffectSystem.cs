@@ -186,6 +186,16 @@ public sealed class BattleFieldEffectSystem
         return battle != null && battle.Fields.TryGetField(map, cell, out field) ? ColorFor(field.Type) : Color.white;
     }
 
+    // Keep the element recognizable while range/AOE previews are visible.
+    public static Color PreviewColor(Tilemap map, Vector3Int cell, Color preview)
+    {
+        BattleManager battle = BattleManager.Instance;
+        if (battle == null || !battle.Fields.TryGetField(map, cell, out BattleFieldEffect field)) return preview;
+        Color color = Color.Lerp(ColorFor(field.Type), preview, 0.3f);
+        color.a = 1f;
+        return color;
+    }
+
     public static string Describe(Tilemap map, Vector3Int cell)
     {
         BattleFieldEffect field;
@@ -208,9 +218,9 @@ public sealed class BattleFieldEffectSystem
     {
         switch (type)
         {
-            case SkillTileFieldEffectType.Fire: return new Color(1f, 0.45f, 0.25f);
+            case SkillTileFieldEffectType.Fire: return new Color(1f, 0.25f, 0.25f);
             case SkillTileFieldEffectType.Electric: return new Color(1f, 0.85f, 0.2f);
-            case SkillTileFieldEffectType.Ice: return new Color(0.4f, 0.85f, 1f);
+            case SkillTileFieldEffectType.Ice: return new Color(0.3f, 0.6f, 1f);
             case SkillTileFieldEffectType.Wind: return new Color(0.4f, 1f, 0.65f);
             case SkillTileFieldEffectType.Earth: return new Color(0.75f, 0.55f, 0.3f);
             case SkillTileFieldEffectType.Dark: return new Color(0.65f, 0.4f, 0.85f);
@@ -218,3 +228,4 @@ public sealed class BattleFieldEffectSystem
         }
     }
 }
+

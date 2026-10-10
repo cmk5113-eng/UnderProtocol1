@@ -2,7 +2,9 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class UseSkill : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class UseSkill : MonoBehaviour
 
     private List<Vector3Int> castRangeTiles = new List<Vector3Int>();
     private List<Vector3Int> aoeTiles = new List<Vector3Int>();
+    private readonly List<RaycastResult> pointerHits = new List<RaycastResult>();
 
     private Vector3Int lastMouseCell = new Vector3Int(-999, -999, -999);
     private bool isSkillTargetingActive = false;
@@ -44,6 +47,17 @@ public class UseSkill : MonoBehaviour
 
         if (!isSkillTargetingActive || tilemap == null || (currentSkill == null ) || caster == null) return;
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            CancelTargeting();
+            return;
+        }
+        if (IsPointerOverUI())
+        {
+            ClearRealtimeAoE();
+            return;
+        }
+
         HandlePatternRotation();
         HandleRealtimeAoE();
 
@@ -52,12 +66,19 @@ public class UseSkill : MonoBehaviour
             ExecuteSkillOnTarget();
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            CancelTargeting();
-        }
     }
 
+    private bool IsPointerOverUI()
+    {
+        EventSystem events = EventSystem.current;
+        if (events == null) return false;
+        pointerHits.Clear();
+        var pointer = new PointerEventData(events) { position = new Vector2(Input.mousePosition.x, Input.mousePosition.y) };
+        events.RaycastAll(pointer, pointerHits);
+        foreach (RaycastResult hit in pointerHits)
+            if (hit.module is GraphicRaycaster) return true;
+        return false;
+    }
 
 
 
@@ -177,7 +198,7 @@ public class UseSkill : MonoBehaviour
             if (tilemap.HasTile(castPos))
             {
                 tilemap.SetTileFlags(castPos, TileFlags.None);
-                tilemap.SetColor(castPos, castRangeColor);
+                tilemap.SetColor(castPos, BattleFieldEffectSystem.PreviewColor(tilemap, castPos, castRangeColor));
             }
         }
 
@@ -506,7 +527,7 @@ public class UseSkill : MonoBehaviour
             return;
 
         tilemap.SetTileFlags(cell, TileFlags.None);
-        tilemap.SetColor(cell, color);
+        tilemap.SetColor(cell, BattleFieldEffectSystem.PreviewColor(tilemap, cell, color));
         saveList.Add(cell);
     }
 
@@ -525,129 +546,35 @@ public class UseSkill : MonoBehaviour
                     {
 
                         tilemap.SetTileFlags(targetCell, TileFlags.None);
-                        tilemap.SetColor(targetCell, color);
+                        tilemap.SetColor(targetCell, BattleFieldEffectSystem.PreviewColor(tilemap, targetCell, color));
                         saveList.Add(targetCell);
                     }
                 }
             }
         }
     }
-    public void UI_StartNormalSkill()
+    public void UI_StartNormalSkill() => StartSkillFromUI(3);
+    public void UI_StartSkill1() => StartSkillFromUI(0);
+    public void UI_StartSkill2() => StartSkillFromUI(1);
+    public void UI_Ultimate() => StartSkillFromUI(2);
+
+    private void StartSkillFromUI(int slotIndex)
     {
-
-        Debug.Log($"현재타일맵{tilemap}");
-        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
         ClearAllHighlights();
-
+        StageUIController stage = StageUIController.Instance;
+        if (stage == null) return;
+        SkillList selected = stage.GetSkill(slotIndex);
         CharacterBase currentCaster = SelectionManager.CharacterBase;
-
-        if (currentCaster.isSpawned == false)
+        bool canTarget = selected != null && currentCaster != null && currentCaster.isSpawned;
+        if (slotIndex == 2)
+            canTarget = canTarget && ScrollUI.Instance != null && ScrollUI.Instance.GGscrollbar.value >= 1f;
+        if (canTarget)
         {
-            Debug.Log("캐릭터를소환해주세요");
-            return;
+            StartSkillTargeting(selected, currentCaster);
+            if (slotIndex == 2 && isSkillTargetingActive) ScrollUI.Instance.SubGaugeValue(1f);
         }
-        if (StageUIController.Instance == null) return;
-        CharacterData currentData = StageUIController.Instance.CurrentData;
-
-        if (currentCaster != null && currentData != null && currentData.normalSkill != null)
-        {
-            NormalSkill targetSkill = currentData.normalSkill;
-            if (targetSkill != null)
-            {
-                StartSkillTargeting(targetSkill, currentCaster);
-            }
-        }
-    }
-
-
-    /// <summary>
-    /// [UI 버튼 OnClick 전용] 1번 스킬 실행
-    /// </summary>
-    public void UI_StartSkill1()
-    {
-
-        Debug.Log($"현재타일맵{tilemap}");
-        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
-        ClearAllHighlights();
-        
-        CharacterBase currentCaster = SelectionManager.CharacterBase;
-
-        if (currentCaster.isSpawned == false)
-        {
-            Debug.Log("캐릭터를소환해주세요");
-            return;
-        }
-        if (StageUIController.Instance == null) return;
-        CharacterData currentData = StageUIController.Instance.CurrentData;
-
-        if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 0)
-        {
-            ActiveSkill targetSkill = currentData.active[0];
-            if (targetSkill != null)
-            {
-                StartSkillTargeting(targetSkill, currentCaster);
-            }
-        }
-    }
-
-    /// <summary>
-    /// [UI 버튼 OnClick 전용] 2번 스킬 실행
-    /// </summary>
-    public void UI_StartSkill2()
-    {
-        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
-        ClearAllHighlights();
-
-        CharacterBase currentCaster = SelectionManager.CharacterBase;
-
-        if (currentCaster.isSpawned == false)
-        {
-            Debug.Log("캐릭터를소환해주세요");
-            return;
-        }
-        if (StageUIController.Instance == null) return;
-        CharacterData currentData = StageUIController.Instance.CurrentData;
-
-        if (currentCaster != null && currentData != null && currentData.active != null && currentData.active.Length > 0)
-        {
-            ActiveSkill targetSkill = currentData.active[0];
-            if (targetSkill != null)
-            {
-                StartSkillTargeting(targetSkill, currentCaster);
-            }
-        }
-    }
-
-    /// <summary>
-    /// [UI 버튼 OnClick 전용] 궁극기 실행
-    /// </summary>
-    public void UI_Ultimate()
-    {
-        // 💡 1. 이전 모든 조준 및 하이라이트 강제 완전 종료
-        ClearAllHighlights();
-
-        // 💡 2. 게이지 부족 시 차단
-        if (ScrollUI.Instance == null || ScrollUI.Instance.GGscrollbar.value < 1.0f)
-        {
-            Debug.Log("궁극기 게이지가 부족합니다.");
-            return;
-        }
-
-
-        // 💡 3. UI_StartSkill1과 동일하게 캐스터 및 데이터 참조
-        CharacterBase currentCaster = SelectionManager.CharacterBase;
-        if (StageUIController.Instance == null) return;
-        CharacterData currentData = StageUIController.Instance.CurrentData;
-
-        if (currentCaster != null && currentData != null && currentData.ultimateSkill != null)
-        {
-            UltimateSkill targetSkill = currentData.ultimateSkill;
-            if (targetSkill != null)
-            {
-                StartSkillTargeting(targetSkill, currentCaster);
-            }
-        }
-        ScrollUI.Instance.SubGaugeValue(1f);
+        // Information remains available even when the unit/gauge cannot start targeting.
+        stage.ShowSkillTooltip(slotIndex);
     }
 
     private void ClearTileList(List<Vector3Int> tileList)
@@ -660,7 +587,7 @@ public class UseSkill : MonoBehaviour
 
                 if (castRangeTiles.Contains(pos) && tileList == aoeTiles)
                 {
-                    tilemap.SetColor(pos, castRangeColor);
+                    tilemap.SetColor(pos, BattleFieldEffectSystem.PreviewColor(tilemap, pos, castRangeColor));
                 }
                 else
                 {
@@ -673,6 +600,7 @@ public class UseSkill : MonoBehaviour
 
     public void ClearAllHighlights()
     {
+        if (StageUIController.Instance != null) StageUIController.Instance.HideSkillTooltip();
         isSkillTargetingActive = false;
         patternRotation = 0;
 
@@ -704,3 +632,4 @@ public class UseSkill : MonoBehaviour
         Debug.Log("스킬 조준이 취소되었습니다.");
     }
 }
+

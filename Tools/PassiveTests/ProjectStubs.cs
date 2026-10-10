@@ -5,7 +5,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public abstract class ManagerBase : MonoBehaviour { protected abstract IEnumerator OnConnected(GameManager gm); protected abstract void OnDisconnected(); }
 public class GameManager { public static GameManager Instance=new GameManager(); public WaveManager Wave=new WaveManager(); public SaveManager Save=new SaveManager(); public static event Action<float> OnPhysicsCharacter; }
-public class WaveManager { public WaveData[] selectedWaves; public WaveData currentWave; public int currentWaveIndex; }
+public class WaveManager
+{
+    public WaveData[] selectedWaves;public WaveData currentWave;public int currentWaveIndex;
+    public int CurrentWaveNumber=>currentWave!=null&&selectedWaves!=null&&currentWaveIndex>0&&currentWaveIndex<=selectedWaves.Length
+        &&selectedWaves[currentWaveIndex-1]==currentWave?currentWaveIndex:0;
+}
 public class WaveData {}
 public class WaveSetter
 {
@@ -27,14 +32,6 @@ public class ScrollUI
     public void SubValue(float v) {HPscrollbar.value-=v;}
     public void PlusGaugevalue(float v) {gauge+=v;}
     public void SubGaugeValue(float v) {gauge-=v;}
-}
-public class SelectionManager
-{
-    public static SelectionManager Instance=new SelectionManager();
-    public static CharacterBase CharacterBase;
-    public static CharacterData _characterData;
-    public List<CharacterBase> unitOnStage=new List<CharacterBase>();
-    public static void SelectCharacter(CharacterBase p) { CharacterBase=p; }
 }
 public class PlacementManager
 {
@@ -67,3 +64,4 @@ public class ActiveSkill : SkillList {}
 public class NormalSkill : SkillList {}
 public class LinkSkill : SkillList {}
 public class UltimateSkill : SkillList {}
+

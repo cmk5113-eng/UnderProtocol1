@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public delegate  void EventCharacterChanged(CharacterBase newCharacter);
 
@@ -73,14 +71,16 @@ public class SelectionManager : ManagerBase
         {
             _characterBase = null;
         }
+        _characterData = _characterBase != null ? _characterBase.Data : null;
         OnCharacterChanged?.Invoke(_characterBase);
     }
 
     public static void DeselectCharacter()
     {
-        if (_characterBase == null) { return; }
+        if (_characterBase == null) { _characterData = null; return; }
         _characterBase.OnDeSelected();
         _characterBase = null;
+        _characterData = null;
         OnCharacterChanged?.Invoke(_characterBase);
         Debug.Log("[Selection] 캐릭터 선택이 해제되었습니다.");
     }

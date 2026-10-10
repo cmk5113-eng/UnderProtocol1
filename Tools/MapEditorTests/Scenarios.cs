@@ -28,10 +28,16 @@ internal static class Scenarios
     private static WaveData Current(StageMapEditor editor) => (WaveData)typeof(StageMapEditor).GetProperty("CurrentWave", Private).GetValue(editor);
     private static void Mode(StageMapEditor editor, string mode) => Set(editor, "mode", Enum.Parse(typeof(StageMapEditor).GetNestedType("EditMode", BindingFlags.NonPublic), mode));
     private static void Check(bool value, string message) { if (!value) throw new Exception(message); }
+    private static void RegisterButton(WaveSetter setter, int clearId)
+    {
+        StageMapEntry map = GameManager.Instance.Wave.Maps[0];
+        map.stageButtons.Add(new StageMapButton { button = setter, clearId = clearId });
+    }
+
     private static void SetStageWaves(WaveManager manager, int index, WaveData[] waves)
     {
-        while (manager.StageCount <= index) manager.AddStage();
-        Get<List<StageWaveData>>(manager, "stages")[index].waves = waves;
+        while (manager.Maps.Count <= index) manager.EditorAddMap(new GameObject("map " + manager.Maps.Count).AddComponent<Tilemap>());
+        manager.Maps[index].waves = waves;
     }
 
     private sealed class Fixture
@@ -39,7 +45,7 @@ internal static class Scenarios
         public StageMapEditor editor;
         public WaveManager manager;
         public WaveLoader loader;
-        public StageMapBinding binding;
+        public StageMapEntry entry => manager.GetMap(map);
         public Tilemap map;
         public WaveData first, second;
         public StageMapData terrain;
@@ -61,31 +67,31 @@ internal static class Scenarios
         EventSystem.current = null;
         var f = new Fixture { editor = new StageMapEditor(), first = new WaveData { name = "first" }, second = new WaveData { name = "second" }, terrain = new StageMapData() };
         f.manager = new GameObject("manager").AddComponent<WaveManager>();
-        SetStageWaves(f.manager, 0, new[] { f.first, f.second });
-        SetStageWaves(f.manager, 1, Array.Empty<WaveData>());
         var root = new GameObject("inactive map"); root.activeSelf = false; root.AddComponent<PlacementController>();
         f.loader = root.AddComponent<WaveLoader>();
         var tiles = new GameObject("tilemap") { parent = root };
-        f.map = tiles.AddComponent<Tilemap>(); f.binding = tiles.AddComponent<StageMapBinding>(); f.binding.EditorSetTilemap(f.map);
-        Set(f.binding, "mapData", f.terrain);
+        f.map = tiles.AddComponent<Tilemap>(); f.manager.EditorAddMap(f.map);
+        SetStageWaves(f.manager, 0, new[] { f.first, f.second });
+        SetStageWaves(f.manager, 1, Array.Empty<WaveData>());
+        f.entry.mapData = f.terrain;
         for (int x = -2; x <= 0; x++) for (int y = -1; y <= 1; y++) f.map.Tiles.Add(new Vector3Int(x, y));
         f.a = Monster(11, "A"); f.b = Monster(22, "B");
-        Set(f.loader, "monsterDatas", new List<MonsterData> { f.a, f.b });
-        Set(f.editor, "tilemap", f.map); Set(f.editor, "stageMapData", f.terrain); Set(f.editor, "selectedMonster", f.a);
+        Set(f.entry, "monsterDatas", new List<MonsterData> { f.a, f.b });
+        Set(f.editor, "tilemap", f.map); Set(f.editor, "selectedMonster", f.a);
         GameManager.Instance = new GameObject("game manager").AddComponent<GameManager>(); GameManager.Instance.Wave = f.manager;
         BattleManager.Instance = new GameObject("battle").AddComponent<BattleManager>();
         PlacementManager.Instance = new GameObject("placement").AddComponent<PlacementManager>(); PlacementManager.Instance.tilemap = f.map;
+        f.manager.SelectMap(f.map);
         return f;
     }
 
     private static void EditModeReadsSerializedWaves()
     {
         Fixture f = NewFixture();
-        Check(f.manager.StageWaveIndex.Count == 2, "compatibility view must read the same authoring list in edit mode");
-        Check(Current(f.editor) == f.first, "edit mode cannot read the selected serialized wave");
-        Check(f.manager.GetStageWaves(-1) == null && f.manager.GetStageWaves(5) == null, "invalid stage accepted");
-        Set(f.binding, "stageIndex", 1); SetStageWaves(f.manager, 1, new[] { f.second });
-        Check(Current(f.editor) == f.second, "Stage Index did not change waves");
+        Check(f.manager.Maps.Count == 2 && Current(f.editor) == f.first, "editor did not read its registered map");
+        Check(f.manager.GetMap((Tilemap)null) == null && f.manager.GetMap(new GameObject("unregistered").AddComponent<Tilemap>()) == null, "unregistered map resolved to another map");
+        f.entry.waves = new[] { f.second };
+        Check(Current(f.editor) == f.second, "editor ignored saved map waves");
     }
 
     private static void PaintReplacesOneCellAndIsolatesWaves()
@@ -118,12 +124,12 @@ internal static class Scenarios
     {
         Fixture f = NewFixture(); var otherStage = new[] { new WaveData() }; SetStageWaves(f.manager, 1, otherStage);
         Call(f.editor, "AddWaveSlot", new object[] { null });
-        Check(f.manager.GetStageWaves(0).Length == 3 && Current(f.editor) == null, "new slot copied the previous reference");
-        Check(f.manager.GetStageWaves(1).SequenceEqual(otherStage), "editing one stage changed another");
+        Check(f.manager.Maps[0].waves.Length == 3 && Current(f.editor) == null, "new slot copied the previous reference");
+        Check(f.manager.Maps[1].waves.SequenceEqual(otherStage), "editing one stage changed another");
         Call(f.editor, "RemoveWaveSlot", 0);
-        Check(f.manager.GetStageWaves(0).Length == 2 && f.manager.GetStageWaves(0)[0] == f.second, "non-null slot was cleared instead of removed");
+        Check(f.manager.Maps[0].waves.Length == 2 && f.manager.Maps[0].waves[0] == f.second, "non-null slot was cleared instead of removed");
         Check(Get<int>(f.editor, "selectedWaveIndex") == 1, "selection was not adjusted");
-        Undo.PerformUndo(); Check(f.manager.GetStageWaves(0).Length == 3 && f.manager.GetStageWaves(0)[0] == f.first, "list undo failed");
+        Undo.PerformUndo(); Check(f.manager.Maps[0].waves.Length == 3 && f.manager.Maps[0].waves[0] == f.first, "list undo failed");
         Check(EditorSceneManager.Dirty.Count > 0, "list changes did not mark scene dirty");
     }
 
@@ -136,7 +142,7 @@ internal static class Scenarios
                 SetStageWaves(f.manager, 0, original); Set(f.editor, "selectedWaveIndex", selected);
                 WaveData active = Current(f.editor); Call(f.editor, "MoveWaveSlot", from, to);
                 Check(Current(f.editor) == active, $"selection changed for move {from}->{to} at {selected}");
-                Check(f.manager.GetStageWaves(0)[to] == original[from], "wave execution order did not change");
+                Check(f.manager.Maps[0].waves[to] == original[from], "wave execution order did not change");
             }
     }
 
@@ -145,9 +151,9 @@ internal static class Scenarios
         Fixture f = NewFixture(); var cell = new Vector3Int(0, 0);
         Set(f.editor, "selectedMonster", Monster(99, "unregistered"));
         Check(!(bool)Call(f.editor, "PaintCell", cell), "unregistered monster painted");
-        Set(f.editor, "selectedMonster", f.a); Set(f.loader, "monsterDatas", new List<MonsterData> { f.a, Monster(11, "duplicate") });
+        Set(f.editor, "selectedMonster", f.a); Set(f.entry, "monsterDatas", new List<MonsterData> { f.a, Monster(11, "duplicate") });
         Check(!(bool)Call(f.editor, "PaintCell", cell), "duplicate ID painted");
-        Set(f.loader, "monsterDatas", new List<MonsterData> { f.a }); f.a.prefab = new GameObject("no MonsterBase");
+        Set(f.entry, "monsterDatas", new List<MonsterData> { f.a }); f.a.prefab = new GameObject("no MonsterBase");
         Check(!(bool)Call(f.editor, "PaintCell", cell), "invalid prefab painted");
         Check(f.first.monsters.Count == 0, "rejected paint changed data");
     }
@@ -168,21 +174,21 @@ internal static class Scenarios
     private static void NewWaveCreationAndCancellation()
     {
         Fixture f = NewFixture(); Call(f.editor, "CreateWaveAsset", -1);
-        Check(f.manager.GetStageWaves(0).Length == 2 && AssetDatabase.Assets.Count == 0, "cancel created a wave or slot");
+        Check(f.manager.Maps[0].waves.Length == 2 && AssetDatabase.Assets.Count == 0, "cancel created a wave or slot");
         EditorUtility.NextAssetPath = "Assets/TestWave.asset"; Call(f.editor, "CreateWaveAsset", -1);
         WaveData created = Current(f.editor);
-        Check(created != f.first && created != f.second && created.monsters != null && f.manager.GetStageWaves(0).Length == 3, "new wave not created and linked");
+        Check(created != f.first && created != f.second && created.monsters != null && f.manager.Maps[0].waves.Length == 3, "new wave not created and linked");
         Check(AssetDatabase.Assets["Assets/TestWave.asset"] == created, "new wave was not stored at selected path");
         Call(f.editor, "RemoveWaveSlot", 2); Check(AssetDatabase.Assets.ContainsKey("Assets/TestWave.asset"), "removing a slot deleted its asset");
         Call(f.editor, "AddWaveSlot", new object[] { null }); EditorUtility.NextAssetPath = "Assets/SlotWave.asset"; Call(f.editor, "CreateWaveAsset", 2);
-        Check(f.manager.GetStageWaves(0).Length == 3 && Current(f.editor) == AssetDatabase.Assets["Assets/SlotWave.asset"], "empty slot creation appended extra slot");
+        Check(f.manager.Maps[0].waves.Length == 3 && Current(f.editor) == AssetDatabase.Assets["Assets/SlotWave.asset"], "empty slot creation appended extra slot");
     }
 
-    private static void WaveListSaveIncludesBindingScene()
+    private static void WaveListSaveIncludesTilemapScene()
     {
-        Fixture f = NewFixture(); f.binding.gameObject.scene = new UnityEngine.SceneManagement.Scene(2); Call(f.editor, "SaveWaveList");
-        Check(EditorSceneManager.Saved.Select(scene => scene.id).SequenceEqual(new[] { 1, 2 }), "scene containing the binding was not saved");
-        EditorSceneManager.Saved.Clear(); f.binding.gameObject.scene = f.manager.gameObject.scene; Call(f.editor, "SaveWaveList");
+        Fixture f = NewFixture(); f.map.gameObject.scene = new UnityEngine.SceneManagement.Scene(2); Call(f.editor, "SaveWaveList");
+        Check(EditorSceneManager.Saved.Select(scene => scene.id).SequenceEqual(new[] { 1, 2 }), "scene containing the editor configuration was not saved");
+        EditorSceneManager.Saved.Clear(); f.map.gameObject.scene = f.manager.gameObject.scene; Call(f.editor, "SaveWaveList");
         Check(EditorSceneManager.Saved.Count == 1, "same scene saved twice");
     }
 
@@ -191,7 +197,7 @@ internal static class Scenarios
         Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(-2, 1));
         Set(f.editor, "selectedMonster", f.b); Call(f.editor, "PaintCell", new Vector3Int(0, -1)); Call(f.editor, "SaveCurrentWave");
         var connected = (IEnumerator)Call(f.manager, "OnConnected", GameManager.Instance); while (connected.MoveNext()) { }
-        Check(f.manager.StageWaveIndex[0] == f.manager.GetStageWaves(0), "runtime list differs from editor's serialized list");
+        Check(f.manager.Maps.Select(map => map.waves).ToList()[0] == f.manager.Maps[0].waves, "runtime list differs from editor's serialized list");
         f.manager.currentWave = Current(f.editor); Check(f.loader.LoadWave(), "runtime rejected the editor-authored wave");
         Check(MonsterBase._monsters.Count == 2 && MonsterBase._monsters[0].name == "A clone" && MonsterBase._monsters[1].name == "B clone", "runtime instantiated wrong monster IDs");
         Check(MonsterBase._monsters[0].transform.position.x == -1.5f && MonsterBase._monsters[0].transform.position.y == 1.5f, "runtime lost tile coordinates");
@@ -257,14 +263,13 @@ internal static class Scenarios
     {
         Fixture f = NewFixture(); Set(f.editor, "selectedWaveIndex", 1);
         var nextRoot = new GameObject("next map"); nextRoot.AddComponent<PlacementController>();
-        var nextLoader = nextRoot.AddComponent<WaveLoader>(); var nextMonster = Monster(33, "C");
-        Set(nextLoader, "monsterDatas", new List<MonsterData> { nextMonster });
-        var nextObject = new GameObject("next tilemap") { parent = nextRoot };
-        var nextMap = nextObject.AddComponent<Tilemap>(); nextMap.Tiles.Add(new Vector3Int(0, 0));
-        var nextBinding = nextObject.AddComponent<StageMapBinding>(); nextBinding.EditorSetTilemap(nextMap); Set(nextBinding, "stageIndex", 1);
-        var nextWave = new WaveData(); SetStageWaves(f.manager, 1, new[] { nextWave });
+        nextRoot.AddComponent<WaveLoader>(); var nextMonster = Monster(33, "C");
+        var nextMap = new GameObject("next tilemap") { parent = nextRoot }.AddComponent<Tilemap>();
+        nextMap.Tiles.Add(new Vector3Int(0, 0)); f.manager.EditorAddMap(nextMap);
+        var nextWave = new WaveData(); StageMapEntry entry = f.manager.GetMap(nextMap);
+        entry.waves = new[] { nextWave }; entry.monsterDatas.Add(nextMonster);
         Set(f.editor, "tilemap", nextMap); Call(f.editor, "TryAutoFindStageMapData");
-        Check(Current(f.editor) == nextWave && Get<StageMapData>(f.editor, "stageMapData") == null, "previous map data leaked into next map");
+        Check(Current(f.editor) == nextWave && entry.mapData == null, "previous map data leaked into next map");
         Check((bool)Call(f.editor, "PaintCell", new Vector3Int(0, 0)) && nextWave.monsters[0].monsterID == 33, "next map used previous monster catalog");
         Check(f.first.monsters.Count == 0 && f.second.monsters.Count == 0, "switching maps changed prior waves");
     }
@@ -277,88 +282,76 @@ internal static class Scenarios
         Check(!(bool)Call(f.editor, "PaintCell", cell) && !(bool)Call(f.editor, "EraseCell", cell), "play mode changed authoring data");
     }
 
-    private static void LegacyMigrationPreservesAllFiveStagesAndStaysEmptyAfterDeletion()
+    private static void OnlyRegisteredMapsAreUsed()
     {
-        NewFixture(); var legacyManager = new GameObject("legacy manager").AddComponent<WaveManager>();
-        var originals = new WaveData[5][];
-        for (int i = 0; i < originals.Length; i++)
-        {
-            originals[i] = new[] { new WaveData { name = "legacy" + i }, new WaveData() };
-            Set(legacyManager, "stage" + (i + 1) + "Waves", originals[i]);
-        }
-        Check(legacyManager.MigrateLegacyStages() && legacyManager.StageCount == 5, "legacy stages were not migrated");
-        for (int i = 0; i < originals.Length; i++) Check(legacyManager.GetStageWaves(i).SequenceEqual(originals[i]), "migration lost a legacy wave reference");
-        Check(!legacyManager.MigrateLegacyStages(), "migration ran a second time");
-        while (legacyManager.StageCount > 0) legacyManager.RemoveStage(0);
-        Check(legacyManager.StageCount == 0 && !legacyManager.MigrateLegacyStages(), "deleting all stages resurrected legacy data");
-        var fresh = new GameObject("fresh manager").AddComponent<WaveManager>();
-        Check(fresh.StageCount == 0, "new component still creates five hardcoded stages");
+        Fixture f = NewFixture();
+        var unknown = new GameObject("same name") { parent = f.map.gameObject.parent }.AddComponent<Tilemap>();
+        Check(!f.manager.SelectMap(unknown) && f.manager.selectedWaves == null, "unregistered map fell back to another map");
+        var setter = new GameObject("unregistered button").AddComponent<WaveSetter>();
+        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => TileMapManager.SelectMap(f.map));
+        setter.SelectSkillByIndex();
+        Check(!BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null, "button entered via an event fallback");
+        Check(new GameObject("fresh manager").AddComponent<WaveManager>().Maps.Count == 0, "new manager created legacy stages");
     }
 
     private static void ThirtyStagesCanBeAuthoredAndLoaded()
     {
         Fixture f = NewFixture();
-        while (f.manager.StageCount < 30) Check(StageWaveEditorUtility.AddStage(f.manager) == f.manager.StageCount - 1, "append returned wrong index");
-        Check(f.manager.StageCount == 30 && f.manager.StageWaveIndex.Count == 30, "stage list stopped at five");
-        f.binding.EditorSetStageIndex(29); var wave = new WaveData(); Call(f.editor, "AddWaveSlot", wave);
-        Check(Current(f.editor) == wave && f.manager.GetStageWaves(29).Length == 1 && f.manager.GetStageWaves(28).Length == 0, "new stage shared another stage's wave list");
-        Call(f.editor, "PaintCell", new Vector3Int(0, 0)); Call(f.editor, "SaveCurrentWave");
-        var setter = new GameObject("stage button").AddComponent<WaveSetter>(); setter.index = 100;
-        Set(setter, "progressController", new GameObject("progress").AddComponent<tempcontroller>());
-        SelectMapOnEntry(setter, f.map);
+        while (f.manager.Maps.Count < 30)
+        {
+            Set(f.editor, "tilemap", new GameObject("tilemap").AddComponent<Tilemap>());
+            Check((bool)Call(f.editor, "RegisterCurrentMap"), "map registration failed");
+        }
+        Tilemap last = f.manager.Maps[29].tilemap; last.Tiles.Add(new Vector3Int(0, 0));
+        f.manager.Maps[29].monsterDatas.Add(f.a);
+        var wave = new WaveData(); Call(f.editor, "AddWaveSlot", wave); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        Check(Current(f.editor) == wave && f.manager.Maps[28].waves.Length == 0, "map wave list shared another map");
+        var setter = new GameObject("stage button").AddComponent<WaveSetter>();
+        f.manager.Maps[29].stageButtons.Add(new StageMapButton { button = setter, clearId = 100 });
         setter.SelectSkillByIndex();
-        Check(BattleManager.Instance.IsBattleActive && BattleManager.Instance.LastStageId == 100, "battle entry still used fixed stage count or changed clear ID");
-        Check(f.manager.currentWave == wave && MonsterBase._monsters.Count == 1, "Stage Index 29 did not load the authored wave");
+        Check(BattleManager.Instance.IsBattleActive && BattleManager.Instance.LastStageId == 100, "button clear ID was not read from map editor data");
+        Check(f.manager.currentWave == wave && MonsterBase._monsters.Count == 1 && PlacementManager.Instance.tilemap == last, "map 30 did not load the authored wave");
     }
 
-    private static void NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization()
+    private static void DuplicateConnectionsAreRejected()
     {
-        NewFixture(); var fresh = new GameObject("reset manager").AddComponent<WaveManager>();
-        Call(fresh, "Reset");
-        for (int i = 1; i <= 5; i++) Set(fresh, "stage" + i + "Waves", Array.Empty<WaveData>());
-        Check(fresh.StageCount == 0 && !fresh.NeedsStageMigration, "new component's empty legacy fields created five stages");
-        StageWaveEditorUtility.AddStage(fresh); Check(fresh.StageCount == 1, "new component could not author stages after reset");
+        Fixture f = NewFixture(); var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 17);
+        f.manager.Maps[1].stageButtons.Add(new StageMapButton { button = setter });
+        Check(f.manager.GetMap(setter) == null, "duplicate button chose a map arbitrarily");
+        setter.SelectSkillByIndex(); Check(!BattleManager.Instance.IsBattleActive, "duplicate button entered battle");
+        f.manager.Maps[1].stageButtons.Clear(); f.manager.Maps[1].tilemap = f.map;
+        Check(f.manager.GetMap(f.map) == null && f.manager.GetMap(setter) == null, "duplicate tilemap chose a record arbitrarily");
     }
 
-    private static void StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo()
+    private static void MapRemovalPreservesOtherConnectionsAndClearIdsWithUndo()
     {
-        Fixture f = NewFixture(); var middle = new WaveData(); var later = new WaveData();
-        SetStageWaves(f.manager, 1, new[] { middle }); SetStageWaves(f.manager, 2, new[] { later });
-        var removedBinding = new GameObject("removed map").AddComponent<StageMapBinding>(); removedBinding.EditorSetStageIndex(1);
-        var laterBinding = new GameObject("later map").AddComponent<StageMapBinding>(); laterBinding.EditorSetStageIndex(2);
-        var removedSetter = new GameObject("removed button").AddComponent<WaveSetter>(); removedSetter.index = 1;
-        var laterSetter = new GameObject("later button").AddComponent<WaveSetter>(); laterSetter.index = 2;
-        Check(StageWaveEditorUtility.RemoveStage(f.manager, 1), "stage removal failed");
-        Check(f.manager.StageCount == 2 && f.manager.GetStageWaves(1)[0] == later && f.binding.StageIndex == 0, "wrong stage was removed");
-        Check(removedBinding.StageIndex == -1 && removedSetter.WaveStageIndex == -1, "deleted stage references were not disconnected");
-        Check(laterBinding.StageIndex == 1 && laterSetter.WaveStageIndex == 1 && laterSetter.index == 2 && laterSetter.StageId == 2, "later references changed clear/progress IDs");
-        Check(middle != null && later != null, "removing stage destroyed wave assets");
+        Fixture f = NewFixture(); SetStageWaves(f.manager, 2, new[] { new WaveData() });
+        StageMapEntry later = f.manager.Maps[2]; Tilemap removed = f.manager.Maps[1].tilemap;
+        later.stageId = 77; var button = new GameObject("later button").AddComponent<WaveSetter>();
+        later.stageButtons.Add(new StageMapButton { button = button, clearId = 99 });
+        Set(f.editor, "tilemap", removed); Check((bool)Call(f.editor, "RemoveCurrentMap"), "map removal failed");
+        Check(f.manager.Maps.Count == 2 && f.manager.GetMap(button).tilemap == later.tilemap && button.StageId == 99, "removal shifted a connection or clear ID");
         Undo.PerformUndo();
-        Check(f.manager.StageCount == 3 && f.manager.GetStageWaves(1)[0] == middle && removedBinding.StageIndex == 1 && laterBinding.StageIndex == 2, "stage delete undo did not restore manager and bindings together");
-        Check(removedSetter.WaveStageIndex == 1 && laterSetter.WaveStageIndex == 2, "stage delete undo did not restore button references");
+        Check(f.manager.Maps.Count == 3 && f.manager.GetMap(removed) != null && button.StageId == 99, "undo did not restore the removed map");
     }
 
-    private static void DetachedStagesRejectBattleEntryAndCanBeReconnected()
+    private static void RemovedMapsRejectBattleEntryAndCanBeRegisteredAgain()
     {
-        Fixture f = NewFixture(); var setter = new GameObject("button").AddComponent<WaveSetter>(); setter.index = 0;
-        Set(setter, "progressController", new GameObject("progress").AddComponent<tempcontroller>());
-        SelectMapOnEntry(setter, f.map);
-        StageWaveEditorUtility.RemoveStage(f.manager, 0);
-        Check(f.binding.StageIndex == -1 && setter.WaveStageIndex == -1, "removed stage was rebound implicitly");
-        setter.SelectSkillByIndex(); Check(!BattleManager.Instance.IsBattleActive, "detached map entered a different stage");
-        int index = StageWaveEditorUtility.AddStage(f.manager); f.binding.EditorSetStageIndex(index);
-        Call(f.editor, "AddWaveSlot", new WaveData());
-        setter.SelectSkillByIndex(); Check(BattleManager.Instance.IsBattleActive, "map could not reconnect to new stage");
+        Fixture f = NewFixture(); var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 0);
+        Check((bool)Call(f.editor, "RemoveCurrentMap"), "map removal failed"); f.manager.ResetSelection();
+        setter.SelectSkillByIndex(); Check(!BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null, "removed map entered another map's waves");
+        Check((bool)Call(f.editor, "RegisterCurrentMap"), "map could not be registered again");
+        SelectMapOnEntry(setter, f.map); Call(f.editor, "AddWaveSlot", new WaveData());
+        setter.SelectSkillByIndex(); Check(BattleManager.Instance.IsBattleActive, "registered map could not enter battle");
     }
 
-    private static void DynamicStageEditingGuardsInvalidIndexesAndPlayMode()
+    private static void MapRegistrationGuardsPlayModeAndNullTargets()
     {
-        Fixture f = NewFixture(); int count = f.manager.StageCount;
-        Check(!StageWaveEditorUtility.RemoveStage(f.manager, -1) && !StageWaveEditorUtility.RemoveStage(f.manager, count), "invalid stage deletion accepted");
+        Fixture f = NewFixture(); int count = f.manager.Maps.Count;
         EditorApplication.isPlayingOrWillChangePlaymode = true;
-        Check(StageWaveEditorUtility.AddStage(f.manager) == -1 && !StageWaveEditorUtility.RemoveStage(f.manager, 0) && f.manager.StageCount == count, "play mode changed stage collection");
-        EditorApplication.isPlayingOrWillChangePlaymode = false;
-        Check(!f.manager.SetStageWave(99, 0, new WaveData()), "invalid stage wave update accepted");
+        Check(!(bool)Call(f.editor, "RegisterCurrentMap") && !(bool)Call(f.editor, "RemoveCurrentMap") && f.manager.Maps.Count == count, "play mode changed map records");
+        EditorApplication.isPlayingOrWillChangePlaymode = false; Set(f.editor, "tilemap", null);
+        Check(!(bool)Call(f.editor, "RegisterCurrentMap") && !(bool)Call(f.editor, "RemoveCurrentMap"), "null tilemap accepted");
     }
 
     private static StageButtonImageController StageButton(WaveSetter setter, int required)
@@ -376,9 +369,8 @@ internal static class Scenarios
     private static void RequiredProgressControlsButtonAndEntryAtTheBoundary()
     {
         NewFixture();
-        var setter = new GameObject("stage 30").AddComponent<WaveSetter>(); setter.index = 29;
+        var setter = new GameObject("stage 30").AddComponent<WaveSetter>(); RegisterButton(setter, 29);
         var legacy = new GameObject("legacy progress").AddComponent<tempcontroller>(); legacy.allow = false;
-        Set(setter, "progressController", legacy);
         StageButtonImageController controller = StageButton(setter, 100);
         Button button = setter.GetComponent<Button>(); Image image = setter.GetComponent<Image>();
         foreach (int progress in new[] { 0, 99, 100, 101, 99 })
@@ -395,11 +387,11 @@ internal static class Scenarios
 
     private static void DirectStageEntryChecksRequireWithoutTempcontroller()
     {
-        Fixture f = NewFixture(); SetStageWaves(f.manager, 29, new[] { f.first }); f.binding.EditorSetStageIndex(29);
+        Fixture f = NewFixture(); f.entry.stageId = 29;
         Call(f.editor, "PaintCell", new Vector3Int(0, 0));
-        var setter = new GameObject("stage 30 button").AddComponent<WaveSetter>(); setter.index = 29;
+        var setter = new GameObject("stage 30 button").AddComponent<WaveSetter>(); RegisterButton(setter, 29);
         StageButtonImageController controller = StageButton(setter, 100);
-        int entered = 0; Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => entered++);
+        f.manager.ResetSelection(); int entered = 0; Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => entered++);
         SelectMapOnEntry(setter, f.map);
         ProgressManager.Progress = 99; setter.SelectSkillByIndex();
         Check(!BattleManager.Instance.IsBattleActive && entered == 0 && f.manager.selectedWaves == null, "direct invocation bypassed require check");
@@ -413,8 +405,8 @@ internal static class Scenarios
     private static void EachStageButtonKeepsItsOwnRequirement()
     {
         NewFixture();
-        var first = new GameObject("first button").AddComponent<WaveSetter>(); first.index = 7;
-        var second = new GameObject("second button").AddComponent<WaveSetter>(); second.index = 7;
+        var first = new GameObject("first button").AddComponent<WaveSetter>(); RegisterButton(first, 7);
+        var second = new GameObject("second button").AddComponent<WaveSetter>(); RegisterButton(second, 7);
         StageButtonImageController firstUI = StageButton(first, 0), secondUI = StageButton(second, 100);
         ProgressManager.Progress = 50;
         Check(first.CanEnterStage && first.GetComponent<Button>().interactable, "zero requirement was not unlocked");
@@ -427,7 +419,7 @@ internal static class Scenarios
     private static void ClearedAppearanceDoesNotBypassRequireAndRefreshesAfterLoad()
     {
         NewFixture();
-        var setter = new GameObject("cleared stage").AddComponent<WaveSetter>(); setter.index = 12;
+        var setter = new GameObject("cleared stage").AddComponent<WaveSetter>(); RegisterButton(setter, 12);
         StageButtonImageController controller = StageButton(setter, 100);
         Image image = setter.GetComponent<Image>(); Button button = setter.GetComponent<Button>();
         ProgressManager.ClearedStages.Add(setter.StageId); ProgressManager.Progress = 99;
@@ -444,7 +436,7 @@ internal static class Scenarios
     private static void DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection()
     {
         NewFixture();
-        var setter = new GameObject("legacy setter without button art").AddComponent<WaveSetter>(); setter.index = 29;
+        var setter = new GameObject("legacy setter without button art").AddComponent<WaveSetter>(); RegisterButton(setter, 29);
         Check(setter.RequiredProgress == 0 && setter.CanEnterStage, "setter without image controller still required a tempcontroller connection");
         Button button = setter.gameObject.AddComponent<Button>();
         StageButtonImageController controller = setter.gameObject.AddComponent<StageButtonImageController>();
@@ -457,8 +449,10 @@ internal static class Scenarios
 
     private static void SelectMapOnEntry(WaveSetter setter, Tilemap map)
     {
-        TileMapManager selector = new GameObject("map selector").AddComponent<TileMapManager>();
-        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => selector.ChangeCurrentCharacter(map));
+        WaveManager manager = GameManager.Instance.Wave;
+        foreach (StageMapEntry entry in manager.Maps)
+            entry.stageButtons.RemoveAll(item => item.button == setter);
+        manager.GetMap(map).stageButtons.Add(new StageMapButton { button = setter });
     }
 
     private static StageButtonImageController AnimatedStageButton(out WaveSetter setter, out Animator animator)
@@ -539,14 +533,14 @@ internal static class Scenarios
         SetStageWaves(f.manager, 1, new[] { f.second });
         var otherMap = new GameObject("second tilemap") { parent = f.map.gameObject.parent, activeSelf = false }.AddComponent<Tilemap>();
         otherMap.Tiles.UnionWith(f.map.Tiles);
-        var binding = otherMap.gameObject.AddComponent<StageMapBinding>(); binding.EditorSetTilemap(otherMap); binding.EditorSetStageIndex(1);
+        f.manager.Maps[1].tilemap = otherMap; f.manager.Maps[1].monsterDatas.Add(f.b);
         var mapDecoration = new GameObject("map decoration") { parent = f.map.gameObject.parent };
         var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
         var firstScenario = new GameObject("first scenario") { parent = screen, activeSelf = false };
         var secondScenario = new GameObject("second scenario") { parent = screen, activeSelf = false };
         var background = new GameObject("shared background") { parent = screen };
-        var first = new GameObject("first stage") { parent = world }.AddComponent<WaveSetter>(); first.index = 0;
-        var second = new GameObject("second stage") { parent = world }.AddComponent<WaveSetter>(); second.index = 1;
+        var first = new GameObject("first stage") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(first, 0);
+        var second = new GameObject("second stage") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(second, 1);
         ConfigureStageScreens(first, f.map, world, screen, firstScenario);
         ConfigureStageScreens(second, otherMap, world, screen, secondScenario);
         first.SelectSkillByIndex();
@@ -557,7 +551,7 @@ internal static class Scenarios
         // 부모가 닫힌 상태에 이전 activeSelf/Tilemap 참조가 남아 있어도 새 입장을 격리한다.
         firstScenario.SetActive(true); f.map.gameObject.SetActive(true); PlacementManager.Instance.tilemap = f.map;
         second.SelectSkillByIndex();
-        Check(f.manager.currentWave == f.second && BattleManager.Instance.LastStageId == 1, "entry read the previous map's wave binding");
+        Check(f.manager.currentWave == f.second && BattleManager.Instance.LastStageId == 1, "entry read the previous map's wave editor configuration");
         Check(secondScenario.activeInHierarchy && !firstScenario.activeSelf, "new scenario re-enabled the previous scenario");
         Check(otherMap.gameObject.activeInHierarchy && !f.map.gameObject.activeSelf && PlacementManager.Instance.OriginMap == otherMap, "new map kept an old tilemap or origin");
         Check(MonsterBase._monsters.Count == 1 && MonsterBase._monsters[0].name == "B clone", "new stage spawned previous stage monsters");
@@ -566,32 +560,24 @@ internal static class Scenarios
         Check(!secondScenario.activeSelf && !otherMap.gameObject.activeSelf && !screen.activeSelf && world.activeSelf, "second return did not close selected content");
     }
 
-    private static void WrongParentBindingCannotSelectAnotherMapsWaves()
+    private static void ScreenEventsCannotOverrideEditorMap()
     {
         Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
-        f.map.gameObject.Components.Remove(f.binding);
         Tilemap otherMap = new GameObject("unselected map") { parent = f.map.gameObject.parent }.AddComponent<Tilemap>();
-        StageMapBinding ambiguous = f.map.gameObject.parent.AddComponent<StageMapBinding>(); ambiguous.EditorSetStageIndex(1);
-        StageMapBinding shared = f.map.gameObject.parent.AddComponent<StageMapBinding>(); shared.EditorSetTilemap(otherMap); shared.EditorSetStageIndex(1);
-        Set(ambiguous, "postBattleScenario", new GameObject("ambiguous post scenario"));
-        Set(shared, "postBattleScenario", new GameObject("other map post scenario"));
-        var setter = new GameObject("stage without own binding").AddComponent<WaveSetter>(); setter.index = 0;
-        SelectMapOnEntry(setter, f.map); setter.SelectSkillByIndex();
-        Check(BattleManager.Instance.IsBattleActive && f.manager.currentWave == f.first, "shared Grid binding for a different Tilemap replaced the button's wave index");
-        Check(!otherMap.gameObject.activeSelf && f.map.gameObject.activeSelf, "unselected sibling Tilemap stayed enabled");
-        Check(!setter.ShowPostBattleScenario(), "a different or ambiguous map binding selected a post scenario");
+        var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 0);
+        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => TileMapManager.SelectMap(otherMap));
+        setter.SelectSkillByIndex();
+        Check(BattleManager.Instance.IsBattleActive && f.manager.currentWave == f.first && PlacementManager.Instance.tilemap == f.map, "screen event overrode map editor configuration");
+        Check(!otherMap.gameObject.activeSelf && f.map.gameObject.activeSelf, "unselected sibling stayed enabled");
     }
 
-    private static void InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive()
+    private static void UnconfiguredButtonDoesNotRunEntryEvents()
     {
-        Fixture f = NewFixture(); f.binding.EditorSetStageIndex(-1);
-        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
-        var scenario = new GameObject("invalid stage scenario") { parent = screen, activeSelf = false };
-        var setter = new GameObject("invalid stage").AddComponent<WaveSetter>(); setter.index = 0;
-        ConfigureStageScreens(setter, f.map, world, screen, scenario);
+        Fixture f = NewFixture(); f.manager.ResetSelection();
+        var setter = new GameObject("invalid stage").AddComponent<WaveSetter>(); int entered = 0;
+        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => entered++);
         setter.SelectSkillByIndex();
-        Check(!BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null && PlacementManager.Instance.tilemap == null, "failed entry kept battle state or selected waves");
-        Check(!scenario.activeSelf && !screen.activeSelf && !f.map.gameObject.activeSelf && !f.map.gameObject.parent.activeSelf && world.activeSelf, "failed entry kept stage content enabled");
+        Check(entered == 0 && !BattleManager.Instance.IsBattleActive && f.manager.selectedWaves == null, "unconfigured button ran screen events or entered battle");
     }
 
     private static Dialog1 AddDialogue(GameObject scenario, Type type, string[] lines)
@@ -668,12 +654,12 @@ internal static class Scenarios
         var after = new GameObject("after") { parent = screen, activeSelf = false };
         var skip = new GameObject("next") { parent = after }.AddComponent<Button>();
         Dialog1 dialogue = AddDialogue(after, typeof(Dialog2), new[] { "after battle" });
-        Set(f.binding, "postBattleScenario", after);
+        f.entry.postBattleScenario = after;
         var otherMap = new GameObject("other map").AddComponent<Tilemap>();
-        var otherBinding = otherMap.gameObject.AddComponent<StageMapBinding>(); otherBinding.EditorSetTilemap(otherMap);
+        f.manager.EditorAddMap(otherMap); StageMapEntry otherEntry = f.manager.GetMap(otherMap);
         var stale = new GameObject("previous post scenario") { parent = screen };
-        Set(otherBinding, "postBattleScenario", stale);
-        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); setter.index = 0;
+        otherEntry.postBattleScenario = stale;
+        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(setter, 0);
         int completed = 0;
         skip.onClick.AddPersistentListener(after, "CompleteStory", () => completed++);
         skip.onClick.AddPersistentListener(setter, nameof(WaveSetter.ReturnToWorld), setter.ReturnToWorld);
@@ -715,7 +701,7 @@ internal static class Scenarios
         Fixture f = NewFixture();
         var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
         var before = new GameObject("before") { parent = screen, activeSelf = false };
-        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); setter.index = 0;
+        var setter = new GameObject("stage") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(setter, 0);
         ConfigureStageScreens(setter, f.map, world, screen, before); setter.SelectSkillByIndex();
         PlacementController.RemoveAllObject();
         Check(!setter.ShowPostBattleScenario(), "unconfigured stage claimed a post scenario"); setter.ReturnToWorld();
@@ -793,7 +779,7 @@ internal static class Scenarios
         Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
         f.first.monsters.Add(new MonsterSpawnData { monsterID = f.b.id, position = new Vector3Int(-2, -1) });
         f.first.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(0, 0) });
-        f.manager.currentWave = f.first; f.manager.selectedWaves = new[] { f.first };
+        f.manager.currentWave = f.first; f.entry.waves = new[] { f.first };
         Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0, "invalid second body left a partial wave");
         BattleManager.Instance.IsBattleActive = true; f.loader.NextWave();
         Check(f.manager.currentWaveIndex == 0 && MonsterBase._monsters.Count == 0, "failed load advanced the wave or spawned a partial unit");
@@ -834,31 +820,141 @@ internal static class Scenarios
         Check(a.currentHP == 5 && b.currentHP == 8, "exposed cell did not damage only its own unit");
     }
 
+    private static void CatalogRegistrationControlsRuntimeSpawnsAndRetry()
+    {
+        Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        f.entry.waves = new[] { f.first }; f.entry.monsterDatas.Clear(); BattleManager.Instance.IsBattleActive = true;
+        f.loader.NextWave();
+        Check(f.manager.currentWaveIndex == 0 && MonsterBase._monsters.Count == 0, "missing registration advanced or partially spawned the wave");
+        f.entry.monsterDatas.Add(f.a); f.loader.NextWave();
+        Check(f.manager.currentWaveIndex == 1 && MonsterBase._monsters.Single().name == "A clone", "registering the missing monster in editor data did not fix loading");
+    }
+
+    private static void DuplicateCatalogFailsBeforeSpawningOrAdvancing()
+    {
+        Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(0, 0));
+        f.entry.monsterDatas.Add(Monster(f.a.id, "duplicate")); BattleManager.Instance.IsBattleActive = true;
+        f.loader.NextWave();
+        Check(f.manager.currentWaveIndex == 0 && MonsterBase._monsters.Count == 0, "ambiguous ID chose a prefab or advanced the wave");
+    }
+
+    private static void MapSwitchUsesItsOwnCatalogAndRejectsStaleSelection()
+    {
+        Fixture f = NewFixture(); var next = new GameObject("next map").AddComponent<Tilemap>(); next.Tiles.Add(new Vector3Int(0, 0));
+        f.manager.EditorAddMap(next); StageMapEntry config = f.manager.GetMap(next);
+        var wave = new WaveData(); wave.monsters.Add(new MonsterSpawnData { monsterID = f.a.id, position = new Vector3Int(0, 0) });
+        config.waves = new[] { wave }; config.monsterDatas.Add(Monster(f.a.id, "next catalog"));
+        PlacementManager.Instance.tilemap = next; f.manager.currentWave = wave;
+        Check(!f.loader.LoadWave() && MonsterBase._monsters.Count == 0, "stale map selection loaded another map's wave");
+        f.manager.SelectMap(next); f.manager.currentWave = f.first;
+        Check(!f.loader.LoadWave(), "foreign wave bypassed the selected map's authored list");
+        f.manager.currentWave = wave;
+        Check(f.loader.LoadWave() && MonsterBase._monsters.Single().name == "next catalog clone", "loader used the prior map's same-ID prefab");
+    }
+
+    private static void SharedMapButtonsKeepTheirOwnClearIds()
+    {
+        Fixture f = NewFixture(); var first = new GameObject("first").AddComponent<WaveSetter>(); var second = new GameObject("second").AddComponent<WaveSetter>();
+        RegisterButton(first, 3); RegisterButton(second, 27);
+        Check(first.StageId == 3 && second.StageId == 27, "shared map collapsed distinct clear records");
+        first.SelectSkillByIndex(); Check(BattleManager.Instance.LastStageId == 3, "first clear ID changed at entry");
+        PlacementController.RemoveAllObject(); second.SelectSkillByIndex();
+        Check(BattleManager.Instance.LastStageId == 27, "second clear ID changed at entry");
+        var fresh = new GameObject("fresh map").AddComponent<Tilemap>(); f.manager.EditorAddMap(fresh);
+        Check(f.manager.GetMap(fresh).stageId > 27, "new map reused a button's clear ID");
+    }
+
+    private static void EditorMapDataLoadsAtEntryAndCleansUpOnExit()
+    {
+        Fixture f = NewFixture(); Call(f.editor, "PaintCell", new Vector3Int(-2, 1));
+        var blocked = new Vector3Int(0, 0); var passable = new Vector3Int(-2, -1);
+        f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("blocking obstacle"), position = blocked });
+        f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("decoration"), position = passable, blocksMovement = false });
+        f.terrain.fieldEffects.Add(new FieldEffectSpawnData { position = new Vector3Int(-1, 0), effectType = StageFieldEffectType.Ice, value = 2, duration = 3 });
+        var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 0); setter.SelectSkillByIndex();
+        Check(BattleManager.Instance.IsBattleActive && !PlacementManager.Instance.GetTileData(blocked).isempty && PlacementManager.Instance.GetTileData(passable).isempty, "editor obstacles did not load with their movement setting");
+        Check(BattleManager.Instance.Fields.Applied.Single().type == SkillTileFieldEffectType.Ice, "editor field was not passed to battle effects");
+        var clones = GameObject.All.Where(obj => obj.name == "blocking obstacle clone" || obj.name == "decoration clone").ToArray();
+        Check(clones.Length == 2 && clones.All(obj => obj.parent == f.map.gameObject), "map objects loaded under another map");
+        PlacementController.RemoveAllObject();
+        Check(clones.All(obj => !obj.activeSelf) && f.manager.ActiveMap == null && f.manager.selectedWaves == null, "battle exit kept map objects or wave selection");
+    }
+
+    private static void InvalidMapDataDoesNotLeavePartialBattleObjects()
+    {
+        Fixture f = NewFixture(); var cell = new Vector3Int(0, 0);
+        f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("obstacle"), position = cell });
+        f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("other obstacle"), position = cell });
+        var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 0); setter.SelectSkillByIndex();
+        Check(!BattleManager.Instance.IsBattleActive && MonsterBase._monsters.Count == 0 && f.manager.ActiveMap == null, "invalid terrain left battle state or spawned monsters");
+        Check(!GameObject.All.Any(obj => obj.name == "obstacle clone"), "invalid terrain left a partially loaded obstacle");
+    }
+
+    private static void WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets()
+    {
+        Fixture f = NewFixture();
+        f.entry.waves = new[] { f.first, f.second, f.first };
+        BattleManager.Instance.IsBattleActive = true;
+        Check(f.manager.CurrentWaveNumber == 0, "unloaded wave has an ordinal");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 1, "first empty wave did not display 1");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 2, "second wave did not display 2");
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 3, "reused wave asset displayed its first position");
+        f.manager.ResetSelection(); Check(f.manager.CurrentWaveNumber == 0, "exit kept the previous ordinal");
+        f.manager.SelectMap(f.map);
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = 99999, position = new Vector3Int(0, 0) });
+        f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 0, "failed spawn advanced the displayed ordinal");
+    }
+
+    private static void ExpandedAuthoredCatalogLoadsAndRetainsEveryMonsterId()
+    {
+        Fixture f = NewFixture();
+        f.entry.monsterDatas.Clear();
+        foreach (string path in System.IO.Directory.GetFiles("Assets/1.Datas/Original/ScriptableObjects/Enemy", "*.asset"))
+        {
+            string source = System.IO.File.ReadAllText(path);
+            int id = int.Parse(System.Text.RegularExpressions.Regex.Match(source, @"(?m)^  id: (\d+)").Groups[1].Value);
+            f.entry.monsterDatas.Add(Monster(id, System.IO.Path.GetFileNameWithoutExtension(path)));
+        }
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = 0, position = new Vector3Int(-2,1) });
+        BattleManager.Instance.BeginBattle(0,null);f.loader.NextWave();
+        Check(f.manager.CurrentWaveNumber == 1 && MonsterBase._monsters.Count == 1,
+            "expanded authored catalog prevented the first wave from spawning");
+        Check(f.entry.monsterDatas.Count == 15 && f.entry.monsterDatas.Select(data => data.id).Distinct().Count() == 15,
+            "copied monster assets retained colliding IDs");
+        Check(Enumerable.Range(0,14).All(id => f.entry.monsterDatas.Any(data => data.id == id))
+            && f.entry.monsterDatas.Any(data => data.id == 1000), "expanded monster IDs were lost or silently replaced");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
             ListAdditionRemovalAndUndo, ReorderingPreservesSelectedAsset, InvalidMonsterDataCannotBePainted,
-            SaveTargetsSelectedAssetAndRejectsInvalidSpawns, NewWaveCreationAndCancellation, WaveListSaveIncludesBindingScene,
+            SaveTargetsSelectedAssetAndRejectsInvalidSpawns, NewWaveCreationAndCancellation, WaveListSaveIncludesTilemapScene,
             PaintedWaveLoadsThroughRealWaveLoader, SpawnedMonstersUseDataHPInsteadOfPrefabHP,
             GridCoordinatesAndDragPainting, SwitchingTilemapsResolvesNewStageAndPalette, PlayModeGuardsAndPaintUndo,
-            LegacyMigrationPreservesAllFiveStagesAndStaysEmptyAfterDeletion, ThirtyStagesCanBeAuthoredAndLoaded,
-            NewComponentResetDoesNotLookLikeLegacyAfterArrayNormalization,
-            StageRemovalRemapsBindingsAndPreservesProgressIdsWithUndo, DetachedStagesRejectBattleEntryAndCanBeReconnected,
-            DynamicStageEditingGuardsInvalidIndexesAndPlayMode,
+            OnlyRegisteredMapsAreUsed, ThirtyStagesCanBeAuthoredAndLoaded,
+            DuplicateConnectionsAreRejected,
+            MapRemovalPreservesOtherConnectionsAndClearIdsWithUndo, RemovedMapsRejectBattleEntryAndCanBeRegisteredAgain,
+            MapRegistrationGuardsPlayModeAndNullTargets,
             RequiredProgressControlsButtonAndEntryAtTheBoundary, DirectStageEntryChecksRequireWithoutTempcontroller,
             EachStageButtonKeepsItsOwnRequirement, ClearedAppearanceDoesNotBypassRequireAndRefreshesAfterLoad,
             DefaultAndNegativeRequirementsNeedNoLegacyProgressConnection,
             ClickedButtonClearsHoverAndSelection, LockedAndReenabledButtonsDoNotRestoreHover,
-            ReenteringStagesClosesPreviousScenarioAndTilemap, WrongParentBindingCannotSelectAnotherMapsWaves,
-            InvalidSelectedStageReturnsToWorldWithoutLeavingContentActive,
+            ReenteringStagesClosesPreviousScenarioAndTilemap, ScreenEventsCannotOverrideEditorMap,
+            UnconfiguredButtonDoesNotRunEntryEvents,
             DialogueCompletionInvokesExistingSkipOnce, DialogueReopensFromStartAndEmptyDataCanExit,
             PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback,
             LargeMonsterPaintEraseAndUndoUseTheWholeBody, LargeMonsterPaintingRejectsEdgesHolesAndOtherUnits,
             LargeMonsterSaveValidationChecksEveryCoveredCell, WaveLoaderRegistersOneLargeUnitAtEveryBodyCell,
             InvalidLargeWaveCannotPartiallySpawnOrAdvance, WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits,
-            WaveLoaderInitializesCellShieldsSeparatelyForEachSpawn };
+            WaveLoaderInitializesCellShieldsSeparatelyForEachSpawn,
+            CatalogRegistrationControlsRuntimeSpawnsAndRetry, DuplicateCatalogFailsBeforeSpawningOrAdvancing,
+            MapSwitchUsesItsOwnCatalogAndRejectsStaleSelection, SharedMapButtonsKeepTheirOwnClearIds,
+            EditorMapDataLoadsAtEntryAndCleansUpOnExit, InvalidMapDataDoesNotLeavePartialBattleObjects,
+            WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets, ExpandedAuthoredCatalogLoadsAndRetainsEveryMonsterId };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;
     }
 }
+

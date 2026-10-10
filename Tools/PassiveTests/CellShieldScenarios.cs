@@ -84,7 +84,7 @@ public static partial class Scenarios
                 Setup();map.transform.position=new Vector3(27,-30);map.scale=2.8f;
                 var p=Player(0,4);var e=ShieldedEnemy(4,4);var skill=FieldSkill(SkillTileFieldEffectType.None);
                 skill.effectType=SkillEffectType.Damage;skill.roePattern[0].position=new Vector2Int(1,0);skill.roePattern[0].damage=3;
-                SelectionManager.CharacterBase=p;targeting.StartSkillTargeting(skill,p);
+                SelectionManager._characterBase=p;targeting.StartSkillTargeting(skill,p);
                 for(int i=0;i<rotation;i++)targeting.RotatePatternClockwise();
                 Input.mousePosition=map.GetCellCenterWorld(pivots[rotation]);Call(targeting,"HandleRealtimeAoE");targeting.ExecuteSkillOnTarget();
                 Check(e.currentHP==8&&e.ShieldCount==3&&!e.HasCellShield(map,expected[rotation]),"rotation stripped the wrong shield at "+rotation);
@@ -156,3 +156,4 @@ public static partial class Scenarios
         });
     }
 }
+

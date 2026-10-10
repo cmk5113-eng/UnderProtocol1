@@ -722,30 +722,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -1861,30 +1837,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -4622,30 +4574,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -9942,7 +9870,6 @@ GameObject:
   - component: {fileID: 97617574}
   - component: {fileID: 97617576}
   - component: {fileID: 97617575}
-  - component: {fileID: 97617577}
   m_Layer: 0
   m_Name: Tilemap (16)
   m_TagString: Untagged
@@ -11170,22 +11097,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &97617577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97617573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 15
-  targetTilemap: {fileID: 97617576}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &101626404
 GameObject:
   m_ObjectHideFlags: 0
@@ -11369,30 +11280,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -11518,11 +11405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -14406,11 +14288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 22
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 22
-  progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -14451,18 +14328,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 891093691}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -16466,30 +16331,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -19147,11 +18988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 27
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 27
-  progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -19192,18 +19028,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 863791526}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -20538,11 +20362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -21656,11 +21475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 10
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 10
-  progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -21701,18 +21515,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 836783367}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -22423,11 +22225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 20
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 20
-  progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -22468,18 +22265,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 416602137}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -22871,7 +22656,6 @@ GameObject:
   - component: {fileID: 212375718}
   - component: {fileID: 212375720}
   - component: {fileID: 212375719}
-  - component: {fileID: 212375721}
   m_Layer: 0
   m_Name: Tilemap (13)
   m_TagString: Untagged
@@ -24099,22 +23883,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &212375721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212375717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 12
-  targetTilemap: {fileID: 212375720}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &212851484
 GameObject:
   m_ObjectHideFlags: 0
@@ -29679,106 +29447,483 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60469b56f5749b14f9c4c7293bd92ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  stages:
-  - waves:
+  maps:
+  - tilemap: {fileID: 1798922318}
+    stageId: 0
+    stageButtons:
+    - button: {fileID: 1932128095}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 3dfbbdcddf003854c9657cbb427ddd75, type: 2}
     - {fileID: 11400000, guid: b7952fd3606c3f14982c6dea9def3fc5, type: 2}
     - {fileID: 11400000, guid: 1f4e9f9faee4f724a9f650afd2269d97, type: 2}
     - {fileID: 11400000, guid: 0098880125840f84db10f33b6f5f5dc0, type: 2}
     - {fileID: 11400000, guid: b1ef495c50f6e74479c46984914d63c6, type: 2}
-  - waves:
+    - {fileID: 11400000, guid: 90c9a96959008254faf35e8a3b406bb4, type: 2}
+    - {fileID: 11400000, guid: 2355a756eb3bef242ba891d80cea4d6c, type: 2}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
+    - {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
+    - {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
+    - {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
+    - {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
+    - {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
+    - {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
+    - {fileID: 11400000, guid: ccdf07dab626ebb4a936f142a8678b24, type: 2}
+    - {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 419834183}
+    stageId: 1
+    stageButtons:
+    - button: {fileID: 1087510856}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 5edebb8579ecd724d864f9d3cf2dcc8d, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
+    - {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
+    - {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
+    - {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
+    - {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
+    - {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
+    - {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
+    - {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1301812295}
+    stageId: 2
+    stageButtons:
+    - button: {fileID: 1796673618}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 36eceeb93cb4fb6408188eb60f123736, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1436426405}
+    stageId: 3
+    stageButtons:
+    - button: {fileID: 1724516689}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: fca9bf609894f00448b65d7428b4dea1, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 381458843}
+    stageId: 4
+    stageButtons:
+    - button: {fileID: 2060298612}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 79b1627ec81f98044a0a528fac30ed59, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 423403745}
+    stageId: 5
+    stageButtons:
+    - button: {fileID: 1844600611}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: b1cbbe256d9337145bab028b365a02d6, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 2055466450}
+    stageId: 6
+    stageButtons:
+    - button: {fileID: 1897195169}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: f4cc704920927324296edebfa7e8864e, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 427372965}
+    stageId: 7
+    stageButtons:
+    - button: {fileID: 1525698729}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 9917a2aa57b80fa4b82c0a26f7353169, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 934336041}
+    stageId: 8
+    stageButtons:
+    - button: {fileID: 1088732965}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 8630bf1c1d265314b83b41971b488462, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 878652271}
+    stageId: 9
+    stageButtons:
+    - button: {fileID: 629394704}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: e8d4a1539daff4c49b5de4a80d630977, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 836783367}
+    stageId: 10
+    stageButtons:
+    - button: {fileID: 208696896}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 1f290d743460b6f418ee19506215f4cc, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1256309944}
+    stageId: 11
+    stageButtons:
+    - button: {fileID: 2081880851}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 6cbd16757ae77b14fa3ef08be881bfbd, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 212375720}
+    stageId: 12
+    stageButtons:
+    - button: {fileID: 1772017491}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 7bee49aa65a35f7418d535d63665ccc8, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 760149121}
+    stageId: 13
+    stageButtons:
+    - button: {fileID: 940605813}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 3b683f02662edd14ebbddfb7f5cc7a19, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1211682848}
+    stageId: 14
+    stageButtons:
+    - button: {fileID: 1429347537}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 300f331b30ea2024587b64c7e16133b8, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 97617576}
+    stageId: 15
+    stageButtons:
+    - button: {fileID: 819587306}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 252ad441aea5ba64f8cca671b0ad1894, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 323468373}
+    stageId: 16
+    stageButtons:
+    - button: {fileID: 1162599143}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 1ddf9a5246e871b419ea7d8921bc2557, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 592584342}
+    stageId: 17
+    stageButtons:
+    - button: {fileID: 2005973898}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 8bfb88851b33d904884f6b356106665a, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 690716906}
+    stageId: 18
+    stageButtons:
+    - button: {fileID: 643405572}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: b16a728ffd8badb4ea7c891c0e7754a0, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 305866305}
+    stageId: 19
+    stageButtons:
+    - button: {fileID: 1143516646}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 2f1a4a6872890d64c97653f6e5fa9715, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 416602137}
+    stageId: 20
+    stageButtons:
+    - button: {fileID: 210698949}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: dabfc14ddc1a0ba4d8ea80544c5ee7e1, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 427371789}
+    stageId: 21
+    stageButtons:
+    - button: {fileID: 915205689}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 654cf54b80846d646b2c0615136ddfb2, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 891093691}
+    stageId: 22
+    stageButtons:
+    - button: {fileID: 139262358}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: a6a905252b9ea3f448853dcd3955dc92, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1522209256}
+    stageId: 23
+    stageButtons:
+    - button: {fileID: 299200950}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: e7bb13e16a8679e41a4a8ba0ac4d7e10, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 639810560}
+    stageId: 24
+    stageButtons:
+    - button: {fileID: 1015392580}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 2d789e11f5665b447a4a279e1f18c314, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1665430229}
+    stageId: 25
+    stageButtons:
+    - button: {fileID: 1924910652}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: e997c48b6a52ef24b89b743b45123815, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1149254971}
+    stageId: 26
+    stageButtons:
+    - button: {fileID: 2065328033}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 0231cf8ee5093d147bc9dfd2d8e94d92, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 863791526}
+    stageId: 27
+    stageButtons:
+    - button: {fileID: 191947457}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 8b0f20d8a17eb4e43a9ee6ac958df9b9, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1162440187}
+    stageId: 28
+    stageButtons:
+    - button: {fileID: 1472961310}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 47d7a845e0e033f469487c32ce2cb561, type: 2}
-  - waves:
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
+  - tilemap: {fileID: 1784545346}
+    stageId: 29
+    stageButtons:
+    - button: {fileID: 1684835066}
+      clearId: -1
+    waves:
     - {fileID: 11400000, guid: 45ac8803ba0d28b40be0ccc0019834ac, type: 2}
-  - waves: []
-  stageDataMigrated: 1
-  stage1Waves:
-  - {fileID: 11400000, guid: d97db849a447c75478a8af02dc13b6d3, type: 2}
-  - {fileID: 11400000, guid: f3de2127db47d044286d4362c1bf25df, type: 2}
-  - {fileID: 11400000, guid: 7cdf265d067f7ba418fe98261ad495eb, type: 2}
-  - {fileID: 11400000, guid: 31146e36565d18940986286f9577cff7, type: 2}
-  - {fileID: 11400000, guid: 4b63dfd78ab7e7343b1b543db0641c33, type: 2}
-  stage2Waves:
-  - {fileID: 11400000, guid: 87971134b0b5d92439551e44060bd302, type: 2}
-  - {fileID: 11400000, guid: 62cc87e3f1f70844fb3dff224b83c121, type: 2}
-  - {fileID: 11400000, guid: bfe8983869c223f49a0a28c1da2505bd, type: 2}
-  - {fileID: 11400000, guid: b2da0339eab200042ad7b7acf15341b2, type: 2}
-  - {fileID: 11400000, guid: b31f4b73439dd8f42860c6af8486f75e, type: 2}
-  stage3Waves:
-  - {fileID: 11400000, guid: 182e6c7b05064ad42a2ea0f65d7e3cde, type: 2}
-  - {fileID: 11400000, guid: f2c76b9c5963c7f43b496f52b25f6706, type: 2}
-  - {fileID: 11400000, guid: a57470a8370afd04ba72fd1a3c6ff245, type: 2}
-  - {fileID: 11400000, guid: 7779027a470ebf145ac07d54871b1430, type: 2}
-  - {fileID: 11400000, guid: aafcddf760f6d2845adc16fefa85ca21, type: 2}
-  stage4Waves:
-  - {fileID: 11400000, guid: 8cbeddfecb66352448939d05cd9e25d5, type: 2}
-  - {fileID: 11400000, guid: 1adb2e801f1a9244795e343d4e11b427, type: 2}
-  - {fileID: 11400000, guid: a41df84005ec48f4d9d4f4e2d32fc5a9, type: 2}
-  - {fileID: 11400000, guid: 0bf02a818bdf44d46875d67649ceeff0, type: 2}
-  - {fileID: 11400000, guid: a673952c58da5ad4a84000751b3a9682, type: 2}
-  stage5Waves:
-  - {fileID: 11400000, guid: 8a9d29fd282860d44b41a3b0cc86de47, type: 2}
-  - {fileID: 11400000, guid: e7a41c01fcc04514186960f77978add8, type: 2}
-  - {fileID: 11400000, guid: c00e745ce9747024ab49cef2a99ec2dd, type: 2}
-  - {fileID: 11400000, guid: 8008a6b4a0606ba4b8465af7ed6e6230, type: 2}
-  - {fileID: 11400000, guid: 3f6d90f54a46c554c9f8e5704fd8a67a, type: 2}
-  selectedWaves: []
-  currentWaveIndex: 0
-  currentWave: {fileID: 0}
+    monsterDatas:
+    - {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
+    - {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
+    - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
+    - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
+    - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    mapData: {fileID: 0}
+    postBattleScenario: {fileID: 0}
 --- !u!1 &289737606
 GameObject:
   m_ObjectHideFlags: 0
@@ -30004,30 +30149,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -30380,70 +30501,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[11]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[12]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ccdf07dab626ebb4a936f142a8678b24, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[13]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[14]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -30487,10 +30544,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 234079413235630271, guid: fde82305339504d49b4aed116969202f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 410704550}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde82305339504d49b4aed116969202f, type: 3}
 --- !u!4 &293733019 stripped
 Transform:
@@ -31144,11 +31198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 23
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 23
-  progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -31189,18 +31238,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1522209256}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -32300,7 +32337,6 @@ GameObject:
   - component: {fileID: 305866303}
   - component: {fileID: 305866305}
   - component: {fileID: 305866304}
-  - component: {fileID: 305866306}
   m_Layer: 0
   m_Name: Tilemap (20)
   m_TagString: Untagged
@@ -33528,22 +33564,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &305866306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305866302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 19
-  targetTilemap: {fileID: 305866305}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &306643067
 GameObject:
   m_ObjectHideFlags: 0
@@ -35724,7 +35744,6 @@ GameObject:
   - component: {fileID: 323468371}
   - component: {fileID: 323468373}
   - component: {fileID: 323468372}
-  - component: {fileID: 323468374}
   m_Layer: 0
   m_Name: Tilemap (17)
   m_TagString: Untagged
@@ -36952,22 +36971,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &323468374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323468370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 16
-  targetTilemap: {fileID: 323468373}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &323606442
 GameObject:
   m_ObjectHideFlags: 0
@@ -41380,7 +41383,6 @@ GameObject:
   - component: {fileID: 381458841}
   - component: {fileID: 381458843}
   - component: {fileID: 381458842}
-  - component: {fileID: 381458844}
   m_Layer: 0
   m_Name: Tilemap (5)
   m_TagString: Untagged
@@ -42608,22 +42610,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &381458844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381458840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 4
-  targetTilemap: {fileID: 381458843}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &381743670
 GameObject:
   m_ObjectHideFlags: 0
@@ -44719,27 +44705,6 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
---- !u!1 &410704547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 234079413235630271, guid: fde82305339504d49b4aed116969202f, type: 3}
-  m_PrefabInstance: {fileID: 293733018}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &410704550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410704547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 0
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &413915636 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4314515580764758953, guid: c90729f078ea0524495846caba57c4fb, type: 3}
@@ -44898,7 +44863,6 @@ GameObject:
   - component: {fileID: 416602135}
   - component: {fileID: 416602137}
   - component: {fileID: 416602136}
-  - component: {fileID: 416602138}
   m_Layer: 0
   m_Name: Tilemap (21)
   m_TagString: Untagged
@@ -46126,22 +46090,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &416602138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416602134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 20
-  targetTilemap: {fileID: 416602137}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &419834180
 GameObject:
   m_ObjectHideFlags: 0
@@ -46153,7 +46101,6 @@ GameObject:
   - component: {fileID: 419834181}
   - component: {fileID: 419834183}
   - component: {fileID: 419834182}
-  - component: {fileID: 419834184}
   m_Layer: 0
   m_Name: Tilemap (2)
   m_TagString: Untagged
@@ -47381,22 +47328,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &419834184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419834180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 1
-  targetTilemap: {fileID: 419834183}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!213 &420509400
 Sprite:
   m_ObjectHideFlags: 0
@@ -47697,7 +47628,6 @@ GameObject:
   - component: {fileID: 423403743}
   - component: {fileID: 423403745}
   - component: {fileID: 423403744}
-  - component: {fileID: 423403746}
   m_Layer: 0
   m_Name: Tilemap (6)
   m_TagString: Untagged
@@ -48925,22 +48855,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &423403746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423403742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 5
-  targetTilemap: {fileID: 423403745}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &424115629
 GameObject:
   m_ObjectHideFlags: 0
@@ -49183,30 +49097,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -49405,7 +49295,6 @@ GameObject:
   - component: {fileID: 427371787}
   - component: {fileID: 427371789}
   - component: {fileID: 427371788}
-  - component: {fileID: 427371790}
   m_Layer: 0
   m_Name: Tilemap (22)
   m_TagString: Untagged
@@ -50633,22 +50522,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &427371790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427371786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 21
-  targetTilemap: {fileID: 427371789}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &427372962
 GameObject:
   m_ObjectHideFlags: 0
@@ -50660,7 +50533,6 @@ GameObject:
   - component: {fileID: 427372963}
   - component: {fileID: 427372965}
   - component: {fileID: 427372964}
-  - component: {fileID: 427372966}
   m_Layer: 0
   m_Name: Tilemap (8)
   m_TagString: Untagged
@@ -51888,22 +51760,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &427372966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427372962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 7
-  targetTilemap: {fileID: 427372965}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &427494396
 GameObject:
   m_ObjectHideFlags: 0
@@ -58979,30 +58835,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -63004,30 +62836,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -63183,30 +62991,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -64176,30 +63960,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -80244,30 +80004,6 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[99].second.m_TileMatrixIndex
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 7825350992129245660, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 7844625508223309319, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -83172,25 +82908,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4250949528887377587, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1784545344}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153761}
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153760}
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153759}
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153758}
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153757}
-    - targetCorrespondingSourceObject: {fileID: 3869218819271716549, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1833153756}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b8e1e09cf9d1e43a4a23e9f28581f2, type: 3}
 --- !u!1 &556899639
 GameObject:
@@ -85290,7 +85008,6 @@ GameObject:
   - component: {fileID: 592584340}
   - component: {fileID: 592584342}
   - component: {fileID: 592584341}
-  - component: {fileID: 592584343}
   m_Layer: 0
   m_Name: Tilemap (18)
   m_TagString: Untagged
@@ -86518,22 +86235,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &592584343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592584339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 17
-  targetTilemap: {fileID: 592584342}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &596670937
 GameObject:
   m_ObjectHideFlags: 0
@@ -89643,11 +89344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 9
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 9
-  progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -89688,18 +89384,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 878652271}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -90429,7 +90113,6 @@ GameObject:
   - component: {fileID: 639810558}
   - component: {fileID: 639810560}
   - component: {fileID: 639810559}
-  - component: {fileID: 639810561}
   m_Layer: 0
   m_Name: Tilemap (25)
   m_TagString: Untagged
@@ -91657,22 +91340,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &639810561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639810557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 24
-  targetTilemap: {fileID: 639810560}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &642934605
 GameObject:
   m_ObjectHideFlags: 0
@@ -91921,11 +91588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 18
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 18
-  progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -91966,18 +91628,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 690716906}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -96295,7 +95945,6 @@ GameObject:
   - component: {fileID: 690716904}
   - component: {fileID: 690716906}
   - component: {fileID: 690716905}
-  - component: {fileID: 690716907}
   m_Layer: 0
   m_Name: Tilemap (19)
   m_TagString: Untagged
@@ -97523,22 +97172,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &690716907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690716903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 18
-  targetTilemap: {fileID: 690716906}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!213 &691024747
 Sprite:
   m_ObjectHideFlags: 0
@@ -98859,30 +98492,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -103830,7 +103439,6 @@ GameObject:
   - component: {fileID: 760149119}
   - component: {fileID: 760149121}
   - component: {fileID: 760149120}
-  - component: {fileID: 760149122}
   m_Layer: 0
   m_Name: Tilemap (14)
   m_TagString: Untagged
@@ -105058,22 +104666,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &760149122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760149118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 13
-  targetTilemap: {fileID: 760149121}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &760840601
 GameObject:
   m_ObjectHideFlags: 0
@@ -106478,30 +106070,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -108393,30 +107961,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -109026,11 +108570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -110265,11 +109804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 15
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 15
-  progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -110310,18 +109844,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 97617576}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -112097,7 +111619,6 @@ GameObject:
   - component: {fileID: 836783365}
   - component: {fileID: 836783367}
   - component: {fileID: 836783366}
-  - component: {fileID: 836783368}
   m_Layer: 0
   m_Name: Tilemap (11)
   m_TagString: Untagged
@@ -113325,22 +112846,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &836783368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836783364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 10
-  targetTilemap: {fileID: 836783367}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &838892202
 GameObject:
   m_ObjectHideFlags: 0
@@ -115520,7 +115025,6 @@ GameObject:
   - component: {fileID: 863791524}
   - component: {fileID: 863791526}
   - component: {fileID: 863791525}
-  - component: {fileID: 863791527}
   m_Layer: 0
   m_Name: Tilemap (28)
   m_TagString: Untagged
@@ -116748,22 +116252,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &863791527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863791523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 27
-  targetTilemap: {fileID: 863791526}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!213 &864073946
 Sprite:
   m_ObjectHideFlags: 0
@@ -118257,7 +117745,6 @@ GameObject:
   - component: {fileID: 878652269}
   - component: {fileID: 878652271}
   - component: {fileID: 878652270}
-  - component: {fileID: 878652272}
   m_Layer: 0
   m_Name: Tilemap (10)
   m_TagString: Untagged
@@ -119485,22 +118972,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &878652272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878652268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 9
-  targetTilemap: {fileID: 878652271}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &878742519
 GameObject:
   m_ObjectHideFlags: 0
@@ -120460,7 +119931,6 @@ GameObject:
   - component: {fileID: 891093689}
   - component: {fileID: 891093691}
   - component: {fileID: 891093690}
-  - component: {fileID: 891093692}
   m_Layer: 0
   m_Name: Tilemap (23)
   m_TagString: Untagged
@@ -121688,22 +121158,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &891093692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891093688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 22
-  targetTilemap: {fileID: 891093691}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &892760560
 GameObject:
   m_ObjectHideFlags: 0
@@ -123213,11 +122667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 21
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 21
-  progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -123258,18 +122707,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 427371789}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -126582,7 +126019,6 @@ GameObject:
   - component: {fileID: 934336039}
   - component: {fileID: 934336041}
   - component: {fileID: 934336040}
-  - component: {fileID: 934336042}
   m_Layer: 0
   m_Name: Tilemap (9)
   m_TagString: Untagged
@@ -127810,22 +127246,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &934336042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934336038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 8
-  targetTilemap: {fileID: 934336041}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &935920549
 GameObject:
   m_ObjectHideFlags: 0
@@ -128456,11 +127876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 13
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 13
-  progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -128501,18 +127916,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 760149121}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -134288,11 +133691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 24
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 24
-  progressController: {fileID: 1949409675}
   worldScreen: {fileID: 886227690}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -134333,18 +133731,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 639810560}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886227690}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -134833,30 +134219,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -138375,11 +137737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 1
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 1
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -138420,18 +137777,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 419834183}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -138786,11 +138131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 8
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 8
-  progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -138831,18 +138171,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 934336041}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -139297,66 +138625,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[9]'
-      value: 
-      objectReference: {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[10]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[11]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[12]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[13]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -139975,11 +139243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -143142,11 +142405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 19
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 19
-  progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -143187,18 +142445,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 305866305}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -145291,7 +144537,6 @@ GameObject:
   - component: {fileID: 1149254969}
   - component: {fileID: 1149254971}
   - component: {fileID: 1149254970}
-  - component: {fileID: 1149254972}
   m_Layer: 0
   m_Name: Tilemap (27)
   m_TagString: Untagged
@@ -146519,22 +145764,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1149254972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149254968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 26
-  targetTilemap: {fileID: 1149254971}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1151592523
 GameObject:
   m_ObjectHideFlags: 0
@@ -148104,7 +147333,6 @@ GameObject:
   - component: {fileID: 1162440185}
   - component: {fileID: 1162440187}
   - component: {fileID: 1162440186}
-  - component: {fileID: 1162440188}
   m_Layer: 0
   m_Name: Tilemap (29)
   m_TagString: Untagged
@@ -149332,22 +148560,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1162440188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162440184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 28
-  targetTilemap: {fileID: 1162440187}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1162599139
 GameObject:
   m_ObjectHideFlags: 0
@@ -149448,11 +148660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 16
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 16
-  progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -149493,18 +148700,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 323468373}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -150918,30 +150113,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -154529,7 +153700,6 @@ GameObject:
   - component: {fileID: 1211682846}
   - component: {fileID: 1211682848}
   - component: {fileID: 1211682847}
-  - component: {fileID: 1211682849}
   m_Layer: 0
   m_Name: Tilemap (15)
   m_TagString: Untagged
@@ -155757,22 +154927,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1211682849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211682845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 14
-  targetTilemap: {fileID: 1211682848}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1212654606
 GameObject:
   m_ObjectHideFlags: 0
@@ -156916,30 +156070,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -159367,30 +158497,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -160213,7 +159319,6 @@ GameObject:
   - component: {fileID: 1256309942}
   - component: {fileID: 1256309944}
   - component: {fileID: 1256309943}
-  - component: {fileID: 1256309945}
   m_Layer: 0
   m_Name: Tilemap (12)
   m_TagString: Untagged
@@ -161441,22 +160546,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1256309945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256309941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 11
-  targetTilemap: {fileID: 1256309944}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1256830251
 GameObject:
   m_ObjectHideFlags: 0
@@ -163737,30 +162826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -166131,7 +165196,6 @@ GameObject:
   - component: {fileID: 1301812293}
   - component: {fileID: 1301812295}
   - component: {fileID: 1301812294}
-  - component: {fileID: 1301812296}
   m_Layer: 0
   m_Name: Tilemap (3)
   m_TagString: Untagged
@@ -167359,22 +166423,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1301812296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301812292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 2
-  targetTilemap: {fileID: 1301812295}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1303666265
 GameObject:
   m_ObjectHideFlags: 0
@@ -170440,11 +169488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -173147,30 +172190,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -179310,9 +178329,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8151650}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 8151653}
+        m_TargetAssemblyTypeName: StageUIController, Assembly-CSharp
+        m_MethodName: OnClickPassiveSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -180040,11 +179059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 14
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 14
-  progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -180085,18 +179099,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1211682848}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -180552,30 +179554,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -180716,7 +179694,6 @@ GameObject:
   - component: {fileID: 1436426403}
   - component: {fileID: 1436426405}
   - component: {fileID: 1436426404}
-  - component: {fileID: 1436426406}
   m_Layer: 0
   m_Name: Tilemap (4)
   m_TagString: Untagged
@@ -181944,22 +180921,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1436426406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436426402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 3
-  targetTilemap: {fileID: 1436426405}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1439833158
 GameObject:
   m_ObjectHideFlags: 0
@@ -182802,30 +181763,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -184560,11 +183497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 28
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 28
-  progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -184605,18 +183537,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1162440187}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -185142,30 +184062,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -188108,7 +187004,6 @@ GameObject:
   - component: {fileID: 1522209254}
   - component: {fileID: 1522209256}
   - component: {fileID: 1522209255}
-  - component: {fileID: 1522209257}
   m_Layer: 0
   m_Name: Tilemap (24)
   m_TagString: Untagged
@@ -189336,22 +188231,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1522209257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522209253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 23
-  targetTilemap: {fileID: 1522209256}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1523825881
 GameObject:
   m_ObjectHideFlags: 0
@@ -189665,11 +188544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 7
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 7
-  progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -189710,18 +188584,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 427372965}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -198055,30 +196917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -200259,7 +199097,6 @@ GameObject:
   - component: {fileID: 1665430227}
   - component: {fileID: 1665430229}
   - component: {fileID: 1665430228}
-  - component: {fileID: 1665430230}
   m_Layer: 0
   m_Name: Tilemap (26)
   m_TagString: Untagged
@@ -201487,22 +200324,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1665430230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665430226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 25
-  targetTilemap: {fileID: 1665430229}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1666634552
 GameObject:
   m_ObjectHideFlags: 0
@@ -203073,11 +201894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 29
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 29
-  progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -203118,18 +201934,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1784545346}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -206138,11 +204942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 3
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 3
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -206183,18 +204982,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1436426405}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -207468,30 +206255,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -211354,11 +210117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 12
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 12
-  progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -211399,18 +210157,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 212375720}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -212337,7 +211083,6 @@ GameObject:
   - component: {fileID: 1784545344}
   - component: {fileID: 1784545346}
   - component: {fileID: 1784545345}
-  - component: {fileID: 1784545347}
   m_Layer: 0
   m_Name: Tilemap (30)
   m_TagString: Untagged
@@ -213565,22 +212310,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1784545347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784545343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 29
-  targetTilemap: {fileID: 1784545346}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1785187524
 GameObject:
   m_ObjectHideFlags: 0
@@ -214072,30 +212801,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -214826,11 +213531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 2
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 2
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -214871,18 +213571,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1301812295}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -218817,6 +217505,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 596670940}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: currentenemy
+      value:
+      objectReference: {fileID: 1513715993}
+    - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: defaultImage
       value: 
       objectReference: {fileID: 21300022, guid: be956a9761c3556f9abfc38d9a0483dc, type: 3}
@@ -220021,102 +218713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc8f923f677f0f438706cc807fe5626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
---- !u!114 &1833153756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 5
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
---- !u!114 &1833153757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 3
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
---- !u!114 &1833153758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 4
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
---- !u!114 &1833153759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 2
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
---- !u!114 &1833153760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 1
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
---- !u!114 &1833153761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134912108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 0
-  targetTilemap: {fileID: 0}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &1836363750
 GameObject:
   m_ObjectHideFlags: 0
@@ -221102,11 +219698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 5
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 5
-  progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -221147,18 +219738,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 423403745}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -226078,11 +224657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 6
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 6
-  progressController: {fileID: 1510847741}
   worldScreen: {fileID: 124891112}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -226123,18 +224697,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2055466450}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 124891112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -227888,11 +226450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 25
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 25
-  progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -227933,18 +226490,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1665430229}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -228387,11 +226932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 0
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -228432,18 +226972,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1798922318}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -229685,30 +228213,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -232436,11 +230940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 0
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: -1
-  progressController: {fileID: 0}
   worldScreen: {fileID: 0}
   scenarioScreen: {fileID: 0}
   onStageEntered:
@@ -234762,30 +233261,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wave
       objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: monsterDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7c5f455688f2da249be471a26e8f93c0, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c9deae8cc10f6954a812ce102af23718, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
-    - target: {fileID: 2660661005506664618, guid: fde82305339504d49b4aed116969202f, type: 3}
-      propertyPath: 'monsterDatas.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - target: {fileID: 4070299733127254897, guid: fde82305339504d49b4aed116969202f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -316.58298
@@ -235348,11 +233823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 17
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 17
-  progressController: {fileID: 1576384175}
   worldScreen: {fileID: 883299426}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -235393,18 +233863,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 592584342}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 883299426}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -238754,7 +237212,6 @@ GameObject:
   - component: {fileID: 2055466448}
   - component: {fileID: 2055466450}
   - component: {fileID: 2055466449}
-  - component: {fileID: 2055466451}
   m_Layer: 0
   m_Name: Tilemap (7)
   m_TagString: Untagged
@@ -239982,22 +238439,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &2055466451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055466447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64372562b0d34a63bbd53a842ef95f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageMapBinding
-  stageIndex: 6
-  targetTilemap: {fileID: 2055466450}
-  mapData: {fileID: 0}
-  postBattleScenario: {fileID: 0}
 --- !u!1 &2058558560
 GameObject:
   m_ObjectHideFlags: 0
@@ -240233,11 +238674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 4
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 4
-  progressController: {fileID: 1440793173}
   worldScreen: {fileID: 791038765}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -240278,18 +238714,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 381458843}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 791038765}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -241192,11 +239616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 26
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 26
-  progressController: {fileID: 1766901577}
   worldScreen: {fileID: 613212209}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -241237,18 +239656,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1149254971}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613212209}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -243179,11 +241586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fb41412b37ff949b4b1867b4bcbc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSetter
-  index: 11
-  overrideWaveStageIndex: 0
-  waveStageIndex: 0
-  stageId: 11
-  progressController: {fileID: 139124267}
   worldScreen: {fileID: 1587819800}
   scenarioScreen: {fileID: 1764881558}
   onStageEntered:
@@ -243224,18 +241626,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 791038769}
-        m_TargetAssemblyTypeName: TileMapManager, Assembly-CSharp
-        m_MethodName: ChangeCurrentCharacter
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1256309944}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tilemap, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1587819800}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine

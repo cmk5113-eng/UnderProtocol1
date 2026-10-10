@@ -154,6 +154,9 @@ public class PlacementController : UI_CharacterSelectWindows
     public static void RemoveAllObject()
     {
         if (BattleManager.Instance != null) BattleManager.Instance.ResetBattle();
+        foreach (StageMapLoader loader in FindObjectsByType<StageMapLoader>(
+            FindObjectsInactive.Include, FindObjectsSortMode.None))
+            loader.ClearRuntimeObjects();
         if (UseSkill.Instance != null) UseSkill.Instance.ClearAllHighlights();
         SelectionManager.DeselectCharacter();
         SelectionManager._characterBase = null;
@@ -194,11 +197,7 @@ public class PlacementController : UI_CharacterSelectWindows
 
         WaveManager wave = GameManager.Instance != null ? GameManager.Instance.Wave : null;
         if (wave != null)
-        {
-            wave.selectedWaves = null;
-            wave.currentWave = null;
-            wave.currentWaveIndex = 0;
-        }
+            wave.ResetSelection();
 
         if (ScrollUI.Instance != null) ScrollUI.Instance.ResetValue();
         if (StageUIController.Instance != null) StageUIController.Instance.Allreset();
@@ -210,6 +209,8 @@ public class PlacementController : UI_CharacterSelectWindows
         SelectionManager.CharacterBase.actionPoint = SelectionManager.CharacterBase.maxAP;
         SelectionManager.CharacterBase.steminaPoint = SelectionManager.CharacterBase.maxStemina;
         SelectionManager.CharacterBase.isSpawned = true;
+        if (StageUIController.Instance != null) StageUIController.Instance.Refresh();
     
     }
 }
+
