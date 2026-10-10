@@ -86269,7 +86269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.19995, y: -91.89557}
+  m_AnchoredPosition: {x: 330, y: -10.029}
   m_SizeDelta: {x: 1006.5226, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &596670939
@@ -217506,7 +217506,7 @@ PrefabInstance:
       objectReference: {fileID: 596670940}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: currentenemy
-      value:
+      value: 
       objectReference: {fileID: 1513715993}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: defaultImage
