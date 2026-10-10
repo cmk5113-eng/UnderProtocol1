@@ -157,32 +157,11 @@ public class UseSkill : MonoBehaviour
 
             ClearTileList(aoeTiles);
 
-            if (castRangeTiles.Contains(currentMouseCell))
+            if (castRangeTiles.Contains(currentMouseCell) &&
+                (currentSkill.HasRoePattern || CurrentSkillAoe > 0))
             {
-                if (currentSkill.HasRoePattern)
-                {
-                    HighlightRoePattern(
-                        currentMouseCell,
-                        currentSkill.roePattern,
-                        patternRotation,
-                        aoeColor,
-                        aoeTiles
-                    );
-                }
-                else
-                {
-                    int targetAoe = CurrentSkillAoe;
-
-                    if (targetAoe > 0)
-                    {
-                        HighlightRange(
-                            currentMouseCell,
-                            targetAoe,
-                            aoeColor,
-                            aoeTiles
-                        );
-                    }
-                }
+                foreach (Vector3Int cell in GetAttackCells(currentMouseCell))
+                    HighlightCell(cell, aoeColor, aoeTiles);
             }
         }
     }
@@ -257,10 +236,8 @@ public class UseSkill : MonoBehaviour
 
         List<CharacterBase> targets = new List<CharacterBase>();
         List<SkillTargetHit> patternHits = new List<SkillTargetHit>();
-        var attackCells = new List<Vector3Int>(aoeTiles);
-        // Legacy single-target skills do not paint an AOE, but still hit the clicked cell.
-        if (!currentSkill.HasRoePattern && CurrentSkillAoe <= 0 && tilemap.HasTile(clickedCell))
-            attackCells.Add(clickedCell);
+        // 미리보기는 UI 진입·회전·공격 후 지워질 수 있으므로 실제 클릭에서 다시 계산한다.
+        List<Vector3Int> attackCells = GetAttackCells(clickedCell);
 
         foreach (Vector3Int cellPos in attackCells)
         {
@@ -490,32 +467,33 @@ public class UseSkill : MonoBehaviour
         }
     }
 
-    private void HighlightRoePattern(
-        Vector3Int pivotCell,
-        List<SkillPatternTile> pattern,
-        int rotation,
-        Color color,
-        List<Vector3Int> saveList)
+    private List<Vector3Int> GetAttackCells(Vector3Int pivotCell)
     {
-        if (pattern == null)
-            return;
-
-        foreach (SkillPatternTile tile in pattern)
+        var cells = new List<Vector3Int>();
+        if (currentSkill.HasRoePattern)
         {
-            if (tile == null)
-                continue;
-
-            Vector2Int rotatedOffset =
-                RotateOffset(tile.position, rotation);
-
-            Vector3Int targetCell = new Vector3Int(
-                pivotCell.x + rotatedOffset.x,
-                pivotCell.y + rotatedOffset.y,
-                0
-            );
-
-            HighlightCell(targetCell, color, saveList);
+            foreach (SkillPatternTile tile in currentSkill.roePattern)
+            {
+                if (tile == null) continue;
+                Vector2Int offset = RotateOffset(tile.position, patternRotation);
+                Vector3Int cell = new Vector3Int(pivotCell.x + offset.x, pivotCell.y + offset.y, 0);
+                if (tilemap.HasTile(cell) && !cells.Contains(cell)) cells.Add(cell);
+            }
         }
+        else
+        {
+            int radius = Mathf.Max(0, CurrentSkillAoe);
+            for (int x = -radius; x <= radius; x++)
+            {
+                for (int y = -radius; y <= radius; y++)
+                {
+                    if (Mathf.Abs(x) + Mathf.Abs(y) > radius) continue;
+                    Vector3Int cell = new Vector3Int(pivotCell.x + x, pivotCell.y + y, 0);
+                    if (tilemap.HasTile(cell)) cells.Add(cell);
+                }
+            }
+        }
+        return cells;
     }
 
     private void HighlightCell(

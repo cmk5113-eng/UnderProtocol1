@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -33,7 +34,25 @@ public class StageUIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        ConfigurePointerTargets();
         BindStageInfo();
+    }
+
+    private void ConfigurePointerTargets()
+    {
+        // HUD 배경과 정보 텍스트는 타일 입력을 가리지 않는다.
+        // 버튼·스크롤·커스텀 포인터 컨트롤의 자식 그래픽은 입력을 유지한다.
+        foreach (Graphic graphic in GetComponentsInChildren<Graphic>(true))
+        {
+            bool hasInputHandler = false;
+            foreach (MonoBehaviour handler in graphic.GetComponentsInParent<MonoBehaviour>(true))
+            {
+                if (!(handler is IEventSystemHandler)) continue;
+                hasInputHandler = true;
+                break;
+            }
+            if (!hasInputHandler) graphic.raycastTarget = false;
+        }
     }
 
     private void BindStageInfo()
@@ -47,6 +66,7 @@ public class StageUIController : MonoBehaviour
     private void OnEnable()
     {
         Instance = this;
+        ConfigurePointerTargets();
         SelectionManager.OnCharacterChanged -= OnCharacterChanged;
         SelectionManager.OnCharacterChanged += OnCharacterChanged;
         BindStageInfo();

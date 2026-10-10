@@ -31,7 +31,7 @@ namespace UnityEngine
 }
 namespace UnityEngine.UI
 {
-    public class Button : UnityEngine.Component
+    public class Button : Selectable
     {
         public readonly ClickEvent onClick = new ClickEvent();
         public class ClickEvent { private event Action actions; public void AddListener(Action a)=>actions+=a; public void Invoke()=>actions?.Invoke(); }
