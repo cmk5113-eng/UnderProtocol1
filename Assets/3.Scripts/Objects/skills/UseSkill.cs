@@ -2,7 +2,9 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class UseSkill : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class UseSkill : MonoBehaviour
 
     private List<Vector3Int> castRangeTiles = new List<Vector3Int>();
     private List<Vector3Int> aoeTiles = new List<Vector3Int>();
+    private readonly List<RaycastResult> pointerHits = new List<RaycastResult>();
 
     private Vector3Int lastMouseCell = new Vector3Int(-999, -999, -999);
     private bool isSkillTargetingActive = false;
@@ -44,6 +47,17 @@ public class UseSkill : MonoBehaviour
 
         if (!isSkillTargetingActive || tilemap == null || (currentSkill == null ) || caster == null) return;
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            CancelTargeting();
+            return;
+        }
+        if (IsPointerOverUI())
+        {
+            ClearRealtimeAoE();
+            return;
+        }
+
         HandlePatternRotation();
         HandleRealtimeAoE();
 
@@ -52,12 +66,19 @@ public class UseSkill : MonoBehaviour
             ExecuteSkillOnTarget();
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            CancelTargeting();
-        }
     }
 
+    private bool IsPointerOverUI()
+    {
+        EventSystem events = EventSystem.current;
+        if (events == null) return false;
+        pointerHits.Clear();
+        var pointer = new PointerEventData(events) { position = new Vector2(Input.mousePosition.x, Input.mousePosition.y) };
+        events.RaycastAll(pointer, pointerHits);
+        foreach (RaycastResult hit in pointerHits)
+            if (hit.module is GraphicRaycaster) return true;
+        return false;
+    }
 
 
 

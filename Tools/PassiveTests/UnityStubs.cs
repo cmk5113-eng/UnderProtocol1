@@ -206,7 +206,7 @@ namespace UnityEngine
     public static class Random { static System.Random random=new System.Random(21); public static int Range(int a,int b)=>random.Next(a,b); }
     public static class Debug { public static void Log(object o) {} public static void LogWarning(object o) {} public static void LogError(object o) {} }
     public enum KeyCode { R }
-    public static class Input { public static Vector3 mousePosition; public static bool GetMouseButtonDown(int i)=>false; public static bool GetKeyDown(KeyCode k)=>false; }
+    public static class Input { public static Vector3 mousePosition; public static bool leftDown,rightDown; public static bool GetMouseButtonDown(int i)=>i==0?leftDown:i==1&&rightDown; public static bool GetKeyDown(KeyCode k)=>false; }
     public class Camera { public static Camera main=new Camera(); public Vector3 ScreenToWorldPoint(Vector3 p)=>p; }
     public class Collider2D : Component { }
     public static class Physics2D
@@ -253,7 +253,21 @@ namespace UnityEngine.UI
     public class Graphic : UnityEngine.Component { public bool raycastTarget=true;public UnityEngine.Color color; }
     public class Image : Graphic { public UnityEngine.Sprite sprite; public bool enabled=true,preserveAspect; }
     public class Selectable : UnityEngine.Component { }
+    public class GraphicRaycaster : UnityEngine.EventSystems.BaseRaycaster { }
 }
 namespace UnityEngine.TextCore.Text { }
+namespace UnityEngine.EventSystems
+{
+    public class BaseRaycaster { }
+    public class PhysicsRaycaster : BaseRaycaster { }
+    public struct RaycastResult { public BaseRaycaster module; }
+    public class PointerEventData { public UnityEngine.Vector2 position; public PointerEventData(EventSystem events) { } }
+    public class EventSystem
+    {
+        public static EventSystem current; public bool pointerOverUI;
+        public void RaycastAll(PointerEventData pointer, List<RaycastResult> hits)
+        { hits.Add(new RaycastResult { module = pointerOverUI ? (BaseRaycaster)new UnityEngine.UI.GraphicRaycaster() : new PhysicsRaycaster() }); }
+    }
+}
 namespace JetBrains.Annotations { }
 

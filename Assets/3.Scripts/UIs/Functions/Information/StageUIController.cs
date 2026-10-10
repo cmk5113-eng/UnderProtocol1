@@ -27,8 +27,6 @@ public class StageUIController : MonoBehaviour
     private CharacterData currentData;
 
     private CharacterBase asCharacter;
-    [SerializeField] private List<GameObject> UIcharacterList;
-    [SerializeField] private List<CharacterData> newCharacters;
     
     public CharacterBase CurrentCharacter => asCharacter;
     public CharacterData CurrentData => currentData;
@@ -48,20 +46,31 @@ public class StageUIController : MonoBehaviour
 
     private void OnEnable()
     {
+        Instance = this;
+        SelectionManager.OnCharacterChanged -= OnCharacterChanged;
+        SelectionManager.OnCharacterChanged += OnCharacterChanged;
         BindStageInfo();
-        UpdateTurn();
-        UpdateWave();
+        Refresh();
     }
 
     private void LateUpdate()
     {
+        if (asCharacter != SelectionManager.CharacterBase ||
+            (asCharacter != null && currentData != asCharacter.Data)) Refresh();
         UpdateWave();
     }
 
-    private void OnDisable() => HideSkillTooltip();
+    private void OnCharacterChanged(CharacterBase character) => Refresh();
+
+    private void OnDisable()
+    {
+        SelectionManager.OnCharacterChanged -= OnCharacterChanged;
+        HideSkillTooltip();
+    }
 
     private void OnDestroy()
     {
+        SelectionManager.OnCharacterChanged -= OnCharacterChanged;
         if (Instance == this) Instance = null;
     }
 
@@ -73,8 +82,10 @@ public class StageUIController : MonoBehaviour
         currentData = null;
         if (portrait != null) portrait.sprite = defaultImage;
         // Image 컴포넌트의 연결은 유지하고 표시 내용만 초기화한다.
-        foreach (Image image in skill)
-            if (image != null) image.sprite = defaultImage;
+        if (skill != null)
+            foreach (Image image in skill)
+                if (image != null) image.sprite = defaultImage;
+        if (characterName != null) characterName.SetText("");
         if (SelectionManager.Instance != null) SelectionManager.Instance.unitOnStage.Clear();
         resetunit();
         UpdateTurn();
@@ -83,61 +94,19 @@ public class StageUIController : MonoBehaviour
     public void Refresh()
     {
         HideSkillTooltip();
-        if (SelectionManager.CharacterBase == null)
-        {
-            return;
-        }
-
         asCharacter = SelectionManager.CharacterBase;
-
-        if (asCharacter == null)
-        {
-            return;
-        }
-
-        int index = -1;
-        for (int i = 0; i < UIcharacterList.Count; i++)
-        {
-            if (UIcharacterList[i] != null && UIcharacterList[i].name == SelectionManager.CharacterBase.gameObject.name)
-            {
-                index = i;
-                break;
-            }
-        }
-
-        // 💡 하드코딩 대신 인덱스 범위 안전 검사 후 리스트에서 다이렉트로 가져옵니다.
-        CharacterData data = SelectionManager._characterData;
-
-        if (index >= 0 && index < newCharacters.Count)
-        {
-            data = newCharacters[index];
-        }
-        else
-        {
-            // 여전히 못 찾은 경우를 대비한 예외 처리 (수동 디버깅 용이)
-            Debug.LogError($"[UI Error] '{SelectionManager.CharacterBase.name}'에 매칭되는 캐릭터 데이터를 newCharacters에서 찾을 수 없습니다. (인덱스: {index})");
-            return;
-        }
-
-        // 데이터 반영
-        if (data != null)
-        {
-            portrait.sprite = data.Portrait;
-            characterName.SetText(data.characterName);
-            RefreshActionPoints();
-
-            // 스킬 데이터 안전성 검사(? 연산자를 사용해 데이터가 부족해도 크래시 방지)
-            skill[0].sprite = data.active != null && data.active.Length > 0 ? data.active[0]?.icon : null;
-            skill[1].sprite = data.active != null && data.active.Length > 1 ? data.active[1]?.icon : null;
-            skill[2].sprite = data.ultimateSkill?.icon;
-            skill[3].sprite = data.normalSkill?.icon;
-            skill[4].sprite = data.passive[0]?.icon;
-            currentData = data;
-
-            Summon();
-            UpdateTurn();
-            UpdateWave();
-        }
+        // 배치된 인스턴스의 데이터는 이름이나 씬의 별도 목록과 관계없이 사용한다.
+        currentData = asCharacter != null ? asCharacter.Data : null;
+        if (portrait != null) portrait.sprite = currentData != null ? currentData.Portrait : defaultImage;
+        if (characterName != null) characterName.SetText(currentData != null ? currentData.characterName : "");
+        if (skill != null)
+            for (int i = 0; i < skill.Length; i++)
+                if (skill[i] != null) skill[i].sprite = GetSkill(i)?.icon ?? defaultImage;
+        RefreshActionPoints();
+        if (asCharacter != null) Summon();
+        else resetunit();
+        UpdateTurn();
+        UpdateWave();
     }
 
 
@@ -260,10 +229,8 @@ public class StageUIController : MonoBehaviour
 
     public void Summon()
     {
-        // 1. 싱글톤 매니저의 선택 정보와 리스트에 먼저 등록합니다.
-        SelectionManager.SelectCharacter(asCharacter);
-
-        if (!SelectionManager.Instance.unitOnStage.Contains(asCharacter))
+        if (asCharacter != null && SelectionManager.Instance != null &&
+            !SelectionManager.Instance.unitOnStage.Contains(asCharacter))
         {
             SelectionManager.Instance.unitOnStage.Add(asCharacter);
         }
@@ -273,7 +240,7 @@ public class StageUIController : MonoBehaviour
     }
     public void UnSummon()
     {
-        SelectionManager.Instance.unitOnStage.Remove(asCharacter);
+        if (SelectionManager.Instance != null) SelectionManager.Instance.unitOnStage.Remove(asCharacter);
         resetunit() ;
     }
     public void OnClickSkill1()
@@ -293,6 +260,7 @@ public class StageUIController : MonoBehaviour
 
     public void resetunit()
     {
+        if (unit == null) return;
         List<CharacterBase> characters = SelectionManager.Instance != null
             ? SelectionManager.Instance.unitOnStage : null;
         for (int i = 0; i < unit.Length; i++)

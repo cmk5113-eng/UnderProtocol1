@@ -5800,6 +5800,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2028182898}
   ScriptText_dialoguename: {fileID: 1330163828}
   ScriptImage_portrait: {fileID: 807507656}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -7997,6 +7998,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1500833157}
   ScriptText_dialoguename: {fileID: 621767133}
   ScriptImage_portrait: {fileID: 291943450}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -16712,6 +16714,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1751317071}
   ScriptText_dialoguename: {fileID: 2078959155}
   ScriptImage_portrait: {fileID: 1710417012}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -18331,6 +18334,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1198446525}
   ScriptText_dialoguename: {fileID: 186947332}
   ScriptImage_portrait: {fileID: 1864572611}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -18742,6 +18746,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 760840603}
   ScriptText_dialoguename: {fileID: 1512253351}
   ScriptImage_portrait: {fileID: 337173424}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -20814,6 +20819,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 945471493}
   ScriptText_dialoguename: {fileID: 786389833}
   ScriptImage_portrait: {fileID: 60688886}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -29462,6 +29468,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
     - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
     - {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
+    - {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
+    - {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
+    - {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
+    - {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
+    - {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
+    - {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
+    - {fileID: 11400000, guid: ccdf07dab626ebb4a936f142a8678b24, type: 2}
+    - {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
     mapData: {fileID: 0}
     postBattleScenario: {fileID: 0}
   - tilemap: {fileID: 419834183}
@@ -29477,6 +29492,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e769392b94e78df4d85227f85f073063, type: 2}
     - {fileID: 11400000, guid: 59798db4b592a2149b5ec7d0f2b8954d, type: 2}
     - {fileID: 11400000, guid: 92cd7942d0d875446aa028c5df79c5d4, type: 2}
+    - {fileID: 11400000, guid: 2b2e249e792c40a45aaf36144bc1c0c8, type: 2}
+    - {fileID: 11400000, guid: 2556470161539df4d929353a4d223398, type: 2}
+    - {fileID: 11400000, guid: 1eae57b2763f5174495e3baf30fec674, type: 2}
+    - {fileID: 11400000, guid: 127af0ffc2cab3c4484a77d013474078, type: 2}
+    - {fileID: 11400000, guid: eb8bcf27013675b41a0844fec565d2c9, type: 2}
+    - {fileID: 11400000, guid: 5f0d9ca8cc843eb4998a66d96877f853, type: 2}
+    - {fileID: 11400000, guid: 64ec15c0f056d134c9ea8877b419998e, type: 2}
+    - {fileID: 11400000, guid: 12e1ceebdd61fd343a321e0d0b95261e, type: 2}
+    - {fileID: 11400000, guid: 8b3e55a87c6649ffa5b72cd9b831ce6f, type: 2}
     mapData: {fileID: 0}
     postBattleScenario: {fileID: 0}
   - tilemap: {fileID: 1301812295}
@@ -31069,6 +31093,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 688798244}
   ScriptText_dialoguename: {fileID: 1015406926}
   ScriptImage_portrait: {fileID: 1271183981}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -31823,6 +31848,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1617340137}
   ScriptText_dialoguename: {fileID: 1409554755}
   ScriptImage_portrait: {fileID: 925912594}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -32022,6 +32048,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1161422929}
   ScriptText_dialoguename: {fileID: 93951326}
   ScriptImage_portrait: {fileID: 1561968892}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -35009,6 +35036,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 982198465}
   ScriptText_dialoguename: {fileID: 1625767140}
   ScriptImage_portrait: {fileID: 1162129550}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -37769,6 +37797,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1184005755}
   ScriptText_dialoguename: {fileID: 432455673}
   ScriptImage_portrait: {fileID: 1502634853}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -40008,6 +40037,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2063692828}
   ScriptText_dialoguename: {fileID: 1617228783}
   ScriptImage_portrait: {fileID: 1540643354}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -52011,6 +52041,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1423591817}
   ScriptText_dialoguename: {fileID: 310045121}
   ScriptImage_portrait: {fileID: 72515308}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -53888,6 +53919,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 659876639}
   ScriptText_dialoguename: {fileID: 323606444}
   ScriptImage_portrait: {fileID: 618806971}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -54498,6 +54530,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1662252283}
   ScriptText_dialoguename: {fileID: 329465465}
   ScriptImage_portrait: {fileID: 200092494}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -54697,6 +54730,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1309936900}
   ScriptText_dialoguename: {fileID: 70543429}
   ScriptImage_portrait: {fileID: 1892013442}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -59001,6 +59035,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1759661878}
   ScriptText_dialoguename: {fileID: 1945255584}
   ScriptImage_portrait: {fileID: 651337136}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -60244,6 +60279,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1897911647}
   ScriptText_dialoguename: {fileID: 1737688959}
   ScriptImage_portrait: {fileID: 1152732011}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -61248,6 +61284,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 318339848}
   ScriptText_dialoguename: {fileID: 564565089}
   ScriptImage_portrait: {fileID: 340400622}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -63234,6 +63271,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 917002729}
   ScriptText_dialoguename: {fileID: 1739047479}
   ScriptImage_portrait: {fileID: 1285720835}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -83563,6 +83601,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 600481170}
   ScriptText_dialoguename: {fileID: 454288850}
   ScriptImage_portrait: {fileID: 785718210}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -88555,6 +88594,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 971004903}
   ScriptText_dialoguename: {fileID: 2058863601}
   ScriptImage_portrait: {fileID: 434363931}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -93977,6 +94017,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 313627931}
   ScriptText_dialoguename: {fileID: 2066414381}
   ScriptImage_portrait: {fileID: 947244167}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -99214,6 +99255,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2115354135}
   ScriptText_dialoguename: {fileID: 866860060}
   ScriptImage_portrait: {fileID: 1466439598}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -100802,6 +100844,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 243142709}
   ScriptText_dialoguename: {fileID: 1990964486}
   ScriptImage_portrait: {fileID: 2143588471}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -102231,6 +102274,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1257967964}
   ScriptText_dialoguename: {fileID: 650803149}
   ScriptImage_portrait: {fileID: 248131916}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -105507,6 +105551,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 108597362}
   ScriptText_dialoguename: {fileID: 45328346}
   ScriptImage_portrait: {fileID: 518466556}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -107188,6 +107233,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 305725074}
   ScriptText_dialoguename: {fileID: 736425051}
   ScriptImage_portrait: {fileID: 430528321}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -108308,6 +108354,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 694767879}
   ScriptText_dialoguename: {fileID: 654004264}
   ScriptImage_portrait: {fileID: 1055131876}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -110930,6 +110977,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 855364879}
   ScriptText_dialoguename: {fileID: 2104632756}
   ScriptImage_portrait: {fileID: 311075781}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -129130,6 +129178,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2128495483}
   ScriptText_dialoguename: {fileID: 84515941}
   ScriptImage_portrait: {fileID: 658781366}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -129769,6 +129818,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1394238986}
   ScriptText_dialoguename: {fileID: 957213113}
   ScriptImage_portrait: {fileID: 1157840442}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -131240,6 +131290,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 81307828}
   ScriptText_dialoguename: {fileID: 563891934}
   ScriptImage_portrait: {fileID: 432561002}
+  skipButton: {fileID: 0}
   dialogue:
   - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
     \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
@@ -132065,6 +132116,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 926775544}
   ScriptText_dialoguename: {fileID: 2096105843}
   ScriptImage_portrait: {fileID: 1947765041}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -139768,6 +139820,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 77687485}
   ScriptText_dialoguename: {fileID: 2014814940}
   ScriptImage_portrait: {fileID: 2027989192}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -150316,6 +150369,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 871450779}
   ScriptText_dialoguename: {fileID: 1276197693}
   ScriptImage_portrait: {fileID: 408077157}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -152873,6 +152927,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1319549118}
   ScriptText_dialoguename: {fileID: 159196303}
   ScriptImage_portrait: {fileID: 817308747}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -161059,6 +161114,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1217478791}
   ScriptText_dialoguename: {fileID: 121394385}
   ScriptImage_portrait: {fileID: 720804447}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -166563,6 +166619,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 561187267}
   ScriptText_dialoguename: {fileID: 210348449}
   ScriptImage_portrait: {fileID: 689668799}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -171603,6 +171660,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1997706736}
   ScriptText_dialoguename: {fileID: 2645189}
   ScriptImage_portrait: {fileID: 88629099}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -175721,6 +175779,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1682711642}
   ScriptText_dialoguename: {fileID: 1192167618}
   ScriptImage_portrait: {fileID: 1860445009}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -175920,6 +175979,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1290293922}
   ScriptText_dialoguename: {fileID: 1429096007}
   ScriptImage_portrait: {fileID: 1140419804}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -176485,6 +176545,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 972429899}
   ScriptText_dialoguename: {fileID: 171502265}
   ScriptImage_portrait: {fileID: 2023117065}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -188829,6 +188890,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 687794600}
   ScriptText_dialoguename: {fileID: 1623721874}
   ScriptImage_portrait: {fileID: 1307633372}
+  skipButton: {fileID: 0}
   dialogue:
   - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
     \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
@@ -189894,6 +189956,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1222226730}
   ScriptText_dialoguename: {fileID: 1001201157}
   ScriptImage_portrait: {fileID: 1296204728}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -196172,6 +196235,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1297633764}
   ScriptText_dialoguename: {fileID: 2021103037}
   ScriptImage_portrait: {fileID: 1678959322}
+  skipButton: {fileID: 0}
   dialogue:
   - "[\uBD88 \uAEBC\uC9C4 \uC0C1\uC810\uB4E4. \uAC04\uD310 \uD558\uB098\uB9CC \uAE5C\uBE61\uC778\uB2E4.
     \uAE38 \uAC74\uB108 \uC804\uAD11\uD310\uC5D0\uB294 \u2018\uB2F9\uC2E0\uC758 \uB0B4\uC77C\uC744
@@ -196500,6 +196564,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 477169667}
   ScriptText_dialoguename: {fileID: 859105716}
   ScriptImage_portrait: {fileID: 1675289603}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -196699,6 +196764,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 722073243}
   ScriptText_dialoguename: {fileID: 449174770}
   ScriptImage_portrait: {fileID: 840166467}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -202877,6 +202943,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2109892891}
   ScriptText_dialoguename: {fileID: 255720981}
   ScriptImage_portrait: {fileID: 1012910129}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -203788,6 +203855,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 2070010418}
   ScriptText_dialoguename: {fileID: 221587294}
   ScriptImage_portrait: {fileID: 80517032}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -203987,6 +204055,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 748297275}
   ScriptText_dialoguename: {fileID: 2117685632}
   ScriptImage_portrait: {fileID: 398166928}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -205791,6 +205860,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 265099947}
   ScriptText_dialoguename: {fileID: 828841798}
   ScriptImage_portrait: {fileID: 281866169}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -216182,6 +216252,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1396881649}
   ScriptText_dialoguename: {fileID: 665434652}
   ScriptImage_portrait: {fileID: 1612225256}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -216908,6 +216979,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 140923428}
   ScriptText_dialoguename: {fileID: 426875000}
   ScriptImage_portrait: {fileID: 695059283}
+  skipButton: {fileID: 0}
   dialogue:
   - "[\uBD88 \uAEBC\uC9C4 \uC0C1\uC810\uB4E4. \uAC04\uD310 \uD558\uB098\uB9CC \uAE5C\uBE61\uC778\uB2E4.
     \uAE38 \uAC74\uB108 \uC804\uAD11\uD310\uC5D0\uB294 \u2018\uB2F9\uC2E0\uC758 \uB0B4\uC77C\uC744
@@ -224344,6 +224416,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1090497129}
   ScriptText_dialoguename: {fileID: 506201505}
   ScriptImage_portrait: {fileID: 819007040}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -229268,6 +229341,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 907698376}
   ScriptText_dialoguename: {fileID: 1767797540}
   ScriptImage_portrait: {fileID: 514137212}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -230302,6 +230376,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 68695735}
   ScriptText_dialoguename: {fileID: 1726108179}
   ScriptImage_portrait: {fileID: 727116117}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -234935,6 +235010,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 876475296}
   ScriptText_dialoguename: {fileID: 2125723137}
   ScriptImage_portrait: {fileID: 870658065}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -236984,6 +237060,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1768243434}
   ScriptText_dialoguename: {fileID: 1158198169}
   ScriptImage_portrait: {fileID: 614657691}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -239930,6 +240007,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 1294208030}
   ScriptText_dialoguename: {fileID: 243552626}
   ScriptImage_portrait: {fileID: 41921004}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -241191,6 +241269,7 @@ MonoBehaviour:
   ScriptText_dialogue: {fileID: 295465938}
   ScriptText_dialoguename: {fileID: 455683192}
   ScriptImage_portrait: {fileID: 1293042996}
+  skipButton: {fileID: 0}
   dialogue: []
   dialoguename: []
   portraits: []
@@ -248747,4 +248826,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 3264656843074194971}
-

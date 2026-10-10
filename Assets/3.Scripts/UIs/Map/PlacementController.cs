@@ -209,6 +209,7 @@ public class PlacementController : UI_CharacterSelectWindows
         SelectionManager.CharacterBase.actionPoint = SelectionManager.CharacterBase.maxAP;
         SelectionManager.CharacterBase.steminaPoint = SelectionManager.CharacterBase.maxStemina;
         SelectionManager.CharacterBase.isSpawned = true;
+        if (StageUIController.Instance != null) StageUIController.Instance.Refresh();
     
     }
 }

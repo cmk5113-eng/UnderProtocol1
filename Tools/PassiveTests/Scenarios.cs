@@ -26,7 +26,9 @@ public static partial class Scenarios
         UObj.ResetScene();
         typeof(BattleManager).GetField("instance",BindingFlags.Static|BindingFlags.NonPublic).SetValue(null,null);
         typeof(StageUIController).GetProperty("Instance").SetValue(null,null);
-        SelectionManager.Instance=new SelectionManager(); SelectionManager.CharacterBase=null;
+        SelectionManager.Instance=new SelectionManager(); SelectionManager._characterBase=null;
+        SelectionManager._characterData=null;SelectionManager.OnCharacterChanged=null;
+        UnityEngine.EventSystems.EventSystem.current=null;Input.leftDown=false;Input.rightDown=false;
         ScrollUI.Instance=null; GameManager.Instance=new GameManager();
         ModeManager.Instance=new ModeManager(); ModeManager.Instance.CurrentMode=ModeManager.GameMode.Movement;
         map=new Tilemap(); PlacementManager.Instance=new PlacementManager { tilemap=map };
@@ -59,7 +61,7 @@ public static partial class Scenarios
     static SkillList Attack()=>new SkillList {effectType=SkillEffectType.Damage,type=SkillType.Normal,damage=1,range=20,aoe=0};
     static void Cast(CharacterBase p,int x,int y,SkillList skill=null)
     {
-        SelectionManager.CharacterBase=p;
+        SelectionManager._characterBase=p;
         targeting.StartSkillTargeting(skill??Attack(),p);
         Input.mousePosition=map.GetCellCenterWorld(C(x,y));
         if ((bool)typeof(UseSkill).GetField("isSkillTargetingActive",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(targeting))
@@ -253,7 +255,7 @@ public static partial class Scenarios
             battle.BeginBattle(0,null);p.actionPoint=1;Cast(p,5,5);Check(p.actionPoint==1,"new battle resets once-per-turn grant");
         });
         Case("UI displays live AP and stamina instead of shared asset defaults",()=>{
-            var p=Player(0,4);SelectionManager.CharacterBase=p;p.actionPoint=2;p.steminaPoint=5;p.Data.actionPoint=0;p.Data.steminaPoint=0;
+            var p=Player(0,4);SelectionManager._characterBase=p;p.actionPoint=2;p.steminaPoint=5;p.Data.actionPoint=0;p.Data.steminaPoint=0;
             var ui=new StageUIController();var ap=new TMPro.TextMeshProUGUI();var sp=new TMPro.TextMeshProUGUI();Set(ui,"AP",ap);Set(ui,"SP",sp);
             ui.RefreshActionPoints();Check(ap.text=="2"&&sp.text=="5","live resource UI");
         });

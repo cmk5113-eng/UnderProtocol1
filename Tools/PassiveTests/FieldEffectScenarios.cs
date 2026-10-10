@@ -44,7 +44,7 @@ public static partial class Scenarios
             var expected=new[]{C(6,7),C(3,6),C(4,3),C(7,4)};
             for(int rotation=0;rotation<4;rotation++)
             {
-                battle.BeginBattle(0,null);p.actionPoint=1;SelectionManager.CharacterBase=p;
+                battle.BeginBattle(0,null);p.actionPoint=1;SelectionManager._characterBase=p;
                 targeting.StartSkillTargeting(skill,p);
                 for(int i=0;i<rotation;i++) targeting.RotatePatternClockwise();
                 Input.mousePosition=map.GetCellCenterWorld(C(5,5));Call(targeting,"HandleRealtimeAoE");
@@ -93,7 +93,7 @@ public static partial class Scenarios
             battle.Fields.Apply(map,C(5,6),p,SkillTileFieldEffectType.Fire,1,3,Vector3Int.right);
             var skill=FieldSkill(SkillTileFieldEffectType.Wind,2,3);
             skill.roePattern[0].fieldPushDirection=SkillPushDirection.Forward;
-            SelectionManager.CharacterBase=p;targeting.StartSkillTargeting(skill,p);targeting.RotatePatternClockwise();
+            SelectionManager._characterBase=p;targeting.StartSkillTargeting(skill,p);targeting.RotatePatternClockwise();
             Input.mousePosition=map.GetCellCenterWorld(C(5,5));Call(targeting,"HandleRealtimeAoE");targeting.ExecuteSkillOnTarget();
             battle.StartMonsterTurn();
             Check(map.WorldToCell(e.transform.position)==C(5,6),"wind did not stop before the occupied cell");
@@ -155,3 +155,4 @@ public static partial class Scenarios
         });
     }
 }
+

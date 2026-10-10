@@ -34,6 +34,7 @@ sources=[
  'Assets/3.Scripts/Objects/CharacterModule/MoveTileModule.cs',
  'Assets/3.Scripts/Managers/BattleManager.cs',
  'Assets/3.Scripts/Managers/ModeManager.cs',
+ 'Assets/3.Scripts/Managers/SelectionManager.cs',
  'Assets/3.Scripts/UIs/Functions/Information/StageUIController.cs',
  'Assets/3.Scripts/UIs/Functions/Information/MonsterHealthBar.cs',
  'Assets/3.Scripts/UIs/Functions/Information/UI_SkillTooltip.cs',

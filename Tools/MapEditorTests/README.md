@@ -59,9 +59,9 @@ python Tools/PassiveTests/run_tests.py
 python Tools/PassiveTests/validate_stage_ui.py
 ```
 
-첫 번째 명령은 .NET SDK가 필요하며 `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 런타임 소스를 UNITY_EDITOR 없이 컴파일한 뒤 에디터 소스와 함께 48개 API double 시나리오를 실행합니다. 맵 추가/삭제와 Undo, 웨이브 순서, 몬스터 배치와 큰 몬스터 실드, 단일 설정 원본, 중복 연결/ID 차단, 맵별 팔레트 격리, 공유 맵의 클리어 ID, 장애물/필드 로딩과 퇴장 정리를 검증합니다.
+첫 번째 명령은 .NET SDK가 필요하며 `MAP_EDITOR_DOTNET`과 `MAP_EDITOR_CSC`로 경로를 지정할 수 있습니다. 런타임 소스를 UNITY_EDITOR 없이 컴파일한 뒤 에디터 소스와 함께 49개 API double 시나리오를 실행합니다. 맵 추가/삭제와 Undo, 웨이브 순서, 몬스터 배치와 큰 몬스터 실드, 단일 설정 원본, 중복 연결/ID 차단, 맵별 팔레트 격리, 공유 맵의 클리어 ID, 장애물/필드 로딩과 퇴장 정리를 검증합니다. 확장된 15개 몬스터 에셋을 실제로 읽어 첫 웨이브 생성과 고유 ID 0~13·1000도 확인합니다.
 
-씬 검증은 Python 표준 라이브러리만 사용합니다. SampleScene, first, SampleScene_Tutorial의 Tilemap·버튼·웨이브·몬스터·프리팹 참조, 클리어 ID 0~29, 모든 몬스터의 점유 영역을 검사합니다. 1스테이지의 7개 웨이브와 ID 5, 5스테이지의 ID 1000도 확인합니다. PassiveTests는 기존 전투, 저장, 다중 칸/실드와 Hover에 더해 HUD·HP바·툴팁의 상태/위치 로직을 검증합니다. `validate_stage_ui.py`는 세 씬의 wave/enemy 텍스트와 다섯 스킬 클릭 이벤트 연결을 검사합니다.
+씬 검증은 Python 표준 라이브러리만 사용합니다. SampleScene, first, SampleScene_Tutorial의 Tilemap·버튼·웨이브·몬스터·프리팹 참조, 클리어 ID 0~29, 모든 몬스터의 점유 영역을 검사합니다. 1스테이지의 7개 웨이브와 ID 5, 5스테이지의 ID 1000도 확인합니다. PassiveTests는 기존 전투, 저장, 다중 칸/실드와 Hover에 더해 HUD·HP바·툴팁의 상태/위치 로직을 검증합니다. 실제 SelectionManager의 선택 이벤트부터 StageUI.Refresh와 스킬 클릭까지 실행하며, 씬의 캐릭터 이름 목록 없이도 선택한 CharacterBase.Data를 사용하고 선택 해제 시 이전 스킬을 지우는지 확인합니다. UI 레이캐스트는 타일 시전을 막고, 몬스터 레이캐스트는 정상 시전하는지도 확인합니다. `validate_stage_ui.py`는 세 씬의 wave/enemy 텍스트와 다섯 스킬 클릭 이벤트 연결을 검사합니다.
 
 이 검증은 Unity의 실제 임포트, 네이티브 직렬화, Undo 엔진과 Play Mode를 대신하지 않습니다.
 

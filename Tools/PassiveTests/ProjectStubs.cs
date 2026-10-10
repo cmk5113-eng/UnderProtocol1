@@ -33,14 +33,6 @@ public class ScrollUI
     public void PlusGaugevalue(float v) {gauge+=v;}
     public void SubGaugeValue(float v) {gauge-=v;}
 }
-public class SelectionManager
-{
-    public static SelectionManager Instance=new SelectionManager();
-    public static CharacterBase CharacterBase;
-    public static CharacterData _characterData;
-    public List<CharacterBase> unitOnStage=new List<CharacterBase>();
-    public static void SelectCharacter(CharacterBase p) { CharacterBase=p; }
-}
 public class PlacementManager
 {
     public static PlacementManager Instance;

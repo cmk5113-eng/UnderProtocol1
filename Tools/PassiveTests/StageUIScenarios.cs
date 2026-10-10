@@ -33,8 +33,15 @@ public static partial class Scenarios
             box.transform.localPosition = new Vector3(-240 + i * 120, -420);
             icons[i] = box.GetComponent<Image>();
         }
-        Set(ui, "skill", icons); Set(ui, "currentData", data);
+        Set(ui, "skill", icons);
+        if (data != null)
+        {
+            var selected = SelectionManager.CharacterBase ?? Player(0,4);
+            Set(selected,"characterData",data);
+            SelectionManager._characterBase = selected;
+        }
         Call(ui, "Awake");
+        Call(ui, "OnEnable");
         return ui;
     }
 
@@ -43,6 +50,56 @@ public static partial class Scenarios
 
     static void RunStageUIScenarios()
     {
+        Case("spawned clone binds live skill data without a scene name lookup", () => {
+            var p = Player(0,4); p.gameObject.name = "Actor(Clone)";
+            p.Data.active = new[] { new ActiveSkill { skillName="Live skill", description="Live description", range=20 } };
+            SelectionManager._characterBase = p;
+            var ui = StageUI();
+            ui.Refresh();
+            Check(ui.CurrentData == p.Data && ui.GetSkill(0) == p.Data.active[0], "selection refresh rejected the live character data");
+            targeting.UI_StartSkill1();
+            var tooltip = PrivateValue<UI_SkillTooltip>(ui,"skillTooltip");
+            Check(tooltip != null && tooltip.gameObject.activeSelf && tooltip.GetComponentInChildren<TextMeshProUGUI>(true).text.Contains("Live description"), "selection-to-click flow did not open the tooltip");
+        });
+        Case("selection events update and clear skill UI without manual Refresh calls", () => {
+            var ui = StageUI();
+            var a=Player(0,4);a.Data.active=new[] {new ActiveSkill {skillName="A",range=20}};
+            var b=Player(0,5);b.Data.active=new[] {new ActiveSkill {skillName="B",range=20}};
+            SelectionManager.SelectCharacter(a);
+            Check(ui.CurrentData==a.Data && SelectionManager._characterData==a.Data,"selection event did not bind live data");
+            targeting.UI_StartSkill1();
+            var tooltip=PrivateValue<UI_SkillTooltip>(ui,"skillTooltip");
+            SelectionManager.SelectCharacter(b);
+            Check(ui.GetSkill(0)==b.Data.active[0] && !tooltip.gameObject.activeSelf,"character change kept the old skill tooltip");
+            Check(SelectionManager.Instance.unitOnStage.Count==2,"selection event recursively registered or lost units");
+            SelectionManager.DeselectCharacter();
+            Check(ui.CurrentData==null && ui.CurrentCharacter==null && SelectionManager._characterData==null,"deselection retained old skill data");
+            Call(ui,"OnDisable");SelectionManager.SelectCharacter(a);
+            Check(ui.CurrentData==null,"disabled stage remained subscribed to selection");
+            Call(ui,"OnEnable");Check(ui.CurrentData==a.Data,"reenabling stage missed the selected unit");
+        });
+        Case("partially wired skill UI still binds data and missing passives safely", () => {
+            var p=Player(0,4);SelectionManager.SelectCharacter(p);
+            p.Data.active=new[] {new ActiveSkill {skillName="Live"}};p.Data.passive=null;
+            var ui=StageUI();Set(ui,"skill",new Image[] {null});ui.Refresh();
+            Check(ui.GetSkill(0)==p.Data.active[0] && ui.GetSkill(4)==null,"missing images or passives prevented data binding");
+            Set(ui,"skill",null);Set(ui,"unit",null);ui.Refresh();ui.Allreset();
+        });
+        Case("skill-box mouse click keeps tooltip and cannot cast on the tile behind UI", () => {
+            var p=Player(0,4);SelectionManager.SelectCharacter(p);
+            p.Data.active=new[] {new ActiveSkill {skillName="UI skill",range=20,effectType=SkillEffectType.Damage,type=SkillType.Active,damage=1}};
+            var ui=StageUI();targeting.UI_StartSkill1();
+            var tooltip=PrivateValue<UI_SkillTooltip>(ui,"skillTooltip");
+            UnityEngine.EventSystems.EventSystem.current=new UnityEngine.EventSystems.EventSystem {pointerOverUI=true};
+            Input.mousePosition=map.GetCellCenterWorld(C(5,5));Input.leftDown=true;
+            int ap=p.actionPoint;Call(targeting,"Update");
+            Check(p.actionPoint==ap && PrivateValue<bool>(targeting,"isSkillTargetingActive") && tooltip.gameObject.activeSelf,"UI click cast through the button and closed its tooltip");
+            Input.leftDown=false;Input.rightDown=true;Call(targeting,"Update");
+            Check(!PrivateValue<bool>(targeting,"isSkillTargetingActive") && !tooltip.gameObject.activeSelf,"right click over UI did not cancel targeting");
+            Input.rightDown=false;Input.leftDown=true;UnityEngine.EventSystems.EventSystem.current.pointerOverUI=false;
+            var enemy=Enemy(5,5,3);targeting.UI_StartSkill1();Call(targeting,"Update");
+            Check(enemy.currentHP==2 && p.actionPoint==0 && !tooltip.gameObject.activeSelf,"world raycasts blocked a valid monster click");
+        });
         Case("HUD binds exact wave/enemy nodes and shows integer ordinals", () => {
             var ui = StageUI(); var first = new WaveData(); var second = new WaveData();
             var waves = GameManager.Instance.Wave;
@@ -109,7 +166,7 @@ public static partial class Scenarios
             Check(!canvas.gameObject.activeSelf, "inactive monster left bar enabled");
         });
         Case("skill clicks target the matching slot and anchor a single tooltip above it", () => {
-            var p = Player(0,4); SelectionManager.CharacterBase = p;
+            var p = Player(0,4); SelectionManager._characterBase = p;
             p.Data.active = new[] { new ActiveSkill { skillName="First", description="First description", range=20 }, new ActiveSkill { skillName="Second", description="Second description", range=20 } };
             var ui = StageUI(p.Data); ui.transform.localScale = new Vector3(0.5f,0.5f,1);
             targeting.UI_StartSkill2();
@@ -131,7 +188,7 @@ public static partial class Scenarios
             targeting.ClearAllHighlights(); Check(!tooltip.gameObject.activeSelf, "cancel left tooltip visible");
         });
         Case("normal, ultimate and passive descriptions remain available with a blocked caster/gauge", () => {
-            var p=Player(0,4);SelectionManager.CharacterBase=p;
+            var p=Player(0,4);SelectionManager._characterBase=p;
             p.Data.normalSkill=new NormalSkill {skillName="Normal",description="Normal detail",range=20};
             p.Data.ultimateSkill=new UltimateSkill {skillName="Ultimate",description="Ultimate detail",range=20};
             p.Data.passive=new[]{new PassiveSkill {skillName="Passive",description="Passive detail"}};
@@ -142,7 +199,7 @@ public static partial class Scenarios
             Check(label.text.Contains("Ultimate detail")&&ScrollUI.Instance.GGscrollbar.value==0.5f,"blocked ultimate tooltip spent gauge");
             ui.OnClickPassiveSkill();Check(label.text.Contains("Passive detail"),"passive click did not show description");
             Call(ui,"OnDisable");Check(!tooltip.gameObject.activeSelf,"leaving stage left tooltip visible");
-            SelectionManager.CharacterBase=null;targeting.UI_StartNormalSkill();
+            SelectionManager._characterBase=null;targeting.UI_StartNormalSkill();
             Check(PrivateValue<SkillList>(targeting,"currentSkill")==null,"null caster click started targeting");
         });
         Case("tooltip stays within horizontal bounds, follows resized boxes and clears stale anchors", () => {

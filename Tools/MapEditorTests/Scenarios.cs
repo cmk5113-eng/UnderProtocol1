@@ -905,6 +905,26 @@ internal static class Scenarios
         f.loader.NextWave(); Check(f.manager.CurrentWaveNumber == 0, "failed spawn advanced the displayed ordinal");
     }
 
+    private static void ExpandedAuthoredCatalogLoadsAndRetainsEveryMonsterId()
+    {
+        Fixture f = NewFixture();
+        f.entry.monsterDatas.Clear();
+        foreach (string path in System.IO.Directory.GetFiles("Assets/1.Datas/Original/ScriptableObjects/Enemy", "*.asset"))
+        {
+            string source = System.IO.File.ReadAllText(path);
+            int id = int.Parse(System.Text.RegularExpressions.Regex.Match(source, @"(?m)^  id: (\d+)").Groups[1].Value);
+            f.entry.monsterDatas.Add(Monster(id, System.IO.Path.GetFileNameWithoutExtension(path)));
+        }
+        f.first.monsters.Add(new MonsterSpawnData { monsterID = 0, position = new Vector3Int(-2,1) });
+        BattleManager.Instance.BeginBattle(0,null);f.loader.NextWave();
+        Check(f.manager.CurrentWaveNumber == 1 && MonsterBase._monsters.Count == 1,
+            "expanded authored catalog prevented the first wave from spawning");
+        Check(f.entry.monsterDatas.Count == 15 && f.entry.monsterDatas.Select(data => data.id).Distinct().Count() == 15,
+            "copied monster assets retained colliding IDs");
+        Check(Enumerable.Range(0,14).All(id => f.entry.monsterDatas.Any(data => data.id == id))
+            && f.entry.monsterDatas.Any(data => data.id == 1000), "expanded monster IDs were lost or silently replaced");
+    }
+
     public static int Main()
     {
         Action[] tests = { EditModeReadsSerializedWaves, PaintReplacesOneCellAndIsolatesWaves, ErasingRespectsTerrainLayers,
@@ -931,7 +951,7 @@ internal static class Scenarios
             CatalogRegistrationControlsRuntimeSpawnsAndRetry, DuplicateCatalogFailsBeforeSpawningOrAdvancing,
             MapSwitchUsesItsOwnCatalogAndRejectsStaleSelection, SharedMapButtonsKeepTheirOwnClearIds,
             EditorMapDataLoadsAtEntryAndCleansUpOnExit, InvalidMapDataDoesNotLeavePartialBattleObjects,
-            WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets };
+            WaveOrdinalsFollowSuccessfulLoadsAndRepeatedAssets, ExpandedAuthoredCatalogLoadsAndRetainsEveryMonsterId };
         foreach (Action test in tests) { test(); Console.WriteLine("PASS " + test.Method.Name); }
         Console.WriteLine($"{tests.Length} map-editor workflow scenarios passed (API doubles; Unity verification still required).");
         return 0;
