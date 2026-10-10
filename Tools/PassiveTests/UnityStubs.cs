@@ -53,6 +53,9 @@ namespace UnityEngine
         public T AddComponent<T>() where T : Component,new() { var value=new T();Attach(value);return value; }
         public T GetComponent<T>() where T : class => transform as T ?? components.OfType<T>().FirstOrDefault();
         public T GetComponentInParent<T>() where T : class => GetComponent<T>() ?? transform.parent?.gameObject.GetComponentInParent<T>();
+        public T[] GetComponentsInParent<T>(bool includeInactive=false) =>
+            (includeInactive || activeInHierarchy ? components.OfType<T>() : Enumerable.Empty<T>())
+            .Concat(transform.parent?.gameObject.GetComponentsInParent<T>(includeInactive) ?? Array.Empty<T>()).ToArray();
         public T[] GetComponentsInChildren<T>(bool includeInactive=false) => components.OfType<T>()
             .Concat(transform.children.Where(c=>includeInactive||c.gameObject.activeInHierarchy).SelectMany(c=>c.gameObject.GetComponentsInChildren<T>(includeInactive))).ToArray();
     }
@@ -63,6 +66,7 @@ namespace UnityEngine
         public Component() { new GameObject().Attach(this); }
         public T GetComponent<T>() where T : class => gameObject.GetComponent<T>();
         public T GetComponentInParent<T>() where T : class => gameObject.GetComponentInParent<T>();
+        public T[] GetComponentsInParent<T>(bool includeInactive=false) => gameObject.GetComponentsInParent<T>(includeInactive);
         public T GetComponentInChildren<T>(bool includeInactive=false) where T : class => gameObject.GetComponentsInChildren<T>(includeInactive).FirstOrDefault();
         public T[] GetComponentsInChildren<T>(bool includeInactive=false) => gameObject.GetComponentsInChildren<T>(includeInactive);
         public bool TryGetComponent<T>(out T value) where T : class { value = GetComponent<T>(); return value != null; }
@@ -252,7 +256,8 @@ namespace UnityEngine.UI
 {
     public class Graphic : UnityEngine.Component { public bool raycastTarget=true;public UnityEngine.Color color; }
     public class Image : Graphic { public UnityEngine.Sprite sprite; public bool enabled=true,preserveAspect; }
-    public class Selectable : UnityEngine.Component { }
+    public class Selectable : UnityEngine.MonoBehaviour, UnityEngine.EventSystems.IPointerDownHandler
+    { public void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData) { } }
     public class GraphicRaycaster : UnityEngine.EventSystems.BaseRaycaster { }
 }
 namespace UnityEngine.TextCore.Text { }
@@ -260,13 +265,29 @@ namespace UnityEngine.EventSystems
 {
     public class BaseRaycaster { }
     public class PhysicsRaycaster : BaseRaycaster { }
-    public struct RaycastResult { public BaseRaycaster module; }
+    public interface IEventSystemHandler { }
+    public interface IPointerDownHandler : IEventSystemHandler { void OnPointerDown(PointerEventData eventData); }
+    public struct RaycastResult { public BaseRaycaster module; public UnityEngine.GameObject gameObject; }
     public class PointerEventData { public UnityEngine.Vector2 position; public PointerEventData(EventSystem events) { } }
     public class EventSystem
     {
         public static EventSystem current; public bool pointerOverUI;
+        public List<RaycastResult> raycastResults;
         public void RaycastAll(PointerEventData pointer, List<RaycastResult> hits)
-        { hits.Add(new RaycastResult { module = pointerOverUI ? (BaseRaycaster)new UnityEngine.UI.GraphicRaycaster() : new PhysicsRaycaster() }); }
+        {
+            if (raycastResults != null)
+            {
+                foreach (var hit in raycastResults)
+                {
+                    if (hit.gameObject != null && !hit.gameObject.activeInHierarchy) continue;
+                    if (hit.module is UnityEngine.UI.GraphicRaycaster && hit.gameObject != null &&
+                        hit.gameObject.GetComponent<UnityEngine.UI.Graphic>()?.raycastTarget != true) continue;
+                    hits.Add(hit);
+                }
+                return;
+            }
+            hits.Add(new RaycastResult { module = pointerOverUI ? (BaseRaycaster)new UnityEngine.UI.GraphicRaycaster() : new PhysicsRaycaster() });
+        }
     }
 }
 namespace JetBrains.Annotations { }

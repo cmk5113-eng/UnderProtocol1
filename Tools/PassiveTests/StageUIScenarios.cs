@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public static partial class Scenarios
@@ -21,13 +23,13 @@ public static partial class Scenarios
         var root = new GameObject("S_Stage", typeof(RectTransform));
         ((RectTransform)root.transform).sizeDelta = new Vector2(1920, 1080);
         var ui = root.AddComponent<StageUIController>();
-        var top = new GameObject("Top"); top.transform.SetParent(root.transform, false);
-        var info = new GameObject("StageInfo"); info.transform.SetParent(top.transform, false);
+        var top = new GameObject("Top", typeof(Image)); top.transform.SetParent(root.transform, false);
+        var info = new GameObject("StageInfo", typeof(Image)); info.transform.SetParent(top.transform, false);
         StageText(info.transform, "wave"); StageText(info.transform, "enemy");
         var icons = new Image[5];
         for (int i = 0; i < icons.Length; i++)
         {
-            var box = new GameObject("Skill" + i, typeof(RectTransform), typeof(Image));
+            var box = new GameObject("Skill" + i, typeof(RectTransform), typeof(Image), typeof(Button));
             box.transform.SetParent(root.transform, false);
             ((RectTransform)box.transform).sizeDelta = new Vector2(80, 80);
             box.transform.localPosition = new Vector3(-240 + i * 120, -420);
@@ -50,6 +52,66 @@ public static partial class Scenarios
 
     static void RunStageUIScenarios()
     {
+        Case("HUD background cannot block a second skill cast after attacking", () => {
+            var p=Player(0,4);p.actionPoint=2;SelectionManager.SelectCharacter(p);
+            p.Data.active=new[] {new ActiveSkill {range=20,effectType=SkillEffectType.Damage,type=SkillType.Active,damage=1}};
+            var ui=StageUI();var first=Enemy(4,5,3);var second=Enemy(5,5,3);
+            EventSystem.current=new EventSystem();Input.leftDown=true;
+            targeting.UI_StartSkill1();Input.mousePosition=map.GetCellCenterWorld(C(4,5));Call(targeting,"Update");
+            Check(first.currentHP==2 && p.actionPoint==1,"first attack failed");
+            var background=ui.transform.Find("Top").gameObject;
+            EventSystem.current.raycastResults=new List<RaycastResult> {
+                new RaycastResult {module=new GraphicRaycaster(),gameObject=background},
+                new RaycastResult {module=new PhysicsRaycaster(),gameObject=map.gameObject}
+            };
+            targeting.UI_StartSkill1();Input.mousePosition=map.GetCellCenterWorld(C(5,5));Call(targeting,"Update");
+            Check(second.currentHP==2 && p.actionPoint==0,"display-only stage background swallowed the second tile click");
+            Check(!background.GetComponent<Image>().raycastTarget && !Counter(ui,"wave").raycastTarget,
+                "stage decoration or counter still captures pointer input");
+        });
+        Case("stage keeps button children and custom pointer controls interactive", () => {
+            var ui=StageUI();var button=ui.transform.Find("Skill0");
+            var label=StageText(button,"Label");
+            var hidden=new GameObject("Inactive decoration",typeof(Image));hidden.transform.SetParent(ui.transform,false);hidden.SetActive(false);
+            var panel=new GameObject("Pointer panel",typeof(Image),typeof(TestPointerControl));panel.transform.SetParent(ui.transform,false);
+            var panelLabel=StageText(panel.transform,"Label");
+            var tooltip=new GameObject("Tooltip",typeof(Image));tooltip.transform.SetParent(button,false);tooltip.GetComponent<Image>().raycastTarget=false;
+            Call(ui,"OnDisable");Call(ui,"OnEnable");
+            Check(button.GetComponent<Image>().raycastTarget && label.raycastTarget,"button or its label no longer receives clicks");
+            Check(panel.GetComponent<Image>().raycastTarget && panelLabel.raycastTarget,"custom pointer control became noninteractive");
+            Check(!hidden.GetComponent<Image>().raycastTarget && !tooltip.GetComponent<Image>().raycastTarget,
+                "inactive decoration captures input or intentionally transparent graphic was reenabled");
+            var p=Player(0,4);SelectionManager.SelectCharacter(p);var enemy=Enemy(5,5,3);
+            EventSystem.current=new EventSystem {raycastResults=new List<RaycastResult> {
+                new RaycastResult {module=new GraphicRaycaster(),gameObject=label.gameObject}
+            }};
+            targeting.StartSkillTargeting(Attack(),p);Input.mousePosition=map.GetCellCenterWorld(C(5,5));Input.leftDown=true;Call(targeting,"Update");
+            Check(p.actionPoint==1 && enemy.currentHP==3,"button label allowed an attack through UI");
+        });
+        Case("ROE hit cells come from clicked pivot when preview is missing, cleared or stale", () => {
+            var p=Player(0,4);var old=Enemy(4,5,9);var clicked=Enemy(5,5,9);
+            var skill=FieldSkill(SkillTileFieldEffectType.Fire);skill.effectType=SkillEffectType.Damage;skill.roePattern[0].damage=1;
+            for(int preview=0;preview<3;preview++)
+            {
+                p.actionPoint=1;targeting.StartSkillTargeting(skill,p);
+                if(preview>0)
+                {
+                    Input.mousePosition=map.GetCellCenterWorld(C(4,5));Call(targeting,"HandleRealtimeAoE");
+                    if(preview==1) targeting.ClearRealtimeAoE();
+                }
+                Input.mousePosition=map.GetCellCenterWorld(C(5,5));targeting.ExecuteSkillOnTarget();
+                Check(clicked.currentHP==8-preview && old.currentHP==9,"missing/old preview changed the ROE attack target: "+preview);
+                Check(p.actionPoint==0 && FieldAt(5,5)!=null,"clicked ROE cell lost its action or field effect");
+                Check(PrivateValue<List<Vector3Int>>(targeting,"aoeTiles").Count==0,"attack kept the previous preview");
+            }
+        });
+        Case("legacy area attacks use the current click after leaving UI", () => {
+            var p=Player(0,4);var clicked=Enemy(6,6,5);var adjacent=Enemy(7,6,5);var old=Enemy(2,2,5);
+            var skill=Attack();skill.aoe=1;
+            targeting.StartSkillTargeting(skill,p);Input.mousePosition=map.GetCellCenterWorld(C(2,2));Call(targeting,"HandleRealtimeAoE");
+            targeting.ClearRealtimeAoE();Input.mousePosition=map.GetCellCenterWorld(C(6,6));targeting.ExecuteSkillOnTarget();
+            Check(clicked.currentHP==4 && adjacent.currentHP==4 && old.currentHP==5,"cleared preview swallowed the area attack");
+        });
         Case("spawned clone binds live skill data without a scene name lookup", () => {
             var p = Player(0,4); p.gameObject.name = "Actor(Clone)";
             p.Data.active = new[] { new ActiveSkill { skillName="Live skill", description="Live description", range=20 } };
@@ -229,4 +291,9 @@ public static partial class Scenarios
             Check(SameColor(map.GetColor(C(5,5)),fire)&&SameColor(map.GetColor(C(6,5)),ice),"preview cleanup changed element colors");
         });
     }
+}
+
+public class TestPointerControl : MonoBehaviour, IPointerDownHandler
+{
+    public void OnPointerDown(PointerEventData eventData) { }
 }
