@@ -32,6 +32,8 @@ public static partial class Scenarios
         ScrollUI.Instance=null; GameManager.Instance=new GameManager();
         ModeManager.Instance=new ModeManager(); ModeManager.Instance.CurrentMode=ModeManager.GameMode.Movement;
         map=new Tilemap(); PlacementManager.Instance=new PlacementManager { tilemap=map };
+        foreach (string name in new[] { "Fire", "Ice", "Electric", "Earth", "Wind", "Gravity" })
+            Resources.SetForTest("BattleFields/" + name, new Sprite { name=name });
         executor=new ExecuteSkill(); Call(executor,"Awake");
         targeting=new UseSkill(); Call(targeting,"Awake");
         battle=new BattleManager(); Call(battle,"Awake"); battle.BeginBattle(0,null);

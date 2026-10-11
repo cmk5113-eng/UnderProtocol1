@@ -871,9 +871,14 @@ internal static class Scenarios
         f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("blocking obstacle"), position = blocked });
         f.terrain.obstacles.Add(new ObstacleSpawnData { prefab = new GameObject("decoration"), position = passable, blocksMovement = false });
         f.terrain.fieldEffects.Add(new FieldEffectSpawnData { position = new Vector3Int(-1, 0), effectType = StageFieldEffectType.Ice, value = 2, duration = 3 });
+        f.terrain.fieldEffects.Add(new FieldEffectSpawnData { position = new Vector3Int(-1, -1), effectType = StageFieldEffectType.Earth, value = 1, duration = 4 });
         var setter = new GameObject("button").AddComponent<WaveSetter>(); RegisterButton(setter, 0); setter.SelectSkillByIndex();
         Check(BattleManager.Instance.IsBattleActive && !PlacementManager.Instance.GetTileData(blocked).isempty && PlacementManager.Instance.GetTileData(passable).isempty, "editor obstacles did not load with their movement setting");
-        Check(BattleManager.Instance.Fields.Applied.Single().type == SkillTileFieldEffectType.Ice, "editor field was not passed to battle effects");
+        Check(BattleManager.Instance.Fields.Applied.Count == 2
+            && BattleManager.Instance.Fields.Applied.Any(field => field.type == SkillTileFieldEffectType.Ice)
+            && BattleManager.Instance.Fields.Applied.Any(field => field.type == SkillTileFieldEffectType.Earth), "editor ice/earth fields were not passed to battle effects");
+        Check((int)StageFieldEffectType.Dark == 5 && (int)StageFieldEffectType.Custom == 6 && (int)StageFieldEffectType.Earth == 7,
+            "adding earth changed existing serialized field values");
         var clones = GameObject.All.Where(obj => obj.name == "blocking obstacle clone" || obj.name == "decoration clone").ToArray();
         Check(clones.Length == 2 && clones.All(obj => obj.parent == f.map.gameObject), "map objects loaded under another map");
         PlacementController.RemoveAllObject();

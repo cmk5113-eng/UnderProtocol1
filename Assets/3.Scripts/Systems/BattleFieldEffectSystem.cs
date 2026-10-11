@@ -17,6 +17,11 @@ public sealed class BattleFieldEffectSystem
     private Tilemap fieldMap;
     private readonly Dictionary<Vector3Int, BattleFieldEffect> fields
         = new Dictionary<Vector3Int, BattleFieldEffect>();
+    private readonly Dictionary<Vector3Int, SpriteRenderer> fieldVisuals
+        = new Dictionary<Vector3Int, SpriteRenderer>();
+    private readonly Dictionary<SkillTileFieldEffectType, Sprite> fieldSprites
+        = new Dictionary<SkillTileFieldEffectType, Sprite>();
+    private Transform visualRoot;
     private readonly HashSet<CharacterBase> frozenThisTurn = new HashSet<CharacterBase>();
     private readonly Dictionary<CharacterBase, int> damageReductions = new Dictionary<CharacterBase, int>();
     private int lastProcessedTurn = -1;
@@ -43,13 +48,20 @@ public sealed class BattleFieldEffectSystem
             Type = type, Value = Mathf.Max(1, value), RemainingTurns = Mathf.Max(1, duration),
             source = source, direction = direction
         };
-        Paint(cell, ColorFor(type));
+        ShowField(cell, type);
         return true;
     }
 
     public void ResetBattle()
     {
-        foreach (Vector3Int cell in fields.Keys) Paint(cell, Color.white);
+        // Hide immediately: Destroy is deferred until the end of the Unity frame.
+        if (visualRoot != null)
+        {
+            visualRoot.gameObject.SetActive(false);
+            Object.Destroy(visualRoot.gameObject);
+        }
+        visualRoot = null;
+        fieldVisuals.Clear();
         fields.Clear();
         fieldMap = null;
         ClearTurnModifiers();
@@ -167,33 +179,88 @@ public sealed class BattleFieldEffectSystem
 
     private void Remove(Vector3Int cell)
     {
-        Paint(cell, Color.white);
+        if (fieldVisuals.TryGetValue(cell, out SpriteRenderer visual))
+        {
+            if (visual != null)
+            {
+                visual.gameObject.SetActive(false);
+                Object.Destroy(visual.gameObject);
+            }
+            fieldVisuals.Remove(cell);
+        }
         fields.Remove(cell);
     }
 
-    private void Paint(Vector3Int cell, Color color)
+    private void ShowField(Vector3Int cell, SkillTileFieldEffectType type)
     {
         if (fieldMap == null || !fieldMap.HasTile(cell)) return;
-        fieldMap.SetTileFlags(cell, TileFlags.None);
-        fieldMap.SetColor(cell, color);
+        Sprite sprite = SpriteFor(type);
+        if (sprite == null) return;
+
+        if (visualRoot == null)
+        {
+            GameObject root = new GameObject("BattleFieldEffects");
+            root.layer = fieldMap.gameObject.layer;
+            root.transform.SetParent(fieldMap.transform, false);
+            visualRoot = root.transform;
+        }
+        if (!fieldVisuals.TryGetValue(cell, out SpriteRenderer visual) || visual == null)
+        {
+            GameObject obj = new GameObject($"Field_{cell.x}_{cell.y}", typeof(SpriteRenderer));
+            obj.layer = fieldMap.gameObject.layer;
+            obj.transform.SetParent(visualRoot, false);
+            fieldVisuals[cell] = visual = obj.GetComponent<SpriteRenderer>();
+        }
+
+        // A separate renderer is visible from Apply until expiry/reset, independently of selection.
+        // Parenting and local cell coordinates also follow scaled/moved stage maps.
+        visual.sprite = sprite;
+        visual.color = Color.white;
+        visual.transform.localPosition = fieldMap.GetCellCenterLocal(cell);
+        Vector3 size = fieldMap.cellSize;
+        Vector3 spriteSize = sprite.bounds.size;
+        visual.transform.localScale = new Vector3(
+            Mathf.Abs(size.x) / Mathf.Max(0.0001f, spriteSize.x),
+            Mathf.Abs(size.y) / Mathf.Max(0.0001f, spriteSize.y), 1f);
+
+        TilemapRenderer ground = fieldMap.GetComponent<TilemapRenderer>();
+        visual.sortingLayerID = ground != null ? ground.sortingLayerID : 0;
+        visual.sortingOrder = ground != null ? Mathf.Min(32767, ground.sortingOrder + 1) : 1;
+        if (ground != null) visual.sharedMaterial = ground.sharedMaterial;
+        visual.enabled = true;
+        visual.gameObject.SetActive(true);
     }
 
-    // Skill/movement previews temporarily cover fields; clearing a preview restores their tint.
+    private Sprite SpriteFor(SkillTileFieldEffectType type)
+    {
+        if (fieldSprites.TryGetValue(type, out Sprite sprite)) return sprite;
+        string name;
+        switch (type)
+        {
+            case SkillTileFieldEffectType.Fire: name = "Fire"; break;
+            case SkillTileFieldEffectType.Ice: name = "Ice"; break;
+            case SkillTileFieldEffectType.Electric: name = "Electric"; break;
+            case SkillTileFieldEffectType.Earth: name = "Earth"; break;
+            case SkillTileFieldEffectType.Wind: name = "Wind"; break;
+            // Keep the serialized Dark value so existing skill/map data stays compatible.
+            case SkillTileFieldEffectType.Dark: name = "Gravity"; break;
+            default: return null;
+        }
+        sprite = Resources.Load<Sprite>("BattleFields/" + name);
+        fieldSprites[type] = sprite;
+        if (sprite == null) Debug.LogError($"[BattleFieldEffect] BattleFields/{name} 스프라이트가 없습니다.");
+        return sprite;
+    }
+
+    // Previews only tint the ground. The field sprite keeps its own colors above it.
     public static Color TileColor(Tilemap map, Vector3Int cell)
     {
-        BattleFieldEffect field;
-        BattleManager battle = BattleManager.Instance;
-        return battle != null && battle.Fields.TryGetField(map, cell, out field) ? ColorFor(field.Type) : Color.white;
+        return Color.white;
     }
 
-    // Keep the element recognizable while range/AOE previews are visible.
     public static Color PreviewColor(Tilemap map, Vector3Int cell, Color preview)
     {
-        BattleManager battle = BattleManager.Instance;
-        if (battle == null || !battle.Fields.TryGetField(map, cell, out BattleFieldEffect field)) return preview;
-        Color color = Color.Lerp(ColorFor(field.Type), preview, 0.3f);
-        color.a = 1f;
-        return color;
+        return preview;
     }
 
     public static string Describe(Tilemap map, Vector3Int cell)
@@ -209,23 +276,11 @@ public sealed class BattleFieldEffectSystem
             case SkillTileFieldEffectType.Ice: label = "얼음"; break;
             case SkillTileFieldEffectType.Wind: label = "바람"; break;
             case SkillTileFieldEffectType.Earth: label = "대지"; break;
-            default: label = "암흑"; break;
+            case SkillTileFieldEffectType.Dark: label = "중력"; break;
+            default: return string.Empty;
         }
         return $"필드: {label} · 세기 {field.Value} · 남은 {field.RemainingTurns}턴";
     }
 
-    private static Color ColorFor(SkillTileFieldEffectType type)
-    {
-        switch (type)
-        {
-            case SkillTileFieldEffectType.Fire: return new Color(1f, 0.25f, 0.25f);
-            case SkillTileFieldEffectType.Electric: return new Color(1f, 0.85f, 0.2f);
-            case SkillTileFieldEffectType.Ice: return new Color(0.3f, 0.6f, 1f);
-            case SkillTileFieldEffectType.Wind: return new Color(0.4f, 1f, 0.65f);
-            case SkillTileFieldEffectType.Earth: return new Color(0.75f, 0.55f, 0.3f);
-            case SkillTileFieldEffectType.Dark: return new Color(0.65f, 0.4f, 0.85f);
-            default: return Color.white;
-        }
-    }
 }
 

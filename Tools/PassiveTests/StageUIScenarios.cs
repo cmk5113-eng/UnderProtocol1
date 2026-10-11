@@ -276,19 +276,20 @@ public static partial class Scenarios
             source.gameObject.SetActive(true);ui.ShowSkillTooltip(0);ui.ShowSkillTooltip(1);
             Check(!tooltip.gameObject.activeSelf,"empty skill slot kept previous description");
         });
-        Case("fire and ice stay distinct under active range and AOE previews", () => {
+        Case("fire and ice sprites coexist with unchanged range and AOE highlights", () => {
             var p=Player(0,4);
             battle.Fields.Apply(map,C(5,5),p,SkillTileFieldEffectType.Fire,1,3,Vector3Int.right);
             battle.Fields.Apply(map,C(6,5),p,SkillTileFieldEffectType.Ice,1,3,Vector3Int.right);
-            var fire=map.GetColor(C(5,5));var ice=map.GetColor(C(6,5));
-            Check(fire.r>fire.b&&fire.r>fire.g&&ice.b>ice.r&&ice.b>ice.g,"fire/ice do not have element colors");
+            var fire=FieldVisualAt(map,C(5,5));var ice=FieldVisualAt(map,C(6,5));
+            Check(fire.sprite.name=="Fire"&&ice.sprite.name=="Ice","fire/ice do not have their element assets");
             targeting.StartSkillTargeting(Attack(),p);
-            Check(map.GetColor(C(5,5)).r>map.GetColor(C(5,5)).b,"blue cast range hid red fire");
+            Check(map.GetColor(C(5,5)).b>map.GetColor(C(5,5)).r&&fire.gameObject.activeInHierarchy,"range highlight and fire sprite did not coexist");
             Input.mousePosition=map.GetCellCenterWorld(C(6,5));Call(targeting,"HandleRealtimeAoE");
             var preview=BattleFieldEffectSystem.PreviewColor(map,C(6,5),new Color(1f,0.2f,0.2f,0.5f));
-            Check(preview.b>preview.r&&preview.a==1f,"red AOE hid blue ice or faded field");
+            Check(SameColor(preview,new Color(1f,0.2f,0.2f,0.5f))&&SameColor(ice.color,Color.white)&&ice.gameObject.activeInHierarchy,"field changed AOE color/alpha or AOE changed the ice sprite");
             targeting.ClearRealtimeAoE();targeting.ClearAllHighlights();
-            Check(SameColor(map.GetColor(C(5,5)),fire)&&SameColor(map.GetColor(C(6,5)),ice),"preview cleanup changed element colors");
+            Check(SameColor(map.GetColor(C(5,5)),Color.white)&&SameColor(map.GetColor(C(6,5)),Color.white),"preview cleanup left ground highlights");
+            Check(FieldVisualAt(map,C(5,5))==fire&&FieldVisualAt(map,C(6,5))==ice,"preview cleanup erased or duplicated field sprites");
         });
     }
 }

@@ -10,7 +10,9 @@ public enum StageFieldEffectType
     Electric,
     Wind,
     Dark,
-    Custom
+    Custom,
+    // Append to preserve the serialized values in existing map assets.
+    Earth
 }
 
 [Serializable]
@@ -40,3 +42,4 @@ public class StageMapData : ScriptableObject
     public List<FieldEffectSpawnData> fieldEffects = new List<FieldEffectSpawnData>();
     public List<ObstacleSpawnData> obstacles = new List<ObstacleSpawnData>();
 }
+
