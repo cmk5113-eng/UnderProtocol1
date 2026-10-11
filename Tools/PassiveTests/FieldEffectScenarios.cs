@@ -19,6 +19,13 @@ public static partial class Scenarios
 
     static bool SameColor(Color a,Color b) => a.r==b.r&&a.g==b.g&&a.b==b.b&&a.a==b.a;
 
+    static SpriteRenderer FieldVisualAt(Tilemap fieldMap, Vector3Int cell)
+    {
+        foreach (SpriteRenderer visual in fieldMap.GetComponentsInChildren<SpriteRenderer>())
+            if (visual.gameObject.name == $"Field_{cell.x}_{cell.y}") return visual;
+        return null;
+    }
+
     static void RunFieldEffectScenarios()
     {
         Case("empty-tile field cast, later occupant, damage ordering and expiry",()=>{
@@ -34,7 +41,7 @@ public static partial class Scenarios
             Check(skill.roePattern[0].fieldEffectDuration==2,"runtime mutated the skill asset");
             battle.StartMonsterTurn();
             Check(e.currentHP==1&&BattleManager.HP==96&&battle.Fields.Count==0,"field did not tick exactly twice and expire");
-            Check(SameColor(map.GetColor(C(5,5)),Color.white),"expired field left its tile tinted");
+            Check(FieldVisualAt(map,C(5,5))==null,"expired field left its sprite visible");
             battle.StartMonsterTurn();Check(e.currentHP==1&&BattleManager.HP==95,"expired field still dealt damage");
         });
         Case("field installation follows all four real targeting rotations and shifted map coordinates",()=>{
@@ -123,17 +130,80 @@ public static partial class Scenarios
             battle.ResetBattle();executor.ExecutePattern(p,skill,C(5,5),null);
             Check(battle.Fields.Count==0,"out-of-battle execution planted fields");
         });
-        Case("field tint and hover detail survive targeting and movement preview cleanup",()=>{
+        Case("field sprite and hover detail survive targeting and movement preview cleanup",()=>{
             var p=Player(0,4);Cast(p,5,5,FieldSkill(SkillTileFieldEffectType.Fire));
-            var tint=map.GetColor(C(5,5));Check(!SameColor(tint,Color.white),"cast left no visible field tint");
+            var visual=FieldVisualAt(map,C(5,5));
+            Check(visual!=null&&visual.sprite.name=="Fire"&&visual.gameObject.activeInHierarchy,"cast left no visible field sprite");
+            Check(SameColor(map.GetColor(C(5,5)),Color.white),"field overwrote the ground color");
             Check(BattleFieldEffectSystem.Describe(map,C(5,5)).Contains("화염")&&BattleFieldEffectSystem.Describe(map,C(5,5)).Contains("3턴"),
                 "hover field detail did not contain type and remaining duration");
             p.actionPoint=1;targeting.StartSkillTargeting(Attack(),p);targeting.ClearAllHighlights();
-            Check(SameColor(map.GetColor(C(5,5)),tint),"skill cleanup erased field tint");
+            Check(FieldVisualAt(map,C(5,5))==visual&&visual.gameObject.activeInHierarchy,"skill cleanup erased field sprite");
             p.GetComponent<MoveTileModule>().TileHighlight(p.transform.position,3);p.GetComponent<MoveTileModule>().ClearTileHighlight();
-            Check(SameColor(map.GetColor(C(5,5)),tint),"movement cleanup erased field tint");
-            battle.ResetBattle();Check(SameColor(map.GetColor(C(5,5)),Color.white)&&BattleFieldEffectSystem.Describe(map,C(5,5))=="",
+            Check(FieldVisualAt(map,C(5,5))==visual&&visual.gameObject.activeInHierarchy,"movement cleanup erased field sprite");
+            battle.ResetBattle();Check(!visual.gameObject.activeInHierarchy&&BattleFieldEffectSystem.Describe(map,C(5,5))=="",
                 "reset left field visuals or hover data");
+        });
+        Case("all six field sprites are visible before any character selection",()=>{
+            var types=new[]{SkillTileFieldEffectType.Fire,SkillTileFieldEffectType.Ice,SkillTileFieldEffectType.Electric,
+                SkillTileFieldEffectType.Earth,SkillTileFieldEffectType.Wind,SkillTileFieldEffectType.Dark};
+            var names=new[]{"Fire","Ice","Electric","Earth","Wind","Gravity"};
+            Check(SelectionManager.CharacterBase==null,"test began with a character selection");
+            for(int i=0;i<types.Length;i++)
+            {
+                var cell=C(i+1,5);var groundColor=new Color(0.4f,0.5f,0.6f,0.8f);map.SetColor(cell,groundColor);
+                battle.Fields.Apply(map,cell,null,types[i],1,3,Vector3Int.zero);
+                var visual=FieldVisualAt(map,cell);
+                Check(visual!=null&&visual.sprite==Resources.Load<Sprite>("BattleFields/"+names[i]),"wrong or missing field asset "+names[i]);
+                Check(visual.enabled&&visual.gameObject.activeInHierarchy&&SameColor(visual.color,Color.white),"field hidden or tinted without selection");
+                Check(SameColor(map.GetColor(cell),groundColor),"field application overwrote the ground/preview color");
+            }
+            Check(map.GetComponentsInChildren<SpriteRenderer>().Length==6,"field visuals were duplicated");
+            Check(BattleFieldEffectSystem.Describe(map,C(6,5)).Contains("중력"),"gravity hover used the old element label");
+            var p=Player(0,4);SelectionManager.SelectCharacter(p);SelectionManager.DeselectCharacter();targeting.ClearAllHighlights();
+            Check(map.GetComponentsInChildren<SpriteRenderer>().Length==6,"deselecting a character cleared fields");
+        });
+        Case("recasting changes the same visible sprite while an AOE highlight remains",()=>{
+            var cell=C(5,5);var preview=new Color(1f,0.2f,0.2f,0.5f);map.SetColor(cell,preview);
+            battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Fire,1,3,Vector3Int.right);
+            var visual=FieldVisualAt(map,cell);
+            battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Ice,2,4,Vector3Int.right);
+            Check(FieldVisualAt(map,cell)==visual&&visual.sprite.name=="Ice","recast kept old art or replaced the visual object");
+            Check(map.GetComponentsInChildren<SpriteRenderer>().Length==1&&battle.Fields.Count==1,"recast stacked field sprites");
+            Check(SameColor(map.GetColor(cell),preview)&&SameColor(visual.color,Color.white),"recast erased the AOE or recolored the ice sprite");
+        });
+        Case("field sprites fit cells and follow scaled stage maps with the ground render settings",()=>{
+            map.scale=1.25f;map.transform.position=new Vector3(20,-9);map.transform.localScale=new Vector3(2.8f,1.7f,1);
+            map.gameObject.layer=8;var ground=map.gameObject.AddComponent<TilemapRenderer>();
+            ground.sortingLayerID=77;ground.sortingOrder=-99;ground.sharedMaterial=new Material();
+            Resources.SetForTest("BattleFields/Earth",new Sprite {name="Earth",bounds=new Bounds {size=new Vector3(2,4,0)}});
+            var cell=C(5,5);battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Earth,1,3,Vector3Int.zero);
+            var visual=FieldVisualAt(map,cell);
+            Check(Vector2.Distance(visual.transform.position,map.GetCellCenterWorld(cell))<0.0001f,"field did not match the transformed cell center");
+            Check(Math.Abs(visual.transform.localScale.x-0.625f)<0.0001f&&Math.Abs(visual.transform.localScale.y-0.3125f)<0.0001f,"sprite PPU/size did not fit the cell");
+            Check(visual.sortingLayerID==77&&visual.sortingOrder==-98&&visual.sharedMaterial==ground.sharedMaterial,"field did not render above the ground with its material");
+            Check(visual.gameObject.layer==8&&visual.transform.IsChildOf(map.transform),"field did not inherit the map's camera layer or transform");
+            map.transform.position=new Vector3(-11,24);map.transform.localScale=new Vector3(1.3f,2.1f,1);
+            Check(Vector2.Distance(visual.transform.position,map.GetCellCenterWorld(cell))<0.0001f,"map movement/scaling left the field behind");
+        });
+        Case("expiry removes only the field sprite and preserves an active highlight",()=>{
+            var cell=C(5,5);battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Ice,1,1,Vector3Int.zero);
+            var visual=FieldVisualAt(map,cell);var preview=new Color(1f,0.2f,0.2f,0.5f);map.SetColor(cell,preview);
+            battle.Fields.BeforeMonsterTurn(1,Actors(),map,executor,battle.Passives);
+            Check(battle.Fields.Count==0&&!visual.gameObject.activeInHierarchy,"expired field kept data or its sprite");
+            Check(SameColor(map.GetColor(cell),preview),"field expiry erased the active highlight");
+        });
+        Case("map switch and battle reentry immediately remove old field sprites",()=>{
+            var cell=C(5,5);battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Fire,1,3,Vector3Int.zero);
+            var oldVisual=FieldVisualAt(map,cell);var other=new Tilemap();
+            battle.Fields.Apply(other,cell,null,SkillTileFieldEffectType.Dark,1,3,Vector3Int.zero);
+            Check(!oldVisual.gameObject.activeInHierarchy&&FieldVisualAt(map,cell)==null,"map switch left an old sprite visible");
+            Check(battle.Fields.Count==1&&FieldVisualAt(other,cell).sprite.name=="Gravity","new map did not get its own field sprite");
+            battle.BeginBattle(1,null);
+            Check(other.GetComponentsInChildren<SpriteRenderer>().Length==0&&battle.Fields.Count==0,"reentry retained old field sprites");
+            battle.Fields.Apply(map,cell,null,SkillTileFieldEffectType.Wind,1,3,Vector3Int.zero);
+            Check(map.GetComponentsInChildren<SpriteRenderer>().Length==1&&FieldVisualAt(map,cell).sprite.name=="Wind","reentry could not create a fresh field sprite");
+            battle.AbortBattle();Check(FieldVisualAt(map,cell)==null,"battle exit left its field sprite visible");
         });
         Case("field kill grants Kang movement after the normal stamina reset",()=>{
             var p=Player(0,4,"Kang");var e=Enemy(5,5,2);p.steminaPoint=0;

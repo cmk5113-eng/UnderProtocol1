@@ -62,6 +62,7 @@ public class StageMapLoader : MonoBehaviour
             case StageFieldEffectType.Ice: return SkillTileFieldEffectType.Ice;
             case StageFieldEffectType.Electric: return SkillTileFieldEffectType.Electric;
             case StageFieldEffectType.Wind: return SkillTileFieldEffectType.Wind;
+            case StageFieldEffectType.Earth: return SkillTileFieldEffectType.Earth;
             case StageFieldEffectType.Dark: return SkillTileFieldEffectType.Dark;
             default: return SkillTileFieldEffectType.None;
         }

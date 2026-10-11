@@ -38,6 +38,7 @@ namespace UnityEngine
     {
         readonly List<Component> components = new List<Component>();
         public bool activeSelf = true;
+        public int layer;
         public bool activeInHierarchy => activeSelf && (transform.parent==null || transform.parent.gameObject.activeInHierarchy);
         public Transform transform;
         public GameObject() : this("GameObject") { }
@@ -117,11 +118,13 @@ namespace UnityEngine
     }
     public enum RenderMode { WorldSpace,ScreenSpaceOverlay }
     public class Canvas : Component { public RenderMode renderMode;public bool overrideSorting;public int sortingLayerID,sortingOrder; }
-    public class Sprite : Object { }
+    public class Sprite : Object { public Bounds bounds = new Bounds { size = new Vector3(1,1,0) }; }
+    public class Material : Object { }
     public struct Bounds { public Vector3 size,center;public Vector3 max=>center+size*0.5f; }
     public class SpriteRenderer : Component
     {
         public Color color; public Sprite sprite; public int sortingLayerID,sortingOrder;
+        public bool enabled = true; public Material sharedMaterial;
         public Vector3 unscaledSize=new Vector3(1,1,1);
         public Bounds bounds => new Bounds { center=transform.position,size=new Vector3(Math.Abs(unscaledSize.x*transform.lossyScale.x),Math.Abs(unscaledSize.y*transform.lossyScale.y),1) };
     }
@@ -223,16 +226,23 @@ namespace UnityEngine.Tilemaps
 {
     using UnityEngine;
     public enum TileFlags { None }
+    public class TilemapRenderer : Component
+    {
+        public int sortingLayerID,sortingOrder;
+        public Material sharedMaterial;
+    }
     public class Tilemap : Component
     {
         public BoundsInt cellBounds=new BoundsInt(0,0,0,10,10,1);
         public float scale=1;
+        public Vector3 cellSize => new Vector3(scale,scale,0);
         public Dictionary<Vector3Int,Sprite> sprites=new Dictionary<Vector3Int,Sprite>();
         public Dictionary<Vector3Int,Color> colors=new Dictionary<Vector3Int,Color>();
         public void CompressBounds() {}
         public bool HasTile(Vector3Int c)=>PassiveGeometry.IsOnBoard(c,cellBounds);
-        public Vector3Int WorldToCell(Vector3 p)=>new Vector3Int((int)Math.Floor((p.x-transform.position.x)/scale),(int)Math.Floor((p.y-transform.position.y)/scale));
-        public Vector3 GetCellCenterWorld(Vector3Int c)=>transform.position+new Vector3((c.x+0.5f)*scale,(c.y+0.5f)*scale,0);
+        public Vector3Int WorldToCell(Vector3 p) { p=transform.InverseTransformPoint(p); return new Vector3Int((int)Math.Floor(p.x/scale),(int)Math.Floor(p.y/scale)); }
+        public Vector3 GetCellCenterWorld(Vector3Int c)=>transform.TransformPoint(GetCellCenterLocal(c));
+        public Vector3 GetCellCenterLocal(Vector3Int c)=>new Vector3((c.x+0.5f)*scale,(c.y+0.5f)*scale,0);
         public Sprite GetSprite(Vector3Int c)=>sprites.TryGetValue(c,out var sprite)?sprite:null;
         public Color GetColor(Vector3Int c)=>colors.TryGetValue(c,out var color)?color:Color.white;
         public void SetColor(Vector3Int c,Color col) { colors[c]=col; }
