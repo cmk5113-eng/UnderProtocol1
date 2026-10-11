@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b41db1214dedf9f40b9dc2d961a60a4f, type: 3}
-  m_Name: 1 4
+  m_Name: "\uD39C\uD0C0\uC1FC\uD06C"
   m_EditorClassIdentifier: Assembly-CSharp::ActiveSkill
   skillName: 
   description: 
@@ -20,7 +20,7 @@ MonoBehaviour:
   elementType: 0
   effectType: 1
   targetType: 0
-  icon: {fileID: 1474375506, guid: dbb212744d348bf469f1008b3dd0727a, type: 3}
+  icon: {fileID: 947144146544731159, guid: dbb212744d348bf469f1008b3dd0727a, type: 3}
   cost: 0
   condition: 
   canRotate: 1
@@ -29,40 +29,74 @@ MonoBehaviour:
   level: 0
   MaxLevel: 0
   skillsList: []
-  rangePattern: []
+  rangePattern:
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
+  - {x: 4, y: 0}
+  - {x: 3, y: 1}
+  - {x: 3, y: -1}
+  - {x: 2, y: -1}
+  - {x: 2, y: -2}
+  - {x: 2, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 2}
+  - {x: 1, y: 3}
+  - {x: 1, y: 4}
+  - {x: 0, y: 3}
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  - {x: 0, y: -1}
+  - {x: 0, y: -2}
+  - {x: 1, y: -1}
+  - {x: 1, y: -2}
+  - {x: 0, y: 4}
+  - {x: 0, y: 5}
+  - {x: -1, y: 4}
+  - {x: -1, y: 3}
+  - {x: -1, y: 2}
+  - {x: -1, y: 1}
+  - {x: -2, y: 1}
+  - {x: -2, y: 3}
+  - {x: -2, y: 2}
+  - {x: -3, y: 2}
+  - {x: -3, y: 1}
+  - {x: -4, y: 0}
+  - {x: -4, y: 1}
+  - {x: -5, y: 0}
+  - {x: -4, y: -1}
+  - {x: -3, y: 0}
+  - {x: -3, y: -1}
+  - {x: -3, y: -2}
+  - {x: -2, y: -3}
+  - {x: -1, y: -4}
+  - {x: 0, y: -5}
+  - {x: 1, y: -4}
+  - {x: 2, y: -3}
+  - {x: 3, y: -2}
+  - {x: 4, y: -1}
+  - {x: 5, y: 0}
+  - {x: 4, y: 1}
+  - {x: 3, y: 2}
+  - {x: 2, y: 2}
+  - {x: 2, y: 3}
+  - {x: -2, y: 0}
+  - {x: -1, y: 0}
+  - {x: -2, y: -1}
+  - {x: -1, y: -1}
+  - {x: -2, y: -2}
+  - {x: -1, y: -2}
+  - {x: -1, y: -3}
+  - {x: 0, y: -3}
+  - {x: 1, y: -3}
+  - {x: 0, y: -4}
   roePattern:
-  - position: {x: 1, y: 0}
+  - position: {x: 0, y: -1}
     distanceFromCaster: 1
     damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
-    fieldEffectValue: 1
-    fieldEffectDuration: 3
-    fieldPushDirection: 0
-    push: 0
-    pushDirection: 0
-    pushTargetCount: 0
-    pushDistance: 0
-  - position: {x: 2, y: 0}
-    distanceFromCaster: 2
-    damage: 1
-    appliesDebuff: 0
-    debuffType: 0
-    fieldEffect: 0
-    fieldEffectValue: 1
-    fieldEffectDuration: 3
-    fieldPushDirection: 0
-    push: 0
-    pushDirection: 0
-    pushTargetCount: 0
-    pushDistance: 0
-  - position: {x: 0, y: 0}
-    distanceFromCaster: 0
-    damage: 1
-    appliesDebuff: 0
-    debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 5
     fieldEffectValue: 1
     fieldEffectDuration: 3
     fieldPushDirection: 0
@@ -75,7 +109,7 @@ MonoBehaviour:
     damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 5
     fieldEffectValue: 1
     fieldEffectDuration: 3
     fieldPushDirection: 0
@@ -83,12 +117,38 @@ MonoBehaviour:
     pushDirection: 0
     pushTargetCount: 0
     pushDistance: 0
-  - position: {x: -2, y: 0}
-    distanceFromCaster: 2
+  - position: {x: 1, y: 0}
+    distanceFromCaster: 1
     damage: 1
     appliesDebuff: 0
     debuffType: 0
-    fieldEffect: 0
+    fieldEffect: 5
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 0, y: 1}
+    distanceFromCaster: 1
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 5
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 0, y: 0}
+    distanceFromCaster: 0
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 5
     fieldEffectValue: 1
     fieldEffectDuration: 3
     fieldPushDirection: 0
