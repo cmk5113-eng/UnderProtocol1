@@ -708,6 +708,122 @@ internal static class Scenarios
         Check(world.activeSelf && !screen.activeSelf && !before.activeSelf && !f.map.gameObject.activeSelf, "world fallback left stage content active");
     }
 
+    private static StageButtonScenarioBinding BindPostScenario(WaveSetter setter, GameObject scenario)
+    {
+        StageButtonScenarioBinding binding = setter.gameObject.AddComponent<StageButtonScenarioBinding>();
+        Set(binding, "postBattleScenario", scenario);
+        return binding;
+    }
+
+    private static void ButtonScenarioBindingOverridesMapAndUsesExistingSkip()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var before = new GameObject("before") { parent = screen, activeSelf = false };
+        var mapScenario = new GameObject("map fallback") { parent = screen, activeSelf = false };
+        var after = new GameObject("button clear scenario") { parent = screen, activeSelf = false };
+        f.entry.postBattleScenario = mapScenario;
+        var setter = new GameObject("stage button") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(setter, 12);
+        ConfigureStageScreens(setter, f.map, world, screen, before);
+        f.entry.stageButtons.Find(item => item.button == setter).clearId = 12;
+        BindPostScenario(setter, after);
+        int completed = 0;
+        var skip = new GameObject("next") { parent = after }.AddComponent<Button>();
+        skip.onClick.AddPersistentListener(after, "Completed", () => completed++);
+        skip.onClick.AddPersistentListener(setter, nameof(WaveSetter.ReturnToWorld), setter.ReturnToWorld);
+        Button.ButtonClickedEvent original = skip.onClick;
+        Dialog1 dialogue = AddDialogue(after, typeof(Dialog1), new[] { "clear" });
+        setter.SelectSkillByIndex();
+        Check(!world.activeSelf && !after.activeSelf && BattleManager.Instance.LastStageId == 12,
+            "binding opened before victory or changed the button's clear ID");
+        PlacementController.RemoveAllObject();
+        Check(setter.ShowPostBattleScenario() && after.activeInHierarchy && !mapScenario.activeSelf && !before.activeSelf,
+            "button binding did not override the map's shared post scenario after cleanup");
+        Check(f.entry.postBattleScenario == mapScenario, "button binding overwrote the map editor's data");
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData()); dialogue.OnPointerDown(new PointerEventData());
+        Check(completed == 1 && skip.onClick == original && world.activeSelf && !screen.activeSelf && !after.activeSelf,
+            "bound scenario replaced, duplicated or ignored the existing skip callbacks");
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(setter.ShowPostBattleScenario(), "replaying the stage lost the button binding");
+        Call(dialogue, "OnEnable"); dialogue.OnPointerDown(new PointerEventData());
+        Check(completed == 2 && world.activeSelf && !after.activeSelf, "replay lost or duplicated dialogue completion");
+    }
+
+    private static void EmptyButtonScenarioBindingSuppressesMapFallback()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var before = new GameObject("before") { parent = screen, activeSelf = false };
+        var mapScenario = new GameObject("map fallback") { parent = screen };
+        f.entry.postBattleScenario = mapScenario;
+        var setter = new GameObject("stage button") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(setter, 0);
+        ConfigureStageScreens(setter, f.map, world, screen, before); BindPostScenario(setter, null);
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(!setter.ShowPostBattleScenario(), "an empty button binding inherited the map's scenario");
+        setter.ReturnToWorld();
+        Check(world.activeSelf && !screen.activeSelf && !before.activeSelf && !mapScenario.activeSelf,
+            "an empty binding did not preserve the world fallback");
+    }
+
+    private static void SharedMapButtonsKeepTheirOwnPostScenarios()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var beforeA = new GameObject("before A") { parent = screen, activeSelf = false };
+        var beforeB = new GameObject("before B") { parent = screen, activeSelf = false };
+        var afterA = new GameObject("after A") { parent = screen };
+        // Scenarios with their own Canvas need not be children of the shared screen.
+        var afterB = new GameObject("after B outside screen");
+        var decoration = new GameObject("shared background") { parent = screen };
+        var first = new GameObject("first button") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(first, 4);
+        var second = new GameObject("second button") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(second, 9);
+        ConfigureStageScreens(first, f.map, world, screen, beforeA);
+        ConfigureStageScreens(second, f.map, world, screen, beforeB);
+        f.entry.stageButtons.Find(item => item.button == first).clearId = 4;
+        f.entry.stageButtons.Find(item => item.button == second).clearId = 9;
+        BindPostScenario(first, afterA); BindPostScenario(second, afterB);
+        first.SelectSkillByIndex();
+        Check(!afterA.activeSelf && !afterB.activeSelf && !first.gameObject.activeInHierarchy,
+            "entry did not hide bound scenarios or test an inactive world button");
+        PlacementController.RemoveAllObject();
+        Check(first.ShowPostBattleScenario() && afterA.activeInHierarchy && !afterB.activeSelf,
+            "first button used the shared map's or another button's scenario");
+        first.ReturnToWorld(); afterA.SetActive(true);
+        second.SelectSkillByIndex();
+        Check(BattleManager.Instance.LastStageId == 9 && !afterA.activeSelf && !afterB.activeSelf,
+            "reentry retained the old scenario or another button's clear ID");
+        PlacementController.RemoveAllObject();
+        Check(second.ShowPostBattleScenario() && afterB.activeSelf && !afterA.activeSelf && !beforeA.activeSelf && !beforeB.activeSelf,
+            "second button failed to isolate its own post scenario");
+        second.ReturnToWorld();
+        Check(world.activeSelf && !afterA.activeSelf && !afterB.activeSelf && decoration.activeSelf,
+            "return retained bound content or disabled shared decorations");
+    }
+
+    private static void ButtonScenarioBindingIsCapturedBeforeEntryEvents()
+    {
+        Fixture f = NewFixture();
+        var world = new GameObject("world"); var screen = new GameObject("scenario screen") { activeSelf = false };
+        var before = new GameObject("before") { parent = screen, activeSelf = false };
+        var chosen = new GameObject("chosen scenario") { parent = screen, activeSelf = false };
+        var later = new GameObject("later assignment") { parent = screen, activeSelf = false };
+        var setter = new GameObject("stage button") { parent = world }.AddComponent<WaveSetter>(); RegisterButton(setter, 0);
+        ConfigureStageScreens(setter, f.map, world, screen, before);
+        StageButtonScenarioBinding binding = BindPostScenario(setter, chosen);
+        Get<UnityEngine.Events.UnityEvent>(setter, "onStageEntered").AddListener(() => Set(binding, "postBattleScenario", later));
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(binding.PostBattleScenario == later && setter.ShowPostBattleScenario() && chosen.activeInHierarchy && !later.activeSelf,
+            "entry events or battle cleanup replaced the stage's captured scenario");
+        setter.ReturnToWorld();
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject();
+        Check(setter.ShowPostBattleScenario() && later.activeInHierarchy && !chosen.activeSelf,
+            "next entry did not read the newly assigned binding");
+        setter.ReturnToWorld();
+        setter.SelectSkillByIndex(); PlacementController.RemoveAllObject(); setter.ReturnToWorld();
+        Check(!chosen.activeSelf && !later.activeSelf && world.activeSelf,
+            "returning without a clear opened the bound scenario");
+    }
+
     private static void LargeMonsterPaintEraseAndUndoUseTheWholeBody()
     {
         Fixture f = NewFixture(); f.a.footprintSize = new Vector2Int(2, 2);
@@ -949,6 +1065,8 @@ internal static class Scenarios
             UnconfiguredButtonDoesNotRunEntryEvents,
             DialogueCompletionInvokesExistingSkipOnce, DialogueReopensFromStartAndEmptyDataCanExit,
             PostBattleScenarioUsesExistingSkipAndConfiguredDestination, MissingPostBattleScenarioKeepsWorldFallback,
+            ButtonScenarioBindingOverridesMapAndUsesExistingSkip, EmptyButtonScenarioBindingSuppressesMapFallback,
+            SharedMapButtonsKeepTheirOwnPostScenarios, ButtonScenarioBindingIsCapturedBeforeEntryEvents,
             LargeMonsterPaintEraseAndUndoUseTheWholeBody, LargeMonsterPaintingRejectsEdgesHolesAndOtherUnits,
             LargeMonsterSaveValidationChecksEveryCoveredCell, WaveLoaderRegistersOneLargeUnitAtEveryBodyCell,
             InvalidLargeWaveCannotPartiallySpawnOrAdvance, WaveLoaderRejectsNonAnchorOccupancyBeforeCreatingUnits,

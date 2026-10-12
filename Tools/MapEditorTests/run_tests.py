@@ -37,6 +37,7 @@ sources = [
     "Assets/3.Scripts/Systems/StageMapLoader.cs",
     "Assets/3.Scripts/Systems/WaveLoader.cs",
     "Assets/3.Scripts/Systems/WaveSetter.cs",
+    "Assets/3.Scripts/UIs/Functions/Buttons/StageButtonScenarioBinding.cs",
     "Assets/3.Scripts/UIs/DIalog/Dialog1.cs",
     "Assets/3.Scripts/UIs/DIalog/Dialog2.cs",
     "Assets/3.Scripts/UIs/DIalog/Dialog3.cs",
