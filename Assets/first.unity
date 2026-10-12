@@ -101951,7 +101951,28 @@ MonoBehaviour:
   ScriptText_dialoguename: {fileID: 650803149}
   ScriptImage_portrait: {fileID: 248131916}
   skipButton: {fileID: 0}
-  dialogue: []
+  dialogue:
+  - "[\uD654\uBB3C \uC2B9\uAC15\uC7A5. \uC8FC\uBBFC\uB4E4\uC758 \uC190\uBAA9 \uB2E8\uB9D0\uC5D0\uC11C
+    \uBD89\uC740 \uBD88\uBE5B\uC774 \uAE5C\uBE61\uC778\uB2E4. \uD55C \uC5EC\uC790\uAC00
+    \uACE0\uC7A5 \uB09C \uD658\uD48D\uAD6C\uB97C \uBCF4\uACE0 \uC788\uB2E4.]"
+  - " \uBBF8\uB77C: \uC800 \uD658\uD48D\uAE30\uBD80\uD130 \uAEBC\uC694! \uBCA0\uC5B4\uB9C1
+    \uB098\uAC04 \uC18C\uB9AC \uC548 \uB4E4\uB824\uC694? \uBD88\uAF43 \uD280\uBA74
+    \uC5EC\uAE30 \uB2E4 \uD0C0\uC694!"
+  - "  \uC5D0\uB374 \uBCD1\uC0AC: \uC9C0\uC815 \uC704\uCE58\uC5D0\uC11C \uC6C0\uC9C1\uC774\uC9C0
+    \uB9C8\uB77C."
+  - "  \uC2DC\uD6C4: \uC7A1\uD600 \uC640\uC11C\uB3C4 \uC2DC\uC124 \uAC71\uC815\uC774\uB77C.
+    \uD655\uC2E4\uD788 \uC815\uBE44\uC0AC \uB9DE\uB124."
+  - " \uC11C\uB9B0: \uBBF8\uB77C. \uC678\uACFD \uBC30\uC804\uB9DD \uB2F4\uB2F9\uC774\uC5C8\uC5B4.
+    \uC0AC\uD758 \uC804\uAE4C\uC9C0 \uC5D0\uB374 \uC9C1\uC6D0\uC778\uB370 \uC624\uB298\uC740
+    \uBBF8\uB4F1\uB85D\uC790\uC57C."
+  - " \uC720\uB098: \uB2E4\uB978 \uC0AC\uB78C\uB4E4\uB3C4 \uC791\uC5C5\uBCF5\uC744
+    \uC785\uC5C8\uC5B4\uC694. \uC740\uD1F4\uD55C \uAE30\uC220\uC790\uAE4C\uC9C0 \uB370\uB824\uC654\uB124\uC694."
+  - " \uC9C0\uD718\uAD00: \uC2B9\uAC15\uC7A5 \uBCD1\uB825\uC744 \uC81C\uC555\uD55C\uB2E4.
+    \uC120\uB85C \uCABD\uC5D0\uB294 \uACF5\uACA9\uD558\uC9C0 \uB9C8. \uC5F0\uB8CC
+    \uD654\uCC28\uAC00 \uC788\uB2E4."
+  - " \uB3C4\uC724: \uB4E4\uC5C8\uC9C0, \uC2DC\uD6C4?"
+  - " \uC2DC\uD6C4: \uB098\uB3C4 \uAE00\uC528\uB294 \uC77D\uC5B4. \u2018\uD3ED\uBC1C
+    \uC704\uD5D8\u2019, \uC544\uC8FC \uD06C\uAC8C \uC368 \uC788\uB124."
   dialoguename: []
   portraits: []
 --- !u!213 &744233092
@@ -130848,41 +130869,23 @@ MonoBehaviour:
   ScriptImage_portrait: {fileID: 432561002}
   skipButton: {fileID: 0}
   dialogue:
-  - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
-    \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
-    \uC548\uC5D0 \uC8FC\uBBFC\uB4E4\uC774 \uBAB8\uC744 \uC219\uC774\uACE0 \uC788\uB2E4.
-    \uCC28\uACE0\uC9C0 \uC785\uAD6C\uC5D0\uC11C \uD0D0\uC870\uB4F1\uC774 \uC9C0\uB098\uAC04\uB2E4.]
-    \uB3C4\uC724: \uBC84\uC2A4 \uC138 \uB300. \uC5F0\uB8CC\uB294 \uB450 \uB300\uBD84\uC774\uAD70.
-    \uC0AC\uB78C\uC744 \uB098\uB220 \uD0DC\uC6CC\uC57C\uACA0\uC5B4. \uC720\uB098:
-    \uBD80\uC0C1\uC790\uB294 \uC55E\uCC28\uB85C \uC62E\uAE38\uAC8C\uC694. \uB4A4\uCC28\uC5D0\uB294
-    \uC544\uC774\uB4E4 \uBCF4\uD638\uC790\uAC00 \uAC19\uC774 \uD0C0\uC57C \uD574\uC694.
-    \uC11C\uB9B0: \uD070\uAE38\uC740 \uC804\uBD80 \uAC80\uBB38 \uC911\uC774\uC57C.
-    \uC815\uBE44 \uD130\uB110\uB85C \uBE60\uC9C0\uBA74 \uB418\uB294\uB370 \uCD9C\uC785\uBB38
-    \uC804\uC6D0\uC774 \uB04A\uACBC\uC5B4. \uC2DC\uD6C4: \uC774\uB7F0 \uBB38\uC5D0\uB294
-    \uAF2D \uC190\uC7A1\uC774\uAC00 \uC548 \uB2EC\uB824 \uC788\uB354\uB77C. \uBBF8\uB798
-    \uAE30\uC220\uC758 \uBE44\uADF9\uC774\uC9C0. \uC9C0\uD718\uAD00: \uC218\uB3D9
-    \uAC1C\uBC29 \uC7A5\uCE58\uB294? \uC11C\uB9B0: \uCC28\uACE0\uC9C0 \uBC18\uB300\uD3B8
-    \uBC30\uC804\uC2E4. \uADF8\uB7F0\uB370 \uCD94\uC801 \uB4DC\uB860\uC774 \uBA3C\uC800
-    \uB3C4\uCC29\uD588\uC5B4. \uCC28\uB7C9\uC744 \uBC1C\uACAC\uD558\uBA74 \uC704\uCE58\uAC00
-    \uB118\uC5B4\uAC00. \uB3C4\uC724: \uB0B4\uAC00 \uBC30\uC804\uC2E4\uAE4C\uC9C0
-    \uAC04\uB2E4. \uBC84\uC2A4 \uCABD\uC73C\uB85C\uB294 \uD55C \uBC1C\uB3C4 \uBABB
-    \uBCF4\uB0B4. \uC9C0\uD718\uAD00: \uB4DC\uB860\uC744 \uC815\uB9AC\uD558\uACE0
-    \uBB38\uC744 \uC5F0\uB2E4. \uCD9C\uBC1C \uC2E0\uD638 \uC804\uAE4C\uC9C0 \uC2DC\uB3D9\uC740
-    \uAC78\uC9C0 \uB9C8. \uC804\uD22C \uD6C4 [\uCCA0\uBB38\uC774 \uCC9C\uCC9C\uD788
-    \uC62C\uB77C\uAC04\uB2E4. \uBC84\uC2A4 \uC6B4\uC804\uC0AC\uAC00 \uC190\uC744
-    \uB4E4\uC5B4 \uC2E0\uD638\uD55C\uB2E4.] \uC6B4\uC804\uC0AC: \uB2E4\uC74C \uAD50\uCC28\uB85C\uAE4C\uC9C0\uB294
-    \uC555\uB2C8\uB2E4. \uADF8\uB2E4\uC74C\uC5D4 \uC5B4\uB514\uB85C \uAC00\uC8E0?
-    \uC11C\uB9B0: \uB300\uD53C\uC18C \uC88C\uD45C\uB97C \uACC4\uAE30\uD310\uC5D0
+  - "[\uCCA0\uBB38\uC774 \uCC9C\uCC9C\uD788 \uC62C\uB77C\uAC04\uB2E4. \uBC84\uC2A4
+    \uC6B4\uC804\uC0AC\uAC00 \uC190\uC744 \uB4E4\uC5B4 \uC2E0\uD638\uD55C\uB2E4.]"
+  - "\uC6B4\uC804\uC0AC: \uB2E4\uC74C \uAD50\uCC28\uB85C\uAE4C\uC9C0\uB294 \uC555\uB2C8\uB2E4.
+    \uADF8\uB2E4\uC74C\uC5D4 \uC5B4\uB514\uB85C \uAC00\uC8E0?"
+  - "\uC11C\uB9B0: \uB300\uD53C\uC18C \uC88C\uD45C\uB97C \uACC4\uAE30\uD310\uC5D0
     \uB123\uC5C8\uC5B4\uC694. \uC548\uB0B4\uAC00 \uB04A\uAE30\uBA74 \uD30C\uB780
-    \uBC30\uAD00\uC744 \uB530\uB77C\uAC00\uC138\uC694. \uC720\uB098: \uB3C4\uCC29\uD558\uBA74
-    \uC57D\uD488\uBD80\uD130 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uBA85\uB2E8\uC740
-    \uC81C\uAC00 \uBCF4\uB0B4\uB458\uAC8C\uC694. \uC2DC\uD6C4: \uBB38\uC740 \uC5F4\uB838\uB294\uB370
-    \uC6B0\uB9B0 \uC548 \uD0C0\uB294 \uBD84\uC704\uAE30\uB124. \uC11C\uB9B0: \uC774\uC1A1
-    \uCC28\uB7C9 \uC2E0\uD638\uB97C \uCC3E\uC558\uC5B4. \uD3D0\uC5ED\uC5D0 \uC815\uCC28
-    \uC911\uC774\uC57C. \uD0D1\uC2B9\uC790 \uBA85\uB2E8\uC5D0 \uC124\uBE44 \uC815\uBE44\uC0AC\uAC00
-    \uC5EC\uB7EC \uBA85 \uC788\uC5B4. \uC9C0\uD718\uAD00: \uC0AC\uB78C\uC744 \uACE8\uB77C
-    \uB370\uB824\uAC00\uB294 \uC774\uC720\uBD80\uD130 \uD655\uC778\uD558\uC790. \uD3D0\uC5ED\uC73C\uB85C
-    \uAC04\uB2E4. "
+    \uBC30\uAD00\uC744 \uB530\uB77C\uAC00\uC138\uC694."
+  - "\uC720\uB098: \uB3C4\uCC29\uD558\uBA74 \uC57D\uD488\uBD80\uD130 \uD655\uC778\uD574
+    \uC8FC\uC138\uC694. \uBA85\uB2E8\uC740 \uC81C\uAC00 \uBCF4\uB0B4\uB458\uAC8C\uC694."
+  - "\uC2DC\uD6C4: \uBB38\uC740 \uC5F4\uB838\uB294\uB370 \uC6B0\uB9B0 \uC548 \uD0C0\uB294
+    \uBD84\uC704\uAE30\uB124."
+  - "\uC11C\uB9B0: \uC774\uC1A1 \uCC28\uB7C9 \uC2E0\uD638\uB97C \uCC3E\uC558\uC5B4.
+    \uD3D0\uC5ED\uC5D0 \uC815\uCC28 \uC911\uC774\uC57C. \uD0D1\uC2B9\uC790 \uBA85\uB2E8\uC5D0
+    \uC124\uBE44 \uC815\uBE44\uC0AC\uAC00 \uC5EC\uB7EC \uBA85 \uC788\uC5B4."
+  - "\uC9C0\uD718\uAD00: \uC0AC\uB78C\uC744 \uACE8\uB77C \uB370\uB824\uAC00\uB294
+    \uC774\uC720\uBD80\uD130 \uD655\uC778\uD558\uC790. \uD3D0\uC5ED\uC73C\uB85C \uAC04\uB2E4."
+  - "\uB77C\uC838"
   dialoguename:
   - 
   portraits:
@@ -174269,6 +174272,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3918430527516160429, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 82518895}
+    - targetCorrespondingSourceObject: {fileID: 3918430527516160429, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2027251331}
     - targetCorrespondingSourceObject: {fileID: 1740551995245907199, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1087510856}
@@ -174278,6 +174284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1740551995245907199, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8600000000000014}
+    - targetCorrespondingSourceObject: {fileID: 1740551995245907199, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8600000000000017}
     - targetCorrespondingSourceObject: {fileID: 6803339735909852581, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1796673618}
@@ -174287,6 +174296,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6803339735909852581, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8600000000000027}
+    - targetCorrespondingSourceObject: {fileID: 6803339735909852581, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1796823667}
     - targetCorrespondingSourceObject: {fileID: 5226586173241285842, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1724516689}
@@ -174296,6 +174308,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5226586173241285842, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8600000000000024}
+    - targetCorrespondingSourceObject: {fileID: 5226586173241285842, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2084842901}
     - targetCorrespondingSourceObject: {fileID: 465080263444569180, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2060298612}
@@ -174305,6 +174320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 465080263444569180, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8600000000000033}
+    - targetCorrespondingSourceObject: {fileID: 465080263444569180, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8600000000000037}
   m_SourcePrefab: {fileID: 100100000, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
 --- !u!1 &1378485224
 GameObject:
@@ -188387,41 +188405,28 @@ MonoBehaviour:
   ScriptImage_portrait: {fileID: 1307633372}
   skipButton: {fileID: 0}
   dialogue:
-  - "\uC7A5\uC18C: \uD3D0\uC1C4\uB41C \uBC84\uC2A4 \uCC28\uACE0\uC9C0. \uBAA9\uC801:
-    \uC8FC\uBBFC \uB300\uD53C \uACBD\uB85C \uD655\uBCF4. \uC804\uD22C \uC804 [\uBC84\uC2A4
-    \uC548\uC5D0 \uC8FC\uBBFC\uB4E4\uC774 \uBAB8\uC744 \uC219\uC774\uACE0 \uC788\uB2E4.
-    \uCC28\uACE0\uC9C0 \uC785\uAD6C\uC5D0\uC11C \uD0D0\uC870\uB4F1\uC774 \uC9C0\uB098\uAC04\uB2E4.]
-    \uB3C4\uC724: \uBC84\uC2A4 \uC138 \uB300. \uC5F0\uB8CC\uB294 \uB450 \uB300\uBD84\uC774\uAD70.
-    \uC0AC\uB78C\uC744 \uB098\uB220 \uD0DC\uC6CC\uC57C\uACA0\uC5B4. \uC720\uB098:
-    \uBD80\uC0C1\uC790\uB294 \uC55E\uCC28\uB85C \uC62E\uAE38\uAC8C\uC694. \uB4A4\uCC28\uC5D0\uB294
-    \uC544\uC774\uB4E4 \uBCF4\uD638\uC790\uAC00 \uAC19\uC774 \uD0C0\uC57C \uD574\uC694.
-    \uC11C\uB9B0: \uD070\uAE38\uC740 \uC804\uBD80 \uAC80\uBB38 \uC911\uC774\uC57C.
+  - "[\uBC84\uC2A4 \uC548\uC5D0 \uC8FC\uBBFC\uB4E4\uC774 \uBAB8\uC744 \uC219\uC774\uACE0
+    \uC788\uB2E4. \uCC28\uACE0\uC9C0 \uC785\uAD6C\uC5D0\uC11C \uD0D0\uC870\uB4F1\uC774
+    \uC9C0\uB098\uAC04\uB2E4.]"
+  - "\uB3C4\uC724: \uBC84\uC2A4 \uC138 \uB300. \uC5F0\uB8CC\uB294 \uB450 \uB300\uBD84\uC774\uAD70.
+    \uC0AC\uB78C\uC744 \uB098\uB220 \uD0DC\uC6CC\uC57C\uACA0\uC5B4."
+  - "\uC720\uB098: \uBD80\uC0C1\uC790\uB294 \uC55E\uCC28\uB85C \uC62E\uAE38\uAC8C\uC694.
+    \uB4A4\uCC28\uC5D0\uB294 \uC544\uC774\uB4E4 \uBCF4\uD638\uC790\uAC00 \uAC19\uC774
+    \uD0C0\uC57C \uD574\uC694."
+  - "\uC11C\uB9B0: \uD070\uAE38\uC740 \uC804\uBD80 \uAC80\uBB38 \uC911\uC774\uC57C.
     \uC815\uBE44 \uD130\uB110\uB85C \uBE60\uC9C0\uBA74 \uB418\uB294\uB370 \uCD9C\uC785\uBB38
-    \uC804\uC6D0\uC774 \uB04A\uACBC\uC5B4. \uC2DC\uD6C4: \uC774\uB7F0 \uBB38\uC5D0\uB294
-    \uAF2D \uC190\uC7A1\uC774\uAC00 \uC548 \uB2EC\uB824 \uC788\uB354\uB77C. \uBBF8\uB798
-    \uAE30\uC220\uC758 \uBE44\uADF9\uC774\uC9C0. \uC9C0\uD718\uAD00: \uC218\uB3D9
-    \uAC1C\uBC29 \uC7A5\uCE58\uB294? \uC11C\uB9B0: \uCC28\uACE0\uC9C0 \uBC18\uB300\uD3B8
-    \uBC30\uC804\uC2E4. \uADF8\uB7F0\uB370 \uCD94\uC801 \uB4DC\uB860\uC774 \uBA3C\uC800
-    \uB3C4\uCC29\uD588\uC5B4. \uCC28\uB7C9\uC744 \uBC1C\uACAC\uD558\uBA74 \uC704\uCE58\uAC00
-    \uB118\uC5B4\uAC00. \uB3C4\uC724: \uB0B4\uAC00 \uBC30\uC804\uC2E4\uAE4C\uC9C0
-    \uAC04\uB2E4. \uBC84\uC2A4 \uCABD\uC73C\uB85C\uB294 \uD55C \uBC1C\uB3C4 \uBABB
-    \uBCF4\uB0B4. \uC9C0\uD718\uAD00: \uB4DC\uB860\uC744 \uC815\uB9AC\uD558\uACE0
-    \uBB38\uC744 \uC5F0\uB2E4. \uCD9C\uBC1C \uC2E0\uD638 \uC804\uAE4C\uC9C0 \uC2DC\uB3D9\uC740
-    \uAC78\uC9C0 \uB9C8. \uC804\uD22C \uD6C4 [\uCCA0\uBB38\uC774 \uCC9C\uCC9C\uD788
-    \uC62C\uB77C\uAC04\uB2E4. \uBC84\uC2A4 \uC6B4\uC804\uC0AC\uAC00 \uC190\uC744
-    \uB4E4\uC5B4 \uC2E0\uD638\uD55C\uB2E4.] \uC6B4\uC804\uC0AC: \uB2E4\uC74C \uAD50\uCC28\uB85C\uAE4C\uC9C0\uB294
-    \uC555\uB2C8\uB2E4. \uADF8\uB2E4\uC74C\uC5D4 \uC5B4\uB514\uB85C \uAC00\uC8E0?
-    \uC11C\uB9B0: \uB300\uD53C\uC18C \uC88C\uD45C\uB97C \uACC4\uAE30\uD310\uC5D0
-    \uB123\uC5C8\uC5B4\uC694. \uC548\uB0B4\uAC00 \uB04A\uAE30\uBA74 \uD30C\uB780
-    \uBC30\uAD00\uC744 \uB530\uB77C\uAC00\uC138\uC694. \uC720\uB098: \uB3C4\uCC29\uD558\uBA74
-    \uC57D\uD488\uBD80\uD130 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uBA85\uB2E8\uC740
-    \uC81C\uAC00 \uBCF4\uB0B4\uB458\uAC8C\uC694. \uC2DC\uD6C4: \uBB38\uC740 \uC5F4\uB838\uB294\uB370
-    \uC6B0\uB9B0 \uC548 \uD0C0\uB294 \uBD84\uC704\uAE30\uB124. \uC11C\uB9B0: \uC774\uC1A1
-    \uCC28\uB7C9 \uC2E0\uD638\uB97C \uCC3E\uC558\uC5B4. \uD3D0\uC5ED\uC5D0 \uC815\uCC28
-    \uC911\uC774\uC57C. \uD0D1\uC2B9\uC790 \uBA85\uB2E8\uC5D0 \uC124\uBE44 \uC815\uBE44\uC0AC\uAC00
-    \uC5EC\uB7EC \uBA85 \uC788\uC5B4. \uC9C0\uD718\uAD00: \uC0AC\uB78C\uC744 \uACE8\uB77C
-    \uB370\uB824\uAC00\uB294 \uC774\uC720\uBD80\uD130 \uD655\uC778\uD558\uC790. \uD3D0\uC5ED\uC73C\uB85C
-    \uAC04\uB2E4. "
+    \uC804\uC6D0\uC774 \uB04A\uACBC\uC5B4."
+  - "\uC2DC\uD6C4: \uC774\uB7F0 \uBB38\uC5D0\uB294 \uAF2D \uC190\uC7A1\uC774\uAC00
+    \uC548 \uB2EC\uB824 \uC788\uB354\uB77C. \uBBF8\uB798 \uAE30\uC220\uC758 \uBE44\uADF9\uC774\uC9C0."
+  - "\uC9C0\uD718\uAD00: \uC218\uB3D9 \uAC1C\uBC29 \uC7A5\uCE58\uB294?"
+  - "\uC11C\uB9B0: \uCC28\uACE0\uC9C0 \uBC18\uB300\uD3B8 \uBC30\uC804\uC2E4. \uADF8\uB7F0\uB370
+    \uCD94\uC801 \uB4DC\uB860\uC774 \uBA3C\uC800 \uB3C4\uCC29\uD588\uC5B4. \uCC28\uB7C9\uC744
+    \uBC1C\uACAC\uD558\uBA74 \uC704\uCE58\uAC00 \uB118\uC5B4\uAC00."
+  - "\uB3C4\uC724: \uB0B4\uAC00 \uBC30\uC804\uC2E4\uAE4C\uC9C0 \uAC04\uB2E4. \uBC84\uC2A4
+    \uCABD\uC73C\uB85C\uB294 \uD55C \uBC1C\uB3C4 \uBABB \uBCF4\uB0B4."
+  - "\uC9C0\uD718\uAD00: \uB4DC\uB860\uC744 \uC815\uB9AC\uD558\uACE0 \uBB38\uC744
+    \uC5F0\uB2E4. \uCD9C\uBC1C \uC2E0\uD638 \uC804\uAE4C\uC9C0 \uC2DC\uB3D9\uC740
+    \uAC78\uC9C0 \uB9C8."
   dialoguename:
   - 
   portraits:
@@ -195805,35 +195810,29 @@ MonoBehaviour:
   ScriptImage_portrait: {fileID: 1678959322}
   skipButton: {fileID: 0}
   dialogue:
-  - "[\uBD88 \uAEBC\uC9C4 \uC0C1\uC810\uB4E4. \uAC04\uD310 \uD558\uB098\uB9CC \uAE5C\uBE61\uC778\uB2E4.
-    \uAE38 \uAC74\uB108 \uC804\uAD11\uD310\uC5D0\uB294 \u2018\uB2F9\uC2E0\uC758 \uB0B4\uC77C\uC744
-    \uC9C0\uD0B5\uB2C8\uB2E4. \uC5D0\uB374\u2019\uC774 \uB5A0 \uC788\uB2E4.]"
-  - " \uB0B4\uC77C\uC740 \uC9C0\uCF1C\uC900\uB2E4\uB294\uB370 \uC624\uB298 \uC804\uAE30\uB294
-    \uB04A\uACBC\uB124. \uACE0\uAC1D\uC13C\uD130 \uC5B4\uB514\uC57C?"
-  - " \uB18D\uB2F4\uD560 \uC0C1\uD669 \uC544\uB2C8\uC57C. \uC774 \uAD6C\uC5ED \uC2DC\uBBFC
-    \uB4F1\uB85D\uC774 \uC77C\uAD04 \uB9D0\uC18C\uB410\uC5B4. \uC0AC\uB78C\uC740
-    \uADF8\uB300\uB85C \uC788\uB294\uB370 \uD589\uC815\uC0C1 \uAC70\uC8FC\uC790\uAC00
-    \uC5C6\uC5B4."
-  - "\uADF8\uB798\uC11C \uB2E8\uC18D \uBCD1\uB825\uC774 \uB4E4\uC5B4\uC628 \uAC70\uAD70.
-    \uC5C6\uB294 \uC0AC\uB78C\uC740 \uB54C\uB824\uB3C4 \uB41C\uB2E4\uB294 \uAC74\uAC00."
-  - " \uBBF8\uB4F1\uB85D \uCCB4\uB958\uC790\uB294 \uB3C4\uB85C \uC911\uC559\uC5D0
-    \uC9D1\uACB0\uD558\uC2ED\uC2DC\uC624. \uC800\uD56D \uD589\uC704\uB294 \uACA9\uB9AC
-    \uC0AC\uC720\uC5D0 \uD574\uB2F9\uD569\uB2C8\uB2E4."
-  - "\uC154\uD130 \uC548\uC5D0 \uC0AC\uB78C\uC774 \uC788\uC5B4\uC694. \uC544\uC774
-    \uB458\uD558\uACE0, \uAC78\uC744 \uC218 \uC5C6\uB294 \uC5B4\uB978 \uD55C \uBA85.
-    \uBB38\uC744 \uC5F4\uBA74 \uBC14\uB85C \uC0AC\uC120\uC5D0 \uB4E4\uC5B4\uAC00\uC694."
-  - " \uB3C4\uC724\uC740 \uC0C1\uAC00 \uC55E\uC744 \uB9C9\uC544. \uC2DC\uD6C4, \uAC74\uB108\uD3B8
-    \uC0AC\uC218\uBD80\uD130. \uC720\uB098\uB294 \uB0B4\uAC00 \uC2E0\uD638\uD558\uBA74
-    \uC8FC\uBBFC\uC744 \uB370\uB9AC\uACE0 \uB098\uC640."
-  - "\uD655\uC778. \uC800\uCABD \uB208\uC740 \uB098\uD55C\uD14C \uB3CC\uB824\uB193\uC744\uAC8C."
+  - "[\uC720\uB098\uAC00 \uC8FC\uBBFC\uC744 \uBD80\uCD95\uD55C\uB2E4. \uC544\uC774\uAC00
+    \uB5A8\uC5B4\uB728\uB9B0 \uC2E0\uBC1C\uC744 \uB3C4\uC724\uC774 \uC8FC\uC6CC \uAC74\uB128\uB2E4.]"
+  - "\uC6B0\uB9B0 \uD1B5\uC9C0\uC11C\uB3C4 \uBABB \uBC1B\uC558\uC5B4\uC694. \uC544\uCE68\uC5D0
+    \uBB38\uC744 \uC5F4\uC5C8\uB354\uB2C8 \uC9D1\uC774 \uBD88\uBC95 \uC2DC\uC124\uC774\uB798\uC694."
+  - " \uB2E4\uB978 \uAD6C\uC5ED\uB3C4 \uAC19\uC740 \uC2DC\uAC04\uC5D0 \uB9D0\uC18C\uB410\uC5B4.
+    \uB2E8\uC21C \uB2E8\uC18D\uC774 \uC544\uB2C8\uC57C. \uC774\uC1A1 \uCC28\uB7C9\uAE4C\uC9C0
+    \uBC30\uC815\uB3FC \uC788\uC5B4."
+  - "\uBAA9\uC801\uC9C0\uB294?"
+  - "\uD604\uC7AC \uC9C0\uB3C4\uC5D0\uB294 \uC5C6\uB294 \uACF3. \uBA3C\uC800 \uCC28\uB7C9
+    \uD1B5\uC2E0\uC744 \uC7A1\uC544\uC57C \uD574."
+  - "\uC8FC\uBBFC\uBD80\uD130 \uB300\uD53C\uC2DC\uD0A8\uB2E4. \uADF8\uB2E4\uC74C
+    \uCC28\uB7C9\uC744 \uCAD3\uC544\uAC00\uC790."
+  - "\uC544\uC800\uC528\uB4E4\uB3C4 \uC5D0\uB374\uC774\uC5D0\uC694?"
+  - "\uC544\uB2C8. \uC6B0\uB9B0 \uC5D1\uC790\uC77C\uC774\uC57C. \uC2E0\uBC1C\uBD80\uD130
+    \uC2E0\uC790. \uAE38\uC5D0 \uC720\uB9AC\uAC00 \uB9CE\uC544."
   dialoguename:
   - 
-  - "\uC2DC\uD6C4"
+  - "\uC8FC\uBBFC"
   - "\uC11C\uB9B0"
-  - "\uB3C4\uC724"
-  - "\uC5D0\uB374 \uBC29\uC1A1"
-  - "\uC720\uB098"
   - "\uC9C0\uD718\uAD00"
+  - "\uC11C\uB9B0"
+  - "\uC9C0\uD718\uAD00"
+  - "\uC544\uC774"
   - "\uC2DC\uD6C4 "
   portraits:
   - {fileID: -6536246943191523338, guid: 07339dedf9bc5224d903b2225251a61f, type: 3}
@@ -213278,6 +213277,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1796823667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617888421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74777763f2134543930d256d2330cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButtonScenarioBinding
+  postBattleScenario: {fileID: 1913788864}
 --- !u!1 &1797060573
 GameObject:
   m_ObjectHideFlags: 0
@@ -230057,7 +230069,28 @@ MonoBehaviour:
   ScriptText_dialoguename: {fileID: 1726108179}
   ScriptImage_portrait: {fileID: 727116117}
   skipButton: {fileID: 0}
-  dialogue: []
+  dialogue:
+  - " [\uBCBD\uC5D0 \uB0A1\uC740 \uB178\uB780 \uD654\uC0B4\uD45C\uAC00 \uADF8\uB824\uC838
+    \uC788\uB2E4. \uBB3C \uC704\uB85C \uC791\uC740 \uBD89\uC740 \uBE5B\uB4E4\uC774
+    \uC6C0\uC9C1\uC778\uB2E4.]"
+  - "\uC2DC\uD6C4: \uBE44\uBC00 \uD1B5\uB85C\uCE58\uACE0 \uD5A5\uC774 \uAC15\uB82C\uD55C\uB370.
+    \uC785\uC7A5\uB8CC \uB300\uC2E0 \uD6C4\uAC01\uC744 \uBC1B\uB098 \uBD10."
+  - "\uBBF8\uB77C: \uC624\uB978\uCABD\uC740 \uAC00\uC2A4\uAC00 \uCC28\uC694. \uB178\uB780
+    \uD654\uC0B4\uD45C\uB9CC \uB530\uB77C\uAC00\uC694. \uB0B4\uAC00 \uADF8\uB824\uB193\uC740
+    \uAC70\uB2C8\uAE4C."
+  - "\uB3C4\uC724: \uBC1C\uC790\uAD6D\uC774 \uC788\uAD70. \uC6B0\uB9AC\uBCF4\uB2E4
+    \uBA3C\uC800 \uC9C0\uB098\uAC04 \uC0AC\uB78C\uC774 \uC788\uC5B4."
+  - " \uC720\uB098: \uBC14\uB2E5\uC5D0 \uC57D \uBD09\uD22C\uB3C4 \uC788\uC5B4\uC694.
+    \uC8FC\uBBFC\uB4E4\uC774 \uC774\uCABD\uC73C\uB85C \uB3C4\uB9DD\uCE5C \uAC83 \uAC19\uC544\uC694."
+  - "\uC11C\uB9B0: \uC7A0\uAE50. \uC55E\uCABD \uC5F4 \uC2E0\uD638\uAC00 \uC774\uC0C1\uD574.
+    \uC0AC\uB78C \uCCB4\uC628\uC774 \uC544\uB2CC\uB370 \uC6C0\uC9C1\uC784\uC740 \uC0DD\uBB3C\uC774\uC57C."
+  - "[\uBB3C \uC704\uC5D0\uC11C \uCE68\uC2DD\uCCB4\uAC00 \uACE0\uAC1C\uB97C \uB4E0\uB2E4.
+    \uBAA9\uC5D0 \uC5D0\uB374\uC758 \uAE08\uC18D \uC81C\uC5B4\uD658\uC774 \uCC44\uC6CC\uC838
+    \uC788\uB2E4.]"
+  - " \uB3C4\uC724: \uCE68\uC2DD\uCCB4\uAC00 \uC65C \uBC29\uBCBD \uC548\uC5D0 \uC788\uC9C0?"
+  - " \uC9C0\uD718\uAD00: \uC774\uC720\uB294 \uD655\uBCF4\uD55C \uB4A4\uC5D0 \uD655\uC778\uD55C\uB2E4.
+    \uB4A4\uCABD \uCD9C\uAD6C\uB97C \uC9C0\uCF1C. \uB300\uD53C\uD55C \uC8FC\uBBFC\uC5D0\uAC8C
+    \uB3CC\uC544\uAC00\uBA74 \uC548 \uB3FC."
   dialoguename: []
   portraits: []
 --- !u!1 &1967957968
@@ -235148,6 +235181,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027164532}
   m_CullTransparentMesh: 1
+--- !u!114 &2027251331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932128089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74777763f2134543930d256d2330cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButtonScenarioBinding
+  postBattleScenario: {fileID: 318553873}
 --- !u!1 &2027989190
 GameObject:
   m_ObjectHideFlags: 0
@@ -241898,6 +241944,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084343673}
   m_CullTransparentMesh: 1
+--- !u!114 &2084842901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981974742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74777763f2134543930d256d2330cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButtonScenarioBinding
+  postBattleScenario: {fileID: 244558499}
 --- !u!1 &2087263149
 GameObject:
   m_ObjectHideFlags: 0
@@ -248120,6 +248179,19 @@ MonoBehaviour:
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
   requredProgress: 0
+--- !u!114 &8600000000000017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205586765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74777763f2134543930d256d2330cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButtonScenarioBinding
+  postBattleScenario: {fileID: 1627629424}
 --- !u!114 &8600000000000023 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1981386935328569795, guid: 98a0e444a68dac549bfcbf668e66ef49, type: 3}
@@ -248252,6 +248324,19 @@ MonoBehaviour:
   clearedColor: {r: 0.5, g: 1, b: 0.7, a: 1}
   lockedColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
   requredProgress: 0
+--- !u!114 &8600000000000037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368953321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74777763f2134543930d256d2330cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageButtonScenarioBinding
+  postBattleScenario: {fileID: 600518765}
 --- !u!1001 &3264656843074194971
 PrefabInstance:
   m_ObjectHideFlags: 0
