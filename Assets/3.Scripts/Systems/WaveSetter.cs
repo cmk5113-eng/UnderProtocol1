@@ -50,6 +50,10 @@ public class WaveSetter : MonoBehaviour
 
         StageButtonImageController button = GetComponent<StageButtonImageController>();
         if (button != null) button.ClearHover();
+        // Read before entry events hide the world/buttons or edit the binding.
+        StageButtonScenarioBinding scenarioBinding = GetComponent<StageButtonScenarioBinding>();
+        GameObject selectedPostScenario = scenarioBinding != null
+            ? scenarioBinding.PostBattleScenario : settings.postBattleScenario;
         PlacementController.RemoveAllObject();
         HideStageScenarios();
         onStageEntered.Invoke();
@@ -74,7 +78,7 @@ public class WaveSetter : MonoBehaviour
             CancelStageEntry();
             return;
         }
-        postBattleScenario = settings.postBattleScenario;
+        postBattleScenario = selectedPostScenario;
         battle.BeginBattle(settings.GetStageId(this), this);
         if (settings.mapData != null)
         {
@@ -107,6 +111,11 @@ public class WaveSetter : MonoBehaviour
             FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             if (stage.scenarioScreen != scenarioScreen) continue;
+            StageButtonScenarioBinding binding = stage.GetComponent<StageButtonScenarioBinding>();
+            GameObject boundScenario = binding != null ? binding.PostBattleScenario : null;
+            // A bound scenario may have its own Canvas outside the shared screen hierarchy.
+            if (boundScenario != null && boundScenario != scenarioScreen)
+                boundScenario.SetActive(false);
             for (int i = 0; i < stage.onStageEntered.GetPersistentEventCount(); i++)
             {
                 if (stage.onStageEntered.GetPersistentMethodName(i) != nameof(GameObject.SetActive)) continue;

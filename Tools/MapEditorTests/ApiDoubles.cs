@@ -234,7 +234,8 @@ namespace UnityEngine
     public static class GUILayoutUtility { public static Rect GetRect(float width, float height, params GUILayoutOption[] options) => new Rect(0, 0, 400, height); }
     public static class Debug { public static void Log(object text) { } public static void LogError(object text) { } public static void LogWarning(object text) { } }
     public class SerializeField : Attribute { }
-    public class RequireComponent : Attribute { public RequireComponent(Type first, Type second) { } }
+    public class RequireComponent : Attribute { public RequireComponent(Type first, Type second = null) { } }
+    public class DisallowMultipleComponent : Attribute { }
     public class HideInInspector : Attribute { }
     public class Tooltip : Attribute { public Tooltip(string text) { } }
     public class Min : Attribute { public Min(float value) { } }
