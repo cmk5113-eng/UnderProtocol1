@@ -60460,8 +60460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &518386084
 GameObject:
@@ -64628,8 +64628,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &556375840
 PrefabInstance:
@@ -86100,8 +86100,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.19995, y: -91.89557}
-  m_SizeDelta: {x: 1006.5226, y: 50}
+  m_AnchoredPosition: {x: 10.237427, y: -10.029358}
+  m_SizeDelta: {x: 345.5226, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &596670939
 CanvasRenderer:
@@ -101599,8 +101599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &740743222 stripped
 RectTransform:
@@ -137227,8 +137227,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1087510850 stripped
 MonoBehaviour:
@@ -194241,8 +194241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1607622208
 GameObject:
@@ -206391,8 +206391,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205.8, y: -37.8}
-  m_SizeDelta: {x: 40, y: 64.1456}
+  m_AnchoredPosition: {x: -158.8, y: -37.8}
+  m_SizeDelta: {x: 134, y: 64.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1746487178
 GameObject:
@@ -217173,7 +217173,7 @@ PrefabInstance:
       objectReference: {fileID: 596670940}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: currentenemy
-      value:
+      value: 
       objectReference: {fileID: 1513715993}
     - target: {fileID: 3658307032642652263, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: defaultImage
@@ -217627,6 +217627,26 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f900d5849b2a56c89f0f735ae60e935b, type: 3}
+    - target: {fileID: 5713808315022516205, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: aoeColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713808315022516205, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: aoeColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713808315022516205, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: aoeColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713808315022516205, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: aoeColor.r
+      value: 0.08926833
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713808315022516205, guid: c90729f078ea0524495846caba57c4fb, type: 3}
+      propertyPath: castRangeColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5814611957880998946, guid: c90729f078ea0524495846caba57c4fb, type: 3}
       propertyPath: m_Type
       value: 1
@@ -248550,4 +248570,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 3264656843074194971}
-
