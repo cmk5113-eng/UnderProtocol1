@@ -93,7 +93,7 @@ MonoBehaviour:
   roePattern:
   - position: {x: 0, y: -1}
     distanceFromCaster: 1
-    damage: 1
+    damage: 2
     appliesDebuff: 0
     debuffType: 0
     fieldEffect: 5
@@ -106,7 +106,7 @@ MonoBehaviour:
     pushDistance: 0
   - position: {x: -1, y: 0}
     distanceFromCaster: 1
-    damage: 1
+    damage: 2
     appliesDebuff: 0
     debuffType: 0
     fieldEffect: 5
@@ -119,7 +119,7 @@ MonoBehaviour:
     pushDistance: 0
   - position: {x: 1, y: 0}
     distanceFromCaster: 1
-    damage: 1
+    damage: 2
     appliesDebuff: 0
     debuffType: 0
     fieldEffect: 5
@@ -132,7 +132,7 @@ MonoBehaviour:
     pushDistance: 0
   - position: {x: 0, y: 1}
     distanceFromCaster: 1
-    damage: 1
+    damage: 2
     appliesDebuff: 0
     debuffType: 0
     fieldEffect: 5
@@ -145,7 +145,7 @@ MonoBehaviour:
     pushDistance: 0
   - position: {x: 0, y: 0}
     distanceFromCaster: 0
-    damage: 1
+    damage: 2
     appliesDebuff: 0
     debuffType: 0
     fieldEffect: 5

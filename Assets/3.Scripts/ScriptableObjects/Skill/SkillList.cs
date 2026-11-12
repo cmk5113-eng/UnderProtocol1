@@ -72,52 +72,6 @@ public enum SkillPushDirection
     Backward
 }
 
-
-[System.Flags]
-public enum SkillAllowedClasses { None = 0, Breaker = 1, Buster = 2, Supporter = 4, Sniper = 8 }
-public enum SkillTargetSelection { LegacyAll = 0, Random = 1, Direct = 2, Nearest = 3, Farthest = 4 }
-public enum SkillActivationTrigger { Manual, TurnStart, TurnEnd, MoveComplete, AttackHit, Kill, Damaged, EnterField, Custom }
-public enum SkillValueType { None, Integer, Boolean }
-public enum SkillComparison { Equal, NotEqual, Greater, GreaterOrEqual, Less, LessOrEqual }
-public enum SkillConditionLogic { All, Any }
-public enum SkillDurationType { Instant, Turns, Uses, Permanent, UntilCondition }
-public enum SkillEffectKind { Damage, Heal, Field, Status, Movement, Stats, Object, SkillOperation, Cooldown, Range, Resistance, PositionSwap, Zone, Resource, Action }
-public enum SkillEffectTiming { OnCast, BeforeHit, OnHit, AfterHit, TurnStart, TurnEnd, OnExpire, OnStatusRemoved }
-
-[System.Serializable]
-public class SkillActivationCondition
-{
-    public string conditionKey;
-    public SkillValueType valueType;
-    public SkillComparison comparison;
-    public int intValue;
-    public bool boolValue;
-}
-
-[System.Serializable]
-public class SkillConfiguredEffect
-{
-    public SkillEffectKind kind;
-    public SkillEffectTiming timing;
-    [Range(0, 100)] public int chance = 100;
-    public SkillTargetType target = SkillTargetType.Enemy;
-    [Min(0)] public int delayTurns;
-    public SkillDurationType duration = SkillDurationType.Instant;
-    [Min(0)] public int durationValue = 1;
-    public int magnitude;
-    public int armorDamage;
-    public SkillElementType element;
-    public SkillTileFieldEffectType fieldType;
-    [Min(1)] public int fieldTurns = 1;
-    public int fieldPower = 1;
-    public SkillStatusEffectType status;
-    public int statusStacks = 1;
-    public SkillPushDirection movementDirection;
-    [Min(0)] public int movementTiles;
-    public string detailKey;
-    public string notes;
-}
-
 [System.Serializable]
 public class SkillPatternTile
 {
@@ -167,30 +121,6 @@ public class SkillList : ScriptableObject
     public int level;
     public int MaxLevel;
     public List<SkillList> skillsList;
-
-
-    [Header("사용 / 발동 조건 (신규)")]
-    public bool restrictClasses;
-    public SkillAllowedClasses allowedClasses = SkillAllowedClasses.None;
-    [Tooltip("1~12 중 사용 가능 캐릭터 번호. 비어 있으면 제한 없음")]
-    public List<int> allowedCharacterNumbers = new List<int>();
-    public SkillActivationTrigger activationTrigger;
-    public SkillConditionLogic conditionLogic;
-    public List<SkillActivationCondition> activationConditions = new List<SkillActivationCondition>();
-    [Range(0, 100)] public int activationChance = 100;
-
-    [Header("타겟 및 공격 틱 (신규)")]
-    public SkillTargetSelection targetSelection = SkillTargetSelection.LegacyAll;
-    [Tooltip("공격 1틱당 공격 대상 수. 0 = 제한 없음 (기존 방식)")]
-    [Min(0)] public int targetCount = 0;
-    [Min(1)] public int minAttackTicks = 1;
-    [Min(1)] public int maxAttackTicks = 1;
-
-    [Header("지속 / 효과 목록 (신규)")]
-    public SkillDurationType durationType = SkillDurationType.Instant;
-    [Min(0)] public int durationValue;
-    [Min(0)] public int maxActivationsPerTurnForSkill;
-    public List<SkillConfiguredEffect> configuredEffects = new List<SkillConfiguredEffect>();
 
     [Header("타일 패턴")]
     public List<Vector2Int> rangePattern = new List<Vector2Int>();
