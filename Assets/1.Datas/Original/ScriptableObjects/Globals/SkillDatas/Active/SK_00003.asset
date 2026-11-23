@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41db1214dedf9f40b9dc2d961a60a4f, type: 3}
+  m_Name: SK_00003
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveSkill
+  skillName: "\uB77C\uC774\uD2B8\uB2DD\uB79C\uC2A4"
+  description: "\uC804\uACA9\uC18D\uC131 \uC77C\uC790\uD615\uACF5\uACA9"
+  id: 0
+  type: 10
+  classType: 0
+  elementType: 5
+  effectType: 1
+  targetType: 0
+  icon: {fileID: 137915955, guid: 2b4432f756853774ba732dbe06296c04, type: 3}
+  cost: 0
+  condition: 
+  canRotate: 1
+  cooldown: 0
+  delay: 0
+  level: 0
+  MaxLevel: 0
+  skillsList: []
+  restrictClasses: 0
+  allowedClasses: 0
+  allowedCharacterNumbers: 
+  activationTrigger: 0
+  conditionLogic: 0
+  activationConditions: []
+  activationChance: 100
+  targetSelection: 0
+  targetCount: 0
+  minAttackTicks: 1
+  maxAttackTicks: 1
+  durationType: 0
+  durationValue: 0
+  maxActivationsPerTurnForSkill: 0
+  configuredEffects: []
+  rangePattern: []
+  roePattern:
+  - position: {x: 0, y: 0}
+    distanceFromCaster: 0
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 1, y: 0}
+    distanceFromCaster: 1
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: -1, y: 0}
+    distanceFromCaster: 1
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: 2, y: 0}
+    distanceFromCaster: 2
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  - position: {x: -2, y: 0}
+    distanceFromCaster: 2
+    damage: 1
+    appliesDebuff: 0
+    debuffType: 0
+    fieldEffect: 0
+    fieldEffectValue: 1
+    fieldEffectDuration: 3
+    fieldPushDirection: 0
+    push: 0
+    pushDirection: 0
+    pushTargetCount: 0
+    pushDistance: 0
+  fieldEffectType: 0
+  statusEffectType: 0
+  range: 5
+  aoe: 2
+  damage: 1
+  pushDistance: 0
